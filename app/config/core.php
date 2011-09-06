@@ -33,7 +33,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 2);
+	Configure::write('debug', 1);
 
 /**
  * CakePHP Log Level:
@@ -85,7 +85,7 @@
  *
  * [Note Routing.admin is deprecated in 1.3.  Use Routing.prefixes instead]
  */
-	//Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', array('admin'));
 
 /**
  * Turn off all caching application-wide.
@@ -164,7 +164,7 @@
  * characters."
  * @link http://php.net/session_name
  */
-	Configure::write('Session.cookie', 'CAKEPHP');
+	Configure::write('Session.cookie', 'cake_base');
 
 /**
  * Session time out time (in seconds).
@@ -201,12 +201,12 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhG93b0qyJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	Configure::write('Security.salt', 'DYhG93b0qyJfIxfa324564621888sdfFfs2guVoUubWwvniR2G0FgaC9mi');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '76859309657453542496749683645');
+	Configure::write('Security.cipherSeed', '768593096574533465678553111542496749683645');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -245,7 +245,7 @@
  * If you are on PHP 5.3 uncomment this line and correct your server timezone
  * to fix the date & time related errors.
  */
-	//date_default_timezone_set('UTC');
+	date_default_timezone_set('America/Bogota');
 
 /**
  *
