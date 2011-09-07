@@ -23,8 +23,8 @@
 
 /** General Style Info **/
 body {
-	background: #003d4c;
-	color: #fff;
+	background: white;
+	color: black;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
 	margin: 0;
@@ -111,10 +111,25 @@ ul, li {
 div.form,
 div.index,
 div.view {
-	float:right;
-	width:76%;
-	border-left:1px solid #666;
+	width:96%;
 	padding:10px 2%;
+}
+div.form2{/*Form whith image*/
+	float:left;
+	width:60%;
+}
+div.images{
+	float:right;
+	width:35%;
+	min-width:335px;
+	min-height:335px;
+}
+div.images .preview{
+	min-width:335px;
+	min-height:335px;
+}
+div.images .preview .wrapper img{
+	max-width:100%;
 }
 div.actions {
 	float:left;
@@ -541,20 +556,24 @@ div.code-coverage-results span.result-good {
 }
 /** ICONS BACK */
 .icon{
-	
+	float:left;
+	display:block;
+	width:25px;
+	height:25px;
+	background:black;
 }
 .view{
-	
+	background-image:url(../img/view.png);
 }
 .delete{
-	
+	background-image:url(../img/delete.png);
 }
 .edit{
-	
+	background-image:url(../img/edit.png);
 }
-.active{
-	
+.setActive{
+	background-image:url(../img/set-active.png);
 }
-.inactive{
-	
+.setInactive{
+	background-image:url(../img/set-inactive.png);
 }

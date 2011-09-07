@@ -152,7 +152,7 @@
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData[$currentModelName]["active"]=false;
+		$oldData["<?php echo $currentModelName; ?>"]["active"]=false;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));
@@ -178,7 +178,7 @@ function <?php echo $admin; ?>setActive($id = null) {
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData[$currentModelName]["active"]=true;
+		$oldData["<?php echo $currentModelName; ?>"]["active"]=true;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));

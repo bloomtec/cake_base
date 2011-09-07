@@ -68,7 +68,7 @@ class PagesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 		$oldData=$this->Page->read(null,$id);
-		$oldData[$currentModelName]["active"]=false;
+		$oldData["Page"]["active"]=false;
 		if ($this->Page->save($oldData)) {
 			$this->Session->setFlash(__('Page archived', true));
 			$this->redirect(array('action'=>'index'));
@@ -82,7 +82,7 @@ function setActive($id = null) {
 			$this->redirect(array('action'=>'index'));
 		}
 		$oldData=$this->Page->read(null,$id);
-		$oldData[$currentModelName]["active"]=true;
+		$oldData["Page"]["active"]=true;
 		if ($this->Page->save($oldData)) {
 			$this->Session->setFlash(__('Page archived', true));
 			$this->redirect(array('action'=>'index'));
@@ -155,7 +155,7 @@ function setActive($id = null) {
 			$this->redirect(array('action'=>'index'));
 		}
 		$oldData=$this->Page->read(null,$id);
-		$oldData[$currentModelName]["active"]=false;
+		$oldData["Page"]["active"]=false;
 		if ($this->Page->save($oldData)) {
 			$this->Session->setFlash(__('Page archived', true));
 			$this->redirect(array('action'=>'index'));
@@ -169,7 +169,7 @@ function admin_setActive($id = null) {
 			$this->redirect(array('action'=>'index'));
 		}
 		$oldData=$this->Page->read(null,$id);
-		$oldData[$currentModelName]["active"]=true;
+		$oldData["Page"]["active"]=true;
 		if ($this->Page->save($oldData)) {
 			$this->Session->setFlash(__('Page archived', true));
 			$this->redirect(array('action'=>'index'));

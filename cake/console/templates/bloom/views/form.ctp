@@ -17,6 +17,19 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
+<?php 
+// VERIFICAR TIPO FORM
+$tipForm=1;
+$image=null;
+foreach ($fields as $field) {
+	if(strpos($field,"image")===0){
+		$tipForm=2;
+		$image=$field;
+		break;
+	}
+}
+?>
+<?php if($tipForm===1)://TIPO FORMULARIO POR DEFECTO CAKE?>
 <div class="<?php echo $pluralVar;?> form">
 <?php echo "<?php echo \$this->Form->create('{$modelClass}');?>\n";?>
 	<fieldset>
@@ -42,3 +55,53 @@
 	echo "<?php echo \$this->Form->end(__('Submit', true));?>\n";
 ?>
 </div>
+<?php endif; ?>
+<?php if($tipForm===2):// TIPO FORMULARIO CON UPLOADER AL LADO?>	
+<div class="<?php echo $pluralVar;?> form2">
+<?php echo "<?php echo \$this->Form->create('{$modelClass}');?>\n";?>
+	<fieldset>
+		<legend><?php printf("<?php __('%s %s'); ?>", Inflector::humanize($action), $singularHumanName); ?></legend>
+<?php
+		echo "\t<?php\n";
+		foreach ($fields as $field) {
+			if (strpos($action, 'add') !== false && $field == $primaryKey) {
+				continue;
+			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
+				if(strpos($field,"image")===0){
+					echo "\t\techo \$this->Form->input('{$field}',array('id' => 'single-field'));\n";
+				}else{
+					echo "\t\techo \$this->Form->input('{$field}');\n";
+				}
+			}
+		}
+		if (!empty($associations['hasAndBelongsToMany'])) {
+			foreach ($associations['hasAndBelongsToMany'] as $assocName => $assocData) {
+				echo "\t\techo \$this->Form->input('{$assocName}');\n";
+			}
+		}
+		echo "\t?>\n";
+?>
+	</fieldset>
+<?php
+	echo "<?php echo \$this->Form->end(__('Submit', true));?>\n";
+?>
+</div>
+
+<div class="images">
+		<h2><?php __("Image") ?></h2>
+		<div class="preview">
+			<div class="wrapper">
+			<?php
+			if($action=='edit'){
+				echo "\t\t<?php echo \$this->Html->image('uploads/400x400/'.\$this->data['{$modelClass}']['{$field}']);?>";
+			}else{
+				echo "\t\t <?php echo \$this->Html->image('preview.png');?>\n";
+			}
+			?>
+			</div>
+		</div>
+		<div id="single-upload" controller="<?php echo $pluralVar; ?>">
+		</div>			
+</div>
+<?php endif ?>
+

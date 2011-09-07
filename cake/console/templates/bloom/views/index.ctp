@@ -22,7 +22,11 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 	<?php  foreach ($fields as $field):?>
+		<?php if($field=="active"){?>
+			<th><?php echo "<?php echo \$this->Paginator->sort('Status','{$field}');?>";?></th>
+		<?php }else{?>	
 		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
+		<?php }?>
 	<?php endforeach;?>
 		<th class="actions"><?php echo "<?php __('Actions');?>";?></th>
 	</tr>
@@ -38,6 +42,8 @@
 	echo "\t<tr<?php echo \$class;?>>\n";
 		foreach ($fields as $field) {
 			$isKey = false;
+			$isActiveField=false;
+			$isImage=false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $alias => $details) {
 					if ($field === $details['foreignKey']) {
@@ -47,24 +53,39 @@
 					}
 				}
 			}
-			if ($isKey !== true) {
+			if($field=="active"){
+				// active case
+				$isActiveField=true;
+				echo "<?php if(\${$singularVar}['{$modelClass}']['{$field}']){ ?>\n";
+					echo "\t\t<td><?php echo 'Active'; ?>&nbsp;</td>\n";
+				echo "<?php }else{ ?>\n";
+					echo "\t\t<td><?php echo 'Inactive'; ?>&nbsp;</td>\n";
+				echo "<?php }\n ?>";
+					
+			}
+			if(strpos($field,"image")===0){
+				// Image Case
+				$isImage=true;
+				echo "\t\t<td><?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";			
+			}
+			if ($isKey !== true && $isActiveField!== true && $isImage!==true) {
 				echo "\t\t<td><?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>&nbsp;</td>\n";
 			}
 		}
 
 		echo "\t\t<td class=\"actions\">\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view')); ?>\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'],array('class'=>'edit')); ?>\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
+		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
+		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>\n";
+		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
 		
-	echo "\t\t\t<?php if(isset(!\${$singularVar}['{$modelClass}']['active'])&& \${$singularVar}['{$modelClass}']['active']){\n";
-			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setInactive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to inactive # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}']));\n";	
-	echo	"}";
+	echo "\t\t\t<?php if(isset(\${$singularVar}['{$modelClass}']['active'])&& \${$singularVar}['{$modelClass}']['active']){\n";
+			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setInactive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}']));\n";	
+	echo	"}?>\n";
 		
-	echo "\t\t\t<?php if(isset(!\${$singularVar}['{$modelClass}']['active'])&& !\${$singularVar}['{$modelClass}']['active']){\n";
-			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setActive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to active # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); \n";	
-	echo "}\n";
-		echo "\t\t</td>\n";
+	echo "\t\t\t<?php if(isset(\${$singularVar}['{$modelClass}']['active'])&& !\${$singularVar}['{$modelClass}']['active']){\n";
+			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setActive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); \n";	
+	echo "}?>\n";
+		
 	echo "\t</tr>\n";
 
 	echo "<?php endforeach; ?>\n";

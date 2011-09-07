@@ -23,6 +23,9 @@
 <?php
 foreach ($fields as $field) {
 	$isKey = false;
+	$isActiveField=false;
+	$isImage=false;
+	
 	if (!empty($associations['belongsTo'])) {
 		foreach ($associations['belongsTo'] as $alias => $details) {
 			if ($field === $details['foreignKey']) {
@@ -33,7 +36,22 @@ foreach ($fields as $field) {
 			}
 		}
 	}
-	if ($isKey !== true) {
+	if (strpos($field,'image')===0) {// SI ES IMAGEN
+		$isImage=true;
+		echo "\t\t<dt<?php if (\$i % 2 == 0) echo \$class;?>><?php __('" . Inflector::humanize($field) . "'); ?></dt>\n";
+		echo "\t\t<dd<?php if (\$i++ % 2 == 0) echo \$class;?>>\n\t\t\t<?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>\n\t\t\t&nbsp;\n\t\t</dd>\n";
+	}
+	if (strpos($field,'active')===0) {// SI ES IMAGEN
+		$isActiveField=true;
+				echo "<?php if(\${$singularVar}['{$modelClass}']['{$field}']){ ?>\n";
+					echo "\t\t<dt<?php if (\$i % 2 == 0) echo \$class;?>><?php __('" . Inflector::humanize($field) . "'); ?></dt>\n";
+					echo "\t\t<dd<?php if (\$i++ % 2 == 0) echo \$class;?>>\n\t\t\t<?php echo __('Active',true); ?>\n\t\t\t&nbsp;\n\t\t</dd>\n";
+				echo "<?php }else{ ?>\n";
+					echo "\t\t<dt<?php if (\$i % 2 == 0) echo \$class;?>><?php __('" . Inflector::humanize($field) . "'); ?></dt>\n";
+					echo "\t\t<dd<?php if (\$i++ % 2 == 0) echo \$class;?>>\n\t\t\t<?php echo __('Inactive',true); ?>\n\t\t\t&nbsp;\n\t\t</dd>\n";
+				echo "<?php }\n ?>";
+	}
+	if ($isKey !== true && $isActiveField!== true && $isImage!==true) {
 		echo "\t\t<dt<?php if (\$i % 2 == 0) echo \$class;?>><?php __('" . Inflector::humanize($field) . "'); ?></dt>\n";
 		echo "\t\t<dd<?php if (\$i++ % 2 == 0) echo \$class;?>>\n\t\t\t<?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>\n\t\t\t&nbsp;\n\t\t</dd>\n";
 	}

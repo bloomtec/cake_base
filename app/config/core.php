@@ -35,6 +35,12 @@
  */
 	Configure::write('debug', 1);
 
+/*
+TAMAÑO DE IMAGENES PERSONALIZADAS
+*/
+Configure::write('custom_width', 25);
+Configure::write('custom_height', 25);
+
 /**
  * CakePHP Log Level:
  *

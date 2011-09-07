@@ -22,14 +22,19 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('CakePHP: the rapid development php framework:'); ?>
+		<?php __('EZ CMS:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
 		echo $this->Html->css('bloom');
-
+		echo $this->Html->css('superfish');
+		echo $this->Html->css('uploadify');
+		echo $this->Html->Script("jquery");
+		echo $this->Html->Script("swfobject");
+		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
+		echo $this->Html->Script("upload");
+		
 		echo $scripts_for_layout;
 	?>
 </head>
@@ -46,9 +51,10 @@
 
 		</div>
 		<div id="footer">
+			powered by 
 			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
-					'http://www.cakephp.org/',
+					$this->Html->image('bloom_naranja.png', array('alt'=> __('Bloom Web Company', true),"height"=>15, 'border' => '0')),
+					'http://www.bloomweb.co/',
 					array('target' => '_blank', 'escape' => false)
 				);
 			?>

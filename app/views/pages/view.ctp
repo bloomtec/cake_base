@@ -21,12 +21,20 @@
 			<?php echo $page['Page']['keywords']; ?>
 			&nbsp;
 		</dd>
+<?php if($page['Page']['active']){ ?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Active'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['active']; ?>
+			<?php echo __('Active',true); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Content'); ?></dt>
+<?php }else{ ?>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Active'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo __('Inactive',true); ?>
+			&nbsp;
+		</dd>
+<?php }
+ ?>		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Content'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $page['Page']['content']; ?>
 			&nbsp;
