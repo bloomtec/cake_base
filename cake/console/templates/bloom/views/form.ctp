@@ -21,11 +21,14 @@
 // VERIFICAR TIPO FORM
 $tipForm=1;
 $image=null;
+$wysiwyg=array();
 foreach ($fields as $field) {
 	if(strpos($field,"image")===0){
 		$tipForm=2;
 		$image=$field;
-		break;
+	}
+	if(strpos($field,"wysiwyg")===0){
+		$wysiwyg[]=$field;
 	}
 }
 ?>
@@ -40,7 +43,11 @@ foreach ($fields as $field) {
 			if (strpos($action, 'add') !== false && $field == $primaryKey) {
 				continue;
 			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
-				echo "\t\techo \$this->Form->input('{$field}');\n";
+				if(strpos($field,"wysiwyg")===0){
+						echo "\t\techo \$this->Form->input('{$field}',array('label'=>false));\n";	
+					}else{
+						echo "\t\techo \$this->Form->input('{$field}');\n";
+				}
 			}
 		}
 		if (!empty($associations['hasAndBelongsToMany'])) {
@@ -70,7 +77,11 @@ foreach ($fields as $field) {
 				if(strpos($field,"image")===0){
 					echo "\t\techo \$this->Form->input('{$field}',array('id' => 'single-field'));\n";
 				}else{
-					echo "\t\techo \$this->Form->input('{$field}');\n";
+					if(strpos($field,"wysiwyg")===0){
+						echo "\t\techo \$this->Form->input('{$field}',array('label'=>false));\n";	
+					}else{
+						echo "\t\techo \$this->Form->input('{$field}');\n";
+					}
 				}
 			}
 		}
@@ -105,3 +116,13 @@ foreach ($fields as $field) {
 </div>
 <?php endif ?>
 
+<?php if(!empty($wysiwyg)):?>
+	<script type="text/javascript">
+	<?php foreach($wysiwyg as $field):?>
+		CKEDITOR.replace('<?php echo "data[{$modelClass}][{$field}]"; ?>',{
+        	filebrowserUploadUrl : '/upload.php',
+        	filebrowserBrowseUrl : '/admin/images/wysiwyg',
+		} );
+	<?php endforeach ?>
+	</script>
+<?php endif;?>
