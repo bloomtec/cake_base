@@ -10,7 +10,6 @@
 		echo $this->Form->input('surname');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('address');
-		echo $this->Form->input('email');
 		echo $this->Form->input('birthday');
 	?>
 	</fieldset>
