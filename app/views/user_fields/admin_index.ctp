@@ -10,7 +10,6 @@
 			<th><?php echo $this->Paginator->sort('surname');?></th>
 			<th><?php echo $this->Paginator->sort('phone');?></th>
 			<th><?php echo $this->Paginator->sort('address');?></th>
-			<th><?php echo $this->Paginator->sort('email');?></th>
 			<th><?php echo $this->Paginator->sort('birthday');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('updated');?></th>
@@ -37,7 +36,6 @@
 		<td><?php echo $userField['UserField']['surname']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['phone']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['address']; ?>&nbsp;</td>
-		<td><?php echo $userField['UserField']['email']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['birthday']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['created']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['updated']; ?>&nbsp;</td>

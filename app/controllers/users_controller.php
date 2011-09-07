@@ -42,12 +42,13 @@ class UsersController extends AppController {
 				$user['User']['password'] = $this->Auth->password($this->data['User']['enter_password']);
 				$isPasswordValid = true;
 			}
-			$user['User']['role_id'] = 2;
+			$user['User']['role_id'] = 3; // 1 - Admin; 2 - Gerente; 3 - Usuario
 			$user['User']['active'] = 1;
 			// Validar el correo
-			$tempUserFields = $this->User->UserField->findByEmail($this->data['User']['email']);
-			if(empty($tempUserFields) && !empty($this->data['User']['email']) && ($this->data['User']['email'] == $this->data['User']['confirm_email'])) {
+			$tempUser = $this->User->findByEmail($this->data['User']['email']);
+			if(empty($tempUser) && !empty($this->data['User']['email']) && ($this->data['User']['email'] == $this->data['User']['confirm_email'])) {
 				$isMailValid = true;
+				$user['User']['email'] = $this->data['User']['email'];
 			}
 			if($isUserNameValid) {
 				if($isDocumentValid) {
@@ -62,7 +63,6 @@ class UsersController extends AppController {
 							$userFields['UserField']['surname'] = $this->data['User']['surname'];
 							$userFields['UserField']['phone'] = $this->data['User']['phone'];
 							$userFields['UserField']['address'] = $this->data['User']['address'];
-							$userFields['UserField']['email'] = $this->data['User']['email'];
 							$userFields['UserField']['birthday'] = $this->data['User']['birthday'];
 							$this->User->UserField->save($userFields);
 							$this->Session->setFlash(__('The user has been saved', true));
