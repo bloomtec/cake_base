@@ -12,7 +12,7 @@
 		<th><?php echo $this->Paginator->sort('keywords');?></th>
 								<th><?php echo $this->Paginator->sort('Status','active');?></th>
 						
-		<th><?php echo $this->Paginator->sort('content');?></th>
+		<th><?php echo $this->Paginator->sort('wysiwyg_content');?></th>
 						
 		<th><?php echo $this->Paginator->sort('slug');?></th>
 						
@@ -39,7 +39,7 @@
 <?php }else{ ?>
 		<td><?php echo 'Inactive'; ?>&nbsp;</td>
 <?php }
- ?>		<td><?php echo $page['Page']['content']; ?>&nbsp;</td>
+ ?>		<td><?php echo $page['Page']['wysiwyg_content']; ?>&nbsp;</td>
 		<td><?php echo $page['Page']['slug']; ?>&nbsp;</td>
 		<td><?php echo $page['Page']['created']; ?>&nbsp;</td>
 		<td><?php echo $page['Page']['updated']; ?>&nbsp;</td>

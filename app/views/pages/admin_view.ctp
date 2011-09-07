@@ -34,9 +34,9 @@
 			&nbsp;
 		</dd>
 <?php }
- ?>		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Content'); ?></dt>
+ ?>		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Wysiwyg Content'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['content']; ?>
+			<?php echo $page['Page']['wysiwyg_content']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Slug'); ?></dt>
