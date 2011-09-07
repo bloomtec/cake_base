@@ -35,7 +35,12 @@
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'view', $page['Page']['id']),array('class'=>'view')); ?>
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'edit', $page['Page']['id'],array('class'=>'edit')); ?>
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'delete', $page['Page']['id']), array('class'=>'delete'), sprintf(__('Are you sure you want to delete # %s?', true), $page['Page']['id'])); ?>
-$page['Page']['active']		</td>
+			<?php if(isset(!$page['Page']['active'])&& $page['Page']['active']){
+			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $page['Page']['id']), array('class'=>'delete'), sprintf(__('Are you sure you want to inactive # %s?', true), $page['Page']['id']));
+}			<?php if(isset(!$page['Page']['active'])&& !$page['Page']['active']){
+			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $page['Page']['id']), array('class'=>'delete'), sprintf(__('Are you sure you want to active # %s?', true), $page['Page']['id'])); 
+}
+		</td>
 	</tr>
 <?php endforeach; ?>
 	</table>

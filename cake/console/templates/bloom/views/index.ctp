@@ -57,13 +57,13 @@
 		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'],array('class'=>'edit')); ?>\n";
 		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
 		
-		if(isset(${$singularVar}['{$modelClass}']['active'])&& ${$singularVar}['{$modelClass}']['active']){
-			echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'setInactive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to inactive # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";	
-		}
+	echo "\t\t\t<?php if(isset(!\${$singularVar}['{$modelClass}']['active'])&& \${$singularVar}['{$modelClass}']['active']){\n";
+			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setInactive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to inactive # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}']));\n";	
+	echo	"}";
 		
-		if(isset(${$singularVar}['{$modelClass}']['active'])&& !${$singularVar}['{$modelClass}']['active']){
-			echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'setActive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to active # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";	
-		}
+	echo "\t\t\t<?php if(isset(!\${$singularVar}['{$modelClass}']['active'])&& !\${$singularVar}['{$modelClass}']['active']){\n";
+			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setActive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete'), sprintf(__('Are you sure you want to active # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); \n";	
+	echo "}\n";
 		echo "\t\t</td>\n";
 	echo "\t</tr>\n";
 
