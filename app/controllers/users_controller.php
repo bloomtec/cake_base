@@ -42,7 +42,7 @@ class UsersController extends AppController {
 				$user['User']['password'] = $this->Auth->password($this->data['User']['enter_password']);
 				$isPasswordValid = true;
 			}
-			$user['User']['role_id'] = 2;
+			$user['User']['role_id'] = 3; // 1 - Admin; 2 - Gerente; 3 - Usuario
 			$user['User']['active'] = 1;
 			// Validar el correo
 			$tempUser = $this->User->findByEmail($this->data['User']['email']);
