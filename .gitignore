@@ -4,6 +4,7 @@
 /app/tmp/logs/*
 /app/tmp/sessions/*
 /app/tmp/tests/*
+/app/webroot/files/uploads/*
 /app/webroot/img/uploads/*
 /app/webroot/img/uploads/50x50/*
 /app/webroot/img/uploads/100x100/*
