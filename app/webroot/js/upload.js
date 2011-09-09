@@ -20,6 +20,10 @@ $(document).ready(
 						'auto' : true,
 						'cancelImg' : server + 'img/cancel.png',
 						'onComplete' : function(a, b, c, d) {
+							var oldImage=$("#single-field").val();
+							$.post(server + "images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+								
+							});							
 							$(".preview").html('<img  src="' + d + '" />');
 							var file = d.split("/");
 							var nombre = file[(file.length - 1)];

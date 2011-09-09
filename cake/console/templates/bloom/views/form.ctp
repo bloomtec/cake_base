@@ -75,7 +75,7 @@ foreach ($fields as $field) {
 				continue;
 			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
 				if(strpos($field,"image")===0){
-					echo "\t\techo \$this->Form->input('{$field}',array('id' => 'single-field'));\n";
+					echo "\t\techo \$this->Form->hidden('{$field}',array('id' => 'single-field'));\n";
 				}else{
 					if(strpos($field,"wysiwyg")===0){
 						echo "\t\techo \$this->Form->input('{$field}',array('label'=>false));\n";	

@@ -9,7 +9,7 @@ class ImagesController extends AppController {
 		$this->autoRender = false;
 		Configure::write("debug", 0);
 			
-		if($_POST["name"] && $_POST["folder"]) {
+		if($_POST["name"]) {
 			
 			$this->Attachment->resize_image(
 				"resize",
@@ -59,6 +59,42 @@ class ImagesController extends AppController {
 				Configure::read("custom_width"),
 				Configure::read("custom_height")
 			);			
+			echo true;
+		}else{
+			echo false;
+		}
+		
+		exit(0);
+	}
+	function deleteImage(){
+		
+		$this->autoRender = false;
+		Configure::write("debug", 0);
+			
+		if($_POST["name"]) {
+			$filename=$_POST["name"];
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'50x50'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'50x50'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'100x100'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'100x100'.DS.$filename);
+			}
+
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'200x200'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'200x200'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'400x400'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'400x400'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'640x480'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'640x480'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'custom'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'custom'.DS.$filename);
+			}	
 			echo true;
 		}else{
 			echo false;
