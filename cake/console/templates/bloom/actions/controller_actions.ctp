@@ -195,7 +195,7 @@ function <?php echo $admin; ?>setActive($id = null) {
 		$this->redirect(array('action' => 'index'));
 	}
 function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
-	if($llave==Configure::read("llave")){
+	if($llave==Configure::read("key")){
 		return $this-><?php echo $currentModelName; ?>->find($type,,$findParams);
 	}else{
 		return null;
