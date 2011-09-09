@@ -1,9 +1,8 @@
 <div class="userFields form">
 <?php echo $this->Form->create('UserField');?>
 	<fieldset>
-		<legend><?php __('Admin Edit User Field'); ?></legend>
+		<legend><?php __('Add User Field'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('document_type_id');
 		echo $this->Form->input('document');

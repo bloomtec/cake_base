@@ -59,6 +59,19 @@ class User extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		),
+		'UserNotification' => array(
+			'className' => 'UserNotification',
+			'foreignKey' => 'user_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
 		)
 	);
 
@@ -79,41 +92,11 @@ class User extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'Notification' => array(
-			'className' => 'Notification',
-			'joinTable' => 'users_notifications',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'notification_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
 		'Team' => array(
 			'className' => 'Team',
 			'joinTable' => 'users_teams',
 			'foreignKey' => 'user_id',
 			'associationForeignKey' => 'team_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'TeamsStatus' => array(
-			'className' => 'TeamsStatus',
-			'joinTable' => 'users_teams_status',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'teams_status_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

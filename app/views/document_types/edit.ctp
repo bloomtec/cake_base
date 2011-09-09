@@ -1,8 +1,9 @@
 <div class="documentTypes form">
 <?php echo $this->Form->create('DocumentType');?>
 	<fieldset>
-		<legend><?php __('Admin Add Document Type'); ?></legend>
+		<legend><?php __('Edit Document Type'); ?></legend>
 	<?php
+		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 	?>
 	</fieldset>
