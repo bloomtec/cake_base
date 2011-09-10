@@ -28,7 +28,8 @@ class UserFieldsController extends AppController {
 		}
 		$users = $this->UserField->User->find('list');
 		$documentTypes = $this->UserField->DocumentType->find('list');
-		$this->set(compact('users', 'documentTypes'));
+		$feets = $this->UserField->Feet->find('list');
+		$this->set(compact('users', 'documentTypes', 'feets'));
 	}
 
 	function edit($id = null) {
@@ -49,7 +50,8 @@ class UserFieldsController extends AppController {
 		}
 		$users = $this->UserField->User->find('list');
 		$documentTypes = $this->UserField->DocumentType->find('list');
-		$this->set(compact('users', 'documentTypes'));
+		$feets = $this->UserField->Feet->find('list');
+		$this->set(compact('users', 'documentTypes', 'feets'));
 	}
 
 	function delete($id = null) {
@@ -128,7 +130,8 @@ function requestFind($type,$findParams,$key) {
 		}
 		$users = $this->UserField->User->find('list');
 		$documentTypes = $this->UserField->DocumentType->find('list');
-		$this->set(compact('users', 'documentTypes'));
+		$feets = $this->UserField->Feet->find('list');
+		$this->set(compact('users', 'documentTypes', 'feets'));
 	}
 
 	function admin_edit($id = null) {
@@ -149,7 +152,8 @@ function requestFind($type,$findParams,$key) {
 		}
 		$users = $this->UserField->User->find('list');
 		$documentTypes = $this->UserField->DocumentType->find('list');
-		$this->set(compact('users', 'documentTypes'));
+		$feets = $this->UserField->Feet->find('list');
+		$this->set(compact('users', 'documentTypes', 'feets'));
 	}
 
 	function admin_delete($id = null) {

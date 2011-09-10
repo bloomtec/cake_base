@@ -6,6 +6,8 @@
 		echo $this->Form->input('email');
 		echo $this->Form->input('password');
 		echo $this->Form->input('role_id');
+		echo $this->Form->input('Club');
+		echo $this->Form->input('CountrySquad');
 		echo $this->Form->input('Match');
 		echo $this->Form->input('Team');
 	?>

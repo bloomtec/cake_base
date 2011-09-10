@@ -17,7 +17,7 @@
 						
 		<th><?php echo $this->Paginator->sort('birthday');?></th>
 						
-		<th><?php echo $this->Paginator->sort('prefered_foot');?></th>
+		<th><?php echo $this->Paginator->sort('foot_id');?></th>
 						
 		<th><?php echo $this->Paginator->sort('created');?></th>
 						
@@ -44,7 +44,9 @@
 		<td><?php echo $userField['UserField']['name']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['surname']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['birthday']; ?>&nbsp;</td>
-		<td><?php echo $userField['UserField']['prefered_foot']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($userField['Feet']['name'], array('controller' => 'feets', 'action' => 'view', $userField['Feet']['id'])); ?>
+		</td>
 		<td><?php echo $userField['UserField']['created']; ?>&nbsp;</td>
 		<td><?php echo $userField['UserField']['updated']; ?>&nbsp;</td>
 		<td class="actions">

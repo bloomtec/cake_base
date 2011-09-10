@@ -33,14 +33,20 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	var $components = array('Auth', 'Acl', 'Session');
+	var $components = array(
+		'Auth' => array(
+			'username' => 'email',
+			'password' => 'password'
+		),
+		'Acl',
+		'Session'
+	);
 	
 	function beforeFilter() {
+		$this->layout="bloom";
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
-			$this->layout="bloom";
 			$this->Auth->deny($this->action);
 		} else {
-			$this->layout="bloom";
 			$this->Auth->allow($this->action);
 		}
 	}

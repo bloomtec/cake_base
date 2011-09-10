@@ -36,9 +36,9 @@
 			<?php echo $userField['UserField']['birthday']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Prefered Foot'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Feet'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $userField['UserField']['prefered_foot']; ?>
+			<?php echo $this->Html->link($userField['Feet']['name'], array('controller' => 'feets', 'action' => 'view', $userField['Feet']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>

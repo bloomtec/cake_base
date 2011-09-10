@@ -45,28 +45,30 @@ class UsersController extends AppController {
 
 	function register() {
 		if (!empty($this -> data)) {
-			$isUserNameValid = false;
+			//$isUserNameValid = false;
 			$isDocumentValid = false;
 			$isPasswordValid = false;
 			$isMailValid = false;
 			// Validar el nombre de usuario
-			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
-			if (empty($tempUser)) {
-				$isUserNameValid = true;
-			}
+			//$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
+			//if (empty($tempUser)) {
+			//	$isUserNameValid = true;
+			//}
 			// Validar el documento
 			$tempUserFields = $this -> User -> UserField -> findByDocument($this -> data['User']['document']);
 			if (empty($tempUserFields)) {
 				$isDocumentValid = true;
 			}
 			$user = array();
-			$user['User']['username'] = $this -> data['User']['username'];
+			if(!isset($this -> data['User']['username'])) {
+				$user['User']['username'] = $this -> data['User']['username'];
+			}
 			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
 				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
 				$isPasswordValid = true;
 			}
 			$user['User']['role_id'] = 3;
-			// 1 - Admin; 2 - Gerente; 3 - Usuario
+			// 1 - Admin; 2 - Usuario
 			$user['User']['active'] = 1;
 			// Validar el correo
 			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
@@ -74,7 +76,7 @@ class UsersController extends AppController {
 				$isMailValid = true;
 				$user['User']['email'] = $this -> data['User']['email'];
 			}
-			if ($isUserNameValid) {
+			//if ($isUserNameValid) {
 				if ($isDocumentValid) {
 					if ($isPasswordValid && $isMailValid) {
 						if ($this -> User -> save($user)) {
@@ -100,9 +102,9 @@ class UsersController extends AppController {
 				} else {
 					$this -> Session -> setFlash(__('Document already registered. Please, try again.', true));
 				}
-			} else {
-				$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
-			}
+			//} else {
+			//	$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
+			//}
 		}
 		$this -> loadModel('DocumentType');
 		$documentTypes = $this -> DocumentType -> find('list');

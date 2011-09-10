@@ -10,7 +10,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('surname');
 		echo $this->Form->input('birthday');
-		echo $this->Form->input('prefered_foot');
+		echo $this->Form->input('foot_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

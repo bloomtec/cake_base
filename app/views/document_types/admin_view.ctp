@@ -27,7 +27,7 @@
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Surname'); ?></th>
 		<th><?php __('Birthday'); ?></th>
-		<th><?php __('Prefered Foot'); ?></th>
+		<th><?php __('Foot Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -48,7 +48,7 @@
 			<td><?php echo $userField['name'];?></td>
 			<td><?php echo $userField['surname'];?></td>
 			<td><?php echo $userField['birthday'];?></td>
-			<td><?php echo $userField['prefered_foot'];?></td>
+			<td><?php echo $userField['foot_id'];?></td>
 			<td><?php echo $userField['created'];?></td>
 			<td><?php echo $userField['updated'];?></td>
 			<td class="actions">

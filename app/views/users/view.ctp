@@ -47,7 +47,7 @@
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Surname'); ?></th>
 		<th><?php __('Birthday'); ?></th>
-		<th><?php __('Prefered Foot'); ?></th>
+		<th><?php __('Foot Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -68,7 +68,7 @@
 			<td><?php echo $userField['name'];?></td>
 			<td><?php echo $userField['surname'];?></td>
 			<td><?php echo $userField['birthday'];?></td>
-			<td><?php echo $userField['prefered_foot'];?></td>
+			<td><?php echo $userField['foot_id'];?></td>
 			<td><?php echo $userField['created'];?></td>
 			<td><?php echo $userField['updated'];?></td>
 			<td class="actions">
@@ -94,9 +94,9 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('User Id'); ?></th>
+		<th><?php __('Subject'); ?></th>
 		<th><?php __('Content'); ?></th>
 		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -110,9 +110,9 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $userNotification['id'];?></td>
 			<td><?php echo $userNotification['user_id'];?></td>
+			<td><?php echo $userNotification['subject'];?></td>
 			<td><?php echo $userNotification['content'];?></td>
 			<td><?php echo $userNotification['created'];?></td>
-			<td><?php echo $userNotification['updated'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'user_notifications', 'action' => 'view', $userNotification['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'user_notifications', 'action' => 'edit', $userNotification['id'])); ?>
@@ -126,6 +126,84 @@
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New User Notification', true), array('controller' => 'user_notifications', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Clubs');?></h3>
+	<?php if (!empty($user['Club'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('League Id'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Image'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($user['Club'] as $club):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $club['id'];?></td>
+			<td><?php echo $club['league_id'];?></td>
+			<td><?php echo $club['name'];?></td>
+			<td><?php echo $club['image'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'clubs', 'action' => 'view', $club['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'clubs', 'action' => 'edit', $club['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'clubs', 'action' => 'delete', $club['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $club['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Club', true), array('controller' => 'clubs', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Country Squads');?></h3>
+	<?php if (!empty($user['CountrySquad'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Image'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($user['CountrySquad'] as $countrySquad):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $countrySquad['id'];?></td>
+			<td><?php echo $countrySquad['name'];?></td>
+			<td><?php echo $countrySquad['image'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'country_squads', 'action' => 'view', $countrySquad['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'country_squads', 'action' => 'edit', $countrySquad['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'country_squads', 'action' => 'delete', $countrySquad['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $countrySquad['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Country Squad', true), array('controller' => 'country_squads', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>
@@ -184,7 +262,7 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Team Style Id'); ?></th>
-		<th><?php __('Nombre'); ?></th>
+		<th><?php __('Name'); ?></th>
 		<th><?php __('Image'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
@@ -201,7 +279,7 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $team['id'];?></td>
 			<td><?php echo $team['team_style_id'];?></td>
-			<td><?php echo $team['nombre'];?></td>
+			<td><?php echo $team['name'];?></td>
 			<td><?php echo $team['image'];?></td>
 			<td><?php echo $team['created'];?></td>
 			<td><?php echo $team['updated'];?></td>
