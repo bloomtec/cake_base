@@ -54,21 +54,6 @@ class Team extends AppModel {
 
 
 	var $hasAndBelongsToMany = array(
-		'Country' => array(
-			'className' => 'Country',
-			'joinTable' => 'country_teams',
-			'foreignKey' => 'team_id',
-			'associationForeignKey' => 'country_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
 		'User' => array(
 			'className' => 'User',
 			'joinTable' => 'users_teams',

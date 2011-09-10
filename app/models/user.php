@@ -92,11 +92,11 @@ class User extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'Country' => array(
-			'className' => 'Country',
-			'joinTable' => 'countries_users',
+		'CountrySquad' => array(
+			'className' => 'CountrySquad',
+			'joinTable' => 'country_squads_users',
 			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'country_id',
+			'associationForeignKey' => 'country_squad_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
