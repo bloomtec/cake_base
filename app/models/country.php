@@ -1,6 +1,6 @@
 <?php
-class UsersTeamsStatus extends AppModel {
-	var $name = 'UsersTeamsStatus';
+class Country extends AppModel {
+	var $name = 'Country';
 	var $displayField = 'name';
 	var $validate = array(
 		'name' => array(
@@ -16,19 +16,21 @@ class UsersTeamsStatus extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	var $hasMany = array(
-		'UsersTeam' => array(
-			'className' => 'UsersTeam',
-			'foreignKey' => 'users_teams_status_id',
-			'dependent' => false,
+	var $hasAndBelongsToMany = array(
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'countries_users',
+			'foreignKey' => 'country_id',
+			'associationForeignKey' => 'user_id',
+			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
-			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 

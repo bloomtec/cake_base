@@ -63,7 +63,7 @@ class UserField extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'prefered_foot' => array(
+		'foot_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
@@ -87,6 +87,13 @@ class UserField extends AppModel {
 		'DocumentType' => array(
 			'className' => 'DocumentType',
 			'foreignKey' => 'document_type_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Feet' => array(
+			'className' => 'Feet',
+			'foreignKey' => 'foot_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

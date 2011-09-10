@@ -90,6 +90,13 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('Foot was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
+function requestFind($type,$findParams,$key) {
+	if($key==Configure::read("key")){
+		return $this->Foot->find($type, $findParams);
+	}else{
+		return null;
+	}
+}
 	function admin_index() {
 		$this->Foot->recursive = 0;
 		$this->set('foots', $this->paginate());
@@ -177,4 +184,11 @@ function admin_setActive($id = null) {
 		$this->Session->setFlash(__('Foot was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
+function admin_requestFind($type,$findParams,$key) {
+	if($key==Configure::read("key")){
+		return $this->Foot->find($type, $findParams);
+	}else{
+		return null;
+	}
+}
 }

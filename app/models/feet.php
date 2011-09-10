@@ -1,6 +1,7 @@
 <?php
-class Foot extends AppModel {
-	var $name = 'Foot';
+class Feet extends AppModel {
+	var $name = 'Feet';
+	var $useTable = 'feet';
 	var $displayField = 'name';
 	var $validate = array(
 		'name' => array(

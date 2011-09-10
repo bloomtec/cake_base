@@ -92,11 +92,11 @@ class User extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'CountryTeam' => array(
-			'className' => 'CountryTeam',
-			'joinTable' => 'country_teams_users',
+		'Country' => array(
+			'className' => 'Country',
+			'joinTable' => 'countries_users',
 			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'country_team_id',
+			'associationForeignKey' => 'country_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
@@ -127,21 +127,6 @@ class User extends AppModel {
 			'joinTable' => 'users_teams',
 			'foreignKey' => 'user_id',
 			'associationForeignKey' => 'team_id',
-			'unique' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'TeamsStatus' => array(
-			'className' => 'TeamsStatus',
-			'joinTable' => 'users_teams_statuses',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'teams_status_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

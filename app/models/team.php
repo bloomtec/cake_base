@@ -54,11 +54,11 @@ class Team extends AppModel {
 
 
 	var $hasAndBelongsToMany = array(
-		'User' => array(
-			'className' => 'User',
-			'joinTable' => 'users_teams',
+		'Country' => array(
+			'className' => 'Country',
+			'joinTable' => 'country_teams',
 			'foreignKey' => 'team_id',
-			'associationForeignKey' => 'user_id',
+			'associationForeignKey' => 'country_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
@@ -69,11 +69,11 @@ class Team extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
-		'TeamsStatus' => array(
-			'className' => 'TeamsStatus',
-			'joinTable' => 'users_teams_statuses',
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'users_teams',
 			'foreignKey' => 'team_id',
-			'associationForeignKey' => 'teams_status_id',
+			'associationForeignKey' => 'user_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
