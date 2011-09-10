@@ -196,7 +196,7 @@ function <?php echo $admin; ?>setActive($id = null) {
 	}
 function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
 	if($key==Configure::read("key")){
-		return $this-><?php echo $currentModelName; ?>->find($type,,$findParams);
+		return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
 	}else{
 		return null;
 	}
