@@ -22,10 +22,8 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Email'); ?></th>
-		<th><?php __('Username'); ?></th>
 		<th><?php __('Password'); ?></th>
 		<th><?php __('Role Id'); ?></th>
-		<th><?php __('Active'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -41,10 +39,8 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $user['id'];?></td>
 			<td><?php echo $user['email'];?></td>
-			<td><?php echo $user['username'];?></td>
 			<td><?php echo $user['password'];?></td>
 			<td><?php echo $user['role_id'];?></td>
-			<td><?php echo $user['active'];?></td>
 			<td><?php echo $user['created'];?></td>
 			<td><?php echo $user['updated'];?></td>
 			<td class="actions">
