@@ -35,8 +35,8 @@
 class AppController extends Controller {
 	var $components = array(
 		'Auth' => array(
-			'username' => 'email',
-			'password' => 'password'
+			'authorize' => 'actions',
+			'fields' => array('username' => 'email', 'password' => 'password')
 		),
 		'Acl',
 		'Session'

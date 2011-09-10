@@ -2,6 +2,7 @@
 class User extends AppModel {
 	var $name = 'User';
 	var $displayField = 'email';
+	var $actsAs = array('Acl' => 'requester');
 	var $validate = array(
 		'email' => array(
 			'email' => array(
@@ -138,5 +139,13 @@ class User extends AppModel {
 			'insertQuery' => ''
 		)
 	);
+	
+	function parentNode() {}
+	
+	function bindNode($object) {
+		if (!empty($object[$this->alias]['role_id'])) {
+			return array('model' => 'Role', 'foreign_key' => $object[$this->alias]['role_id']);
+		}
+	}		
 
 }

@@ -3,40 +3,15 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	
-	/**
-	 * Método de Auth component.
-	 * Se declara para permitir el acceso a métodos necesarios
-	 * para la correcta funcionalidad del plugin cuando se
-	 * utiliza Auth component.
-	 */
 	function beforeFilter() {
+		parent::beforeFilter();
 		$this -> Auth -> allow('register');
 	}
 
-	function login() {
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if ($this -> Auth -> autoRedirect) {
-					$this -> redirect($this -> Auth -> redirect());
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
+	function login() {		
 	}
 
 	function admin_login() {
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if ($this -> Auth -> autoRedirect) {
-					$this -> redirect($this -> Auth -> redirect());
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
 	}
 
 	function logout() {
@@ -60,15 +35,14 @@ class UsersController extends AppController {
 				$isDocumentValid = true;
 			}
 			$user = array();
-			if(!isset($this -> data['User']['username'])) {
+			if(!isset($this -> data['User']['username']) && !empty($this -> data['User']['username'])) {
 				$user['User']['username'] = $this -> data['User']['username'];
 			}
 			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
 				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
 				$isPasswordValid = true;
 			}
-			$user['User']['role_id'] = 3;
-			// 1 - Admin; 2 - Usuario
+			$user['User']['role_id'] = 2; // 1 - Admin; 2 - Usuario
 			$user['User']['active'] = 1;
 			// Validar el correo
 			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
@@ -109,7 +83,7 @@ class UsersController extends AppController {
 		$this -> loadModel('DocumentType');
 		$documentTypes = $this -> DocumentType -> find('list');
 		$this -> set(compact('documentTypes'));
-	}	
+	}
 
 	function index() {
 		$this->User->recursive = 0;
@@ -135,9 +109,11 @@ class UsersController extends AppController {
 			}
 		}
 		$roles = $this->User->Role->find('list');
+		$clubs = $this->User->Club->find('list');
+		$countrySquads = $this->User->CountrySquad->find('list');
 		$matches = $this->User->Match->find('list');
 		$teams = $this->User->Team->find('list');
-		$this->set(compact('roles', 'matches', 'teams'));
+		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
 
 	function edit($id = null) {
@@ -157,9 +133,11 @@ class UsersController extends AppController {
 			$this->data = $this->User->read(null, $id);
 		}
 		$roles = $this->User->Role->find('list');
+		$clubs = $this->User->Club->find('list');
+		$countrySquads = $this->User->CountrySquad->find('list');
 		$matches = $this->User->Match->find('list');
 		$teams = $this->User->Team->find('list');
-		$this->set(compact('roles', 'matches', 'teams'));
+		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
 
 	function delete($id = null) {
@@ -175,9 +153,6 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user', true));
@@ -192,7 +167,8 @@ class UsersController extends AppController {
 		$this->Session->setFlash(__('User was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+	
+	function setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user', true));
 			$this->redirect(array('action'=>'index'));
@@ -206,6 +182,15 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('User was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->User->find($type, $findParams);
+		}else{
+			return null;
+		}
+	}
+	
 	function admin_index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
@@ -230,9 +215,11 @@ function setActive($id = null) {
 			}
 		}
 		$roles = $this->User->Role->find('list');
+		$clubs = $this->User->Club->find('list');
+		$countrySquads = $this->User->CountrySquad->find('list');
 		$matches = $this->User->Match->find('list');
 		$teams = $this->User->Team->find('list');
-		$this->set(compact('roles', 'matches', 'teams'));
+		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
 
 	function admin_edit($id = null) {
@@ -252,9 +239,11 @@ function setActive($id = null) {
 			$this->data = $this->User->read(null, $id);
 		}
 		$roles = $this->User->Role->find('list');
+		$clubs = $this->User->Club->find('list');
+		$countrySquads = $this->User->CountrySquad->find('list');
 		$matches = $this->User->Match->find('list');
 		$teams = $this->User->Team->find('list');
-		$this->set(compact('roles', 'matches', 'teams'));
+		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
 
 	function admin_delete($id = null) {
@@ -270,9 +259,6 @@ function setActive($id = null) {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user', true));
@@ -287,7 +273,8 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('User was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_setActive($id = null) {
+	
+	function admin_setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user', true));
 			$this->redirect(array('action'=>'index'));
@@ -301,4 +288,13 @@ function admin_setActive($id = null) {
 		$this->Session->setFlash(__('User was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	function admin_requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->User->find($type, $findParams);
+		}else{
+			return null;
+		}
+	}
+	
 }

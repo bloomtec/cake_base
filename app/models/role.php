@@ -2,6 +2,7 @@
 class Role extends AppModel {
 	var $name = 'Role';
 	var $displayField = 'name';
+	var $actsAs = array('Acl' => 'requester');
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -31,5 +32,19 @@ class Role extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	function parentNode() {
+		if (empty($this->id) && empty($this->data)) {
+			return null;
+		}
+		$data = $this->data;
+		if (empty($data)) {
+			$data = $this->find('first', array('conditions' => array('id' => $this->id), 'fields' => array('parent_id'), 'recursive' => -1));
+		}
+		if (!empty($data[$this->alias]['parent_id'])) {
+			return $data[$this->alias]['parent_id'];
+		}
+		return null;
+	}
 
 }

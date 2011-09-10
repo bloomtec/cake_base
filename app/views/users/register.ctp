@@ -4,7 +4,7 @@
 	<fieldset>
 		<legend><?php __('Register'); ?></legend>
 	<?php
-		echo $this->Form->input('username');
+		//echo $this->Form->input('username');
 		echo $this->Form->input('email');
 		echo $this->Form->input('confirm_email');
 		echo $this->Form->input('enter_password', array('type' => 'password', 'value' => ''));
