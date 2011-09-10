@@ -77,6 +77,36 @@ class User extends AppModel {
 
 
 	var $hasAndBelongsToMany = array(
+		'Club' => array(
+			'className' => 'Club',
+			'joinTable' => 'clubs_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'club_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'CountryTeam' => array(
+			'className' => 'CountryTeam',
+			'joinTable' => 'country_teams_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'country_team_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
 		'Match' => array(
 			'className' => 'Match',
 			'joinTable' => 'users_matches',
@@ -97,6 +127,21 @@ class User extends AppModel {
 			'joinTable' => 'users_teams',
 			'foreignKey' => 'user_id',
 			'associationForeignKey' => 'team_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'TeamsStatus' => array(
+			'className' => 'TeamsStatus',
+			'joinTable' => 'users_teams_statuses',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'teams_status_id',
 			'unique' => true,
 			'conditions' => '',
 			'fields' => '',

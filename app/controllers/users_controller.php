@@ -2,6 +2,112 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
+	
+	/**
+	 * Método de Auth component.
+	 * Se declara para permitir el acceso a métodos necesarios
+	 * para la correcta funcionalidad del plugin cuando se
+	 * utiliza Auth component.
+	 */
+	function beforeFilter() {
+		$this -> Auth -> allow('register');
+	}
+
+	function login() {
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function admin_login() {
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
+
+	function register() {
+		if (!empty($this -> data)) {
+			$isUserNameValid = false;
+			$isDocumentValid = false;
+			$isPasswordValid = false;
+			$isMailValid = false;
+			// Validar el nombre de usuario
+			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
+			if (empty($tempUser)) {
+				$isUserNameValid = true;
+			}
+			// Validar el documento
+			$tempUserFields = $this -> User -> UserField -> findByDocument($this -> data['User']['document']);
+			if (empty($tempUserFields)) {
+				$isDocumentValid = true;
+			}
+			$user = array();
+			$user['User']['username'] = $this -> data['User']['username'];
+			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
+				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
+				$isPasswordValid = true;
+			}
+			$user['User']['role_id'] = 3;
+			// 1 - Admin; 2 - Gerente; 3 - Usuario
+			$user['User']['active'] = 1;
+			// Validar el correo
+			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
+			if (empty($tempUser) && !empty($this -> data['User']['email']) && ($this -> data['User']['email'] == $this -> data['User']['confirm_email'])) {
+				$isMailValid = true;
+				$user['User']['email'] = $this -> data['User']['email'];
+			}
+			if ($isUserNameValid) {
+				if ($isDocumentValid) {
+					if ($isPasswordValid && $isMailValid) {
+						if ($this -> User -> save($user)) {
+							$user = $this -> User -> read(null, $this -> User -> id);
+							$userFields = array();
+							$userFields['UserField']['user_id'] = $user['User']['id'];
+							$userFields['UserField']['document_type_id'] = $this -> data['User']['document_type_id'];
+							$userFields['UserField']['document'] = $this -> data['User']['document'];
+							$userFields['UserField']['name'] = $this -> data['User']['name'];
+							$userFields['UserField']['surname'] = $this -> data['User']['surname'];
+							$userFields['UserField']['phone'] = $this -> data['User']['phone'];
+							$userFields['UserField']['address'] = $this -> data['User']['address'];
+							$userFields['UserField']['birthday'] = $this -> data['User']['birthday'];
+							$this -> User -> UserField -> save($userFields);
+							$this -> Session -> setFlash(__('The user has been saved', true));
+							$this -> redirect(array('/'));
+						} else {
+							$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+						}
+					} else {
+						$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
+					}
+				} else {
+					$this -> Session -> setFlash(__('Document already registered. Please, try again.', true));
+				}
+			} else {
+				$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
+			}
+		}
+		$this -> loadModel('DocumentType');
+		$documentTypes = $this -> DocumentType -> find('list');
+		$this -> set(compact('documentTypes'));
+	}	
 
 	function index() {
 		$this->User->recursive = 0;
