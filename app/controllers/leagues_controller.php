@@ -2,6 +2,13 @@
 class LeaguesController extends AppController {
 
 	var $name = 'Leagues';
+	
+	function getClubs($league_id = null) {
+		if($league_id) {
+			$this->loadModel('Club');
+			return $this->Club->find('list', array('conditions' => array('Club.league_id' => $league_id)));
+		}
+	}
 
 	function index() {
 		$this->League->recursive = 0;

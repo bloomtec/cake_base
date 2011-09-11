@@ -2,6 +2,76 @@
 class UsersTeamsController extends AppController {
 
 	var $name = 'UsersTeams';
+	
+	function getPayroll($team_id = null) {
+		if($team_id) {
+			$this->loadModel("Team");
+			$this->set("payroll", $this->paginate("Team", array('Team.id' => $team_id)));
+		} else {
+			$this->set("payroll", null);
+		}
+	}
+	
+	function createInviteToTeam($user_caller_id = null, $user_id = null, $team_id = null) {
+		if($user_id && $team_id && $user_caller_id) {
+			$invite = $this->UsersTeam->create();
+			$invite['UsersTeam']['user_id'] = $user_id;
+			$invite['UsersTeam']['team_id'] = $team_id;
+			$invite['UsersTeam']['caller_user_id'] = $user_caller_id;
+			if($this->UsersTeam->save($invite)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	function createRequestToTeam($user_id, $team_id) {
+		if($user_id && $team_id) {
+			$invite = $this->UsersTeam->create();
+			$invite['UsersTeam']['user_id'] = $user_id;
+			$invite['UsersTeam']['team_id'] = $team_id;
+			if($this->UsersTeam->save($invite)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	function ajax_addUserToTeam($user_id, $team_id) {
+		$this->autoRender = false;
+		if($user_id && $team_id) {
+			$invite = $this->UsersTeam->create();
+			$invite['UsersTeam']['user_id'] = $user_id;
+			$invite['UsersTeam']['team_id'] = $team_id;
+			if($this->UsersTeam->save($invite)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			echo 0;
+		}
+	}
+	
+	function ajax_deleteUserFromTeam($user_id, $team_id) {
+		$this->autoRender = false;
+		if($user_id && $team_id) {
+			$result = $this->UsersTeam->find('first', array('condition' => array('user_id' => $user_id, 'team_id' => $team_id)));
+			if($result && $this->UsersTeam->delete($result['UsersTeam']['id'], false)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			echo 0;
+		}
+	}
 
 	function index() {
 		$this->UsersTeam->recursive = 0;

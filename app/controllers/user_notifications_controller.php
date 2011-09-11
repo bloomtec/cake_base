@@ -2,6 +2,12 @@
 class UserNotificationsController extends AppController {
 
 	var $name = 'UserNotifications';
+	
+	function getUserNotifications($user_id = null) {
+		if($user_id) {
+			return $this->UserNotification->find('all', array('conditions' => array('user_id' => $user_id)));
+		}
+	}
 
 	function index() {
 		$this->UserNotification->recursive = 0;

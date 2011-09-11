@@ -7,12 +7,21 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		$this -> Auth -> allow('register');
 	}
-
-	function login() {		
+	
+	function search($info = null) {
+		if($info) {
+			$this->loadModel('UserField');
+			$user_ids = $this->UserField->find('list', array('fields' => array('user_id'), 'conditions' => array('OR' => array('UserField.name LIKE' => "%$info%", 'UserField.surname LIKE' => "%$info%"))));
+			//debug($user_ids);
+			$this->set("result", $this->paginate("User", array("User.id" => $user_ids)));
+		} else {
+			$this->set("result", null);
+		}
 	}
 
-	function admin_login() {
-	}
+	function login() {}
+
+	function admin_login() {}
 
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());

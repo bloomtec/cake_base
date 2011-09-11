@@ -2,6 +2,18 @@
 class UsersMatchesController extends AppController {
 
 	var $name = 'UsersMatches';
+	
+	function getUsers() {
+		
+	}
+	
+	function createMatch() {
+		
+	}
+	
+	function getInvites() {
+		
+	}
 
 	function index() {
 		$this->UsersMatch->recursive = 0;
