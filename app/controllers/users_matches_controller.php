@@ -7,11 +7,14 @@ class UsersMatchesController extends AppController {
 		
 	}
 	
-	function createMatch() {
+	function createMatch() { //data, array(usersId)
 		
 	}
 	
-	function getInvites() {
+	/*
+	 *  lista todos los registros del usuario que estan en en_espera
+	 */
+	function getInvites($user_id = null) {
 		
 	}
 
