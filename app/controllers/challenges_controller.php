@@ -3,10 +3,74 @@ class ChallengesController extends AppController {
 
 	var $name = 'Challenges';
 	
-	function getUsers() { // Existe alguna condicion de busqueda?
-		// Cuales jugadores se deben devolver? Los retados, los retadores o todos?
-		//$users = $this->Challenge->find('list', array('conditions' => array()));
-		return null;
+	function getChallengerUsers($challenge_id = null) { // Existe alguna condicion de busqueda?
+		if($challenge_id) {
+			$this->loadModel('UsersTeam');
+			$this->loadModel('User');
+			$reto = $this->Challenge->read(null, $challenge_id);
+			// Sacar los ids de los equipos involucrados
+			$challenger_team_id = $reto['Challenge']['team_challenger_id'];
+			// Ahora obtener los jugadores relacionados con dichos equipos
+			$users_ids = $this->UsersTeam->find('list', array(
+				'fields' => array(
+					'UsersTeam.user_id'),
+					'conditions' => array(
+						'UsersTeam.team_id' => $challenger_team_id
+					)
+				)
+			);
+			return $this->User->find('all', array('conditions' => array('User.id' => $users_ids)));
+		} else {
+			return null;
+		}
+	}
+	
+	function getChallengedUsers($challenge_id = null) {
+		if($challenge_id) {
+			$this->loadModel('UsersTeam');
+			$this->loadModel('User');
+			$reto = $this->Challenge->read(null, $challenge_id);
+			// Sacar los ids de los equipos involucrados
+			$challenged_team_id = $reto['Challenge']['team_challenged_id'];
+			// Ahora obtener los jugadores relacionados con dichos equipos
+			$users_ids = $this->UsersTeam->find('list', array(
+				'fields' => array(
+					'UsersTeam.user_id'),
+					'conditions' => array(
+						'UsersTeam.team_id' => $challenged_team_id
+					)
+				)
+			);
+			return $this->User->find('all', array('conditions' => array('User.id' => $users_ids)));
+		} else {
+			return null;
+		}
+	}
+	
+	function getAllUsers($challenge_id = null) {
+		if($challenge_id) {
+			$this->loadModel('UsersTeam');
+			$this->loadModel('User');
+			$reto = $this->Challenge->read(null, $challenge_id);
+			// Sacar los ids de los equipos involucrados
+			$challenger_team_id = $reto['Challenge']['team_challenger_id'];
+			$challenged_team_id = $reto['Challenge']['team_challenged_id'];
+			// Ahora obtener los jugadores relacionados con dichos equipos
+			$users_ids = $this->UsersTeam->find('list', array(
+				'fields' => array(
+					'UsersTeam.user_id'),
+					'conditions' => array(
+						'OR' => array(
+							'UsersTeam.team_id' => $challenger_team_id,
+							'UsersTeam.team_id' => $challenged_team_id
+						)
+					)
+				)
+			);
+			return $this->User->find('all', array('conditions' => array('User.id' => $users_ids)));
+		} else {
+			return null;
+		}
 	}
 	
 	function createChallenge($challenger_id = null, $challenged_id = null, $user_id = null,
