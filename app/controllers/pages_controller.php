@@ -2,6 +2,10 @@
 class PagesController extends AppController {
 
 	var $name = 'Pages';
+	
+	function home(){
+		$this->layout="fpt";
+	}
 
 	function index() {
 		$this->Page->recursive = 0;
