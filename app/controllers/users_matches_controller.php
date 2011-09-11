@@ -2,6 +2,35 @@
 class UsersMatchesController extends AppController {
 
 	var $name = 'UsersMatches';
+	
+	function getUsers($match_id = null) {
+		if($match_id) {
+			$this->loadModel('User');
+			$users_ids = $this->UsersMatch->find(
+				'list',
+				array(
+					'fields' => 'UsersMatch.user_id',
+					'conditions' => array(
+						'UsersMatch.match_id' => $match_id
+					)
+				)
+			);
+			return $this->User->find('all', array('conditions' => array('User.id' => $users_ids)));
+		} else {
+			return null;
+		}
+	}
+	
+	function createMatch() { //data, array(usersId)
+		
+	}
+	
+	/*
+	 *  lista todos los registros del usuario que estan en en_espera
+	 */
+	function getInvites($user_id = null) {
+		
+	}
 
 	function index() {
 		$this->UsersMatch->recursive = 0;

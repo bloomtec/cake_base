@@ -2,6 +2,28 @@
 class TeamsController extends AppController {
 
 	var $name = 'Teams';
+	
+	function search($info = null) {
+		if($info) {
+			$this->set("result", $this->paginate("Team", array('Team.name LIKE' => "%$info%")));
+		} else {
+			$this->set("result", null);
+		}
+	}
+	
+	function ajax_delete($team_id = null) {
+		$this->autoRender = false;
+		if($team_id) {
+			$result = $this->Team->find('first', array('condition' => array('Team.id' => $team_id)));
+			if($result && $this->Team->delete($result['Team']['id'], false)) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			echo 0;
+		}
+	}
 
 	function index() {
 		$this->Team->recursive = 0;
