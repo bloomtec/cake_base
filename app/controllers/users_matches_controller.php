@@ -3,8 +3,22 @@ class UsersMatchesController extends AppController {
 
 	var $name = 'UsersMatches';
 	
-	function getUsers() {
-		
+	function getUsers($match_id = null) {
+		if($match_id) {
+			$this->loadModel('User');
+			$users_ids = $this->UsersMatch->find(
+				'list',
+				array(
+					'fields' => 'UsersMatch.user_id',
+					'conditions' => array(
+						'UsersMatch.match_id' => $match_id
+					)
+				)
+			);
+			return $this->User->find('all', array('conditions' => array('User.id' => $users_ids)));
+		} else {
+			return null;
+		}
 	}
 	
 	function createMatch() { //data, array(usersId)
