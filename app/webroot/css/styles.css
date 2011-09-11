@@ -71,19 +71,27 @@ h4 {
  	background:black;
  	height:100%;
  }
- #tabs{
- 	position:absolute;
- 	min-width:20px;
- 	right:0;
- 	top:0;
- 	height:100%;
- 	z-index:1000;
- }
-#tabs .tabs-container{
-	width:80px;
-	float:left;
+#panes{
+	position:absolute;
+	top:0;
+	background:black;
 	height:100%;
+	width:717px;/*tab (80) + body (637)*/
+	right:-637px;/*717-80*/
 }
+#panes .pane{
+	position:absolute;
+	top:0;
+	background:#D9DAE0;
+ 	height:100%;
+ 	width:717px;
+ 	overflow:hidden;
+ 	left:0;
+ 	
+}
+#panes div.pane.open{
+}
+	
 .tab{
  	width:80px;
  	height:150px;
@@ -94,41 +102,25 @@ h4 {
 .pane .tab{
 	
 }
+.pane .body{
+	margin-left:80px;
+	width:637px;
+}
 div.profile{
   	background:magenta;
   	top:0;
   }
-#tabs .tabs-container  div.teams{
+ div.teams{
   background:green;	
   top:150px;
 }
-#tabs .tabs-container div.payfoll{
+div.payfoll{
    background:#00e5fd;
    top:300px;
  }
-#tabs .tabs-container  div.challenges{
+ div.challenges{
   	background:red;
   	top:450px;
-}
-#tabs #panes{
-	position:absolute;
-	background:black;
-	height:100%;
-	width:637px;
-	right:-637px;
-}
-#tabs #panes .pane{
-	position:absolute;
-	top:0;
-	right:-637px;
- 	background:#D9DAE0;
- 	height:100%;
- 	width:637px;
- 	overflow:hidden;
- 	
-}
-#panes div.pane.open{
-	
 }
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
