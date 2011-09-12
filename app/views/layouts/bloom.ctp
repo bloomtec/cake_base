@@ -42,7 +42,7 @@
 	<body>
 		<div id="container">
 			<div id="header">
-				<?php $this -> requestAction(); ?>
+				<?php echo $this -> element('menu', array('menu_name' => 'ez_cms')); ?>
 			</div>
 			<div id="content">
 	
