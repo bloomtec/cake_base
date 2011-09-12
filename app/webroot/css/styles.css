@@ -15,12 +15,12 @@ body{
  	
  }
 a {
-	color: #003d4c;
-	text-decoration: underline;
+	color: white;
+	text-decoration: none;
 	font-weight: bold;
 }
 a:hover {
-	color: #367889;
+	color: white;
 	text-decoration:none;
 }
 a img {
@@ -31,63 +31,67 @@ h1, h2, h3, h4 {
 	margin-bottom:0.5em;
 }
 h1 {
-	background:#fff;
-	color: #003d4c;
+	color:white;
 	font-size: 100%;
 }
 h2 {
-	background:#fff;
-	color: #e32;
+	color:white;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 190%;
 }
 h3 {
-	color: #993;
+	color: white;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 165%;
 }
 h4 {
-	color: #993;
+	color: white;
 	font-weight: normal;
 }
-
+.selected{
+	color:#bd0c1e;	
+}
  /* LAYOUT STYLES*/
  #container{
  	position:relative;
  	margin:0 auto;
- 	width:1024px;
+ 	width:1300px;
 	height:600px;
 	overflow:hidden;
  }
  #content{
- 	width:70%;
+ 	width:75%;
  	height:100%;
  	float:left;
  	background:gray;
  }
  #my-profile{
  	float:left;
- 	width:30%;
+ 	width:25%;
  	background:black;
  	height:100%;
  }
 #panes{
 	position:absolute;
+	background:#D9DAE0;
 	top:0;
-	background:black;
 	height:100%;
-	width:717px;/*tab (80) + body (637)*/
-	right:-637px;/*717-80*/
+	width:870px;/*tab (80) + body (790)*/
+	right:-790px;/*870-80*/
 }
 #panes .pane{
 	position:absolute;
 	top:0;
-	background:#D9DAE0;
  	height:100%;
- 	width:717px;
+ 	width:870px;
  	overflow:hidden;
  	left:0;
  	
+}
+#panes .pane .body{
+	background:#D9DAE0;
+	width:790px;
+	height:100%;
 }
 #panes div.pane.open{
 }
@@ -106,21 +110,38 @@ h4 {
 	margin-left:80px;
 	width:637px;
 }
-div.profile{
+.pane div.profile{
   	background:magenta;
   	top:0;
   }
- div.teams{
+.pane div.teams{
   background:green;	
   top:150px;
 }
-div.payfoll{
+.pane div.payfoll{
    background:#00e5fd;
    top:300px;
  }
- div.challenges{
+.pane div.challenges{
   	background:red;
   	top:450px;
+}
+.pane .body .menu{
+	width:45%;
+	float:left;
+	height:100%;
+	padding:2%;
+}
+.pane .body .separator{
+	width:2px;
+	height:100%;
+	float:left;
+	background:white;
+}
+.pane .body .content{
+	width:45%;
+	padding:2%;
+	float:left;
 }
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
@@ -128,6 +149,14 @@ div.payfoll{
 }
 
 /*TEAMS*/
+#teams{
+	
+	
+}
+#teams a.delete{
+	margin-left:3px;
+	color:#5b5a5f;
+}
 
 /*PAYFOLL*/
 
