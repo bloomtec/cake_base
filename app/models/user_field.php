@@ -23,16 +23,6 @@ class UserField extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'document' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
@@ -80,13 +70,6 @@ class UserField extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'DocumentType' => array(
-			'className' => 'DocumentType',
-			'foreignKey' => 'document_type_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
