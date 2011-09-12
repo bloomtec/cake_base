@@ -26,6 +26,31 @@ class UsersController extends AppController {
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
+	
+	function changePassword() {
+		if(!empty($this->data)) {
+			// Validar el id del usuario
+			if($this -> data['User']['id'] == $this -> Session -> read('Auth.User.id')) {
+				$user = $this -> User -> read(null, $this -> data['User']['id']);
+				// Validar la contraseña actual
+				if($this -> Auth -> password($this -> data['User']['enter_old_password']) == $user['User']['password']) {
+					// Validar la nueva contraseña
+					if($this -> data['User']['enter_new_password'] == $this -> data['User']['repeat_new_password']) {
+						// Todo coincide, cambiar la contraseña
+						$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_new_password']);
+						$this -> User -> save($user);
+						$this -> Session -> setFlash('La contraseña ha sido cambiada con exito');
+					} else {
+						$this -> Session -> setFlash('No coincide la nueva contraseña con su verificación');
+					}
+				} else {
+					$this -> Session -> setFlash('La contraseña actual no coincide con la registrada');
+				}
+			} else {
+				$this -> Session -> setFlash('Error en el envío de datos de cambio de contraseña');
+			}			
+		}
+	}
 
 	function register() {
 		if (!empty($this -> data)) {
@@ -65,9 +90,6 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
 			}
 		}
-		$this -> loadModel('DocumentType');
-		$documentTypes = $this -> DocumentType -> find('list');
-		$this -> set(compact('documentTypes'));
 	}
 
 	function index() {
