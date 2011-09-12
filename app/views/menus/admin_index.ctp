@@ -2,11 +2,15 @@
 	<h2><?php __('Menus');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('updated');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+				
+		<th><?php echo $this->Paginator->sort('id');?></th>
+						
+		<th><?php echo $this->Paginator->sort('name');?></th>
+						
+		<th><?php echo $this->Paginator->sort('created');?></th>
+						
+		<th><?php echo $this->Paginator->sort('updated');?></th>
+					<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -22,10 +26,15 @@
 		<td><?php echo $menu['Menu']['created']; ?>&nbsp;</td>
 		<td><?php echo $menu['Menu']['updated']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $menu['Menu']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $menu['Menu']['id'])); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $menu['Menu']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $menu['Menu']['id'])); ?>
-		</td>
+			<?php echo $this->Html->link(__(' ', true), array('action' => 'view', $menu['Menu']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php echo $this->Html->link(__(' ', true), array('action' => 'edit', $menu['Menu']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
+			<?php echo $this->Html->link(__(' ', true), array('action' => 'delete', $menu['Menu']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $menu['Menu']['id'])); ?>
+			<?php if(isset($menu['Menu']['active'])&& $menu['Menu']['active']){
+			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $menu['Menu']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $menu['Menu']['id']));
+}?>
+			<?php if(isset($menu['Menu']['active'])&& !$menu['Menu']['active']){
+			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $menu['Menu']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $menu['Menu']['id'])); 
+}?>
 	</tr>
 <?php endforeach; ?>
 	</table>
@@ -42,12 +51,4 @@
  |
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Menu', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Menu Items', true), array('controller' => 'menu_items', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Menu Item', true), array('controller' => 'menu_items', 'action' => 'add')); ?> </li>
-	</ul>
 </div>

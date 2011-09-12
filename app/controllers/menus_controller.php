@@ -10,6 +10,7 @@ class MenusController extends AppController {
 	 * utiliza Auth component.
 	 */
 	function beforeFilter() {
+		parent::beforeFilter();
 		$this->Auth->allow('getMenu');
 	}
 	
