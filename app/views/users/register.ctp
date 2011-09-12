@@ -1,5 +1,5 @@
 <?php echo $this->Html->css("wizard.css");?>
-<div id="drawer">[ERROR MESSAGE]</div>
+<div id="drawer">[Existen errores en tus datos. Por favor verificalos]</div>
 <div class="register form">
 <?php echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'register')); ?>
 
@@ -7,9 +7,9 @@
 
 		<!-- status bar -->
 		<ul id="status">
-			<li class="active"><strong>1.</strong> Datos Básicos</li>
-			<li><strong>2.</strong> Imagen</li>
-			<li><strong>3.</strong> Preferencias</li>
+			<li class="active">CREAR CUENTA</li>
+			<li>FOTO</li>
+			<li> FANZONE</li>
 		</ul>
 
 		<!-- scrollable items -->
@@ -17,16 +17,37 @@
 
 			<!-- pages -->
 			<div class="page">
-				<?php
-					//echo $this->Form->input('username');
-					echo $this->Form->input('email');
-					echo $this->Form->input('confirm_email');
-					echo $this->Form->input('enter_password', array('type' => 'password', 'value' => ''));
-					echo $this->Form->input('confirm_password', array('type' => 'password', 'value' => ''));
-					// User Fields
-					echo $this->Form->input('name');
-					echo $this->Form->input('birthday', array('type' => 'date'));
-				?>
+				<!--<h1>Datos Básicos</h1>-->
+				<div class="input">
+					<label for="email">CORREO ELECTRÓNICO</label>
+					<input type="email" id="email" name="data[User][email]" />
+				</div>
+				<div class="float">
+					<?php echo $this->Form->input('UserField.nombres',array("label"=>"NOMBRES","id"=>"nombres"));?>
+					<?php echo $this->Form->input('UserField.apellidos',array("label"=>"APELLIDOS","div"=>"input last"));?>
+					<div style="clear:both"></div>
+				</div>
+				<div class="float">
+					<?php echo $this->Form->input('password',array("label"=>"CONTRASEÑA"));?>
+					<?php echo $this->Form->input('password2',array("label"=>"VERIFICAR CONTRASEÑA","type"=>"password","div"=>"input last"));?>
+					<div style="clear:both"></div>
+				</div>
+				<div class="fecha">
+					<?php echo $this->Form->input('birthday', array('type' => 'date',"label"=>"FECHA DE NACIMIENTO")); ?>
+					<div style="clear:both"></div>
+				</div>
+				
+				<div class="genero">
+					
+				</div>
+				<div class="pie-preferido">
+					
+				</div>
+				<div class="posicion">
+					
+				</div>
+				
+			
 				<button type="button" class="next right">Continuar »</button>
 			</div>
 			<div class="page">

@@ -27,6 +27,7 @@
  * to use (in this case, /app/views/pages/home.ctp)...
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'home'));
+	Router::connect('/ftp', array('controller' => 'pages', 'action' => 'ftp'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

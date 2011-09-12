@@ -30,7 +30,7 @@
 
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('styles.css');
+		echo $this->Html->css('ftp.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');

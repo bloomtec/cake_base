@@ -1,0 +1,163 @@
+/**
+ *
+ * Project front css
+ *
+ * bloom team : blooom web compay www.bloomweb.co
+ * @since         CakePHP(tm)
+ * @l
+ */
+ /*GENERAL STYLES*/
+ * {
+	margin:0;
+	padding:0;
+}
+body{
+ 	
+ }
+a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	color: white;
+	text-decoration:none;
+}
+a img {
+	border:none;
+}
+h1, h2, h3, h4 {
+	font-weight: normal;
+	margin-bottom:0.5em;
+}
+h1 {
+	color:white;
+	font-size: 100%;
+}
+h2 {
+	color:white;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 190%;
+}
+h3 {
+	color: white;
+	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	font-size: 165%;
+}
+h4 {
+	color: white;
+	font-weight: normal;
+}
+.selected{
+	color:#bd0c1e;	
+}
+ /* LAYOUT STYLES*/
+ #container{
+ 	position:relative;
+ 	margin:0 auto;
+ 	width:1300px;
+	height:600px;
+	overflow:hidden;
+ }
+ #content{
+ 	width:75%;
+ 	height:100%;
+ 	float:left;
+ 	background:gray;
+ }
+ #my-profile{
+ 	float:left;
+ 	width:25%;
+ 	background:black;
+ 	height:100%;
+ }
+#panes{
+	position:absolute;
+	background:#D9DAE0;
+	top:0;
+	height:100%;
+	width:870px;/*tab (80) + body (790)*/
+	right:-790px;/*870-80*/
+}
+#panes .pane{
+	position:absolute;
+	top:0;
+ 	height:100%;
+ 	width:870px;
+ 	overflow:hidden;
+ 	left:0;
+ 	
+}
+#panes .pane .body{
+	background:#D9DAE0;
+	width:790px;
+	height:100%;
+}
+#panes div.pane.open{
+}
+	
+.tab{
+ 	width:80px;
+ 	height:150px;
+ 	cursor:pointer;
+ 	position:absolute;
+ 	z-index:10000;
+}
+.pane .tab{
+	
+}
+.pane .body{
+	margin-left:80px;
+	width:637px;
+}
+.pane div.profile{
+  	background:magenta;
+  	top:0;
+  }
+.pane div.teams{
+  background:green;	
+  top:150px;
+}
+.pane div.payfoll{
+   background:#00e5fd;
+   top:300px;
+ }
+.pane div.challenges{
+  	background:red;
+  	top:450px;
+}
+.pane .body .menu{
+	width:45%;
+	float:left;
+	height:100%;
+	padding:2%;
+}
+.pane .body .separator{
+	width:2px;
+	height:100%;
+	float:left;
+	background:white;
+}
+.pane .body .content{
+	width:45%;
+	padding:2%;
+	float:left;
+}
+/*PROFILE*/
+#tabs .wrapper .profile .notifications{
+	
+}
+
+/*TEAMS*/
+#teams{
+	
+	
+}
+#teams a.delete{
+	margin-left:3px;
+	color:#5b5a5f;
+}
+
+/*PAYFOLL*/
+
+/*CHALLENGES*/

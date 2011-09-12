@@ -33,26 +33,38 @@ $(function(){
 	
 	
 	
-	$(".pane .tab").click(function(){//ANIMACION PESTAÑAS
+	$(".pane .tab").click(function(e){//ANIMACION PESTAÑAS
 		var $open=$("div.open");
 		var $that=$(this);
-		if($open.length){
-			$open.parent().animate({"left":0},"fast","swing",function(){
-				$(".open").removeClass("open");
+		if($that.hasClass("open")){ // si esta abierto lo cierra
+			$that.parent().animate({"left":0},"fast","swing",function(){
+
+			});
+		}else{
+			if($open.length){// funcionalidad por defecto
+				$open.parent().animate({"left":0},"fast","swing",function(){ // cierra el que esta abierto
+					$(".open").removeClass("open");
+					$that.addClass("open");
+					$that.parent().animate({"left":"-870"},1000,"swing",function(){// abre el cerrado
+						
+					});
+				});
+			}else{
 				$that.addClass("open");
 				$that.parent().animate({"left":"-870"},1000,"swing",function(){
 					
-				});
-			});
-		}else{
-			$that.addClass("open");
-			$that.parent().animate({"left":"-870"},1000,"swing",function(){
-				
-			});	
+				});	
+			}			
 		}
+		
 				
 	});
-	
+	$(".closeTab").click(function(e){
+		e.stopPropagation();
+		$(this).parent().parent().animate({"left":0},"fast","swing",function(){
+
+			});
+	});
 	$("a.load").click(function(e){
 		
 	});
