@@ -27,9 +27,8 @@ class UserFieldsController extends AppController {
 			}
 		}
 		$users = $this->UserField->User->find('list');
-		$documentTypes = $this->UserField->DocumentType->find('list');
 		$feets = $this->UserField->Feet->find('list');
-		$this->set(compact('users', 'documentTypes', 'feets'));
+		$this->set(compact('users', 'feets'));
 	}
 
 	function edit($id = null) {
@@ -49,9 +48,8 @@ class UserFieldsController extends AppController {
 			$this->data = $this->UserField->read(null, $id);
 		}
 		$users = $this->UserField->User->find('list');
-		$documentTypes = $this->UserField->DocumentType->find('list');
 		$feets = $this->UserField->Feet->find('list');
-		$this->set(compact('users', 'documentTypes', 'feets'));
+		$this->set(compact('users', 'feets'));
 	}
 
 	function delete($id = null) {
@@ -67,9 +65,6 @@ class UserFieldsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user field', true));
@@ -84,7 +79,8 @@ class UserFieldsController extends AppController {
 		$this->Session->setFlash(__('User field was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+	
+	function setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user field', true));
 			$this->redirect(array('action'=>'index'));
@@ -98,13 +94,15 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('User field was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->UserField->find($type, $findParams);
-	}else{
-		return null;
+
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->UserField->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
+	
 	function admin_index() {
 		$this->UserField->recursive = 0;
 		$this->set('userFields', $this->paginate());
@@ -129,9 +127,8 @@ function requestFind($type,$findParams,$key) {
 			}
 		}
 		$users = $this->UserField->User->find('list');
-		$documentTypes = $this->UserField->DocumentType->find('list');
 		$feets = $this->UserField->Feet->find('list');
-		$this->set(compact('users', 'documentTypes', 'feets'));
+		$this->set(compact('users', 'feets'));
 	}
 
 	function admin_edit($id = null) {
@@ -151,9 +148,8 @@ function requestFind($type,$findParams,$key) {
 			$this->data = $this->UserField->read(null, $id);
 		}
 		$users = $this->UserField->User->find('list');
-		$documentTypes = $this->UserField->DocumentType->find('list');
 		$feets = $this->UserField->Feet->find('list');
-		$this->set(compact('users', 'documentTypes', 'feets'));
+		$this->set(compact('users', 'feets'));
 	}
 
 	function admin_delete($id = null) {
@@ -169,9 +165,6 @@ function requestFind($type,$findParams,$key) {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user field', true));
@@ -186,7 +179,8 @@ function requestFind($type,$findParams,$key) {
 		$this->Session->setFlash(__('User field was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_setActive($id = null) {
+	
+	function admin_setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user field', true));
 			$this->redirect(array('action'=>'index'));
@@ -200,11 +194,12 @@ function admin_setActive($id = null) {
 		$this->Session->setFlash(__('User field was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->UserField->find($type, $findParams);
-	}else{
-		return null;
+	
+	function admin_requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->UserField->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
 }

@@ -26,72 +26,70 @@ class UsersController extends AppController {
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
+	
+	function changePassword() {
+		if(!empty($this->data)) {
+			// Validar el id del usuario
+			if($this -> data['User']['id'] == $this -> Session -> read('Auth.User.id')) {
+				$user = $this -> User -> read(null, $this -> data['User']['id']);
+				// Validar la contraseña actual
+				if($this -> Auth -> password($this -> data['User']['enter_old_password']) == $user['User']['password']) {
+					// Validar la nueva contraseña
+					if($this -> data['User']['enter_new_password'] == $this -> data['User']['repeat_new_password']) {
+						// Todo coincide, cambiar la contraseña
+						$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_new_password']);
+						$this -> User -> save($user);
+						$this -> Session -> setFlash('La contraseña ha sido cambiada con exito');
+					} else {
+						$this -> Session -> setFlash('No coincide la nueva contraseña con su verificación');
+					}
+				} else {
+					$this -> Session -> setFlash('La contraseña actual no coincide con la registrada');
+				}
+			} else {
+				$this -> Session -> setFlash('Error en el envío de datos de cambio de contraseña');
+			}			
+		}
+	}
 
 	function register() {
 		if (!empty($this -> data)) {
-			//$isUserNameValid = false;
-			$isDocumentValid = false;
+			// Validar la contraseña
 			$isPasswordValid = false;
-			$isMailValid = false;
-			// Validar el nombre de usuario
-			//$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
-			//if (empty($tempUser)) {
-			//	$isUserNameValid = true;
-			//}
-			// Validar el documento
-			$tempUserFields = $this -> User -> UserField -> findByDocument($this -> data['User']['document']);
-			if (empty($tempUserFields)) {
-				$isDocumentValid = true;
-			}
-			$user = array();
-			if(!isset($this -> data['User']['username']) && !empty($this -> data['User']['username'])) {
-				$user['User']['username'] = $this -> data['User']['username'];
-			}
 			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
-				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
 				$isPasswordValid = true;
 			}
-			$user['User']['role_id'] = 2; // 1 - Admin; 2 - Usuario
-			$user['User']['active'] = 1;
 			// Validar el correo
+			$isMailValid = false;
 			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
 			if (empty($tempUser) && !empty($this -> data['User']['email']) && ($this -> data['User']['email'] == $this -> data['User']['confirm_email'])) {
 				$isMailValid = true;
-				$user['User']['email'] = $this -> data['User']['email'];
 			}
-			//if ($isUserNameValid) {
-				if ($isDocumentValid) {
-					if ($isPasswordValid && $isMailValid) {
-						if ($this -> User -> save($user)) {
-							$user = $this -> User -> read(null, $this -> User -> id);
-							$userFields = array();
-							$userFields['UserField']['user_id'] = $user['User']['id'];
-							$userFields['UserField']['document_type_id'] = $this -> data['User']['document_type_id'];
-							$userFields['UserField']['document'] = $this -> data['User']['document'];
-							$userFields['UserField']['name'] = $this -> data['User']['name'];
-							$userFields['UserField']['surname'] = $this -> data['User']['surname'];
-							$userFields['UserField']['phone'] = $this -> data['User']['phone'];
-							$userFields['UserField']['address'] = $this -> data['User']['address'];
-							$userFields['UserField']['birthday'] = $this -> data['User']['birthday'];
-							$this -> User -> UserField -> save($userFields);
-							$this -> Session -> setFlash(__('The user has been saved', true));
-							$this -> redirect(array('/'));
-						} else {
-							$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
-						}
-					} else {
-						$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
-					}
+			if ($isPasswordValid && $isMailValid) {
+				$user = $this->User->create();
+				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
+				$user['User']['email'] = $this -> data['User']['email'];
+				$user['User']['role_id'] = 2; // 1 - Admin; 2 - Usuario
+				$user['User']['active'] = 1;
+				if ($this -> User -> save($user)) {
+					$user = $this -> User -> read(null, $this -> User -> id);
+					$userFields = array();
+					$userFields['UserField']['user_id'] = $user['User']['id'];
+					$userFields['UserField']['name'] = $this -> data['User']['name'];
+					$userFields['UserField']['surname'] = $this -> data['User']['surname'];
+					$userFields['UserField']['phone'] = $this -> data['User']['phone'];
+					$userFields['UserField']['address'] = $this -> data['User']['address'];
+					$userFields['UserField']['birthday'] = $this -> data['User']['birthday'];
+					$this -> User -> UserField -> save($userFields);
+					$this -> Session -> setFlash(__('The user has been saved', true));
+					$this -> redirect(array('/'));
 				} else {
-					$this -> Session -> setFlash(__('Document already registered. Please, try again.', true));
+					$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 				}
-			//} else {
-			//	$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
-			//}
+			} else {
+				$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
+			}
 		}
-		$this -> loadModel('DocumentType');
-		$documentTypes = $this -> DocumentType -> find('list');
-		$this -> set(compact('documentTypes'));
 	}
 
 	function index() {

@@ -42,8 +42,6 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('User Id'); ?></th>
-		<th><?php __('Document Type Id'); ?></th>
-		<th><?php __('Document'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Surname'); ?></th>
 		<th><?php __('Birthday'); ?></th>
@@ -63,8 +61,6 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $userField['id'];?></td>
 			<td><?php echo $userField['user_id'];?></td>
-			<td><?php echo $userField['document_type_id'];?></td>
-			<td><?php echo $userField['document'];?></td>
 			<td><?php echo $userField['name'];?></td>
 			<td><?php echo $userField['surname'];?></td>
 			<td><?php echo $userField['birthday'];?></td>
