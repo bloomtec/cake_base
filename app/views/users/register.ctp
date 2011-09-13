@@ -18,16 +18,16 @@
 			<!-- pages -->
 			<div class="page">
 				<!--<h1>Datos Básicos</h1>-->
-				<div class="input">
+				<div class="input required" style="margin-top:10px;">
 					<label for="email">CORREO ELECTRÓNICO</label>
 					<input type="email" id="email" name="data[User][email]" />
 				</div>
-				<div class="float">
+				<div class="float required">
 					<?php echo $this->Form->input('UserField.nombres',array("label"=>"NOMBRES","id"=>"nombres"));?>
 					<?php echo $this->Form->input('UserField.apellidos',array("label"=>"APELLIDOS","div"=>"input last"));?>
 					<div style="clear:both"></div>
 				</div>
-				<div class="float">
+				<div class="float required">
 					<?php echo $this->Form->input('password',array("label"=>"CONTRASEÑA"));?>
 					<?php echo $this->Form->input('password2',array("label"=>"VERIFICAR CONTRASEÑA","type"=>"password","div"=>"input last"));?>
 					<div style="clear:both"></div>
@@ -38,22 +38,57 @@
 				</div>
 				
 				<div class="genero">
-					<?php echo $form->hidden("UserField.gender",array("value"=>""));?>
-					<div class="male">
-						
+					<label>GENERO</label>
+					<?php echo $form->input("UserField.gender",array("value"=>"m","id"=>"gender"));?>
+					<div class="male check checked" rel="gender"  value="m">
+						Masculino
 					</div>
-					<div class="female">
-						
+					<br />
+					<div class="female check no-checked" rel="gender" value="f">
+						Femenino
 					</div>
 				</div>
 				<div class="pie-preferido">
-					
+					<label>PIE PREFERIDO</label>
+					<?php echo $form->input("UserField.foot_id",array("value"=>"2","id"=>"foot"));?>
+					<div class="derecho check checked" value="2" rel="foot">
+						Derecho
+					</div>
+					<br />
+					<div class="izquierdo check no-checked" value="1" rel="foot">
+						Izquierdo
+					</div>
 				</div>
+				<div style="clear:both"> </div>
 				<div class="posicion">
+					<label>Posición</label>
+					<?php echo $form->hidden("UserField.position_id",array("value"=>"2","id"=>"position"));?>
+					<div class="posicion-col">
+						<?php echo $html->image("uploads/arquero.png",array("height"=>80)) ?>
+						<div class="derecho check checked" value="1" rel="position">
+							Arquero
+						</div>
+						<br />
+						<?php echo $html->image("uploads/defensa.png",array("height"=>80)) ?>
+						<div class="izquierdo check no-checked" value="2" rel="position">
+							Defensa
+						</div>
+					</div>
+					<div class="posicion-col">
+						<?php echo $html->image("uploads/volante.png",array("height"=>80)) ?>
+						<div class="derecho check no-checked" value="3" rel="position">
+							Volante
+						</div>
+						<br />
+						<?php echo $html->image("uploads/delantero.png",array("height"=>80)) ?>
+						<div class="izquierdo check no-checked" value="4" rel="position">
+							Delantero
+						</div>
+					</div>
 					
 				</div>
 				
-			
+			<div style="clear:both"></div>
 				<button type="button" class="next right">Continuar »</button>
 			</div>
 			<div class="page">
@@ -103,7 +138,7 @@ api.onBeforeSeek(function(event, i) {
 
 				// colored flash effect
 				drawer.css("backgroundColor", "#229");
-				setTimeout(function() { drawer.css("backgroundColor", "#fff"); }, 1000);
+				setTimeout(function() { drawer.css("backgroundColor", "#000"); }, 1000);
 			});
 
 			// add a CSS class name "error" for empty & required fields

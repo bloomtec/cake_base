@@ -224,6 +224,25 @@ dd {
 }
 
 /** Forms **/
+
+form .no-checked{
+	background:url(../img/no-checked.png);
+
+}
+form .checked{
+	background:url(../img/checked.png);
+}
+form .check{
+	background-repeat:no-repeat;
+	padding-left:25px;
+	height:20px;
+	cursor:pointer;
+	margin:10px 0;
+	font-size:15px;
+	display:inline;
+	line-height:20px;
+	vertical-align:middle;
+}
 form {
 	clear: both;
 	margin-right: 20px;
@@ -233,7 +252,7 @@ form {
 
 form .input {
 	color:white;
-	margin-top:20px;
+	margin-top:10px;
 }
 form .required {
 	font-weight: bold;

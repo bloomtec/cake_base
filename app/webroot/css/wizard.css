@@ -3,7 +3,7 @@
 	border:5px solid #789;
 	font-size:12px;
 	height:600px;
-	margin:20px auto;	
+	margin:0 auto;	
 	width:540px;
 	overflow:hidden;
 	position:relative;
@@ -22,7 +22,7 @@
 
 /* single item */
 #wizard .page {	
-	padding:20px 20px;
+	padding:5px 20px;
 	width:500px;
 	float:left;	
 }
@@ -67,7 +67,22 @@
 	position:relative;
 	top:-1px;
 }
+#wizard .genero, #wizard .pie-preferido{
+	float:left;
+	margin-top:10px;
+}
 
+#wizard .posicion{
+	clear:both;
+	margin-top:10px;
+}
+#wizard .posicion-col{
+	float:left;
+	width:50%;
+}
+#wizard .pie-preferido{
+	margin-left:50px;
+}
 #wizard label em {
 	font-size:11px;
 	color:#666;	
@@ -75,8 +90,8 @@
 }
 #wizard .float div.input{
 	float:left;
-	width:47.5%;
-	margin-right:5%;
+	width:48.5%;
+	margin-right:3%;
 }
 #wizard .float div.input.last{
 	margin-right:0;
