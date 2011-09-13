@@ -116,7 +116,9 @@ class UsersController extends AppController {
 	}
 
 	function index() {
+		$this->layout="ajax";
 		$this->User->recursive = 0;
+		$this->paginate=array("limit"=>2);
 		$this->set('users', $this->paginate());
 	}
 

@@ -34,6 +34,7 @@
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');
+		echo $this->Html->script('fpt');
 		echo $scripts_for_layout;
 	?>
 </head>
