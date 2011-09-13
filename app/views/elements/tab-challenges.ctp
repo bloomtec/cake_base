@@ -6,7 +6,6 @@
 		<div class="menu">	
 				challenges
 		</div>
-		<div class="separator"></div>
 		<div class="content">
 						
 		</div>
