@@ -22,7 +22,7 @@
 
 /* single item */
 #wizard .page {	
-	padding:5px 20px;
+	padding:5px 15px;
 	width:500px;
 	float:left;	
 }
@@ -76,9 +76,8 @@
 	clear:both;
 	margin-top:10px;
 }
-#wizard .posicion-col{
-	float:left;
-	width:50%;
+#wizard .posicion .left{
+	margin-right:40px;
 }
 #wizard .pie-preferido{
 	margin-left:50px;
@@ -93,12 +92,43 @@
 	width:48.5%;
 	margin-right:3%;
 }
+#wizard .preferencias select{
+	width:100%;
+}
 #wizard .float div.input.last{
 	margin-right:0;
+}
+#wizard button{
+	background:url(../img/btn_siguiente.png);
+	background-repeat:no-repeat;
+	background-position:right center;
+	padding-right:40px;
+	height:30px;
+	margin:0;
+	border:0;
+	color:white;
+	font-size:22px;
+	cursor:pointer;
+	
+}
+#wizard button.submit{
+	margin-top:150px;
+	margin-left:300px;
 }
 #wizard input{
 	border:dashed 3px;
 	font-size:12px;
+}
+#wizard .preview{
+	width:500px;
+	height:480px;
+	border:dashed 4px;	
+	text-align:center;
+}
+#wizard .preview img{
+	max-width:500px;
+	max-height:480px;
+	margin: 0 auto;
 }
 #wizard .text {
 	color:#456;

@@ -79,5 +79,17 @@ $(function(){
 		});
 		
 	});
-	
+	//REGISTRO
+	$(".single .check").live("click",function(e){
+		$that=$(this);
+		$that.siblings(".check").removeClass("checked").addClass("no-checked");
+		$that.addClass("checked");
+		$("#"+$that.attr("rel")).val($that.attr("value"))
+	});
+	$(".liga").change(function(){
+		var $that=$(this);
+		$("#"+($that.attr("id").replace("League", "Club"))).load("/leagues/getClubsInOption/"+$that.children("option:selected").val());
+		
+	});
+
 });

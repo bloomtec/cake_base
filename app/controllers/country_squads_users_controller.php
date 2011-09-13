@@ -7,6 +7,7 @@ class CountrySquadsUsersController extends AppController {
 		$this->CountrySquadsUser->recursive = 0;
 		$this->set('countrySquadsUsers', $this->paginate());
 	}
+	
 
 	function view($id = null) {
 		if (!$id) {

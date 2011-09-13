@@ -7,7 +7,9 @@ class CountrySquadsController extends AppController {
 		$this->CountrySquad->recursive = 0;
 		$this->set('countrySquads', $this->paginate());
 	}
-
+	function getList(){
+		return $this->CountrySquad->find("list");
+	}
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid country squad', true));

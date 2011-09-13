@@ -1,4 +1,10 @@
-<?php echo $this->Html->css("wizard.css");?>
+<?php 
+	echo $this->Html->css("wizard.css",true);
+	echo $this->Html->css('uploadify',true);
+	echo $this->Html->Script("swfobject");
+	echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
+	echo $this->Html->Script("upload");	
+?>
 <div id="drawer">[Existen errores en tus datos. Por favor verificalos]</div>
 <div class="register form">
 <?php echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'register')); ?>
@@ -16,6 +22,7 @@
 		<div class="items">
 
 			<!-- pages -->
+			
 			<div class="page">
 				<!--<h1>Datos Básicos</h1>-->
 				<div class="input required" style="margin-top:10px;">
@@ -37,9 +44,9 @@
 					<div style="clear:both"></div>
 				</div>
 				
-				<div class="genero">
+				<div class="genero single">
 					<label>GENERO</label>
-					<?php echo $form->input("UserField.gender",array("value"=>"m","id"=>"gender"));?>
+					<?php echo $form->hidden("UserField.gender",array("value"=>"m","id"=>"gender"));?>
 					<div class="male check checked" rel="gender"  value="m">
 						Masculino
 					</div>
@@ -48,9 +55,9 @@
 						Femenino
 					</div>
 				</div>
-				<div class="pie-preferido">
+				<div class="pie-preferido single">
 					<label>PIE PREFERIDO</label>
-					<?php echo $form->input("UserField.foot_id",array("value"=>"2","id"=>"foot"));?>
+					<?php echo $form->hidden("UserField.foot_id",array("value"=>"2","id"=>"foot"));?>
 					<div class="derecho check checked" value="2" rel="foot">
 						Derecho
 					</div>
@@ -60,31 +67,29 @@
 					</div>
 				</div>
 				<div style="clear:both"> </div>
-				<div class="posicion">
+				<div class="posicion single">
 					<label>Posición</label>
-					<?php echo $form->hidden("UserField.position_id",array("value"=>"2","id"=>"position"));?>
-					<div class="posicion-col">
-						<?php echo $html->image("uploads/arquero.png",array("height"=>80)) ?>
-						<div class="derecho check checked" value="1" rel="position">
+					<?php echo $form->hidden("UserField.position_id",array("value"=>"1","id"=>"position"));?>
+					
+						<?php echo $html->image("arquero.png",array("width"=>55)) ?>
+						<div class="left check checked" value="1" rel="position">
 							Arquero
 						</div>
-						<br />
-						<?php echo $html->image("uploads/defensa.png",array("height"=>80)) ?>
-						<div class="izquierdo check no-checked" value="2" rel="position">
-							Defensa
-						</div>
-					</div>
-					<div class="posicion-col">
-						<?php echo $html->image("uploads/volante.png",array("height"=>80)) ?>
-						<div class="derecho check no-checked" value="3" rel="position">
+					
+						<?php echo $html->image("volante.png",array("width"=>55)) ?>
+						<div class="check no-checked" value="3" rel="position">
 							Volante
 						</div>
 						<br />
-						<?php echo $html->image("uploads/delantero.png",array("height"=>80)) ?>
-						<div class="izquierdo check no-checked" value="4" rel="position">
+						<?php echo $html->image("defensa.png",array("width"=>55)) ?>
+						<div class="left check no-checked" value="2" rel="position">
+							Defensa
+						</div>
+						<?php echo $html->image("delantero.png",array("width"=>55)) ?>
+						<div class=" check no-checked" value="4" rel="position">
 							Delantero
 						</div>
-					</div>
+				
 					
 				</div>
 				
@@ -92,12 +97,47 @@
 				<button type="button" class="next right">Continuar »</button>
 			</div>
 			<div class="page">
-				[ Any HTML content ]
+				<?php echo $form->hidden("image",array("id"=>"single-field","value"=>"defaul-image-profile.jpg"))?>
+				<div class="preview">
+					<?php echo $html->image("defaul-image-profile.jpg");?>
+				</div>
+				<div id="single-upload">
+				</div>
 				<button type="button" class="next right">Continuar »</button>
-			</div>
-			<div class="page">
-				[ Any HTML content ]
-				<input type="submit" value="Registrarme!!" />				
+			</div>			
+			<div class="page preferencias">
+				<h1> CLUBES</h1>
+				<div class="float">
+					<?php 
+					$ligas=$this->requestAction("/leagues/getList");
+				echo $form->input("League.0",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
+					<?php echo $form->input("Club.0",array("label"=>"CLUB","class"=>"club","div"=>"last input","empty"=>"Seleccione","type"=>"select"));?>
+				</div>
+				<div class="float">
+					<?php
+				echo $form->input("League.1",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
+					<?php echo $form->input("Club.1",array("label"=>"CLUB","class"=>"club","div"=>"last input","empty"=>"Seleccione","type"=>"select"));?>
+				</div>
+				<div class="float">
+					<?php 
+				echo $form->input("League.2",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
+					<?php echo $form->input("Club.2",array("label"=>"CLUB","class"=>"club","div"=>"last input","empty"=>"Seleccione","type"=>"select"));?>
+				</div>
+				<div style="clear:both;"></div>
+				<br />
+				<h1>SELECCIONES</h1>
+				<?php $selecciones=$this->requestAction("/countrySquads/getList");?>
+				<?php 
+				echo $form->input("CountrySquad.0",array("options"=>$selecciones,"label"=>false))
+				?>
+				<?php 
+				echo $form->input("CountrySquad.1",array("options"=>$selecciones,"label"=>false))
+				?>
+				<?php 
+				echo $form->input("CountrySquad.2",array("options"=>$selecciones,"label"=>false))
+				?>
+				<div style="clear:both"></div>
+				<button class="button submit">Registrarme!!</button>				
 			</div>
 
 		</div>

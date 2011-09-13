@@ -9,7 +9,24 @@ class LeaguesController extends AppController {
 			return $this->Club->find('list', array('conditions' => array('Club.league_id' => $league_id)));
 		}
 	}
-
+	function getClubsInOption($league_id = null) {
+		$this->layout="ajax";
+		if($league_id) {
+			$this->loadModel('Club');
+			$options=$this->Club->find('list', array('conditions' => array('Club.league_id' => $league_id)));
+			$this->set(compact("options"));
+			
+		}
+	}
+	function ajax_getClubs($league_id = null) {
+		if($league_id) {
+			$this->loadModel('Club');
+			return $this->Club->find('list', array('conditions' => array('Club.league_id' => $league_id)));
+		}
+	}
+	function getList() {
+			return $this->League->find("list");
+	}
 	function index() {
 		$this->League->recursive = 0;
 		$this->set('leagues', $this->paginate());
