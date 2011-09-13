@@ -40,7 +40,7 @@
 					<div style="clear:both"></div>
 				</div>
 				<div class="fecha">
-					<?php echo $this->Form->input('birthday', array('type' => 'date',"label"=>"FECHA DE NACIMIENTO")); ?>
+					<?php echo $this->Form->input('UserField.birthday', array('type' => 'date',"label"=>"FECHA DE NACIMIENTO")); ?>
 					<div style="clear:both"></div>
 				</div>
 				
@@ -97,7 +97,7 @@
 				<button type="button" class="next right">Continuar »</button>
 			</div>
 			<div class="page">
-				<?php echo $form->hidden("image",array("id"=>"single-field","value"=>"defaul-image-profile.jpg"))?>
+				<?php echo $form->hidden("UserField.image",array("id"=>"single-field","value"=>"defaul-image-profile.jpg"))?>
 				<div class="preview">
 					<?php echo $html->image("defaul-image-profile.jpg");?>
 				</div>
@@ -110,12 +110,11 @@
 				<div class="float">
 					<?php 
 					$ligas=$this->requestAction("/leagues/getList");
-				echo $form->input("League.0",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
+					echo $form->input("League.0",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
 					<?php echo $form->input("Club.0",array("label"=>"CLUB","class"=>"club","div"=>"last input","empty"=>"Seleccione","type"=>"select"));?>
 				</div>
 				<div class="float">
-					<?php
-				echo $form->input("League.1",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
+					<?php echo $form->input("League.1",array("label"=>"LIGA","class"=>"liga","options"=>$ligas,"empty"=>"Seleccione"))?>
 					<?php echo $form->input("Club.1",array("label"=>"CLUB","class"=>"club","div"=>"last input","empty"=>"Seleccione","type"=>"select"));?>
 				</div>
 				<div class="float">
@@ -128,13 +127,13 @@
 				<h1>SELECCIONES</h1>
 				<?php $selecciones=$this->requestAction("/countrySquads/getList");?>
 				<?php 
-				echo $form->input("CountrySquad.0",array("options"=>$selecciones,"label"=>false))
+				echo $form->input("CountrySquad.0",array("options"=>$selecciones,"label"=>false,"empty"=>"Seleccione"))
 				?>
 				<?php 
-				echo $form->input("CountrySquad.1",array("options"=>$selecciones,"label"=>false))
+				echo $form->input("CountrySquad.1",array("options"=>$selecciones,"label"=>false,"empty"=>"Seleccione"))
 				?>
 				<?php 
-				echo $form->input("CountrySquad.2",array("options"=>$selecciones,"label"=>false))
+				echo $form->input("CountrySquad.2",array("options"=>$selecciones,"label"=>false,"empty"=>"Seleccione"))
 				?>
 				<div style="clear:both"></div>
 				<button class="button submit">Registrarme!!</button>				

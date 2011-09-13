@@ -3,11 +3,6 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	
-	function beforeFilter() {
-		parent::beforeFilter();
-		$this -> Auth -> allow('register','login');
-	}
-	
 	function search($info = null) {
 		if($info) {
 			$this->loadModel('UserField');
@@ -56,38 +51,66 @@ class UsersController extends AppController {
 		if (!empty($this -> data)) {
 			// Validar la contraseña
 			$isPasswordValid = false;
-			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
+			if (
+				!empty($this -> data['User']['password'])
+				&& ($this -> data['User']['password'] == $this->Auth->password($this -> data['User']['password2']))
+			) {
 				$isPasswordValid = true;
 			}
 			// Validar el correo
 			$isMailValid = false;
 			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (empty($tempUser) && !empty($this -> data['User']['email']) && ($this -> data['User']['email'] == $this -> data['User']['confirm_email'])) {
+			if (
+				empty($tempUser)
+				&& !empty($this -> data['User']['email'])
+			) {
 				$isMailValid = true;
 			}
 			if ($isPasswordValid && $isMailValid) {
 				$user = $this->User->create();
-				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
+				$user['User']['password'] = $this -> data['User']['password'];
 				$user['User']['email'] = $this -> data['User']['email'];
 				$user['User']['role_id'] = 2; // 1 - Admin; 2 - Usuario
 				$user['User']['active'] = 1;
+				// Guardar el usuario
 				if ($this -> User -> save($user)) {
-					$user = $this -> User -> read(null, $this -> User -> id);
-					$userFields = array();
-					$userFields['UserField']['user_id'] = $user['User']['id'];
-					$userFields['UserField']['name'] = $this -> data['User']['name'];
-					$userFields['UserField']['surname'] = $this -> data['User']['surname'];
-					$userFields['UserField']['phone'] = $this -> data['User']['phone'];
-					$userFields['UserField']['address'] = $this -> data['User']['address'];
-					$userFields['UserField']['birthday'] = $this -> data['User']['birthday'];
-					$this -> User -> UserField -> save($userFields);
-					$this -> Session -> setFlash(__('The user has been saved', true));
-					$this -> redirect(array('/'));
+					$this -> loadModel('UserField');
+					$userFields = $this -> UserField -> create();
+					$userFields['UserField']['user_id'] = $this -> User -> id;
+					$userFields['UserField']['name'] = $this -> data['UserField']['nombres'];
+					$userFields['UserField']['surname'] = $this -> data['UserField']['apellidos'];
+					$userFields['UserField']['birthday'] = $this -> data['UserField']['birthday'];
+					$userFields['UserField']['image'] = $this -> data['UserField']['image'];
+					$userFields['UserField']['foot_id'] = $this -> data['UserField']['foot_id'];
+					$userFields['UserField']['position_id'] = $this -> data['UserField']['position_id'];
+					// Guardar los campos de usuario
+					if($this -> UserField -> save($userFields)) {
+						// Guardar los clubes del usuario
+						if(isset($this -> data['Club']) && !empty($this -> data['Club'])) {
+							foreach($this -> data['Club'] as $club_id) {
+								$this -> requestAction('/clubs_users/addUserToClub/' . $this -> User -> id . '/' . $club_id);
+							}
+						} else {
+							// No hay clubes a registrar con el usuario
+						}
+						// Guardar los equipos de país del usuario
+						if(isset($this -> data['CountrySquad']) && !empty($this -> data['CountrySquad'])) {
+							foreach($this -> data['CountrySquad'] as $country_squad_id) {
+								$this -> requestAction('/country_squads_users/addUserToCountrySquad/' . $this -> User -> id . '/' . $country_squad_id);
+							}
+						} else {
+							// No hay clubes a registrar con el usuario
+						}
+					} else {
+						$this -> Session -> setFlash(__('Error al registrar los campos de usuario, intente de nuevo', true));
+					}
+					$this -> Session -> setFlash(__('Registro exitoso', true));
+					//$this -> redirect(array('/'));
 				} else {
-					$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+					$this -> Session -> setFlash(__('Error al registrar el usuario, intente de nuevo', true));
 				}
 			} else {
-				$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
+				$this -> Session -> setFlash(__('El correo ya esta registrado o las contraseñas no coinciden, intente de nuevo', true));
 			}
 		}
 	}

@@ -2,13 +2,27 @@
 class CountrySquadsUsersController extends AppController {
 
 	var $name = 'CountrySquadsUsers';
+	
+	function addUserToCountrySquad($user_id = null, $country_squad_id = null) {
+		if($user_id && $country_squad_id) {
+			$country_squad = $this->CountrySquadsUser->create();
+			$country_squad['CountrySquadsUser']['user_id'] = $user_id;
+			$country_squad['CountrySquadsUser']['country_squad_id'] = $country_squad_id;
+			if($this -> CountrySquadsUser -> save($country_squad)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	function index() {
 		$this->CountrySquadsUser->recursive = 0;
 		$this->set('countrySquadsUsers', $this->paginate());
 	}
 	
-
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid country squads user', true));

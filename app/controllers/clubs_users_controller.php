@@ -2,6 +2,21 @@
 class ClubsUsersController extends AppController {
 
 	var $name = 'ClubsUsers';
+	
+	function addUserToClub($user_id = null, $club_id = null) {
+		if($user_id && $club_id) {
+			$clubs_user = $this->ClubsUser->create();
+			$clubs_user['ClubsUser']['user_id'] = $user_id;
+			$clubs_user['ClubsUser']['club_id'] = $club_id;
+			if($this -> ClubsUser -> save($clubs_user)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
 
 	function index() {
 		$this->ClubsUser->recursive = 0;

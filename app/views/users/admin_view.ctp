@@ -45,6 +45,9 @@
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Surname'); ?></th>
 		<th><?php __('Birthday'); ?></th>
+		<th><?php __('Gender'); ?></th>
+		<th><?php __('Image'); ?></th>
+		<th><?php __('Position Id'); ?></th>
 		<th><?php __('Foot Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
@@ -64,6 +67,9 @@
 			<td><?php echo $userField['name'];?></td>
 			<td><?php echo $userField['surname'];?></td>
 			<td><?php echo $userField['birthday'];?></td>
+			<td><?php echo $userField['gender'];?></td>
+			<td><?php echo $userField['image'];?></td>
+			<td><?php echo $userField['position_id'];?></td>
 			<td><?php echo $userField['foot_id'];?></td>
 			<td><?php echo $userField['created'];?></td>
 			<td><?php echo $userField['updated'];?></td>
