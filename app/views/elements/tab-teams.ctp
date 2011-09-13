@@ -15,7 +15,7 @@
 				<?php endforeach; ?>
 			</ul>
 		</div>
-		<div class="separator"></div>
+		
 		<div class="content">
 							
 		</div>
