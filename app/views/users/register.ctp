@@ -38,7 +38,13 @@
 				</div>
 				
 				<div class="genero">
-					
+					<?php echo $form->hidden("UserField.gender",array("value"=>""));?>
+					<div class="male">
+						
+					</div>
+					<div class="female">
+						
+					</div>
 				</div>
 				<div class="pie-preferido">
 					
