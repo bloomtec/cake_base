@@ -38,7 +38,7 @@ $(function(){
 		var $that=$(this);
 		if($that.hasClass("open")){ // si esta abierto lo cierra
 			$that.parent().animate({"left":0},"fast","swing",function(){
-
+			$that.removeClass("open");
 			});
 		}else{
 			if($open.length){// funcionalidad por defecto
