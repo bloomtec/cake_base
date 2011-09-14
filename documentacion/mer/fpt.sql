@@ -883,6 +883,31 @@ INSERT INTO `private_messages` (`id`, `to_user_id`, `from_user_id`, `subject`, `
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `friendships`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bloomweb_fpt`;
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (1, 1, 2, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (2, 3, 1, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (3, 4, 5, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (4, 4, 1, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (5, 5, 2, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (6, 2, 4, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (7, 6, 7, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (8, 6, 8, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (9, 7, 8, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (10, 9, 1, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (11, 9, 2, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (12, 9, 3, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (13, 9, 4, 1, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (14, 9, 5, 0, 0, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (15, 9, 6, 1, 1, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (16, 9, 7, 0, 1, NULL, NULL);
+INSERT INTO `friendships` (`id`, `user_a_id`, `user_b_id`, `is_accepted`, `is_blocked`, `created`, `updated`) VALUES (17, 9, 8, 0, 0, NULL, NULL);
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `user_match_statuses`
 -- -----------------------------------------------------
 START TRANSACTION;
