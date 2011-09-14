@@ -65,7 +65,7 @@
 					<li><?php echo $html->link("RED","#")?></li>
 					<li><?php echo $html->link("EVENTOS","#")?></li>
 					<li><?php echo $html->link("NOTICIAS","/news")?></li>
-					<li><?php echo $html->link("FTT","http://futbolparatodoscali.wordpress.com/")?></li>
+					<li><?php echo $html->link("FPT","http://futbolparatodoscali.wordpress.com/")?></li>
 				</ul>
 			</div>
 			

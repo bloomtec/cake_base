@@ -105,7 +105,7 @@ class UsersController extends AppController {
 						$this -> Session -> setFlash(__('Error al registrar los campos de usuario, intente de nuevo', true));
 					}
 					$this -> Session -> setFlash(__('Registro exitoso', true));
-					//$this -> redirect(array('/'));
+					$this -> redirect(array('/'));
 				} else {
 					$this -> Session -> setFlash(__('Error al registrar el usuario, intente de nuevo', true));
 				}

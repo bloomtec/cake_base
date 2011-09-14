@@ -99,9 +99,10 @@
 	margin-right:0;
 }
 #wizard button{
-	background:url(../img/btn_siguiente.png);
+	/*background:url(../img/btn_siguiente.png);
 	background-repeat:no-repeat;
-	background-position:right center;
+	background-position:right center;*/
+	background:none;
 	padding-right:40px;
 	height:30px;
 	margin:0;
