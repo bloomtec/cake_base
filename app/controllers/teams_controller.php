@@ -32,11 +32,19 @@ class TeamsController extends AppController {
 	}
 
 	function view($id = null) {
+		$this->layout="ajax";
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid team', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('team', $this->Team->read(null, $id));
+	}
+	function playroll($id){
+		$this->layout="ajax";
+		$this->loadModel("User");
+        $users_ids = $this->Team->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $id), 'fields' => array('UsersTeam.user_id')));
+        $this->paginate=array("limit"=>2);
+		$this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
 	}
 
 	function add() {

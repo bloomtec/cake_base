@@ -91,5 +91,23 @@ $(function(){
 		$("#"+($that.attr("id").replace("League", "Club"))).load("/leagues/getClubsInOption/"+$that.children("option:selected").val());
 		
 	});
-
+	// EQUIPOS
+	$(".menu a.load").click(function(e){
+		var $that=$(this);
+		e.preventDefault();
+$that.parents(".menu").siblings(".content").load($that.attr("href"),{},function(){
+	var containerPaginado=$(this).children(".container-paginado");
+	console.log(containerPaginado);
+	$.each(containerPaginado,function(i,val){
+		$(this).load($(this).attr("rel"));		
+		console.log($(this).attr("rel"));
+	});
+});		
+	});
+	$(".container-paginado .paging a").live("click",function(e){
+		e.preventDefault();
+		$that=$(this);
+		$that.parents(".container-paginado").load($that.attr("href"));
+	});
+	//
 });

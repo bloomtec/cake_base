@@ -8,7 +8,7 @@
 				<?php $teams=$this->requestAction("/teams/requestFind/all/null/Bl00MWebGr0up");?>
 				<?php foreach($teams as $team):?>
 					<li>
-					<?php echo $html->link($team["Team"]["name"],array("controller"=>"usersTeams","action"=>"getPayroll",$team["Team"]["id"]),array("class"=>"load"));?>
+					<?php echo $html->link($team["Team"]["name"],array("controller"=>"teams","action"=>"view",$team["Team"]["id"]),array("class"=>"load"));?>
 						
 					<?php echo $html->link("X",array("controller"=>"teams","action"=>"ajax_delete",$team["Team"]["id"]),array("class"=>"delete","rel"=> $team["Team"]["id"]));?>
 				</li>

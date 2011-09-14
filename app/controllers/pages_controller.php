@@ -6,7 +6,7 @@ class PagesController extends AppController {
 	function home(){
 		
 	}
-	function ftp(){
+	function fpt(){
 		$this->layout="fpt";
 	}
 	function index() {
