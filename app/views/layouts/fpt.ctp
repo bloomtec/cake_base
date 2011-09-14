@@ -33,10 +33,19 @@
 		echo $this->Html->css('ftp.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('jquery.tools.min');
+			echo $this->Html->script('cufon-yui');
+		echo $this->Html->script('Insaniburger.font');
 		echo $this->Html->script('front');
 		echo $this->Html->script('fpt');
+		
 		echo $scripts_for_layout;
 	?>
+	<script type="text/javascript">
+		Cufon.replace("body",{
+			ignoreClass:"no-cufon",
+			trim:"simple"
+		});
+	</script>
 </head>
 <body>
 	<div id="container">
