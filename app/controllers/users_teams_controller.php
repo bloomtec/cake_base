@@ -5,8 +5,9 @@ class UsersTeamsController extends AppController {
 	
 	function getPayroll($team_id = null) {
 		if($team_id) {
-			$this->loadModel("Team");
-			$this->set("payroll", $this->paginate("Team", array('Team.id' => $team_id)));
+			$this->loadModel("User");
+			$users_ids = $this->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $team_id), 'fields' => array('UsersTeam.user_id')));
+			$this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
 		} else {
 			$this->set("payroll", null);
 		}
