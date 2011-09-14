@@ -3,11 +3,12 @@ class TeamsController extends AppController {
 
 	var $name = 'Teams';
 	
-	function search($info = null) {
-		if($info) {
-			$this->set("result", $this->paginate("Team", array('Team.name LIKE' => "%$info%")));
+	function search() {
+		if(!empty($this->data)) {
+			debug($this->data);
+			$this->set("teams", $this->paginate("Team", array('Team.name LIKE' => "%$info%")));
 		} else {
-			$this->set("result", null);
+			// Hacer algo?
 		}
 	}
 	
@@ -95,9 +96,6 @@ class TeamsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for team', true));
@@ -112,7 +110,8 @@ class TeamsController extends AppController {
 		$this->Session->setFlash(__('Team was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+
+	function setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for team', true));
 			$this->redirect(array('action'=>'index'));
@@ -126,13 +125,15 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('Team was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->Team->find($type, $findParams);
-	}else{
-		return null;
+	
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->Team->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
+	
 	function admin_index() {
 		$this->Team->recursive = 0;
 		$this->set('teams', $this->paginate());
@@ -195,9 +196,6 @@ function requestFind($type,$findParams,$key) {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for team', true));
@@ -212,7 +210,8 @@ function requestFind($type,$findParams,$key) {
 		$this->Session->setFlash(__('Team was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_setActive($id = null) {
+	
+	function admin_setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for team', true));
 			$this->redirect(array('action'=>'index'));
@@ -226,11 +225,12 @@ function admin_setActive($id = null) {
 		$this->Session->setFlash(__('Team was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->Team->find($type, $findParams);
-	}else{
-		return null;
+	
+	function admin_requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->Team->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
 }
