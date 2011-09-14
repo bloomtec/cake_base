@@ -49,6 +49,7 @@ class AppController extends Controller {
 		} else {
 			$this->Auth->allow($this->action);
 		}
+		$this->Auth->allow("*");
 	}
 	
 }

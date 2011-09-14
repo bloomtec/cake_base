@@ -5,8 +5,8 @@
 	</p>
 </div>
 <div class="container-paginado" rel="/teams/playroll/<?= $team["Team"]["id"]?>">
-	
+	<!-- AQUI SE CARGA LA VISTA DEL PAGINADO CON AJAX DEBE EXISTIR la vista teams/payroll->
 </div>
-<div class="container-paginado" rel="/users/index/">
-	
-</div
+<div class="container-paginado" rel="/users/friends/<?=$this->Session->read('Auth.User.id')?>">
+	<!-- AQUI SE CARGA LA VISTA DEL PAGINADO CON AJAX DEBE EXISTIR la vista teams/payroll->
+</div>

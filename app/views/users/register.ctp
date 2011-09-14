@@ -103,6 +103,7 @@
 				</div>
 				<div id="single-upload">
 				</div>
+				<button type="button" class="prev" style="float:left">« Volver</button>
 				<button type="button" class="next right">Continuar »</button>
 			</div>			
 			<div class="page preferencias">
@@ -136,6 +137,7 @@
 				echo $form->input("CountrySquad.2",array("options"=>$selecciones,"label"=>false,"empty"=>"Seleccione"))
 				?>
 				<div style="clear:both"></div>
+				<button type="button" class="prev" style="float:left">« Volver</button>
 				<button class="button submit">Registrarme!!</button>				
 			</div>
 
