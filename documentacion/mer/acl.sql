@@ -20,11 +20,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 -- --------------------------------------------------------
+--
+-- Drop tables if they exist
+--
+DROP TABLE IF EXISTS `aros_acos`;
+DROP TABLE IF EXISTS `aros`;
+DROP TABLE IF EXISTS `acos`;
 
 --
 -- Table structure for table `acos`
 --
-
 CREATE TABLE IF NOT EXISTS `acos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -39,7 +44,6 @@ CREATE TABLE IF NOT EXISTS `acos` (
 --
 -- Dumping data for table `acos`
 --
-
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
 (1, NULL, NULL, NULL, 'controllers', 1, 1012),
 (2, 1, NULL, NULL, 'Pages', 2, 35),
@@ -553,7 +557,6 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 -- Table structure for table `aros`
 --
-
 CREATE TABLE IF NOT EXISTS `aros` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -568,7 +571,6 @@ CREATE TABLE IF NOT EXISTS `aros` (
 --
 -- Dumping data for table `aros`
 --
-
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
 (1, NULL, NULL, NULL, 'Roles', 1, 6),
 (2, 1, 'Role', 1, NULL, 2, 3),
@@ -579,7 +581,6 @@ INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 --
 -- Table structure for table `aros_acos`
 --
-
 CREATE TABLE IF NOT EXISTS `aros_acos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `aro_id` int(10) NOT NULL,
@@ -597,7 +598,6 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
 --
 -- Dumping data for table `aros_acos`
 --
-
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
 (1, 2, 1, '1', '1', '1', '1');
 

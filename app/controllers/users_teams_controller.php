@@ -6,13 +6,13 @@ class UsersTeamsController extends AppController {
 	function getPayroll($team_id = null) {
 		$this->layout="ajax";
 		if($team_id) {
-             $this->loadModel("User");
-                       $users_ids = $this->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $team_id), 'fields' => array('UsersTeam.user_id')));
-                         $this->paginate=array("limit"=>1);
-                       $this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
-               } else {
-                       $this->set("payroll", null);
-               }
+			$this->loadModel("User");
+			$users_ids = $this->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $team_id), 'fields' => array('UsersTeam.user_id')));
+			$this->paginate=array("limit"=>1);
+			$this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
+		} else {
+			$this->set("payroll", null);
+		}
 	}
 	
 	function createInviteToTeam($user_caller_id = null, $user_id = null, $team_id = null) {

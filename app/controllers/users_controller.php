@@ -7,10 +7,20 @@ class UsersController extends AppController {
 		if($info) {
 			$this->loadModel('UserField');
 			$user_ids = $this->UserField->find('list', array('fields' => array('user_id'), 'conditions' => array('OR' => array('UserField.name LIKE' => "%$info%", 'UserField.surname LIKE' => "%$info%"))));
-			//debug($user_ids);
 			$this->set("result", $this->paginate("User", array("User.id" => $user_ids)));
 		} else {
 			$this->set("result", null);
+		}
+	}
+	
+	function listFriends($user_id = null) {
+		$this->layout="ajax";
+		if($user_id) {
+			$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+			$this->paginate=array("limit"=>1);
+			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
+		} else {
+			$this->set("friends", null);
 		}
 	}
 
