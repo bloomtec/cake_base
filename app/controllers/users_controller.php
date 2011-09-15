@@ -19,8 +19,6 @@ class UsersController extends AppController {
 			$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
 			$this->paginate=array("limit"=>1);
 			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
-		} else {
-			$this->set("friends", null);
 		}
 	}
 
