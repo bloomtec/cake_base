@@ -40,7 +40,7 @@
 					<div style="clear:both"></div>
 				</div>
 				<div class="fecha">
-					<?php echo $this->Form->input('UserField.birthday', array('type' => 'date',"label"=>"FECHA DE NACIMIENTO")); ?>
+					<?php echo $this->Form->input('UserField.birthday', array('type' => 'date',"label"=>"FECHA DE NACIMIENTO","minYear"=>"1950","maxYear"=>"2025")); ?>
 					<div style="clear:both"></div>
 				</div>
 				
