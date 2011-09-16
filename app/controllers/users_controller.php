@@ -12,7 +12,7 @@ class UsersController extends AppController {
 			$this->set("result", null);
 		}
 	}
-	function ajax_addToFriends{
+	function ajax_addToFriends(){
 	
 	}
 	
@@ -133,14 +133,22 @@ class UsersController extends AppController {
 		$this->set('users', $this->paginate());
 	}
 
-	function view($id = null) {
+	function profile($id = null) {
+		$this->layout="ajax";
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
 	}
-
+	function myProfile($id = null) {
+		$this->layout="ajax";
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('user', $this->User->read(null, $id));
+	}
 	function add() {
 		if (!empty($this->data)) {
 			$this->User->create();

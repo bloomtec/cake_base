@@ -162,6 +162,8 @@ ul.listado{
 }
 .listado li{
 	position:relative;
+	float:left;
+	margin-right:5px;
 }
 .listado li .actions{
 	position:absolute;
@@ -169,7 +171,46 @@ ul.listado{
 	width:100%;
 	
 }
+.no-actions .listado li .actions{
+	display:none;
+} 
+.listado  li .image img{
+	width:100px;
+}
 /*FIN LISTADOS*/
+/*OVERLAY*/
+#overlay {
+	background:black;
+	opacity:0.5;
+	color:#efefef;
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:20000;
+	display:none;
+}
+#overlay a.close{
+	float:right;
+	margin-right:10px;
+	margin-top:5px;
+}
+	
+div.contentWrap {
+	background:blue;
+	width:450px;
+	height:450px;
+	overflow-y:auto;
+	margin:0 auto;
+	padding:5px;
+}
+#overlay  .header {
+	background:black;
+	width:450px;
+	margin:0 auto;
+	padding: 0 5px;
+}
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
 	

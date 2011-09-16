@@ -55,15 +55,21 @@
 			<?php echo $content_for_layout; ?>
 		</div>
 		<div style="clear:both"></div>
-	
-			<div id="panes">	
-				<?php echo $this->element("tab-profile");?>
-				<?php echo $this->element("tab-teams");?>	
-				<?php echo $this->element("tab-payfoll");?>	
-				<?php echo $this->element("tab-challenges");?>
+		<div id="panes">	
+			<?php echo $this->element("tab-profile");?>
+			<?php echo $this->element("tab-teams");?>	
+			<?php echo $this->element("tab-payfoll");?>	
+			<?php echo $this->element("tab-challenges");?>
+			<div style="clear:both"></div>
+		</div>
+		<div class="apple_overlay" id="overlay">
+			<div class="header">
+				<a href="#" class="close">cerrar</a>
 				<div style="clear:both"></div>
-			</div>			
-		
+			</div>
+			<div class="contentWrap">
+			</div>
+		</div>		
 	</div>
 	<div id="footer">
 			

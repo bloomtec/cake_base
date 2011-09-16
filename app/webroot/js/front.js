@@ -91,23 +91,38 @@ $(function(){
 		$("#"+($that.attr("id").replace("League", "Club"))).load("/leagues/getClubsInOption/"+$that.children("option:selected").val());
 		
 	});
-	// EQUIPOS
+	// FUNCIONAMIENTO GENERAL
 	$(".menu a.load").click(function(e){
+	// CUANDO SE LE DA CLICK A UNA a.load EN EL MENU DE LA IZQUIERDA
+	// CARGA LA PAGINA AL LADO DERECHO
 		var $that=$(this);
 		e.preventDefault();
-$that.parents(".menu").siblings(".content").load($that.attr("href"),{},function(){
-	var containerPaginado=$(this).children(".container-paginado");
-	console.log(containerPaginado);
-	$.each(containerPaginado,function(i,val){
-		$(this).load($(this).attr("rel"));		
-		console.log($(this).attr("rel"));
-	});
-});		
+		$that.parents(".menu").siblings(".content").load($that.attr("href"),{},function(){
+			var containerPaginado=$(this).children(".container-paginado");
+			$.each(containerPaginado,function(i,val){
+				// SI EL CONTENIDO TIENE ALGUN PAGINADO LO CARGA
+				$(this).load($(this).attr("rel"));		
+			});
+		});		
 	});
 	$(".container-paginado .paging a").live("click",function(e){
+		// CARGA EL PAGINADO EN SU CONTENEDOR
 		e.preventDefault();
 		$that=$(this);
 		$that.parents(".container-paginado").load($that.attr("href"));
 	});
-	//
+	$("a.overlay").live("click",function(e){
+		// CARGA UN OVERLAY CON EL CONTENIDO DE LA PAGINA
+		e.preventDefault();
+		var $that=$(this);
+		var overlay=$("#overlay");
+		var wrap = overlay.find(".contentWrap");
+		wrap.load($that.attr("href"));
+		overlay.show();
+		
+	});
+	$("#overlay a.close").live("click",function(e){
+		e.preventDefault();
+		$("#overlay").hide();
+	});
 });

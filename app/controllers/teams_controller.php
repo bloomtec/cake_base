@@ -50,7 +50,7 @@ class TeamsController extends AppController {
 		$this->layout="ajax";
 		$this->loadModel("User");
         $users_ids = $this->Team->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $id), 'fields' => array('UsersTeam.user_id')));
-        $this->paginate=array("limit"=>2);
+        $this->paginate=array("limit"=>8);
 		$this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
 	}
 
