@@ -22,13 +22,14 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('CakePHP: the rapid development php framework:'); ?>
+		<?php __('Web site:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-
-		echo $this->Html->css('bloom');
+		echo $this->Html->css('reset.css');
+		echo $this->Html->css('ie.css');
+		echo $this->Html->css('style.css');
 
 		echo $scripts_for_layout;
 	?>
@@ -47,8 +48,8 @@
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt'=> __('CakePHP: the rapid development php framework', true), 'border' => '0')),
-					'http://www.cakephp.org/',
+					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
+					'http://www.bloomweb.co/',
 					array('target' => '_blank', 'escape' => false)
 				);
 			?>
