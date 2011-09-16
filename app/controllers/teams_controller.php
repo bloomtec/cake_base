@@ -4,11 +4,9 @@ class TeamsController extends AppController {
 	var $name = 'Teams';
 	
 	function search() {
-		if(!empty($this->data)) {
-			debug($this->data);
-			$this->set("teams", $this->paginate("Team", array('Team.name LIKE' => "%$info%")));
-		} else {
-			// Hacer algo?
+		if(!empty($this->data) && isset($this->data['Team']['criteria'])) {
+			$criteria = $this->data['Team']['criteria'];
+			$this->set("results", $this->paginate("Team", array('Team.name LIKE' => "%$criteria%")));
 		}
 	}
 	
@@ -39,6 +37,15 @@ class TeamsController extends AppController {
 		}
 		$this->set('team', $this->Team->read(null, $id));
 	}
+
+	
+	function viewCreate() {
+		$this->layout="ajax";
+		$teamStyles = $this->Team->TeamStyle->find('list');
+		$users = $this->Team->User->find('list');
+		$this->set(compact('teamStyles', 'users'));
+	}
+	
 	function payroll($id){
 		$this->layout="ajax";
 		$this->loadModel("User");

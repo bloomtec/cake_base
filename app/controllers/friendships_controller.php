@@ -52,7 +52,7 @@ class FriendshipsController extends AppController {
 			}
 			return $friends_ids;
 		} else {
-			return null;
+			return array();
 		}
 	}
 

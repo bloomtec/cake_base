@@ -14,6 +14,10 @@
 				</li>
 				<?php endforeach; ?>
 			</ul>
+			<br />
+			<h2 class="selected"><?php echo $html->link("Crear", array("controller"=>"teams", "action"=>"viewCreate"),array("class"=>"load"));?></h2>
+			<br />
+			<h2 class="selected"><?php echo $html->link("Buscar", array("controller"=>"teams", "action"=>"search"),array("class"=>"load"));?></h2>
 		</div>
 		
 		<div class="content">
