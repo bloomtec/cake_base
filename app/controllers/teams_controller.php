@@ -39,7 +39,7 @@ class TeamsController extends AppController {
 		}
 		$this->set('team', $this->Team->read(null, $id));
 	}
-	function playroll($id){
+	function payroll($id){
 		$this->layout="ajax";
 		$this->loadModel("User");
         $users_ids = $this->Team->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $id), 'fields' => array('UsersTeam.user_id')));

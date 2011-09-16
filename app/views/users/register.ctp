@@ -71,21 +71,21 @@
 					<label>Posición</label>
 					<?php echo $form->hidden("UserField.position_id",array("value"=>"1","id"=>"position"));?>
 					
-						<?php echo $html->image("arquero.png",array("width"=>55)) ?>
+						<?php echo $html->image("arquero.png",array("width"=>50)) ?>
 						<div class="left check checked" value="1" rel="position">
 							Arquero
 						</div>
 					
-						<?php echo $html->image("volante.png",array("width"=>55)) ?>
+						<?php echo $html->image("volante.png",array("width"=>50)) ?>
 						<div class="check no-checked" value="3" rel="position">
 							Volante
 						</div>
 						<br />
-						<?php echo $html->image("defensa.png",array("width"=>55)) ?>
+						<?php echo $html->image("defensa.png",array("width"=>50)) ?>
 						<div class="left check no-checked" value="2" rel="position">
 							Defensa
 						</div>
-						<?php echo $html->image("delantero.png",array("width"=>55)) ?>
+						<?php echo $html->image("delantero.png",array("width"=>50)) ?>
 						<div class=" check no-checked" value="4" rel="position">
 							Delantero
 						</div>

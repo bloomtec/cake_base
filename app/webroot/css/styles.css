@@ -14,9 +14,6 @@
  * @subpackage    cake.app.webroot.css
  * @since         CakePHP(tm)
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- futbolparatodoscali
- */
-
 * {
 	margin:0;
 	padding:0;
@@ -238,7 +235,7 @@ form .check{
 	height:20px;
 	cursor:pointer;
 	margin:10px 0;
-	font-size:15px;
+	font-size:16px;
 	display:inline;
 	line-height:20px;
 	vertical-align:middle;
