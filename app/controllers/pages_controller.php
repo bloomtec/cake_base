@@ -2,7 +2,13 @@
 class PagesController extends AppController {
 
 	var $name = 'Pages';
-
+	
+	function home(){
+		
+	}
+	function fpt(){
+		$this->layout="fpt";
+	}
 	function index() {
 		$this->Page->recursive = 0;
 		$this->set('pages', $this->paginate());

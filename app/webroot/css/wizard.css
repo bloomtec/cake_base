@@ -1,0 +1,209 @@
+/* scrollable root element */
+#wizard {	
+	border:5px solid #789;
+	font-size:12px;
+	height:600px;
+	margin:0 auto;	
+	width:540px;
+	overflow:hidden;
+	position:relative;
+	
+	/* rounded corners for modern browsers */
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+}  
+
+/* scrollable items */
+#wizard .items {
+	width:20000em;	
+	clear:both;	
+	position:absolute;	
+}
+
+/* single item */
+#wizard .page {	
+	padding:5px 15px;
+	width:500px;
+	float:left;	
+}
+
+/* title */
+#wizard h2 {
+	border-bottom:1px dotted #ccc;
+	font-size:22px;
+	font-weight:normal;
+	margin:10px 0 0 0;
+	padding-bottom:15px;		
+}
+
+#wizard h2 em {
+	display:block;
+	font-size:14px;
+	color:#666;
+	font-style:normal;
+	margin-top:5px;
+}
+
+/* input fields */
+#wizard ul {
+	padding:0px !important;
+	margin:0px !important;
+}
+
+#wizard li {
+	list-style-type:none;
+	list-style-image:none;
+	margin-bottom:5px;	
+	font-size:20px;
+}
+
+#wizard label {
+	font-size:20px;	
+	display:block;
+}
+
+#wizard label strong {
+	color:#789;	
+	position:relative;
+	top:-1px;
+}
+#wizard .genero, #wizard .pie-preferido{
+	float:left;
+	margin-top:10px;
+}
+
+#wizard .posicion{
+	clear:both;
+	margin-top:10px;
+}
+#wizard .posicion .left{
+	margin-right:40px;
+}
+#wizard .pie-preferido{
+	margin-left:50px;
+}
+#wizard label em {
+	font-size:11px;
+	color:#666;	
+	font-style:normal;
+}
+#wizard .float div.input{
+	float:left;
+	width:48.5%;
+	margin-right:3%;
+}
+#wizard .preferencias select{
+	width:100%;
+}
+#wizard .float div.input.last{
+	margin-right:0;
+}
+#wizard button{
+	/*background:url(../img/btn_siguiente.png);
+	background-repeat:no-repeat;
+	background-position:right center;*/
+	background:none;
+	padding-right:40px;
+	height:30px;
+	margin:0;
+	border:0;
+	color:white;
+	font-size:22px;
+	cursor:pointer;
+	
+}
+#wizard button.submit{
+	margin-top:150px;
+	margin-left:300px;
+}
+#wizard input{
+	border:dashed 3px;
+	font-size:12px;
+}
+#wizard .preview{
+	width:500px;
+	height:480px;
+	border:dashed 4px;	
+	text-align:center;
+}
+#wizard .preview img{
+	max-width:500px;
+	max-height:480px;
+	margin: 0 auto;
+}
+#wizard .text {
+	color:#456;
+	letter-spacing:1px;
+}
+
+#wizard select {
+	border:1px solid #ccc;
+	padding:4px;
+}
+
+#wizard label span {
+	color:#b8128f;
+	font-weight:bold;
+	position:relative;
+	top:4px;
+	font-size:20px;
+}
+
+#wizard .double label { 
+	width:50%;
+	float:left;
+}
+
+#wizard .double .text {
+	width:93%;	
+}
+
+#wizard .clearfix {
+	clear:left;
+	padding-top:10px;	
+}
+
+#wizard .right {
+	float:right;		
+}
+
+/* validation error message bar */
+#drawer {
+	overflow:visible;
+	position:fixed;	
+	left:0;
+	top:0;
+	text-align:center;
+	padding:15px;
+	font-size:18px;
+	border-bottom:2px solid #789;
+	width:100%;
+	display:none;
+	z-index:2;
+}
+
+#wizard .error {
+	border:1px solid red;		
+}
+
+#wizard #status {
+	margin:0px !important;
+	height:35px;
+	background:#123 url(../img/degradado_azul.png) repeat-x;
+	padding-left:25px !important;
+	_background:#123;
+}
+
+#status li {
+	list-style-type:none;
+	list-style-image:none;
+	float:left;
+	color:#fff;
+	padding:2px 15px;
+	font-size:25px;
+}
+
+#status li.active {
+	background:url(../img/degradado_amarillo.png);
+	font-weight:normal;		
+}
