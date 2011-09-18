@@ -4,9 +4,14 @@ class TeamsController extends AppController {
 	var $name = 'Teams';
 	
 	function search() {
-		if(!empty($this->data) && isset($this->data['Team']['criteria'])) {
-			$criteria = $this->data['Team']['criteria'];
-			$this->set("results", $this->paginate("Team", array('Team.name LIKE' => "%$criteria%")));
+		$this->layout="ajax";
+
+	}
+	function ajaxSearch(){
+		$this->layout="ajax";
+		if(!empty($this->params) && isset($this->params['named']['criteria'])) {
+			$criteria = $this->params['named']['criteria'];
+			$this->set("teams",$this->paginate("Team", array('Team.name LIKE' => "%$criteria%")));
 		}
 	}
 	
@@ -58,15 +63,14 @@ class TeamsController extends AppController {
 		if (!empty($this->data)) {
 			$this->Team->create();
 			if ($this->Team->save($this->data)) {
-				$this->Session->setFlash(__('The team has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				echo true;
 			} else {
-				$this->Session->setFlash(__('The team could not be saved. Please, try again.', true));
+				echo false;
 			}
 		}
-		$teamStyles = $this->Team->TeamStyle->find('list');
-		$users = $this->Team->User->find('list');
-		$this->set(compact('teamStyles', 'users'));
+		configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
 	}
 
 	function edit($id = null) {
@@ -159,9 +163,9 @@ class TeamsController extends AppController {
 			$this->Team->create();
 			if ($this->Team->save($this->data)) {
 				$this->Session->setFlash(__('The team has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			//	$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The team could not be saved. Please, try again.', true));
+				//$this->Session->setFlash(__('The team could not be saved. Please, try again.', true));
 			}
 		}
 		$teamStyles = $this->Team->TeamStyle->find('list');

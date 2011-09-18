@@ -164,18 +164,27 @@ ul.listado{
 	position:relative;
 	float:left;
 	margin-right:5px;
+	width:100px;
+	height:120px;
+	
 }
 .listado li .actions{
 	position:absolute;
 	top:0;
 	width:100%;
-	
+	font-size:12px;
 }
 .no-actions .listado li .actions{
 	display:none;
 } 
 .listado  li .image img{
 	width:100px;
+	height:100px;
+	border: dashed 2px white;
+	
+}
+.listado .name{
+	
 }
 /*FIN LISTADOS*/
 /*OVERLAY*/
@@ -225,7 +234,45 @@ div.contentWrap {
 	margin-left:3px;
 	color:#5b5a5f;
 }
-
+#teams .payroll-control{/*DIV que muestra los jugadores que se han añadido al equipo*/
+	height:4em;
+	width:100%;
+	overflow-y: scroll;
+}
+#teams .payroll-control .player{
+	moz-border-radius: 5px;
+	webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: white;
+	float:left;
+	margin-left:2px;
+	font-size: 12px;
+	padding: 3px;
+	margin-bottom: 3px;
+	
+}
+#teams .payroll-control .player .remove{
+	float:right;
+	cursor: pointer;
+	margin-left: 3px;
+	border-left: solid 1px;
+	text-align: center;
+	width: 15px;
+}
+#teams .payroll-control .player .container{
+	float:left;
+}
+#teams a.challenge{
+	background: #BD0C1E;
+	color:white;
+	text-transform: uppercase;
+	moz-border-radius: 5px;
+	bwebkit-order-radius: 5px;
+	border-radius: 5px;
+	padding: 0 3px;
+	float:right;
+	margin-top: 4px;
+}
 
 /*PAYFOLL*/
 
