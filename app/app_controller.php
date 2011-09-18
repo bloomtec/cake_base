@@ -40,7 +40,6 @@ class AppController extends Controller {
 			$this->layout="bloom";
 			$this->Auth->deny($this->action);
 		} else {
-			$this->layout="bloom";
 			$this->Auth->allow($this->action);
 		}
 	}

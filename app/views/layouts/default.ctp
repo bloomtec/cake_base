@@ -29,7 +29,11 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('style.css');
+		echo $this->Html->css('styles.css');
+		echo $this->Html->css('supersized.core.css');
+		echo $this->Html->script('jquery');
+		echo $this->Html->script('supersized.3.1.3.core.min');
+		echo $this->Html->script('supersized-config');
 
 		echo $scripts_for_layout;
 	?>
@@ -37,7 +41,10 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+			<div class="logo">
+				
+			</div>
+			<?php  echo $this->element("menu"); ?>
 		</div>
 		<div id="content">
 
@@ -46,14 +53,9 @@
 			<?php echo $content_for_layout; ?>
 
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
-					'http://www.bloomweb.co/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
+	</div>
+	<div id="footer">
+
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
