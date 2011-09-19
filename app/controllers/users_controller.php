@@ -10,19 +10,37 @@ class UsersController extends AppController {
 		$email=$this->params["named"]["email"];
 		//DEBE LISTAR TODOS LOS QUE CUMPLAN EL CRITERIO
 		if($user_id) {
-			$this -> loadModel('UserField');
-			$friends = $this -> paginate = array(
-				'OR' => array(
-					'UserField.name LIKE' => "%$nombre%",
-					'UserField.surname LIKE' => "%$nombre%",
-					'User.email LIKE' => "%$email%" 
+			$users_ids = $this -> User -> UserField -> find(
+				'list',
+				array(
+					'recursive' => -1,
+					'conditions' => array(
+						'OR' => array(
+							'UserField.name LIKE' => "%$nombre%",
+							'UserField.surname LIKE' => "%$nombre%"
+						)
+					),
+					'fields' => array(
+						'UserField.user_id'
+					)
 				)
 			);
-			$this->set("friends", $friends);
+			$this->set(
+				"friends",
+				$this->paginate(
+					'User',
+					array(
+						'OR' => array(
+							'User.email LIKE' => "%$email%",
+							'User.id' => $users_ids
+						)
+					)
+				)
+			);
 		}
 	}
 	
-	function ajax_addToFriends(){
+	function ajax_addToFriends() {
 	
 	}
 	
