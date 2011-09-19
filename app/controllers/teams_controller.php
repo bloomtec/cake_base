@@ -21,17 +21,7 @@ class TeamsController extends AppController {
 			foreach($user_teams_data as $key=>$val) {
 				$user_teams_ids[] = $key;
 			}
-			// Definir el paginado
-			$this -> paginate = array(
-				'conditions' => array(
-					'Team.name LIKE' => "%$criteria%",
-					'NOT Team.id' => $user_teams_ids
-				)
-			);
-			// Crear el paginado
-			$data = $this->paginate('Team');
-			// Enviar a la vista el paginado
-			$this->set("teams",$data);
+			$this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
 		}
 	}
 
