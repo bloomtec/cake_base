@@ -72,7 +72,15 @@ class ChallengesController extends AppController {
 			return null;
 		}
 	}
-	
+	function challege(){
+		$this->layout="ajax";
+			
+	}
+	function challegeFromSearch($challengedId=null){
+		$this->layout="ajax";
+		$myTeams=$this->requestAction("/teams/myTeams");
+		$this->set(compact("challengedId","myTeams"));	
+	}	
 	function createChallenge($challenger_id = null, $challenged_id = null, $user_id = null,
 								$date = null, $place = null, $title = null, $message = null, $bet = null) {
 		if($challenger_id && $challenged_id && $user_id && $date && $place && $title) {
@@ -87,13 +95,16 @@ class ChallengesController extends AppController {
 			$reto['Challenge']['message'] = $message;
 			$reto['Challenge']['bet'] = $bet;
 			if($this->Challenge->save($reto)) {
-				return true;
+				echo true;
 			} else {
-				return false;
+				echo false;
 			}
 		} else {
-			return false;
+			echo false;
 		}
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
 	}
 	
 	function getInvites($team_id = null) {
