@@ -12,6 +12,7 @@ class UsersController extends AppController {
 			$this->set("result", null);
 		}
 	}
+	
 	function ajax_addToFriends(){
 	
 	}

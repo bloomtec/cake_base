@@ -10,6 +10,66 @@ class TeamsController extends AppController {
 		}
 	}
 	
+	/**
+	 * Retorna los equipos en que el usuario logueado es
+	 * el capitan
+	 */
+	function listUserTeamsWhereCaptain() {
+		$user_id = $this -> Session -> read('Auth.User.id');
+		$teams_ids_where_captain = $this -> Team -> User -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id,
+					'UsersTeam.is_captain' => true
+				),
+				'fields' => array(
+					'UsersTeam.team_id'
+				)
+			)
+		);
+		$teams_where_captain = $this -> Team -> find(
+			'all',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'Team.id' => $teams_ids_where_captain
+				)
+			)
+		);
+		$this -> set('teams', $teams_where_captain);
+	}
+	
+	/**
+	 * Retorna los equipos a los que no pertenece el usuario logueado
+	 */
+	function listNotUserTeams() {
+		$user_id = $this -> Session -> read('Auth.User.id');
+		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id
+				),
+				'fields' => array(
+					'UsersTeam.team_id'
+				)
+			)
+		);
+		$not_user_teams = $this -> Team -> find(
+			'all',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'NOT Team.id' => $teams_ids_in
+				)
+			)
+		);
+		$this -> set('teams', $not_user_teams);
+	}
+	
 	function ajax_delete($team_id = null) {
 		$this->autoRender = false;
 		if($team_id) {
