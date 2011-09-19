@@ -17,15 +17,27 @@ class UsersController extends AppController {
 	
 	}
 	
-	function listFriends($user_id = null) {
+	function listFriends() {
 		$this->layout="ajax";
+		$user_id=$this->Auth->user("id");
 		if($user_id) {
 			$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
 			$this->paginate=array("limit"=>1);
 			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
 		}
 	}
-
+	function listNoFriends() {
+		$this->layout="ajax";
+		$user_id=$this->Auth->user("id");
+		$nombre=$this->params["named"]["nombre"];
+		$email=$this->params["named"]["email"];
+		//DEBE LISTAR LOS QUE NO SON AMIGOS
+		if($user_id) {
+			$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+			$this->paginate=array("limit"=>1);
+			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
+		}
+	}
 	function login() {}
 
 	function admin_login() {}

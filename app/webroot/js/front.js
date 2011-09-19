@@ -126,12 +126,13 @@ $(function(){
 	$(".container-search .paging-search a").live("click",function(e){
 		// CARGA EL PAGINADO EN SU CONTENEDOR busqueda
 		e.preventDefault();
-		console.log("entro");
 		$that=$(this);
 		var $container=$(this).parents(".container-search");
-		var criteria=$($container.attr("criteria")).val();
-		console.log($container);
-		console.log(criteria);
+		if($container.attr("criteria")){
+			var criteria=$($container.attr("criteria")).val();
+		}else{
+			var criteria="";
+		}
 		$that.parents(".container-search").load($that.attr("href"),{},function(){
 			$.each($(this).find(".paging a"),function(i,val){
 				var href=$(val).attr("href");
@@ -224,5 +225,5 @@ $(function(){
 		 });
 	});
 	
-	$("#teams").animate({"left":"-870"},1000,"swing");
+	$("#payfoll").animate({"left":"-870"},1000,"swing");
 });
