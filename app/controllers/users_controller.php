@@ -3,13 +3,22 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	
-	function search($info = null) {
-		if($info) {
-			$this->loadModel('UserField');
-			$user_ids = $this->UserField->find('list', array('fields' => array('user_id'), 'conditions' => array('OR' => array('UserField.name LIKE' => "%$info%", 'UserField.surname LIKE' => "%$info%"))));
-			$this->set("result", $this->paginate("User", array("User.id" => $user_ids)));
-		} else {
-			$this->set("result", null);
+	function search() {
+		$this->layout="ajax";
+		$user_id=$this->Auth->user("id");
+		$nombre=$this->params["named"]["nombre"];
+		$email=$this->params["named"]["email"];
+		//DEBE LISTAR TODOS LOS QUE CUMPLAN EL CRITERIO
+		if($user_id) {
+			$this -> loadModel('UserField');
+			$friends = $this -> paginate = array(
+				'OR' => array(
+					'UserField.name LIKE' => "%$nombre%",
+					'UserField.surname LIKE' => "%$nombre%",
+					'User.email LIKE' => "%$email%" 
+				)
+			);
+			$this->set("friends", $friends);
 		}
 	}
 	
@@ -26,6 +35,7 @@ class UsersController extends AppController {
 			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
 		}
 	}
+	
 	function listNoFriends() {
 		$this->layout="ajax";
 		$user_id=$this->Auth->user("id");
@@ -38,6 +48,7 @@ class UsersController extends AppController {
 			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
 		}
 	}
+
 	function login() {}
 
 	function admin_login() {}
