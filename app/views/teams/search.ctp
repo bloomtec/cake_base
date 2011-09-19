@@ -1,23 +1,9 @@
 <div class="search form">
-	<?php echo $this->Form->create('Team', array('action' => 'search'));?>
-		<fieldset>
-			<legend><?php __('Search'); ?></legend>
-			<?php
-				echo $this->Form->input('criteria', array('label' => 'NOMBRE'));
-			?>
-		</fieldset>
-	<?php echo $this->Form->end(__('flecha a la derecha', true));?>
-	<div class="equipos">
-		<?php foreach($results as $team):?>
-			<div class="team">
-				<?php echo $html->image($team["Team"][0]["image"],array("width"=>120));?>
-			</div>
-		<?php endforeach;?>
-	</div>
-	<div class="paging">
-			<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-		 | 	<?php echo $this->Paginator->numbers();?>
-	 |
-			<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	<h1> Nombre </h1>
+	<input id="criteria" />
+	<button class="search">Buscar</button>
+	<!-- El container-search debe ser hermano del boton buscar-->
+	<div class="container-search" rel="/teams/ajaxSearch/" criteria="#criteria">
+		<!-- AQUI SE CARGA LA VISTA DEL PAGINADO CON AJAX DEBE EXISTIR la vista teams/payroll-->
 	</div>
 </div>
