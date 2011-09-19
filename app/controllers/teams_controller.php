@@ -14,7 +14,7 @@ class TeamsController extends AppController {
 			$this->set("teams",$this->paginate("Team", array('Team.name LIKE' => "%$criteria%")));
 		}
 	}
-	
+
 	/**
 	 * Retorna los equipos en que el usuario logueado es
 	 * el capitan
