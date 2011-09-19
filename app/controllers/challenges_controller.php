@@ -76,7 +76,7 @@ class ChallengesController extends AppController {
 		$this->layout="ajax";
 			
 	}
-	function challegeFromSearch($challengedId=null){
+	function challengeFromSearch($challengedId=null){
 		$this->layout="ajax";
 		$myTeams=$this->requestAction("/teams/myTeams");
 		$this->set(compact("challengedId","myTeams"));	

@@ -1,3 +1,4 @@
+
 <div class="challenge">
 	<?php echo $form->Create("Challenge",array("action"=>"createChallenge"));?>
 	<?php echo $form->input("title",array("label"=>"Nombre del Reto")); ?>
