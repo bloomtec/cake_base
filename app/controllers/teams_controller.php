@@ -74,6 +74,36 @@ class TeamsController extends AppController {
 		);
 		$this -> set('teams', $not_user_teams);
 	}
+
+	/**
+	 * Retorna los equipos a los que pertenece el usuario logueado
+	 */
+	function myTeams() {
+		$this->autoRender=false;
+		$user_id = $this -> Session -> read('Auth.User.id');
+		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id
+				),
+				'fields' => array(
+					'UsersTeam.team_id'
+				)
+			)
+		);
+		$user_teams = $this -> Team -> find(
+			'all',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'Team.id' => $teams_ids_in
+				)
+			)
+		);
+		return $user_teams;
+	}
 	
 	function ajax_delete($team_id = null) {
 		$this->autoRender = false;
