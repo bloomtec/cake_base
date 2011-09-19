@@ -31,7 +31,7 @@ class TeamsController extends AppController {
 			// Crear el paginado
 			$data = $this->paginate('Team');
 			// Enviar a la vista el paginado
-			$this->set("teams",$data);
+			$this->set("data",$data);
 		}
 	}
 
@@ -70,6 +70,7 @@ class TeamsController extends AppController {
 	 * Retorna los equipos a los que no pertenece el usuario logueado
 	 */
 	function listNotUserTeams() {
+		$this->layout="ajax";
 		$user_id = $this -> Session -> read('Auth.User.id');
 		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
 			'list',

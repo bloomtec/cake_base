@@ -1,3 +1,3 @@
 <div class="results view">
-	<?php debug($teams); ?>
+	<?php echo $this->element("teams-list");?>
 </div>

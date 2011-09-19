@@ -224,5 +224,5 @@ $(function(){
 		 });
 	});
 	
-	$("#teams").animate({"left":"-870"},1000,"swing");
+	$("#payfoll").animate({"left":"-870"},1000,"swing");
 });
