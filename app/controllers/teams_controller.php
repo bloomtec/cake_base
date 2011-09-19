@@ -102,7 +102,14 @@ class TeamsController extends AppController {
 				)
 			)
 		);
-		return $user_teams;
+		
+		$teams_list = array();
+		
+		foreach($user_teams as $user_team) {
+			$teams_list[$user_team['Team']['id']] = $user_team['Team']['name'];
+		}
+		
+		return $teams_list;
 	}
 	
 	function ajax_delete($team_id = null) {
