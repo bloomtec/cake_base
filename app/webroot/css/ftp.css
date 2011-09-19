@@ -262,7 +262,7 @@ div.contentWrap {
 #teams .payroll-control .player .container{
 	float:left;
 }
-#teams a.challenge{
+.equipos a.challenge{
 	background: #BD0C1E;
 	color:white;
 	text-transform: uppercase;

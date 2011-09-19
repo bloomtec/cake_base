@@ -13,27 +13,18 @@ class TeamsController extends AppController {
 	 * y en los que el usuario no haga parte.
 	 */
 	function ajaxSearch() {
-		$this->layout="ajax";
-		if(!empty($this->params) && isset($this->params['named']['criteria'])) {
-			$criteria = $this->params['named']['criteria'];
-			$user_teams_data = $this->myTeams();
-			$user_teams_ids = array();
-			foreach($user_teams_data as $key=>$val) {
-				$user_teams_ids[] = $key;
-			}
-			// Definir el paginado
-			$this -> paginate = array(
-				'conditions' => array(
-					'Team.name LIKE' => "%$criteria%",
-					'NOT Team.id' => $user_teams_ids
-				)
-			);
-			// Crear el paginado
-			$data = $this->paginate('Team');
-			// Enviar a la vista el paginado
-			$this->set("data",$data);
-		}
-	}
+        $this->layout="ajax";
+        if(!empty($this->params) && isset($this->params['named']['criteria'])) {
+            $criteria = $this->params['named']['criteria'];
+            $user_teams_data = $this->myTeams();
+            $user_teams_ids = array();
+            foreach($user_teams_data as $key=>$val) {
+                $user_teams_ids[] = $key;
+            }
+			$this->paginate=array("limit"=>2);
+            $this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
+        }
+    } 
 
 	/**
 	 * Retorna los equipos en que el usuario logueado es
@@ -100,7 +91,6 @@ class TeamsController extends AppController {
 	 * Retorna los equipos a los que pertenece el usuario logueado
 	 */
 	function myTeams() {
-		$this->autoRender=false;
 		$user_id = $this -> Session -> read('Auth.User.id');
 		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
 			'list',
