@@ -81,7 +81,21 @@ class ChallengesController extends AppController {
 		$myTeams=$this->requestAction("/teams/myTeams");
 		$this->set(compact("challengedId","myTeams"));	
 	}	
-	function createChallenge($challenger_id = null, $challenged_id = null, $user_id = null,
+	function createChallenge() {
+		if (!empty($this->data)) {
+			$this->Challenge->create();
+			if ($this->Challenge->save($this->data)) {
+				echo "El Reto fue creado";
+			} else {
+				echo "No se pudo crear el reto";
+			}
+		}
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
+	
+	/*function createChallenge($challenger_id = null, $challenged_id = null, $user_id = null,
 								$date = null, $place = null, $title = null, $message = null, $bet = null) {
 		if($challenger_id && $challenged_id && $user_id && $date && $place && $title) {
 			$reto = $this->Challenge->create();
@@ -106,7 +120,7 @@ class ChallengesController extends AppController {
 		$this->autoRender=false;
 		exit(0);
 	}
-	
+	*/
 	function getInvites($team_id = null) {
 		if($team_id) {
 			$this->set("invites", $this->paginate("Challenge", array('Challenge.team_challenged_id' => $team_id, 'Challenge.challenge_status_id' => 3)));

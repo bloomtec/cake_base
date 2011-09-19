@@ -1,4 +1,3 @@
-
 <div class="challenge">
 	<?php echo $form->Create("Challenge",array("action"=>"createChallenge"));?>
 	<?php echo $form->input("title",array("label"=>"Nombre del Reto")); ?>
@@ -8,4 +7,8 @@
 	<?php echo $form->input("date",array("label"=>"Fecha y hora")); ?>
 	<?php echo $form->input("message",array("label"=>"comentarios")); ?>
 	<?php echo $form->end("RETAR!"); ?>
+	
+	<div class="respuesta">
+		
+	</div>
 </div>

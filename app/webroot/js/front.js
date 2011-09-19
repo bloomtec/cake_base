@@ -5,7 +5,6 @@ $(function(){
 			url:url,
 			type: "GET",
 			cache: false,
-			dataType:"json",
 			data: params,
 			success: callback
 		});
@@ -15,7 +14,6 @@ $(function(){
 			url:url,
 			type: "POST",
 			cache: false,
-			dataType:"json",
 			data: params,
 			success: callback
 		});
@@ -217,6 +215,14 @@ $(function(){
 		}
 		
 	});
-	$("#teams").animate({"left":"-870"},1000,"swing");
+	$("#overlay form").live("submit",function(e){
+		e.preventDefault();
+		var form=$(this);
+		var fields=$(this).serialize();
+		BJS.post(form.attr("action"),fields,function(data){
+		 	$(".respuesta").html(data);
+		 });
+	});
 	
+	$("#teams").animate({"left":"-870"},1000,"swing");
 });
