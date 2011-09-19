@@ -6,7 +6,7 @@
 			<div class="container-paginado friends" rel="/users/listFriends/criteria:">
 					
 			</div>
-			<div class="container-search all" rel="/users/search/nombre:/email:/">
+			<div class="container-search all" rel="/users/search/">
 					
 			</div>				
 		</div>
@@ -32,7 +32,7 @@ $(function(){
 	$("button#searchPlayer").live("click",function(e){
 		var nombre=$("#nombre").val();
 		var email=$("#email").val();
-		$containerSearch.load($containerSearch.attr("rel"),{},function(){
+		$containerSearch.load($containerSearch.attr("rel")+"nombre:"+nombre+"/email:"+email,{},function(){
 			$.each($(this).find(".paging a"),function(i,val){
 				var href=$(val).attr("href");
 				$(val).attr("href",href+"/nombre:"+nombre+"/email:"+email)
