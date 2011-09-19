@@ -6,52 +6,44 @@
 			<?php echo $page['Page']['id']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Menu'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($page['Menu']['title'], array('controller' => 'menus', 'action' => 'view', $page['Menu']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Page Type'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($page['PageType']['name'], array('controller' => 'page_types', 'action' => 'view', $page['PageType']['id'])); ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Title'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $page['Page']['title']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Wysiwg Content'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['description']; ?>
+			<?php echo $page['Page']['wysiwg_content']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Keywords'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pic 1'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['keywords']; ?>
+			<?php echo $page['Page']['pic_1']; ?>
 			&nbsp;
 		</dd>
-<?php if($page['Page']['active']){ ?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Active'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pic 2'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo __('Active',true); ?>
+			<?php echo $page['Page']['pic_2']; ?>
 			&nbsp;
 		</dd>
-<?php }else{ ?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Active'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pic 3'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo __('Inactive',true); ?>
+			<?php echo $page['Page']['pic_3']; ?>
 			&nbsp;
 		</dd>
-<?php }
- ?>		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Wysiwyg Content'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Pic 4'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['wysiwyg_content']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Slug'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['slug']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['created']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Updated'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $page['Page']['updated']; ?>
+			<?php echo $page['Page']['pic_4']; ?>
 			&nbsp;
 		</dd>
 	</dl>

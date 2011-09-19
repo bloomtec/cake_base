@@ -3,20 +3,16 @@
 	<fieldset>
 		<legend><?php __('Admin Add Page'); ?></legend>
 	<?php
+		echo $this->Form->input('menu_id');
+		echo $this->Form->input('page_type_id');
 		echo $this->Form->input('title');
-		echo $this->Form->input('description');
-		echo $this->Form->input('keywords');
-		echo $this->Form->input('active');
-		echo $this->Form->input('wysiwyg_content',array('label'=>false));
-		echo $this->Form->input('slug');
+		echo $this->Form->input('wysiwg_content');
+		echo $this->Form->input('pic_1');
+		echo $this->Form->input('pic_2');
+		echo $this->Form->input('pic_3');
+		echo $this->Form->input('pic_4');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
 
-	<script type="text/javascript">
-			CKEDITOR.replace('data[Page][wysiwyg_content]',{
-        	filebrowserUploadUrl : '/upload.php',
-        	filebrowserBrowseUrl : '/admin/images/wysiwyg',
-		} );
-		</script>

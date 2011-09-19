@@ -5,20 +5,21 @@
 				
 		<th><?php echo $this->Paginator->sort('id');?></th>
 						
+		<th><?php echo $this->Paginator->sort('menu_id');?></th>
+						
+		<th><?php echo $this->Paginator->sort('page_type_id');?></th>
+						
 		<th><?php echo $this->Paginator->sort('title');?></th>
 						
-		<th><?php echo $this->Paginator->sort('description');?></th>
+		<th><?php echo $this->Paginator->sort('wysiwg_content');?></th>
 						
-		<th><?php echo $this->Paginator->sort('keywords');?></th>
-								<th><?php echo $this->Paginator->sort('Status','active');?></th>
+		<th><?php echo $this->Paginator->sort('pic_1');?></th>
 						
-		<th><?php echo $this->Paginator->sort('wysiwyg_content');?></th>
+		<th><?php echo $this->Paginator->sort('pic_2');?></th>
 						
-		<th><?php echo $this->Paginator->sort('slug');?></th>
+		<th><?php echo $this->Paginator->sort('pic_3');?></th>
 						
-		<th><?php echo $this->Paginator->sort('created');?></th>
-						
-		<th><?php echo $this->Paginator->sort('updated');?></th>
+		<th><?php echo $this->Paginator->sort('pic_4');?></th>
 					<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -31,18 +32,18 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $page['Page']['id']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($page['Menu']['title'], array('controller' => 'menus', 'action' => 'view', $page['Menu']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($page['PageType']['name'], array('controller' => 'page_types', 'action' => 'view', $page['PageType']['id'])); ?>
+		</td>
 		<td><?php echo $page['Page']['title']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['description']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['keywords']; ?>&nbsp;</td>
-<?php if($page['Page']['active']){ ?>
-		<td><?php echo 'Active'; ?>&nbsp;</td>
-<?php }else{ ?>
-		<td><?php echo 'Inactive'; ?>&nbsp;</td>
-<?php }
- ?>		<td><?php echo $page['Page']['wysiwyg_content']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['slug']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['created']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['updated']; ?>&nbsp;</td>
+		<td><?php echo $page['Page']['wysiwg_content']; ?>&nbsp;</td>
+		<td><?php echo $page['Page']['pic_1']; ?>&nbsp;</td>
+		<td><?php echo $page['Page']['pic_2']; ?>&nbsp;</td>
+		<td><?php echo $page['Page']['pic_3']; ?>&nbsp;</td>
+		<td><?php echo $page['Page']['pic_4']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'view', $page['Page']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'edit', $page['Page']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

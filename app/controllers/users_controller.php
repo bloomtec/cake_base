@@ -2,17 +2,7 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-
-	/**
-	 * Método de Auth component.
-	 * Se declara para permitir el acceso a métodos necesarios
-	 * para la correcta funcionalidad del plugin cuando se
-	 * utiliza Auth component.
-	 */
-	function beforeFilter() {
-		$this -> Auth -> allow('register');
-	}
-
+	
 	function login() {
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
@@ -42,7 +32,10 @@ class UsersController extends AppController {
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-
+	
+	/**
+	 * Hacer revision de este metodo de registro para ir acorde a pitaya
+	 */
 	function register() {
 		if (!empty($this -> data)) {
 			$isUserNameValid = false;
@@ -104,69 +97,204 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
 			}
 		}
-		$this -> loadModel('DocumentType');
-		$documentTypes = $this -> DocumentType -> find('list');
-		$this -> set(compact('documentTypes'));
+		$genders = $this -> User -> Gender -> find('list');
+		$this -> set(compact('genders'));
 	}
 
+	function index() {
+		$this->User->recursive = 0;
+		$this->set('users', $this->paginate());
+	}
+
+	function view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('user', $this->User->read(null, $id));
+	}
+
+	function add() {
+		if (!empty($this->data)) {
+			$this->User->create();
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash(__('The user has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
+	}
+
+	function edit($id = null) {
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash(__('The user has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->User->read(null, $id);
+		}
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
+	}
+
+	function delete($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		if ($this->User->delete($id)) {
+			$this->Session->setFlash(__('User deleted', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('User was not deleted', true));
+		$this->redirect(array('action' => 'index'));
+	}
+
+
+
+
+	function setInactive($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$oldData=$this->User->read(null,$id);
+		$oldData["User"]["active"]=false;
+		if ($this->User->save($oldData)) {
+			$this->Session->setFlash(__('User archived', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('User was not archived', true));
+		$this->redirect(array('action' => 'index'));
+	}
+function setActive($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$oldData=$this->User->read(null,$id);
+		$oldData["User"]["active"]=true;
+		if ($this->User->save($oldData)) {
+			$this->Session->setFlash(__('User archived', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('User was not archived', true));
+		$this->redirect(array('action' => 'index'));
+	}
+function requestFind($type,$findParams,$key) {
+	if($key==Configure::read("key")){
+		return $this->User->find($type, $findParams);
+	}else{
+		return null;
+	}
+}
 	function admin_index() {
-		$this -> User -> recursive = 0;
-		$this -> set('users', $this -> paginate());
+		$this->User->recursive = 0;
+		$this->set('users', $this->paginate());
 	}
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid user', true));
-			$this -> redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
 		}
-		$this -> set('user', $this -> User -> read(null, $id));
+		$this->set('user', $this->User->read(null, $id));
 	}
 
 	function admin_add() {
-		if (!empty($this -> data)) {
-			$this -> User -> create();
-			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+		if (!empty($this->data)) {
+			$this->User->create();
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash(__('The user has been saved', true));
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
-		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 	function admin_edit($id = null) {
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid user', true));
-			$this -> redirect(array('action' => 'index'));
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid user', true));
+			$this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this -> data)) {
-			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+		if (!empty($this->data)) {
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash(__('The user has been saved', true));
+				$this->redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> User -> read(null, $id);
+		if (empty($this->data)) {
+			$this->data = $this->User->read(null, $id);
 		}
-		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
+		$roles = $this->User->Role->find('list');
+		$this->set(compact('roles'));
 	}
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for user', true));
-			$this -> redirect(array('action' => 'index'));
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
 		}
-		if ($this -> User -> delete($id)) {
-			$this -> Session -> setFlash(__('User deleted', true));
-			$this -> redirect(array('action' => 'index'));
+		if ($this->User->delete($id)) {
+			$this->Session->setFlash(__('User deleted', true));
+			$this->redirect(array('action'=>'index'));
 		}
-		$this -> Session -> setFlash(__('User was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
+		$this->Session->setFlash(__('User was not deleted', true));
+		$this->redirect(array('action' => 'index'));
 	}
 
+
+
+
+	function admin_setInactive($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$oldData=$this->User->read(null,$id);
+		$oldData["User"]["active"]=false;
+		if ($this->User->save($oldData)) {
+			$this->Session->setFlash(__('User archived', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('User was not archived', true));
+		$this->redirect(array('action' => 'index'));
+	}
+function admin_setActive($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$oldData=$this->User->read(null,$id);
+		$oldData["User"]["active"]=true;
+		if ($this->User->save($oldData)) {
+			$this->Session->setFlash(__('User archived', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		$this->Session->setFlash(__('User was not archived', true));
+		$this->redirect(array('action' => 'index'));
+	}
+function admin_requestFind($type,$findParams,$key) {
+	if($key==Configure::read("key")){
+		return $this->User->find($type, $findParams);
+	}else{
+		return null;
+	}
+}
 }
