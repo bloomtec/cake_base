@@ -5,7 +5,6 @@ class UsersController extends AppController {
 	
 	function search() {
 		$this -> layout = "ajax";
-		debug($this->params);
 		$user_id = $this -> Auth->user("id");
 		$nombre = $this -> params["named"]["nombre"];
 		$email = $this -> params["named"]["email"];
@@ -17,10 +16,8 @@ class UsersController extends AppController {
 				$this->paginate(
 					'User',
 					array(
-						'OR' => array(
-							'User.email LIKE' => "%$email%",
-							'User.id' => $users_ids
-						)
+						'User.email LIKE' => "%$email%",
+						'User.id' => $users_ids
 					)
 				)
 			);

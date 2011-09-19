@@ -3,9 +3,15 @@ class UserFieldsController extends AppController {
 
 	var $name = 'UserFields';
 	
-	function searchUsersByNameSurname($criteria) {
+	function searchUsersByNameSurname($nombre = null) {
 		$this -> autoRender = false;
-		$return = $this -> UserField -> find(
+		$criteria = null;
+		if(isset($nombre) && !empty($nombre)) {
+			$criteria = $nombre;
+		} else {
+			$criteria = "";
+		}
+		$result = $this -> UserField -> find(
 			'list',
 			array(
 				'recursive' => -1,
@@ -20,6 +26,7 @@ class UserFieldsController extends AppController {
 				)
 			)
 		);
+		return $result;
 	}
 
 	function index() {
