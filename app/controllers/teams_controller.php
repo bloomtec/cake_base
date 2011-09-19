@@ -31,7 +31,7 @@ class TeamsController extends AppController {
 			// Crear el paginado
 			$data = $this->paginate('Team');
 			// Enviar a la vista el paginado
-			$this->set(compact($data));
+			$this->set("teams",$data);
 		}
 	}
 
