@@ -7,11 +7,31 @@ class TeamsController extends AppController {
 		$this->layout="ajax";
 
 	}
-	function ajaxSearch(){
+	
+	/**
+	 * Retorna los equipos con el nombre COMO la criteria de busqueda
+	 * y en los que el usuario no haga parte.
+	 */
+	function ajaxSearch() {
 		$this->layout="ajax";
 		if(!empty($this->params) && isset($this->params['named']['criteria'])) {
 			$criteria = $this->params['named']['criteria'];
-			$this->set("teams",$this->paginate("Team", array('Team.name LIKE' => "%$criteria%")));
+			$user_teams_data = $this->myTeams();
+			$user_teams_ids = array();
+			foreach($user_teams_data as $key=>$val) {
+				$user_teams_ids[] = $key;
+			}
+			// Definir el paginado
+			$this -> paginate = array(
+				'conditions' => array(
+					'Team.name LIKE' => "%$criteria%",
+					'NOT Team.id' => $user_teams_ids
+				)
+			);
+			// Crear el paginado
+			$data = $this->paginate('Team');
+			// Enviar a la vista el paginado
+			$this->set(compact($data));
 		}
 	}
 
