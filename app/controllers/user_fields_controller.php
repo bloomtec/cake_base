@@ -2,6 +2,32 @@
 class UserFieldsController extends AppController {
 
 	var $name = 'UserFields';
+	
+	function searchUsersByNameSurname($nombre = null) {
+		$this -> autoRender = false;
+		$criteria = null;
+		if(isset($nombre) && !empty($nombre)) {
+			$criteria = $nombre;
+		} else {
+			$criteria = "";
+		}
+		$result = $this -> UserField -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'OR' => array(
+						'UserField.name LIKE' => "%$criteria%",
+						'UserField.surname LIKE' => "%$criteria%"
+					)
+				),
+				'fields' => array(
+					'UserField.user_id'
+				)
+			)
+		);
+		return $result;
+	}
 
 	function index() {
 		$this->UserField->recursive = 0;
