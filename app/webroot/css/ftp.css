@@ -12,7 +12,7 @@
 	padding:0;
 }
 body{
- 	
+ 	background: black;
  }
 a {
 	color: white;
@@ -58,6 +58,8 @@ h4 {
  	width:1300px;
 	height:600px;
 	overflow:hidden;
+	display: none;
+	
  }
  #content{
  	width:75%;
@@ -240,8 +242,8 @@ div.contentWrap {
 	overflow-y: scroll;
 }
 #teams .payroll-control .player{
-	moz-border-radius: 5px;
-	webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	background: white;
 	float:left;
@@ -266,14 +268,59 @@ div.contentWrap {
 	background: #BD0C1E;
 	color:white;
 	text-transform: uppercase;
-	moz-border-radius: 5px;
-	bwebkit-order-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-order-radius: 5px;
 	border-radius: 5px;
 	padding: 0 3px;
 	float:right;
 	margin-top: 4px;
 }
-
+.equipos-panel{
+	display: none;
+}
+.switches div{
+	cursor: pointer;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background: white;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius: 5px;
+	padding:0 5px;
+}
+.switches div.open{
+	border: solid 2px #BD0C1E;
+}
 /*PAYFOLL*/
 
 /*CHALLENGES*/
+#challenges .match-player{/*DIV que muestra los jugadores que se han añadido al equipo*/
+	height:4em;
+	width:100%;
+	overflow-y: scroll;
+	clear:both;
+}
+#challenges .match-player .player{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	background: white;
+	float:left;
+	margin-left:2px;
+	font-size: 12px;
+	padding: 3px;
+	margin-bottom: 3px;
+	
+}
+#challenges .match-player .player .remove{
+	float:right;
+	cursor: pointer;
+	margin-left: 3px;
+	border-left: solid 1px;
+	text-align: center;
+	width: 15px;
+}
+#challenges .match-player .player .container{
+	float:left;
+}

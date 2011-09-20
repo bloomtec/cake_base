@@ -20,16 +20,15 @@ class MatchesController extends AppController {
 		if (!empty($this->data)) {
 			$this->Match->create();
 			if ($this->Match->save($this->data)) {
-				$this->Session->setFlash(__('The match has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				echo 'The match has been saved';
+	
 			} else {
-				$this->Session->setFlash(__('The match could not be saved. Please, try again.', true));
+				echo 'The match could not be saved. Please, try again.';
 			}
 		}
-		$matchStatuses = $this->Match->MatchStatus->find('list');
-		$userCreators = $this->Match->UserCreator->find('list');
-		$users = $this->Match->User->find('list');
-		$this->set(compact('matchStatuses', 'userCreators', 'users'));
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);	
 	}
 
 	function edit($id = null) {

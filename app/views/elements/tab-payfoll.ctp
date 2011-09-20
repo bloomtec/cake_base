@@ -6,7 +6,7 @@
 			<div class="container-paginado friends" rel="/users/listFriends/criteria:">
 					
 			</div>
-			<div class="container-search all" rel="/users/search/">
+			<div class="container-search all" rel="/users/search/" id="tabSearch">
 					
 			</div>				
 		</div>
@@ -19,25 +19,3 @@
 		</div>
 	</div>
 </div>
-<script>
-$(function(){
-	var $containerPaginado=$(".container-paginado");
-	$containerPaginado.load($containerPaginado.attr("rel"),{},function(){
-		$.each($(this).find(".paging a"),function(i,val){
-			var href=$(val).attr("href");
-			$(val).attr("href",href+"/criteria:")
-		});				
-	});
-	var $containerSearch=$(".container-search");
-	$("button#searchPlayer").live("click",function(e){
-		var nombre=$("#nombre").val();
-		var email=$("#email").val();
-		$containerSearch.load($containerSearch.attr("rel")+"nombre:"+nombre+"/email:"+email,{},function(){
-			$.each($(this).find(".paging a"),function(i,val){
-				var href=$(val).attr("href");
-				$(val).attr("href",href+"/nombre:"+nombre+"/email:"+email)
-			});				
-		});
-	});
-});
-</script>

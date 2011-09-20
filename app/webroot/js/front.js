@@ -28,7 +28,16 @@ $(function(){
 			success: callback
 		});
 	}
-	
+	BJS.center=function(){
+		var siteHeight=$("#container").height();
+		var windowHeight=$(window).height();
+		if(windowHeight>siteHeight){
+			var diferencia=windowHeight-siteHeight;
+			var marginTop=diferencia/2;
+			$("#container").css({"margin-top":marginTop}).fadeIn("middle");
+		}
+	}
+	BJS.center();
 	
 	
 	$(".pane .tab").click(function(e){//ANIMACION PESTA�AS
@@ -224,6 +233,79 @@ $(function(){
 		 	$(".respuesta").html(data);
 		 });
 	});
-	
-	$("#payfoll").animate({"left":"-870"},1000,"swing");
+	//FUNCIONAMIENTS ESPECIALES PAYFOLL
+	var $containerPaginado=$(".container-paginado"); //PAGINADO DE LOS AMIGOS
+	$containerPaginado.load($containerPaginado.attr("rel"),{},function(){
+		$.each($(this).find(".paging a"),function(i,val){
+			var href=$(val).attr("href");
+			$(val).attr("href",href+"/criteria:")
+		});				
+	});
+	var $containerSearch=$("#tabSearch");
+	$("button#searchPlayer").live("click",function(e){
+		var nombre=$("#nombre").val();
+		var email=$("#email").val();
+		$containerSearch.load($containerSearch.attr("rel")+"nombre:"+nombre+"/email:"+email,{},function(){
+			$.each($(this).find(".paging a"),function(i,val){
+				var href=$(val).attr("href");
+				$(val).attr("href",href+"/nombre:"+nombre+"/email:"+email)
+			});				
+		});
+	});
+	// FUNCIONAMIENTOS ESPECIALES RETOS
+	$(".add-to-match .player .add").live("click",function(e){
+		e.preventDefault();
+		var player=$(this).parent().parent();
+		var buscar=$(".match-player").find("div[rel='"+player.attr('rel')+"']");
+		if(buscar.length > 0){
+			buscar.hide("fast").show("fast");
+		}else{
+			$(".match-player").append("\
+				<div  class='player' rel='"+player.attr('rel')+"'>\
+					<div class='container'>"+player.find('.name').text()+"\
+					</div>\
+					<div class='remove'> \
+					X\
+					</div>\
+				<div style='clear:both;'></div>\
+				</div>\
+			");
+			$("#create-match").append(
+				"<input type='hidden' name='data[User][User]["+player.attr('rel')+"]' value='"+player.attr('rel')+"' rel='"+player.attr('rel')+"' />"
+			);
+		}
+	});
+	$(".add-to-match .player .remove").live("click",function(){
+		var rel=$(this).parent().attr("rel");
+		$(".match-player .player[rel='"+rel+"']").hide("fast").remove();
+		$("#create-match input[rel='"+rel+"']").remove();
+		
+	});
+	var $containerEquipos=$("#otros-equipos");
+	$containerEquipos.load($containerEquipos.attr("rel"),{},function(){
+		$.each($(this).find(".paging a"),function(i,val){
+			var href=$(val).attr("href");
+			$(val).attr("href",href+"/criteria:")
+		});				
+	});
+	$(".show-friends").live("click",function(e){
+		$(".switches div").removeClass("open");
+		$(this).addClass("open");
+		$(".equipos-panel").fadeOut(function(e){
+			$(".friend-panel").fadeIn();
+		});
+	});
+	$(".show-teams").live("click",function(e){
+		$(".switches div").removeClass("open");
+		$(this).addClass("open");
+		$(".friend-panel").fadeOut(function(e){
+			$(".equipos-panel").fadeIn();
+		});
+	});	
+	$("#armar-equipo").live("click",function(e){
+		var fields=$("#create-match").serialize();
+		BJS.post("/matches/add",fields,function(data){
+			$(".match-confirmation").html(data);
+		});
+	});
 });
