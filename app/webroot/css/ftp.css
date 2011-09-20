@@ -212,7 +212,7 @@ ul.listado{
 }
 	
 div.contentWrap {
-	background:blue;
+	background:url(../img/fpt);
 	width:450px;
 	height:450px;
 	overflow-y:auto;
