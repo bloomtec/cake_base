@@ -20,7 +20,6 @@ a {
 	font-weight: bold;
 }
 a:hover {
-	color: #BD0C1E;
 	text-decoration:none;
 }
 a img {
@@ -48,7 +47,7 @@ h4 {
 	color: white;
 	font-weight: normal;
 }
-.selected{
+.here a{
 	color:#bd0c1e;	
 }
  /* LAYOUT STYLES*/
@@ -58,7 +57,6 @@ h4 {
  	width:1300px;
 	height:600px;
 	overflow:hidden;
-	display: none;
 	
  }
  #content{
@@ -186,6 +184,11 @@ ul.listado{
 	
 }
 .listado .name{
+	
+}
+.container-search, .container-paginado{
+	clear:both;
+	padding:10px 0;
 	
 }
 /*FIN LISTADOS*/

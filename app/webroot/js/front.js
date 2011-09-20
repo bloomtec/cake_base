@@ -29,12 +29,12 @@ $(function(){
 		});
 	}
 	BJS.center=function(){
-		var siteHeight=$("#container").height();
+		var siteHeight=600;
 		var windowHeight=$(window).height();
 		if(windowHeight>siteHeight){
 			var diferencia=windowHeight-siteHeight;
 			var marginTop=diferencia/2;
-			$("#container").css({"margin-top":marginTop}).fadeIn("middle");
+			$("#container").css({"margin-top":marginTop}).fadeIn("slow");
 		}
 	}
 	BJS.center();
@@ -104,6 +104,12 @@ $(function(){
 	// CUANDO SE LE DA CLICK A UNA a.load EN EL MENU DE LA IZQUIERDA
 	// CARGA LA PAGINA AL LADO DERECHO
 		var $that=$(this);
+		$(".team-lists li").removeClass("here");
+		$(".menu h2").removeClass("here");
+		$that.parent().addClass("here");
+		if($that.parent().parent().hasClass("team-lists")){
+			$(".menu-team").addClass("here");
+		}
 		e.preventDefault();
 		$that.parents(".menu").siblings(".content").load($that.attr("href"),{},function(){
 			var containerPaginado=$(this).find(".container-paginado");
@@ -111,7 +117,7 @@ $(function(){
 				// SI EL CONTENIDO TIENE ALGUN PAGINADO LO CARGA
 				$(this).load($(this).attr("rel"));		
 			});
-		});		
+		});	
 	});
 	$(".container-paginado .paging-list a").live("click",function(e){
 		// CARGA EL PAGINADO EN SU CONTENEDOR

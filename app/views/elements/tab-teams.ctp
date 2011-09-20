@@ -3,14 +3,14 @@
 	</div>
 	<div class="body">
 		<div class="menu">	
-			<h2 class="selected">Equipos</h2>
+			<h2 class="selected menu-team"><a href="#">Equipos</a></h2>
 			<ul class="team-lists">
-				<?php $teams=$this->requestAction("/teams/requestFind/all/null/Bl00MWebGr0up");?>
-				<?php foreach($teams as $team):?>
+				<?php $teams=$this->requestAction("/teams/myTeams");?>
+				<?php foreach($teams as $id=>$team):?>
 					<li>
-					<?php echo $html->link($team["Team"]["name"],array("controller"=>"teams","action"=>"view",$team["Team"]["id"]),array("class"=>"load"));?>
+					<?php echo $html->link($team,array("controller"=>"teams","action"=>"view",$id),array("class"=>"load"));?>
 						
-					<?php echo $html->link("X",array("controller"=>"teams","action"=>"ajax_delete",$team["Team"]["id"]),array("class"=>"delete","rel"=> $team["Team"]["id"]));?>
+					<?php echo $html->link("X",array("controller"=>"teams","action"=>"ajax_delete",$id),array("class"=>"delete","rel"=> $id));?>
 				</li>
 				<?php endforeach; ?>
 			</ul>

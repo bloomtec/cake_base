@@ -18,3 +18,6 @@
  */
 ?>
 <?php echo $content_for_layout; ?>
+<script>
+	Cufon.refresh("body");	
+</script>
