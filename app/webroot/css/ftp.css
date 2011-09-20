@@ -180,8 +180,7 @@ ul.listado{
 .listado  li .image img{
 	width:100px;
 	height:100px;
-	border: dashed 2px white;
-	
+	border: dashed 2px white;	
 }
 .listado .name{
 	
@@ -194,8 +193,7 @@ ul.listado{
 /*FIN LISTADOS*/
 /*OVERLAY*/
 #overlay {
-	background:black;
-	opacity:0.5;
+	background:rgba(0,0,0,0.7);
 	color:#efefef;
 	width:100%;
 	height:100%;
@@ -212,18 +210,30 @@ ul.listado{
 }
 	
 div.contentWrap {
-	background:url(../img/fpt);
-	width:450px;
-	height:450px;
+	background:url(../img/fpt/fondo-overlay.jpg);
+	width:600px;
+	height:370px;
 	overflow-y:auto;
 	margin:0 auto;
-	padding:5px;
+	padding:0 5px 0 5px;
+	padding-top:30px;
+	position:absolute;
+	top:50%;
+	margin-top:-200px;
+	left:50%;
+	margin-left:-300px;
 }
 #overlay  .header {
-	background:black;
-	width:450px;
+	width:600px;
+	height:27px;
 	margin:0 auto;
 	padding: 0 5px;
+	position:absolute;
+	top:50%;
+	margin-top:-200px;
+	left:50%;
+	margin-left:-300px;
+	z-index:50000;
 }
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
