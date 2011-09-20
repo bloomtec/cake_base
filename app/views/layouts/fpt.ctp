@@ -64,10 +64,11 @@
 		</div>
 		<div class="apple_overlay" id="overlay">
 			<div class="header">
-				<a href="#" class="close">cerrar</a>
+				<a href="#" class="close"><? echo $html->image("fpt/cerrar-overlay.png",array("alt"=>"cerrar","title"=>"cerrar")) ?></a>
 				<div style="clear:both"></div>
 			</div>
 			<div class="contentWrap">
+			
 			</div>
 		</div>		
 	</div>
