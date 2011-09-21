@@ -230,7 +230,7 @@ $(function(){
 		var playerId=$that.parent().parent().attr("rel");
 		console.log(teamId);
 		console.log(playerId);
-		BJS.post("/teams/callUsersToTeam/team_id:"+teamId+"/user_id:"+playerId,{},function(data){
+		BJS.post("/usersTeams/callUsersToTeam/team_id:"+teamId+"/user_id:"+playerId,{},function(data){
 			if(data){
 				$that.after("<div class='convocado'> Convocado </div>");
 			}
