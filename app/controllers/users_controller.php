@@ -52,6 +52,7 @@ class UsersController extends AppController {
 	}
 
 	function listNotTeamUsers() {
+		$this->layout="ajax";
 		$user_id = $this->Session->read('Auth.User.id');
 		$team_id = $this->params['named']['team_id'];
 		$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
