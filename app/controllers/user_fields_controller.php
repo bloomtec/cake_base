@@ -19,6 +19,9 @@ class UserFieldsController extends AppController {
 					'OR' => array(
 						'UserField.name LIKE' => "%$criteria%",
 						'UserField.surname LIKE' => "%$criteria%"
+					),
+					'NOT' => array(
+						'UserField.user_id' => $this->Session->read('Auth.User.id')
 					)
 				),
 				'fields' => array(

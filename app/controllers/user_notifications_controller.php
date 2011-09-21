@@ -3,7 +3,8 @@ class UserNotificationsController extends AppController {
 
 	var $name = 'UserNotifications';
 	
-	function getUserNotifications($user_id = null) {
+	function getNotifications() {
+		$user_id = $this->Session->read('Auth.User.id');
 		if($user_id) {
 			return $this->UserNotification->find('all', array('conditions' => array('user_id' => $user_id)));
 		}

@@ -9,35 +9,35 @@ class UsersController extends AppController {
 		$nombre = $this -> params["named"]["nombre"];
 		$email = $this -> params["named"]["email"];
 		$include_friends = $this -> params["named"]["include-friends"];
+		$limit = 10; //$this->params["named"]["limit"];
 		//DEBE LISTAR TODOS LOS QUE CUMPLAN EL CRITERIO
 		if($user_id) {
 			$users_ids = $this->requestAction('/user_fields/searchUsersByNameSurname/' . $nombre);
 			if($include_friends) {
-				$this->set(
-					"friends",
-					$this->paginate(
-						'User',
-						array(
-							'User.email LIKE' => "%$email%",
-							'User.id' => $users_ids,
-							'NOT User.id' => $user_id
+				$this->paginate = array(
+					'conditions' => array(
+						'User.email LIKE' => "%$email%",
+						'User.id' => $users_ids,
+						'NOT' => array(
+							'User.id' => $user_id
 						)
-					)
+					),
+					'limit' => $limit
 				);
 			} else {
 				$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
-				$this->set(
-					"friends",
-					$this->paginate(
-						'User',
-						array(
-							'User.email LIKE' => "%$email%",
-							'User.id' => $users_ids,
-							'NOT User.id' => $friends_ids,
-							'NOT User.id' => $user_id
+				$this->paginate = array(
+					'conditions' => array(
+						'User.email LIKE' => "%$email%",
+						'User.id' => $users_ids,
+						'NOT' => array(
+							'User.id' => $user_id,
+							'User.id' => $friends_ids
 						)
-					)
+					),
+					'limit' => $limit
 				);
+				$this->set('friends', $this->paginate('User'));
 			} 
 		}
 	}
