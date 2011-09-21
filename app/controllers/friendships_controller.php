@@ -2,10 +2,24 @@
 class FriendshipsController extends AppController {
 
 	var $name = 'Friendships';
+	
 	function request(){
 		$this->layout="ajax";
 		
 	}
+	
+	function acceptFriendship() {
+		
+	}
+	
+	function rejectFriendship() {
+		
+	}
+	
+	function requestFriendship() {
+		
+	}
+	
 	function getFriendsIDs($user_id = null) {
 		/**
 		 * Campos de la tabla friendships
