@@ -222,7 +222,8 @@ $(function(){
 			);
 		}
 	});
-	$(".convocar .player .add").live("click",function(){
+	$(".convocar .player .add").live("click",function(e){
+		e.stopPropagation()
 		var $that=$(this);
 		var $container=$that.parents(".container-paginado");
 		var teamId=$container.attr("team");
