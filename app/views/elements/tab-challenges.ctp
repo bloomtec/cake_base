@@ -26,7 +26,7 @@
 				<div class="container-paginado add-to-match friends" rel="/users/listFriends/criteria:">
 				
 				</div>
-				<button id="armar-equipo">ARMAR EQUIPO</button>	
+				<button id="armar-equipo">ARMAR PARTIDO</button>	
 				<div class="match-confirmation">
 					
 				</div>			
