@@ -37,7 +37,7 @@ $(function(){
 			$("#container").css({"margin-top":marginTop}).fadeIn("slow");
 		}
 	}
-	BJS.oaverlay=function(selector,url){
+	BJS.overlay=function(selector,url){
 		var $that=$(this);
 		var overlay=$("#overlay");
 		var wrap = overlay.find(".contentWrap");
@@ -152,7 +152,7 @@ $(function(){
 		// envia el criterio de busqueda a la función
 		var $container=$(this).siblings(".container-search");
 		var criteria=$($container.attr("criteria")).val();
-		$(".container-search").load($container.attr("rel")+"criteria:"+criteria,{},function(){
+		$("#teams .container-search").load($container.attr("rel")+"criteria:"+criteria,{},function(){
 			//aumentar criteria a todos los a pagin 
 			$.each($(this).find(".paging a"),function(i,val){
 				var href=$(val).attr("href");
@@ -333,15 +333,21 @@ $(function(){
 		});				
 	});
 	$(".show-friends").live("click",function(e){
-		$(".switches div").removeClass("open");
-		$(this).addClass("open");
+		$(".switches div").removeClass("selected");
+		$(this).addClass(function(){
+				Cufon.refresh("body");
+				return "selected";
+		});
 		$(".equipos-panel").fadeOut(function(e){
 			$(".friend-panel").fadeIn();
 		});
 	});
 	$(".show-teams").live("click",function(e){
-		$(".switches div").removeClass("open");
-		$(this).addClass("open");
+		$(".switches div").removeClass("selected");
+		$(this).addClass(function(){
+				Cufon.refresh("body");
+				return "selected";
+		});
 		$(".friend-panel").fadeOut(function(e){
 			$(".equipos-panel").fadeIn();
 		});
@@ -355,10 +361,19 @@ $(function(){
 	/*
 	 *PAYFOLL TAB (tambien conocida como resultados de busqueda) 
 	 * */
-	$("#payfoll .search #searchPlayer").live("click",function(e){
+	$("#payfoll .player .actions .add").live("click",function(e){
 		e.preventDefault();
 		var $that=$(this);
 		var playerId=$that.parent().parent().attr("rel");
-		BJS.overlay("#overlay","");
-	})
+		BJS.overlay("#overlay","/friendships/request/to_id:"+playerId);
+	});
+	$("form#request-friend").live("submit",function(e){
+		e.preventDefault();
+		var $form=$(this);
+		fields=$form.serialize();
+		BJS.post($form.attr("action"),fields,function(respuesta){
+			$form.find(".confirmacion").html(respuesta);
+		});
+		
+	});
 });

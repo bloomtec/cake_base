@@ -373,9 +373,10 @@ div.contentWrap {
 	-webkit-border-radius:5px;
 	border-radius: 5px;
 	padding:0 5px;
+	color:black;
 }
-.switches div.open{
-	border: solid 2px #BD0C1E;
+.switches div.selected{
+	border:  dashed 3px #BD0C1E;
 }
 /*PAYFOLL*/
 #payfoll .container-search, .container-paginado{
@@ -412,6 +413,10 @@ div.contentWrap {
 	margin-top:-10px;
 	border: none;
 }
+.friend-request textarea{
+	height: 250px;
+	width: 100%;
+}
 /*CHALLENGES*/
 #challenges .match-player{/*DIV que muestra los jugadores que se han añadido al equipo*/
 	height:4em;
@@ -429,6 +434,7 @@ div.contentWrap {
 	font-size: 12px;
 	padding: 3px;
 	margin-bottom: 3px;
+	color:black;
 	
 }
 #challenges .match-player .player .remove{

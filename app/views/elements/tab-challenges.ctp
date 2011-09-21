@@ -6,7 +6,7 @@
 		<div class="content" style="width:90%;">
 			<h2>RETOS</h2>
 			<div class="switches">
-				<div class="show-friends open">
+				<div class="show-friends selected">
 					Armar Partido
 				</div>
 				<div class="show-teams">

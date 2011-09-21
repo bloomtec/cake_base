@@ -2,7 +2,10 @@
 class FriendshipsController extends AppController {
 
 	var $name = 'Friendships';
-	
+	function request(){
+		$this->layout="ajax";
+		
+	}
 	function getFriendsIDs($user_id = null) {
 		/**
 		 * Campos de la tabla friendships
@@ -70,18 +73,18 @@ class FriendshipsController extends AppController {
 	}
 
 	function add() {
+		$this->autoRender=false;
 		if (!empty($this->data)) {
 			$this->Friendship->create();
 			if ($this->Friendship->save($this->data)) {
-				$this->Session->setFlash(__('The friendship has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				echo 'The friendship has been saved';
+
 			} else {
-				$this->Session->setFlash(__('The friendship could not be saved. Please, try again.', true));
+				echo 'The friendship could not be saved. Please, try again.';
 			}
 		}
-		$userAs = $this->Friendship->UserA->find('list');
-		$userBs = $this->Friendship->UserB->find('list');
-		$this->set(compact('userAs', 'userBs'));
+		Configure::write("debug",0);
+		exit(0);
 	}
 
 	function edit($id = null) {
