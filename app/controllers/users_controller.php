@@ -8,7 +8,7 @@ class UsersController extends AppController {
 		$user_id = $this -> Auth->user("id");
 		$nombre = $this -> params["named"]["nombre"];
 		$email = $this -> params["named"]["email"];
-		$include_friends = $this["named"]["include-friends"];
+		$include_friends = $this -> params["named"]["include-friends"];
 		//DEBE LISTAR TODOS LOS QUE CUMPLAN EL CRITERIO
 		if($user_id) {
 			$users_ids = $this->requestAction('/user_fields/searchUsersByNameSurname/' . $nombre);
