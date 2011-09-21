@@ -174,7 +174,39 @@ class TeamsController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			$this->Team->create();
-			if ($this->Team->save($this->data)) {
+			$this->Team->set('team_style_id', $this->data['Team']['team_style_id']);
+			$this->Team->set('name', $this->data['Team']['name']);
+			$this->Team->set('image', $this->data['Team']['image']);
+			if ($this->Team->save()) {
+				$team_id = $this->Team->id;
+				$this->Team->UsersTeam->create();
+				$this->Team->UsersTeam->set('user_id', $this->Session->read('Auth.User.id'));
+				$this->Team->UsersTeam->set('team_id', $team_id);
+				$this->Team->UsersTeam->set('is_captain', true);
+				$this->Team->UsersTeam->set('user_team_status_id', 2);
+				$this->Team->UsersTeam->save();
+				foreach($this->data['User']['User'] as $key=>$user_id) {
+					$this->Team->UsersTeam->create();
+					$this->Team->UsersTeam->set('user_id', $user_id);
+					$this->Team->UsersTeam->set('team_id', $team_id);
+					$this->Team->UsersTeam->set('is_captain', false);
+					$this->Team->UsersTeam->set('user_team_status_id', 1);
+					if($this->Team->UsersTeam->save()) {
+						$team_name = $this->requestAction('/teams/getTeamName/' . $this->Team->id);
+						$subject = "Convocatoria Al Equipo :: $team_name";
+						$content =
+							"<div class=\"notificacion-usuario\">"
+							. "<a class=\"aceptar\" href='/users_teams/acceptCallToTeam/$user_id/$team_id'>Aceptar</a><br />"
+							. "<class=\"rechazar\" href='/users_teams/rejectCallToTeam/$user_id/$team_id'>Rechazar</a><br />"
+							. "</div>";
+						$this->requestAction(
+							'/user_notifications/createNotification/'
+							. $user_id . '/'
+							. $subject . '/'
+							. $content
+						);
+					}
+				}
 				echo true;
 			} else {
 				echo false;
