@@ -121,9 +121,8 @@ class UsersTeamsController extends AppController {
 			$subject = "Convocatoria Al Equipo :: $team_name";
 			$content =
 				"<div class=\"notificacion-usuario\">"
-				. "Has sido convocado al equipo $team_name.<br />"
-				. "Para aceptar la invitación da click <a class=\"aceptar\" href='/users_teams/acceptCallToTeam/$user_id/$team_id'>aquí</a><br />"
-				. "Para rechazar la invitación da click <a class=\"rechazar\" href='/users_teams/rejectCallToTeam/$user_id/$team_id'>aquí</a><br />"
+				. "<a class=\"aceptar\" href='/users_teams/acceptCallToTeam/$user_id/$team_id'>Aceptar</a><br />"
+				. "<class=\"rechazar\" href='/users_teams/rejectCallToTeam/$user_id/$team_id'>Rechazar</a><br />"
 				. "</div>";
 			$done = $this->requestAction(
 				'/user_notifications/createNotification/'
