@@ -87,6 +87,38 @@ class TeamsController extends AppController {
 		$this -> set('teams', $not_user_teams);
 	}
 
+	function listNotTeamUsers() {
+		$user_id = $this->Session->read('Auth.User.id');
+		$team_id = $this->params['named']['team_id'];
+		$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+		$not_team_user_ids = $this -> Team -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'NOT UsersTeam.user_id' => $friends_ids,
+					'UsersTeam.team_id' => $team_id
+				),
+				'fields' => array(
+					'UsersTeam.user_id'
+				)
+			)
+		);
+		$this->loadModel('User');
+		$friends = $this->paginate = array(
+			'User' => array(
+				'conditions' => array(
+					'User.id' => $not_team_user_ids
+				)
+			)
+		);
+		$this->set('friends', $friends);
+	}
+	
+	function callUsersToTeam() {
+		
+	}
+
 	/**
 	 * Retorna los equipos a los que pertenece el usuario logueado
 	 */
