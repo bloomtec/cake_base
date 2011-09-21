@@ -10,6 +10,7 @@ class UserNotificationsController extends AppController {
 	}
 	
 	function createNotification($user_id = null, $subject = null, $content = NULL) {
+		$this->autoRender=false;
 		$this->UserNotification->create();
 		$this->UserNotification->set('user_id', $user_id);
 		$this->UserNotification->set('subject', $subject);

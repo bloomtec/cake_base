@@ -106,7 +106,7 @@ class UsersTeamsController extends AppController {
 		$this->UsersTeam->save($data);
 	}
 	
-	function ajax_callUsersToTeam() {
+	function ajax_callUserToTeam() {
 		$this->autoRender = false;
 		$user_id = $this->params['named']['user_id'];
 		$team_id = $this->params['named']['team_id'];
