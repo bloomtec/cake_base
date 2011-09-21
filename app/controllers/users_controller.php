@@ -51,6 +51,26 @@ class UsersController extends AppController {
 		}
 	}
 
+	function listNotTeamUsers() {
+		$user_id = $this->Session->read('Auth.User.id');
+		$team_id = $this->params['named']['team_id'];
+		$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+		$not_team_user_ids = $this -> User -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'NOT UsersTeam.user_id' => $friends_ids,
+					'UsersTeam.team_id' => $team_id
+				),
+				'fields' => array(
+					'UsersTeam.user_id'
+				)
+			)
+		);
+		$this->set('friends', $this->paginate('User', array('User.id' => $not_team_user_ids)));
+	}
+
 	function login() {}
 
 	function admin_login() {}
