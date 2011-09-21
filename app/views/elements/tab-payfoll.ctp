@@ -6,7 +6,7 @@
 			<div class="container-paginado no-actions friends" rel="/users/listFriends/criteria:">
 					
 			</div>
-			<div class="container-search all" rel="/users/search/" id="tabSearch">
+			<div class="container-search all" rel="/users/search/include-friends:0" id="tabSearch">
 					
 			</div>				
 		</div>
