@@ -2,14 +2,15 @@
 	<div class="profile tab" rel="profile">
 	</div>
 	<div class="body">
-		<div class="notifications">
+		<div class="write">
+			
+		</div>
+		<div class="notifications" rel="/usersNotifications/getnotifications/">
+			<a class="overlay" href="/usersTeams/viewCalling/1/2"> ver mas </a>
 		</div>
 	</div>
 </div>
+
 <script>
-$("#profile .body").load("/users/index");
-$(".paging a").live("click",function(e){
-	e.preventDefault();
-	$("#profile .body").load($(this).attr("href"));
-});
+
 </script>
