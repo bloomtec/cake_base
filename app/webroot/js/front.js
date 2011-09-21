@@ -117,6 +117,21 @@ $(function(){
 				// SI EL CONTENIDO TIENE ALGUN PAGINADO LO CARGA
 				$(this).load($(this).attr("rel"));		
 			});
+			$('#uploadfy').uploadify({
+				'uploader' : '/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'folder' : '/app/webroot/img/uploads',
+				'auto' : true,
+				'cancelImg' : '/img/cancel.png',
+				'onComplete' : function(a, b, c, d) {						
+					$(".escudo .preview").html('<img  src="' + d + '" />');
+					var file = d.split("/");
+					var nombre = file[(file.length - 1)];
+					$("#single-field").val(nombre);
+					$.post("/images/resizeImage", {name:nombre,folder:'uploads'});
+
+				}
+			});
 		});	
 	});
 	$(".container-paginado .paging-list a").live("click",function(e){
