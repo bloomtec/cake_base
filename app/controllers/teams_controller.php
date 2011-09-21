@@ -86,10 +86,6 @@ class TeamsController extends AppController {
 		);
 		$this -> set('teams', $not_user_teams);
 	}
-	
-	function callUsersToTeam() {
-		
-	}
 
 	/**
 	 * Retorna los equipos a los que pertenece el usuario logueado

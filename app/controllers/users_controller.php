@@ -55,13 +55,14 @@ class UsersController extends AppController {
 		$this->layout="ajax";
 		$user_id = $this->Session->read('Auth.User.id');
 		$team_id = $this->params['named']['team_id'];
+		// ID's de los amigos
 		$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
-		$not_team_user_ids = $this -> User -> UsersTeam -> find(
+		// ID's de los jugadores del equipo
+		$team_users_ids = $this->User->UsersTeam->find(
 			'list',
 			array(
 				'recursive' => -1,
 				'conditions' => array(
-					'NOT UsersTeam.user_id' => $friends_ids,
 					'UsersTeam.team_id' => $team_id
 				),
 				'fields' => array(
@@ -69,7 +70,8 @@ class UsersController extends AppController {
 				)
 			)
 		);
-		$this->set('friends', $this->paginate('User', array('User.id' => $not_team_user_ids)));
+		
+		$this->set('friends', $this->paginate('User', array('User.id' => $friends_ids, 'NOT User.id' => $team_users_ids)));
 	}
 
 	function login() {}
