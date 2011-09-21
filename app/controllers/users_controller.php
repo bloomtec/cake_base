@@ -8,19 +8,37 @@ class UsersController extends AppController {
 		$user_id = $this -> Auth->user("id");
 		$nombre = $this -> params["named"]["nombre"];
 		$email = $this -> params["named"]["email"];
+		$include_friends = $this["named"]["include-friends"];
 		//DEBE LISTAR TODOS LOS QUE CUMPLAN EL CRITERIO
 		if($user_id) {
 			$users_ids = $this->requestAction('/user_fields/searchUsersByNameSurname/' . $nombre);
-			$this->set(
-				"friends",
-				$this->paginate(
-					'User',
-					array(
-						'User.email LIKE' => "%$email%",
-						'User.id' => $users_ids
+			if($include_friends) {
+				$this->set(
+					"friends",
+					$this->paginate(
+						'User',
+						array(
+							'User.email LIKE' => "%$email%",
+							'User.id' => $users_ids,
+							'NOT User.id' => $user_id
+						)
 					)
-				)
-			);
+				);
+			} else {
+				$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+				$this->set(
+					"friends",
+					$this->paginate(
+						'User',
+						array(
+							'User.email LIKE' => "%$email%",
+							'User.id' => $users_ids,
+							'NOT User.id' => $friends_ids,
+							'NOT User.id' => $user_id
+						)
+					)
+				);
+			} 
 		}
 	}
 	
