@@ -5,7 +5,6 @@ class TeamsController extends AppController {
 	
 	function search() {
 		$this->layout="ajax";
-
 	}
 	
 	/**
@@ -24,7 +23,12 @@ class TeamsController extends AppController {
 			$this->paginate=array("limit"=>2);
             $this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
         }
-    } 
+    }
+	
+	function getTeamName($team_id = null) {
+		$team = $this->Team->read('name', $team_id);
+		return $team['Team']['name'];
+	}
 
 	/**
 	 * Retorna los equipos en que el usuario logueado es

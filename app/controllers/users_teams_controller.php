@@ -76,8 +76,69 @@ class UsersTeamsController extends AppController {
 		}
 	}
 	
+	function acceptCallToTeam($user_id = null, $team_id = null) {
+		$data = $this->UsersTeam->find(
+			'first', 
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id,
+					'UsersTeam.team_id' => $team_id
+				)
+			)
+		);
+		$data['UsersTeam']['user_team_status_id'] = 2;
+		$this->UsersTeam->save($data);
+	}
+	
+	function rejectCallToTeam($user_id = null, $team_id = null) {
+		$data = $this->UsersTeam->find(
+			'first', 
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id,
+					'UsersTeam.team_id' => $team_id
+				)
+			)
+		);
+		$data['UsersTeam']['user_team_status_id'] = 3;
+		$this->UsersTeam->save($data);
+	}
+	
 	function ajax_callUsersToTeam() {
 		$this->autoRender = false;
+		$user_id = $this->params['named']['user_id'];
+		$team_id = $this->params['named']['team_id'];
+		$this -> UsersTeam -> create();
+		$this -> UsersTeam -> set('user_id', $user_id);
+		$this -> UsersTeam -> set('team_id', $team_id);
+		$this -> UsersTeam -> set('is_captain', false);
+		$this -> UsersTeam -> set('user_team_status_id', 1);
+		$this -> UsersTeam -> set('caller_user_id', $this->Session->read('Auth.User.id'));
+		if($this -> UsersTeam -> save()) {
+			$team_name = $this->requestAction('/teams/getTeamName/' . $team_id);
+			$subject = "Convocatoria Al Equipo :: $team_name";
+			$content =
+				"<div class=\"notificacion-usuario\">"
+				. "Has sido convocado al equipo $team_name.<br />"
+				. "Para aceptar la invitación da click <a class=\"aceptar\" href='/users_teams/acceptCallToTeam/user_id:$user_id/team_id:$team_id'>aquí</a><br />"
+				. "Para rechazar la invitación da click <a class=\"rechazar\" href='/users_teams/rejectCallToTeam/user_id:$user_id/team_id:$team_id'>aquí</a><br />"
+				. "</div>";
+			$done = $this->requestAction(
+				'/user_notifications/createNotification/'
+				. $this->params['named']['user_id'] . '/'
+				. $subject . '/'
+				. $content
+			);
+			if($done) {
+				echo 1;
+			} else {
+				echo 0;
+			}
+		} else {
+			echo 0;
+		}
 	}
 
 	function index() {

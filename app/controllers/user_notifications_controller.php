@@ -8,6 +8,18 @@ class UserNotificationsController extends AppController {
 			return $this->UserNotification->find('all', array('conditions' => array('user_id' => $user_id)));
 		}
 	}
+	
+	function createNotification($user_id = null, $subject = null, $content = NULL) {
+		$this->UserNotification->create();
+		$this->UserNotification->set('user_id', $user_id);
+		$this->UserNotification->set('subject', $subject);
+		$this->UserNotification->set('content', $content);
+		if($this->UserNotification->save()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	function index() {
 		$this->UserNotification->recursive = 0;
