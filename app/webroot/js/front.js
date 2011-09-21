@@ -184,6 +184,7 @@ $(function(){
 	});
 	
 	//FUNCIONAMIENTOS ESPECIALES EQUIPOS
+	
 	$(".add-to-team .player .add").live("click",function(e){
 		e.preventDefault();
 		var player=$(this).parent().parent();
@@ -205,6 +206,19 @@ $(function(){
 				"<input type='hidden' name='data[User][User]["+player.attr('rel')+"]' value='"+player.attr('rel')+"' rel='"+player.attr('rel')+"' />"
 			);
 		}
+	});
+	$(".convocar .player .add").live("click",function(){
+		var $that=$(this);
+		var $container=$that.parents(".container-paginado");
+		var teamId=$container.attr("team");
+		var playerId=$that.parent().parent().attr("rel");
+		console.log(teamId);
+		console.log(playerId);
+		BJS.post("/teams/callUsersToTeam/team_id:"+teamId+"/user_id:"+playerId,{},function(data){
+			if(data){
+				$that.after("<div class='convocado'> Convocado </div>");
+			}
+		});
 	});
 	$(".payroll-control .player .remove").live("click",function(){
 		var rel=$(this).parent().attr("rel");

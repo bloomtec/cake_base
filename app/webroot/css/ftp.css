@@ -175,6 +175,14 @@ ul.listado{
 	width:100%;
 	font-size:12px;
 }
+.listado li .actions div{
+	float:right;
+	margin-left:3px;
+	background: #BD0C1E;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+} 
 .no-actions .listado li .actions{
 	display:none;
 } 
