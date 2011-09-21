@@ -83,6 +83,7 @@ class UsersTeamsController extends AppController {
 	}
 	
 	function acceptCallToTeam($user_id = null, $team_id = null) {
+		$this->autoRender=false;
 		$data = $this->UsersTeam->find(
 			'first', 
 			array(
@@ -94,7 +95,13 @@ class UsersTeamsController extends AppController {
 			)
 		);
 		$data['UsersTeam']['user_team_status_id'] = 2;
-		$this->UsersTeam->save($data);
+		if($this->UsersTeam->save($data)){
+			echo "Ya haces parte del equipo";
+		}else{
+			echo "No se pudo aceptar la convocatoria";
+		}
+		exit(0);
+		
 	}
 	
 	function rejectCallToTeam($user_id = null, $team_id = null) {
