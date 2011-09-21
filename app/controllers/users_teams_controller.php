@@ -4,11 +4,11 @@ class UsersTeamsController extends AppController {
 	var $name = 'UsersTeams';
 	
 	function viewCalling($user_id=null,$team_id=null){
-		$this->layout="ajax";
-		$team=$this->UsersTeam->Team->read(null,$team_id);
-		$this->set(compact("team"));
-		
+		$this -> layout = "ajax";
+		$team = $this -> UsersTeam -> Team -> read(null,$team_id);
+		$this -> set(compact("team"));
 	}
+	
 	function getPayroll($team_id = null) {
 		$this->layout="ajax";
 		if($team_id) {
