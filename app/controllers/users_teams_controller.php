@@ -75,6 +75,10 @@ class UsersTeamsController extends AppController {
 			echo 0;
 		}
 	}
+	
+	function ajax_callUsersToTeam() {
+		$this->autoRender = false;
+	}
 
 	function index() {
 		$this->UsersTeam->recursive = 0;
