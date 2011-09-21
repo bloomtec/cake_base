@@ -197,7 +197,11 @@ $(function(){
 		var $that=$(this);
 		var overlay=$("#overlay");
 		var wrap = overlay.find(".contentWrap");
-		wrap.load($that.attr("href"));
+		wrap.load($that.attr("href"),function(){
+			var $container=wrap.find(".container-paginado");
+			console.log($container);
+			$container.load($container.attr("rel"));
+		});
 		overlay.show();
 		
 	});
@@ -376,4 +380,13 @@ $(function(){
 		});
 		
 	});
+	/*
+	 * Notificaciones
+	 */
+	$("#overlay .actions a").live("click",function(e){
+		e.preventDefault();
+		$link=$(this);
+		$link.siblings(".notificacion").load($link.attr("href"));;	
+	});
+	
 });

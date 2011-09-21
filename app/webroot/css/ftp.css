@@ -296,6 +296,28 @@ div.contentWrap {
 	border: none;
 	cursor: pointer;
 }
+#overlay .actions{
+	position: absolute;
+	bottom:8px;
+	height: 72px;
+	width: 590px;
+}
+#overlay .actions .accept{
+	background: url("../img/fpt/aceptar-overlay.png");
+	width:72px;
+	height: 72px;
+	float: right;
+	margin-left: 10px;
+}
+#overlay .actions .reject{
+	background: url("../img/fpt/aceptar-overlay.png");
+	width:72px;
+	height: 72px;
+	float: right;
+	margin-left: 10px;
+}
+
+
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
 	
@@ -447,4 +469,17 @@ div.contentWrap {
 }
 #challenges .match-player .player .container{
 	float:left;
+}
+/*
+ * NOTIFICACIONES 
+ * */
+.view-calling .info-team{
+	width: 550px;
+	height: 100px;
+	margin: 0 auto;
+	background: black;	
+}
+.view-calling .container-paginado{
+	width: 550px; 
+	margin:0 auto; 
 }
