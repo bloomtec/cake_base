@@ -8,7 +8,7 @@
 		 * Como se hace para seleccionar y enviar eso al controlador
 		 * para manejar el proceso de convocatorio
 		 */
-		echo $this->Form->hidden('image');
+		echo $this->Form->hidden('image',array("id"=>"single-field"));
 		echo $this->Form->end();
 	?>
 	<div class="payroll-control">
@@ -17,13 +17,12 @@
 	<div class="container-paginado add-to-team" rel="/users/listFriends/<?=$this->Session->read('Auth.User.id')?>">
 		<!-- AQUI SE CARGA LA VISTA DEL PAGINADO CON AJAX DEBE EXISTIR -->
 	</div>
-	<div class="team form">
+	<div class="escudo">
 		4. IMAGEN
-		<?php
-			/**
-			 * Meter el código para subir la imágen del equipo
-			 */
-		?>
+		<div class="preview">
+			<?php echo $html->image("LOGO.png"); ?>
+		</div>
+		<div id="uploadfy"></div>
 	</div>
 	<button rel="#create-team"> CREAR EQUIPO </button>
 	<div class="mensaje-error">

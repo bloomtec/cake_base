@@ -31,12 +31,16 @@
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
 		echo $this->Html->css('ftp.css');
+		echo $this->Html->css('uploadify',true);
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('jquery.tools.min');
-			echo $this->Html->script('cufon-yui');
+		echo $this->Html->script('cufon-yui');
 		echo $this->Html->script('Insaniburger.font');
 		echo $this->Html->script('front');
 		echo $this->Html->script('fpt');
+		echo $this->Html->Script("swfobject");
+		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
+		echo $this->Html->Script("upload");	
 		
 		echo $scripts_for_layout;
 	?>
