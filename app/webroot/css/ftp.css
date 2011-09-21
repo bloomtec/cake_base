@@ -48,6 +48,9 @@ h4 {
 	color: white;
 	font-weight: normal;
 }
+button{
+	cursor: pointer;
+}
 .here a{
 	color:#bd0c1e;	
 }
@@ -260,6 +263,39 @@ div.contentWrap {
 	margin-left:-300px;
 	z-index:50000;
 }
+#overlay form{
+	width:90%;
+	margin:0 auto;
+}
+#overlay label{
+	font-size:22px;
+	width: 180px;	
+	float: left;
+}
+#overlay .input{
+	margin-bottom: 15px;
+	clear:both;
+}
+#overlay .text input{
+	background: none;
+	border: dashed 3px white;
+	font-size:22px;
+	width:340px;
+	color:white;
+}
+#overlay textarea{
+	width:340px;
+}
+#overlay .submit input{
+	background:url(../img/fpt/aceptar-overlay.png);
+	width: 72px;
+	height: 72px;
+	position: absolute;
+	right: 10px;
+	bottom:10px;
+	border: none;
+	cursor: pointer;
+}
 /*PROFILE*/
 #tabs .wrapper .profile .notifications{
 	
@@ -342,7 +378,40 @@ div.contentWrap {
 	border: solid 2px #BD0C1E;
 }
 /*PAYFOLL*/
+#payfoll .container-search, .container-paginado{
+	clear:both;
+	padding:3px 0;
+	
+}
+#payfoll .search{
+	position:absolute;
+	width: 90%;
+	height: 72px;
+	bottom: 23px;
+	left:73px;
+	margin-left: 2%;
+	border-top:dashed white 3px;
+}
+#payfoll .search h2{
+	margin-bottom: 2px;
+}
+#payfoll .search label{
+	float:left;
+	width: 70px;
+}
+#payfoll .criterios{
+	float:left;
+	width: 300px;
+}
 
+#payfoll button#searchPlayer{
+	float: left;
+	background: url(../img/fpt/boton-buscar.png);
+	width: 62px;
+	height: 62px;
+	margin-top:-10px;
+	border: none;
+}
 /*CHALLENGES*/
 #challenges .match-player{/*DIV que muestra los jugadores que se han añadido al equipo*/
 	height:4em;

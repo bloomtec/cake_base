@@ -37,6 +37,14 @@ $(function(){
 			$("#container").css({"margin-top":marginTop}).fadeIn("slow");
 		}
 	}
+	BJS.oaverlay=function(selector,url){
+		var $that=$(this);
+		var overlay=$("#overlay");
+		var wrap = overlay.find(".contentWrap");
+		wrap.load(url,function(){
+			overlay.show();
+		});
+	}
 	BJS.center();
 	
 	
@@ -344,4 +352,13 @@ $(function(){
 			$(".match-confirmation").html(data);
 		});
 	});
+	/*
+	 *PAYFOLL TAB (tambien conocida como resultados de busqueda) 
+	 * */
+	$("#payfoll .search #searchPlayer").live("click",function(e){
+		e.preventDefault();
+		var $that=$(this);
+		var playerId=$that.parent().parent().attr("rel");
+		BJS.overlay("#overlay","");
+	})
 });
