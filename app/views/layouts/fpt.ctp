@@ -54,6 +54,22 @@
 <body>
 	<div id="container">
 		<div id="my-profile">
+			<div class="imagen">
+				<?php echo $html->image($user["UserField"][0]["image"]); ?>
+			</div>
+			<div class="info">
+				<?php
+				//debug($this->data);
+				echo $this->Form->create('UserField'); 
+			///	echo $this->Form->input('user_id');
+				echo $this->Form->input('name');
+				echo $this->Form->input('surname');
+				echo $this->Form->input('birthday');
+				echo $this->Form->input('foot_id',array("options"=>$feets));
+				echo $this->Form->input('Position',array("options"=>$positions));
+				echo $this->Form->end();
+				?>
+			</div>
 		</div>
 		<div id="content">
 			<?php echo $content_for_layout; ?>

@@ -2,11 +2,11 @@
 	<div class="profile tab" rel="profile">
 	</div>
 	<div class="body">
-		<div class="write">
+		<div class="write"  style="display:none;">
 			
 		</div>
 		<div class="notifications" rel="/usersNotifications/getnotifications/">
-			<a class="overlay" href="/usersTeams/viewCalling/1/2"> ver mas </a>
+		
 		</div>
 	</div>
 </div>

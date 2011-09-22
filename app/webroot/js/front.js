@@ -389,4 +389,5 @@ $(function(){
 		$link.siblings(".notificacion").load($link.attr("href"));;	
 	});
 	
+	$(".notifications").load($(this).attr("rel"));
 });

@@ -483,3 +483,25 @@ div.contentWrap {
 	width: 550px; 
 	margin:0 auto; 
 }
+/*
+ * MY PROFILE
+ */
+#my-profile .imagen{
+	width: 250px;
+	height: 300px;
+	border: dashed 3px white;
+	margin: 0 auto;
+	margin-top: 10px;
+	position: relative;
+}
+#my-profile .imagen img{
+	max-width:100%;
+	max-height: 100%;
+}
+#my-profile .info{
+	width:250px;
+	margin: 0 auto;
+}
+#my-profile label{
+	display: block;
+}
