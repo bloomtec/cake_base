@@ -60,6 +60,8 @@ class FriendshipsController extends AppController {
 		$this -> layout = "ajax";
 		$this->loadModel('User');
 		$user = $this -> User -> read(null, $user_a_id);
+		$this->loadModel('UserNotification');
+		$notification = $this->UserNotification->find('first', array('recursive' => -1, 'conditions' => array('UserNotification.user_id'=>$user_b_id)));
 		$this -> set(compact("user"));
 		$this -> set('user_a_id', $user_a_id);
 		$this -> set('user_b_id', $user_b_id);
@@ -71,6 +73,9 @@ class FriendshipsController extends AppController {
 		$data = $this -> Friendship -> find('first', array('recursive' => -1, 'conditions' => array('Friendship.user_a_id' => $user_a_id, 'Friendship.user_b_id' => $user_b_id)));
 		$data['Friendship']['is_accepted'] = true;
 		if ($this -> Friendship -> save($data)) {
+			$this->loadModel('UserNotification');
+			$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_b_id, 'UserNotification.friend_id'=>$user_a_id)));
+			$this->UserNotification->delete($notification['UserNotification']['id']);
 			echo "Has aceptado la solicitud de amistad";
 		} else {
 			echo "No se pudo aceptar la solicitud de amistad";
@@ -110,6 +115,7 @@ class FriendshipsController extends AppController {
 				$this->loadModel("UserNotification");
 				$this->UserNotification->create();
 				$this->UserNotification->set('user_id', $user_b_id);
+				$this->UserNotification->set('friend_id', $user_a_id);
 				$this->UserNotification->set('subject', $subject);
 				$this->UserNotification->set('content', $content);
 				$this->UserNotification->save();
