@@ -96,6 +96,9 @@ class UsersTeamsController extends AppController {
 		);
 		$data['UsersTeam']['user_team_status_id'] = 2;
 		if($this->UsersTeam->save($data)){
+			$this->loadModel('UserNotification');
+			$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_id, 'UserNotification.team_id'=>$team_id)));
+			$this->UserNotification->delete($notification['UserNotification']['id']);
 			echo "Ya haces parte del equipo";
 		}else{
 			echo "No se pudo aceptar la convocatoria";
@@ -116,6 +119,9 @@ class UsersTeamsController extends AppController {
 		);
 		$data['UsersTeam']['user_team_status_id'] = 3;
 		if($this->UsersTeam->save($data)){
+			$this->loadModel('UserNotification');
+			$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_id, 'UserNotification.team_id'=>$team_id)));
+			$this->UserNotification->delete($notification['UserNotification']['id']);
 			echo "Has rechazado la invitación";
 		}else{
 			echo "Error al rechazar la invitación";
@@ -145,7 +151,8 @@ class UsersTeamsController extends AppController {
 				. "</div>";
 			$this->loadModel("UserNotification");
 			$this->UserNotification->create();
-			$this->UserNotification->set('user_id', $this->params['named']['user_id']);
+			$this->UserNotification->set('user_id', $user_id);
+			$this->UserNotification->set('team_id', $team_id);
 			$this->UserNotification->set('subject', $subject);
 			$this->UserNotification->set('content', $content);
 			if($this->UserNotification->save()) {
