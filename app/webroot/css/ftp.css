@@ -505,3 +505,15 @@ div.contentWrap {
 #my-profile label{
 	display: block;
 }
+#my-profile .input, #my-profile .select{
+	margin-top: 6px;
+}
+#my-profile .float{
+	float:left;
+	width: 50%;
+	margin-top: 5px;
+}
+#my-profile .checkbox input{
+	float:left;
+}
+

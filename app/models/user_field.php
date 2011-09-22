@@ -109,4 +109,21 @@ class UserField extends AppModel {
 			'order' => ''
 		)
 	);
+var $hasAndBelongsToMany = array(
+		'Tag' =>array(
+		'className' => 'Position',
+			'joinTable' => 'user_fields_positions',
+			'foreignKey' => 'user_field_id',
+			'associationForeignKey' => 'position_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
 }

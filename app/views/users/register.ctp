@@ -67,26 +67,26 @@
 					</div>
 				</div>
 				<div style="clear:both"> </div>
-				<div class="posicion single">
+				<div class="posicion multiple">
 					<label>Posición</label>
 					<?php echo $form->hidden("UserField.position_id",array("value"=>"1","id"=>"position"));?>
 					
 						<?php echo $html->image("arquero.png",array("width"=>50)) ?>
-						<div class="left check checked" value="1" rel="position">
+						<div class="left check no-checked" rel="1">
 							Arquero
 						</div>
 					
 						<?php echo $html->image("volante.png",array("width"=>50)) ?>
-						<div class="check no-checked" value="3" rel="position">
+						<div class="check no-checked" rel="3">
 							Volante
 						</div>
 						<br />
 						<?php echo $html->image("defensa.png",array("width"=>50)) ?>
-						<div class="left check no-checked" value="2" rel="position">
+						<div class="left check no-checked" rel="2">
 							Defensa
 						</div>
 						<?php echo $html->image("delantero.png",array("width"=>50)) ?>
-						<div class=" check no-checked" value="4" rel="position">
+						<div class=" check no-checked" rel="4">
 							Delantero
 						</div>
 				

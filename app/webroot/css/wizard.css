@@ -113,8 +113,7 @@
 	
 }
 #wizard button.submit{
-	margin-top:150px;
-	margin-left:300px;
+	float:right;
 }
 #wizard input{
 	border:dashed 3px;

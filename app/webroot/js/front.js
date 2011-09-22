@@ -102,6 +102,16 @@ $(function(){
 		$that.addClass("checked");
 		$("#"+$that.attr("rel")).val($that.attr("value"))
 	});
+	$(".multiple .check").live("click",function(){
+		$that=$(this);
+		if($that.hasClass("checked")){
+			$that.removeClass("checked").addClass("no-checked");
+			$("input#position"+$that.attr('rel')).remove();
+		}else{
+			$that.removeClass("no-checked").addClass("checked");
+			$("#wizard .posicion").append("<input type='hidden' id='position"+$that.attr('rel')+"' value='"+$that.attr('rel')+"' name='data[Position][Position]["+$that.attr('rel')+"]'>");
+		}
+	});
 	$(".liga").change(function(){
 		var $that=$(this);
 		$("#"+($that.attr("id").replace("League", "Club"))).load("/leagues/getClubsInOption/"+$that.children("option:selected").val());
