@@ -319,6 +319,7 @@ $(function(){
 		var fields=$(this).serialize();
 		BJS.post(form.attr("action"),fields,function(data){
 		 	$(".respuesta").html(data);
+		 	form.find(".confirmacion").html(data);
 		 });
 	});
 	//FUNCIONAMIENTS ESPECIALES PAYFOLL
@@ -411,7 +412,8 @@ $(function(){
 		var playerId=$that.parent().parent().attr("rel");
 		BJS.overlay("#overlay","/friendships/request/to_id:"+playerId);
 	});
-	$("form#request-friend").live("submit",function(e){
+/*	$("form#request-friend").live("submit",function(e){
+		console.log("REQUEST-FRIEND");
 		e.preventDefault();
 		var $form=$(this);
 		fields=$form.serialize();
@@ -419,7 +421,7 @@ $(function(){
 			$form.find(".confirmacion").html(respuesta);
 		});
 		
-	});
+}); */
 	/*
 	 * Notificaciones
 	 */
