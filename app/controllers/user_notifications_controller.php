@@ -3,8 +3,8 @@ class UserNotificationsController extends AppController {
 
 	var $name = 'UserNotifications';
 	
-	function getNotifications() {
-		return $this->UserNotification->find(
+	function viewNotifications() {
+		$notifications = $this->UserNotification->find(
 			'all',
 			array(
 				'recursive' => -1,
@@ -13,9 +13,10 @@ class UserNotificationsController extends AppController {
 				)
 			)
 		);
+		$this->set(compact('notifications'));
 	}
 	
-	function createNotification($user_id = null, $subject = null, $content = NULL) {
+	function createNotification($user_id = null, $subject = null, $content = null) {
 		$this->autoRender=false;
 		$this->UserNotification->create();
 		$this->UserNotification->set('user_id', $user_id);
