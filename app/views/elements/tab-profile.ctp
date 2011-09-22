@@ -5,7 +5,7 @@
 		<div class="write"  style="display:none;">
 			
 		</div>
-		<div class="notifications" rel="/usersNotifications/getnotifications/">
+		<div class="notifications" rel="/user_notifications/getNotifications">
 		
 		</div>
 	</div>
