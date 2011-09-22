@@ -133,16 +133,18 @@ class FriendshipsController extends AppController {
 		$this->autoRender=false;
 		if (!empty($this->data)) {
 			$user_a_id = $this->Session->read('Auth.User.id');
+			$this->data['Friendship']['user_a_id'] = $user_a_id;
 			$user_b_id = $this->data['Friendship']['user_b_id'];
+			$this->data['Friendship']['is_accepted'] = false;
+			$this->data['Friendship']['is_blocked'] = false;
 			$user_a_name = $this -> requestAction('/users/getUserName/' . $user_a_id);
-			$message = $this -> data['Friendship']['message'];
-			$this->data['Friendship']['user_a_id'] = $user_a;
+			$message = $this -> data['Friendship']['Message'];
 			$this->Friendship->create();
 			if ($this->Friendship->save($this->data)) {
 				// Crear notificación de solicitud de amigo
 				// Mensaje para la solicitud
 				// ;
-				$subject = "Solicitud de amistad de :: $nombre_solicitante";
+				$subject = "Solicitud de amistad de :: $user_a_name";
 				$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href='/friendships/viewFriendshipRequest/$user_a_id/$user_b_id/$message'>Ver más</a></div>";
 				$this->requestAction(
 					'/user_notifications/createNotification/'
