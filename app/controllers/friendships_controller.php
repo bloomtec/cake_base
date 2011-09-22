@@ -7,14 +7,6 @@ class FriendshipsController extends AppController {
 		$this->layout="ajax";	
 	}
 	
-	function acceptFriendship($friendship_id) {
-		
-	}
-	
-	function rejectFriendship() {
-		
-	}
-	
 	function getFriendsIDs($user_id = null) {
 		/**
 		 * Campos de la tabla friendships
@@ -80,6 +72,7 @@ class FriendshipsController extends AppController {
 		}
 		$this->set('friendship', $this->Friendship->read(null, $id));
 	}
+	
 	/**
 	 * $user_a_id :: id del usuario que solicita la amistad
 	 * $user_b_id :: id del usuario al que le solicitan la amistad
@@ -87,8 +80,53 @@ class FriendshipsController extends AppController {
 	 */
 	function viewFriendshipRequest($user_a_id, $user_b_id, $message) {	
 		$this -> layout = "ajax";
-		$user = $this -> Friendship -> User -> read(null, $user_id);
+		$user = $this -> Friendship -> User -> read(null, $user_a_id);
 		$this -> set(compact("user"));
+		$this -> set('user_a_id', $user_a_id);
+		$this -> set('user_b_id', $user_b_id);
+		$this -> set('message', $message);
+	}
+	
+	function acceptFriendship($user_a_id, $user_b_id) {
+		$this->autoRender=false;
+		$data = $this->Friendship->find(
+			'first', 
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'Friendship.user_a_id' => $user_a_id,
+					'Friendship.user_b_id' => $user_b_id
+				)
+			)
+		);
+		$data['Friendship']['is_accepted'] = true;
+		if($this->Friendship->save($data)){
+			echo "Has aceptado la solicitud de amistad";
+		}else{
+			echo "No se pudo aceptar la solicitud de amistad";
+		}
+		exit(0);
+	}
+	
+	function rejectFriendship($user_a_id, $user_b_id) {
+		$this->autoRender=false;
+		$data = $this->Friendship->find(
+			'first', 
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'Friendship.user_a_id' => $user_a_id,
+					'Friendship.user_b_id' => $user_b_id
+				)
+			)
+		);
+		$data['Friendship']['is_accepted'] = false;
+		if($this->Friendship->save($data)){
+			echo "Has rechazado la solicitud de amistad";
+		}else{
+			echo "No se pudo rechazar la solicitud de amistad";
+		}
+		exit(0);
 	}
 
 	function add() {
