@@ -400,4 +400,9 @@ $(function(){
 	});
 	
 	$(".notifications").load($(this).attr("rel"));
+	
+	/*
+	 * My Profile
+	 */
+	$("#my-profile input").attr("disabled",true)
 });

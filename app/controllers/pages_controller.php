@@ -10,11 +10,10 @@ class PagesController extends AppController {
 		$this->layout="fpt";
 		$this->loadModel("User");
 		$userField=$this->User->UserField->find("first",array("conditions"=>array("user_id"=>$this->Auth->user('id'))));
-		$this->data["UserField"]=$userField;
+		$this->data=$userField;
 		$feets=$this->User->UserField->Feet->find("list");
 		$positions=$this->User->UserField->Position->find("list",array("fields"=>array("id","positions")));
-		$this->set(compact("feets","positions"));
-		debug($userField);
+		$this->set(compact("feets","positions","userField"));
 	}
 	function index() {
 		$this->Page->recursive = 0;

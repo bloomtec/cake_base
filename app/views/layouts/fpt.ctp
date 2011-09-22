@@ -56,7 +56,7 @@
 		<div id="my-profile">
 			<a class="logout" href="/users/logout">salir</a>
 			<div class="imagen">
-				<?php echo $html->image($user["UserField"][0]["image"]); ?>
+				<?php echo $html->image($userField["UserField"]["image"]); ?>
 			</div>
 			<div class="info">
 				<?php
@@ -67,7 +67,7 @@
 				echo $this->Form->input('surname',array("label"=>"Apellidos"));
 				echo $this->Form->input('birthday',array("label"=>"Nacimiento","minYear"=>"1950"));
 				echo $this->Form->input('foot_id',array("options"=>$feets,"div"=>"float","label"=>"Pierna"));
-				echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"checkbox","div"=>"float","label"=>"Posición","selected"=>$data["Position"]));
+				echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"checkbox","div"=>"float","label"=>"Posición"));
 				echo $this->Form->end();
 				?>
 			</div>
