@@ -2,6 +2,11 @@
 class MatchesController extends AppController {
 
 	var $name = 'Matches';
+	
+	function getMatchName($match_id) {
+		$match = $this->Match->read('name', $match_id);
+		return $match['Match']['name'];
+	}
 
 	function index() {
 		$this->Match->recursive = 0;

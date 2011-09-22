@@ -234,11 +234,13 @@ class UsersController extends AppController {
 	}
 	function myProfile($id = null) {
 		$this->layout="ajax";
+		$notifications = $this->requestAction('/user_notifications/getNotifications');
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('user', $this->User->read(null, $id));
+		$this->set('notifications', $notifications);
 	}
 	function add() {
 		if (!empty($this->data)) {

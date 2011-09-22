@@ -153,9 +153,9 @@ class FriendshipsController extends AppController {
 					. $content
 				);
 				// Fin crear notificacion
-				echo 'The friendship has been saved';
+				echo 'Se ha enviado la solicitud de amistad.';
 			} else {
-				echo 'The friendship could not be saved. Please, try again.';
+				echo 'No se pudo enviar la solicitud, intenta de nuevo más tarde.';
 			}
 		}
 		Configure::write("debug",0);
