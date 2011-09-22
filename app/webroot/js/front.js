@@ -43,6 +43,21 @@ $(function(){
 		var wrap = overlay.find(".contentWrap");
 		wrap.load(url,function(){
 			overlay.show();
+			$('#uploadfy').uploadify({
+				'uploader' : '/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'folder' : '/app/webroot/img/uploads',
+				'auto' : true,
+				'cancelImg' : '/img/cancel.png',
+				'onComplete' : function(a, b, c, d) {						
+					$(".escudo .preview").html('<img  src="' + d + '" />');
+					var file = d.split("/");
+					var nombre = file[(file.length - 1)];
+					$("#single-field").val(nombre);
+					$.post("/images/resizeImage", {name:nombre,folder:'uploads'});
+
+				}
+			});
 		});
 	}
 	BJS.center();
@@ -211,6 +226,21 @@ $(function(){
 			var $container=wrap.find(".container-paginado");
 			console.log($container);
 			$container.load($container.attr("rel"));
+			$('#uploadfy').uploadify({
+				'uploader' : '/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'folder' : '/app/webroot/img/uploads',
+				'auto' : true,
+				'cancelImg' : '/img/cancel.png',
+				'onComplete' : function(a, b, c, d) {						
+					$(".preview").html('<img  src="' + d + '" />');
+					var file = d.split("/");
+					var nombre = file[(file.length - 1)];
+					$("#single-field").val(nombre);
+					$.post("/images/resizeImage", {name:nombre,folder:'uploads'});
+
+				}
+			});
 		});
 		overlay.show();
 		

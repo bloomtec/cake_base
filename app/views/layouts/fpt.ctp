@@ -56,7 +56,7 @@
 		<div id="my-profile">
 			<a class="logout" href="/users/logout">salir</a>
 			<div class="imagen">
-				<?php echo $html->image($userField["UserField"]["image"]); ?>
+				<?php echo $html->image("uploads/".$userField["UserField"]["image"]); ?>
 			</div>
 			<div class="info">
 				<a class="overlay first" href="/userFields/edit/<?=$userField["UserField"]["id"]?>">Cambiar Datos </a>
