@@ -173,11 +173,20 @@ class UsersController extends AppController {
 					$userFields['UserField']['name'] = $this -> data['UserField']['nombres'];
 					$userFields['UserField']['surname'] = $this -> data['UserField']['apellidos'];
 					$userFields['UserField']['birthday'] = $this -> data['UserField']['birthday'];
+					$userFields['UserField']['gender'] = $this -> data['UserField']['gender'];
 					$userFields['UserField']['image'] = $this -> data['UserField']['image'];
 					$userFields['UserField']['foot_id'] = $this -> data['UserField']['foot_id'];
 					$userFields['UserField']['position_id'] = $this -> data['UserField']['position_id'];
 					// Guardar los campos de usuario
 					if($this -> UserField -> save($userFields)) {
+						// Registrar las posiciones
+						foreach($this->data['Position']['Position'] as $key=>$value) {
+							$this->UserField->UserFieldsPosition->create();
+							$this->UserField->UserFieldsPosition->set('user_field_id', $this->UserField->id);
+							$this->UserField->UserFieldsPosition->set('position_id', $value);
+							$this->UserField->UserFieldsPosition->save();
+						}
+						
 						// Guardar los clubes del usuario
 						if(isset($this -> data['Club']) && !empty($this -> data['Club'])) {
 							foreach($this -> data['Club'] as $club_id) {
