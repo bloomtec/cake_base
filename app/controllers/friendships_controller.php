@@ -109,8 +109,22 @@ class FriendshipsController extends AppController {
 			if(!empty($this -> data['Friendship']['Message'])) {
 				$message = $this -> data['Friendship']['Message'];
 			}
+			/**
+			 * Validar que no se repitan solicitudes
+			 */
+			$solicitud_duplicada = false;
+			$solicitud = $this->Friendship->find('first', array('recursive'=>-1, 'conditions'=>array('Friendship.user_a_id'=>$user_a_id, 'Friendship.user_b_id'=>$user_b_id)));
+			if(!empty($solicitud)) {
+				$solicitud_duplicada = true;
+			} else {
+				$solicitud = $this->Friendship->find('first', array('recursive'=>-1, 'conditions'=>array('Friendship.user_a_id'=>$user_b_id, 'Friendship.user_b_id'=>$user_a_id)));
+				if(!empty($solicitud)) {
+					$solicitud_duplicada = true;
+				}
+			}
+			// Fin validacion solicitudes repetidas
 			$this -> Friendship -> create();
-			if ($this -> Friendship -> save($this -> data)) {
+			if (!$solicitud_duplicada && $this -> Friendship -> save($this -> data)) {
 				// Crear notificación de solicitud de amigo
 				// Mensaje para la solicitud
 				$subject = "Solicitud de amistad de :: $user_a_name";
@@ -125,7 +139,7 @@ class FriendshipsController extends AppController {
 				// Fin crear notificacion
 				echo 'Se ha enviado la solicitud de amistad.';
 			} else {
-				echo 'No se pudo enviar la solicitud, intenta de nuevo más tarde.';
+				echo 'Ya se hizo una solicitud de amistad a este usuario, intenta con otra persona.';
 			}
 		}
 		Configure::write("debug", 0);
