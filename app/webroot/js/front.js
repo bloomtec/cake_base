@@ -404,5 +404,5 @@ $(function(){
 	/*
 	 * My Profile
 	 */
-	$("#my-profile input").attr("disabled",true)
+	$("#my-profile input, #my-profile select").attr("disabled",true)
 });

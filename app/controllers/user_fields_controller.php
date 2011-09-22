@@ -61,26 +61,55 @@ class UserFieldsController extends AppController {
 	}
 
 	function edit($id = null) {
+		$this->layout="ajax";
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid user field', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
 			if ($this->UserField->save($this->data)) {
-				$this->Session->setFlash(__('The user field has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				echo 'Tus datos han sido cambiado';
 			} else {
-				$this->Session->setFlash(__('The user field could not be saved. Please, try again.', true));
+				echo 'No se pudieron cambiar tus datos.';
 			}
+			$this->autoRender=false;
+			Configure::write("debug",0);
+			exit(0);
 		}
 		if (empty($this->data)) {
 			$this->data = $this->UserField->read(null, $id);
 		}
 		$users = $this->UserField->User->find('list');
 		$feets = $this->UserField->Feet->find('list');
-		$this->set(compact('users', 'feets'));
+		$positions= $this->UserField->Position->find('list',array("fields"=>array("id","positions")));
+		
+		$this->set(compact('users', 'feets','positions'));
 	}
-
+	function editImage($id = null) {
+		$this->layout="ajax";
+		if (!$id && empty($this->data)) {
+			$this->Session->setFlash(__('Invalid user field', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		if (!empty($this->data)) {
+			if ($this->UserField->save($this->data)) {
+				echo 'Tu Imagen ha sido cambiada';
+			} else {
+				echo 'No se pudo cambiar tu imagen.';
+			}
+			$this->autoRender=false;
+			Configure::write("debug",0);
+			exit(0);
+		}
+		if (empty($this->data)) {
+			$this->data = $this->UserField->read(null, $id);
+		}
+		$users = $this->UserField->User->find('list');
+		$feets = $this->UserField->Feet->find('list');
+		$positions= $this->UserField->Position->find('list',array("fields"=>array("id","positions")));
+		
+		$this->set(compact('users', 'feets','positions'));
+	}
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user field', true));

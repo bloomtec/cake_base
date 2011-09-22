@@ -1,18 +1,23 @@
 <div class="userFields form">
 <?php echo $this->Form->create('UserField');?>
 	<fieldset>
-		<legend><?php __('Edit User Field'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('user_id');
-		echo $this->Form->input('document_type_id');
-		echo $this->Form->input('document');
-		echo $this->Form->input('name');
-		echo $this->Form->input('surname');
-		echo $this->Form->input('birthday');
-		echo $this->Form->input('foot_id');
+		//echo $this->Form->input('email');
+		//echo $this->Form->input('password');
+		//echo $this->Form->input('role_id');
+		echo $this->Form->input('name',array("label"=>"Nombre"));
+		echo $this->Form->input('surname',array("label"=>"Apellidos"));
+		echo $this->Form->input('birthday',array("label"=>"Nacimiento","minYear"=>"1950"));
+		echo $this->Form->input('foot_id',array("options"=>$feets,"div"=>"float","label"=>"Pierna"));
+		echo $this->Form->input('Position',array("label"=>"Posicion","multiple"=>"checkbox"));		
+		
+		//echo $this->Form->input('Club');
+		//echo $this->Form->input('CountrySquad');
+		
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+	<div class="respuesta"></div>
+	<?php echo $this->Form->end(" ");?>
 </div>
 

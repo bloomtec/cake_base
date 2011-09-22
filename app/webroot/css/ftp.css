@@ -487,7 +487,7 @@ div.contentWrap {
  * MY PROFILE
  */
 #my-profile .imagen{
-	width: 250px;
+	width: 260px;
 	height: 300px;
 	border: dashed 3px white;
 	margin: 0 auto;
@@ -499,7 +499,7 @@ div.contentWrap {
 	max-height: 100%;
 }
 #my-profile .info{
-	width:250px;
+	width:260px;
 	margin: 0 auto;
 }
 #my-profile label{
@@ -516,4 +516,28 @@ div.contentWrap {
 #my-profile .checkbox input{
 	float:left;
 }
-
+#my-profile a.first{
+	margin-right: 6px;	
+}
+#my-profile .text input, #my-profile select{
+	background: black;
+	border: none;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding:4px;
+}
+#overlay #UserFieldEditForm .select label{
+	clear: both;
+}
+#overlay #UserFieldEditForm .float .select label{
+	clear: none;
+}
+#overlay #UserFieldEditForm .checkbox{
+	height: 22px;
+	clear: both;
+	margin-left: 1em;
+}
+#overlay #UserFieldEditForm .checkbox input{
+	margin-top: 3px;
+}

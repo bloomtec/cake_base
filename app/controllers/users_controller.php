@@ -257,20 +257,21 @@ class UsersController extends AppController {
 		$countrySquads = $this->User->CountrySquad->find('list');
 		$matches = $this->User->Match->find('list');
 		$teams = $this->User->Team->find('list');
+		
 		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
 
 	function edit($id = null) {
+		$this->layout="ajax";
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid user', true));
-			$this->redirect(array('action' => 'index'));
+			
+			
 		}
 		if (!empty($this->data)) {
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The user has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			if ($this->User->saveAll($this->data)) {
+				echo "Se han modificado tus datos";
 			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+				echo "Se han modificato tus datos";
 			}
 		}
 		if (empty($this->data)) {

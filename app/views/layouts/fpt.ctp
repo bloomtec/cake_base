@@ -59,6 +59,9 @@
 				<?php echo $html->image($userField["UserField"]["image"]); ?>
 			</div>
 			<div class="info">
+				<a class="overlay first" href="/userFields/edit/<?=$userField["UserField"]["id"]?>">Cambiar Datos </a>
+				
+				<a class="overlay" href="/userFields/editImage/<?=$userField["UserField"]["id"];?>"> Cambiar Imagen </a>
 				<?php
 				//debug($this->data);
 				echo $this->Form->create('UserField'); 
@@ -70,6 +73,7 @@
 				echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"checkbox","div"=>"float","label"=>"Posición"));
 				echo $this->Form->end();
 				?>
+				
 			</div>
 		</div>
 		<div id="content">
