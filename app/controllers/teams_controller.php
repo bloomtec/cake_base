@@ -194,13 +194,13 @@ class TeamsController extends AppController {
 					if($this->Team->UsersTeam->save()) {
 						$team_name = $this->requestAction('/teams/getTeamName/' . $this->Team->id);
 						$subject = "Convocatoria Al Equipo :: $team_name";
-						$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href='/users_teams/viewCalling/$user_id/$team_id'>Ver más</a></div>";
-						$this->requestAction(
-							'/user_notifications/createNotification/'
-							. $user_id . '/'
-							. $subject . '/'
-							. $content
-						);
+						$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/users_teams/viewCalling/$user_id/$team_id\">Ver más</a></div>";
+						$this->loadModel("UserNotification");
+						$this->UserNotification->create();
+						$this->UserNotification->set('user_id', $user_id);
+						$this->UserNotification->set('subject', $subject);
+						$this->UserNotification->set('content', $content);
+						$this->UserNotification->save();
 					}
 				}
 				echo true;

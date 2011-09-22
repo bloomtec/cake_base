@@ -4,6 +4,7 @@ class UserNotificationsController extends AppController {
 	var $name = 'UserNotifications';
 	
 	function viewNotifications() {
+		$this->layout="ajax";
 		$notifications = $this->UserNotification->find(
 			'all',
 			array(

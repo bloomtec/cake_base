@@ -95,17 +95,17 @@ class UsersMatchesController extends AppController {
 			$match_id = $this->UsersMatch->Match->id;
 			$match_name = $this->requestAction('/matches/getMatchName/' . $match_id);
 			$subject = "Invitación para jugar en el partido :: $match_name";
-			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href='/users_matches/viewUserMatchInvite/$match_id'>Ver más</a></div>";
+			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/users_matches/viewUserMatchInvite/$match_id'\">Ver más</a></div>";
 			/**
 			 * Recorrer los usuarios invitados al partido
 			 */
 			foreach($users as $user) {
-				$this->requestAction(
-					'/user_notifications/createNotification/'
-					. $user['User']['id'] . '/'
-					. $subject . '/'
-					. $content
-				);				
+				$this->loadModel("UserNotification");
+				$this->UserNotification->create();
+				$this->UserNotification->set('user_id', $user['User']['id']);
+				$this->UserNotification->set('subject', $subject);
+				$this->UserNotification->set('content', $content);
+				$this->UserNotification->save();				
 			}
 		}
 	}

@@ -140,7 +140,7 @@ class UsersTeamsController extends AppController {
 				"<div class=\"notificacion-usuario\">"
 				. "<a class=\"aceptar\" href=\"/users_teams/acceptCallToTeam/$user_id/$team_id\">Aceptar</a>"
 				. "<br />"
-				. "<class=\"rechazar\" href=\"/users_teams/rejectCallToTeam/$user_id/$team_id\>Rechazar</a>"
+				. "<class=\"rechazar\" href=\"/users_teams/rejectCallToTeam/$user_id/$team_id\">Rechazar</a>"
 				. "<br />"
 				. "</div>";
 			$this->loadModel("UserNotification");
