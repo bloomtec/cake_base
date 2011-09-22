@@ -83,9 +83,6 @@ class UserNotificationsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user notification', true));
@@ -100,7 +97,8 @@ class UserNotificationsController extends AppController {
 		$this->Session->setFlash(__('User notification was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+
+	function setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for user notification', true));
 			$this->redirect(array('action'=>'index'));
@@ -114,13 +112,15 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('User notification was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->UserNotification->find($type, $findParams);
-	}else{
-		return null;
+
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->UserNotification->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
+
 	function admin_index() {
 		$this->UserNotification->recursive = 0;
 		$this->set('userNotifications', $this->paginate());

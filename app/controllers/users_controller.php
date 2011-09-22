@@ -3,6 +3,21 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	
+	function getUserName($user_id = null) {
+		if($user_id) {
+			$user_fields = $this -> User -> UserField -> find(
+				'first',
+				array(
+					'recursive' => -1,
+					'conditions' => array(
+						'UserField.user_id' => $user_id 
+					)
+				)
+			);
+			return $user_fields['UserField']['name'] . ' ' . $user_fields['UserField']['surname'];
+		}
+	}
+	
 	function search() {
 		$this -> layout = "ajax";
 		$user_id = $this -> Auth->user("id");

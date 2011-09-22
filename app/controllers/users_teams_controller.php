@@ -3,9 +3,9 @@ class UsersTeamsController extends AppController {
 
 	var $name = 'UsersTeams';
 	
-	function viewCalling($user_id=null,$team_id=null){
+	function viewCalling($user_id = null, $team_id = null){
 		$this -> layout = "ajax";
-		$team = $this -> UsersTeam -> Team -> read(null,$team_id);
+		$team = $this -> UsersTeam -> Team -> read(null, $team_id);
 		$this -> set(compact("team"));
 	}
 	
@@ -101,7 +101,6 @@ class UsersTeamsController extends AppController {
 			echo "No se pudo aceptar la convocatoria";
 		}
 		exit(0);
-		
 	}
 	
 	function rejectCallToTeam($user_id = null, $team_id = null) {
@@ -116,7 +115,12 @@ class UsersTeamsController extends AppController {
 			)
 		);
 		$data['UsersTeam']['user_team_status_id'] = 3;
-		$this->UsersTeam->save($data);
+		if($this->UsersTeam->save($data)){
+			echo "Has rechazado la invitación";
+		}else{
+			echo "Error al rechazar la invitación";
+		}
+		exit(0);
 	}
 	
 	function ajax_callUserToTeam() {

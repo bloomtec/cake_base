@@ -4,19 +4,14 @@ class FriendshipsController extends AppController {
 	var $name = 'Friendships';
 	
 	function request(){
-		$this->layout="ajax";
-		
+		$this->layout="ajax";	
 	}
 	
-	function acceptFriendship() {
+	function acceptFriendship($friendship_id) {
 		
 	}
 	
 	function rejectFriendship() {
-		
-	}
-	
-	function requestFriendship() {
 		
 	}
 	
@@ -85,14 +80,40 @@ class FriendshipsController extends AppController {
 		}
 		$this->set('friendship', $this->Friendship->read(null, $id));
 	}
+	/**
+	 * $user_a_id :: id del usuario que solicita la amistad
+	 * $user_b_id :: id del usuario al que le solicitan la amistad
+	 * $message :: mensaje del usuario
+	 */
+	function viewFriendshipRequest($user_a_id, $user_b_id, $message) {	
+		$this -> layout = "ajax";
+		$user = $this -> Friendship -> User -> read(null, $user_id);
+		$this -> set(compact("user"));
+	}
 
 	function add() {
 		$this->autoRender=false;
 		if (!empty($this->data)) {
+			$user_a_id = $this->Session->read('Auth.User.id');
+			$user_b_id = $this->data['Friendship']['user_b_id'];
+			$user_a_name = $this -> requestAction('/users/getUserName/' . $user_a_id);
+			$message = $this -> data['Friendship']['message'];
+			$this->data['Friendship']['user_a_id'] = $user_a;
 			$this->Friendship->create();
 			if ($this->Friendship->save($this->data)) {
+				// Crear notificación de solicitud de amigo
+				// Mensaje para la solicitud
+				// ;
+				$subject = "Solicitud de amistad de :: $nombre_solicitante";
+				$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href='/friendships/viewFriendshipRequest/$user_a_id/$user_b_id/$message'>Ver más</a></div>";
+				$this->requestAction(
+					'/user_notifications/createNotification/'
+					. $user_b_id . '/'
+					. $subject . '/'
+					. $content
+				);
+				// Fin crear notificacion
 				echo 'The friendship has been saved';
-
 			} else {
 				echo 'The friendship could not be saved. Please, try again.';
 			}
