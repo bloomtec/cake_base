@@ -56,9 +56,10 @@ class FriendshipsController extends AppController {
 	 * $user_b_id :: id del usuario al que le solicitan la amistad
 	 * $message :: mensaje del usuario
 	 */
-	function viewFriendshipRequest($user_a_id, $user_b_id, $message) {
+	function viewFriendshipRequest($user_a_id = null, $user_b_id = null, $message = null) {
 		$this -> layout = "ajax";
-		$user = $this -> Friendship -> User -> read(null, $user_a_id);
+		$this->loadModel('User');
+		$user = $this -> User -> read(null, $user_a_id);
 		$this -> set(compact("user"));
 		$this -> set('user_a_id', $user_a_id);
 		$this -> set('user_b_id', $user_b_id);
@@ -96,7 +97,10 @@ class FriendshipsController extends AppController {
 			$this -> data['Friendship']['user_a_id'] = $user_a_id;
 			$user_b_id = $this -> data['Friendship']['user_b_id'];
 			$user_a_name = $this -> requestAction('/users/getUserName/' . $user_a_id);
-			$message = $this -> data['Friendship']['Message'];
+			$message = null;
+			if(!empty($this -> data['Friendship']['Message'])) {
+				$message = $this -> data['Friendship']['Message'];
+			}
 			$this -> Friendship -> create();
 			if ($this -> Friendship -> save($this -> data)) {
 				// Crear notificación de solicitud de amigo
