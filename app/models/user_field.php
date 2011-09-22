@@ -63,16 +63,7 @@ class UserField extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'position_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+
 		'foot_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -94,13 +85,6 @@ class UserField extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Position' => array(
-			'className' => 'Position',
-			'foreignKey' => 'position_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Feet' => array(
 			'className' => 'Feet',
 			'foreignKey' => 'foot_id',
@@ -110,7 +94,7 @@ class UserField extends AppModel {
 		)
 	);
 var $hasAndBelongsToMany = array(
-		'Tag' =>array(
+		'Position' =>array(
 		'className' => 'Position',
 			'joinTable' => 'user_fields_positions',
 			'foreignKey' => 'user_field_id',

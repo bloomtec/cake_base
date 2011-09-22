@@ -65,6 +65,10 @@
 					<div class="izquierdo check no-checked" value="1" rel="foot">
 						Izquierdo
 					</div>
+					<br />
+					<div class="izquierdo check no-checked" value="2" rel="foot">
+						Ambos
+					</div>
 				</div>
 				<div style="clear:both"> </div>
 				<div class="posicion multiple">
