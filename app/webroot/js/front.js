@@ -428,8 +428,9 @@ $(function(){
 		$link=$(this);
 		$link.siblings(".notificacion").load($link.attr("href"));;	
 	});
-	
-	$(".notifications").load($(this).attr("rel"));
+	console.log($(".notifications"));
+	$notificaciones=$(".notifications");
+	$(".notifications").load($notificaciones.attr("rel"));
 	
 	/*
 	 * My Profile
