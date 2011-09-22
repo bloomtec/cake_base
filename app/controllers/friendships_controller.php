@@ -88,6 +88,9 @@ class FriendshipsController extends AppController {
 		$data = $this -> Friendship -> find('first', array('recursive' => -1, 'conditions' => array('Friendship.user_a_id' => $user_a_id, 'Friendship.user_b_id' => $user_b_id)));
 		$data['Friendship']['is_accepted'] = false;
 		if ($this -> Friendship -> save($data)) {
+			$this->loadModel('UserNotification');
+			$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_b_id, 'UserNotification.friend_id'=>$user_a_id)));
+			$this->UserNotification->delete($notification['UserNotification']['id']);
 			echo "Has rechazado la solicitud de amistad";
 		} else {
 			echo "No se pudo rechazar la solicitud de amistad";
