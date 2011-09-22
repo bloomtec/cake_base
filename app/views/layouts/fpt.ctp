@@ -66,7 +66,7 @@
 				echo $this->Form->input('surname');
 				echo $this->Form->input('birthday');
 				echo $this->Form->input('foot_id',array("options"=>$feets));
-				echo $this->Form->input('Position',array("options"=>$positions));
+				echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"checkbox"));
 				echo $this->Form->end();
 				?>
 			</div>
