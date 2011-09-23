@@ -86,12 +86,27 @@ h5 {
 	padding: 0 30px;
 	margin:0 auto;
 	text-align: center;
+	font-size:14px;
 }
 #header .menu li{
+	text-align:center;
 	width: 126px;
 	margin: 0 2.5px;
 	float: left;
 	height: 100%;
+}
+.menu a{
+	display:block;
+	width:100%;
+	height: 100%;
+	position:relative;
+	text-decoration:none;
+}
+.menu a span.container{
+	position:absolute;
+	bottom:10px;
+	left:10px;
+	color:white;
 }
 #content{
 	position:relative;
@@ -107,4 +122,54 @@ h5 {
 	height:50px;
 	position: absolute;
 	bottom:0;
+}
+/*PAGES SLIDE*/
+
+a.browse {
+position:absolute;
+display:block;
+width:30px;
+height:65px;
+top:50%;
+margin-top:-32.5px;
+cursor:pointer;
+}
+a.browse.prev{
+left:-32px;
+background-image:url(../img/prev.png);
+}
+a.browse.next{
+right:-32px;
+background-image:url(../img/next.png);
+}
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 747px;
+	height:400px;
+}
+
+
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+}
+
+
+.items div {
+	float:left;
+}
+.content-slide{
+	width: 707px;
+	height:360px;
+	padding:20px;
+}
+.gallery{
+
+}
+.slide{
+
 }

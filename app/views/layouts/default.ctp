@@ -34,6 +34,7 @@
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('supersized.3.1.3.core.min');
 		echo $this->Html->script('supersized-config');
+		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;

@@ -7,7 +7,12 @@ class MenusController extends AppController {
 		$this->Menu->recursive = 0;
 		$this->set('menus', $this->paginate());
 	}
-
+	function display() {
+		$path = func_get_args();
+		$slug=$path[0];
+		$menu=$this->Menu->find("first",array("conditions"=>array("slug"=>$slug)));
+		$this->set(compact("menu"));
+	}
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid menu', true));
@@ -92,6 +97,9 @@ function setActive($id = null) {
 	}
 	function getList(){
 		return $this->Menu->find("list",array("fields"=>array("background_code","title")));
+	}
+	function getAll(){
+		return $this->Menu->find("all",array("recursive"=>-1));
 	}
 	function requestFind($type,$findParams,$key) {
 		if($key==Configure::read("key")){
