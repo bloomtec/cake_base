@@ -47,11 +47,11 @@
 				<div class="genero single">
 					<label>GENERO</label>
 					<?php echo $form->hidden("UserField.gender",array("value"=>"m","id"=>"gender"));?>
-					<div class="male check checked" rel="gender"  value="m">
+					<div class="male check checked" rel="gender"  value="Masculino">
 						Masculino
 					</div>
 					<br />
-					<div class="female check no-checked" rel="gender" value="f">
+					<div class="female check no-checked" rel="gender" value="Femenino">
 						Femenino
 					</div>
 				</div>

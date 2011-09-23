@@ -150,11 +150,18 @@ class TeamsController extends AppController {
 		$this->layout="ajax";
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid team', true));
-			$this->redirect(array('action' => 'index'));
+			
 		}
 		$this->set('team', $this->Team->read(null, $id));
 	}
-
+	function profile($id = null) {
+		$this->layout="ajax";
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid team', true));
+	
+		}
+		$this->set('team', $this->Team->read(null, $id));
+	}
 	
 	function viewCreate() {
 		$this->layout="ajax";

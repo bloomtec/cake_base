@@ -548,3 +548,47 @@ div.contentWrap {
 #overlay #UserFieldEditForm .checkbox input{
 	margin-top: 3px;
 }
+
+
+#overlay #UserEditPreferenciasForm .select label{
+	clear: both;
+	margin-bottom: 10px;
+}
+#overlay #UserEditPreferenciasForm .float .select label{
+	clear: none;
+}
+#overlay #UserEditPreferenciasForm .checkbox label{
+	margin-bottom: 1px;
+}
+#overlay #UserEditPreferenciasForm .checkbox{
+	height: 22px;
+	clear: both;
+	margin-left: 1em;
+}
+#overlay #UserEditPreferenciasForm .checkbox input{
+	margin-top: 3px;
+}
+#overlay #UserEditPreferenciasForm .float{
+	width: 50%;
+	float:left;
+}
+/*
+ * OVERLAY PROFILE
+ */
+.profile .image{
+	float:left;
+	width:28%;
+	border: dashed 2px white;
+}
+.profile .image img{
+	max-width:100%;	
+}
+.profile .info{
+	float:right;
+	width: 65%;
+	border: dashed 2px white;
+}
+.profile .info .posiciones .posicion{
+	float:left;
+	margin-left: 8px;
+}

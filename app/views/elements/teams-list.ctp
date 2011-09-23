@@ -10,7 +10,7 @@
 			?>
 		</div>
 		<div class="image">
-			<?php echo $html -> link($html -> image($team["Team"]["image"]), array("controller" => "team", "action" => "profile", $team["Team"]["id"]), array("escape" => false, "class" => "overlay"));?>
+			<?php echo $html -> link($html -> image($team["Team"]["image"]), array("controller" => "teams", "action" => "profile", $team["Team"]["id"]), array("escape" => false, "class" => "overlay"));?>
 		</div>
 		<div class="name">
 			<?php echo $team["Team"]["name"];?>

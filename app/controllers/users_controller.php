@@ -227,10 +227,10 @@ class UsersController extends AppController {
 	function profile($id = null) {
 		$this->layout="ajax";
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid user', true));
-			$this->redirect(array('action' => 'index'));
+			
 		}
-		$this->set('user', $this->User->read(null, $id));
+		$this->set('userField',$this->User->UserField->find("first",array("conditions"=>array("user_id"=>$id))));
+	
 	}
 	function myProfile($id = null) {
 		$this->layout="ajax";
@@ -260,7 +260,29 @@ class UsersController extends AppController {
 		
 		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
 	}
-
+	function editPreferencias($id = null) {
+		$this->layout="ajax";
+		if (!$id && empty($this->data)) {
+			
+			
+		}
+		if (!empty($this->data)) {
+			if ($this->User->saveAll($this->data)) {
+				echo "Se han modificado tus datos";
+			} else {
+				echo "Se han modificato tus datos";
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->User->read(null, $id);
+		}
+		$roles = $this->User->Role->find('list');
+		$clubs = $this->User->Club->find('list');
+		$countrySquads = $this->User->CountrySquad->find('list');
+		$matches = $this->User->Match->find('list');
+		$teams = $this->User->Team->find('list');
+		$this->set(compact('roles', 'clubs', 'countrySquads', 'matches', 'teams'));
+	}
 	function edit($id = null) {
 		$this->layout="ajax";
 		if (!$id && empty($this->data)) {
