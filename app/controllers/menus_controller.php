@@ -90,13 +90,16 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('Menu was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->Menu->find($type, $findParams);
-	}else{
-		return null;
+	function getList(){
+		return $this->Menu->find("list",array("fields"=>array("background_code","title")));
 	}
-}
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->Menu->find($type, $findParams);
+		}else{
+			return null;
+		}
+	}
 	function admin_index() {
 		$this->Menu->recursive = 0;
 		$this->set('menus', $this->paginate());

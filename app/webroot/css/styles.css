@@ -11,8 +11,10 @@ body, p, h3, h4 {
 	}
 
 body {
+	width:100%;
+	height:100%;
+	min-height: 765px; position: absolute; /*permite el perfecto posicionamiento del footer fijo*/
 	background-color: #b0c8d9;
-	background-image: url(../images/main-bg.jpg);
 	background-repeat: no-repeat;
 	background-position: center top;
 	color:#4a626c;
@@ -60,12 +62,12 @@ h5 {
 	}
 	
 #container{
-	display:none;/*QUITAR REGLA*/
+	/*display:none;/*QUITAR REGLA*/
 	width:840px;
 	height:714px;
 	margin:auto;
-	webkit-border-radius:15px;
-	moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	-moz-border-radius:15px;
 	border-radius: 15px;
 	background: url(../img/pitaya-content-background.png);
 	
@@ -81,9 +83,15 @@ h5 {
 	display:block;
 	width:780px;
 	height:40px;
-	/*padding: 0 30px;*/
+	padding: 0 30px;
 	margin:0 auto;
-	background:#F2137B;
+	text-align: center;
+}
+#header .menu li{
+	width: 126px;
+	margin: 0 2.5px;
+	float: left;
+	height: 100%;
 }
 #content{
 	position:relative;
@@ -97,6 +105,6 @@ h5 {
 	text-align: center;
 	background: url("../img/pitaya-footer.jpg") no-repeat center center;
 	height:50px;
-	position: fixed;
+	position: absolute;
 	bottom:0;
 }
