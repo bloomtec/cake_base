@@ -199,8 +199,6 @@ $(function(){
 		$that.parents(".container-search").load($that.attr("href"),{},function(){
 			$.each($(this).find(".paging a"),function(i,val){
 				var href=$(val).attr("href");
-				console.log(val);
-				console.log(href);
 				$(val).attr("href",href+"/criteria:"+criteria)
 			});				
 		});
@@ -224,7 +222,6 @@ $(function(){
 		var wrap = overlay.find(".contentWrap");
 		wrap.load($that.attr("href"),function(){
 			var $container=wrap.find(".container-paginado");
-			console.log($container);
 			$container.load($container.attr("rel"));
 			$('#uploadfy').uploadify({
 				'uploader' : '/swf/uploadify.swf',
@@ -280,8 +277,6 @@ $(function(){
 		var $container=$that.parents(".container-paginado");
 		var teamId=$container.attr("team");
 		var playerId=$that.parent().parent().attr("rel");
-		console.log(teamId);
-		console.log(playerId);
 		BJS.post("/usersTeams/ajax_callUserToTeam/team_id:"+teamId+"/user_id:"+playerId,{},function(data){
 			if(data){
 				$that.after("<div class='convocado'> Convocado </div>");
@@ -424,7 +419,6 @@ $(function(){
 		$link=$(this);
 		$link.siblings(".notificacion").load($link.attr("href"));;	
 	});
-	console.log($(".notifications"));
 	$notificaciones=$(".notifications");
 	$(".notifications").load($notificaciones.attr("rel"));
 	
