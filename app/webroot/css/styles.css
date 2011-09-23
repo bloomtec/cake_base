@@ -8,7 +8,7 @@ body, p, h3, h4 {
 	margin-bottom: 0;
 	margin-left:auto;
 	margin-right:auto;
-	}
+}
 
 body {
 	width:100%;
@@ -63,7 +63,7 @@ h5 {
 	
 #container{
 	/*display:none;/*QUITAR REGLA*/
-	width:840px;
+	width:842px;
 	height:714px;
 	margin:auto;
 	-webkit-border-radius:15px;
@@ -81,16 +81,14 @@ h5 {
 }
 #header .menu{
 	display:block;
-	width:780px;
+	width:782px;
 	height:40px;
 	padding: 0 30px;
 	margin:0 auto;
-	text-align: center;
 	font-size:14px;
 }
 #header .menu li{
-	text-align:center;
-	width: 126px;
+	width: 125px;
 	margin: 0 2.5px;
 	float: left;
 	height: 100%;
@@ -104,8 +102,9 @@ h5 {
 }
 .menu a span.container{
 	position:absolute;
-	bottom:10px;
-	left:10px;
+	bottom:8px;
+	left:8px;
+	padding-right:8px;
 	color:white;
 }
 #content{
@@ -113,7 +112,7 @@ h5 {
 	width:747px;
 	min-height: 400px;
 	margin:0 auto;
-	background: #2A1924;
+
 }
 #footer{
 	width:100%;

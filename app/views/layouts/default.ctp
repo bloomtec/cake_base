@@ -6,7 +6,7 @@
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
- * Licensed under The MIT License
+ * Licensed under Thehttps://panel.dreamhost.com/index.cgi? MIT License
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
@@ -33,12 +33,20 @@
 		echo $this->Html->css('supersized.core.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('supersized.3.1.3.core.min');
-		echo $this->Html->script('supersized-config');
 		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
 	?>
+	<script type="text/javascript">
+	<?php 
+		if($session->read("Auth.User.id")){
+			echo "var isMember=true;";
+		}else{
+			echo "var isMember=false;";
+		}
+	?>
+	</script>
 </head>
 <body>
 	<div id="container">
