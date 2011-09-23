@@ -3,10 +3,18 @@ class TeamNotificationsController extends AppController {
 
 	var $name = 'TeamNotifications';
 	
-	function getTeamNotifications($team_id = null) {
-		if($team_id) {
-			return $this->TeamNotification->find('all', array('conditions' => array('team_id' => $team_id)));
-		}
+	function getNotifications($team_id = null) {
+		$this->layout="ajax";
+		$notifications = $this->TeamNotification->find(
+			'all',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'TeamNotification.team_id' => $team_id
+				)
+			)
+		);
+		$this->set(compact('notifications'));
 	}
 
 	function index() {

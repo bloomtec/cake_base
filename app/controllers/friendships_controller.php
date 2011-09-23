@@ -60,8 +60,6 @@ class FriendshipsController extends AppController {
 		$this -> layout = "ajax";
 		$this->loadModel('User');
 		$user = $this -> User -> read(null, $user_a_id);
-		$this->loadModel('UserNotification');
-		$notification = $this->UserNotification->find('first', array('recursive' => -1, 'conditions' => array('UserNotification.user_id'=>$user_b_id)));
 		$this -> set(compact("user"));
 		$this -> set('user_a_id', $user_a_id);
 		$this -> set('user_b_id', $user_b_id);

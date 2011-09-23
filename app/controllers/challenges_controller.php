@@ -80,11 +80,35 @@ class ChallengesController extends AppController {
 		$this->layout="ajax";
 		$myTeams=$this->requestAction("/teams/myTeams");
 		$this->set(compact("challengedId","myTeams"));	
-	}	
+	}
+	
 	function createChallenge() {
 		if (!empty($this->data)) {
 			$this->Challenge->create();
+			$user_id = $this->Session->read('Auth.User.id');
+			$this->data['Challenge']['challenge_status_id']=3;
+			$this->data['Challenge']['user_challenger_id']=$user_id;
+			$message=null;
+			if($this->data['Challenge']['message']){
+				$message=$this->data['Challenge']['message'];
+			}
 			if ($this->Challenge->save($this->data)) {
+				// Crear notificación de reto de equipo
+				// Mensaje para la solicitud
+				$team_challenger_id=$this->data['Challenge']['team_challenger_id'];
+				$team_challenged_id=$this->data['Challenge']['team_challenged_id'];
+				$team_challenger_name = $this->requestAction('/teams/getTeamName/'.$team_challenger_id);
+				$team_challenged_name = $this->requestAction('/teams/getTeamName/'.$team_challenged_id);
+				$subject = "El equipo :: $team_challenger_name :: ha retado a :: $team_challenged_name ::";
+				$content = "<div class=\"notificacion-equipo\"><a class=\"overlay\" href=\"/challenges/viewChallengeRequest/$team_challenger_id/$team_challenged_id/$message\">Ver más</a></div>";
+				$this->loadModel("TeamNotification");
+				$this->TeamNotification->create();
+				$this->TeamNotification->set('team_id', $team_challenged_id);
+				$this->TeamNotification->set('other_team_id', $team_challenger_id);
+				$this->TeamNotification->set('subject', $subject);
+				$this->TeamNotification->set('content', $content);
+				$this->TeamNotification->save();
+				// Fin crear notificacion
 				echo "El Reto fue creado";
 			} else {
 				echo "No se pudo crear el reto";
@@ -95,32 +119,52 @@ class ChallengesController extends AppController {
 		exit(0);
 	}
 	
-	/*function createChallenge($challenger_id = null, $challenged_id = null, $user_id = null,
-								$date = null, $place = null, $title = null, $message = null, $bet = null) {
-		if($challenger_id && $challenged_id && $user_id && $date && $place && $title) {
-			$reto = $this->Challenge->create();
-			$reto['Challenge']['challenge_status_id'] = 3;
-			$reto['Challenge']['team_challenger_id'] = $challenger_id;
-			$reto['Challenge']['team_challenged_id'] = $challenged_id;
-			$reto['Challenge']['user_challenger_id'] = $user_id;
-			$reto['Challenge']['date'] = $date;
-			$reto['Challenge']['place'] = $place;
-			$reto['Challenge']['title'] = $title;
-			$reto['Challenge']['message'] = $message;
-			$reto['Challenge']['bet'] = $bet;
-			if($this->Challenge->save($reto)) {
-				echo true;
-			} else {
-				echo false;
-			}
+	/**
+	 * $team_challenger_id :: id del usuario que solicita la amistad
+	 * $team_challenged_id :: id del usuario al que le solicitan la amistad
+	 * $message :: mensaje del usuario
+	 */
+	function viewChallengeRequest($team_challenger_id = null, $team_challenged_id = null, $message = null) {
+		$this -> layout = "ajax";
+		$this->loadModel('Team');
+		$team = $this -> Team -> read(null, $team_challenger_id);
+		$this->loadModel('TeamNotification');
+		$this -> set(compact("team"));
+		$this -> set('team_challenger_id', $team_challenger_id);
+		$this -> set('team_challenged_id', $team_challenged_id);
+		$this -> set('message', $message);
+	}
+	
+	function acceptChallenge($team_challenger_id, $team_challenged_id) {
+		$this -> autoRender = false;
+		$data = $this -> Challenge -> find('first', array('recursive' => -1, 'conditions' => array('Challenge.team_challenger_id' => $team_challenger_id, 'Challenge.team_challenged_id' => $team_challenged_id)));
+		$data['Challenge']['challenge_status_id'] = 1;
+		if ($this -> Challenge -> save($data)) {
+			$this->loadModel('TeamNotification');
+			$notification = $this->TeamNotification->find('first', array('recursive'=>-1, array('TeamNotification.team_id'=>$team_challenged_id, 'TeamNotification.other_team_id'=>$team_challenger_id)));
+			$this->TeamNotification->delete($notification['TeamNotification']['id']);
+			echo "Has aceptado el reto";
 		} else {
-			echo false;
+			echo "No se pudo aceptar el reto";
 		}
-		Configure::write("debug",0);
-		$this->autoRender=false;
 		exit(0);
 	}
-	*/
+
+	function rejectChallenge($team_challenger_id, $team_challenged_id) {
+		$this -> autoRender = false;
+		$data = $this -> Challenge -> find('first', array('recursive' => -1, 'conditions' => array('Challenge.team_challenger_id' => $team_challenger_id, 'Challenge.team_challenged_id' => $team_challenged_id)));
+		$data['Challenge']['challenge_status_id'] = 2;
+		if ($this -> Challenge -> save($data)) {
+			$this->loadModel('TeamNotification');
+			$notification = $this->TeamNotification->find('first', array('recursive'=>-1, array('TeamNotification.team_id'=>$team_challenged_id, 'TeamNotification.other_team_id'=>$team_challenger_id)));
+			$this->TeamNotification->delete($notification['TeamNotification']['id']);
+			echo "Has rechazado el reto";
+		} else {
+			echo "No se pudo rechazar el reto";
+		}
+		exit(0);
+	}
+	
 	function getInvites($team_id = null) {
 		if($team_id) {
 			$this->set("invites", $this->paginate("Challenge", array('Challenge.team_challenged_id' => $team_id, 'Challenge.challenge_status_id' => 3)));
