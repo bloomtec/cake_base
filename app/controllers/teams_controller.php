@@ -61,6 +61,12 @@ class TeamsController extends AppController {
 		$this -> set('teams', $teams_where_captain);
 	}
 	
+	function listUserTeams($user_id = null) {
+		$user_teams_ids = $this -> Team -> UsersTeam -> find('list', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id), 'fields' => 'UsersTeam.team_id'));
+		$teams = $this->paginate('Team', array('Team.id' => $user_teams_ids));
+		$this -> set('teams', $teams);
+	}
+	
 	/**
 	 * Retorna los equipos a los que no pertenece el usuario logueado
 	 */
