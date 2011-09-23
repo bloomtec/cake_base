@@ -3,6 +3,28 @@ class UsersTeamsController extends AppController {
 
 	var $name = 'UsersTeams';
 	
+	function isUserCaptain($team_id = null) {
+		if($team_id) {
+			$data = $this->UsersTeam->find(
+				'first',
+				array(
+					'recursive' => -1,
+					'conditions' => array(
+						'UsersTeam.user_id' => $this->Session->read('Auth.User.id'),
+						'UsersTeam.team_id' => $team_id
+					),
+					'fields' => 'UsersTeam.is_captain'
+				)
+			);
+			return $data['UsersTeam']['is_captain'];
+		}
+	}
+	
+	function expelUserFromTeam() {
+		$user_team = $this->UserTeam->find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.team_id' => $this->params['named']['team_id'], 'UsersTeam.user_id' => $this->params['named']['user_id'])));
+		$this->UsersTeam->delete($user_team['UsersTeam']['id']);
+	}
+	
 	function viewCalling($user_id = null, $team_id = null){
 		$this -> layout = "ajax";
 		$team = $this -> UsersTeam -> Team -> read(null, $team_id);
@@ -146,8 +168,7 @@ class UsersTeamsController extends AppController {
 				"<div class=\"notificacion-usuario\">"
 				. "<a class=\"aceptar\" href=\"/users_teams/acceptCallToTeam/$user_id/$team_id\">Aceptar</a>"
 				. "<br />"
-				. "<class=\"rechazar\" href=\"/users_teams/rejectCallToTeam/$user_id/$team_id\">Rechazar</a>"
-				. "<br />"
+				. "<a class=\"rechazar\" href=\"/users_teams/rejectCallToTeam/$user_id/$team_id\">Rechazar</a>"
 				. "</div>";
 			$this->loadModel("UserNotification");
 			$this->UserNotification->create();
