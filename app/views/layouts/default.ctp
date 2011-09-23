@@ -56,7 +56,7 @@
 					<div class="social"></div>
 					<ul>
 						<li>
-							<?php echo $html->link("¡REGISTRATE!",array("controller"=>"users","action"=>"register"))
+							<?php echo $html->link("Ingresar",array("controller"=>"users","action"=>"login"))
 							?>
 						</li>
 						<li>

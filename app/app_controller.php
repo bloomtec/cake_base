@@ -36,7 +36,8 @@ class AppController extends Controller {
 	var $components = array(
 		'Auth' => array(
 			'authorize' => 'actions',
-			'fields' => array('username' => 'email', 'password' => 'password')
+			'fields' => array('username' => 'email', 'password' => 'password'),
+			'loginRedirect'=>array("controller"=>"pages","action"=>"fpt")
 		),
 		'Acl',
 		'Session'

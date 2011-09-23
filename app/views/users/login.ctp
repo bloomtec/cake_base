@@ -5,12 +5,12 @@
 	?>
 	<fieldset>
 		<legend>
-			<?php __('Login');?>
+			<?php __('Accede a tu cuenta');?>
 		</legend>
 		<?php
 		echo $this -> Form -> input('email');
 		echo $this -> Form -> input('password');
 		?>
 	</fieldset>
-	<?php echo $this -> Form -> end(__('Submit', true));?>
+	<?php echo $this -> Form -> end(__('Ingresar', true));?>
 </div>

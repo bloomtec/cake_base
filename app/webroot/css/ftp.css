@@ -240,14 +240,14 @@ ul.listado{
 div.contentWrap {
 	background:url(../img/fpt/fondo-overlay.jpg);
 	width:600px;
-	height:370px;
+	height:420px;
 	overflow-y:auto;
 	margin:0 auto;
 	padding:0 5px 0 5px;
 	padding-top:30px;
 	position:absolute;
 	top:50%;
-	margin-top:-200px;
+	margin-top:-225px;
 	left:50%;
 	margin-left:-300px;
 }
@@ -304,13 +304,13 @@ div.contentWrap {
 }
 #overlay .actions .accept{
 	background: url("../img/fpt/aceptar-overlay.png");
-	width:72px;
-	height: 72px;
+
+
 	float: right;
 	margin-left: 10px;
 }
 #overlay .actions .reject{
-	background: url("../img/fpt/aceptar-overlay.png");
+	background: url("../img/fpt/rechazar-overlay.png");
 	width:72px;
 	height: 72px;
 	float: right;
