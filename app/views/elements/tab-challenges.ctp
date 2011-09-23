@@ -20,7 +20,7 @@
 					
 					echo $form->end();
 				 ?>
-				<div class="match-player">
+				<div class="match-player in-match">
 					
 				</div>
 				<div class="container-paginado add-to-match friends" rel="/users/listFriends/criteria:">

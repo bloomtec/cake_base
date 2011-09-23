@@ -516,8 +516,15 @@ div.contentWrap {
 #my-profile .checkbox input{
 	float:left;
 }
-#my-profile a.first{
-	margin-right: 6px;	
+#my-profile .menu-datos {
+	text-align: center;
+}
+#my-profile .menu-datos a.first{
+	margin-left: 0;
+}
+#my-profile .menu-datos a{
+	margin-left: 6px;
+	font-size: 18px;
 }
 #my-profile .text input, #my-profile select{
 	background: black;

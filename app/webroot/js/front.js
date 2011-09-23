@@ -349,22 +349,16 @@ $(function(){
 		if(buscar.length > 0){
 			buscar.hide("fast").show("fast");
 		}else{
-			$(".match-player").append("\
-				<div  class='player' rel='"+player.attr('rel')+"'>\
-					<div class='container'>"+player.find('.name').text()+"\
-					</div>\
-					<div class='remove'> \
-					X\
-					</div>\
-				<div style='clear:both;'></div>\
-				</div>\
-			");
+			$(".match-player").append("<div  class='player' rel='"+player.attr('rel')+"'> <div class='container'>"+player.find('.name').text()+"</div><div class='remove'>X</div><div style='clear:both;'></div></div>",function(){
+				
+			});
+			Cufon.refresh("body");
 			$("#create-match").append(
 				"<input type='hidden' name='data[User][User]["+player.attr('rel')+"]' value='"+player.attr('rel')+"' rel='"+player.attr('rel')+"' />"
 			);
 		}
 	});
-	$(".add-to-match .player .remove").live("click",function(){
+	$(".in-match .player .remove").live("click",function(){
 		var rel=$(this).parent().attr("rel");
 		$(".match-player .player[rel='"+rel+"']").hide("fast").remove();
 		$("#create-match input[rel='"+rel+"']").remove();

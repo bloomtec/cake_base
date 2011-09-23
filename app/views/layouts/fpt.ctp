@@ -59,9 +59,12 @@
 				<?php echo $html->image("uploads/".$userField["UserField"]["image"]); ?>
 			</div>
 			<div class="info">
-				<a class="overlay first" href="/userFields/edit/<?=$userField["UserField"]["id"]?>">Cambiar Datos </a>
+				<div class="menu-datos">
+					<a class="overlay first" href="/userFields/edit/<?=$userField["UserField"]["id"]?>">Datos </a>
+					<a class="overlay" href="/userFields/editImage/<?=$userField["UserField"]["id"];?>"> Imagen </a>
+					<a class="overlay" href="/users/editPreferencias/<?=$userField["UserField"]["user_id"];?>"> Preferencias </a>
+				</div>
 				
-				<a class="overlay" href="/userFields/editImage/<?=$userField["UserField"]["id"];?>"> Cambiar Imagen </a>
 				<?php
 				//debug($this->data);
 				echo $this->Form->create('UserField'); 
