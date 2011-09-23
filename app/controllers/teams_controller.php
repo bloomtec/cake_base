@@ -72,42 +72,29 @@ class TeamsController extends AppController {
 	 */
 	function listNotUserTeams() {
 		$this->layout="ajax";
-		$user_id = $this -> Session -> read('Auth.User.id');
-		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
+		$teams_ids_in = $this -> Team -> UsersTeam -> find(
 			'list',
 			array(
 				'recursive' => -1,
 				'conditions' => array(
-					'UsersTeam.user_id' => $user_id
+					'UsersTeam.user_id' => $this -> Session -> read('Auth.User.id')
 				),
-				'fields' => array(
-					'UsersTeam.team_id'
-				)
+				'fields' => 'UsersTeam.team_id'
 			)
 		);
-		$not_user_teams = $this -> Team -> find(
-			'all',
-			array(
-				'recursive' => -1,
-				'conditions' => array(
-					'NOT Team.id' => $teams_ids_in
-				)
-			)
-		);
-		$this -> set('teams', $not_user_teams);
+		$this -> set('teams', $this->paginate('Team', array('NOT Team.id' => $teams_ids_in)));
 	}
 
 	/**
 	 * Retorna los equipos a los que pertenece el usuario logueado
 	 */
 	function myTeams() {
-		$user_id = $this -> Session -> read('Auth.User.id');
-		$teams_ids_in = $this -> Team -> User -> UsersTeam -> find(
+		$teams_ids_in = $this -> Team -> UsersTeam -> find(
 			'list',
 			array(
 				'recursive' => -1,
 				'conditions' => array(
-					'UsersTeam.user_id' => $user_id
+					'UsersTeam.user_id' => $this -> Session -> read('Auth.User.id')
 				),
 				'fields' => array(
 					'UsersTeam.team_id'
