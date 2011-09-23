@@ -7,6 +7,13 @@ class TeamsController extends AppController {
 		$this->layout="ajax";
 	}
 	
+	function request() {
+		$this->layout="ajax";
+		if(!empty($this->params) && isset($this->params['named']['team_id'])) {
+			
+		}
+	}
+	
 	/**
 	 * Retorna los equipos con el nombre COMO la criteria de busqueda
 	 * y en los que el usuario no haga parte.

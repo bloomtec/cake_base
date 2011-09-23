@@ -10,15 +10,18 @@ class UsersTeamsController extends AppController {
 		}
 	}
 
-	function expelUserFromTeam() {
-		$user_team = $this -> UserTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.team_id' => $this -> params['named']['team_id'], 'UsersTeam.user_id' => $this -> params['named']['user_id'])));
-		$this -> UsersTeam -> delete($user_team['UsersTeam']['id']);
-	}
-
 	function viewCalling($user_id = null, $team_id = null) {
 		$this -> layout = "ajax";
 		$team = $this -> UsersTeam -> Team -> read(null, $team_id);
 		$this -> set(compact("team"));
+		$this -> set('user_id', $user_id);
+	}
+	
+	function viewUserJoinRequests($user_id = null, $team_id = null) {
+		$this -> layout = "ajax";
+		$user = $this -> UsersTeam -> User -> read(null, $user_id);
+		$this -> set(compact("user"));
+		$this -> set('team_id', $team_id);
 	}
 
 	function getPayroll($team_id = null) {
@@ -30,37 +33,6 @@ class UsersTeamsController extends AppController {
 			$this -> set("payroll", $this -> paginate("User", array('User.id' => $users_ids)));
 		} else {
 			$this -> set("payroll", null);
-		}
-	}
-
-	function createInviteToTeam($user_caller_id = null, $user_id = null, $team_id = null) {
-		if ($user_id && $team_id && $user_caller_id) {
-			$invite = $this -> UsersTeam -> create();
-			$invite['UsersTeam']['user_id'] = $user_id;
-			$invite['UsersTeam']['team_id'] = $team_id;
-			$invite['UsersTeam']['caller_user_id'] = $user_caller_id;
-			if ($this -> UsersTeam -> save($invite)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
-		}
-	}
-
-	function createRequestToTeam($user_id, $team_id) {
-		if ($user_id && $team_id) {
-			$invite = $this -> UsersTeam -> create();
-			$invite['UsersTeam']['user_id'] = $user_id;
-			$invite['UsersTeam']['team_id'] = $team_id;
-			if ($this -> UsersTeam -> save($invite)) {
-				return true;
-			} else {
-				return false;
-			}
-		} else {
-			return false;
 		}
 	}
 
@@ -91,6 +63,79 @@ class UsersTeamsController extends AppController {
 			}
 		} else {
 			echo 0;
+		}
+	}
+	
+	function requestJoinTeam() {
+		$this->autoRender=false;
+		if(!empty($this->params) && isset($this->params['named']['team_id'])) {
+			$user_id = $this->Session->read('Auth.User.id');
+			$team_id = $this -> params['named']['team_id'];
+			$this -> UsersTeam -> create();
+			$this -> UsersTeam -> set('user_id', $user_id);
+			$this -> UsersTeam -> set('team_id', $team_id);
+			$this -> UsersTeam -> set('is_captain', false);
+			$this -> UsersTeam -> set('user_team_status_id', 1);
+			$this -> UsersTeam -> set('caller_user_id', $user_id);
+			if ($this -> UsersTeam -> save()) {
+				$user_name = $this -> requestAction('/users/getUserName/' . $user_id);
+				$subject = "Petición para ingresar al equipo de :: $user_name";
+				$content = "<div class=\"notificacion-equipo\">" . "<a class=\"aceptar\" href=\"/users_teams/acceptRequestJoinTeam/$user_id/$team_id\">Aceptar</a>" . "<br />" . "<a class=\"rechazar\" href=\"/users_teams/rejectRequestJoinTeam/$user_id/$team_id\">Rechazar</a>" . "</div>";
+				$this->loadModel("TeamNotification");
+				$this->TeamNotification->create();
+				$this->TeamNotification->set('team_id', $team_id);
+				$this->TeamNotification->set('user_id', $user_id);
+				$this->TeamNotification->set('subject', $subject);
+				$this->TeamNotification->set('content', $content);
+				if ($this -> TeamNotification -> save()) {
+					echo 1;
+				} else {
+					echo 0;
+				}
+			} else {
+				echo 0;
+			}
+		}		
+	}
+
+	function acceptRequestJoinTeam($user_id = null, $team_id = null) {
+		$this -> autoRender = false;
+		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
+		$data['UsersTeam']['user_team_status_id'] = 2;
+		if ($this -> UsersTeam -> save($data)) {
+			$this -> loadModel('TeamNotification');
+			$notification = $this -> TeamNotification -> find('first', array('recursive' => -1, array('TeamNotification.player_id' => $user_id, 'TeamNotification.team_id' => $team_id)));
+			$this -> TeamNotification -> delete($notification['TeamNotification']['id']);
+			echo "Se integró el jugador a la nómina";
+		} else {
+			echo "Error al aceptar la petición";
+		}
+		exit(0);
+	}
+	
+	function rejectRequestJoinTeam($user_id = null, $team_id = null) {
+		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
+		$data['UsersTeam']['user_team_status_id'] = 3;
+		if ($this -> UsersTeam -> save($data)) {
+			$this -> loadModel('TeamNotification');
+			$notification = $this -> TeamNotification -> find('first', array('recursive' => -1, array('TeamNotification.player_id' => $user_id, 'TeamNotification.team_id' => $team_id)));
+			$this -> TeamNotification -> delete($notification['TeamNotification']['id']);
+			echo "No se aceptó el jugador en la nómina";
+		} else {
+			echo "Error al rechazar la petición";
+		}
+		exit(0);
+	}
+
+	function expelUserFromTeam() {
+		$this->layout="ajax";
+		if (!empty($this -> params)) {
+			$user_team = $this -> UserTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.team_id' => $this -> params['named']['team_id'], 'UsersTeam.user_id' => $this -> params['named']['user_id'])));
+			if($this -> UsersTeam -> delete($user_team['UsersTeam']['id'])){
+				echo 1;
+			} else {
+				echo 0;
+			}
 		}
 	}
 
