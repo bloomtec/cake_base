@@ -141,6 +141,12 @@ div.actions h3 {
 	color:#777;
 }
 
+/**
+ * 	Menu
+ */
+div.menu {
+	float: right;
+}
 
 /** Tables **/
 table {

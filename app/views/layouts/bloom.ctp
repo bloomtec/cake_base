@@ -42,7 +42,19 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+			<div class="menu">
+				<ul class="sf-menu">
+					<li>
+						<?php echo $this->Html->link(__('Menus', true), array('controller' => 'menus', 'action' => 'index')); ?>
+					</li>
+					<li>
+						<?php echo $this->Html->link(__('Galleries', true), array('controller' => 'galleries', 'action' => 'index')); ?>
+					</li>
+					<li>
+						<?php echo $this->Html->link(__('Logout', true), array('controller' => 'users', 'action' => 'logout', "admin"=>false)); ?>
+					</li>
+				</ul>
+			</div>
 		</div>
 		<div id="content">
 
