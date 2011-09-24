@@ -10,7 +10,7 @@ class Menu extends AppModel {
 			'foreignKey' => 'menu_id',
 			'conditions' => '',
 			'fields' => '',
-			'order' => ''
+			'order' => 'Page.sort'
 		)
 	);
 }

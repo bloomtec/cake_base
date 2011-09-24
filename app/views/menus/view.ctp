@@ -61,7 +61,13 @@
 			<td><?php echo $page['pic_4'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'pages', 'action' => 'view', $page['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'pages', 'action' => 'edit', $page['id'])); ?>
+				<?php 
+					if( $page['page_type_id']==1){
+						echo $this->Html->link(__('Edit', true), array('controller' => 'pages', 'action' => 'editTextPage', $page['id'])); 
+					}else{
+						echo $this->Html->link(__('Edit', true), array('controller' => 'pages', 'action' => 'editGalleryPage', $page['id'])); 
+					}
+				?>
 				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'pages', 'action' => 'delete', $page['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $page['id'])); ?>
 			</td>
 		</tr>

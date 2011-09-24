@@ -119,6 +119,8 @@ function setActive($id = null) {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('menu', $this->Menu->read(null, $id));
+		$pageTypes=$this->Menu->Page->PageType->find("list");
+		$this -> set('pageTypes',$pageTypes);
 	}
 
 	function admin_add() {

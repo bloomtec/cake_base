@@ -131,7 +131,9 @@ class PagesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		
 		$this -> set('page', $this -> Page -> read(null, $id));
+		
 	}
 
 	function admin_add() {
