@@ -348,5 +348,20 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
+	function admin_reOrder(){
+  /* 
+   * Ordena los producto en una categoría
+
+    * */
+    	foreach($this->data["Page"] as $id=>$posicion){
+    		$this->Page->id=$id;
+   			$this->Page->saveField("sort",$posicion);
+    	}
+    
+    echo "yes";
+    Configure::write('debug', 0);   
+    $this->autoRender = false;   
+    exit(); 
+	}
 
 }

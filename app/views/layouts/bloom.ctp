@@ -35,6 +35,7 @@
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
 		echo $this->Html->Script("upload");
 		echo $this->Html->Script("ckeditor/ckeditor");
+		echo $this->Html->Script("jquery-ui-1.8.6.custom.min");
 		
 		echo $scripts_for_layout;
 	?>
@@ -42,7 +43,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+			<h1><?php echo $this->Html->link(__('EZ', true), 'http://bloomweb.co'); ?></h1>
 		</div>
 		<div id="content">
 

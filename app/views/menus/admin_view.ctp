@@ -28,9 +28,9 @@
 <div class="related">
 	<h3><?php __('Related Pages');?></h3>
 	<?php if (!empty($menu['Page'])):?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-
+	<table cellpadding = "0" cellspacing = "0" id="sortable">
+	<tr class='ui-state-disabled'>	
+		<th><?php __('Sort'); ?></th>
 		<th><?php __('Page Type Id'); ?></th>
 		<th><?php __('Title'); ?></th>
 		<th>Content</th>
@@ -45,8 +45,8 @@
 				$class = ' class="altrow"';
 			}
 		?>
-		<tr<?php echo $class;?>>
-
+		<tr <?php echo $class;?> id="<?php echo $page['id'];?>"> 
+			<td><?php echo $page['sort']?></td>
 			<td><?php echo $pageTypes[$page['page_type_id']];?></td>
 			<td><?php echo $page['title'];?></td>
 			<td><?php echo $page['wysiwyg_content'];?></td>
@@ -72,3 +72,38 @@
 		</ul>
 	</div>
 </div>
+<script>
+	var sendData=function(order){
+		var data={};
+		for(i=0;i<order.length;i+=1){
+			data["data[Page]["+order[i]+"]"]=(i+1);
+		}
+		$.post("/admin/pages/reOrder",
+				data,
+				function(response){
+					if(response=="yes"){
+						for(i=0;i<order.length;i+=1){
+							$("tr#"+order[i]).children(":first-child").text(i+1);
+						}
+					}
+				}
+		);
+		
+		}
+	$(function() {
+			$( "#sortable tbody" ).sortable({
+			revert: true,
+			items:"tr:not(.ui-state-disabled)",
+			update:function(event, ui){
+		
+			sendData($(this).sortable("toArray"));
+			
+			
+			}
+				
+		});
+
+		$( "#sortable tbody > tr" ).disableSelection();
+
+	});
+</script>
