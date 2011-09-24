@@ -75,4 +75,98 @@ $(document).ready(
 				$('ul.galeria li').removeClass('selected');
 				$(this).addClass("selected");
 			});
-		});
+			
+			//*GALERIAs DE PAGINADA*/
+			$('#uploadfy1').uploadify(
+					{
+						'uploader' : server + 'swf/uploadify.swf',
+						'script' : server + 'uploadify.php',
+						'folder' : server + 'app/webroot/img/uploads',
+						'auto' : true,
+						'cancelImg' : server + 'img/cancel.png',
+						'onComplete' : function(a, b, c, d) {
+							var oldImage=$("#PagePic1").val();
+							$.post(server + "images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+								
+							});							
+							$(".pic1 .preview").html('<img  src="' + d + '" />');
+							var file = d.split("/");
+							var nombre = file[(file.length - 1)];
+							var name = c.name;
+							$("#PagePic1").val(nombre);
+							$.post(server + "images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+							
+							});
+
+						}
+			});
+			$('#uploadfy2').uploadify(
+					{
+						'uploader' : server + 'swf/uploadify.swf',
+						'script' : server + 'uploadify.php',
+						'folder' : server + 'app/webroot/img/uploads',
+						'auto' : true,
+						'cancelImg' : server + 'img/cancel.png',
+						'onComplete' : function(a, b, c, d) {
+							var oldImage=$("#PagePic2").val();
+							$.post(server + "images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+								
+							});							
+							$(".pic2 .preview").html('<img  src="' + d + '" />');
+							var file = d.split("/");
+							var nombre = file[(file.length - 1)];
+							var name = c.name;
+							$("#PagePic2").val(nombre);
+							$.post(server + "images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+							
+							});
+
+						}
+			});			
+			$('#uploadfy3').uploadify(
+					{
+						'uploader' : server + 'swf/uploadify.swf',
+						'script' : server + 'uploadify.php',
+						'folder' : server + 'app/webroot/img/uploads',
+						'auto' : true,
+						'cancelImg' : server + 'img/cancel.png',
+						'onComplete' : function(a, b, c, d) {
+							var oldImage=$("#PagePic3").val();
+							$.post(server + "images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+								
+							});							
+							$(".pic3 .preview").html('<img  src="' + d + '" />');
+							var file = d.split("/");
+							var nombre = file[(file.length - 1)];
+							var name = c.name;
+							$("#PagePic3").val(nombre);
+							$.post(server + "images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+							
+							});
+
+						}
+			});
+			$('#uploadfy4').uploadify(
+					{
+						'uploader' : server + 'swf/uploadify.swf',
+						'script' : server + 'uploadify.php',
+						'folder' : server + 'app/webroot/img/uploads',
+						'auto' : true,
+						'cancelImg' : server + 'img/cancel.png',
+						'onComplete' : function(a, b, c, d) {
+							var oldImage=$("#PagePic4").val();
+							$.post(server + "images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+								
+							});							
+							$(".pic4 .preview").html('<img  src="' + d + '" />');
+							var file = d.split("/");
+							var nombre = file[(file.length - 1)];
+							var name = c.name;
+							$("#PagePic4").val(nombre);
+							$.post(server + "images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+							
+							});
+
+						}
+			});
+});

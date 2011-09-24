@@ -607,3 +607,23 @@ div.code-coverage-results span.result-good {
 .uploader-container{
  margin-top: 2em;
 }
+/*
+ ADMINISTRADOR DE PAGINAS
+ * */
+/*Pa
+ * paginas tipo imagen*/
+.uploaderPics{
+	clear:none;
+	float:left;
+	height: 300px;
+	width: 210px;
+}
+.uploaderPics .preview{
+	width: 200px;
+	height: 200px;
+	margin: 0 auto;
+}
+.uploaderPics .preview img{
+	max-height: 100%;
+	max-width: 100%;
+}

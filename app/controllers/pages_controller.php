@@ -156,7 +156,7 @@ class PagesController extends AppController {
 			$this -> Page -> create();
 			if ($this -> Page -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'view',$this->data["Page"]["menu_id"]));
 			} else {
 				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
 			}
@@ -171,7 +171,7 @@ class PagesController extends AppController {
 			$this -> Page -> create();
 			if ($this -> Page -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'view',$this->data["Page"]["menu_id"]));
 			} else {
 				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
 			}

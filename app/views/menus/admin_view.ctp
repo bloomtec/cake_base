@@ -49,7 +49,16 @@
 			<td><?php echo $page['sort']?></td>
 			<td><?php echo $pageTypes[$page['page_type_id']];?></td>
 			<td><?php echo $page['title'];?></td>
-			<td><?php echo $page['wysiwyg_content'];?></td>
+			<td class="page-content"><?php 
+				if($page['page_type_id']==1){
+					echo $page['wysiwyg_content'];
+				}else{
+					echo $html->image("uploads/100x100/".$page["pic_1"]);
+					echo $html->image("uploads/100x100/".$page["pic_2"]);
+					echo $html->image("uploads/100x100/".$page["pic_3"]);
+					echo $html->image("uploads/100x100/".$page["pic_4"]);
+				}
+			?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__(' ', true), array('controller' => 'pages', 'action' => 'view', $page['id']),array("class"=>"icon view","title"=>"view")); ?>
 				<?php 
@@ -68,7 +77,8 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Page', true), array('controller' => 'pages', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Text Page', true), array('controller' => 'pages', 'action' => 'addTextPage', $menu['Menu']['id']));?> </li>
+			<li><?php echo $this->Html->link(__('New Gallery  Page', true), array('controller' => 'pages', 'action' => 'addGalleryPage', $menu['Menu']['id']));?> </li>
 		</ul>
 	</div>
 </div>
