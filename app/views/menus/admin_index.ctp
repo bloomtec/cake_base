@@ -32,8 +32,10 @@ $class = ' class="altrow"';
 				 */
 				if ($page[0]['Page']['page_type_id'] == 1) {
 					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editTextPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Edit Text Page', true)));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteTextPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Delete Text Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
 				} else {
 					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editGalleryPage', $page[0]['Page']['id']), array('class' => 'gallery page icon', 'title' => __('Edit Gallery Page', true)));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteGalleryPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Delete Gallery Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
 				}
 			} else {
 				/**

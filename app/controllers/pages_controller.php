@@ -249,6 +249,32 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('Page was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+	
+	function admin_deleteTextPage($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid id for page', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		if ($this -> Page -> delete($id)) {
+			$this -> Session -> setFlash(__('Page deleted', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		$this -> Session -> setFlash(__('Page was not deleted', true));
+		$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+	}
+	
+	function admin_deleteGalleryPage($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid id for page', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		if ($this -> Page -> delete($id)) {
+			$this -> Session -> setFlash(__('Page deleted', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		$this -> Session -> setFlash(__('Page was not deleted', true));
+		$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+	}
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
