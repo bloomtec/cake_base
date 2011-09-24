@@ -52,6 +52,9 @@
 						<?php echo $this->Html->link(__('Galleries', true), array('controller' => 'galleries', 'action' => 'index')); ?>
 					</li>
 					<li>
+						<?php echo $this->Html->link(__('Users', true), array('controller' => 'users', 'action' => 'index')); ?>
+					</li>
+					<li>
 						<?php echo $this->Html->link(__('Logout', true), array('controller' => 'users', 'action' => 'logout', "admin"=>false)); ?>
 					</li>
 				</ul>
