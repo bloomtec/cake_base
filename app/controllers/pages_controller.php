@@ -15,6 +15,11 @@ class PagesController extends AppController {
 			return $page;
 		}
 	}
+	
+	function viewMenuPages($menu_id = null) {
+		$this -> Page -> recursive = 0;
+		$this -> set('pages', $this -> paginate());
+	}
 
 	function index() {
 		$this -> Page -> recursive = 0;
@@ -144,7 +149,7 @@ class PagesController extends AppController {
 		$this -> set(compact('menus', 'pageTypes'));
 	}
 
-	function admin_addTextPage($menu_id = null, $menu_title) {
+	function admin_addTextPage($menu_id = null, $menu_title = null) {
 		if (!empty($this -> data)) {
 			$this -> Page -> create();
 			if ($this -> Page -> save($this -> data)) {
@@ -159,7 +164,7 @@ class PagesController extends AppController {
 		$this -> set(compact('menu_id', 'menu_title', 'menus', 'pageTypes'));
 	}
 
-	function admin_addGalleryPage($menu_id = null, $menu_title) {
+	function admin_addGalleryPage($menu_id = null, $menu_title = null) {
 		if (!empty($this -> data)) {
 			$this -> Page -> create();
 			if ($this -> Page -> save($this -> data)) {
@@ -195,7 +200,7 @@ class PagesController extends AppController {
 		$this -> set(compact('menus', 'pageTypes'));
 	}
 	
-	function admin_editTextPage($id = null) {
+	function admin_editTextPage($id = null, $menu_title = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
@@ -213,10 +218,10 @@ class PagesController extends AppController {
 		}
 		$menus = $this -> Page -> Menu -> find('list');
 		$pageTypes = $this -> Page -> PageType -> find('list');
-		$this -> set(compact('menus', 'pageTypes'));
+		$this -> set(compact('menu_title', 'menus', 'pageTypes'));
 	}
 	
-	function admin_editGalleryPage($id = null) {
+	function admin_editGalleryPage($id = null, $menu_title = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
@@ -234,7 +239,7 @@ class PagesController extends AppController {
 		}
 		$menus = $this -> Page -> Menu -> find('list');
 		$pageTypes = $this -> Page -> PageType -> find('list');
-		$this -> set(compact('menus', 'pageTypes'));
+		$this -> set(compact('menu_title', 'menus', 'pageTypes'));
 	}
 
 	function admin_delete($id = null) {
