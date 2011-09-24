@@ -38,8 +38,8 @@ class AppController extends Controller {
 	function beforeFilter() {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
-			//$this->Auth->deny($this->action);
-			$this->Auth->allow($this->action);
+			$this->Auth->deny($this->action);
+			//$this->Auth->allow($this->action);
 		} else {
 			$this->Auth->allow($this->action);
 		}
