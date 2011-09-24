@@ -2,6 +2,7 @@
 class PicturesController extends AppController {
 
 	var $name = 'Pictures';
+	var $components = array('Attachment');
 
 	function index() {
 		$this -> Picture -> recursive = 0;
@@ -15,7 +16,7 @@ class PicturesController extends AppController {
 		}
 		$this -> set('picture', $this -> Picture -> read(null, $id));
 	}
-
+	
 	function getBackground() {
 		// si esta logeuado devuelve una imagen el album members id=2
 		// si no está logueado devuelve una imagen del album publico id=1
@@ -44,7 +45,36 @@ class PicturesController extends AppController {
 		$galleries = $this -> Picture -> Gallery -> find('list');
 		$this -> set(compact('galleries'));
 	}
-
+	function uploadfy_add() {
+		if($_POST["name"]&&$_POST["folder"]){
+			// Datos dados por Felipe son:
+			// thumbs --> 180x135
+			// caratulas --> 392x243
+			// grandes --> 625x467
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/50x50",$_POST["name"],50,50);
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/100x100",$_POST["name"],100,100);
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/200x200",$_POST["name"],200,200);
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/400x400",$_POST["name"],400,400);
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/640x480",$_POST["name"],640,480);
+			$this->Attachment->resize_image("resize","img/".$_POST["folder"]."/".$_POST["name"],"img/".$_POST["folder"]."/custom",$_POST["name"],Configure::read("custom_width"),Configure::read("custom_height"));
+			if(isset($_POST["galleryId"])){
+				$picture["Picture"]["gallery_id"]=$_POST["galleryId"];
+				$picture["Picture"]["image"]=$_POST["name"];
+				$this->Picture->create();
+				$this->Picture->save($picture);
+				echo $this->Picture->id;
+			}else{
+				echo true;
+			}
+			
+		}else{
+			echo false;
+		}
+		
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
 	function edit($id = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid picture', true));
@@ -166,14 +196,38 @@ class PicturesController extends AppController {
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid id for picture', true));
-			$this -> redirect(array('action' => 'index'));
+			$this->redirect($this->referer());
 		}
+		$picture=$this->Picture->read(null,$id);
 		if ($this -> Picture -> delete($id)) {
 			$this -> Session -> setFlash(__('Picture deleted', true));
-			$this -> redirect(array('action' => 'index'));
+			$filename=$picture["Picture"]["image"];
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'50x50'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'50x50'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'100x100'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'100x100'.DS.$filename);
+			}
+
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'200x200'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'200x200'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'400x400'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'400x400'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'640x480'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'640x480'.DS.$filename);
+			}
+			if (is_file(WWW_ROOT.'img'.DS.'uploads'.DS.'custom'.DS.$filename)) {
+				unlink(WWW_ROOT.'img'.DS.'uploads'.DS.'custom'.DS.$filename);
+			}	
+			$this->redirect($this->referer());
 		}
 		$this -> Session -> setFlash(__('Picture was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
+		$this->redirect($this->referer());
 	}
 
 	function admin_setInactive($id = null) {

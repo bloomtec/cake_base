@@ -187,7 +187,7 @@ td.actions {
 }
 table td.actions a {
 	margin: 0px 6px;
-	padding:2px 5px;
+
 }
 .cake-sql-log table {
 	background: #f4f4f4;
@@ -421,10 +421,7 @@ input[type=submit],
 div.actions ul li a,
 td.actions a {
 	font-weight:normal;
-	padding: 4px 8px;
-	background:#e6e49f;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
-	background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
+
 	color:#333;
 	border:1px solid #aaac62;
 	-webkit-border-radius:8px;
@@ -437,8 +434,6 @@ td.actions a {
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
-	background: #f0f09a;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
 }
 
 /** Related **/
@@ -562,18 +557,47 @@ div.code-coverage-results span.result-good {
 	height:25px;
 	background:black;
 }
-.view{
+.icon.view{
 	background-image:url(../img/view.png);
 }
-.delete{
+.icon.delete{
 	background-image:url(../img/delete.png);
 }
-.edit{
+.icon.edit{
 	background-image:url(../img/edit.png);
 }
-.setActive{
+.icon.setActive{
 	background-image:url(../img/set-active.png);
 }
-.setInactive{
+.icon.setInactive{
 	background-image:url(../img/set-inactive.png);
+}
+/*
+ GALERIA DE IMAGENES
+ * */
+.related .pictures img{
+	max-height: 200px;
+	max-width: 200px;
+}
+.image-container{
+	float:left;
+	padding:0.5em;
+	width:200px;
+	height: 210px;
+	background: #111111;
+	margin:1em;
+	text-align: center;
+	position:relative;
+}
+ .image-container .actions{
+ 	width:100%;
+	text-align: center;
+	position:absolute;
+	bottom:0;
+ }
+.image-container a,  .image-container{
+  color:white;
+  }
+.uploader-container{
+ margin-top: 2em;
 }
