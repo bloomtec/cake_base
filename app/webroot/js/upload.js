@@ -34,5 +34,45 @@ $(document).ready(
 							});
 
 						}
+			});
+			$('#multiple-upload').uploadify({
+				'uploader' :'/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'cancelImg' : '/app/webroot/img',
+				'folder' : '/app/webroot/img/uploads',
+				'multi' : true,
+				'auto' : true,
+				'fileExt' : '*.jpg;*.gif;*.png;*.PNG;*.JPG;*.GIF',
+				'fileDesc' : 'Image Files (.JPG, .GIF, .PNG)',
+				'queueSizeLimit' : 10,
+				'simUploadLimit' : 10,
+				'removeCompleted' : false,
+				'onSelectOnce' : function(event, data) {
+					$('#status-message').text(data.filesSelected+ ' files have been added to the queue.');
+				},
+				'onComplete' : function(a, b, c, d) {
+					var file = d.split("/");
+					var nombre = file[(file.length - 1)];
+					var galleryId=$('#multiple-upload').attr("rel");
+					console.log(galleryId);
+					$.post("/pictures/uploadfy_add", {'name' : nombre,'folder' : "uploads",'galleryId' : galleryId}, function(data) {
+						$(".pictures").append('\
+										<div class="image-container">\
+										<div class="image"><img alt="" src="/img/uploads/200x200/'+nombre+'"></div>\
+										<div class="actions">\
+										<a onclick="return confirm(\'Are you sure you want to delete # 1?\');" href="/admin/pictures/delete/'+data+'">Borrar</a>			</div>\
+										</div>\
+										');
 					});
+
+				},
+				'onAllComplete' : function(event, data) {
+					$('#status-message').text(data.filesUploaded+ ' files uploaded, '+ data.errors+ ' errors.');
+				}
+			});
+
+			$('ul.galeria li').click(function() {
+				$('ul.galeria li').removeClass('selected');
+				$(this).addClass("selected");
+			});
 		});
