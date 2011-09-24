@@ -21,9 +21,10 @@ $class = ' class="altrow"';
 			<td><?php echo $menu['Menu']['wysiwyg_title'];?>&nbsp;</td>
 			<td><?php echo $menu['Menu']['background_code'];?>&nbsp;</td>
 			<td><?php echo $menu['Menu']['slug'];?>&nbsp;</td>
-			<td class="actions"><?php echo $this -> Html -> link(__(' ', true), array('action' => 'view', $menu['Menu']['id']), array('class' => 'view icon', 'title' => __('View', true)));?>
-			<?php echo $this -> Html -> link(__(' ', true), array('action' => 'edit', $menu['Menu']['id']), array('class' => 'edit icon', 'title' => __('Edit', true)));?>
-			<?php echo $this -> Html -> link(__(' ', true), array('action' => 'delete', $menu['Menu']['id']), array('class' => 'delete icon', 'title' => __('Delete', true)), sprintf(__('Are you sure you want to delete # %s?', true), $menu['Menu']['id']));?>
+			<td class="actions">
+			<?php //echo $this -> Html -> link(__(' ', true), array('action' => 'view', $menu['Menu']['id']), array('class' => 'view icon', 'title' => __('View', true)));?>
+			<?php //echo $this -> Html -> link(__(' ', true), array('action' => 'edit', $menu['Menu']['id']), array('class' => 'edit icon', 'title' => __('Edit', true)));?>
+			<?php //echo $this -> Html -> link(__(' ', true), array('action' => 'delete', $menu['Menu']['id']), array('class' => 'delete icon', 'title' => __('Delete', true)), sprintf(__('Are you sure you want to delete # %s?', true), $menu['Menu']['id']));?>
 			<?php
 			$page = $this -> requestAction('/pages/getPageByMenuID/' . $menu['Menu']['id']);
 			if (!empty($page)) {
@@ -31,18 +32,18 @@ $class = ' class="altrow"';
 				 * Existe la página para el menú, mostar el edit y/o delete
 				 */
 				if ($page[0]['Page']['page_type_id'] == 1) {
-					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editTextPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Edit Text Page', true)));
-					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteTextPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Delete Text Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editTextPage', $page[0]['Page']['id']), array('class' => 'edit icon', 'title' => __('Edit Text Page', true)));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteTextPage', $page[0]['Page']['id']), array('class' => 'delete icon', 'title' => __('Delete Text Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
 				} else {
-					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editGalleryPage', $page[0]['Page']['id']), array('class' => 'gallery page icon', 'title' => __('Edit Gallery Page', true)));
-					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteGalleryPage', $page[0]['Page']['id']), array('class' => 'text page icon', 'title' => __('Delete Gallery Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'editGalleryPage', $page[0]['Page']['id']), array('class' => 'edit icon', 'title' => __('Edit Gallery Page', true)));
+					echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'deleteGalleryPage', $page[0]['Page']['id']), array('class' => 'delete icon', 'title' => __('Delete Gallery Page', true)), sprintf(__('Are you sure you want to delete the page?', true), null));
 				}
 			} else {
 				/**
 				 * No existe la página para el menú, mostrar el/los add según el tipo de página
 				 */
-				echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addTextPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'text page icon', 'title' => __('Add Text Page', true)));
-				echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addGalleryPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'gallery page icon', 'title' => __('Add Gallery Page', true)));
+				echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addTextPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'view icon', 'title' => __('Add Text Page', true)));
+				echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addGalleryPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'view icon', 'title' => __('Add Gallery Page', true)));
 			}
 			?>
 			<?php
