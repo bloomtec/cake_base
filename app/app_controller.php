@@ -37,7 +37,9 @@ class AppController extends Controller {
 		'Auth' => array(
 			'authorize' => 'actions',
 			'fields' => array('username' => 'email', 'password' => 'password'),
-			'loginRedirect'=>array("controller"=>"pages","action"=>"fpt")
+			'loginRedirect'=>array("controller"=>"pages","action"=>"fpt"),
+			'loginError' => 'Error al iniciar sesión. Revisa los datos e intenta de nuevo.',
+			'authError' => 'No tiene permiso para ingresar a esta sección.'
 		),
 		'Acl',
 		'Session'
