@@ -4,10 +4,10 @@
 	<div class="items">
 		<?php foreach($menu["Page"] as $page):?>
 			<?php 
-				if($page["type_id"]==1){
-					echo $this->element("slide");
+				if($page["page_type_id"]==1){
+					echo $this->element("slide",array("page"=>$page));
 				}else{
-					echo $this->element("gallery");
+					echo $this->element("gallery",array("page"=>$page));
 				}
 			?>
 		<?php endforeach;?>

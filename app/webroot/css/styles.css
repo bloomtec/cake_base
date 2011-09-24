@@ -169,6 +169,9 @@ background-image:url(../img/next.png);
 .gallery{
 
 }
+.gallery li{
+	float:left;
+}
 .slide{
 
 }
