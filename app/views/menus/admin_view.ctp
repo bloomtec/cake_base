@@ -6,14 +6,19 @@
 			<?php echo $menu['Menu']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Title'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Wysiwyg Title'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $menu['Menu']['title']; ?>
+			<?php echo $menu['Menu']['wysiwyg_title']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Background Code'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $menu['Menu']['background_code']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Slug'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $menu['Menu']['slug']; ?>
 			&nbsp;
 		</dd>
 	</dl>

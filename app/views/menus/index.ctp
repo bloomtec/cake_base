@@ -5,9 +5,11 @@
 				
 		<th><?php echo $this->Paginator->sort('id');?></th>
 						
-		<th><?php echo $this->Paginator->sort('title');?></th>
+		<th><?php echo $this->Paginator->sort('wysiwyg_title');?></th>
 						
 		<th><?php echo $this->Paginator->sort('background_code');?></th>
+						
+		<th><?php echo $this->Paginator->sort('slug');?></th>
 					<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -20,8 +22,9 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $menu['Menu']['id']; ?>&nbsp;</td>
-		<td><?php echo $menu['Menu']['title']; ?>&nbsp;</td>
+		<td><?php echo $menu['Menu']['wysiwyg_title']; ?>&nbsp;</td>
 		<td><?php echo $menu['Menu']['background_code']; ?>&nbsp;</td>
+		<td><?php echo $menu['Menu']['slug']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'view', $menu['Menu']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'edit', $menu['Menu']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

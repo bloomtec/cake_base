@@ -3,6 +3,19 @@ class PagesController extends AppController {
 
 	var $name = 'Pages';
 
+	function getPageByMenuID($menu_id = null) {
+		if($menu_id) {
+			$page = $this->Page->find(
+				'all',
+				array(
+					'recursive' => -1,
+					'conditions' => array('Page.menu_id' => $menu_id)
+				)
+			);
+			return $page;
+		}
+	}
+
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
@@ -131,6 +144,36 @@ class PagesController extends AppController {
 		$this -> set(compact('menus', 'pageTypes'));
 	}
 
+	function admin_addTextPage($menu_id = null, $menu_title) {
+		if (!empty($this -> data)) {
+			$this -> Page -> create();
+			if ($this -> Page -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The page has been saved', true));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
+			}
+		}
+		$menus = $this -> Page -> Menu -> find('list');
+		$pageTypes = $this -> Page -> PageType -> find('list');
+		$this -> set(compact('menu_id', 'menu_title', 'menus', 'pageTypes'));
+	}
+
+	function admin_addGalleryPage($menu_id = null, $menu_title) {
+		if (!empty($this -> data)) {
+			$this -> Page -> create();
+			if ($this -> Page -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The page has been saved', true));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
+			}
+		}
+		$menus = $this -> Page -> Menu -> find('list');
+		$pageTypes = $this -> Page -> PageType -> find('list');
+		$this -> set(compact('menu_id', 'menu_title', 'menus', 'pageTypes'));
+	}
+
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid page', true));
@@ -140,6 +183,48 @@ class PagesController extends AppController {
 			if ($this -> Page -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The page has been saved', true));
 				$this -> redirect(array('action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> Page -> read(null, $id);
+		}
+		$menus = $this -> Page -> Menu -> find('list');
+		$pageTypes = $this -> Page -> PageType -> find('list');
+		$this -> set(compact('menus', 'pageTypes'));
+	}
+	
+	function admin_editTextPage($id = null) {
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid page', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		if (!empty($this -> data)) {
+			if ($this -> Page -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The page has been saved', true));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> Page -> read(null, $id);
+		}
+		$menus = $this -> Page -> Menu -> find('list');
+		$pageTypes = $this -> Page -> PageType -> find('list');
+		$this -> set(compact('menus', 'pageTypes'));
+	}
+	
+	function admin_editGalleryPage($id = null) {
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid page', true));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+		}
+		if (!empty($this -> data)) {
+			if ($this -> Page -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The page has been saved', true));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
 			}
