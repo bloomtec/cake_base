@@ -6,7 +6,7 @@
 					
 				</div>
 				<div class="image">
-				<?php echo $html->link($html->image($user["UserField"][0]["image"]),array("controller"=>"users","action"=>"profile",$user["User"]["id"]),array("escape"=>false,"class"=>"overlay"));?>
+				<?php echo $html->link($html->image('uploads/100x100/'.$user["UserField"][0]["image"]),array("controller"=>"users","action"=>"profile",$user["User"]["id"]),array("escape"=>false,"class"=>"overlay"));?>
 				</div>
 				<div class="name">
 					<?php echo $user["UserField"][0]["name"]; ?>
