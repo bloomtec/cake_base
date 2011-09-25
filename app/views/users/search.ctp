@@ -1,1 +1,1 @@
-<?php echo $this->element('friends-list'); ?>
+<?php echo $this->element('no-friends-list'); ?>
