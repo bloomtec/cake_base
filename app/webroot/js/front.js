@@ -336,7 +336,7 @@ $(function(){
 			});				
 		});
 	});
-	$("#tabSearch a.paging").live("click",function(e){
+	$("#tabSearch .paging a").live("click",function(e){
 		e.preventDefault();
 		$that=$(this);
 		var $container=$(this).parents(".container-search");
