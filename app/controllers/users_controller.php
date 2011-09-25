@@ -37,7 +37,6 @@ class UsersController extends AppController {
 			 * Realizar busqueda tipo OR porque se incluyen nombe y correo
 			 */
 			if(!empty($nombre) && !empty($email)){
-				debug("Nombre Y Correo");
 				$users_ids = $this->requestAction('/user_fields/searchUsersByNameSurname/' . $nombre);
 				if($include_friends) {
 					$this->paginate = array(
@@ -73,7 +72,6 @@ class UsersController extends AppController {
 				 * Verificar cual esta para proceder acorde
 				 */
 				if(!empty($nombre)) {
-					debug("Nombre");
 					/**
 					 * Se incluye el nombre
 					 */
@@ -107,27 +105,43 @@ class UsersController extends AppController {
 					 * Se incluye el email
 					 */
 					if(!empty($email)) {
-						debug("Correo");
-						$ids_emails = $this->User->find(
-							'list',
-							array(
-								'conditions' => array(
-									'User.email LIKE' => "%$email%"
-								),
-								'fields' => 'User.id'
-							)
-						);
 						if($include_friends) {
+							$ids_emails = $this->User->find(
+								'list',
+								array(
+									'conditions' => array(
+										'User.email LIKE' => "%$email%",
+										'NOT' => array(
+											'User.id' => $user_id
+										)
+									),
+									'fields' => 'User.id'
+								)
+							);
+							$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
 							$this->paginate = array(
 								'conditions' => array(
-									'User.email LIKE' => "%$email%",
+									'User.id' => $ids_emails,
 									'NOT' => array(
 										'User.id' => $user_id
 									)
 								),
 								'limit' => $limit
 							);
+							$this->set('friends', $this->paginate('User'));
 						} else {
+							$ids_emails = $this->User->find(
+								'list',
+								array(
+									'conditions' => array(
+										'User.email LIKE' => "%$email%",
+										'NOT' => array(
+											'User.id' => $user_id
+										)
+									),
+									'fields' => 'User.id'
+								)
+							);
 							$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
 							$this->paginate = array(
 								'conditions' => array(
@@ -145,13 +159,11 @@ class UsersController extends AppController {
 						/**
 						 * Llega eso vacio
 						 */
-						debug("Sin datos");
 						$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
 						$this->paginate = array(
 							'conditions' => array(
 								'NOT' => array(
-									'User.id' => $user_id,
-									'User.id' => $friends_ids
+									'User.id' => $user_id
 								)
 							),
 							'limit' => $limit
