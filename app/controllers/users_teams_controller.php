@@ -179,15 +179,14 @@ class UsersTeamsController extends AppController {
 		$this -> UsersTeam -> set('user_team_status_id', 1);
 		$this -> UsersTeam -> set('caller_user_id', $this -> Session -> read('Auth.User.id'));
 		if ($this -> UsersTeam -> save()) {
-			$team_name = $this -> requestAction('/teams/getTeamName/' . $team_id);
+			$team_name = $this->requestAction('/teams/getTeamName/' . $this->Team->id);
 			$subject = "Convocatoria Al Equipo :: $team_name";
-			$content = "<div class=\"notificacion-usuario\">" . "<a class=\"aceptar\" href=\"/users_teams/acceptCallToTeam/$user_id/$team_id\">Aceptar</a>" . "<br />" . "<a class=\"rechazar\" href=\"/users_teams/rejectCallToTeam/$user_id/$team_id\">Rechazar</a>" . "</div>";
-			$this -> loadModel("UserNotification");
-			$this -> UserNotification -> create();
-			$this -> UserNotification -> set('user_id', $user_id);
-			$this -> UserNotification -> set('team_id', $team_id);
-			$this -> UserNotification -> set('subject', $subject);
-			$this -> UserNotification -> set('content', $content);
+			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/users_teams/viewCalling/$user_id/$team_id\">Ver más</a></div>";
+			$this->loadModel("UserNotification");
+			$this->UserNotification->create();
+			$this->UserNotification->set('user_id', $user_id);
+			$this->UserNotification->set('subject', $subject);
+			$this->UserNotification->set('content', $content);
 			if ($this -> UserNotification -> save()) {
 				echo 1;
 			} else {

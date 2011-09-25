@@ -8,10 +8,10 @@
 	<div class="actions">
 		<span class="notificacion"> </span>
 		<a class="accept" href="/usersTeams/acceptCallToTeam/<?=$user_id?>/<?=$team["Team"]["id"]?>">
-			aceptar
+			
 		</a>
 		<a class="reject" href="/usersTeams/rejectCallToTeam/<?=$user_id?>/<?=$team["Team"]["id"]?>">
-			rechazar
+			
 		</a>
 	</div>
 </div>

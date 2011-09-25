@@ -159,16 +159,29 @@ class UsersController extends AppController {
 						/**
 						 * Llega eso vacio
 						 */
-						$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
-						$this->paginate = array(
-							'conditions' => array(
-								'NOT' => array(
-									'User.id' => $user_id
-								)
-							),
-							'limit' => $limit
-						);
-						$this->set('friends', $this->paginate('User'));
+						 if($include_friends) {
+							 $this->paginate = array(
+								'conditions' => array(
+									'NOT' => array(
+										'User.id' => $user_id
+									)
+								),
+								'limit' => $limit
+							);
+							$this->set('friends', $this->paginate('User'));
+						 } else {
+							$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+							$this->paginate = array(
+								'conditions' => array(
+									'NOT' => array(
+										'User.id' => $user_id,
+										'User.id' => $friends_ids
+									)
+								),
+								'limit' => $limit
+							);
+							$this->set('friends', $this->paginate('User'));
+						 }						
 					}
 				}
 			}
@@ -181,10 +194,14 @@ class UsersController extends AppController {
 	
 	function listFriends() {
 		$this->layout="ajax";
+		$limit = 3;
+		if (isset($this->params['named']['limit']) && !empty($this->params['named']['limit'])) {
+			$limit = $this->params['named']['limist'];
+		}
 		$user_id=$this->Auth->user("id");
 		if($user_id) {
 			$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
-			$this->paginate=array("limit"=>1);
+			$this->paginate=array("limit"=>$limit);
 			$this->set("friends", $this->paginate("User", array('User.id' => $friends_ids)));
 		}
 	}
