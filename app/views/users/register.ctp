@@ -103,7 +103,7 @@
 			<div class="page">
 				<?php echo $form->hidden("UserField.image",array("id"=>"single-field","value"=>"defaul-image-profile.jpg"))?>
 				<div class="preview">
-					<?php echo $html->image("defaul-image-profile.jpg");?>
+					<?php echo $html->image("uploads/100x100/defaul-image-profile.jpg");?>
 				</div>
 				<div id="single-upload">
 				</div>
