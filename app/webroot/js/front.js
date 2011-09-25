@@ -336,6 +336,22 @@ $(function(){
 			});				
 		});
 	});
+	$("#tabSearch a.paging").live("click",function(e){
+		e.preventDefault();
+		$that=$(this);
+		var $container=$(this).parents(".container-search");
+		if($container.attr("criteria")){
+			var criteria=$($container.attr("criteria")).val();
+		}else{
+			var criteria="";
+		}
+		$that.parents(".container-search").load($that.attr("href"),{},function(){
+			$.each($(this).find(".paging a"),function(i,val){
+				var href=$(val).attr("href");
+				$(val).attr("href",href+"/criteria:"+criteria)
+			});				
+		});
+	});
 	// FUNCIONAMIENTOS ESPECIALES RETOS
 	$(".add-to-match .player .add").live("click",function(e){
 		e.preventDefault();
