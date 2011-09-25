@@ -17,7 +17,7 @@
 		<?php endforeach;?>		
 		<div style="clear:both;"></div>
 </ul>
-<div class="paging paging-list">		
+<div class="paging paging-no-friends">		
 	<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
 	<?php echo $this->Paginator->numbers(array("separator"=>""));?>
 	<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
