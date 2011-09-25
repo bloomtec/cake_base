@@ -140,6 +140,7 @@ class FriendshipsController extends AppController {
 				// Crear notificación de solicitud de amigo
 				// Mensaje para la solicitud
 				$subject = "Solicitud de amistad de :: $user_a_name";
+				$message = rawurlencode($message);
 				$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/friendships/viewFriendshipRequest/$user_a_id/$user_b_id/$message\">Ver más</a></div>";
 				$this->loadModel("UserNotification");
 				$this->UserNotification->create();
