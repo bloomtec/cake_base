@@ -171,11 +171,11 @@ class UsersController extends AppController {
 							$this->set('friends', $this->paginate('User'));
 						 } else {
 							$friends_ids = $this->requestAction('friendships/getFriendsIDs/' . $user_id);
+							$friends_ids[] = $user_id;
 							$this->paginate = array(
 								'conditions' => array(
 									'NOT' => array(
-										'User.id' => $friends_ids,
-										'User.id' => $user_id
+										'User.id' => $friends_ids
 									)
 								),
 								'limit' => $limit
