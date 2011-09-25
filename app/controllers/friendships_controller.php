@@ -20,17 +20,31 @@ class FriendshipsController extends AppController {
 		 */
 		$this -> autoRender = false;
 		if ($user_id) {
-			$friendlist_a = $this -> Friendship -> find('list', array('fields' => array('Friendship.user_a_id'), 'conditions' => array('Friendship.user_b_id' => $user_id, 'Friendship.is_accepted' => 1, 'Friendship.is_blocked' => 0), 'recursive' => 0));
+			$friendlist_a = $this -> Friendship -> find(
+				'list',
+				array(
+					'fields' => array('Friendship.user_a_id'),
+					'conditions' => array(
+						'Friendship.user_b_id' => $user_id,
+						'Friendship.is_accepted' => 1,
+						'Friendship.is_blocked' => 0
+					),
+					'recursive' => 0
+				)
+			);
 			$friendlist_b = $this -> Friendship -> find('list', array('fields' => array('Friendship.user_b_id'), 'conditions' => array('Friendship.user_a_id' => $user_id, 'Friendship.is_accepted' => 1, 'Friendship.is_blocked' => 0), 'recursive' => 0));
 			// Arreglo de ids a devolver
 			$friends_ids = array();
 			// Llenar el arreglo con las ids del primer resultado
+			$my_id = $this->Session->read('Auth.User.id');
 			foreach ($friendlist_a as $friend_id) {
-				$friends_ids[] = $friend_id;
+				if($friend_id != $my_id)
+					$friends_ids[] = $friend_id;
 			}
 			// Llenar el arreglo con las ids del segundo resultado
 			foreach ($friendlist_b as $friend_id) {
-				$friends_ids[] = $friend_id;
+				if($friend_id != $my_id)
+					$friends_ids[] = $friend_id;
 			}
 			return $friends_ids;
 		} else {

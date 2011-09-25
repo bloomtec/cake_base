@@ -2,8 +2,8 @@
 	<div class="payfoll tab" rel="payfoll"></div>
 	<div class="body">
 		<div class="content" style="width:90%;">
-			<div class="container-paginado no-actions friends" rel="/users/listFriends/criteria:"></div>
-			<div class="container-search all" rel="/users/search/include-friends:0/" id="tabSearch"></div>
+			<div class="container-paginado no-actions friends" rel="/users/listFriends/criteria:/limit:7"></div>
+			<div class="container-search all" rel="/users/search/include-friends:0/limit:14/" id="tabSearch"></div>
 		</div>
 		<div style="clear:both;"></div>
 		<div class="search">
