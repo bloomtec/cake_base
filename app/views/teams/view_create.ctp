@@ -14,7 +14,7 @@
 	<div class="payroll-control">
 
 	</div>
-	<div class="container-paginado add-to-team" rel="/users/listFriends/<?=$this->Session->read('Auth.User.id')?>">
+	<div class="container-paginado add-to-team" rel="/users/listFriends/<?=$this->Session->read('Auth.User.id')?>/limit:3">
 		<!-- AQUI SE CARGA LA VISTA DEL PAGINADO CON AJAX DEBE EXISTIR -->
 	</div>
 	<div class="escudo">
