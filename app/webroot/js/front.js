@@ -336,19 +336,15 @@ $(function(){
 			});				
 		});
 	});
-	$("#tabSearch .paging-no-friends a").live("click",function(e){
+	$("#tabSearch .paging a").live("click",function(e){
 		e.preventDefault();
 		$that=$(this);
-		var $container=$(this).parents(".container-search");
-		if($container.attr("criteria")){
-			var criteria=$($container.attr("criteria")).val();
-		}else{
-			var criteria="";
-		}
-		$that.parents(".container-search").load($that.attr("href"),{},function(){
+		var nombre=$("#nombre").val();
+		var email=$("#email").val();
+		$that.parents("#tabSearch").load($that.attr("href"),{},function(){
 			$.each($(this).find(".paging a"),function(i,val){
 				var href=$(val).attr("href");
-				$(val).attr("href",href+"/criteria:"+criteria)
+				$(val).attr("href",href+"/nombre:"+nombre+"/email:"+email);
 			});				
 		});
 	});
