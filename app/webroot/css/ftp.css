@@ -304,10 +304,11 @@ div.contentWrap {
 }
 #overlay .actions .accept{
 	background: url("../img/fpt/aceptar-overlay.png");
-
-
+	width:72px;
+	height: 72px;
 	float: right;
 	margin-left: 10px;
+	
 }
 #overlay .actions .reject{
 	background: url("../img/fpt/rechazar-overlay.png");
