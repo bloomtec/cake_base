@@ -174,8 +174,8 @@ class UsersController extends AppController {
 							$this->paginate = array(
 								'conditions' => array(
 									'NOT' => array(
-										'User.id' => $user_id,
-										'User.id' => $friends_ids
+										'User.id' => $friends_ids,
+										'User.id' => $user_id
 									)
 								),
 								'limit' => $limit
@@ -196,7 +196,7 @@ class UsersController extends AppController {
 		$this->layout="ajax";
 		$limit = 3;
 		if (isset($this->params['named']['limit']) && !empty($this->params['named']['limit'])) {
-			$limit = $this->params['named']['limist'];
+			$limit = $this->params['named']['limit'];
 		}
 		$user_id=$this->Auth->user("id");
 		if($user_id) {
