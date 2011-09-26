@@ -20,9 +20,9 @@ class TeamsController extends AppController {
 	 */
 	function ajaxSearch() {
         $this->layout="ajax";
-        if(!empty($this->params['named']['criteria']) && isset($this->params['named']['criteria'])) {
-        	$limit = 9;
-        	if(!empty($this->params['named']['limit']) && isset($this->params['named']['limit'])) {
+        if(isset($this->params['named']['criteria'])) {
+        	$limit = 3;
+        	if(isset($this->params['named']['limit'])) {
         		$limit = $this->params['named']['limit'];
 			}
             $criteria = $this->params['named']['criteria'];
@@ -32,7 +32,7 @@ class TeamsController extends AppController {
                 $user_teams_ids[] = $key;
             }
 			$this->paginate=array("limit"=>$limit);
-            $this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
+			$this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
         }
     }
 	
