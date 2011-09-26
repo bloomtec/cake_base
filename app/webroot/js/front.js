@@ -409,9 +409,8 @@ $(function(){
 		e.preventDefault();
 		var $that=$(this);
 		BJS.get($that.attr("href"),{},function(data){
-			$(".team-add-notificacion").html(data);
+			$that.siblings(".team-add-notificacion").html(data);
 		});
-		
 	});
 	/*
 	 *PAYFOLL TAB (tambien conocida como resultados de busqueda) 
