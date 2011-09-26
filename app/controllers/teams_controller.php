@@ -73,7 +73,10 @@ class TeamsController extends AppController {
 	}
 	
 	function listUserTeams($user_id = null) {
-		$user_teams_ids = $this -> Team -> UsersTeam -> find('list', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id), 'fields' => 'UsersTeam.team_id'));
+		if(empty($user_id)) {
+			$user_id = $this->Session->read('Auth.User.id');
+		}
+		$user_teams_ids = $this -> Team -> UsersTeam -> find('list', array('recursive' => -1, 'conditions' => array('UsersTeam.user_team_status_id' => 2, 'UsersTeam.user_id' => $user_id), 'fields' => 'UsersTeam.team_id'));
 		$teams = $this->paginate('Team', array('Team.id' => $user_teams_ids));
 		$this -> set('teams', $teams);
 	}
@@ -105,7 +108,8 @@ class TeamsController extends AppController {
 			array(
 				'recursive' => -1,
 				'conditions' => array(
-					'UsersTeam.user_id' => $this -> Session -> read('Auth.User.id')
+					'UsersTeam.user_id' => $this -> Session -> read('Auth.User.id'),
+					'UsersTeam.user_team_status_id' => 2
 				),
 				'fields' => array(
 					'UsersTeam.team_id'
