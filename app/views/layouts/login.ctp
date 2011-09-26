@@ -52,7 +52,7 @@
 		<div id="footer">
 			powered by 
 			<?php echo $this->Html->link(
-					$this->Html->image('bloom_naranja.png', array('alt'=> __('Bloom Web Company', true),"height"=>15, 'border' => '0')),
+					$this->Html->image('../img/cms/bloom_naranja.png', array('alt'=> __('Bloom Web Company', true),"height"=>15, 'border' => '0')),
 					'http://www.bloomweb.co/',
 					array('target' => '_blank', 'escape' => false)
 				);

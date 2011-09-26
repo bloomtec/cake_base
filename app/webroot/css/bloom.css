@@ -104,6 +104,13 @@ ul, li {
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
 }
+#container #menu_principal {
+	float:left;
+}
+#container #menu_principal li  {
+	list-style: none;
+	margin-bottom:5px;
+}
 #footer {
 	clear: both;
 	padding: 6px 10px;
@@ -589,7 +596,7 @@ div.code-coverage-results span.result-good {
 	
 .centrar {
 	margin: 0 auto;
-	background-image: url('../img/ez_logo.png');
+	background-image: url('../img/cms/ez_logo.png');
 	background-position:45px 38px;
 	background-repeat:no-repeat;
 }
@@ -665,7 +672,7 @@ form input{
 	
 }
 #background2{
-	background-image: url('../img/logo_fondo.png');
+	background-image: url('../img/cms/logo_fondo.png');
 	background-position:left bottom;
 	background-repeat:no-repeat;
 	position:absolute;
@@ -674,7 +681,7 @@ form input{
 	bottom:0;
 	left:0;
 }
-div.message {
+#login div.message {
 	background: none;
 	color:red;
 	font-size: 10px;
