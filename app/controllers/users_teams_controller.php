@@ -84,7 +84,7 @@ class UsersTeamsController extends AppController {
 				$this->loadModel("TeamNotification");
 				$this->TeamNotification->create();
 				$this->TeamNotification->set('team_id', $team_id);
-				$this->TeamNotification->set('user_id', $user_id);
+				$this->TeamNotification->set('player_id', $user_id);
 				$this->TeamNotification->set('subject', $subject);
 				$this->TeamNotification->set('content', $content);
 				if ($this -> TeamNotification -> save()) {

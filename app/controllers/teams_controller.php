@@ -73,6 +73,7 @@ class TeamsController extends AppController {
 	}
 	
 	function listUserTeams($user_id = null) {
+		$this->layout="ajax";
 		if(empty($user_id)) {
 			$user_id = $this->Session->read('Auth.User.id');
 		}
