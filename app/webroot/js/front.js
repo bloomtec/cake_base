@@ -410,6 +410,7 @@ $(function(){
 		var $that=$(this);
 		BJS.get($that.attr("href"),{},function(data){
 			$that.siblings(".team-add-notificacion").html(data);
+			Cufon.refresh("body");
 		});
 	});
 	/*

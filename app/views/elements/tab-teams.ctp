@@ -18,6 +18,9 @@
 			<h2 class="selected"><?php echo $html -> link("Crear", array("controller" => "teams", "action" => "viewCreate"), array("class" => "load"));?></h2>
 			<br />
 			<h2 class="selected"><?php echo $html -> link("Buscar", array("controller" => "teams", "action" => "search"), array("class" => "load"));?></h2>
+			<div class="notificaciones-equipos">
+				
+			</div>
 		</div>
 		<div class="content"></div>
 		<div style="clear:both;"></div>
