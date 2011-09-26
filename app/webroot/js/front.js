@@ -404,6 +404,14 @@ $(function(){
 			$(".match-confirmation").html(data);
 		});
 	});
+	
+	$(".team .actions .add").live("click",function(){
+		var $that=$(this);
+		BJS.get($that.attr("href"),fields,function(data){
+			$(".team-add-notificacion").html(data);
+		});
+		
+	});
 	/*
 	 *PAYFOLL TAB (tambien conocida como resultados de busqueda) 
 	 * */

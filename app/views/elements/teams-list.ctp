@@ -4,7 +4,7 @@
 	?>
 	<li class="team">
 		<div class="actions">
-			<?php echo $html->link($html->image("boton-add.png"),array("controller"=>"teams","action"=>"request"),array("escape"=>false,"title"=>"Añadir","class"=>"add"))
+			<?php echo $html->link($html->image("boton-add.png"),array("controller"=>"usersTeams","action"=>"requestJoinTeam","team_id"=>$team["Team"]["id"]),array("escape"=>false,"title"=>"Añadir","class"=>"add"))
 			?>
 			<?php echo $html->link("retar",array("controller"=>"challenges","action"=>"challengeFromSearch",$team["Team"]["id"]),array("escape"=>false,"title"=>"Añadir","class"=>"challenge overlay"))
 			?>
