@@ -29,7 +29,7 @@
 	<div style="clear: both;">	</div>
 	<br />
 	<h2> Equipos: </h2>
-	<div class="container-paginado teams" rel="/usersTeams/viewUserTeams/".$userField["UserField"]["user_id"]>
+	<div class="container-paginado teams" rel="/teams/listUserTeams/".$userField["UserField"]["user_id"]>
 		
 	</div>
 </div>
