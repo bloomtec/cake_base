@@ -172,6 +172,21 @@ ul.listado{
 	height:140px;
 	
 }
+.listado li .mask{
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	background:#ffffff;
+	opacity: 0.3;
+	color:#BD0C1E;
+	z-index: 5;
+	text-align: center;
+	display: none;
+}
+.listado li .mask span{
+	margin-top: 60px;
+	display: block;
+}
 .listado li .actions{
 	position:absolute;
 	top:0;
@@ -180,7 +195,7 @@ ul.listado{
 }
 .listado li .actions div{
 	float:right;
-	margin-left:3px;
+	margin-left:1px;
 	background: #BD0C1E;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -233,8 +248,8 @@ ul.listado{
 }
 #overlay a.close{
 	float:right;
-	margin-right:10px;
-	margin-top:5px;
+	margin-right:1px;
+	margin-top:-23px;
 }
 	
 div.contentWrap {
@@ -284,7 +299,17 @@ div.contentWrap {
 	color:white;
 }
 #overlay textarea{
-	width:340px;
+	width:530px;
+	border:dashed 2px white;
+	color:white;
+	background: none;
+}
+#overlay .confirmacion{
+	font-size: 16px;
+}
+#overlay .view-calling{
+	width: 90%;
+	margin: 0 auto;
 }
 #overlay .submit input{
 	background:url(../img/fpt/aceptar-overlay.png);
@@ -481,6 +506,17 @@ div.contentWrap {
 	height: 100px;
 	margin: 0 auto;
 	background: black;	
+}
+.view-calling  .info-team img{
+	float:left;
+	max-width: 100px;
+	max-height: 100px;
+	
+}
+.view-calling  .info-team p{
+	float:left;
+	margin-left: 20px;
+	
 }
 .view-calling .container-paginado{
 	width: 550px; 

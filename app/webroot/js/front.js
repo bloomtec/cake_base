@@ -277,11 +277,16 @@ $(function(){
 		var $that=$(this);
 		var $container=$that.parents(".container-paginado");
 		var teamId=$container.attr("team");
-		var playerId=$that.parent().parent().attr("rel");
+		var $player=$that.parent().parent();
+		var playerId=$player.attr("rel");
+		var $mask=$player.find(".mask");
+		$mask.show();
 		BJS.post("/usersTeams/ajax_callUserToTeam/team_id:"+teamId+"/user_id:"+playerId,{},function(data){
 			if(data){
 				$that.after("<div class='convocado'> Convocado </div>");
 			}
+			$mask.hide();
+			Cufon.refresh("body");
 		});
 	});
 	$(".payroll-control .player .remove").live("click",function(){
@@ -290,31 +295,42 @@ $(function(){
 		$("#create-team input[rel='"+rel+"']").remove();
 		
 	});
-	$(".team-create button").live("click",function(){
+/*	$(".team-create button").live("click",function(){
 		var idForm=$(this).attr("rel");
 		$("form"+idForm).submit();
-	});
+	});*/
 	$(".team-create button").live("click",function(){
 		var idForm=$(this).attr("rel");
 		var form=$("form"+idForm);
 		/*VALIDAR NOMBRE*/
-		if(form.find("input[value='']")){
+		if($("#TeamName").val()==""){
+
 			$(".mensaje-error").html("Todos lo campos son obligatorios");
 			setTimeout(function(){
 				$(".mensaje-error").html("");
 			},1000);
 		}else{
 			//MENSAJE DE ERROR
-			$("form"+idForm).submit();
-		}
+			var fields=form.serialize();
+			var data={}
+			$(".mensaje-error").html("Creando el equipo...");
+			 BJS.post(form.attr("action"),fields,function(data){
+			 	if(data){
+			 		$(".mensaje-error").hide().html("El equipo ha sido creado").fadeIn();;
+			 	}else{
+			 		$(".mensaje-error").html("No se pudo crear el equipo");
+			 	}
+			 });
+			}
 		
 	});
 	$("#overlay form").live("submit",function(e){
 		e.preventDefault();
 		var form=$(this);
 		var fields=$(this).serialize();
+		$(".respuesta").html("Enviando datos...");
 		BJS.post(form.attr("action"),fields,function(data){
-		 	$(".respuesta").html(data);
+		 	$(".respuesta").hide().html(data).fadeIn();;
 		 	form.find(".confirmacion").html(data);
 		 });
 	});
@@ -409,8 +425,17 @@ $(function(){
 	$(".team .actions .add").live("click",function(e){
 		e.preventDefault();
 		var $that=$(this);
+		$team =$that.parent().parent();
+		var $mask=$team.find(".mask");
+		$mask.show();
 		BJS.get($that.attr("href"),{},function(data){
-			$that.siblings(".team-add-notificacion").html(data);
+			if(data){
+				$that.siblings(".add").remove();
+				$mask.find("span").html("En espera de aceptación");	
+			}else{
+				$mask.find("span").html("Erros");	
+			}
+
 			Cufon.refresh("body");
 		});
 	});

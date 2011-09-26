@@ -8,7 +8,7 @@
 		 * Como se hace para seleccionar y enviar eso al controlador
 		 * para manejar el proceso de convocatorio
 		 */
-		echo $this->Form->hidden('image',array("id"=>"single-field"));
+		echo $this->Form->hidden('image',array("id"=>"single-field","value"=>"default-image-team.png"));
 		echo $this->Form->end();
 	?>
 	<div class="payroll-control">
@@ -24,8 +24,8 @@
 		</div>
 		<div id="uploadfy"></div>
 	</div>
-	<button rel="#create-team"> CREAR EQUIPO </button>
-	<div class="mensaje-error">
+	<button rel="#create-team" value="crear"> CREAR EQUIPO </button>
+	<div class="mensaje-error respuesta">
 		
 	</div>
 </div>

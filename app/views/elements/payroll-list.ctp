@@ -1,6 +1,9 @@
 <ul class="nomina listado">
 		<?php foreach($payroll as $user):?>
 			<li class="player">
+				<div class="mask">
+					<span>Enviando datos..</span>
+				</div>
 				<div class="actions">
 					<?php echo $html->link($html->image("boton-add.png"),array("controller"=>"users","action"=>"addToFriends"),array("escape"=>false,"title"=>"A�adir"))?>
 				</div>

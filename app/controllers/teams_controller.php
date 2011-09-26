@@ -234,7 +234,7 @@ class TeamsController extends AppController {
 				echo false;
 			}
 		}
-		configure::write("debug",0);
+		Configure::write("debug",0);
 		$this->autoRender=false;
 		exit(0);
 	}
