@@ -1,1 +1,1 @@
-<?php echo $this->element("teams-list")?>
+<?php echo $this->element("teams-list");?>

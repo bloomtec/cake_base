@@ -25,14 +25,23 @@ class TeamsController extends AppController {
         	if(isset($this->params['named']['limit'])) {
         		$limit = $this->params['named']['limit'];
 			}
-            $criteria = $this->params['named']['criteria'];
+			$criteria = $this->params['named']['criteria'];
             $user_teams_data = $this->myTeams();
             $user_teams_ids = array();
             foreach($user_teams_data as $key=>$val) {
                 $user_teams_ids[] = $key;
             }
+			$teams = $this->paginate(
+				'Team',
+				array(
+					'Team.name LIKE' => "%$criteria%",
+					'NOT' => array(
+						'Team.id' => $user_teams_ids
+					)
+				)
+			);
 			$this->paginate=array("limit"=>$limit);
-			$this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
+			$this->set("teams", $teams);
         }
     }
 	
