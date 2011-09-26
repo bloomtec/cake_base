@@ -405,7 +405,8 @@ $(function(){
 		});
 	});
 	
-	$(".team .actions .add").live("click",function(){
+	$(".team .actions .add").live("click",function(e){
+		e.preventDefault();
 		var $that=$(this);
 		BJS.get($that.attr("href"),fields,function(data){
 			$(".team-add-notificacion").html(data);
