@@ -189,9 +189,13 @@ class TeamsController extends AppController {
 	}
 	
 	function payroll($id){
+		$limit = 8;
+		if(isset($this->params['named']['limit'])) {
+			$limit = $this->params['named']['limit'];
+		}
 		$this->layout="ajax";
         $users_ids = $this->Team->UsersTeam->find('list', array('conditions' => array('UsersTeam.team_id' => $id, 'UsersTeam.user_team_status_id' => 2), 'fields' => array('UsersTeam.user_id')));
-        $this->paginate=array("limit"=>8);
+        $this->paginate=array("limit"=>$limit);
 		$this->set("payroll", $this->paginate("User", array('User.id' => $users_ids)));
 	}
 
