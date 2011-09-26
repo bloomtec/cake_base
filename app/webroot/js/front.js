@@ -270,6 +270,7 @@ $(function(){
 				"<input type='hidden' name='data[User][User]["+player.attr('rel')+"]' value='"+player.attr('rel')+"' rel='"+player.attr('rel')+"' />"
 			);
 		}
+		Cufon.refresh("body");
 	});
 	$(".convocar .player .add").live("click",function(e){
 		e.stopPropagation()

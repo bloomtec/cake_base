@@ -213,25 +213,27 @@ class TeamsController extends AppController {
 				$this->Team->UsersTeam->set('is_captain', true);
 				$this->Team->UsersTeam->set('user_team_status_id', 2);
 				$this->Team->UsersTeam->save();
-				foreach($this->data['User']['User'] as $key=>$user_id) {
-					$this->Team->UsersTeam->create();
-					$this->Team->UsersTeam->set('user_id', $user_id);
-					$this->Team->UsersTeam->set('team_id', $team_id);
-					$this->Team->UsersTeam->set('is_captain', false);
-					$this->Team->UsersTeam->set('user_team_status_id', 1);
-					if($this->Team->UsersTeam->save()) {
-						$team_name = $this->requestAction('/teams/getTeamName/' . $this->Team->id);
-						$subject = "Convocatoria Al Equipo :: $team_name";
-						$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/users_teams/viewCalling/$user_id/$team_id\">Ver más</a></div>";
-						$this->loadModel("UserNotification");
-						$this->UserNotification->create();
-						$this->UserNotification->set('user_id', $user_id);
-						$this->UserNotification->set('subject', $subject);
-						$this->UserNotification->set('content', $content);
-						$this->UserNotification->save();
+				if(isset($this->data['User']['User'] )){
+					foreach($this->data['User']['User'] as $key=>$user_id) {
+						$this->Team->UsersTeam->create();
+						$this->Team->UsersTeam->set('user_id', $user_id);
+						$this->Team->UsersTeam->set('team_id', $team_id);
+						$this->Team->UsersTeam->set('is_captain', false);
+						$this->Team->UsersTeam->set('user_team_status_id', 1);
+						if($this->Team->UsersTeam->save()) {
+							$team_name = $this->requestAction('/teams/getTeamName/' . $this->Team->id);
+							$subject = "Convocatoria Al Equipo :: $team_name";
+							$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/users_teams/viewCalling/$user_id/$team_id\">Ver más</a></div>";
+							$this->loadModel("UserNotification");
+							$this->UserNotification->create();
+							$this->UserNotification->set('user_id', $user_id);
+							$this->UserNotification->set('subject', $subject);
+							$this->UserNotification->set('content', $content);
+							$this->UserNotification->save();
+						}
 					}
 				}
-				echo true;
+			echo true;
 			} else {
 				echo false;
 			}
