@@ -39,10 +39,9 @@
 		echo $scripts_for_layout;
 	?>
 </head>
-<body>
+<body id="login">
+	
 	<div id="container">
-		<div id="header">
-		</div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
@@ -60,6 +59,7 @@
 			?>
 		</div>
 	</div>
+	<div id="background2"></div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

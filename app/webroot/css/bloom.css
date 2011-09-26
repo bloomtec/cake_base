@@ -23,7 +23,7 @@
 
 /** General Style Info **/
 body {
-	background: white;
+	background-color:#333333;;
 	color: black;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
@@ -71,11 +71,13 @@ ul, li {
 
 /** Layout **/
 #container {
-	text-align: left;
+	width: 960px;
+	margin:0 auto;
 }
 
 #header{
 	padding: 10px 20px;
+	height: 85px;
 }
 #header h1 {
 	line-height:20px;
@@ -95,8 +97,9 @@ ul, li {
 	text-decoration: underline;
 }
 #content{
-	background: #fff;
-	clear: both;
+	background: #f4f2f2;
+	width:720px;
+	float:right;
 	color: #333;
 	padding: 10px 20px 40px 20px;
 	overflow: auto;
@@ -300,7 +303,7 @@ label {
 input, textarea {
 	clear: both;
 	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	padding: 1%;
 	width:98%;
 }
@@ -339,17 +342,19 @@ input[type=submit] {
 	width: auto;
 }
 form .submit input[type=submit] {
-	background:#62af56;
-	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
-	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
-	border-color: #2d6324;
-	color: #000;
-	text-shadow: #8cee7c 0px 1px 0px;
-}
-form .submit input[type=submit]:hover {
-	background:#4ca83d;
-	background: -webkit-gradient(linear, left top, left bottom, from(#85e573), to(#4ca83d));
-	background-image: -moz-linear-gradient(top, #85e573, #4ca83d);
+	background-image:url(../img/trama_boton.png);
+	border-color: #666666;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+	width: 110px;
+	height: 31px;
+	cursor:pointer; 
+	-moz-box-shadow::1px 3px 2px #a9a8a8;
+	-webkit-box-shadow: 1px 3px 2px #a9a8a8;
+	box-shadow: 1px 3px 2px #a9a8a8;
 }
 
 /** Notices and Errors **/
@@ -576,4 +581,102 @@ div.code-coverage-results span.result-good {
 }
 .setInactive{
 	background-image:url(../img/set-inactive.png);
+}
+
+
+
+/** login styles **/
+	
+.centrar {
+	margin: 0 auto;
+	background-image: url('../img/ez_logo.png');
+	background-position:45px 38px;
+	background-repeat:no-repeat;
+}
+#login #container{
+	position: absolute;
+	z-index: 2;
+	height:294px;
+	top:50%;
+	margin-top:-147px;
+	width: 100%;
+	
+}
+	
+	
+#login #content {
+	background: none;
+	margin:0 auto;
+}
+#login fieldset {
+	background-color: #f4f2f2;
+	width: 560px;
+	border: 1px solid #000;
+	-moz-box-shadow::1px 3px 2px #201F1F;
+	-webkit-box-shadow: 1px 3px 2px #201F1F;
+	box-shadow: 1px 3px 2px #201F1F;
+	
+}
+input {
+	width: 300px;
+	height: 32px;
+
+	
+}
+form .required{
+	float:right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+form .input{
+	float:right;
+
+}
+form input{
+	border:1px solid #333333;
+}
+#login label{
+	margin-bottom: 8px;
+	font-size: 14px;
+	color:#000000;
+}
+#login form div{
+	margin: 0;
+}
+#login .submit {
+	float:right;
+}
+#footer{
+	width: 482px;
+	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color:#fff;
+}
+#login #content {
+	padding-bottom:0;
+	float:none;
+}
+#login {
+	position:absolute;
+	width: 100%;
+	height:100%;
+	
+}
+#background2{
+	background-image: url('../img/logo_fondo.png');
+	background-position:left bottom;
+	background-repeat:no-repeat;
+	position:absolute;
+	width: 348px;
+	height:342%;
+	bottom:0;
+	left:0;
+}
+div.message {
+	background: none;
+	color:red;
+	font-size: 10px;
+	float:right;
 }

@@ -10,6 +10,7 @@ class UsersController extends AppController {
 	 * utiliza Auth component.
 	 */
 	function beforeFilter() {
+		parent::beforeFilter();
 		$this -> Auth -> allow('register');
 	}
 
@@ -27,6 +28,7 @@ class UsersController extends AppController {
 	}
 
 	function admin_login() {
+		$this->layout="login";
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
 			if (!empty($user) && $this -> Auth -> login($user)) {

@@ -36,8 +36,10 @@ class AppController extends Controller {
 	var $components = array('Auth', 'Acl', 'Session');
 	
 	function beforeFilter() {
+		
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
+			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
 			$this->Auth->deny($this->action);
 		} else {
 			$this->layout="bloom";
