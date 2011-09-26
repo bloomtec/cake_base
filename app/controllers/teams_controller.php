@@ -20,15 +20,19 @@ class TeamsController extends AppController {
 	 */
 	function ajaxSearch() {
         $this->layout="ajax";
-        if(!empty($this->params) && isset($this->params['named']['criteria'])) {
+        if(isset($this->params['named']['criteria'])) {
+        	$limit = 3;
+        	if(isset($this->params['named']['limit'])) {
+        		$limit = $this->params['named']['limit'];
+			}
             $criteria = $this->params['named']['criteria'];
             $user_teams_data = $this->myTeams();
             $user_teams_ids = array();
             foreach($user_teams_data as $key=>$val) {
                 $user_teams_ids[] = $key;
             }
-			$this->paginate=array("limit"=>2);
-            $this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
+			$this->paginate=array("limit"=>$limit);
+			$this->set("teams", $this->paginate('Team', array('Team.name LIKE' => "%$criteria%", 'NOT Team.id' => $user_teams_ids)));
         }
     }
 	
