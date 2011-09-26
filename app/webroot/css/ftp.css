@@ -593,3 +593,15 @@ div.contentWrap {
 	float:left;
 	margin-left: 8px;
 }
+#overlay .container-search, .container-paginado{
+	clear:both;
+	padding:3px 0;
+	width: 90%;
+	
+}
+#overlay .team .actions{
+	width: 100%;	
+}
+#overlay .player .actions{
+	width: 100%;	
+}
