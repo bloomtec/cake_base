@@ -10,7 +10,7 @@ class ImagesController extends AppController {
 		Configure::write("debug", 0);
 			
 		if($_POST["name"]) {
-			if($_POST["name"]!="defaul-image-profile.jpg"){
+			if($_POST["name"]!="defaul-image-profile.jpg"&&$_POST["name"]!="default-image-team.png"){
 				$this->Attachment->resize_image(
 					"resize",
 					"img/uploads/" . $_POST["name"],

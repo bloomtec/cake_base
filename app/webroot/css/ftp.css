@@ -357,9 +357,11 @@ div.contentWrap {
 	border-left: solid 1px;
 	text-align: center;
 	width: 15px;
+	color:black;
 }
 #teams .payroll-control .player .container{
 	float:left;
+	color:black;
 }
 #teams .escudo .preview {
 	width: 200px;
