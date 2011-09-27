@@ -1,6 +1,9 @@
 <ul class="nomina listado">
 		<?php foreach($friends as $user):?>
 			<li class="player" rel="<?=$user["User"]["id"]?>">
+				<div class="mask">
+					<span>Enviando..</span>
+				</div>				
 				<div class="actions">
 					<?php echo $html->link($html->image("boton-add.png"),"#",array("escape"=>false,"title"=>"Añadir","class"=>"add"))?>
 					
