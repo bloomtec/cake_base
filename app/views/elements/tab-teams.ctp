@@ -20,7 +20,7 @@
 			<h2 class="selected"><?php echo $html -> link("Buscar", array("controller" => "teams", "action" => "search"), array("class" => "load"));?></h2>
 			
 			<div class="content" style="width:90%; height: 300px">
-				<div class="notificacions" rel="/team_notifications/viewNotifications"></div>
+				<div class="team-notifications" rel="/team_notifications/viewNotifications"></div>
 			</div>
 		</div>
 		<div class="content"></div>

@@ -468,6 +468,9 @@ $(function(){
 	});
 	$notificaciones=$(".notifications");
 	$(".notifications").load($notificaciones.attr("rel"));
+	$teamNotificacioones=$(".team-notifications");
+	//console.log($teamNotificacioones);
+	$(".team-notifications").load($teamNotificacioones.attr("rel"));
 	
 	/*
 	 * My Profile
