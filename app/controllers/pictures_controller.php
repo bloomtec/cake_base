@@ -31,7 +31,26 @@ class PicturesController extends AppController {
 		exit(0);
 
 	}
+	function getBackgrounds() {
+		// si esta logeuado devuelve el album members id=2
+		// si no está logueado devuelve el album publico id=1
+		$image="";
+		$imagenes=array();
+		if ($this -> Auth -> user()) {//logueado
+			$image = $this -> Picture -> find("all", array( "conditions" => array("gallery_id" => 2)));
+			foreach($image as $pic){
+				$imagenes[]["image"]="/img/uploads/".$pic["Picture"]["image"];
+			}
+		} else {
+			$image = $this -> Picture -> find("all", array("conditions" => array("gallery_id" => 1)));
+			foreach($image as $pic){
+				$imagenes[]["image"]="/img/uploads/".$pic["Picture"]["image"];
+			}
+		}
+		return $imagenes;
+	
 
+	}
 	function add() {
 		if (!empty($this -> data)) {
 			$this -> Picture -> create();
