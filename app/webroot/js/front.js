@@ -83,6 +83,6 @@ $(function(){
 
 //SLIDE
 	$(".scrollable").scrollable({
-		circular:true;
+		circular:true
 	});
 });
