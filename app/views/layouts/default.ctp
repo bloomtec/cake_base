@@ -48,9 +48,6 @@
 		}
 	?>
 	var imagenes=<?php echo  json_encode($this->requestAction("/pictures/getBackgrounds"));?>;
-	jQuery(function($){
-
-		    });
 	</script>
 </head>
 <body>

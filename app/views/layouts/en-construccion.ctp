@@ -42,17 +42,27 @@
 	<?php 
 		if($session->read("Auth.User.id")){
 			echo "var isMember=true;";
+			echo "var imagenes=[{'image':'/img/pitaya-on.jpg'}];";
 		}else{
 			echo "var isMember=false;";
+			echo "var imagenes=[{'image':'/img/pitaya-off.jpg'}];";
 		}
+		
 	?>
+	
 	</script>
 </head>
-<body>
-	
-	<div id="footer">
-
-	</div>
+<body style="min-height: 100%">
+	<ul id="footer" style="background-color:#AFD349">
+		<li> <a href="/view/accomodation">Acomodation</a> /</li>
+		<li> <a href="/view/activities">Activities</a> /</li>
+		<li> <a href="/view/information_reservation">information and reservation</a> </li>
+		<li> <a href="/view/about">About us</a> /</li>
+		<li> <a href="/view/contact">Contact</a> /</li>
+		<li> <a href="/view/policies">Policies</a> /</li>
+		<li> <a href="/view/disclaimer">Disclaimer</a> /</li>
+		<li> <a href="/view/warranty">Warranty and consumer Satisfaction</a> </li>
+	</ul>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
