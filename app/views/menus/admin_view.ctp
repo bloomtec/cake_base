@@ -1,11 +1,7 @@
 <div class="menus view">
 <h2><?php  __('Menu');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $menu['Menu']['id']; ?>
-			&nbsp;
-		</dd>
+
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Wysiwyg Title'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $menu['Menu']['wysiwyg_title']; ?>
@@ -60,7 +56,6 @@
 				}
 			?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__(' ', true), array('controller' => 'pages', 'action' => 'view', $page['id']),array("class"=>"icon view","title"=>"view")); ?>
 				<?php 
 					if( $page['page_type_id']==1){
 						echo $this->Html->link(__(' ', true), array('controller' => 'pages', 'action' => 'editTextPage', $page['id']),array("class"=>"icon edit")); 

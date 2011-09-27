@@ -189,7 +189,7 @@ class PagesController extends AppController {
 		if (!empty($this -> data)) {
 			if ($this -> Page -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'view',$this->data["Page"]["menu_id"]));
 			} else {
 				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
 			}
@@ -210,7 +210,7 @@ class PagesController extends AppController {
 		if (!empty($this -> data)) {
 			if ($this -> Page -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('controller' => 'menus', 'action' => 'index'));
+				$this -> redirect(array('controller' => 'menus', 'action' => 'view',$this->data["Page"]["menu_id"]));
 			} else {
 				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
 			}
@@ -249,9 +249,10 @@ class PagesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid id for page', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$page=$this->Page->read(null,$id);
 		if ($this -> Page -> delete($id)) {
 			$this -> Session -> setFlash(__('Page deleted', true));
-			$this -> redirect(array('action' => 'index'));
+			$this -> redirect(array('controller' => 'menus', 'action' => 'view',$page["Page"]["menu_id"]));
 		}
 		$this -> Session -> setFlash(__('Page was not deleted', true));
 		$this -> redirect(array('action' => 'index'));

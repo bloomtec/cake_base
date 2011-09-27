@@ -122,11 +122,22 @@ h5 {
 #footer{
 	width:100%;
 	text-align: center;
-	background: url("../img/pitaya-footer.jpg") no-repeat center center;
-	height:50px;
+	height:40px;
 	position: absolute;
-	bottom:0;
+	bottom:5px;
+	color:white;
 }
+#footer li{
+	display: inline;
+	line-height: 40px;	
+	margin:0 3px;
+}
+#footer li a{
+	color:white;
+	text-decoration: none;
+}
+
+
 /*PAGES SLIDE*/
 
 a.browse {
@@ -135,7 +146,8 @@ display:block;
 width:30px;
 height:65px;
 top:50%;
-margin-top:-32.5px;
+/*margin-top:-32.5px;*/
+margin-top:-70px;
 cursor:pointer;
 }
 a.browse.prev{

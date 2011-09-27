@@ -578,6 +578,12 @@ div.code-coverage-results span.result-good {
 .icon.setInactive{
 	background-image:url(../img/set-inactive.png);
 }
+.icon.page-text{
+	background-image:url(../img/btn_texto.png);
+}
+.icon.page-gallery{
+	background-image:url(../img/btn_imagen.png);
+}
 /*
  GALERIA DE IMAGENES
  * */

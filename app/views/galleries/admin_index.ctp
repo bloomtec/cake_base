@@ -3,7 +3,7 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 				
-		<th><?php echo $this->Paginator->sort('id');?></th>
+
 						
 		<th><?php echo $this->Paginator->sort('name');?></th>
 						
@@ -23,7 +23,7 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $gallery['Gallery']['id']; ?>&nbsp;</td>
+
 		<td><?php echo $gallery['Gallery']['name']; ?>&nbsp;</td>
 		<td><?php echo $gallery['Gallery']['description']; ?>&nbsp;</td>
 		<td><?php echo $gallery['Gallery']['created']; ?>&nbsp;</td>
@@ -31,7 +31,7 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'view', $gallery['Gallery']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__(' ', true), array('action' => 'edit', $gallery['Gallery']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__(' ', true), array('action' => 'delete', $gallery['Gallery']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $gallery['Gallery']['id'])); ?>
+			<?php //echo $this->Html->link(__(' ', true), array('action' => 'delete', $gallery['Gallery']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $gallery['Gallery']['id'])); ?>
 			<?php if(isset($gallery['Gallery']['active'])&& $gallery['Gallery']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $gallery['Gallery']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $gallery['Gallery']['id']));
 }?>

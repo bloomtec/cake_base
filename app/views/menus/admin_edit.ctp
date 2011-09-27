@@ -4,7 +4,7 @@
 		<legend><?php __('Admin Edit Menu'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
-		echo $this->Form->input('wysiwyg_title',array('label'=>false));
+		echo $this->Form->textarea('wysiwyg_title',array('label'=>false));
 		echo $this->Form->input('background_code');
 		echo $this->Form->input('slug');
 	?>

@@ -2,8 +2,8 @@
 	<h2><?php __('Menus');?></h2>
 	<table cellpadding="0" cellspacing="0">
 		<tr>
-			<th><?php echo $this -> Paginator -> sort('id');?></th>
-			<th><?php echo $this -> Paginator -> sort('wysiwyg_title');?></th>
+
+			<th><?php echo $this -> Paginator -> sort('Title','wysiwyg_title');?></th>
 			<th><?php echo $this -> Paginator -> sort('background_code');?></th>
 			<th><?php echo $this -> Paginator -> sort('slug');?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -17,13 +17,14 @@ $class = ' class="altrow"';
 }
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $menu['Menu']['id'];?>&nbsp;</td>
+
 			<td><?php echo $menu['Menu']['wysiwyg_title'];?>&nbsp;</td>
 			<td><?php echo $menu['Menu']['background_code'];?>&nbsp;</td>
 			<td><?php echo $menu['Menu']['slug'];?>&nbsp;</td>
 			<td class="actions"><?php
-			echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addTextPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'edit icon', 'title' => __('Add Text Page', true)));
-			echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addGalleryPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'edit icon', 'title' => __('Add Gallery Page', true)));
+			echo $this->Html->link(__(' ', true), array('action' => 'edit',$menu['Menu']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); 
+			echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addTextPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'page-text icon', 'title' => __('Add Text Page', true)));
+			echo $this -> Html -> link(__(' ', true), array('controller' => 'pages', 'action' => 'addGalleryPage', $menu['Menu']['id'], $menu['Menu']['wysiwyg_title']), array('class' => 'page-gallery icon', 'title' => __('Add Gallery Page', true)));
 			?>
 			<?php echo $this -> Html -> link(__(' ', true), array('action' => 'view', $menu['Menu']['id']), array('class' => 'view icon', 'title' => __('View', true)));?>
 			<?php //echo $this -> Html -> link(__(' ', true), array('action' => 'edit', $menu['Menu']['id']), array('class' => 'edit icon', 'title' => __('Edit', true)));?>

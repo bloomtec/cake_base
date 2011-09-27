@@ -28,7 +28,7 @@
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 	Router::connect('/view/*', array('controller' => 'menus', 'action' => 'display'));
-	Router::connect('/admin', array('controller' => 'menus', 'action' => 'index',"admin"=>true));
+	Router::connect('/admin', array('controller' => 'users', 'action' => 'login',"admin"=>true));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

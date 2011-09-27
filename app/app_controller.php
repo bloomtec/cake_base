@@ -37,6 +37,7 @@ class AppController extends Controller {
 	
 	function beforeFilter() {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
+			$this->Auth->loginRedirect=array("controller"=>"menus","action"=>"index","admin"=>true);
 			$this->layout="bloom";
 			$this->Auth->deny($this->action);
 			//$this->Auth->allow($this->action);

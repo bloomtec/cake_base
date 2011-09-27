@@ -3,9 +3,8 @@
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 				
-		<th><?php echo $this->Paginator->sort('id');?></th>
 						
-		<th><?php echo $this->Paginator->sort('wysiwyg_title');?></th>
+		<th><?php echo $this->Paginator->sort('Title','wysiwyg_title');?></th>
 						
 		<th><?php echo $this->Paginator->sort('background_code');?></th>
 						
@@ -21,7 +20,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $menu['Menu']['id']; ?>&nbsp;</td>
 		<td><?php echo $menu['Menu']['wysiwyg_title']; ?>&nbsp;</td>
 		<td><?php echo $menu['Menu']['background_code']; ?>&nbsp;</td>
 		<td><?php echo $menu['Menu']['slug']; ?>&nbsp;</td>

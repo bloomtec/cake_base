@@ -64,14 +64,20 @@
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $content_for_layout; ?>
 
 		</div>
 	</div>
-	<div id="footer">
-
-	</div>
+	<ul id="footer" style="<?php if(isset($menu["Menu"]["background_code"])) echo 'background-color:'.$menu["Menu"]["background_code"];?>">
+		<li> <a href="/view/accomodation">Acomodation</a> /</li>
+		<li> <a href="/view/activities">Activities</a> /</li>
+		<li> <a href="/view/information_reservation">information and reservation</a> </li>
+		<li> <a href="/view/about">About us</a> /</li>
+		<li> <a href="/view/contact">Contact</a> /</li>
+		<li> <a href="/view/policies">Policies</a> /</li>
+		<li> <a href="/view/disclaimer">Disclaimer</a> /</li>
+		<li> <a href="/view/warranty">Warranty and consumer Satisfaction</a> </li>
+	</ul>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
