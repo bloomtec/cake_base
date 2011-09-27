@@ -66,6 +66,36 @@ class UsersTeamsController extends AppController {
 		}
 	}
 	
+	/**
+	 * Para la muestra de confirmación de que el jugdor acepto
+	 */
+	function confirmCallToTeam($user_id = null, $team_id = null) {
+		$this->layout="ajax";
+		$this->autoRender=false;
+		$this -> loadModel('TeamNotification');
+		$notification = $this -> TeamNotification -> find('first', array('recursive' => -1, array('TeamNotification.player_id' => $user_id, 'TeamNotification.team_id' => $team_id)));
+		if ($this -> TeamNotification -> delete($notification['TeamNotification']['id'])) {
+			echo 1;
+		} else {
+			echo 0;
+		}
+	}
+	
+	/**
+	 * Para la muestra de confirmación de que el jugdor fue aceptado
+	 */
+	function confirmRequestJoinTeam($user_id = null, $team_id = null) {
+		$this->layout="ajax";
+		$this->autoRender=false;
+		$this->loadModel('UserNotification');
+		$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_id, 'UserNotification.team_id'=>$team_id)));
+		if($this->UserNotification->delete($notification['UserNotification']['id'])) {
+			echo 1;
+		} else {
+			echo 0;
+		}
+	}
+	
 	function requestJoinTeam() {
 		$this->autoRender=false;
 		if(!empty($this->params) && isset($this->params['named']['team_id'])) {
@@ -106,6 +136,22 @@ class UsersTeamsController extends AppController {
 			$this -> loadModel('TeamNotification');
 			$notification = $this -> TeamNotification -> find('first', array('recursive' => -1, array('TeamNotification.player_id' => $user_id, 'TeamNotification.team_id' => $team_id)));
 			$this -> TeamNotification -> delete($notification['TeamNotification']['id']);
+			/**
+			 * Enviar notificación informando al usuario que han aceptado la solicitud
+			 */
+			$user_name = $this -> requestAction('/users/getUserName/' . $user_id);
+			$team_name = $this->requestAction('/teams/getTeamName/' . $team_id);
+			$subject = "Petición de ingreso al equipo $team_name aceptada";
+			$message = rawurlencode("El equipo $team_name ha aceptado tu solicitud de ingreso");
+			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/UsersTeams/confirmRequestJoinTeam/$user_id/$team_id/$message\">Aceptar</a></div>";
+			$this->loadModel("UserNotification");
+			$this->UserNotification->create();
+			$this->UserNotification->set('user_id', $user_id);
+			$this->UserNotification->set('team_id', $team_id);
+			$this->UserNotification->set('subject', $subject);
+			$this->UserNotification->set('content', $content);
+			$this->UserNotification->save();
+			// Fin crear notificacion
 			echo "Se integró el jugador a la nómina";
 		} else {
 			echo "Error al aceptar la petición";
@@ -147,6 +193,23 @@ class UsersTeamsController extends AppController {
 			$this -> loadModel('UserNotification');
 			$notification = $this -> UserNotification -> find('first', array('recursive' => -1, array('UserNotification.user_id' => $user_id, 'UserNotification.team_id' => $team_id)));
 			$this -> UserNotification -> delete($notification['UserNotification']['id']);
+			/**
+			 * Notificar al equipo
+			 */
+			$team_name = $this->requestAction('/teams/getTeamName/' . $team_id);
+			$user_name = $this -> requestAction('/users/getUserName/' . $user_id);
+			$subject = "El jugador $user_name se ha unido al equipo $team_name";
+			$content = "<div class=\"notificacion-equipo\"><a class=\"overlay\" href=\"/users_teams/confirmCallToTeam/$user_id/$team_id\">Aceptar</a></div>";
+			$this->loadModel("TeamNotification");
+			$this->TeamNotification->create();
+			$this->TeamNotification->set('team_id', $team_id);
+			$this->TeamNotification->set('player_id', $user_id);
+			$this->TeamNotification->set('subject', $subject);
+			$this->TeamNotification->set('content', $content);
+			$this -> TeamNotification -> save();
+			/**
+			 * Fin notificación equipo
+			 */
 			echo "Ya haces parte del equipo";
 		} else {
 			echo "No se pudo aceptar la convocatoria";

@@ -79,6 +79,17 @@ class FriendshipsController extends AppController {
 		$this -> set('user_b_id', $user_b_id);
 		$this -> set('message', $message);
 	}
+	
+	function confirmFriendshipRequest($user_a_id, $user_b_id) {
+		$this -> layout = "ajax";
+		$this->loadModel('UserNotification');
+		$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_b_id, 'UserNotification.friend_id'=>$user_a_id)));
+		if($this->UserNotification->delete($notification['UserNotification']['id'])) {
+			echo 1;
+		} else {
+			echo 0;
+		}
+	}
 
 	function acceptFriendship($user_a_id, $user_b_id) {
 		$this -> autoRender = false;
@@ -88,6 +99,21 @@ class FriendshipsController extends AppController {
 			$this->loadModel('UserNotification');
 			$notification = $this->UserNotification->find('first', array('recursive'=>-1, array('UserNotification.user_id'=>$user_b_id, 'UserNotification.friend_id'=>$user_a_id)));
 			$this->UserNotification->delete($notification['UserNotification']['id']);
+			/**
+			 * Enviar notificación informando al usuario que han aceptado la solicitud
+			 */
+			$user_b_name = $this -> requestAction('/users/getUserName/' . $user_b_id);
+			$subject = "Solicitud de amistad confirmada";
+			$message = rawurlencode("$user_b_name ha aceptado tu solicitud de amistad");
+			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/friendships/confirmFriendshipRequest/$user_a_id/$user_b_id/$message\">Aceptar</a></div>";
+			$this->loadModel("UserNotification");
+			$this->UserNotification->create();
+			$this->UserNotification->set('user_id', $user_a_id);
+			$this->UserNotification->set('friend_id', $user_b_id);
+			$this->UserNotification->set('subject', $subject);
+			$this->UserNotification->set('content', $content);
+			$this->UserNotification->save();
+			// Fin crear notificacion
 			echo "Has aceptado la solicitud de amistad";
 		} else {
 			echo "No se pudo aceptar la solicitud de amistad";
