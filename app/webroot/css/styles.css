@@ -78,6 +78,9 @@ h5 {
 #header .logo{
 	height:174px;
 	width:100%;
+	background:url(../img/logo_footer.png);
+	background-position:center center;
+	background-repeat:no-repeat;
 }
 #header .menu{
 	display:block;
