@@ -110,9 +110,11 @@ h5 {
 #content{
 	position:relative;
 	width:747px;
-	min-height: 400px;
+	height: 460px;
 	margin:0 auto;
-
+	background:url(../img/pitayafruit_footer.png);
+	background-position:bottom center;
+	background-repeat:no-repeat;
 }
 #footer{
 	width:100%;
@@ -147,7 +149,7 @@ background-image:url(../img/next.png);
 	position:relative;
 	overflow:hidden;
 	width: 747px;
-	height:400px;
+	height:310px;
 }
 
 
@@ -163,7 +165,7 @@ background-image:url(../img/next.png);
 }
 .content-slide{
 	width: 707px;
-	height:360px;
+	height:310px;
 	padding:20px;
 }
 .gallery{
