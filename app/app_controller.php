@@ -42,7 +42,6 @@ class AppController extends Controller {
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
 			$this->Auth->deny($this->action);
 		} else {
-			$this->layout="bloom";
 			$this->Auth->allow($this->action);
 		}
 	}
