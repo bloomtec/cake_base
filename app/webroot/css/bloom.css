@@ -175,7 +175,9 @@ ul, li {
 	margin-bottom:3px;
 }
 #main_menu li a.down{
-	background:url(../flecha_abajo.png);
+	background:url(../img/cms/flecha_abajo.png);
+	background-position:204px 22.5px;
+	background-repeat:no-repeat;
 }
 #main_menu li li:hover{
 	background:none;
