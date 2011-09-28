@@ -42,13 +42,15 @@
 <body>
 	<div id="container">
 		<div id="header">
+			<h1 class="logo_interna"></h1>
+			<h2><a class="salir" href="#">SALIR</a></h2>
 		</div>
 		<ul id="menu_principal">
-			<li><a href="#"><img class="iconos" src=""><span>INICIO</span></a></li>
-			<li><a href="#"><img class="iconos" src=""><span>MENÚS</span></a></li>
-			<li><a href="#"><img class="iconos" src=""><span>CONTENIDO</span></a></li>
-			<li><a href="#"><img class="iconos" src=""><span>USUARIOS</span></a></li>
-			<li><a href="#"><img class="iconos" src=""><span>MULTIMEDIA</span></a></li>
+			<li><a href="#"><img class="iconos" src="/img/cms/inicio.png"/><span>INICIO</span></a></li>
+			<li><a href="#"><img class="iconos" src="/img/cms/menus.png"/><span>MENÚS</span></a></li>
+			<li><a href="#"><img class="iconos" src="/img/cms/contenido.png"/><span>CONTENIDO</span></a></li>
+			<li><a href="#"><img class="iconos" src="/img/cms/usuarios.png"/><span>USUARIOS</span></a></li>
+			<li><a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>MULTIMEDIA</span></a></li>
 			
 		</ul>
 		<div id="content">
