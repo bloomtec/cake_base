@@ -539,3 +539,6 @@ div.code-coverage-results span.result-good {
 #url-rewriting-warning {
 	display: none;
 }
+.team-notifications{
+	font-size: 12px;
+}

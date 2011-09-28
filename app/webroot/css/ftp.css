@@ -643,3 +643,6 @@ div.contentWrap {
 #overlay .player .actions{
 	width: 100%;	
 }
+.team-notifications{
+	font-size: 12px;
+}
