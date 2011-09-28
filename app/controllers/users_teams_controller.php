@@ -129,7 +129,7 @@ class UsersTeamsController extends AppController {
 	}
 
 	function acceptRequestJoinTeam($user_id = null, $team_id = null) {
-		$this -> autoRender = false;
+		$this->layout="ajax";
 		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
 		$data['UsersTeam']['user_team_status_id'] = 2;
 		if ($this -> UsersTeam -> save($data)) {
@@ -160,6 +160,7 @@ class UsersTeamsController extends AppController {
 	}
 	
 	function rejectRequestJoinTeam($user_id = null, $team_id = null) {
+		$this->layout="ajax";
 		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
 		$data['UsersTeam']['user_team_status_id'] = 3;
 		if ($this -> UsersTeam -> save($data)) {
