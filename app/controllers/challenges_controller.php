@@ -78,7 +78,7 @@ class ChallengesController extends AppController {
 	}
 	function challengeFromSearch($challengedId=null){
 		$this->layout="ajax";
-		$myTeams=$this->requestAction("/teams/myTeams");
+		$myTeams=$this->requestAction("/teams/myTeamsWhereCaptain");
 		$this->set(compact("challengedId","myTeams"));	
 	}
 	

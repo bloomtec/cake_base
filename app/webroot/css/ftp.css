@@ -249,7 +249,6 @@ ul.listado{
 #overlay a.close{
 	float:right;
 	margin-right:1px;
-	margin-top:-23px;
 }
 	
 div.contentWrap {
@@ -273,7 +272,7 @@ div.contentWrap {
 	padding: 0 5px;
 	position:absolute;
 	top:50%;
-	margin-top:-200px;
+	margin-top:-225px;
 	left:50%;
 	margin-left:-300px;
 	z-index:50000;
