@@ -109,7 +109,7 @@ class UsersTeamsController extends AppController {
 			$this -> UsersTeam -> set('caller_user_id', $user_id);
 			if ($this -> UsersTeam -> save()) {
 				$user_name = $this -> requestAction('/users/getUserName/' . $user_id);
-				$subject = "Petición para ingresar al equipo de :: $user_name";
+				$subject = "Petición para ingresar al equipo de :: <a class=\"overlay\" href=\"/users/profile/$user_id\"> $user_name </a>";
 				$content = "<div class=\"notificacion-equipo\">" . "<a class=\"accept\" href=\"/users_teams/acceptRequestJoinTeam/$user_id/$team_id\">Aceptar</a>" . "<br />" . "<a class=\"reject\" href=\"/users_teams/rejectRequestJoinTeam/$user_id/$team_id\">Rechazar</a>" . "</div>";
 				$this->loadModel("TeamNotification");
 				$this->TeamNotification->create();
@@ -129,7 +129,7 @@ class UsersTeamsController extends AppController {
 	}
 
 	function acceptRequestJoinTeam($user_id = null, $team_id = null) {
-		$this -> autoRender = false;
+		$this->layout="ajax";
 		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
 		$data['UsersTeam']['user_team_status_id'] = 2;
 		if ($this -> UsersTeam -> save($data)) {
@@ -160,6 +160,7 @@ class UsersTeamsController extends AppController {
 	}
 	
 	function rejectRequestJoinTeam($user_id = null, $team_id = null) {
+		$this->layout="ajax";
 		$data = $this -> UsersTeam -> find('first', array('recursive' => -1, 'conditions' => array('UsersTeam.user_id' => $user_id, 'UsersTeam.team_id' => $team_id)));
 		$data['UsersTeam']['user_team_status_id'] = 3;
 		if ($this -> UsersTeam -> save($data)) {
