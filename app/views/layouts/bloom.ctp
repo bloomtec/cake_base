@@ -31,6 +31,7 @@
 		echo $this->Html->css('superfish');
 		echo $this->Html->css('uploadify');
 		echo $this->Html->Script("jquery");
+		echo $this->Html->Script("menu");
 		echo $this->Html->Script("swfobject");
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
 		echo $this->Html->Script("upload");
