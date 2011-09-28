@@ -145,6 +145,40 @@ class TeamsController extends AppController {
 		return $teams_list;
 	}
 	
+	function myTeamsWhereCaptain() {
+		$user_id = $this -> Session -> read('Auth.User.id');
+		$teams_ids_where_captain = $this -> Team -> User -> UsersTeam -> find(
+			'list',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'UsersTeam.user_id' => $user_id,
+					'UsersTeam.is_captain' => true
+				),
+				'fields' => array(
+					'UsersTeam.team_id'
+				)
+			)
+		);
+		$teams_where_captain = $this -> Team -> find(
+			'all',
+			array(
+				'recursive' => -1,
+				'conditions' => array(
+					'Team.id' => $teams_ids_where_captain
+				)
+			)
+		);
+		
+		$teams_list = array();
+		
+		foreach ($teams_where_captain as $team) {
+			$teams_list[$team['Team']['id']] = $team['Team']['name'];
+		}
+		
+		return $teams_list;
+	}
+	
 	function ajax_delete($team_id = null) {
 		$this->autoRender = false;
 		if($team_id) {
