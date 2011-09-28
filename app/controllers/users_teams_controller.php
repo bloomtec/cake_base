@@ -111,7 +111,7 @@ class UsersTeamsController extends AppController {
 				$user_name = $this -> requestAction('/users/getUserName/' . $user_id);
 				$team_name = $this->requestAction('/teams/getTeamName/' . $team_id);
 				$subject = "Petición para ingresar al equipo $team_name de :: <a class=\"overlay\" href=\"/users/profile/$user_id\"> $user_name </a>";
-				$content = "<div class=\"notificacion-equipo\">" . "<a class=\"accept\" href=\"/users_teams/acceptRequestJoinTeam/$user_id/$team_id\">Aceptar</a>" . "<br />" . "<a class=\"reject\" href=\"/users_teams/rejectRequestJoinTeam/$user_id/$team_id\">Rechazar</a>" . "</div>";
+				$content = "<div class=\"notificacion-equipo\">" . "<a class=\"accept\" href=\"/users_teams/acceptRequestJoinTeam/$user_id/$team_id\">Aceptar</a><a class=\"reject\" href=\"/users_teams/rejectRequestJoinTeam/$user_id/$team_id\">Rechazar</a>" . "</div>";
 				$this->loadModel("TeamNotification");
 				$this->TeamNotification->create();
 				$this->TeamNotification->set('team_id', $team_id);
