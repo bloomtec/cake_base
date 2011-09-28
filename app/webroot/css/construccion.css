@@ -1,0 +1,77 @@
+@charset "UTF-8";
+h1, .left_col .contact-box h1{
+padding: 0.67em 0;
+}
+body, p, h3, h4 {
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left:auto;
+	margin-right:auto;
+	}
+
+body {
+	background-color: #b0c8d9;
+	background-image: url(../images/main-bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	color:#4a626c;
+	font-size: 12px;
+	top: 0;
+	left: 0;
+	font-family: "Colaborate-Light", sans-serif;
+}
+
+ul {
+    list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+
+h3, h4 {
+	font-family:"Colaborate-Light", sans-serif;
+	font-size:12px;
+	font-weight: lighter;
+	margin-bottom: 4px;
+}
+
+h3 {
+	color:#5ea4b9;
+	font-style:italic;
+	}
+	
+h3 a {
+	color:#5ea4b9;
+	font-style:italic;
+	text-decoration:none;
+	}
+	
+h4 {
+	color:#000;
+	}
+	
+h5 {
+	font-size:11px;
+	}
+	
+body {
+	background-color: #fff;
+}
+
+h1 {
+	background-image: url(../img/bloom_en_construccion.png);
+	background-repeat: no-repeat;
+	width: 495px;
+	height: 46px;
+	position:absolute;
+	top:40%;
+	left:50%;
+	margin-left:-247px;
+
+}
+a {
+	position:absolute;
+	right: 10%;
+	bottom:10%;
+}
