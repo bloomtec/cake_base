@@ -45,5 +45,8 @@ class AppController extends Controller {
 			$this->Auth->allow($this->action);
 		}
 	}
+	function getList(){
+		return $this->modelName->find("list");
+	}
 	
 }

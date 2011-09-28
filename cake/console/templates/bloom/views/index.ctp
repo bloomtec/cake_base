@@ -104,4 +104,9 @@
 	 | <?php echo "\t<?php echo \$this->Paginator->numbers();?>\n"?> |
 	<?php echo "\t<?php echo \$this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>\n";?>
 	</div>
+	<div class="actions">
+		<ul>
+			<li><?php echo "echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add'));";?></li>
+		</ul>
+	</div>
 </div>

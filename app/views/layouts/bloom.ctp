@@ -45,14 +45,7 @@
 			<h1 class="logo_interna"></h1>
 			<h2><a class="salir" href="#">SALIR</a></h2>
 		</div>
-		<ul id="menu_principal">
-			<li><a href="#"><img class="iconos" src="/img/cms/inicio.png"/><span>INICIO</span></a></li>
-			<li><a href="#"><img class="iconos" src="/img/cms/menus.png"/><span>MENÚS</span></a></li>
-			<li><a href="#"><img class="iconos" src="/img/cms/contenido.png"/><span>CONTENIDO</span></a></li>
-			<li><a href="#"><img class="iconos" src="/img/cms/usuarios.png"/><span>USUARIOS</span></a></li>
-			<li><a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>MULTIMEDIA</span></a></li>
-			
-		</ul>
+		<?php echo $this->element("menu");?>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>

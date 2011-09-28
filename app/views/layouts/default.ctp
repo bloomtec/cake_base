@@ -30,6 +30,8 @@
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
 		echo $this->Html->css('style.css');
+		echo $this->Html->script('jquery');
+		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
 	?>
