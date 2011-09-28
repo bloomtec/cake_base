@@ -90,7 +90,7 @@ class ChallengesController extends AppController {
 			$this->data['Challenge']['user_challenger_id']=$user_id;
 			$message=null;
 			if($this->data['Challenge']['message']){
-				$message=$this->data['Challenge']['message'];
+				$message=rawurlencode($this->data['Challenge']['message']);
 			}
 			if ($this->Challenge->save($this->data)) {
 				// Crear notificación de reto de equipo
