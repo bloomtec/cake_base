@@ -216,10 +216,12 @@ $(function(){
 	//OVERLAY	
 	$("a.overlay").live("click",function(e){
 		// CARGA UN OVERLAY CON EL CONTENIDO DE LA PAGINA
+		console.log("entro aqui");
 		e.preventDefault();
 		var $that=$(this);
 		var overlay=$("#overlay");
 		var wrap = overlay.find(".contentWrap");
+		console.log($that.attr("href"));
 		wrap.load($that.attr("href"),function(){
 			var $container=wrap.find(".container-paginado");
 			$container.load($container.attr("rel"));
@@ -471,6 +473,23 @@ $(function(){
 	$teamNotificacioones=$(".team-notifications");
 	//console.log($teamNotificacioones);
 	$(".team-notifications").load($teamNotificacioones.attr("rel"));
+	$(".notificacion-equipo a.accept").live("click",function(e){
+		var $that=$(this);
+		e.preventDefault();
+		BJS.get($that.attr("href"),{},function(data){
+			$that.parent().parent().parent().html(data);
+			Cufon.refresh("body");
+		})
+	});
+	
+	$(".notificacion-equipo a.reject").live("click",function(e){
+		var $that=$(this);
+		e.preventDefault();
+		BJS.get($that.attr("href"),{},function(data){
+			$that.parent().parent().parent().html(data);
+			Cufon.refresh("body");
+		})
+	});
 	
 	/*
 	 * My Profile
