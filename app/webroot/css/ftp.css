@@ -646,3 +646,8 @@ div.contentWrap {
 .team-notifications{
 	font-size: 12px;
 }
+.team-notifications a.accept, .team-notifications a.reject{
+	float:left;
+	margin-right: 50px;
+	color:#BD0C1E;
+}

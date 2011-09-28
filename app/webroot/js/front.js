@@ -471,13 +471,12 @@ $(function(){
 	$teamNotificacioones=$(".team-notifications");
 	//console.log($teamNotificacioones);
 	$(".team-notifications").load($teamNotificacioones.attr("rel"));
-	$(".notificacion-equipo").live("click",function(e){
+	$(".notificacion-equipo a").live("click",function(e){
 		var $that=$(this);
 		e.preventDefault();
 		BJS.get($that.attr("href"),{},function(data){
-			if(data){
-				
-			}
+			$that.parent().parent().parent().html(data);
+			Cufon.refresh("body");
 		})
 	});
 	
