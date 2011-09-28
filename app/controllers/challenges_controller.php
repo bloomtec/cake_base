@@ -132,7 +132,7 @@ class ChallengesController extends AppController {
 		$this -> set(compact("team"));
 		$this -> set('team_challenger_id', $team_challenger_id);
 		$this -> set('team_challenged_id', $team_challenged_id);
-		$this -> set('message', $message);
+		$this -> set('message', rawurldecode($message));
 	}
 	
 	function acceptChallenge($team_challenger_id, $team_challenged_id) {
