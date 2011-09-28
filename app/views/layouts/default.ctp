@@ -30,9 +30,13 @@
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
 		echo $this->Html->css('styles.css');
-		echo $this->Html->css('supersized.core.css');
+		echo $this->Html->css('supersized.css');
+		
 		echo $this->Html->script('jquery');
-		echo $this->Html->script('supersized.3.1.3.min');
+		
+		echo $this->Html->script('supersized.3.2.4.min');
+		//echo $this->Html->script('supersized.shutter.min');
+		//echo $this->Html->script('jquery.easing.min');
 		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');
 
