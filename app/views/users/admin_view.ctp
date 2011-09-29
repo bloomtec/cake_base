@@ -43,19 +43,7 @@
 		</dd>
 	</dl>
 </div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit User', true), array('action' => 'edit', $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('Delete User', true), array('action' => 'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Users', true), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User', true), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Roles', true), array('controller' => 'roles', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Role', true), array('controller' => 'roles', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List User Fields', true), array('controller' => 'user_fields', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User Field', true), array('controller' => 'user_fields', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+
 	<div class="related">
 		<h3><?php __('Related User Fields');?></h3>
 	<?php if (!empty($user['UserField'])):?>
@@ -91,10 +79,6 @@
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Address');?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 	<?php echo $user['UserField']['address'];?>
-&nbsp;</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Email');?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-	<?php echo $user['UserField']['email'];?>
 &nbsp;</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created');?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
