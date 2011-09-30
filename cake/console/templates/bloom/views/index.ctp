@@ -84,7 +84,7 @@
 				$isImage=true;
 				echo "\t\t<td><?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";			
 			}
-			if ($isKey !== true && $isActiveField!== true && $isImage!==true) {
+			if ($isKey !== true && $isActiveField!== true && $isImage!==true && $field!="id") {
 				echo "\t\t<td><?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>&nbsp;</td>\n";
 			}
 		}
