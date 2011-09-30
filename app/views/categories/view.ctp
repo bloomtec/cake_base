@@ -42,7 +42,8 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
-		<th><?php __('Image'); ?></th>
+		<th><?php __('Image Brand'); ?></th>
+		<th><?php __('Image Hover'); ?></th>
 		<th><?php __('Sort'); ?></th>
 		<th><?php __('Category Id'); ?></th>
 		<th><?php __('Created'); ?></th>
@@ -60,7 +61,8 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $brand['id'];?></td>
 			<td><?php echo $brand['name'];?></td>
-			<td><?php echo $brand['image'];?></td>
+			<td><?php echo $brand['image_brand'];?></td>
+			<td><?php echo $brand['image_hover'];?></td>
 			<td><?php echo $brand['sort'];?></td>
 			<td><?php echo $brand['category_id'];?></td>
 			<td><?php echo $brand['created'];?></td>

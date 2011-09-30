@@ -11,9 +11,14 @@
 			<?php echo $brand['Brand']['name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image Brand'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image']); ?>
+			<?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_brand']); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image Hover'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_hover']); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Sort'); ?></dt>

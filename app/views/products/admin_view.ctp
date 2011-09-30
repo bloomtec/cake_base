@@ -90,13 +90,13 @@
 	</div>
 </div>
 <div class="related">
-	<h3><?php __('Related Pictures');?></h3>
-	<?php if (!empty($product['Picture'])):?>
+	<h3><?php __('Related Product Pictures');?></h3>
+	<?php if (!empty($product['ProductPicture'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
-		<th><?php __('Image'); ?></th>
+		<th><?php __('Image Path'); ?></th>
 		<th><?php __('Product Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
@@ -104,23 +104,23 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($product['Picture'] as $picture):
+		foreach ($product['ProductPicture'] as $productPicture):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $picture['id'];?></td>
-			<td><?php echo $picture['name'];?></td>
-			<td><?php echo $picture['image'];?></td>
-			<td><?php echo $picture['product_id'];?></td>
-			<td><?php echo $picture['created'];?></td>
-			<td><?php echo $picture['updated'];?></td>
+			<td><?php echo $productPicture['id'];?></td>
+			<td><?php echo $productPicture['name'];?></td>
+			<td><?php echo $productPicture['image_path'];?></td>
+			<td><?php echo $productPicture['product_id'];?></td>
+			<td><?php echo $productPicture['created'];?></td>
+			<td><?php echo $productPicture['updated'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'pictures', 'action' => 'view', $picture['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'pictures', 'action' => 'edit', $picture['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'pictures', 'action' => 'delete', $picture['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $picture['id'])); ?>
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'product_pictures', 'action' => 'view', $productPicture['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'product_pictures', 'action' => 'edit', $productPicture['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'product_pictures', 'action' => 'delete', $productPicture['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $productPicture['id'])); ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
@@ -129,7 +129,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Picture', true), array('controller' => 'pictures', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New Product Picture', true), array('controller' => 'product_pictures', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

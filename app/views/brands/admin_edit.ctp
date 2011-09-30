@@ -6,7 +6,8 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->hidden('image',array('id' => 'single-field'));
+		echo $this->Form->hidden('image_brand',array('id' => 'single-field'));
+		echo $this->Form->hidden('image_hover',array('id' => 'single-field'));
 		echo $this->Form->input('sort');
 		echo $this->Form->input('category_id');
 	?>
