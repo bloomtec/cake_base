@@ -26,6 +26,9 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 			}
 		}
+		$collections = $this->Product->Collection->find('list');
+		$subcategories = $this->Product->Subcategory->find('list');
+		$this->set(compact('collections', 'subcategories'));
 	}
 
 	function edit($id = null) {
@@ -44,6 +47,9 @@ class ProductsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Product->read(null, $id);
 		}
+		$collections = $this->Product->Collection->find('list');
+		$subcategories = $this->Product->Subcategory->find('list');
+		$this->set(compact('collections', 'subcategories'));
 	}
 
 	function delete($id = null) {
@@ -120,6 +126,9 @@ function requestFind($type,$findParams,$key) {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 			}
 		}
+		$collections = $this->Product->Collection->find('list');
+		$subcategories = $this->Product->Subcategory->find('list');
+		$this->set(compact('collections', 'subcategories'));
 	}
 
 	function admin_edit($id = null) {
@@ -138,6 +147,9 @@ function requestFind($type,$findParams,$key) {
 		if (empty($this->data)) {
 			$this->data = $this->Product->read(null, $id);
 		}
+		$collections = $this->Product->Collection->find('list');
+		$subcategories = $this->Product->Subcategory->find('list');
+		$this->set(compact('collections', 'subcategories'));
 	}
 
 	function admin_delete($id = null) {

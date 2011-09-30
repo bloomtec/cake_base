@@ -1,14 +1,14 @@
 	
-<div class="products form2">
-<?php echo $this->Form->create('Product');?>
+<div class="subcategories form2">
+<?php echo $this->Form->create('Subcategory');?>
 	<fieldset>
-		<legend><?php __('Admin Add Product'); ?></legend>
+		<legend><?php __('Admin Edit Subcategory'); ?></legend>
 	<?php
+		echo $this->Form->input('id');
 		echo $this->Form->input('name');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
-		echo $this->Form->input('clasification');
-		echo $this->Form->input('collection_id');
-		echo $this->Form->input('subcategory_id');
+		echo $this->Form->input('sort');
+		echo $this->Form->input('brand_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
@@ -21,7 +21,7 @@
 					 <?php echo $this->Html->image('preview.png');?>
 			</div>
 		</div>
-		<div id="single-upload" controller="products">
+		<div id="single-upload" controller="subcategories">
 		</div>			
 </div>
 
