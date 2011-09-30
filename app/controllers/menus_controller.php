@@ -7,7 +7,17 @@ class MenusController extends AppController {
 		$this->Menu->recursive = 0;
 		$this->set('menus', $this->paginate());
 	}
+	function show() {
+		$path = func_get_args();
+		$slug=$path[0];
+		$menu=$this->Menu->find("first",array("conditions"=>array("slug"=>$slug)));
+		$this->set(compact("menu"));
+	}
 	function display() {
+		if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+			$this->layout="ajax";
+		}
+		
 		$path = func_get_args();
 		$slug=$path[0];
 		$menu=$this->Menu->find("first",array("conditions"=>array("slug"=>$slug)));

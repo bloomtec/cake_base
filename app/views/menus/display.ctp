@@ -13,3 +13,8 @@
 		<?php endforeach;?>
 	</div>
 </div>
+<script type="text/javascript">
+	$(".scrollable").scrollable({
+		circular:true
+	});
+</script>

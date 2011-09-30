@@ -55,9 +55,10 @@ $(function(){
 			slide_links : 'blank', // Individual links for each slide (Options: false, 'number', 'name', 'blank')
 			slides : imagenes
 			}); 
-
-//SLIDE
-	$(".scrollable").scrollable({
-		circular:true
+// MENU LIKE TABS
+	$(function(){
+		$("ul.menu").tabs("#content", {effect: 'ajax', history: true});
 	});
+//SLIDE
+	
 });

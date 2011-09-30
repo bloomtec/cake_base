@@ -37,7 +37,7 @@
 		echo $this->Html->script('supersized.3.2.4.min');
 		//echo $this->Html->script('supersized.shutter.min');
 		//echo $this->Html->script('jquery.easing.min');
-		echo $this->Html->script('jquery.tools.min');
+		echo $this->Html->script('http://cdn.jquerytools.org/1.2.6/full/jquery.tools.min.js');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
@@ -52,6 +52,8 @@
 		}
 	?>
 	var imagenes=<?php echo  json_encode($this->requestAction("/pictures/getBackgrounds"));?>;
+	
+	
 	</script>
 </head>
 <body>
