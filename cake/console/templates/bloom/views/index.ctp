@@ -106,7 +106,7 @@
 	</div>
 	<div class="actions">
 		<ul>
-			<li><?php echo "echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add'));";?></li>
+			<li><?php echo "\t<?php echo \$this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add')); ?>\n";?></li>
 		</ul>
 	</div>
 </div>

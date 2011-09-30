@@ -7,10 +7,12 @@ $(function() {
 		$(val).siblings("a").addClass("down");
 	});
 	$('#main_menu > li').hover(
-		function(){
+		function(e){
+			e.stopPropagation();
 			$(this).find("ul").slideDown();
 		},
-		function(){
+		function(e){
+			e.stopPropagation();
 			$(this).find("ul").slideUp();
 		}
 	);

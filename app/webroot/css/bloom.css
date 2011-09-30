@@ -111,10 +111,10 @@ ul, li {
 }
 #content{
 	background: #f4f2f2;
-	width:780px;
+	width:750px;
 	float:right;
 	color: #333;
-	padding: 0 0px 20px;
+	padding: 20px;
 	overflow: auto;
 }
 #main_menu {
@@ -216,12 +216,10 @@ div.form2{/*Form whith image*/
 div.images{
 	float:right;
 	width:35%;
-	min-width:335px;
-	min-height:335px;
+
 }
 div.images .preview{
-	min-width:335px;
-	min-height:335px;
+
 }
 div.images .preview .wrapper img{
 	max-width:100%;
