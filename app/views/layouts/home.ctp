@@ -28,39 +28,26 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
-		echo $this->Html->css('ie.css');
 		echo $this->Html->css('styles.css');
+		echo $this->Html->css('ie.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
 	?>
 </head>
-<body>
-	<div id="container">
-		<?php echo $this->element("header");?>
-		<div id="content_wrapper">
-			<div class="second_nav">
-				<?php echo $this->element("second_nav");?>
-			</div>
-			<div class="sub_category">
-				<?php echo $this->element("sub_category");?>
-			</div>
-			<div id="content">
-				<?php echo $content_for_layout; ?>
-			</div>
-			<div style="clear: both"></div>
-
-
+<body id="home">
+<div id="container">
+		<?php echo $this->element("header");?>    
+		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
 
-			
+			<?php echo $content_for_layout; ?>
 
 		</div>
-			<?php echo $this->element("footer");?>
+		<?php echo $this->element("footer");?>
 		
-	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
