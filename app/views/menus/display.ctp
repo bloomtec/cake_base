@@ -18,7 +18,6 @@ $(document).ready(function(){
 	$(".scrollable").scrollable({
 		circular:true
 	});	
-	
 });
 $("#footer").show("fast",function(){
 	$(this).css("background-color","<?php echo $menu["Menu"]["background_code"];?>");
