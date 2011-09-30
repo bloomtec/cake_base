@@ -660,16 +660,6 @@ div.code-coverage-results span.result-good {
 #url-rewriting-warning {
 	display: none;
 }
-/** ICONS BACK */
-.icon{
-	float:left;
-	display:block;
-	width:25px;
-	height:25px;
-	background:black;
-}
-
-
 /** login styles **/
 	
 .centrar {
