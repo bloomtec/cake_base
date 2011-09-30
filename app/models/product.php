@@ -77,8 +77,8 @@ class Product extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Picture' => array(
-			'className' => 'Picture',
+		'ProductPicture' => array(
+			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
 			'dependent' => false,
 			'conditions' => '',

@@ -1,12 +1,11 @@
 	
-<div class="pictures form2">
-<?php echo $this->Form->create('Picture');?>
+<div class="productPictures form2">
+<?php echo $this->Form->create('ProductPicture');?>
 	<fieldset>
-		<legend><?php __('Admin Edit Picture'); ?></legend>
+		<legend><?php __('Add Product Picture'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->hidden('image',array('id' => 'single-field'));
+		echo $this->Form->hidden('image_path',array('id' => 'single-field'));
 		echo $this->Form->input('product_id');
 	?>
 	</fieldset>
@@ -20,7 +19,7 @@
 					 <?php echo $this->Html->image('preview.png');?>
 			</div>
 		</div>
-		<div id="single-upload" controller="pictures">
+		<div id="single-upload" controller="productPictures">
 		</div>			
 </div>
 

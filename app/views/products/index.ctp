@@ -70,7 +70,7 @@
 	<div class="actions">
 		<ul>
 			<li>
-Notice: Undefined property: TemplateTask::$Html in D:\Desarrollo\xampp\htdocs\colors\cake\console\templates\bloom\views\index.ctp on line 109
+Notice: Undefined property: TemplateTask::$Html in F:\jucedogi\xampp\htdocs\colors\cake\console\templates\bloom\views\index.ctp on line 109
 echo ->link(__('Add', true), array('action' => 'add'),array('class'=>'add'));</li>
 		</ul>
 	</div>
