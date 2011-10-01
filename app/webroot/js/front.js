@@ -40,7 +40,7 @@ $(function(){
 	BJS.verticalCenter=function(selector){
 		var $node=$(selector);
 		var $container=$node.parent();
-		var containerHeight=$container.height()-30/*los 30 que mide el footer*/;
+		var containerHeight=$container.height()-35/*los 30 que mide el footer*/;
 		var nodeHeight=$node.height();
 		var marginTopNode=(containerHeight>nodeHeight)?(containerHeight-nodeHeight)/2:0;
 		$node.css({"marginTop":marginTopNode});
