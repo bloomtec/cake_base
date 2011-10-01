@@ -1,0 +1,29 @@
+.image-container img{
+	max-height: 200px;
+	max-width: 200px;
+}
+.image-container{
+	float:left;
+	padding:0.5em;
+	width:200px;
+	height: 210px;
+	background: #111111;
+	margin:1em;
+	text-align: center;
+	position:relative;
+}
+ .image-container .actions{
+ 	width:100%;
+	text-align: center;
+	position:absolute;
+	padding:0;
+	float: none;
+	bottom:0;
+ }
+.image-container a,  .image-container{
+  color:white;
+  }
+.uploader-container{
+ margin-top: 2em;
+ clear: both;
+}

@@ -22,7 +22,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $product['Product']['id']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['description']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
