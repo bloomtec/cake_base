@@ -24,7 +24,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $inventory['Inventory']['id']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($inventory['Product']['name'], array('controller' => 'products', 'action' => 'view', $inventory['Product']['id'])); ?>
 		</td>
