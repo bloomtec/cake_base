@@ -18,7 +18,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $collection['Collection']['id']; ?>&nbsp;</td>
 		<td><?php echo $collection['Collection']['name']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($collection['Brand']['name'], array('controller' => 'brands', 'action' => 'view', $collection['Brand']['id'])); ?>

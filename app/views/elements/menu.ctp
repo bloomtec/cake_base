@@ -37,18 +37,39 @@
 			</ul>
 		</li>
 		<li>
+			<a href="#"><img class="iconos"/><span>COLECCIONES</span></a>
+			<ul>
+				<li><a href="/admin/collections">Ver Colecciones</a></li>
+				<li><a href="/admin/collections/add">Agregar Colección</a></li>
+			</ul>
+		</li>
+		<li>
 			<a href="#"><img class="iconos"/><span>PRODUCTOS</span></a>
 			<ul>
 				<li><a href="/admin/products">Ver Productos</a></li>
 				<li><a href="/admin/products/add">Agregar Producto</a></li>
-				<li><a href="/admin/pictures/add">Agregar Foto A Producto</a></li>
 			</ul>
 		</li>
 		<li>
 			<a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>FOTROGRAFÍAS</span></a>
 			<ul>
-				<li><a href="/admin/pictures">Ver Fotografías</a></li>
-				<li><a href="/admin/pictures/add">Agregar Fotografía</a></li>
+				<li><a href="/admin/product_pictures">Ver Fotografías</a></li>
+				<li><a href="/admin/product_pictures/add">Agregar Fotografía</a></li>
+			</ul>
+		</li>
+		
+		
+		<li>
+			<a href="#"><img class="iconos"/><span>TALLAS</span></a>
+			<ul>
+				<li><a href="/admin/sizes">Ver Tallas</a></li>
+				<li><a href="/admin/sizes/add">Agregar Talla</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>INVENTARIO</span></a>
+			<ul>
+				<li><a href="/admin/inventories">Manejar Inventario</a></li>
 			</ul>
 		</li>
 </ul>

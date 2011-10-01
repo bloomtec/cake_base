@@ -26,7 +26,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $subcategory['Subcategory']['id']; ?>&nbsp;</td>
 		<td><?php echo $subcategory['Subcategory']['name']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$subcategory['Subcategory']['image']); ?>&nbsp;</td>
 		<td><?php echo $subcategory['Subcategory']['sort']; ?>&nbsp;</td>

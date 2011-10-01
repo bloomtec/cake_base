@@ -1,5 +1,5 @@
 <div class="brands index">
-	<h2><?php __('Brands');?></h2>
+	<h2><?php __('Brands');//debug($brands); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 				
@@ -9,8 +9,6 @@
 							<th><?php echo $this->Paginator->sort('image_brand');?></th>
 									
 							<th><?php echo $this->Paginator->sort('image_hover');?></th>
-									
-							<th><?php echo $this->Paginator->sort('sort');?></th>
 									
 							<th><?php echo $this->Paginator->sort('category_id');?></th>
 									
@@ -28,11 +26,9 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $brand['Brand']['id']; ?>&nbsp;</td>
 		<td><?php echo $brand['Brand']['name']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_brand']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_hover']); ?>&nbsp;</td>
-		<td><?php echo $brand['Brand']['sort']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($brand['Category']['name'], array('controller' => 'categories', 'action' => 'view', $brand['Category']['id'])); ?>
 		</td>

@@ -20,7 +20,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $size['Size']['id']; ?>&nbsp;</td>
 		<td><?php echo $size['Size']['size']; ?>&nbsp;</td>
 		<td><?php echo $size['Size']['created']; ?>&nbsp;</td>
 		<td><?php echo $size['Size']['updated']; ?>&nbsp;</td>

@@ -2,6 +2,32 @@
 class CollectionsController extends AppController {
 
 	var $name = 'Collections';
+	
+	function getCollections($product_id = null) {
+		$this->autoRender=false;
+		$product=$this->Collection->Product->read(null, $product_id);
+		if($product) {
+			$search = $this->Collection->find(
+				'first',
+				array(
+					'conditions' => array(
+						'Collection.id' => $product['Product']['collection_id']
+					)
+				)
+			);
+			$search = $this->Collection->Brand->find(
+				'first',
+				array(
+					'conditions' => array(
+						'Brand.id' => $search['Brand']['_id']
+					)
+				)
+			);
+		} else {
+			echo 0;
+		}
+		exit(0);
+	}
 
 	function index() {
 		$this->Collection->recursive = 0;

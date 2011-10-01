@@ -6,7 +6,7 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
-		echo $this->Form->input('sort');
+		echo $this->Form->hidden('sort');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

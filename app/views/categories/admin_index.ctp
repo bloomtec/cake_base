@@ -24,7 +24,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $category['Category']['id']; ?>&nbsp;</td>
 		<td><?php echo $category['Category']['name']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$category['Category']['image']); ?>&nbsp;</td>
 		<td><?php echo $category['Category']['sort']; ?>&nbsp;</td>

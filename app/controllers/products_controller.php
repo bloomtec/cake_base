@@ -126,7 +126,7 @@ function requestFind($type,$findParams,$key) {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 			}
 		}
-		$collections = $this->Product->Collection->find('list');
+		//$collections = $this->Product->Collection->find('list');
 		$subcategories = $this->Product->Subcategory->find('list');
 		$this->set(compact('collections', 'subcategories'));
 	}
