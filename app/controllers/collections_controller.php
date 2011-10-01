@@ -3,30 +3,22 @@ class CollectionsController extends AppController {
 
 	var $name = 'Collections';
 	
-	function getCollections($product_id = null) {
+	function listBrandCollections($brand_id = null) {
 		$this->autoRender=false;
-		$product=$this->Collection->Product->read(null, $product_id);
-		if($product) {
-			$search = $this->Collection->find(
-				'first',
+		if($brand_id) {
+			$collections = $this->Collection->find(
+				'list',
 				array(
 					'conditions' => array(
-						'Collection.id' => $product['Product']['collection_id']
+						'Collection.brand_id'=>$brand_id
 					)
 				)
 			);
-			$search = $this->Collection->Brand->find(
-				'first',
-				array(
-					'conditions' => array(
-						'Brand.id' => $search['Brand']['_id']
-					)
-				)
-			);
+			echo json_encode($collections);
 		} else {
 			echo 0;
 		}
-		exit(0);
+		exit(0);		
 	}
 
 	function index() {

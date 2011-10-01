@@ -3,6 +3,17 @@ class SubcategoriesController extends AppController {
 
 	var $name = 'Subcategories';
 	
+	function listBrandCategories($brand_id = null) {
+		$this->autoRender=false;
+		if($brand_id) {
+			$categories = $this->Subcategory->find('list', array('conditions'=>array('Subcategory.brand_id'=>$brand_id)));
+			echo json_encode($categories);
+		} else {
+			echo 0;
+		}
+		exit(0);
+	}
+	
 	function getBrandCategory($brand_id = null) {
 		$this->autoRender=false;
 		if($brand_id) {

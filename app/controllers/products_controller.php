@@ -127,8 +127,11 @@ function requestFind($type,$findParams,$key) {
 			}
 		}
 		//$collections = $this->Product->Collection->find('list');
-		$subcategories = $this->Product->Subcategory->find('list');
-		$this->set(compact('collections', 'subcategories'));
+		//$subcategories = $this->Product->Subcategory->find('list');
+		//$this->set(compact('collections', 'subcategories'));
+		$this->loadModel('Brand');
+		$brands = $this->Brand->find('list');
+		$this->set(compact('brands'));
 	}
 
 	function admin_edit($id = null) {
@@ -147,9 +150,12 @@ function requestFind($type,$findParams,$key) {
 		if (empty($this->data)) {
 			$this->data = $this->Product->read(null, $id);
 		}
-		$collections = $this->Product->Collection->find('list');
-		$subcategories = $this->Product->Subcategory->find('list');
-		$this->set(compact('collections', 'subcategories'));
+		//$collections = $this->Product->Collection->find('list');
+		//$subcategories = $this->Product->Subcategory->find('list');
+		//$this->set(compact('collections', 'subcategories'));
+		$this->loadModel('Brand');
+		$brands = $this->Brand->find('list');
+		$this->set(compact('brands'));
 	}
 
 	function admin_delete($id = null) {
