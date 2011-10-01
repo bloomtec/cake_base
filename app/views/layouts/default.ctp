@@ -57,6 +57,9 @@
 	</script>
 </head>
 <body>
+	<div id="container-logo">
+		<?php echo $html->image("logo.png"); ?>
+	</div>
 	<div id="container">
 		<div id="header">
 			<div class="logo">
@@ -68,13 +71,19 @@
 
 			<?php echo $this->Session->flash(); ?>
 			<?php echo $content_for_layout; ?>
-
+		</div>
+		<div id="pitaya-footer">
+			<?php echo $html->image("pitayafruit_footer.png");?>
 		</div>
 	</div>
 	<ul id="footer" style="<?php if(isset($menu["Menu"]["background_code"])) echo 'background-color:'.$menu["Menu"]["background_code"];?>">
+		<li style="display:none;"> <a href="/view/welcome">Welcome</a> /</li>
 		<li> <a href="/view/accomodation">Acomodation</a> /</li>
 		<li> <a href="/view/activities">Activities</a> /</li>
 		<li> <a href="/view/information_reservation">information and reservation</a> </li>
+		<li style="display:none;"> <a href="/view/gallery_and_testimonials">information and reservation</a> </li>
+		<li style="display:none;"> <a href="/view/faq">information and reservation</a> </li>
+		
 		<li> <a href="/view/about">About us</a> /</li>
 		<li> <a href="/view/contact">Contact</a> /</li>
 		<li> <a href="/view/policies">Policies</a> /</li>

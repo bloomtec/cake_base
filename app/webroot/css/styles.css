@@ -11,9 +11,9 @@ body, p, h3, h4 {
 }
 
 body {
+	position:absolute;
 	width:100%;
 	height:100%;
-	min-height: 765px; position: absolute; /*permite el perfecto posicionamiento del footer fijo*/
 	background-color: #b0c8d9;
 	background-repeat: no-repeat;
 	background-position: center top;
@@ -60,11 +60,22 @@ h4 {
 h5 {
 	font-size:11px;
 	}
-	
+#container-logo{
+	position: absolute;
+	width: 198px;
+	height: 108px;
+	top:50%;
+	left:50%;
+	margin-left: -99px;
+	margin-top:-54px; 
+	cursor: pointer;
+}	
 #container{
-	/*display:none;/*QUITAR REGLA*/
-	width:842px;
-	height:714px;
+	display:none;
+	/*width:842px;*/
+	width:800px;
+/*	height:714px;*/
+	height:600px;
 	margin:auto;
 	-webkit-border-radius:15px;
 	-moz-border-radius:15px;
@@ -73,10 +84,12 @@ h5 {
 	
 }
 #header{
-	height:214px;
+	/*height:214px;*/
+	height:164px;
 }
 #header .logo{
-	height:174px;
+	/*height:174px;*/
+	height:124px;
 	width:100%;
 	background:url(../img/logo_footer.png);
 	background-position:center center;
@@ -86,13 +99,12 @@ h5 {
 	display:block;
 	width:782px;
 	height:40px;
-	padding: 0 30px;
 	margin:0 auto;
 	font-size:14px;
 }
 #header .menu li{
 	width: 125px;
-	margin: 0 2.5px;
+	margin: 0 2.6px;
 	float: left;
 	height: 100%;
 }
@@ -112,24 +124,34 @@ h5 {
 }
 #content{
 	position:relative;
-	width:747px;
-	height: 460px;
+	/*width:747px;*/
+	width: 700px;
+	/*height: 460px;*/
+	height: 300px;
 	margin:0 auto;
-	background:url(../img/pitayafruit_footer.png);
+	
 	background-position:bottom center;
 	background-repeat:no-repeat;
+}
+#pitaya-footer{
+	text-align: center;
+}
+#pitaya-footer img{
+	cursor: pointer;
+	height: 130px;
 }
 #footer{
 	width:100%;
 	text-align: center;
-	height:40px;
+	height:30px;
 	position: absolute;
-	bottom:5px;
+	/*bottom:5px;*/
+	bottom:3px;
 	color:white;
 }
 #footer li{
 	display: inline;
-	line-height: 40px;	
+	line-height: 30px;	
 	margin:0 3px;
 	color:white;
 }
@@ -165,7 +187,8 @@ background-image:url(../img/next.png);
 	position:relative;
 	overflow:hidden;
 	width: 747px;
-	height:310px;
+	width: 700px;
+	height:300px;
 }
 
 
@@ -180,9 +203,11 @@ background-image:url(../img/next.png);
 	float:left;
 }
 .content-slide{
-	width: 707px;
-	height:310px;
-	padding:20px;
+	/*width: 707px;*/
+	width: 660px;
+	/*height:310px;*/
+	height:285px;
+	padding:15px;
 }
 .gallery{
 

@@ -38,13 +38,30 @@ $(function(){
 		}
 	}
 	BJS.verticalCenter=function(selector){
-	var $node=$(selector);
-	var $container=$node.parent();
-	var containerHeight=$container.height();
-	var nodeHeight=$node.height();
-	var marginTopNode=(containerHeight>nodeHeight)?(containerHeight-nodeHeight)/2:0;
-	$node.css({"marginTop":marginTopNode});
-}
+		var $node=$(selector);
+		var $container=$node.parent();
+		var containerHeight=$container.height()-30/*los 30 que mide el footer*/;
+		var nodeHeight=$node.height();
+		var marginTopNode=(containerHeight>nodeHeight)?(containerHeight-nodeHeight)/2:0;
+		$node.css({"marginTop":marginTopNode});
+	}
+	BJS.verticalCenter("#container");
+//FUNCIONAMIENTO LOGO
+	$("#container-logo").click(function(){
+		$(this).hide("slow");
+		$("#container").show("slow");
+	});
+	$("#pitaya-footer img").click(function(){
+		$("#container").hide("slow");
+		$("#container-logo").show("slow");
+	});
+	$("ul#footer li a").click(function(e){
+		e.preventDefault();
+		if($("#container").css('display')=='none'){
+			$("#container-logo").hide("slow");
+			$("#container").show("slow");
+		}
+	});
 //SUPERSIZE
 			$.supersized({
 			// Functionality
@@ -53,11 +70,13 @@ $(function(){
 			transition_speed : 700, // Speed of transition
 			// Components
 			slide_links : 'blank', // Individual links for each slide (Options: false, 'number', 'name', 'blank')
-			slides : imagenes
+			slides : imagenes,
+			progress_bar: 0
 			}); 
 // MENU LIKE TABS
 	$(function(){
 		$("ul.menu").tabs("#content", {effect: 'ajax', history: true});
+		//$("ul#footer").tabs("#content", {effect: 'ajax'});
 	});
 //SLIDE
 	
