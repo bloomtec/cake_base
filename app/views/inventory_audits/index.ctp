@@ -12,6 +12,8 @@
 									
 							<th><?php echo $this->Paginator->sort('new_value');?></th>
 									
+							<th><?php echo $this->Paginator->sort('comment');?></th>
+									
 							<th><?php echo $this->Paginator->sort('created');?></th>
 								<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -33,6 +35,7 @@
 		</td>
 		<td><?php echo $inventoryAudit['InventoryAudit']['old_value']; ?>&nbsp;</td>
 		<td><?php echo $inventoryAudit['InventoryAudit']['new_value']; ?>&nbsp;</td>
+		<td><?php echo $inventoryAudit['InventoryAudit']['comment']; ?>&nbsp;</td>
 		<td><?php echo $inventoryAudit['InventoryAudit']['created']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $inventoryAudit['InventoryAudit']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>

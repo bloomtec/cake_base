@@ -26,6 +26,11 @@
 			<?php echo $inventoryAudit['InventoryAudit']['new_value']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Comment'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $inventoryAudit['InventoryAudit']['comment']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $inventoryAudit['InventoryAudit']['created']; ?>
