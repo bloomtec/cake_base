@@ -16,9 +16,14 @@
 			<?php echo $this->Html->link($inventoryAudit['Inventory']['id'], array('controller' => 'inventories', 'action' => 'view', $inventoryAudit['Inventory']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Value Change'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Old Value'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $inventoryAudit['InventoryAudit']['value_change']; ?>
+			<?php echo $inventoryAudit['InventoryAudit']['old_value']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('New Value'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $inventoryAudit['InventoryAudit']['new_value']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>

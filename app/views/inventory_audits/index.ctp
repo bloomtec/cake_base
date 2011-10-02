@@ -8,7 +8,9 @@
 									
 							<th><?php echo $this->Paginator->sort('inventory_id');?></th>
 									
-							<th><?php echo $this->Paginator->sort('value_change');?></th>
+							<th><?php echo $this->Paginator->sort('old_value');?></th>
+									
+							<th><?php echo $this->Paginator->sort('new_value');?></th>
 									
 							<th><?php echo $this->Paginator->sort('created');?></th>
 								<th class="actions"><?php __('Actions');?></th>
@@ -29,7 +31,8 @@
 		<td>
 			<?php echo $this->Html->link($inventoryAudit['Inventory']['id'], array('controller' => 'inventories', 'action' => 'view', $inventoryAudit['Inventory']['id'])); ?>
 		</td>
-		<td><?php echo $inventoryAudit['InventoryAudit']['value_change']; ?>&nbsp;</td>
+		<td><?php echo $inventoryAudit['InventoryAudit']['old_value']; ?>&nbsp;</td>
+		<td><?php echo $inventoryAudit['InventoryAudit']['new_value']; ?>&nbsp;</td>
 		<td><?php echo $inventoryAudit['InventoryAudit']['created']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $inventoryAudit['InventoryAudit']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>

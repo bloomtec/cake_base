@@ -6,7 +6,8 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('inventory_id');
-		echo $this->Form->input('value_change');
+		echo $this->Form->input('old_value');
+		echo $this->Form->input('new_value');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

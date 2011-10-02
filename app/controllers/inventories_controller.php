@@ -125,6 +125,13 @@ class InventoriesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Inventory -> create();
 			if ($this -> Inventory -> save($this -> data)) {
+				$inventory = $this->Inventory->read(null, $this->Inventory->id);
+				$this->Inventory->InventoryAudit->create();
+				$this->Inventory->InventoryAudit->set('user_id', $this->Session->read('Auth.User.id'));
+				$this->Inventory->InventoryAudit->set('inventory_id', $inventory['Inventory']['id']);
+				$this->Inventory->InventoryAudit->set('new_value', $inventory['Inventory']['quantity']);
+				$this->Inventory->InventoryAudit->set('value_change', $inventory['Inventory']['quantity']);
+				$this->Inventory->InventoryAudit->save();
 				$this -> Session -> setFlash(__('The inventory has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
