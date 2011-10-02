@@ -2,6 +2,10 @@
 class SizeReferencesController extends AppController {
 
 	var $name = 'SizeReferences';
+	
+	function listSizes() {
+		return $this->SizeReference->find('list');
+	}
 
 	function index() {
 		$this->SizeReference->recursive = 0;

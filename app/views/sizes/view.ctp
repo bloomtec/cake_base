@@ -6,9 +6,14 @@
 			<?php echo $size['Size']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Size'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Size Reference'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $size['Size']['size']; ?>
+			<?php echo $this->Html->link($size['SizeReference']['size'], array('controller' => 'size_references', 'action' => 'view', $size['SizeReference']['id'])); ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Subcategory'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $this->Html->link($size['Subcategory']['name'], array('controller' => 'subcategories', 'action' => 'view', $size['Subcategory']['id'])); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>

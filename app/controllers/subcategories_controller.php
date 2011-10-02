@@ -2,42 +2,28 @@
 class SubcategoriesController extends AppController {
 
 	var $name = 'Subcategories';
-	
+
 	function listBrandCategories($brand_id = null) {
-		$this->autoRender=false;
-		if($brand_id) {
-			$categories = $this->Subcategory->find('list', array('conditions'=>array('Subcategory.brand_id'=>$brand_id)));
+		$this -> autoRender = false;
+		if ($brand_id) {
+			$categories = $this -> Subcategory -> find('list', array('conditions' => array('Subcategory.brand_id' => $brand_id)));
 			echo json_encode($categories);
 		} else {
 			echo 0;
 		}
 		exit(0);
 	}
-	
+
 	function getBrandCategory($brand_id = null) {
-		$this->autoRender=false;
-		if($brand_id) {
-			$search = $this->Subcategory->Brand->find(
-				'first',
-				array(
-					'conditions'=>array(
-						'Brand.id'=>$brand_id,
-					)
-				)
-			);
-			$search = $this->Subcategory->Brand->Category->find(
-				'first',
-				array(
-					'conditions' => array(
-						'Category.id'=>$search['Brand']['category_id']
-					)
-				)
-			);
+		$this -> autoRender = false;
+		if ($brand_id) {
+			$search = $this -> Subcategory -> Brand -> find('first', array('conditions' => array('Brand.id' => $brand_id, )));
+			$search = $this -> Subcategory -> Brand -> Category -> find('first', array('conditions' => array('Category.id' => $search['Brand']['category_id'])));
 			echo json_encode($search);
 		} else {
 			echo 0;
 		}
-		
+
 		exit(0);
 	}
 
@@ -156,14 +142,22 @@ class SubcategoriesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Subcategory -> create();
 			if ($this -> Subcategory -> save($this -> data)) {
+				$this -> loadModel('Size');
+				foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
+					$this -> Size -> create();
+					$this -> Size -> set('size_reference_id', $size_reference_id);
+					$this -> Size -> set('subcategory_id', $this -> Subcategory -> id);
+					$this -> Size -> save();
+				}
 				$this -> Session -> setFlash(__('The subcategory has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
 			}
 		}
-		
+
 		$brands = $this -> Subcategory -> Brand -> find('list');
+		$this -> set('sizes', $this -> requestAction('/size_references/listSizes'));
 		$this -> set(compact('brands'));
 	}
 
@@ -184,6 +178,21 @@ class SubcategoriesController extends AppController {
 			$this -> data = $this -> Subcategory -> read(null, $id);
 		}
 		$brands = $this -> Subcategory -> Brand -> find('list');
+		$temp = $this -> Subcategory -> find('first', array('conditions' => array('Subcategory.id' => $id)));
+		$size_reference_ids = array();
+		foreach ($temp['Subcategory']['Size'] as $key => $size) {
+			$size_reference_ids[]=$size['size_reference_id'];
+		}
+		$sizes = $this -> requestAction('/size_references/listSizes');
+		foreach ($size_reference_ids as $outer_key => $size_reference_id) {
+			foreach ($sizes as $inner_key => $size_id) {
+				if($size_id == $size_reference_id) {
+					unset($sizes[$inner_key]);
+				}
+			}
+		}
+		$this->set('size_reference_ids', $size_reference_ids);
+		$this -> set('sizes', $sizes);
 		$this -> set(compact('brands'));
 	}
 

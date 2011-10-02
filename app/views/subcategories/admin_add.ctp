@@ -6,6 +6,7 @@
 		</legend>
 		<?php
 		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('sizes', array('multiple'=>'checkbox'));
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> hidden('sort');
 		?>
@@ -44,7 +45,7 @@
 			success : function(data) {
 				if(data) {
 					var myObject = eval(data);
-					document.getElementById('SubcategoryCategory').value = myObject.Category.name; 
+					document.getElementById('SubcategoryCategory').value = myObject.Category.name;
 				} else {
 					alert("Error");
 				}
@@ -61,7 +62,7 @@
 			success : function(data) {
 				if(data) {
 					var myObject = eval(data);
-					document.getElementById('SubcategoryCategory').value = myObject.Category.name; 
+					document.getElementById('SubcategoryCategory').value = myObject.Category.name;
 				} else {
 					alert("Error");
 				}

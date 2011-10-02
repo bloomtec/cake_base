@@ -4,7 +4,9 @@
 	<tr>
 				
 									
-							<th><?php echo $this->Paginator->sort('size');?></th>
+							<th><?php echo $this->Paginator->sort('size_reference_id');?></th>
+									
+							<th><?php echo $this->Paginator->sort('subcategory_id');?></th>
 									
 							<th><?php echo $this->Paginator->sort('created');?></th>
 									
@@ -20,7 +22,12 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $size['Size']['size']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($size['SizeReference']['size'], array('controller' => 'size_references', 'action' => 'view', $size['SizeReference']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($size['Subcategory']['name'], array('controller' => 'subcategories', 'action' => 'view', $size['Subcategory']['id'])); ?>
+		</td>
 		<td><?php echo $size['Size']['created']; ?>&nbsp;</td>
 		<td><?php echo $size['Size']['updated']; ?>&nbsp;</td>
 		<td class="actions">

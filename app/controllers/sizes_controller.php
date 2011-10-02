@@ -26,6 +26,9 @@ class SizesController extends AppController {
 				$this->Session->setFlash(__('The size could not be saved. Please, try again.', true));
 			}
 		}
+		$sizeReferences = $this->Size->SizeReference->find('list');
+		$subcategories = $this->Size->Subcategory->find('list');
+		$this->set(compact('sizeReferences', 'subcategories'));
 	}
 
 	function edit($id = null) {
@@ -44,6 +47,9 @@ class SizesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Size->read(null, $id);
 		}
+		$sizeReferences = $this->Size->SizeReference->find('list');
+		$subcategories = $this->Size->Subcategory->find('list');
+		$this->set(compact('sizeReferences', 'subcategories'));
 	}
 
 	function delete($id = null) {
@@ -120,6 +126,9 @@ function requestFind($type,$findParams,$key) {
 				$this->Session->setFlash(__('The size could not be saved. Please, try again.', true));
 			}
 		}
+		$sizeReferences = $this->Size->SizeReference->find('list');
+		$subcategories = $this->Size->Subcategory->find('list');
+		$this->set(compact('sizeReferences', 'subcategories'));
 	}
 
 	function admin_edit($id = null) {
@@ -138,6 +147,9 @@ function requestFind($type,$findParams,$key) {
 		if (empty($this->data)) {
 			$this->data = $this->Size->read(null, $id);
 		}
+		$sizeReferences = $this->Size->SizeReference->find('list');
+		$subcategories = $this->Size->Subcategory->find('list');
+		$this->set(compact('sizeReferences', 'subcategories'));
 	}
 
 	function admin_delete($id = null) {

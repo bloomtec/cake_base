@@ -3,7 +3,8 @@
 	<fieldset>
 		<legend><?php __('Add Size'); ?></legend>
 	<?php
-		echo $this->Form->input('size');
+		echo $this->Form->input('size_reference_id');
+		echo $this->Form->input('subcategory_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

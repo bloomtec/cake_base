@@ -20,7 +20,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $sizeReference['SizeReference']['id']; ?>&nbsp;</td>
 		<td><?php echo $sizeReference['SizeReference']['size']; ?>&nbsp;</td>
 		<td><?php echo $sizeReference['SizeReference']['created']; ?>&nbsp;</td>
 		<td><?php echo $sizeReference['SizeReference']['updated']; ?>&nbsp;</td>

@@ -1,5 +1,5 @@
 <div class="subcategories form2">
-	<?php echo $this -> Form -> create('Subcategory');?>
+	<?php debug($this->data); echo $this -> Form -> create('Subcategory');?>
 	<fieldset>
 		<legend>
 			<?php __('Admin Edit Subcategory');?>
@@ -7,6 +7,8 @@
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('size_reference_ids', array('multiple'=>'checkbox'));
+		echo $this -> Form -> input('sizes', array('multiple'=>'checkbox'));
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> hidden('sort');
 		?>
