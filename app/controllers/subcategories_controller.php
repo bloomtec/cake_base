@@ -143,11 +143,13 @@ class SubcategoriesController extends AppController {
 			$this -> Subcategory -> create();
 			if ($this -> Subcategory -> save($this -> data)) {
 				$this -> loadModel('Size');
-				foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
-					$this -> Size -> create();
-					$this -> Size -> set('size_reference_id', $size_reference_id);
-					$this -> Size -> set('subcategory_id', $this -> Subcategory -> id);
-					$this -> Size -> save();
+				if(!empty($this->data['Subcategory']['sizes'])) {
+					foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
+						$this -> Size -> create();
+						$this -> Size -> set('size_reference_id', $size_reference_id);
+						$this -> Size -> set('subcategory_id', $this -> Subcategory -> id);
+						$this -> Size -> save();
+					}
 				}
 				$this -> Session -> setFlash(__('The subcategory has been saved', true));
 				$this -> redirect(array('action' => 'index'));
@@ -167,11 +169,40 @@ class SubcategoriesController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
+			/**
+			 * Salvar la subcategoria
+			 */
 			if ($this -> Subcategory -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The subcategory has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+				/**
+				 * Salvar la información de tallas
+				 */
+				// Quitar las tallas actuales
+				$actual_size_ids = $this->Subcategory->Size->find('list', array('conditions'=>array('Size.subcategory_id'=>$id)));
+				foreach($actual_size_ids as $key=>$val) {
+					$this->Subcategory->Size->delete($key);
+				}
+				// Llenar las tallas seleccionadas de las previas
+				if(!empty($this->data['Subcategory']['current_sizes'])) {
+					foreach($this->data['Subcategory']['current_sizes'] as $key=>$val) {
+						$this -> Subcategory -> Size -> create();
+						$this -> Subcategory -> Size -> set('size_reference_id', $val);
+						$this -> Subcategory -> Size -> set('subcategory_id', $id);
+						$this -> Subcategory -> Size -> save();
+					}
+				}
+				// Llevar las tallas seleccionadas de las nuevas
+				if(!empty($this->data['Subcategory']['sizes'])) {
+					foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
+						$this -> Subcategory -> Size -> create();
+						$this -> Subcategory -> Size -> set('size_reference_id', $size_reference_id);
+						$this -> Subcategory -> Size -> set('subcategory_id', $id);
+						$this -> Subcategory -> Size -> save();
+					}
+				}				
+			//	$this -> Session -> setFlash(__('The subcategory has been saved', true));
+			//	$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
+			//	$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -180,18 +211,29 @@ class SubcategoriesController extends AppController {
 		$brands = $this -> Subcategory -> Brand -> find('list');
 		$temp = $this -> Subcategory -> find('first', array('conditions' => array('Subcategory.id' => $id)));
 		$size_reference_ids = array();
-		foreach ($temp['Subcategory']['Size'] as $key => $size) {
-			$size_reference_ids[]=$size['size_reference_id'];
+		//ID's que se tienen actualmente
+		foreach ($temp['Size'] as $key => $size) {
+			$size_reference_ids[] = $size['size_reference_id'];
 		}
 		$sizes = $this -> requestAction('/size_references/listSizes');
+		// Todas las tallas disponibles
+		/**
+		 * Quitar de las tallas disponibles las tallas que ya estan
+		 * y obtener las tallas actuales
+		 */
+		$current_sizes = array();
 		foreach ($size_reference_ids as $outer_key => $size_reference_id) {
+			$size_data = $this -> requestAction('/size_references/listSize/'.$size_reference_id);
+			foreach($size_data as $key=>$val) {
+				$current_sizes[$key]=$val;
+			}
 			foreach ($sizes as $inner_key => $size_id) {
-				if($size_id == $size_reference_id) {
-					unset($sizes[$inner_key]);
+				if ($inner_key == $size_reference_id) {
+					unset($sizes[$size_reference_id]);
 				}
 			}
 		}
-		$this->set('size_reference_ids', $size_reference_ids);
+		$this -> set('current_sizes', $current_sizes);
 		$this -> set('sizes', $sizes);
 		$this -> set(compact('brands'));
 	}

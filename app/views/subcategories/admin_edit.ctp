@@ -1,5 +1,5 @@
 <div class="subcategories form2">
-	<?php debug($this->data); echo $this -> Form -> create('Subcategory');?>
+	<?php echo $this -> Form -> create('Subcategory');?>
 	<fieldset>
 		<legend>
 			<?php __('Admin Edit Subcategory');?>
@@ -7,8 +7,12 @@
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('name');
-		echo $this -> Form -> input('size_reference_ids', array('multiple'=>'checkbox'));
-		echo $this -> Form -> input('sizes', array('multiple'=>'checkbox'));
+		$selected = array();
+		foreach ($current_sizes as $key => $size) {
+			$selected[count($selected)] = $key;
+		}
+		echo $this -> Form -> input('current_sizes', array('multiple' => 'checkbox', 'options'=>$current_sizes, 'selected'=>$selected));
+		echo $this -> Form -> input('sizes', array('multiple' => 'checkbox'));
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> hidden('sort');
 		?>
@@ -31,7 +35,7 @@
 	<h2>Image</h2>
 	<div class="preview">
 		<div class="wrapper">
-			<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Subcategory']['image']);?>
+			<?php echo $this -> Html -> image("/img/uploads/200x200/" . $this -> data['Subcategory']['image']);?>
 		</div>
 	</div>
 	<div id="single-upload" controller="subcategories"></div>
@@ -47,7 +51,7 @@
 			success : function(data) {
 				if(data) {
 					var myObject = eval(data);
-					document.getElementById('SubcategoryCategory').value = myObject.Category.name; 
+					document.getElementById('SubcategoryCategory').value = myObject.Category.name;
 				} else {
 					alert("Error");
 				}
@@ -64,7 +68,7 @@
 			success : function(data) {
 				if(data) {
 					var myObject = eval(data);
-					document.getElementById('SubcategoryCategory').value = myObject.Category.name; 
+					document.getElementById('SubcategoryCategory').value = myObject.Category.name;
 				} else {
 					alert("Error");
 				}

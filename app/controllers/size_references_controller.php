@@ -6,6 +6,14 @@ class SizeReferencesController extends AppController {
 	function listSizes() {
 		return $this->SizeReference->find('list');
 	}
+	
+	function listSize($id = null) {
+		if($id) {
+			return $this->SizeReference->find('list', array('conditions'=>array('SizeReference.id'=>$id)));			
+		} else {
+			return array();
+		}
+	}
 
 	function index() {
 		$this->SizeReference->recursive = 0;
