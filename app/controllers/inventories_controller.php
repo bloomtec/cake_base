@@ -129,8 +129,8 @@ class InventoriesController extends AppController {
 				$this->Inventory->InventoryAudit->create();
 				$this->Inventory->InventoryAudit->set('user_id', $this->Session->read('Auth.User.id'));
 				$this->Inventory->InventoryAudit->set('inventory_id', $inventory['Inventory']['id']);
+				$this->Inventory->InventoryAudit->set('old_change', 0);
 				$this->Inventory->InventoryAudit->set('new_value', $inventory['Inventory']['quantity']);
-				$this->Inventory->InventoryAudit->set('value_change', $inventory['Inventory']['quantity']);
 				$this->Inventory->InventoryAudit->save();
 				$this -> Session -> setFlash(__('The inventory has been saved', true));
 				$this -> redirect(array('action' => 'index'));
