@@ -70,7 +70,7 @@
 		<li>
 			<a href="#"><img class="iconos"/><span>INVENTARIO</span></a>
 			<ul>
-				<li><a href="/admin/inventories">Manejar Inventario</a></li>
+				<li><a href="/admin/inventories/listInventory">Manejar Inventario</a></li>
 			</ul>
 		</li>
 </ul>
