@@ -28,15 +28,17 @@
 			<?php echo $this->Html->link($inventory['Product']['name'], array('controller' => 'products', 'action' => 'view', $inventory['Product']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($inventory['Size']['size'], array('controller' => 'sizes', 'action' => 'view', $inventory['Size']['id'])); ?>
+			<?php echo $this->Html->link($inventory['Size']['size_reference_id'], array('controller' => 'sizes', 'action' => 'view', $inventory['Size']['id'])); ?>
 		</td>
 		<td><?php echo $inventory['Inventory']['quantity']; ?>&nbsp;</td>
 		<td><?php echo $inventory['Inventory']['created']; ?>&nbsp;</td>
 		<td><?php echo $inventory['Inventory']['updated']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $inventory['Inventory']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $inventory['Inventory']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $inventory['Inventory']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $inventory['Inventory']['id'])); ?>
+			<?php echo $this->Html->link(__('Add Product', true), array('action' => 'addToInventory', $inventory['Inventory']['id']), array('class'=>'view icon','title'=>__('Add Product',true))); ?>
+			<?php echo $this->Html->link(__('Remove Product', true), array('action' => 'removeFromInventory', $inventory['Inventory']['id']), array('class'=>'view icon','title'=>__('Remove Product',true))); ?>
+			<?php //echo $this->Html->link(__('View', true), array('action' => 'view', $inventory['Inventory']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php //echo $this->Html->link(__('Edit', true), array('action' => 'edit', $inventory['Inventory']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
+			<?php //echo $this->Html->link(__('Delete', true), array('action' => 'delete', $inventory['Inventory']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $inventory['Inventory']['id'])); ?>
 			<?php if(isset($inventory['Inventory']['active'])&& $inventory['Inventory']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $inventory['Inventory']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $inventory['Inventory']['id']));
 }?>

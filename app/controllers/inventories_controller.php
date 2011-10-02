@@ -3,6 +3,14 @@ class InventoriesController extends AppController {
 
 	var $name = 'Inventories';
 	
+	function admin_addToInventory($inventory_id = null) {
+		
+	}
+	
+	function admin_removeFromInventory($inventory_id = null) {
+		
+	}
+	
 	function admin_listInventory() {
 		$this -> Inventory -> recursive = 0;
 		$this -> set('inventories', $this -> paginate());
