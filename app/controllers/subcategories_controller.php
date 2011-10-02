@@ -162,6 +162,7 @@ class SubcategoriesController extends AppController {
 				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
 			}
 		}
+		
 		$brands = $this -> Subcategory -> Brand -> find('list');
 		$this -> set(compact('brands'));
 	}

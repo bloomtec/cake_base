@@ -7,6 +7,7 @@
 		<?php
 		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('price');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> input('clasification');
 		?>

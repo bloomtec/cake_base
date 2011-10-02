@@ -5,6 +5,8 @@
 				
 									
 							<th><?php echo $this->Paginator->sort('name');?></th>
+							
+							<th><?php echo $this->Paginator->sort('price');?></th>
 									
 							<th><?php echo $this->Paginator->sort('image');?></th>
 									
@@ -29,6 +31,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['price']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
 		<td><?php echo $product['Product']['clasification']; ?>&nbsp;</td>
 		<td>
@@ -42,7 +45,8 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $product['Product']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Gallery', true), array('controller' => 'product_pictures','action'=>'index'),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php echo $this->Html->link(__('Pictures', true), array('controller' => 'product_pictures','action'=>'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php echo $this->Html->link(__('Inventory', true), array('controller' => 'inventories','action'=>'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $product['Product']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $product['Product']['id'])); ?>
 			<?php if(isset($product['Product']['active'])&& $product['Product']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $product['Product']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $product['Product']['id']));
