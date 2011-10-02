@@ -14,6 +14,13 @@ class SizeReferencesController extends AppController {
 			return array();
 		}
 	}
+	
+	function getSize($reference = null) {
+		if($reference) {
+			$size = $this->SizeReference->read(null, $reference);
+			return $size['SizeReference']['size'];
+		}
+	}
 
 	function index() {
 		$this->SizeReference->recursive = 0;

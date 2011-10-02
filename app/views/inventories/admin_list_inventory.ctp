@@ -19,7 +19,7 @@ $class = ' class="altrow"';
 		?>
 		<tr<?php echo $class;?>>
 			<td><?php echo $this -> Html -> link($inventory['Product']['name'], array('controller' => 'products', 'action' => 'view', $inventory['Product']['id']));?></td>
-			<td><?php echo $this -> Html -> link($inventory['Size']['size'], array('controller' => 'sizes', 'action' => 'view', $inventory['Size']['id']));?></td>
+			<td><?php echo $this->requestAction('/size_references/getSize/' . $inventory['Size']['size_reference_id']);?></td>
 			<td><?php echo $inventory['Inventory']['quantity'];?>&nbsp;</td>
 			<td><?php echo $inventory['Inventory']['created'];?>&nbsp;</td>
 			<td><?php echo $inventory['Inventory']['updated'];?>&nbsp;</td>
