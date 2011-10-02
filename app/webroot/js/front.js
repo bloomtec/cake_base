@@ -46,22 +46,6 @@ $(function(){
 		$node.css({"marginTop":marginTopNode});
 	}
 	BJS.verticalCenter("#container");
-//FUNCIONAMIENTO LOGO
-	$("#container-logo").click(function(){
-		$(this).hide("slow");
-		$("#container").show("slow");
-	});
-	$("#pitaya-footer img").click(function(){
-		$("#container").hide("slow");
-		$("#container-logo").show("slow");
-	});
-	$("ul#footer li a").click(function(e){
-		e.preventDefault();
-		if($("#container").css('display')=='none'){
-			$("#container-logo").hide("slow");
-			$("#container").show("slow");
-		}
-	});
 //SUPERSIZE
 			$.supersized({
 			// Functionality
@@ -73,11 +57,24 @@ $(function(){
 			slides : imagenes,
 			progress_bar: 0
 			}); 
-// MENU LIKE TABS
-	$(function(){
-		$("ul.menu").tabs("#content", {effect: 'ajax', history: true});
-		//$("ul#footer").tabs("#content", {effect: 'ajax'});
+///FUNCIONAMIENTO LOGO y MENU
+	$("#container-logo").click(function(){
+		$(this).hide("slow");
+		$("#container").show("slow");
 	});
-//SLIDE
+	$("#pitaya-footer img").click(function(){
+		$("#container").hide("slow");
+		$("#container-logo").show("slow");
+	});	
+	$("ul#footer li a").click(function(e){
+		e.preventDefault();
+		$(".menu a[href='"+$(this).attr('href')+"']").click();
+		if($("#container").css('display')=='none'){
+			$("#container-logo").hide("slow");
+			$("#container").show("slow");
+			
+		}
+	});
+	$("ul.menu").tabs("#content", {effect: 'ajax', history: true}); /*ESTA GENERANDO UN ERROR QUE ANULA EL CODIGO DE AQUI EN ADELANTE, NO ESCRIRBIR CODIGO ABAJ*/
 	
 });

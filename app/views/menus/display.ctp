@@ -15,11 +15,14 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$(".scrollable").scrollable({
-		circular:true
-	});	
-});
-$("#footer").show("fast",function(){
-	$(this).css("background-color","<?php echo $menu["Menu"]["background_code"];?>");
+	if($(".scrollable .items div").length>0){
+		$(".scrollable").scrollable({
+			circular:true
+		});	
+	}
+	
+	$("#footer").show("fast",function(){
+		$(this).css("background-color","<?php echo $menu["Menu"]["background_code"];?>");
+	});
 });
 </script>
