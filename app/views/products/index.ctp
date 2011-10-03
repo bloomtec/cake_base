@@ -6,11 +6,17 @@
 									
 							<th><?php echo $this->Paginator->sort('name');?></th>
 									
-							<th><?php echo $this->Paginator->sort('description');?></th>
-									
-							<th><?php echo $this->Paginator->sort('ref');?></th>
-									
 							<th><?php echo $this->Paginator->sort('image');?></th>
+									
+							<th><?php echo $this->Paginator->sort('clasification');?></th>
+									
+							<th><?php echo $this->Paginator->sort('collection_id');?></th>
+									
+							<th><?php echo $this->Paginator->sort('subcategory_id');?></th>
+									
+							<th><?php echo $this->Paginator->sort('created');?></th>
+									
+							<th><?php echo $this->Paginator->sort('updated');?></th>
 								<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -23,9 +29,16 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['description']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
+		<td><?php echo $product['Product']['clasification']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($product['Collection']['name'], array('controller' => 'collections', 'action' => 'view', $product['Collection']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($product['Subcategory']['name'], array('controller' => 'subcategories', 'action' => 'view', $product['Subcategory']['id'])); ?>
+		</td>
+		<td><?php echo $product['Product']['created']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['updated']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $product['Product']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

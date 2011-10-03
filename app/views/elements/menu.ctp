@@ -16,10 +16,61 @@
 			</ul>
 		</li>
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>MULTIMEDIA</span></a>
+			<a href="#"><img class="iconos"/><span>CATEGORÍAS</span></a>
 			<ul>
-				<li><a href="/admin/galleries">Ver Galerias</a></li>
-				<li><a href="/admin/galleries/add">Agregar Usuario</a></li>
+				<li><a href="/admin/categories">Ver Categorías</a></li>
+				<li><a href="/admin/categories/add">Agregar Categorías</a></li>
 			</ul>
-		</li>	
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>MARCAS</span></a>
+			<ul>
+				<li><a href="/admin/brands">Ver Marcas</a></li>
+				<li><a href="/admin/brands/add">Agregar Marcas</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>SUB-CATEGORÍAS</span></a>
+			<ul>
+				<li><a href="/admin/subcategories">Ver Sub-Categorías</a></li>
+				<li><a href="/admin/subcategories/add">Agregar Sub-Categorías</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>COLECCIONES</span></a>
+			<ul>
+				<li><a href="/admin/collections">Ver Colecciones</a></li>
+				<li><a href="/admin/collections/add">Agregar Colección</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>PRODUCTOS</span></a>
+			<ul>
+				<li><a href="/admin/products">Ver Productos</a></li>
+				<li><a href="/admin/products/add">Agregar Producto</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>FOTOGRAFÍAS</span></a>
+			<ul>
+				<li><a href="/admin/product_pictures">Ver Fotografías</a></li>
+				<li><a href="/admin/product_pictures/add">Agregar Fotografía</a></li>
+			</ul>
+		</li>
+		
+		
+		<li>
+			<a href="#"><img class="iconos"/><span>TALLAS</span></a>
+			<ul>
+				<li><a href="/admin/sizes">Ver Tallas</a></li>
+				<li><a href="/admin/sizes/add">Agregar Talla</a></li>
+				<li><a href="/admin/size_references">Tallas De Referencia</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#"><img class="iconos"/><span>INVENTARIO</span></a>
+			<ul>
+				<li><a href="/admin/inventories/listInventory">Manejar Inventario</a></li>
+			</ul>
+		</li>
 </ul>

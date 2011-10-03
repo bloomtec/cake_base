@@ -1,7 +1,7 @@
 /* This style sheet is specifically for Internet Explorer (any version) */
 
 body {
-	background: #f1efe8 url(../img/bg-dark.jpg) repeat-x;
+	background-color:#CBCBCB;
 	}
 	
 /* This property added for IE weirdness with Cufon */

@@ -6,9 +6,10 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('description');
-		echo $this->Form->input('ref');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
+		echo $this->Form->input('clasification');
+		echo $this->Form->input('collection_id');
+		echo $this->Form->input('subcategory_id');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
@@ -18,7 +19,7 @@
 		<h2>Image</h2>
 		<div class="preview">
 			<div class="wrapper">
-					<?php echo $this->Html->image('uploads/400x400/'.$this->data['Product']['image']);?>			</div>
+					<?php echo $this->Html->image('uploads/400x400/'.$this->data['Product']['updated']);?>			</div>
 		</div>
 		<div id="single-upload" controller="products">
 		</div>			
