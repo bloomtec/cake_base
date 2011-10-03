@@ -16,7 +16,11 @@ class SubcategoriesController extends AppController {
 		}
 		exit(0);
 	}
-
+	function getSizes($id){
+		//return $this->Subcategory->Size->find('list',array('conditions'=>array('subcategory_id'=>$id)));
+		
+		return array("1"=>"XS","2"=>"L");
+	}
 	function getBrandCategory($brand_id = null) {
 		$this -> autoRender = false;
 		if ($brand_id) {

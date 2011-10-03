@@ -11,14 +11,12 @@
 			
 		</li>
 		<li class="azul">TALLA
-			<?php if(isset($this->params["named"]["subcategoria"])) $colecciones= $this->requestAction("/brands/getSizes/".$brand['Brand']['id']); ?>
-		
-			<select class="filter" rel="talla">
-				<option>35</option>
-				<option>36</option>
-				<option>37</option>
-				<option>38</option>
-			</select>
+			<?php if(isset($this->params["named"]["subcategoria"])) $tallas= $this->requestAction("/subcategories/getSizes/".$this->params["named"]["subcategoria"]); ?>
+			<?php 
+				if(isset($tallas)){
+					echo $form->input("tallas",array("ype"=>"select","options"=>$tallas,"empty"=>"seleccione","div"=>false,"label"=>false));
+				}
+			?>
 		</li>
 		<li class="titulos_rosado">ORDENAR POR</li>
 		<li><a class="azul" href="#">¿QUE ES LO NUEVO?</a></li>
