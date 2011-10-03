@@ -199,10 +199,10 @@ class SubcategoriesController extends AppController {
 						$this -> Subcategory -> Size -> save();
 					}
 				}				
-			//	$this -> Session -> setFlash(__('The subcategory has been saved', true));
-			//	$this -> redirect(array('action' => 'index'));
+				$this -> Session -> setFlash(__('Se editó la subcategoría', true));
+				$this -> redirect(array('action' => 'index'));
 			} else {
-			//	$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('.', true));
 			}
 		}
 		if (empty($this -> data)) {

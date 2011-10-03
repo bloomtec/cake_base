@@ -16,6 +16,18 @@ class InventoriesController extends AppController {
 		$this -> set('inventories', $this -> paginate());
 	}
 
+	function admin_listProductInventory($product_id = null) {
+		$this->paginate=array(
+			'recursive' => 0,
+			'limit' => 10,
+			'conditions' => array(
+				'Inventory.product_id' => $product_id
+			)
+		);
+		$inventory = $this->paginate('Inventory');
+		$this->set('inventory', $inventory);
+	}
+
 	function index() {
 		$this -> Inventory -> recursive = 0;
 		$this -> set('inventories', $this -> paginate());
