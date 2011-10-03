@@ -17,9 +17,7 @@ class BrandsController extends AppController {
 			case "preferido": $order=array('Product.num_visits'=>'ASC'); break;
 			case "nuevo": $order=array('Product.created'=>'ASC'); break;
 		}
-		
-		
-
+		$product_ids = $this->Product->find('list', array('fields'=>array('Inventory.product_id'), 'conditions'=>array('Inventory.size_id'=>$size_id))); // ID's desde inventarios		
 		// Paginar según los datos enviados. Hay tres datos con los que paginar
 		$this->paginate=array(
 			'Product' => array(
@@ -27,10 +25,11 @@ class BrandsController extends AppController {
 				'limit'=>$limit,
 				'conditions'=>array(
 					'Product.subcategory_id' => $subcategory_id,
-					'Product.collection_id' => $collection_id
+					'Product.collection_id' => $collection_id,
+					'Product.id' => $product_ids
 				)
 			)
-		)
+		);
 		$products=$this->paginate('Product');
 		$this->set('products', $products);
 	}
