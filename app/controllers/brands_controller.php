@@ -3,6 +3,38 @@ class BrandsController extends AppController {
 
 	var $name = 'Brands';
 
+	function brandsView() {
+		// Hacer más fácil las busquedas de productos
+		$this->loadModel('Product');
+
+		// Filtros para el paginado
+		$subcategory_id=$this->params['named']['subcategoria'];
+		$collection_id=$this->params['named']['coleccion'];
+		$size_id=$this->params['named']['talla'];
+		$order=array('Product.created'=>'ASC'); // Para esto se considera ASC
+		$limit = 10;
+		switch($this->params['named']['orden']) {
+			case "preferido": $order=array('Product.num_visits'=>'ASC'); break;
+			case "nuevo": $order=array('Product.created'=>'ASC'); break;
+		}
+		
+		
+
+		// Paginar según los datos enviados. Hay tres datos con los que paginar
+		$this->paginate=array(
+			'Product' => array(
+				'order'=>$order,
+				'limit'=>$limit,
+				'conditions'=>array(
+					'Product.subcategory_id' => $subcategory_id,
+					'Product.collection_id' => $collection_id
+				)
+			)
+		)
+		$products=$this->paginate('Product');
+		$this->set('products', $products);
+	}
+
 	function admin_index() {
 		$this -> Brand -> recursive = 0;
 		$this -> set('brands', $this -> paginate());
