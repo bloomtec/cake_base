@@ -1,37 +1,19 @@
-<div class="productPictures view">
-<h2><?php  __('Product Picture');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $productPicture['ProductPicture']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $productPicture['ProductPicture']['name']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image Path'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->image('uploads/100x100/'.$productPicture['ProductPicture']['image_path']); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Product'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($productPicture['Product']['name'], array('controller' => 'products', 'action' => 'view', $productPicture['Product']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $productPicture['ProductPicture']['created']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Updated'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $productPicture['ProductPicture']['updated']; ?>
-			&nbsp;
-		</dd>
-	</dl>
+<?php echo $this->Html->css('pictures'); ?>
+<div class="gallery_view">
+	<div class="pictures">
+	<h2><?php if(isset($parentName)) echo $parentName ?> </h2>
+	<?php foreach ($productPictures as $productPicture): ?>
+		<div class='image-container'>
+			<div class="image">
+				<?php echo  $html->image('uploads/'. $productPicture['ProductPicture']['path']); ?>
+			</div>
+			<div class='actions'>
+				<?php echo  $this->Html->link(__('Delete', true), array('action' => 'delete',  $productPicture['ProductPicture']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $productPicture['ProductPicture']['id'])); ?> 
+			</div>
+		</div>
+	<?php endforeach; ?> 
+	</div>
+	<div class="uploader-container">
+		<input id="pictures-uploader" controller="productPictures" rel="<?php echo $parent_id; ?>">
+	</div>
 </div>
-
-

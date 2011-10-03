@@ -16,10 +16,7 @@
 									
 							<th><?php echo $this->Paginator->sort('subcategory_id');?></th>
 									
-							<th><?php echo $this->Paginator->sort('created');?></th>
-									
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-								<th class="actions"><?php __('Actions');?></th>
+							<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -40,8 +37,6 @@
 		<td>
 			<?php echo $this->Html->link($product['Subcategory']['name'], array('controller' => 'subcategories', 'action' => 'view', $product['Subcategory']['id'])); ?>
 		</td>
-		<td><?php echo $product['Product']['created']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['updated']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $product['Product']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

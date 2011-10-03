@@ -2,10 +2,11 @@
 class ProductPicturesController extends AppController {
 
 	var $name = 'ProductPictures';
-
-	function index() {
+	var $components = array('Attachment');
+	function index($parentId) {
 		$this->ProductPicture->recursive = 0;
-		$this->set('productPictures', $this->paginate());
+				$this->set('productPictures', $this->paginate(array('product_id'=>$parentId)));
+		$this->set('parent_id',$parentId);
 	}
 
 	function view($id = null) {
@@ -13,7 +14,16 @@ class ProductPicturesController extends AppController {
 			$this->Session->setFlash(__('Invalid product picture', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('productPicture', $this->ProductPicture->read(null, $id));
+		$this->ProductPicture->recursive = 0;
+				$this->set('productPictures', $this->paginate(array('product_id'=>$id)));
+		$this->set('parent_id',$id);
+					$parent=$this->ProductPicture->Product->read(null,$id); 
+			 if (isset($parent['Product']['name'])){
+			 	 $this->set('parentName',$parent['Product']['name']);
+			}else{
+			  if (isset($parent['Product']['title'])) $this->set('parentName',$parent['Product']['title']);
+			}
+			 
 	}
 
 	function add() {
@@ -55,17 +65,14 @@ class ProductPicturesController extends AppController {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		$toDelete=$this->ProductPicture->read(null,$id);
 		if ($this->ProductPicture->delete($id)) {
 			$this->Session->setFlash(__('Product picture deleted', true));
-			$this->redirect(array('action'=>'index'));
+						$this->redirect(array('action'=>'view',$toDelete['ProductPicture']['product_id']));
 		}
 		$this->Session->setFlash(__('Product picture was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-
-
-
-
 	function setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
@@ -80,7 +87,7 @@ class ProductPicturesController extends AppController {
 		$this->Session->setFlash(__('Product picture was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+	function setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
 			$this->redirect(array('action'=>'index'));
@@ -94,16 +101,38 @@ function setActive($id = null) {
 		$this->Session->setFlash(__('Product picture was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->ProductPicture->find($type, $findParams);
-	}else{
-		return null;
+	function requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->ProductPicture->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
-	function admin_index() {
+	function uploadfy_add() {
+			if($_POST["name"]&&$_POST["folder"]){
+			if(isset($_POST['parent_id'])){
+				$picture['ProductPicture']['product_id']=$_POST["parent_id"];
+				$picture['ProductPicture']['path']=$_POST["name"];
+				$this->ProductPicture->create();
+				$this->ProductPicture->save($picture);
+				echo $this->ProductPicture->id;
+			}else{
+				
+				echo false;
+			}
+			
+		}else{
+			echo false;
+		}
+		
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
+	function admin_index($parentId) {
 		$this->ProductPicture->recursive = 0;
-		$this->set('productPictures', $this->paginate());
+				$this->set('productPictures', $this->paginate(array('product_id'=>$parentId)));
+		$this->set('parent_id',$parentId);
 	}
 
 	function admin_view($id = null) {
@@ -111,7 +140,16 @@ function requestFind($type,$findParams,$key) {
 			$this->Session->setFlash(__('Invalid product picture', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('productPicture', $this->ProductPicture->read(null, $id));
+		$this->ProductPicture->recursive = 0;
+				$this->set('productPictures', $this->paginate(array('product_id'=>$id)));
+		$this->set('parent_id',$id);
+					$parent=$this->ProductPicture->Product->read(null,$id); 
+			 if (isset($parent['Product']['name'])){
+			 	 $this->set('parentName',$parent['Product']['name']);
+			}else{
+			  if (isset($parent['Product']['title'])) $this->set('parentName',$parent['Product']['title']);
+			}
+			 
 	}
 
 	function admin_add() {
@@ -153,17 +191,14 @@ function requestFind($type,$findParams,$key) {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		$toDelete=$this->ProductPicture->read(null,$id);
 		if ($this->ProductPicture->delete($id)) {
 			$this->Session->setFlash(__('Product picture deleted', true));
-			$this->redirect(array('action'=>'index'));
+						$this->redirect(array('action'=>'view',$toDelete['ProductPicture']['product_id']));
 		}
 		$this->Session->setFlash(__('Product picture was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-
-
-
-
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
@@ -178,7 +213,7 @@ function requestFind($type,$findParams,$key) {
 		$this->Session->setFlash(__('Product picture was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_setActive($id = null) {
+	function admin_setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product picture', true));
 			$this->redirect(array('action'=>'index'));
@@ -192,11 +227,32 @@ function admin_setActive($id = null) {
 		$this->Session->setFlash(__('Product picture was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-function admin_requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->ProductPicture->find($type, $findParams);
-	}else{
-		return null;
+	function admin_requestFind($type,$findParams,$key) {
+		if($key==Configure::read("key")){
+			return $this->ProductPicture->find($type, $findParams);
+		}else{
+			return null;
+		}
 	}
-}
+	function admin_uploadfy_add() {
+			if($_POST["name"]&&$_POST["folder"]){
+			if(isset($_POST['parent_id'])){
+				$picture['ProductPicture']['product_id']=$_POST["parent_id"];
+				$picture['ProductPicture']['path']=$_POST["name"];
+				$this->ProductPicture->create();
+				$this->ProductPicture->save($picture);
+				echo $this->ProductPicture->id;
+			}else{
+				
+				echo false;
+			}
+			
+		}else{
+			echo false;
+		}
+		
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
 }

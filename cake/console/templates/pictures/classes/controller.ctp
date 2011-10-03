@@ -41,7 +41,7 @@ if (count($helpers)):
 	echo ");\n";
 endif;
 
-if (count($components)):
+if (count($components)){
 	echo "\tvar \$components = array(";
 	for ($i = 0, $len = count($components); $i < $len; $i++):
 		if ($i != $len - 1):
@@ -51,8 +51,9 @@ if (count($components)):
 		endif;
 	endfor;
 	echo ");\n";
-endif;
-
+}else{
+	echo "\tvar \$components = array('Attachment');";
+}
 echo $actions;
 
 endif; ?>

@@ -14,85 +14,79 @@
 		?>
 	</fieldset>
 </div>
-<div style="clear:both; padding: 5%;">
 	
-	<div class="images-1" style="float: left;">
-		<h2>Brand Image</h2>
-		<div class="preview-1">
-			<div class="wrapper">
-				<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Brand']['image_brand']);?>
-			</div>
+<div class="images-1 images-div">
+	<h2>Brand Image</h2>
+	<div class="preview-1">
+		<div class="wrapper">
+			<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Brand']['image_brand']);?>
 		</div>
 	</div>
-	<div id="single-upload-1" controller="brands"></div>
-	<div class="images-2" style="float: right;">
-		<h2>Hover Image</h2>
-		<div class="preview-2">
-			<div class="wrapper">
-				<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Brand']['image_hover']);?>
-			</div>
-		</div>
-		<div id="single-upload-2" controller="brands"></div>
-	</div>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			var server = '/';
-			$('#single-upload-1').uploadify({
-				'uploader' : server + 'swf/uploadify.swf',
-				'script' : server + 'uploadify.php',
-				'folder' : server + 'app/webroot/img/uploads',
-				'auto' : true,
-				'cancelImg' : server + 'img/cancel.png',
-				'onComplete' : function(a, b, c, d) {
-					var oldImage = $("#single-field-1").val();
-					$.post(server + "images/deleteImage", {
-						name : oldImage
-					}, function(data) {// Elimina la imagen antigua
-
-					});
-					$(".preview-1").html('<img  src="' + d + '" />');
-					var file = d.split("/");
-					var nombre = file[(file.length - 1)];
-					var name = c.name;
-					$("#single-field-1").val(nombre);
-					$.post(server + "images/resizeImage", {
-						name : nombre,
-						folder : 'uploads'
-					}, function(data) {
-
-					});
-				}
-			});
-			$('#single-upload-2').uploadify({
-				'uploader' : server + 'swf/uploadify.swf',
-				'script' : server + 'uploadify.php',
-				'folder' : server + 'app/webroot/img/uploads',
-				'auto' : true,
-				'cancelImg' : server + 'img/cancel.png',
-				'onComplete' : function(a, b, c, d) {
-					var oldImage = $("#single-field-2").val();
-					$.post(server + "images/deleteImage", {
-						name : oldImage
-					}, function(data) {// Elimina la imagen antigua
-
-					});
-					$(".preview-2").html('<img  src="' + d + '" />');
-					var file = d.split("/");
-					var nombre = file[(file.length - 1)];
-					var name = c.name;
-					$("#single-field-2").val(nombre);
-					$.post(server + "images/resizeImage", {
-						name : nombre,
-						folder : 'uploads'
-					}, function(data) {
-
-					});
-				}
-			});
-		});
-
-	</script>
 </div>
+<div id="single-upload-1 images-div" controller="brands"></div>
+<div class="images-2" style="float: right;">
+	<h2>Hover Image</h2>
+	<div class="preview-2">
+		<div class="wrapper">
+			<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Brand']['image_hover']);?>
+		</div>
+	</div>
+	<div id="single-upload-2" controller="brands"></div>
+</div>
+
 <div style="clear: both;">
 	<?php echo $this -> Form -> end(__('Submit', true));?>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var server = '/';
+		$('#single-upload-1').uploadify({
+			'uploader' : server + 'swf/uploadify.swf',
+			'script' : server + 'uploadify.php',
+			'folder' : server + 'app/webroot/img/uploads',
+			'auto' : true,
+			'cancelImg' : server + 'img/cancel.png',
+			'onComplete' : function(a, b, c, d) {
+				var oldImage = $("#single-field-1").val();
+				$.post(server + "images/deleteImage", {
+					name : oldImage
+				}, function(data) {// Elimina la imagen antigua
+					});
+				$(".preview-1").html('<img  src="' + d + '" />');
+				var file = d.split("/");
+				var nombre = file[(file.length - 1)];
+				var name = c.name;
+				$("#single-field-1").val(nombre);
+				$.post(server + "images/resizeImage", {
+					name : nombre,
+					folder : 'uploads'
+				}, function(data) {
+					});
+			}
+		});
+		$('#single-upload-2').uploadify({
+			'uploader' : server + 'swf/uploadify.swf',
+			'script' : server + 'uploadify.php',
+			'folder' : server + 'app/webroot/img/uploads',
+			'auto' : true,
+			'cancelImg' : server + 'img/cancel.png',
+			'onComplete' : function(a, b, c, d) {
+				var oldImage = $("#single-field-2").val();
+				$.post(server + "images/deleteImage", {
+					name : oldImage
+				}, function(data) {// Elimina la imagen antigua
+					});
+				$(".preview-2").html('<img  src="' + d + '" />');
+				var file = d.split("/");
+				var nombre = file[(file.length - 1)];
+				var name = c.name;
+				$("#single-field-2").val(nombre);
+				$.post(server + "images/resizeImage", {
+					name : nombre,
+					folder : 'uploads'
+				}, function(data) {
+					});
+			}
+		});
+	});
+</script>

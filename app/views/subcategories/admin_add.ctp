@@ -1,15 +1,6 @@
 <div class="subcategories form2">
 	<?php echo $this -> Form -> create('Subcategory');?>
 	<fieldset>
-		<legend>
-			<?php __('Admin Add Subcategory');?>
-		</legend>
-		<?php
-		echo $this -> Form -> input('name');
-		echo $this -> Form -> input('sizes', array('multiple'=>'checkbox'));
-		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
-		echo $this -> Form -> hidden('sort');
-		?>
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
 				<?php
@@ -22,6 +13,16 @@
 				?>
 			</div>
 		</div>
+		<legend>
+			<?php __('Admin Add Subcategory');?>
+		</legend>
+		<?php
+		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('sizes', array('multiple'=>'checkbox'));
+		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
+		echo $this -> Form -> hidden('sort');
+		?>
+		
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Submit', true));?>
 </div>

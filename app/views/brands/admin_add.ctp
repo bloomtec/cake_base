@@ -1,4 +1,4 @@
-<div class="brands form2">
+<div class="brands form2 add">
 	<?php echo $this -> Form -> create('Brand');?>
 	<fieldset>
 		<legend>
@@ -13,27 +13,32 @@
 		?>
 	</fieldset>
 </div>
-<div style="clear:both; padding: 5%;">
 	
-	<div class="images-1" style="float: left;">
-		<h2>Brand Image</h2>
-		<div class="preview-1">
-			<div class="wrapper">
-				<?php echo $this -> Html -> image('preview.png');?>
-			</div>
+<div class="images-1 images-div">
+	<h2>Brand Image</h2>
+	<div class="preview-1">
+		<div class="wrapper">
+			<?php echo $this -> Html -> image('preview.png',array("width"=>150));?>
 		</div>
 	</div>
 	<div id="single-upload-1" controller="brands"></div>
-	<div class="images-2" style="float: right;">
-		<h2>Hover Image</h2>
-		<div class="preview-2">
-			<div class="wrapper">
-				<?php echo $this -> Html -> image('preview.png');?>
-			</div>
+</div>
+
+<div class="images-2 images-div" >
+	<h2>Hover Image</h2>
+	<div class="preview-2">
+		<div class="wrapper">
+			<?php echo $this -> Html -> image('preview.png',array("width"=>150));?>
 		</div>
-		<div id="single-upload-2" controller="brands"></div>
 	</div>
-	<script type="text/javascript">
+	<div id="single-upload-2" controller="brands"></div>
+</div>
+
+<div style="clear: both;">
+	<?php echo $this -> Form -> end(__('Submit', true));?>
+</div>
+
+<script type="text/javascript">
 		$(document).ready(function() {
 			var server = '/';
 			$('#single-upload-1').uploadify({
@@ -91,7 +96,3 @@
 		});
 
 	</script>
-</div>
-<div style="clear: both;">
-	<?php echo $this -> Form -> end(__('Submit', true));?>
-</div>

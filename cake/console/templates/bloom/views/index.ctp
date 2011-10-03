@@ -84,7 +84,7 @@
 				$isImage=true;
 				echo "\t\t<td><?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";			
 			}
-			if ($isKey !== true && $isActiveField!== true && $isImage!==true) {
+			if ($isKey !== true && $isActiveField!== true && $isImage!==true && $field!="id") {
 				echo "\t\t<td><?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>&nbsp;</td>\n";
 			}
 		}
@@ -94,7 +94,7 @@
 		echo "\t\t\t<?php echo \$this->Html->link(__('View', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
 		echo "\t\t\t<?php echo \$this->Html->link(__('Edit', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>\n";
 		if($picturesController){
-			echo "\t\t\t<?php echo \$this->Html->link(__('Gallery', true), array('controller' => '$picturesController','action'=>'index'),array('class'=>'view icon','title'=>__('View',true))); ?>\n";	
+			echo "\t\t\t<?php echo \$this->Html->link(__('Gallery', true), array('controller' => '$picturesController','action'=>'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";	
 		}
 		echo "\t\t\t<?php echo \$this->Html->link(__('Delete', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
 		

@@ -4,18 +4,6 @@
 		<legend>
 			<?php __('Admin Edit Subcategory');?>
 		</legend>
-		<?php
-		echo $this -> Form -> input('id');
-		echo $this -> Form -> input('name');
-		$selected = array();
-		foreach ($current_sizes as $key => $size) {
-			$selected[count($selected)] = $key;
-		}
-		echo $this -> Form -> input('current_sizes', array('multiple' => 'checkbox', 'options'=>$current_sizes, 'selected'=>$selected));
-		echo $this -> Form -> input('sizes', array('multiple' => 'checkbox'));
-		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
-		echo $this -> Form -> hidden('sort');
-		?>
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
 				<?php
@@ -28,6 +16,19 @@
 				?>
 			</div>
 		</div>
+		<?php
+		echo $this -> Form -> input('id');
+		echo $this -> Form -> input('name');
+		$selected = array();
+		foreach ($current_sizes as $key => $size) {
+			$selected[count($selected)] = $key;
+		}
+		echo $this -> Form -> input('current_sizes', array('multiple' => 'checkbox', 'options'=>$current_sizes, 'selected'=>$selected));
+		echo $this -> Form -> input('sizes', array('multiple' => 'checkbox'));
+		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
+		echo $this -> Form -> hidden('sort');
+		?>
+		
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Submit', true));?>
 </div>
