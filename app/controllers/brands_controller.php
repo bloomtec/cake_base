@@ -14,7 +14,7 @@ class BrandsController extends AppController {
 		$this->set('category',$category);
 	}
 	function getSizes($subCategory){
-		return $this->Brand->Size->find('list',array('conditions'=>array('subcategory_id'=>$subCategory)));
+		return $this->Brand->Subcategory->Size->find('list',array('conditions'=>array('subcategory_id'=>$subCategory)));
 	}
 	function brandOfCategory($categoryId=null){
 		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));

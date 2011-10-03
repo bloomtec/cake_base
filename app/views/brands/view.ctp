@@ -3,15 +3,16 @@
 	<ul class="filtrar">
 		<li class="titulos_rosado">FILTRAR POR</li>
 		<li class="azul">COLECCIÓN
-			<?php if(isset($this->params["named"]["subcategoria"])) $colecciones= $this->requestAction("/brand/getSizes/".$brand['Brand']['id']); ?>
-			<?php if(isset($colecciones)):?>
+			
 			<select class="filter" rel="coleccion">
 				<option>Enero</option>
 				<option>Febrero</option>
 			</select>
-			<?php endif;?>
+			
 		</li>
 		<li class="azul">TALLA
+			<?php if(isset($this->params["named"]["subcategoria"])) $colecciones= $this->requestAction("/brands/getSizes/".$brand['Brand']['id']); ?>
+		
 			<select class="filter" rel="talla">
 				<option>35</option>
 				<option>36</option>
