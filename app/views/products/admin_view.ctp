@@ -43,7 +43,11 @@
 		</dd>
 	</dl>
 </div>
-
+<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('Gallery', true), array('controller' => 'productPictures', 'action' => 'view',$product['Product']['id']));?> </li>
+		</ul>
+	</div>
 
 <div class="related">
 	<h3><?php __('Related Inventories');?></h3>
@@ -89,6 +93,7 @@
 		</ul>
 	</div>
 </div>
+<!--
 <div class="related">
 	<h3><?php __('Related Product Pictures');?></h3>
 	<?php if (!empty($product['ProductPicture'])):?>
@@ -97,7 +102,6 @@
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Image Path'); ?></th>
-		<th><?php __('Product Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -113,8 +117,7 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $productPicture['id'];?></td>
 			<td><?php echo $productPicture['name'];?></td>
-			<td><?php echo $productPicture['image_path'];?></td>
-			<td><?php echo $productPicture['product_id'];?></td>
+			<td><?php echo $productPicture['path'];?></td>
 			<td><?php echo $productPicture['created'];?></td>
 			<td><?php echo $productPicture['updated'];?></td>
 			<td class="actions">
@@ -129,7 +132,8 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Product Picture', true), array('controller' => 'product_pictures', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('New  Picture', true), array('controller' => 'product_pictures', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>
+-->
