@@ -59,7 +59,9 @@ h5 {
 #content_wrapper {
 	min-height: 500px;
 	background-color: #282828;
-	position:relative;
+	-moz-box-shadow: 2px 2px 3px #888;
+	-webkit-box-shadow: 2px 2px 6px #888;
+	box-shadow: 2px 2px 6px #888;
 }
 #content {
 	width: 730px;
@@ -118,11 +120,35 @@ h5 {
 	font-family: Tw Cen MT,Arial,sans-serif;
 	font-size: 14px;
 	color:#00CFB5;
+	font-style: normal;
 }
 .second_nav {
 	width: 100%;
 	height: auto;	
 	margin-bottom: 10px;
+	position: relative;
+}
+.second_nav .carrito {
+	text-decoration: none;
+	color:#BCBCBC;
+	position: absolute;
+	top:23px;
+	right: 55px;
+	background-image: url(/img/carrito.png);
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding-right: 17px;
+	font-family: tahoma,Arial, "MS Trebuchet", sans-serif;
+	font-size: 15px;
+}
+.second_nav .info_carrito{
+	position: absolute;
+	top:43px;
+	right: 55px;
+	color:#BCBCBC;
+	font-size: 12px;
+	font-family: tahoma,Arial, "MS Trebuchet", sans-serif;
+	text-decoration: none;
 }
 .second_nav ul{
 	display: block;
@@ -322,11 +348,11 @@ ul.social li {
 	font-style: normal;
 }
 .recomendado {
-	width: auto;
-	margin-right: 9px;
+	width: 69px;
+	margin-right: 5px;
 	float: left;
 }
-.recomendado img{
+.recomendado a img{
 	width: 69px;
 	height: 84px;
 	background-color: #fff;
@@ -393,7 +419,7 @@ ul.social li {
 	background-color:transparent;
 	border:none;
 	padding:0px;
-	top:90px;
+	top:89px;
 	
 }
 #header .main_nav li {
@@ -404,7 +430,7 @@ ul.social li {
 	border-bottom:none;
 	-moz-box-shadow: 0 -2px 2px #B5B5B5;
 	-webkit-box-shadow:0 -2px 2px #B5B5B5;
-	box-shadow:0 -2px 2px #B5B5B5;
+	box-shadow:0 -3px 2px #B5B5B5;
 }
 #header .main_nav li.categoria {
 	background-color:#282828;

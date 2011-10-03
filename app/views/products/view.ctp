@@ -2,7 +2,7 @@
 	<div id="detalle_izq">
 		<div id="gallery">
 			<img class="activa" src="" />
-			<div class="prev_gallery"></div>
+			<div class="prev_gallery"><a><img src="" /></a></div>
 		</div>
 		<div style="clear: both"></div>
 			
