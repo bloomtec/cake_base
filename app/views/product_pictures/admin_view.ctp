@@ -1,11 +1,7 @@
 <?php echo $this->Html->css('pictures'); ?>
 <div class="gallery_view">
 	<div class="pictures">
-<<<<<<< HEAD
-	<h2><?php if(isset($parentName)) echo $parentName ?> </h2>
-=======
 	<h2><?php if(isset($parentName)) echo $html->link($parentName,array("controller"=>"products","action"=>"view",$parent_id)) ?> </h2>
->>>>>>> 95f2195a47f719fb60f15d898897fd2e7e94e866
 	<?php foreach ($productPictures as $productPicture): ?>
 		<div class='image-container'>
 			<div class="image">
