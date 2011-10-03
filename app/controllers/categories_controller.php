@@ -9,6 +9,7 @@ class CategoriesController extends AppController {
 	}
 
 	function view($id = null) {
+		$this->layout="category";
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid category', true));
 			$this->redirect(array('action' => 'index'));

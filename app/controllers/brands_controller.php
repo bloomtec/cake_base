@@ -2,7 +2,22 @@
 class BrandsController extends AppController {
 
 	var $name = 'Brands';
-
+	function view($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid brand', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$brand=$this -> Brand -> read(null, $id);
+		$category["Category"]=$brand["Category"];
+		$this -> set('brand', $brand);
+		$this->set('category',$category);
+	}
+	function getSizes($subCategory){
+		return $this->Brand->Size->find('list',array('conditions'=>array('subcategory_id'=>$subCategory)));
+	}
+	function brandOfCategory($categoryId=null){
+		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));
+	}
 	function admin_index() {
 		$this -> Brand -> recursive = 0;
 		$this -> set('brands', $this -> paginate());

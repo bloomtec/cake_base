@@ -40,12 +40,9 @@
 	<div id="container">
 		<?php echo $this->element("header");?>
 		<div id="content_wrapper">
-			<div class="second_nav">
-				<?php echo $this->element("second_nav");?>
-			</div>
-			<div class="sub_category">
-				<?php echo $this->element("sub_category");?>
-			</div>
+			<?php echo $this->element("second_nav");?>
+			<?php echo $this->element("sub_category");?>
+		
 			<div id="content">
 				<?php echo $content_for_layout; ?>
 			</div>
