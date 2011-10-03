@@ -72,6 +72,9 @@ h5 {
 	height: 262px;
 	background-color: #fff;
 }
+.puntos{
+	border-bottom:2px dotted #564E1B;
+}
 .subcategories_index .filtrar{
 	padding-top:10px;
 	padding-bottom: 10px;
@@ -165,9 +168,7 @@ h5 {
 	float: left;
 	width: 330px;
 }
-.products_view #detalle_der{
-	float: right;
-}
+
 #gallery{
 	width: 100%;
 
@@ -175,13 +176,18 @@ h5 {
 #gallery img.activa{
 	height:400px;
 	margin-bottom: 4px;
+	background-color: #DDD;
+	width: 100%;
 
 }
-#gallery ul li{
-	display:inline;
+#gallery .prev_gallery{
 	margin-right: 4px;
+	height: 71px;
+	width: 58px;
+	float:left;
+	background-color: #DDD;
 }
-#comments div{
+#comments {
 	background-color: #333333;
 	width: 100%;
 	margin-top:15px;
@@ -197,14 +203,148 @@ h5 {
 #comments .comments{
 	margin:0;
 	background-color: #191919;
+	width: 100%;
+	border-bottom: 1px solid #494949;
+	
 }
 .comments ul{
 	float:left;
+	padding:19px;
+}
+.comments p{
+	width: 190px;
+	float:right;
+	padding-top: 19px;
+	padding-bottom: 15px;
+	padding-right: 12px;
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: 11px;
+	color:#7E7E7D;
+}
+#comments a.azul{
+	text-align: center;
+    text-decoration: none;
+    display: block;
+    line-height: 50px;
+	background:#191919;
+	
 }
 .comments ul li.titulos_rosado{
 	margin-bottom: 2px;
 }
+.products_view #detalle_der{
+	float: right;
+	width: 371px;
+}
+.products_view #detalle_der h1.titulos_rosado{
+	margin-bottom: 5px;
+}
+.products_view #detalle_der .puntos{
+	display: block;
+	height: 2px;
+    text-indent: -999em;
+    width: 243px;
+    margin-bottom: 6px;
+    clear:both;
+}
+.products_view #detalle_der .product_info{
+	margin-top: 25px;
+	float:left;
+	margin-right: 23px;
+}
 
+.products_view #detalle_der .product_info li{
+	color:#7E7E7D;
+	font-size: 14px;
+	font-family: Tahoma,serif;
+	margin-bottom: 2px;
+
+}
+.products_view #detalle_der .product_info li a{
+	color:#BCBCBC;
+}
+.products_view #detalle_der .product_info li select{
+	vertical-align: top;
+}
+.products_view #detalle_der .product_info li span{
+	color:#00CFB5;
+}
+.agregar{
+	width: 100%;
+	clear: both;
+	margin-top: 25px;
+	margin-bottom: 22px;
+}
+.agregar .agregar_carrito , .agregar_regalo{
+	width: 120px;
+	background-color: #00CFB5;
+	float:left;
+	margin-right: 5px;
+}
+.agregar_regalo{
+	background-color: #29AAE1;
+	width: 137px;
+}
+.agregar .agregar_carrito h1 , .agregar_regalo h1{
+	font-family: Tw Cen MT,Arial, "MS Trebuchet", sans-serif;
+	font-size: 14px;
+	border:1px solid #6CFFE6;
+	padding:4px;
+	margin:2px;
+}
+.agregar .agregar_carrito h1 a , .agregar_regalo h1 a{
+	text-decoration: none;
+	color:#fff;
+}
+#caracteristicas {
+	width: 100%;
+	margin-top:17px;
+}
+#caracteristicas p{
+	font-family: Arial, "MS Trebuchet", sans-serif;
+	font-size: 11px;
+	color:#7E7E7D;
+	margin-bottom: 10px;
+}
+.dudas  {
+	margin-top: 20px;
+	margin-bottom: 25px;
+}
+ul.social li {
+	border:none;
+	margin:0;
+	padding-right:3px;
+	float:left;
+	margin-bottom: 4px;
+}
+#detalle_der h3.titulos_rosado {
+	margin-top: 20px;
+	font-style: normal;
+}
+.recomendado {
+	width: auto;
+	margin-right: 9px;
+	float: left;
+}
+.recomendado img{
+	width: 69px;
+	height: 84px;
+	background-color: #fff;
+	margin-top: 15px;
+}
+.recomendado h2{
+	font-family: Tahoma,serif;
+	font-size: 10px;
+	color:#7E7E7D;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.recomendado h3 {
+	font-family: Tahoma,serif;
+	font-size: 12px;
+	color:#00CFB5;
+	font-style: normal;
+}
 /*Estilos del Home*/
 
 /* HEADER */
@@ -339,6 +479,7 @@ h5 {
 	font-size:12px;
 	font-family:Arial, Helvetica, sans-serif;
 	margin-bottom:12px;
+	text-decoration: none;
 }
 #home #content ul li p{
 	color:#7E7E7D;
@@ -370,22 +511,22 @@ h5 {
 	border:none;
 	margin:0;
 	padding-right:3px;
+	float:left;
 }
 #home #content ul li.puntos {
-	border-bottom:2px dotted #564E1B;
 	margin-bottom:9px;
 	padding-bottom:11px;
 }
-#home #content ul li.puntos a.facebook {
+#content ul li a.facebook {
 	width:34px;
 	height:35px;
 	text-indent:-9999px;
-	background-image:url(../img/facebook.png);
+	background-image:url(/img/facebook.png);
 	background-repeat:no-repeat;
 	text-decoration:none;
 	display:block;
 }
-#home #content ul li.puntos a.twitter {
+#content ul li a.twitter {
 	width:34px;
 	height:35px;
 	background-image:url(../img/twitter.png);
