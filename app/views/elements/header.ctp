@@ -20,7 +20,7 @@
 		</li>
 		<?php foreach($categories as $id=>$name):?>
 		<li class="categoria">
-			<a href="/categories/view/<?=$id?>"><?php echo $name?></a>
+			<a href="/categories/view/<?php echo $id?>"><?php echo $name?></a>
 		</li>
 		<?php endforeach;?>
 	</ul>
