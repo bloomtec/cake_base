@@ -4,7 +4,7 @@
 	<ul>
 		<?php foreach($subcategories as $subcategory): ?>
 		<li>
-			<a href="/marcas/<?=$brand['Brand']['id']?>/subcategoria:<?=$subcategory['Subcategory']['id']?>"><?php echo $subcategory["Subcategory"]["name"]; ?></a>
+			<a href="/marcas/<?php echo $brand['Brand']['id']?>/subcategoria:<?=$subcategory['Subcategory']['id']?>"><?php echo $subcategory["Subcategory"]["name"]; ?></a>
 		</li>
 		<?php endforeach;?>
 	</ul>
