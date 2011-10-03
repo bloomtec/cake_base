@@ -1,10 +1,11 @@
+<?php $categories=$this->requestAction("/categories/getList");?>
 <div id="header">
 	<h1>
-	<a href="#">Color Tennis</a>
+	<a href="/">Color Tennis</a>
 	</h1>
 	<ul>
 		<li>
-			<a href="#">Login</a>
+			<a href="/users/login">Login</a>
 		</li>
 		<li>
 			/
@@ -17,8 +18,10 @@
 		<li class="home">
 			<a href="#">Home</a>
 		</li>
+		<?php foreach($categories as $id=>$name):?>
 		<li class="categoria">
-			<a href="#">Categoria</a>
+			<a href="/categories/view/<?=$id?>"><?php echo $name?></a>
 		</li>
+		<?php endforeach;?>
 	</ul>
 </div>

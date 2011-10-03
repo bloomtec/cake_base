@@ -2,7 +2,10 @@
 class SubcategoriesController extends AppController {
 
 	var $name = 'Subcategories';
-
+	
+	function getList($brandId=null){
+		return $this->Subcategory->find("all",array("conditions"=>array("brand_id"=>$brandId)));
+	}
 	function listBrandCategories($brand_id = null) {
 		$this -> autoRender = false;
 		if ($brand_id) {
@@ -37,92 +40,13 @@ class SubcategoriesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid subcategory', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> set('subcategory', $this -> Subcategory -> read(null, $id));
-	}
-
-	function add() {
-		if (!empty($this -> data)) {
-			$this -> Subcategory -> create();
-			if ($this -> Subcategory -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The subcategory has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
-			}
-		}
-		$brands = $this -> Subcategory -> Brand -> find('list');
-		$this -> set(compact('brands'));
-	}
-
-	function edit($id = null) {
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid subcategory', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if (!empty($this -> data)) {
-			if ($this -> Subcategory -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The subcategory has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> Subcategory -> read(null, $id);
-		}
-		$brands = $this -> Subcategory -> Brand -> find('list');
-		$this -> set(compact('brands'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for subcategory', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if ($this -> Subcategory -> delete($id)) {
-			$this -> Session -> setFlash(__('Subcategory deleted', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Subcategory was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setInactive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for subcategory', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Subcategory -> read(null, $id);
-		$oldData["Subcategory"]["active"] = false;
-		if ($this -> Subcategory -> save($oldData)) {
-			$this -> Session -> setFlash(__('Subcategory archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Subcategory was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setActive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for subcategory', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Subcategory -> read(null, $id);
-		$oldData["Subcategory"]["active"] = true;
-		if ($this -> Subcategory -> save($oldData)) {
-			$this -> Session -> setFlash(__('Subcategory archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Subcategory was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function requestFind($type, $findParams, $key) {
-		if ($key == Configure::read("key")) {
-			return $this -> Subcategory -> find($type, $findParams);
-		} else {
-			return null;
-		}
+		$subcategory=$this -> Subcategory -> read(null, $id);
+		$brand["Brand"]=$subcategory["Brand"];
+		$this->Subcategory->Brand->Category->recurseive=-1;
+		$category=$this->Subcategory->Brand->Category->read(null,$subcategory["Brand"]["category_id"]);
+		$this -> set('subcategory', $subcategory);
+		$this -> set('brand', $brand);
+		$this -> set('category', $category);
 	}
 
 	function admin_index() {
@@ -199,10 +123,10 @@ class SubcategoriesController extends AppController {
 						$this -> Subcategory -> Size -> save();
 					}
 				}				
-			//	$this -> Session -> setFlash(__('The subcategory has been saved', true));
-			//	$this -> redirect(array('action' => 'index'));
+				$this -> Session -> setFlash(__('Se editó la subcategoría', true));
+				$this -> redirect(array('action' => 'index'));
 			} else {
-			//	$this -> Session -> setFlash(__('The subcategory could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('.', true));
 			}
 		}
 		if (empty($this -> data)) {

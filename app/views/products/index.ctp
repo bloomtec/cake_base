@@ -28,7 +28,6 @@
 		}
 	?>
 	<tr<?php echo $class;?>>
-		<td><?php echo $product['Product']['id']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
 		<td><?php echo $product['Product']['clasification']; ?>&nbsp;</td>

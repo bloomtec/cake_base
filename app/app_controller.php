@@ -46,7 +46,8 @@ class AppController extends Controller {
 		}
 	}
 	function getList(){
-		return $this->modelName->find("list");
+		$modelName=$this->modelNames[0];
+		return $this->$modelName->find("list");
 	}
 	
 }
