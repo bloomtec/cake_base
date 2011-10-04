@@ -8,6 +8,7 @@ class BrandsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid brand', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+<<<<<<< HEAD
 		$brand = $this -> Brand -> read(null, $id);
 		$category["Category"] = $brand["Category"];
 		$pageURL = $this -> getUrl();
@@ -15,6 +16,36 @@ class BrandsController extends AppController {
 		/**
 		 * Paginado
 		 */
+=======
+		$brand=$this -> Brand -> read(null, $id);
+		$category["Category"]=$brand["Category"];
+		$pageURL=$this->getUrl();
+		/** REEMPLAZAR LA SIGUIENTE LINEA CON EL PAGINADO */
+		$products=$this->Brand->Subcategory->Product->find('all');
+		/* REEMPLAZAR LA ENTERIOR LINEA CON EL PAGINADO*/
+		$this -> set(compact('brand','category','pageURL','products'));
+	}
+	function getUrl(){
+		 	$pageURL = 'http';
+		 if (isset($_SERVER["HTTPS"])&&$_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+		 	$pageURL .= "://";
+		 if ($_SERVER["SERVER_PORT"] != "80") {
+		  	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+		 } else {
+		  	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		 }
+		 return $pageURL;
+	}
+	function getCollections($id){
+		return $this->Brand->Collection->find('list',array("conditions"=>array('brand_id'=>$id)));
+	}
+	function brandOfCategory($categoryId=null){
+		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));
+	}
+
+
+	function brandsView() {
+>>>>>>> 21f3109e9e1d6991bc2cf59ed7a13365099f1d83
 		// Hacer más fácil las busquedas de productos
 		$this -> loadModel('Product');
 		// Filtros para el paginado

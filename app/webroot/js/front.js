@@ -21,7 +21,13 @@ $(function(){
 			return	params+param+":"+value;
 		}
 	}
+//CLASES DE LAS FUENTES
+Cufon.replace('.japan', { fontFamily: 'Japan' });
+Cufon.replace('.twCenMt', { fontFamily: 'TwCenMt' }); 
+Cufon.replace('.halo', { fontFamily: 'HaloHandLetter' });
 
+
+//EFECTO HOVER DE LAS MARCAS
 	$(".second_nav li a img").hover(
 		function(){
 			$(this).attr("src","/img/uploads/"+$(this).attr("rel"));
@@ -31,9 +37,21 @@ $(function(){
 		}
 	);
 	$("select.filter").change(function(){
-		console.log( BJS.setParam( $(this).attr('rel') , $(this).find("option:selected").val() ) );
+		document.location.href=BJS.setParam( $(this).attr('rel') , $(this).find("option:selected").val() );
 	});
-	$().click(function(){
+	$('a.order').click(function(e){
+		e.preventDefault();
+		document.location.href=BJS.setParam( 'orden' , $(this).attr('rel') );
 		
+	});
+	
+	//OVERLAY
+	$("#footer a[rel]").overlay({
+		mask: 'black',
+		effect: 'apple',
+		onBeforeLoad: function() {
+			var wrap = this.getOverlay().find(".contentWrap");
+			wrap.load(this.getTrigger().attr("href"));
+		}
 	});
 });

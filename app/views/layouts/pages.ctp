@@ -40,7 +40,7 @@
 		echo $scripts_for_layout;
 	?>
 </head>
-<body id="home">
+<body id="pages">
 <div id="container">
 		<?php echo $this->element("header");?>    
 		<div id="content">

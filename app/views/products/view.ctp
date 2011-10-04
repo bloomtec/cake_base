@@ -1,8 +1,7 @@
 <div class="products_view">
 	<div id="detalle_izq">
 		<div id="gallery">
-			<img class="activa" src="" />
-			<div class="prev_gallery"><a><img src="" /></a></div>
+			<?php echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
 		</div>
 		<div style="clear: both"></div>
 			
@@ -45,7 +44,7 @@
 		<ul class="product_info">
 			<li><a href="#">anterior</a></li>
 		</ul>
-		<ul class="product_info">
+		<ul class="product_info" style='margin-right: 0;'>
 			<li><a href="#">siguiente</a></li>			
 		</ul>	
 		<div style="clear: both"></div>

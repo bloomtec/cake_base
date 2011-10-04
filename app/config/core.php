@@ -38,8 +38,8 @@
 /*
 TAMAÑO DE IMAGENES PERSONALIZADAS
 */
-Configure::write('custom_width', 25);
-Configure::write('custom_height', 25);
+Configure::write('custom_width', 250);
+Configure::write('custom_height', 250);
 
 /**
  * CakePHP Log Level:
