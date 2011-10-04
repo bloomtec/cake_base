@@ -9,3 +9,11 @@
 	margin-left: 10px;
 	overflow: visible;
 }
+
+.images-1, .images-2 {
+	max-width: 150px;
+}
+
+.images-1 img, .images-2 img {
+	max-width: 150px;
+}

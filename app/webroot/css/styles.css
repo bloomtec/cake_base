@@ -839,3 +839,13 @@ div.contentWrap {
 	padding-top: 82px;
 	height: 344px;
 }
+.overlay-wrap .titulos_rosado{
+	text-align: center;
+}
+.overlay-wrap form{
+	width: 80%;
+	margin:0 auto;
+}
+.overlay-wrap input{
+	background: none;
+}
