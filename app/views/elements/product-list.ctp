@@ -1,11 +1,11 @@
 <ul class="products">
 	<?php foreach($products as $product):?>
-	<li class="info">
-		<a href="#"><img src="" /></a>
-		<h1 class="titulos_rosado"><?=$product["name"]?></h1>
-		<h2 class="subtitulos_gris"><?=$product["clasificacion"]?></h2>
-		<h2 class="subtitulos_gris"><?=$brand["Brand"]["name"]?></h2>
-		<h3 class="azul">PRECIO: <?=$product["precio"]?></h3>
+	<li class="info"> 
+		<a href="/products/view/<?php echo $product['Product']['id']?>"><img src="/img/uploads/custom/<?php echo $product['Product']['image']?>" /></a>
+		<h1 class="titulos_rosado"><?php echo $product['Product']["name"]?></h1>
+		<h2 class="subtitulos_gris"><?php echo $product['Product']["clasification"]?></h2>
+		<h2 class="subtitulos_gris"><?php echo $brand["Brand"]["name"]?></h2>
+		<h3 class="azul">PRECIO: <?php echo $product['Product']["price"]?></h3>
 	</li>
 	<?php endforeach;?>
 </ul>

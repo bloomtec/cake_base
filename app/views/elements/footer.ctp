@@ -6,7 +6,7 @@
 					<h1 class="titulos_rosado">SOBRE NOSOTROS</h1>
 				</li>
 				<li>
-					<a class="subtitulos_gris" href="#">Que es color tennis</a>
+					<a class="subtitulos_gris"  rel="#overlay" href="/products">Que es color tennis</a>
 				</li>
 				<li>
 					<a class="subtitulos_gris" href="#">Contácto</a>
@@ -45,4 +45,10 @@
 	</ul>
 </div>
 <h4 class="footer">Colors Tennis - Todos los derechos reservados - 2011</h4>
+</div>
+<div class="apple_overlay" id="overlay">
+
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
 </div>
