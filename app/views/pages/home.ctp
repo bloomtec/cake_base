@@ -28,11 +28,11 @@
                 </p>
             </li>
       <li class="puntos">
-            	<h3 class="subtitulos_gris">Visita nuestra</h3>
+            	<h3 class="subtitulos_gris twCenMt">Visita nuestra</h3>
                 <h1 class="fan_page twCenMt"><a href="#">fans page</a></h1>
             </li>
             <li class="puntos">
-            	<h2 class="titulos_rosado">Síguenos también en</h2>
+            	<h2 class="titulos_rosado twCenMt">Síguenos también en</h2>
                 <ul class="social">
                 	<li><a class="facebook" href="#">facebook</a></li>
                     <li><a class="twitter" href="#">twitter</a></li>

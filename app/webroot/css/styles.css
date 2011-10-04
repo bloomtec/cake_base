@@ -112,12 +112,13 @@ h5 {
 .subcategories_index ul.products li h1{
 	margin-top:6px;
 }
-.subcategories_index ul li.info a{
+.subcategories_index ul li.info a, .subcategories_index ul li.info img{
 	width: 140px;
 	height: 210px;
 	background-color: #fff;
 	display:block;
 }
+
 .azul {
 	font-family: Tw Cen MT,Arial,sans-serif;
 	font-size: 14px;
@@ -525,12 +526,13 @@ ul.social li {
 	background-color:#F1F1F1;
 	border:1px solid #D2D4D4;
 	border-top:none;
-	-moz-box-shadow: 2px 2px 6px #888;
-	-webkit-box-shadow: 2px 2px 6px #888;
-	box-shadow: 2px 2px 6px #888;
+	-moz-box-shadow: 2px 5px 3px #888888;
+	-webkit-box-shadow: 2px 5px 3px #888888;
+	box-shadow: 2px 5px 3px #888888;
 	float: none;
 	width: auto;
 	margin:0;
+	position: relative;
 }
 #home form.buscador {
 	float:right;
@@ -596,7 +598,7 @@ ul.social li {
 	font-weight:500;
 	margin-bottom: 4px;
 }
-#home h1.fan_page a {
+h1.fan_page a {
 	font-family:Tw Cen MT;
 	font-size:33px;
 	color:#2E76E7;
@@ -604,6 +606,12 @@ ul.social li {
 }
 #home #content ul li ul.social {
 	margin-left:0;
+}
+#home #content ul li h2 {
+	font-size: 15px;
+}
+#home #content ul li.puntos h3{
+	font-size: 15px;
 }
 #home #content ul li ul.social li {
 	border:none;
@@ -640,9 +648,95 @@ ul.social li {
 	margin-bottom:11px;
 }
 
+/* PAGINAS ESTATICAS*/
+#pages .nav_estaticas{
+	margin-top: 15px;
+	float: left;
+	margin-left: 23px;
+}
+#pages .puntos{
+	clear: both;
+    display: block;
+    height: 2px;
+    margin-bottom: 6px;
+    text-indent: -999em;
+    width: 243px;
+}
 
+#pages .nav_estaticas li{
+	display: inline;
+	margin-right: 60px;
+}
+#pages .nav_estaticas li a{
+	text-decoration: none;
+	font-size: 16px;
+	font-family: Myriad Pro, Arial, sans-serif;
+	color:#7E7E7D;
+}
+#pages .nav_estaticas li a:hover{
+	color:#00CFB5;
+}
+#pages #foto_estaticas {
+	clear: left;
+	margin-left: 23px;
+	margin-top: 10px;
+	margin-bottom: 95px;
+}
+#pages #estaticas_info {
+	float: right;
+	margin-top: 20px;
+	width: 460px;
+	margin-right: 40px;
+	position: absolute;
+    right: 15px;
+    bottom: 179px;
+}
+#pages #estaticas_info p{
+	color: #7E7E7D;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    margin-bottom: 30px;
+    margin-top: 15px;
+}
+#pages #estaticas_info h1{
+	font-size: 46px;
+	margin-bottom: 0px;
+}
+#pages #estaticas_info h2{
+	font-size: 16px;
+	margin-bottom: 0px;
+}
+#pages #estaticas_info .formulario_contacto h2{
+	margin-top: 18px;
+	margin-bottom: 5px;
+}
+#pages #estaticas_info .formulario_contacto input[type=text]{
+	background-color: #888888;
+	border:1px solid #D2D4D4;
+	width: 363px;
+	height: 28px;
+}
+#pages #estaticas_info .formulario_contacto input[type=submit]{
+	background-color: #EC1C75;
+	color:#fff;
+	height: 28px;
 
+}
 
+#pages .social_estaticas{
+	float: left;
+	padding-right: 20px;
+	border-right:1px solid #564E1B;
+	margin-left: 23px;
+	margin-bottom: 20px;
+	min-height: 60px;
+}
+#pages .social_estaticas .titulos_rosado{
+	font-size: 15px;
+}
+#pages .social_estaticas .subtitulos_gris.twCenMt {
+	font-size: 15px;
+}
 /* FOOTER */
 
 #footer {
@@ -685,26 +779,26 @@ h4.footer {
 
 /*OVERLAY*/
 /* the overlayed element */
-	.apple_overlay {
+.apple_overlay {
 		display:none;
 		background-image:url(../img/overlay/white.png);
 		width:960px;		
 		padding:571px;
 		font-size:11px;
 	}
-	.apple_overlay .close {
+.apple_overlay .close {
 		background-image:url(../img/close.png);
 		position:absolute; right:5px; top:5px;
 		cursor:pointer;
 		height:35px;
 		width:35px;
 	}
-	#overlay {
+#overlay {
 		background-image:url(http://static.flowplayer.org/img/overlay/transparent.png);
 		color:#efefef;
 		height:450px;
 	}
-	div.contentWrap {
+div.contentWrap {
 		height:441px;
 		overflow-y:auto;
 	}

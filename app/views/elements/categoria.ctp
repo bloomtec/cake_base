@@ -11,7 +11,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 	<?php if(!$brands):?>
 		no hay categorias
 	<?php endif;?>
-	<ul>
+	<ul class="twCenMt">
 		<li><a href="#">ROPA</a></li>
 		<li><a href="#">VESTIDOS</a></li>
 		<li><a href="#">ZAPATOS</a></li>
@@ -27,6 +27,6 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 		<li><a href="#"><img src="" /></a></li>
 		<div style="clear: both"></div>
 	</ul>
-	<a class="azul" href="#">VER CATALOGO DE MOTONETA</a>
+	<a class="azul twCenMt" href="#">VER CATALOGO DE MOTONETA</a>
 	
 </div>
