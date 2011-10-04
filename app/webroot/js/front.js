@@ -22,9 +22,9 @@ $(function(){
 		}
 	}
 //CLASES DE LAS FUENTES
-Cufon.replace('.japan', { fontFamily: 'Japan' });
-Cufon.replace('.twCenMt', { fontFamily: 'TwCenMt' }); 
-Cufon.replace('.halo', { fontFamily: 'HaloHandLetter' });
+Cufon.replace('.japan', { fontFamily: 'Japan', 	trim:"simple" });
+Cufon.replace('.twCenMt', { fontFamily: 'TwCenMt', 	trim:"simple" }); 
+Cufon.replace('.halo', { fontFamily: 'HaloHandLetter', 	trim:"simple" });
 
 
 //EFECTO HOVER DE LAS MARCAS
