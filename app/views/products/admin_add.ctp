@@ -6,9 +6,17 @@
 		</legend>
 		<?php
 		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('description');
 		echo $this -> Form -> input('price');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> input('clasification');
+		?>
+		<br /><strong>
+			Ingrese en los siguientes campos las clasificaciones de los productos separadas por coma ","
+		</strong>		
+		<?php
+		echo $this -> Form -> input('recommendations');
+		echo $this -> Form -> input('other_recommendations');
 		?>
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
