@@ -368,7 +368,7 @@ h5 {
 	margin-top: 25px;
 	margin-bottom: 22px;
 }
-.agregar .agregar_carrito , .agregar_regalo{
+.agregar_carrito , .agregar_regalo{
 	width: 120px;
 	background-color: #00CFB5;
 	float:left;
@@ -840,6 +840,7 @@ div.contentWrap {
 	padding: 20px;
 	border: solid 1px white;
 }
+
 .overlay-wrap .content{
 	background-image: url(../img/trama-overlay.png);
 	height: 426px;
@@ -849,7 +850,7 @@ div.contentWrap {
 	width: 700px;
 	margin:0 auto;
 	padding-top: 82px;
-	height: 344px;
+	height: 450px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -859,5 +860,29 @@ div.contentWrap {
 	margin:0 auto;
 }
 .overlay-wrap input{
-	background: none;
+	background: #333333;
+	border:1px solid #858585;
+	width: 340px;
+
+}
+.overlay-wrap .content .input_verde{
+	background-color: #00CFB5;
+	border:1px solid #6CFFE6;
+	color:#fff;
+	padding:3px 6px;
+	width: auto;
+	margin-left: 90px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	
+}
+.overlay-wrap .content h1.subtitulos_gris{
+	text-align: center;
+}
+.overlay-wrap .content .subtitulos_blanco{
+	color:#fff;
+	text-align: center;
+}
+.overlay-wrap .content p.subtitulos_gris{
+	margin-top: 20px;
 }
