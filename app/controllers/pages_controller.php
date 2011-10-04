@@ -170,9 +170,6 @@ function setActive($id = null) {
 		$this->redirect(array('action' => 'index'));
 	}
 
-
-
-
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for page', true));
