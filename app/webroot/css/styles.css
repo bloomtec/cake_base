@@ -715,14 +715,26 @@ h1.fan_page a {
 	border:1px solid #D2D4D4;
 	width: 363px;
 	height: 28px;
+	padding:0 3px;
+}
+#pages #estaticas_info .formulario_contacto{
+	width: 363px;
+	padding:0 25px;
+	border-right:1px solid #564E1B;
+	border-left:1px solid #564E1B;
+	margin-top: 60px;
 }
 #pages #estaticas_info .formulario_contacto input[type=submit]{
 	background-color: #EC1C75;
 	color:#fff;
 	height: 28px;
+	float: right;
 
 }
-
+#pages #estaticas_info .formulario_contacto input.comentario{
+	height: 160px;
+	margin-bottom: 15px;
+}
 #pages .social_estaticas{
 	float: left;
 	padding-right: 20px;

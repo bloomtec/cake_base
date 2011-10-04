@@ -14,7 +14,7 @@
 			</ul>
 			<ul class="separacion">
 				<li>
-					<a class="subtitulos_gris" href="#">Marcas</a>
+					<a class="subtitulos_gris" rel="#overlay" href="/brands/index">Marcas</a>
 				</li>
 			</ul>
 			<ul>
@@ -25,7 +25,7 @@
 					<a class="subtitulos_gris" href="#">Ayuda</a>
 				</li>
 				<li>
-					<a class="subtitulos_gris" href="#">Estado del pedido</a>
+					<a class="subtitulos_gris" rel="#overlay" href="/pages/seguimientosPedido.ctp">Estado del pedido</a>
 				</li>
 			</ul>
 			<ul class="separacion">
