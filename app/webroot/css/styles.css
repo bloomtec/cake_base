@@ -690,10 +690,10 @@ h4.footer {
 			width after the growing animation finishes
 			height is automatically calculated
 		*/
-		width:640px;		
+		width:960px;		
 		
 		/* some padding to layout nested elements nicely  */
-		padding:35px;
+		padding:571px;
 	
 		/* a little styling */	
 		font-size:11px;
