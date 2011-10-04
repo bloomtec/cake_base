@@ -1,5 +1,5 @@
 <?php $subcategories=$this->requestAction("/subcategories/getlist/".$brand["Brand"]["id"]); // carga las subcategorias de la primera marca ?>
-<div class="sub_category">
+<div class="sub_category twCenMt">
 	<?php if($subcategories): ?>
 	<ul>
 		<?php foreach($subcategories as $subcategory): ?>

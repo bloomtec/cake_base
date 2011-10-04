@@ -1,6 +1,6 @@
 <div class="subcategories_index">
 	<div id="slide_categoria"><img src="" /></div>
-	<ul class="filtrar">
+	<ul class="filtrar twCenMt">
 		<li class="titulos_rosado">FILTRAR POR</li>
 		<li class="azul">COLECCIÓN
 			<select>

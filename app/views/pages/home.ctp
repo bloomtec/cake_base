@@ -7,21 +7,21 @@
     </div>
         <ul>
         	<li>
-            	<h1 class="titulos_gris">CAMPAÑAS</h1>
+            	<h1 class="titulos_gris twCenMt">CAMPAÑAS</h1>
                 <a class="fotos_pequenas" id="canpana" href="#">campaña</a>
                 <h2 class="titulos_rosado">PONTE  TUS  PAEZ</h2>
               <p>Tienes BlackBerry? <br />Mira nuestro catálogo desde tu BB                   	
                 </p>
             </li>
             <li>
-            	<h1 class="titulos_gris">SHOP</h1>
+            	<h1 class="titulos_gris twCenMt">SHOP</h1>
                 <a class="fotos_pequenas" id="shop" href="#">campaña</a>
                 <h2 class="titulos_rosado">PONTE  TUS  PAEZ</h2>
               <p>Tienes BlackBerry? <br />Mira nuestro catálogo desde tu BB                   	
                 </p>
             </li>
             <li>
-            	<h1 class="titulos_gris">COLORS</h1>
+            	<h1 class="titulos_gris twCenMt">COLORS</h1>
                 <a class="fotos_pequenas" id="colors" href="#">campaña</a>
                 <h2 class="titulos_rosado">PONTE  TUS  PAEZ</h2>
               <p>Tienes BlackBerry? <br />Mira nuestro catálogo desde tu BB                   	
@@ -29,7 +29,7 @@
             </li>
       <li class="puntos">
             	<h3 class="subtitulos_gris">Visita nuestra</h3>
-                <h1 class="fan_page"><a href="#">fans page</a></h1>
+                <h1 class="fan_page twCenMt"><a href="#">fans page</a></h1>
             </li>
             <li class="puntos">
             	<h2 class="titulos_rosado">Síguenos también en</h2>
