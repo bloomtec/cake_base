@@ -13,7 +13,10 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('product', $this->Product->read(null, $id));
+		$product=$this->Product->read(null, $id);
+		$brand=$this->Product->Subcategory->Brand->read(null,$product['Subcategory']['brand_id']);
+		$category['Category']=$brand['Category'];
+		$this->set(compact('product','brand','category'));
 	}
 
 	function add() {
