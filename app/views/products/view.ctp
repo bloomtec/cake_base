@@ -1,4 +1,4 @@
-<div class="products_view">
+<div class="products_view tahoma">
 	<div id="detalle_izq">
 		<div id="gallery">
 			<?php echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
@@ -13,8 +13,8 @@
 			</div>
 			<div class="comments">
 				<ul>
-					<li class="titulos_rosado">GEORGECE007</li>
-					<li class="azul">12-08-2011</li>
+					<li class="titulos_rosado twCenMt">GEORGECE007</li>
+					<li class="azul twCenMt">12-08-2011</li>
 				</ul>
 				<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico que permite amoldarse a las distintas alturas del empeine.
 				</p>
@@ -49,10 +49,10 @@
 		</ul>	
 		<div style="clear: both"></div>
 		<div class="agregar">
-			<div class="agregar_carrito">
+			<div class="agregar_carrito twCenMt">
 				<h1><a href="#">Agregar al carrito</a></h1>
 			</div>
-			<div class="agregar_regalo">
+			<div class="agregar_regalo twCenMt">
 				<h1><a href="#">Agregar como regalo</a></h1>
 			</div>
 			<div style="clear: both"></div>

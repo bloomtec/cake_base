@@ -3,7 +3,7 @@
 $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Category"]["id"]);
 // carga las subcategorias de la primera marca
 ?>
-<div class="second_nav">
+<div class="second_nav tahoma">
 	<?php if($brands):?>
 	<ul>
 		<?php foreach($brands as $librand):?>

@@ -1,4 +1,4 @@
-<ul class="products">
+<ul class="products tahoma">
 	<?php foreach($products as $product):?>
 	<li class="info"> 
 		<a href="/products/view/<?php echo $product['Product']['id']?>"><img src="/img/uploads/custom/<?php echo $product['Product']['image']?>" /></a>
