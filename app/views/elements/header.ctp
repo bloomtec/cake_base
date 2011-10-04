@@ -14,7 +14,7 @@
 			<a href="#">Regístrate</a>
 		</li>
 	</ul>
-	<ul class="main_nav">
+	<ul class="main_nav twCenMt">
 		<li class="home halo">
 			<a href="#">Home</a>
 		</li>
