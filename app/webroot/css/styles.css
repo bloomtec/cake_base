@@ -205,8 +205,22 @@ h5 {
     padding-bottom: 17px;
     padding-top:23px;
 }
-.category #content{
+#category #content{
 	float:none;
+	 margin: 0 auto;
+    width: 100%;
+}
+#category .second_nav{
+	display:none;
+}
+.category ul li .paez{
+	background-image: url(/img/paez.png);
+	display:block;
+	width: 58px;
+	height: 23px;
+}
+.category ul li .paez:hover{
+	background-image: url(/img/paez_active.png);
 }
 .category ul li{
 	display:inline;
@@ -234,6 +248,7 @@ h5 {
 	float:right;
 	margin-top: 7px;
 	text-decoration: none;
+	margin-right: 42px;
 }
 /*detalle del producto*/
 
@@ -496,7 +511,7 @@ ul.social li {
 /* CONTENIDO */
 
 
-#home #content {
+#home #content , #pages #content {
 	background-color:#F1F1F1;
 	border:1px solid #D2D4D4;
 	border-top:none;
