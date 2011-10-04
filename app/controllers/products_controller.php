@@ -4,213 +4,259 @@ class ProductsController extends AppController {
 	var $name = 'Products';
 
 	function index() {
-		$this->layout='ajax';
-		$this->Product->recursive = 0;
-		$this->set('products', $this->paginate());
+		$this -> layout = 'ajax';
+		$this -> Product -> recursive = 0;
+		$this -> set('products', $this -> paginate());
 	}
 
 	function view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid product', true));
-			$this->redirect(array('action' => 'index'));
+			$this -> Session -> setFlash(__('Invalid product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$product=$this->Product->read(null, $id);
-		$brand=$this->Product->Subcategory->Brand->read(null,$product['Subcategory']['brand_id']);
-		$category['Category']=$brand['Category'];
-		$this->set(compact('product','brand','category'));
+		$product = $this -> Product -> read(null, $id);
+		$brand = $this -> Product -> Subcategory -> Brand -> read(null, $product['Subcategory']['brand_id']);
+		$category['Category'] = $brand['Category'];
+		$this -> set(compact('product', 'brand', 'category'));
 	}
-
-	function add() {
-		if (!empty($this->data)) {
-			$this->Product->create();
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
-			}
-		}
-		$collections = $this->Product->Collection->find('list');
-		$subcategories = $this->Product->Subcategory->find('list');
-		$this->set(compact('collections', 'subcategories'));
-	}
-
-	function edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid product', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->Product->read(null, $id);
-		}
-		$collections = $this->Product->Collection->find('list');
-		$subcategories = $this->Product->Subcategory->find('list');
-		$this->set(compact('collections', 'subcategories'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->Product->delete($id)) {
-			$this->Session->setFlash(__('Product deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Product was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
-
-
-
 
 	function setInactive($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
+			$this -> Session -> setFlash(__('Invalid id for product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$oldData=$this->Product->read(null,$id);
-		$oldData["Product"]["active"]=false;
-		if ($this->Product->save($oldData)) {
-			$this->Session->setFlash(__('Product archived', true));
-			$this->redirect(array('action'=>'index'));
+		$oldData = $this -> Product -> read(null, $id);
+		$oldData["Product"]["active"] = false;
+		if ($this -> Product -> save($oldData)) {
+			$this -> Session -> setFlash(__('Product archived', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Product was not archived', true));
-		$this->redirect(array('action' => 'index'));
+		$this -> Session -> setFlash(__('Product was not archived', true));
+		$this -> redirect(array('action' => 'index'));
 	}
-function setActive($id = null) {
+
+	function setActive($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
+			$this -> Session -> setFlash(__('Invalid id for product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$oldData=$this->Product->read(null,$id);
-		$oldData["Product"]["active"]=true;
-		if ($this->Product->save($oldData)) {
-			$this->Session->setFlash(__('Product archived', true));
-			$this->redirect(array('action'=>'index'));
+		$oldData = $this -> Product -> read(null, $id);
+		$oldData["Product"]["active"] = true;
+		if ($this -> Product -> save($oldData)) {
+			$this -> Session -> setFlash(__('Product archived', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Product was not archived', true));
-		$this->redirect(array('action' => 'index'));
+		$this -> Session -> setFlash(__('Product was not archived', true));
+		$this -> redirect(array('action' => 'index'));
 	}
-function requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->Product->find($type, $findParams);
-	}else{
-		return null;
+
+	function requestFind($type, $findParams, $key) {
+		if ($key == Configure::read("key")) {
+			return $this -> Product -> find($type, $findParams);
+		} else {
+			return null;
+		}
 	}
-}
+
 	function admin_index() {
-		$this->Product->recursive = 0;
-		$this->set('products', $this->paginate());
+		$this -> Product -> recursive = 0;
+		$this -> set('products', $this -> paginate());
 	}
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid product', true));
-			$this->redirect(array('action' => 'index'));
+			$this -> Session -> setFlash(__('Invalid product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->set('product', $this->Product->read(null, $id));
+		$this -> set('product', $this -> Product -> read(null, $id));
 	}
 
 	function admin_add() {
-		if (!empty($this->data)) {
-			$this->Product->create();
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+		if (!empty($this -> data)) {
+			$valid_recommendations = true;
+			$valid_other_recommendations = true;
+			/**
+			 * Contenedor de recomencdaciones
+			 */
+			$recommendations = split(",", $this->data['Product']['recommendations']);
+			/*
+			 * Hacer trim a los valores y validar
+			 */
+			foreach($recommendations as $key=>$recommendation){
+				$recommendations[$key]=trim($recommendation);
+				$prod_classification=$recommendations[$key];
+				$product = $this->Product->findByClasification($prod_classification);
+				if(empty($product)) {
+					$valid_recommendations = false;
+				}
+				if(empty($recommendations[$key])) {
+					unset($recommendations[$key]);
+				}
+			}
+			/**
+			 * Contenedor de otras recomendaciones
+			 */
+			$other_recommendations = split(",", $this->data['Product']['other_recommendations']);
+			/*
+			 * Hacer trim a los valores
+			 */
+			foreach($other_recommendations as $key=>$other_recommendation){
+				$other_recommendations[$key]=trim($other_recommendation);
+				$prod_classification=$other_recommendations[$key];
+				$product = $this->Product->findByClasification($prod_classification);
+				if(empty($product)) {
+					$valid_other_recommendations = false;
+				}
+				if(empty($other_recommendations[$key])) {
+					unset($other_recommendations[$key]);
+				}
+			}
+			
+			/**
+			 * Si estan validos ambos campos entonces guardar
+			 */
+			if(!$valid_recommendations) {
+				$this -> Session -> setFlash(__('Error en recomendaciones', true));
+			}
+			if(!$valid_other_recommendations) {
+				$this -> Session -> setFlash(__('Error en otras recomendaciones', true));
+			}
+			if($valid_recommendations && $valid_other_recommendations) {
+				$this -> Product -> create();
+				if ($this -> Product -> save($this -> data)) {
+					$this -> Session -> setFlash(__('The product has been saved', true));
+					$this -> redirect(array('action' => 'index'));
+				} else {
+					$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
+				}	
 			}
 		}
-		//$collections = $this->Product->Collection->find('list');
-		//$subcategories = $this->Product->Subcategory->find('list');
-		//$this->set(compact('collections', 'subcategories'));
-		$this->loadModel('Brand');
-		$brands = $this->Brand->find('list');
-		$this->set(compact('brands'));
+		$this -> loadModel('Brand');
+		$brands = $this -> Brand -> find('list');
+		$this -> set(compact('brands'));
 	}
 
 	function admin_edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid product', true));
-			$this->redirect(array('action' => 'index'));
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+		if (!empty($this -> data)) {
+			$valid_recommendations = true;
+			$valid_other_recommendations = true;
+			/**
+			 * Contenedor de recomencdaciones
+			 */
+			$recommendations = split(",", $this->data['Product']['recommendations']);
+			/*
+			 * Hacer trim a los valores y validar
+			 */
+			foreach($recommendations as $key=>$recommendation){
+				$recommendations[$key]=trim($recommendation);
+				$prod_classification=$recommendations[$key];
+				if(empty($recommendations[$key])) {
+					unset($recommendations[$key]);
+				} else {
+					$product = $this->Product->findByClasification($prod_classification);
+					if(empty($product)) {
+						$valid_recommendations = false;
+					}
+				}
+			}
+			/**
+			 * Contenedor de otras recomendaciones
+			 */
+			$other_recommendations = split(",", $this->data['Product']['other_recommendations']);
+			/*
+			 * Hacer trim a los valores
+			 */
+			foreach($other_recommendations as $key=>$other_recommendation){
+				$other_recommendations[$key]=trim($other_recommendation);
+				$prod_classification=$other_recommendations[$key];
+				if(empty($other_recommendations[$key])) {
+					unset($other_recommendations[$key]);
+				} else {
+					$product = $this->Product->findByClasification($prod_classification);
+					if(empty($product)) {
+						$valid_other_recommendations = false;
+					}
+				}
+			}
+			
+			/**
+			 * Si estan validos ambos campos entonces guardar
+			 */
+			if(!$valid_recommendations) {
+				$this -> Session -> setFlash(__('Error en recomendaciones', true));
+			}
+			if(!$valid_other_recommendations) {
+				$this -> Session -> setFlash(__('Error en otras recomendaciones', true));
+			}
+			if($valid_recommendations && $valid_other_recommendations) {
+				$this -> Product -> create();
+				if ($this -> Product -> save($this -> data)) {
+					$this -> Session -> setFlash(__('The product has been saved', true));
+					$this -> redirect(array('action' => 'index'));
+				} else {
+					$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
+				}	
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->Product->read(null, $id);
-		}
-		//$collections = $this->Product->Collection->find('list');
-		//$subcategories = $this->Product->Subcategory->find('list');
-		//$this->set(compact('collections', 'subcategories'));
-		$this->loadModel('Brand');
-		$brands = $this->Brand->find('list');
-		$this->set(compact('brands'));
+		$this -> loadModel('Brand');
+		$brands = $this -> Brand -> find('list');
+		$this -> set(compact('brands'));
+		$this -> data = $this -> Product -> read(null, $id);
 	}
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
+			$this -> Session -> setFlash(__('Invalid id for product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		if ($this->Product->delete($id)) {
-			$this->Session->setFlash(__('Product deleted', true));
-			$this->redirect(array('action'=>'index'));
+		if ($this -> Product -> delete($id)) {
+			$this -> Session -> setFlash(__('Product deleted', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Product was not deleted', true));
-		$this->redirect(array('action' => 'index'));
+		$this -> Session -> setFlash(__('Product was not deleted', true));
+		$this -> redirect(array('action' => 'index'));
 	}
-
-
-
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
+			$this -> Session -> setFlash(__('Invalid id for product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$oldData=$this->Product->read(null,$id);
-		$oldData["Product"]["active"]=false;
-		if ($this->Product->save($oldData)) {
-			$this->Session->setFlash(__('Product archived', true));
-			$this->redirect(array('action'=>'index'));
+		$oldData = $this -> Product -> read(null, $id);
+		$oldData["Product"]["active"] = false;
+		if ($this -> Product -> save($oldData)) {
+			$this -> Session -> setFlash(__('Product archived', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Product was not archived', true));
-		$this->redirect(array('action' => 'index'));
+		$this -> Session -> setFlash(__('Product was not archived', true));
+		$this -> redirect(array('action' => 'index'));
 	}
-function admin_setActive($id = null) {
+
+	function admin_setActive($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for product', true));
-			$this->redirect(array('action'=>'index'));
+			$this -> Session -> setFlash(__('Invalid id for product', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$oldData=$this->Product->read(null,$id);
-		$oldData["Product"]["active"]=true;
-		if ($this->Product->save($oldData)) {
-			$this->Session->setFlash(__('Product archived', true));
-			$this->redirect(array('action'=>'index'));
+		$oldData = $this -> Product -> read(null, $id);
+		$oldData["Product"]["active"] = true;
+		if ($this -> Product -> save($oldData)) {
+			$this -> Session -> setFlash(__('Product archived', true));
+			$this -> redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('Product was not archived', true));
-		$this->redirect(array('action' => 'index'));
+		$this -> Session -> setFlash(__('Product was not archived', true));
+		$this -> redirect(array('action' => 'index'));
 	}
-function admin_requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this->Product->find($type, $findParams);
-	}else{
-		return null;
+
+	function admin_requestFind($type, $findParams, $key) {
+		if ($key == Configure::read("key")) {
+			return $this -> Product -> find($type, $findParams);
+		} else {
+			return null;
+		}
 	}
-}
+
 }
