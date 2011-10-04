@@ -4,6 +4,7 @@ class ProductsController extends AppController {
 	var $name = 'Products';
 
 	function index() {
+		$this->layout='ajax';
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
 	}

@@ -1,7 +1,7 @@
 <div class="products_view">
 	<div id="detalle_izq">
 		<div id="gallery">
-			<?php echo $this->element('gallery-thumbs-scrollable');?>
+			<?php echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
 		</div>
 		<div style="clear: both"></div>
 			

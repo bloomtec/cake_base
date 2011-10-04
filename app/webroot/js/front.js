@@ -31,11 +31,21 @@ $(function(){
 		}
 	);
 	$("select.filter").change(function(){
-		console.log( BJS.setParam( $(this).attr('rel') , $(this).find("option:selected").val() ) );
+		document.location.href=BJS.setParam( $(this).attr('rel') , $(this).find("option:selected").val() );
 	});
 	$('a.order').click(function(e){
 		e.preventDefault();
-		console.log( BJS.setParam( 'orden' , $(this).attr('rel') ) );
+		document.location.href=BJS.setParam( 'orden' , $(this).attr('rel') );
 		
+	});
+	
+	//OVERLAY
+	$("#footer a[rel]").overlay({
+		mask: 'black',
+		effect: 'apple',
+		onBeforeLoad: function() {
+			var wrap = this.getOverlay().find(".contentWrap");
+			wrap.load(this.getTrigger().attr("href"));
+		}
 	});
 });
