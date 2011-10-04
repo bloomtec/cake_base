@@ -33,7 +33,9 @@ $(function(){
 	$("select.filter").change(function(){
 		console.log( BJS.setParam( $(this).attr('rel') , $(this).find("option:selected").val() ) );
 	});
-	$().click(function(){
+	$('a.order').click(function(e){
+		e.preventDefault();
+		console.log( BJS.setParam( 'orden' , $(this).attr('rel') ) );
 		
 	});
 });

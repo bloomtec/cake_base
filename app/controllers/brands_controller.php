@@ -11,7 +11,10 @@ class BrandsController extends AppController {
 		$brand=$this -> Brand -> read(null, $id);
 		$category["Category"]=$brand["Category"];
 		$pageURL=$this->getUrl();
-		$this -> set(compact('brand','category','pageURL'));
+		/** REEMPLAZAR LA SIGUIENTE LINEA CON EL PAGINADO */
+		$products=$this->Brand->Subcategory->Product->find('all');
+		/* REEMPLAZAR LA ENTERIOR LINEA CON EL PAGINADO*/
+		$this -> set(compact('brand','category','pageURL','products'));
 	}
 	function getUrl(){
 		 	$pageURL = 'http';

@@ -15,9 +15,9 @@
 			?>
 		</li>
 		<li class="titulos_rosado">ORDENAR POR</li>
-		<li><a class="azul" href="<?php echo $pageURL?>/orden:nuevo/" rel='orden'>¿QUE ES LO NUEVO?</a></li>
+		<li><a class="azul order" href="<?php echo $pageURL?>/orden:nuevo/" rel='nuevo'>¿QUE ES LO NUEVO?</a></li>
 		<li class="titulos_gris">|</li>
-		<li><a class="azul" href="<?php echo $pageURL?>/orden:preferido" rel='orden'>¿QUE ES LO PREFERIDO?</a></li>
+		<li><a class="azul order" href="<?php echo $pageURL?>/orden:preferido" rel='preferido'>¿QUE ES LO PREFERIDO?</a></li>
 	</ul>
 
 	<?php echo $this->element("product-list");?>
