@@ -188,6 +188,53 @@ h5 {
 .sub_category a:hover{
 	color:#00CFB5;
 }
+/*elemento categoria*/
+
+.category {
+	width: 100%;
+	height: auto;	
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.category ul{
+	display: block;
+    margin: 0 auto;
+    width: 890px;
+    border-bottom:1px solid #564E1B;
+    padding-bottom: 17px;
+    padding-top:23px;
+}
+.category #content{
+	float:none;
+}
+.category ul li{
+	display:inline;
+	margin-right:60px;
+}
+.category ul li img{
+	vertical-align: top;
+}
+.category ul li a{
+	text-decoration: none;
+	font-family: Tw Cen MT,Arial, "MS Trebuchet", sans-serif;
+	font-size: 16px;
+	color:#7E7E7D;
+}
+.category ul.img_catalogo li{
+	width: 140px;
+	height: 210px;
+	background-color: #DDD;
+	display:block;
+	float:left;
+	margin-right:5px;
+	
+}
+.category a.azul{
+	float:right;
+	margin-top: 7px;
+	text-decoration: none;
+}
 /*detalle del producto*/
 
 .products_view #detalle_izq{
@@ -452,7 +499,7 @@ ul.social li {
 #home #content {
 	background-color:#F1F1F1;
 	border:1px solid #D2D4D4;
-	border-top:none
+	border-top:none;
 	-moz-box-shadow: 2px 2px 6px #888;
 	-webkit-box-shadow: 2px 2px 6px #888;
 	box-shadow: 2px 2px 6px #888;
@@ -609,3 +656,4 @@ h4.footer {
 	text-align: center;
 	background-color: #CBCBCB;
 }
+
