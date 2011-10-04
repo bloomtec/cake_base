@@ -140,7 +140,7 @@ class ProductsController extends AppController {
 					/*
 					 * Crear las otras recomendaciones
 					 */
-					foreach($recommendations as $clasification) {
+					foreach($other_recommendations as $clasification) {
 						$recommended_product = $this->Product->findByClasification($clasification);
 						$this->Product->OtherRecommendation->create();
 						$this->Product->OtherRecommendation->set('product_id', $this->Product->id);
@@ -217,10 +217,9 @@ class ProductsController extends AppController {
 			 * Limpiar y guardar las recomendaciones correspondientes
 			 */
 			if($valid_recommendations && $valid_other_recommendations) {
-				$this -> Product -> create();
 				if ($this -> Product -> save($this -> data)) {
 					/**
-					 * Eliminar las recomendaciones del producto previas
+					 * Eliminar las recomendaciones del producto previas--------------------------------------------------
 					 */
 					$product_recommendations = $this->Product->Recommendation->find('all');
 					foreach($product_recommendations as $product_recommendation) {
@@ -239,7 +238,7 @@ class ProductsController extends AppController {
 						$this->Product->Recommendation->save();
 					}
 					/**
-					 * Eliminar las recomendaciones del producto previas
+					 * Eliminar las recomendaciones del producto previas--------------------------------------------------
 					 */
 					$product_recommendations = $this->Product->OtherRecommendation->find('all');
 					foreach($product_recommendations as $product_recommendation) {
@@ -250,7 +249,7 @@ class ProductsController extends AppController {
 					/*
 					 * Crear las otras recomendaciones
 					 */
-					foreach($recommendations as $clasification) {
+					foreach($other_recommendations as $clasification) {
 						$recommended_product = $this->Product->findByClasification($clasification);
 						$this->Product->OtherRecommendation->create();
 						$this->Product->OtherRecommendation->set('product_id', $this->data['Product']['id']);
