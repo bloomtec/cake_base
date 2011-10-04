@@ -183,23 +183,62 @@ class ProductsController extends AppController {
 				}
 			}
 			
-			/**
-			 * Si estan validos ambos campos entonces guardar
-			 */
 			if(!$valid_recommendations) {
 				$this -> Session -> setFlash(__('Error en recomendaciones', true));
 			}
 			if(!$valid_other_recommendations) {
 				$this -> Session -> setFlash(__('Error en otras recomendaciones', true));
 			}
+			/**
+			 * Si estan validos ambos campos entonces guardar
+			 * Limpiar y guardar las recomendaciones correspondientes
+			 */
 			if($valid_recommendations && $valid_other_recommendations) {
 				$this -> Product -> create();
 				if ($this -> Product -> save($this -> data)) {
+					/**
+					 * Eliminar las recomendaciones del producto previas
+					 */
+					$product_recommendations = $this->Product->Recommendation->find('all');
+					foreach($product_recommendations as $product_recommendation) {
+						if($product_recommendation['Recommendation']['product_id']==$this->data['Product']['id']) {
+							$this->Product->Recommendation->delete($product_recommendation['Recommendation']['id']);
+						}
+					}
+					/*
+					 * Crear las recomendaciones
+					 */
+					foreach($recommendations as $clasification) {
+						$recommended_product = $this->Product->findByClasification($clasification);
+						$this->Product->Recommendation->create();
+						$this->Product->Recommendation->set('product_id', $this->data['Product']['id']);
+						$this->Product->Recommendation->set('recommended_product_id', $recommended_product['Product']['id']);
+						$this->Product->Recommendation->save();
+					}
+					/**
+					 * Eliminar las recomendaciones del producto previas
+					 */
+					$product_recommendations = $this->Product->OtherRecommendation->find('all');
+					foreach($product_recommendations as $product_recommendation) {
+						if($product_recommendation['OtherRecommendation']['product_id']==$this->data['Product']['id']) {
+							$this->Product->OtherRecommendation->delete($product_recommendation['OtherRecommendation']['id']);
+						}
+					}
+					/*
+					 * Crear las otras recomendaciones
+					 */
+					foreach($recommendations as $clasification) {
+						$recommended_product = $this->Product->findByClasification($clasification);
+						$this->Product->OtherRecommendation->create();
+						$this->Product->OtherRecommendation->set('product_id', $this->data['Product']['id']);
+						$this->Product->OtherRecommendation->set('recommended_product_id', $recommended_product['Product']['id']);
+						$this->Product->OtherRecommendation->save();
+					}
 					$this -> Session -> setFlash(__('The product has been saved', true));
 					$this -> redirect(array('action' => 'index'));
 				} else {
 					$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
-				}	
+				}
 			}
 		}
 		$this -> loadModel('Brand');
