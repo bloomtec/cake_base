@@ -8,44 +8,37 @@ class BrandsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid brand', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-<<<<<<< HEAD
 		$brand = $this -> Brand -> read(null, $id);
 		$category["Category"] = $brand["Category"];
 		$pageURL = $this -> getUrl();
-		$this -> set(compact('brand', 'category', 'pageURL'));
-		/**
-		 * Paginado
-		 */
-=======
-		$brand=$this -> Brand -> read(null, $id);
-		$category["Category"]=$brand["Category"];
-		$pageURL=$this->getUrl();
 		/** REEMPLAZAR LA SIGUIENTE LINEA CON EL PAGINADO */
-		$products=$this->Brand->Subcategory->Product->find('all');
+		$products = $this -> Brand -> Subcategory -> Product -> find('all');
 		/* REEMPLAZAR LA ENTERIOR LINEA CON EL PAGINADO*/
-		$this -> set(compact('brand','category','pageURL','products'));
-	}
-	function getUrl(){
-		 	$pageURL = 'http';
-		 if (isset($_SERVER["HTTPS"])&&$_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-		 	$pageURL .= "://";
-		 if ($_SERVER["SERVER_PORT"] != "80") {
-		  	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-		 } else {
-		  	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		 }
-		 return $pageURL;
-	}
-	function getCollections($id){
-		return $this->Brand->Collection->find('list',array("conditions"=>array('brand_id'=>$id)));
-	}
-	function brandOfCategory($categoryId=null){
-		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));
+		$this -> set(compact('brand', 'category', 'pageURL', 'products'));
 	}
 
+	function getUrl() {
+		$pageURL = 'http';
+		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";
+		}
+		$pageURL .= "://";
+		if ($_SERVER["SERVER_PORT"] != "80") {
+			$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+		} else {
+			$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+		}
+		return $pageURL;
+	}
+
+	function getCollections($id) {
+		return $this -> Brand -> Collection -> find('list', array("conditions" => array('brand_id' => $id)));
+	}
+
+	function brandOfCategory($categoryId = null) {
+		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
+	}
 
 	function brandsView() {
->>>>>>> 21f3109e9e1d6991bc2cf59ed7a13365099f1d83
 		// Hacer más fácil las busquedas de productos
 		$this -> loadModel('Product');
 		// Filtros para el paginado
@@ -69,40 +62,9 @@ class BrandsController extends AppController {
 		$product_ids = $this -> Product -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.size_id' => $size_id)));
 		// ID's desde inventarios
 		// Paginar según los datos enviados. Hay tres datos con los que paginar
-		$this -> paginate = array(
-			'Product' => array(
-				'order' => $order,
-				'limit' => $limit,
-				'conditions' => array(
-					'Product.subcategory_id' => $subcategory_id,
-					'Product.collection_id' => $collection_id,
-					'Product.id' => $product_ids
-				)
-			)
-		);
+		$this -> paginate = array('Product' => array('order' => $order, 'limit' => $limit, 'conditions' => array('Product.subcategory_id' => $subcategory_id, 'Product.collection_id' => $collection_id, 'Product.id' => $product_ids)));
 		$products = $this -> paginate('Product');
 		$this -> set('products', $products);
-	}
-
-	function getUrl() {
-		$pageURL = 'http';
-		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";
-		}
-		$pageURL .= "://";
-		if ($_SERVER["SERVER_PORT"] != "80") {
-			$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
-		} else {
-			$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
-		}
-		return $pageURL;
-	}
-
-	function getCollections($id) {
-		return $this -> Brand -> Collection -> find('list', array("conditions" => array('brand_id' => $id)));
-	}
-
-	function brandOfCategory($categoryId = null) {
-		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
 	}
 
 	function admin_index() {
