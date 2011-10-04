@@ -10,11 +10,22 @@ class BrandsController extends AppController {
 		}
 		$brand=$this -> Brand -> read(null, $id);
 		$category["Category"]=$brand["Category"];
-		$this -> set('brand', $brand);
-		$this->set('category',$category);
+		$pageURL=$this->getUrl();
+		$this -> set(compact('brand','category','pageURL'));
 	}
-	function getSizes($subCategory){
-		return $this->Brand->Subcategory->Size->find('list',array('conditions'=>array('subcategory_id'=>$subCategory)));
+	function getUrl(){
+		 	$pageURL = 'http';
+		 if (isset($_SERVER["HTTPS"])&&$_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+		 	$pageURL .= "://";
+		 if ($_SERVER["SERVER_PORT"] != "80") {
+		  	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
+		 } else {
+		  	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+		 }
+		 return $pageURL;
+	}
+	function getCollections($id){
+		return $this->Brand->Collection->find('list',array("conditions"=>array('brand_id'=>$id)));
 	}
 	function brandOfCategory($categoryId=null){
 		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));

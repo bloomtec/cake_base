@@ -3,27 +3,21 @@
 	<ul class="filtrar">
 		<li class="titulos_rosado">FILTRAR POR</li>
 		<li class="azul">COLECCIÓN
-			
-			<select class="filter" rel="coleccion">
-				<option>Enero</option>
-				<option>Febrero</option>
-			</select>
-			
+			<?php 
+				$colecciones= $this->requestAction("/brands/getCollections/".$brand['Brand']['id']); 
+				echo $form->input("tallas",array("type"=>"select","options"=>$colecciones,"empty"=>"seleccione","div"=>false,"label"=>false,"class"=>"filter",'rel'=>'coleccion'));	
+			?>
 		</li>
 		<li class="azul">TALLA
-			<?php if(isset($this->params["named"]["subcategoria"])) $colecciones= $this->requestAction("/brands/getSizes/".$brand['Brand']['id']); ?>
-		
-			<select class="filter" rel="talla">
-				<option>35</option>
-				<option>36</option>
-				<option>37</option>
-				<option>38</option>
-			</select>
+			<?php if(isset($this->params["named"]["subcategoria"])) $tallas= $this->requestAction("/subcategories/getSizes/".$this->params["named"]["subcategoria"]); ?>
+			<?php 
+				echo $form->input("tallas",array("type"=>"select","options"=>$tallas,"empty"=>"seleccione","div"=>false,"label"=>false,'class'=>'filter','rel'=>'talla'));
+			?>
 		</li>
 		<li class="titulos_rosado">ORDENAR POR</li>
-		<li><a class="azul" href="#">¿QUE ES LO NUEVO?</a></li>
+		<li><a class="azul" href="<?php echo $pageURL?>/orden:nuevo/" rel='orden'>¿QUE ES LO NUEVO?</a></li>
 		<li class="titulos_gris">|</li>
-		<li><a class="azul" href="#">¿QUE ES LO PREFERIDO?</a></li>
+		<li><a class="azul" href="<?php echo $pageURL?>/orden:preferido" rel='orden'>¿QUE ES LO PREFERIDO?</a></li>
 	</ul>
 
 	<?php echo $this->element("product-list");?>
