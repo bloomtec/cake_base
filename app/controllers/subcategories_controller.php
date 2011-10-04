@@ -19,10 +19,8 @@ class SubcategoriesController extends AppController {
 	}
 
 	function getSizes($id) {
-		$this->autoRender=false;
-		//return $this->Subcategory->Size->find('list',array('conditions'=>array('subcategory_id'=>$id)));
-		$size_ids = $this->Subcategory->Size->find('list', array('conditions'=>array('Size.subcategory_id'=>$id)));
 		$this->loadModel('SizeReference');
+		$size_ids = $this->Subcategory->Size->find('list', array('conditions'=>array('Size.subcategory_id'=>$id)));
 		$names = $this->SizeReference->find('list', array('conditions'=>array('SizeReference.id'=>$size_ids), 'recursive'=>-1));
 		return $names;
 	}

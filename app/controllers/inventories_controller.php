@@ -11,6 +11,10 @@ class InventoriesController extends AppController {
 		
 	}
 	
+	function listProductIDs($size_id) {
+		return $this->Inventory->find('list', array('fields'=>array('Inventory.product_id'), 'conditions'=>array('Inventory.quantity >'=>0, 'Inventory.size_id'=>$size_id)));
+	}
+	
 	function admin_listInventory() {
 		$this -> Inventory -> recursive = 0;
 		$this -> set('inventories', $this -> paginate());
