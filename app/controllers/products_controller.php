@@ -2,6 +2,36 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
+	
+	function findRecommendedProducts($product_id) {
+		$recommended_product_ids = $this->Product->Recommendation->find(
+			'list',
+			array(
+				'fields'=>array(
+					'Recommendation.recommended_product_id'
+				),
+				'conditions'=>array(
+					'Recommendation.product_id'=>$product_id
+				)
+			)
+		);
+		return $this->Product->find('all', array('conditions'=>array('Product.id'=>$recommended_product_ids)));
+	}
+	
+	function findOtherRecommendedProducts($product_id) {
+		$recommended_product_ids = $this->Product->OtherRecommendation->find(
+			'list',
+			array(
+				'fields'=>array(
+					'OtherRecommendation.recommended_product_id'
+				),
+				'conditions'=>array(
+					'OtherRecommendation.product_id'=>$product_id
+				)
+			)
+		);
+		return $this->Product->find('all', array('conditions'=>array('Product.id'=>$recommended_product_ids)));
+	}
 
 	function index() {
 		$this -> layout = 'ajax';
