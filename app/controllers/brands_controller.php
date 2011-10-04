@@ -11,9 +11,36 @@ class BrandsController extends AppController {
 		$brand = $this -> Brand -> read(null, $id);
 		$category["Category"] = $brand["Category"];
 		$pageURL = $this -> getUrl();
-		/** REEMPLAZAR LA SIGUIENTE LINEA CON EL PAGINADO */
-		$products = $this -> Brand -> Subcategory -> Product -> find('all');
-		/* REEMPLAZAR LA ENTERIOR LINEA CON EL PAGINADO*/
+		/** 
+		 * EEMPLAZAR LA SIGUIENTE LINEA CON EL PAGINADO
+		 **/
+		$this->loadModel("Product");
+		//$products = $this -> Brand -> Subcategory -> Product -> find('all');
+		$conditions = array();
+		if((isset($this->params['named']['subcategoria'])) && (!empty($this->params['named']['subcategoria']))) {
+			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
+		}
+		if((isset($this->params['named']['coleccion'])) && (!empty($this->params['named']['coleccion']))) {
+			$conditions['Product.collection_id']=$this->params['named']['coleccion'];
+		}
+		if((isset($this->params['named']['talla'])) && (!empty($this->params['named']['talla']))) {
+			/**
+			 * Buscar en Inventories con el valor de la talla que llega (size_id) y retornar los product_id
+			 * Luego, hacer una condicion tipo "Product.id"=>$product_ids
+			 **/
+			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$this->params['named']['talla']);
+			$conditions['Product.id']=$product_ids;
+		}
+		$this->paginate=array(
+			"Product" => array(
+				'limit' => 12,
+				'conditions' => $conditions
+			)
+		);
+		$products = $this->paginate('Product', array('Product.brand_id'=>$id));
+		/**
+		 * REEMPLAZAR LA ENTERIOR LINEA CON EL PAGINADO
+		 **/
 		$this -> set(compact('brand', 'category', 'pageURL', 'products'));
 	}
 
