@@ -44,7 +44,7 @@
 		<ul class="product_info">
 			<li><a href="#">anterior</a></li>
 		</ul>
-		<ul class="product_info">
+		<ul class="product_info" style='margin-right: 0;'>
 			<li><a href="#">siguiente</a></li>			
 		</ul>	
 		<div style="clear: both"></div>

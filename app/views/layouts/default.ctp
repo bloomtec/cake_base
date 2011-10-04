@@ -32,6 +32,10 @@
 		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('jquery.tools.min');
+		echo $this->Html->script('cufon-yui');
+		echo $this->Html->script('HaloHandLetter_500.font');
+		echo $this->Html->script('Japan_500.font');
+		echo $this->Html->script('TwCenMt_400.font');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
