@@ -21,7 +21,13 @@ $(function(){
 			return	params+param+":"+value;
 		}
 	}
+//CLASES DE LAS FUENTES
+Cufon.replace('.japan', { fontFamily: 'Japan' });
+Cufon.replace('.twCenMt', { fontFamily: 'TwCenMt' }); 
+Cufon.replace('.halo', { fontFamily: 'HaloHandLetter' });
 
+
+//EFECTO HOVER DE LAS MARCAS
 	$(".second_nav li a img").hover(
 		function(){
 			$(this).attr("src","/img/uploads/"+$(this).attr("rel"));

@@ -53,6 +53,7 @@ $(".scrollable").scrollable({
 		}
 	}
 });
+/*
 var dentro=true;
 $(window).focus(function(){
 	if(!dentro){
@@ -66,4 +67,5 @@ $(window).blur(function(){
 	dentro=false;
 	
 });
+*/
 </script>
