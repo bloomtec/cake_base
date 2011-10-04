@@ -124,23 +124,10 @@ class Product extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'OtherRecommendation' => array(
-			'className' => 'OtherRecommendation',
-			'foreignKey' => 'product_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'ProductPicture' => array(
 			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -152,6 +139,19 @@ class Product extends AppModel {
 		),
 		'Recommendation' => array(
 			'className' => 'Recommendation',
+			'foreignKey' => 'product_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'OtherRecommendation' => array(
+			'className' => 'OtherRecommendation',
 			'foreignKey' => 'product_id',
 			'dependent' => false,
 			'conditions' => '',
