@@ -8,61 +8,71 @@ class BrandsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid brand', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$brand=$this -> Brand -> read(null, $id);
-		$category["Category"]=$brand["Category"];
-		$pageURL=$this->getUrl();
-		$this -> set(compact('brand','category','pageURL'));
-	}
-	function getUrl(){
-		 	$pageURL = 'http';
-		 if (isset($_SERVER["HTTPS"])&&$_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
-		 	$pageURL .= "://";
-		 if ($_SERVER["SERVER_PORT"] != "80") {
-		  	$pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
-		 } else {
-		  	$pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
-		 }
-		 return $pageURL;
-	}
-	function getCollections($id){
-		return $this->Brand->Collection->find('list',array("conditions"=>array('brand_id'=>$id)));
-	}
-	function brandOfCategory($categoryId=null){
-		return $this->Brand->find("all",array("conditions"=>array("category_id"=>$categoryId)));
-	}
-
-
-	function brandsView() {
+		$brand = $this -> Brand -> read(null, $id);
+		$category["Category"] = $brand["Category"];
+		$pageURL = $this -> getUrl();
+		$this -> set(compact('brand', 'category', 'pageURL'));
+		/**
+		 * Paginado
+		 */
 		// Hacer más fácil las busquedas de productos
-		$this->loadModel('Product');
-
+		$this -> loadModel('Product');
 		// Filtros para el paginado
-		$subcategory_id=$this->params['named']['subcategoria'];
-		$collection_id=$this->params['named']['coleccion'];
-		$size_id=$this->params['named']['talla'];
-		$order=array('Product.created'=>'ASC'); // Para esto se considera ASC
+		$subcategory_id = $this -> params['named']['subcategoria'];
+		$collection_id = $this -> params['named']['coleccion'];
+		$size_id = $this -> params['named']['talla'];
+		$order = array('Product.created' => 'ASC');
+		// Para esto se considera ASC
 		$limit = 10;
 		switch($this->params['named']['orden']) {
-			case "preferido": $order=array('Product.num_visits'=>'ASC'); break;
-			case "nuevo": $order=array('Product.created'=>'ASC'); break;
+			case "preferido" :
+				$order = array('Product.num_visits' => 'ASC');
+				break;
+			case "nuevo" :
+				$order = array('Product.created' => 'ASC');
+				break;
+			default :
+				$order = array('Product.created' => 'ASC');
+				break;
 		}
-		$product_ids = $this->Product->find('list', array('fields'=>array('Inventory.product_id'), 'conditions'=>array('Inventory.size_id'=>$size_id))); // ID's desde inventarios		
+		$product_ids = $this -> Product -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.size_id' => $size_id)));
+		// ID's desde inventarios
 		// Paginar según los datos enviados. Hay tres datos con los que paginar
-		$this->paginate=array(
+		$this -> paginate = array(
 			'Product' => array(
-				'order'=>$order,
-				'limit'=>$limit,
-				'conditions'=>array(
+				'order' => $order,
+				'limit' => $limit,
+				'conditions' => array(
 					'Product.subcategory_id' => $subcategory_id,
 					'Product.collection_id' => $collection_id,
 					'Product.id' => $product_ids
 				)
 			)
 		);
-		$products=$this->paginate('Product');
-		$this->set('products', $products);
+		$products = $this -> paginate('Product');
+		$this -> set('products', $products);
 	}
 
+	function getUrl() {
+		$pageURL = 'http';
+		if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";
+		}
+		$pageURL .= "://";
+		if ($_SERVER["SERVER_PORT"] != "80") {
+			$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+		} else {
+			$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+		}
+		return $pageURL;
+	}
+
+	function getCollections($id) {
+		return $this -> Brand -> Collection -> find('list', array("conditions" => array('brand_id' => $id)));
+	}
+
+	function brandOfCategory($categoryId = null) {
+		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
+	}
 
 	function admin_index() {
 		$this -> Brand -> recursive = 0;
