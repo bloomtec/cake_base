@@ -2,10 +2,11 @@
 class SubcategoriesController extends AppController {
 
 	var $name = 'Subcategories';
-	
-	function getList($brandId=null){
-		return $this->Subcategory->find("all",array("conditions"=>array("brand_id"=>$brandId)));
+
+	function getList($brandId = null) {
+		return $this -> Subcategory -> find("all", array("conditions" => array("brand_id" => $brandId)));
 	}
+
 	function listBrandCategories($brand_id = null) {
 		$this -> autoRender = false;
 		if ($brand_id) {
@@ -16,11 +17,17 @@ class SubcategoriesController extends AppController {
 		}
 		exit(0);
 	}
-	function getSizes($id){
+
+	function getSizes($id) {
+		$this->autoRender=false;
 		//return $this->Subcategory->Size->find('list',array('conditions'=>array('subcategory_id'=>$id)));
-		
-		return array("1"=>"XS","2"=>"L");
+		$size_ids = $this->Subcategory->Size->find('list', array('conditions'=>array('Size.subcategory_id'=>$id)));
+		debug($size_ids);
+		$this->loadModel('SizeReference');
+		$names = $this->SizeReference->find('list', array('conditions'=>array('SizeReference.id'=>$size_ids), 'recursive'=>-1));
+		return $names;
 	}
+
 	function getBrandCategory($brand_id = null) {
 		$this -> autoRender = false;
 		if ($brand_id) {
@@ -44,10 +51,10 @@ class SubcategoriesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid subcategory', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$subcategory=$this -> Subcategory -> read(null, $id);
-		$brand["Brand"]=$subcategory["Brand"];
-		$this->Subcategory->Brand->Category->recurseive=-1;
-		$category=$this->Subcategory->Brand->Category->read(null,$subcategory["Brand"]["category_id"]);
+		$subcategory = $this -> Subcategory -> read(null, $id);
+		$brand["Brand"] = $subcategory["Brand"];
+		$this -> Subcategory -> Brand -> Category -> recurseive = -1;
+		$category = $this -> Subcategory -> Brand -> Category -> read(null, $subcategory["Brand"]["category_id"]);
 		$this -> set('subcategory', $subcategory);
 		$this -> set('brand', $brand);
 		$this -> set('category', $category);
@@ -71,7 +78,7 @@ class SubcategoriesController extends AppController {
 			$this -> Subcategory -> create();
 			if ($this -> Subcategory -> save($this -> data)) {
 				$this -> loadModel('Size');
-				if(!empty($this->data['Subcategory']['sizes'])) {
+				if (!empty($this -> data['Subcategory']['sizes'])) {
 					foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
 						$this -> Size -> create();
 						$this -> Size -> set('size_reference_id', $size_reference_id);
@@ -105,13 +112,13 @@ class SubcategoriesController extends AppController {
 				 * Salvar la información de tallas
 				 */
 				// Quitar las tallas actuales
-				$actual_size_ids = $this->Subcategory->Size->find('list', array('conditions'=>array('Size.subcategory_id'=>$id)));
-				foreach($actual_size_ids as $key=>$val) {
-					$this->Subcategory->Size->delete($key);
+				$actual_size_ids = $this -> Subcategory -> Size -> find('list', array('conditions' => array('Size.subcategory_id' => $id)));
+				foreach ($actual_size_ids as $key => $val) {
+					$this -> Subcategory -> Size -> delete($key);
 				}
 				// Llenar las tallas seleccionadas de las previas
-				if(!empty($this->data['Subcategory']['current_sizes'])) {
-					foreach($this->data['Subcategory']['current_sizes'] as $key=>$val) {
+				if (!empty($this -> data['Subcategory']['current_sizes'])) {
+					foreach ($this->data['Subcategory']['current_sizes'] as $key => $val) {
 						$this -> Subcategory -> Size -> create();
 						$this -> Subcategory -> Size -> set('size_reference_id', $val);
 						$this -> Subcategory -> Size -> set('subcategory_id', $id);
@@ -119,14 +126,14 @@ class SubcategoriesController extends AppController {
 					}
 				}
 				// Llevar las tallas seleccionadas de las nuevas
-				if(!empty($this->data['Subcategory']['sizes'])) {
+				if (!empty($this -> data['Subcategory']['sizes'])) {
 					foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
 						$this -> Subcategory -> Size -> create();
 						$this -> Subcategory -> Size -> set('size_reference_id', $size_reference_id);
 						$this -> Subcategory -> Size -> set('subcategory_id', $id);
 						$this -> Subcategory -> Size -> save();
 					}
-				}				
+				}
 				$this -> Session -> setFlash(__('Se editó la subcategoría', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
@@ -151,9 +158,9 @@ class SubcategoriesController extends AppController {
 		 */
 		$current_sizes = array();
 		foreach ($size_reference_ids as $outer_key => $size_reference_id) {
-			$size_data = $this -> requestAction('/size_references/listSize/'.$size_reference_id);
-			foreach($size_data as $key=>$val) {
-				$current_sizes[$key]=$val;
+			$size_data = $this -> requestAction('/size_references/listSize/' . $size_reference_id);
+			foreach ($size_data as $key => $val) {
+				$current_sizes[$key] = $val;
 			}
 			foreach ($sizes as $inner_key => $size_id) {
 				if ($inner_key == $size_reference_id) {
