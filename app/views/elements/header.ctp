@@ -3,7 +3,7 @@
 	<h1>
 	<a  href="/">Color Tennis</a>
 	</h1>
-	<ul>
+	<ul class="tahoma">
 		<li>
 			<a href="/users/login">Login</a>
 		</li>

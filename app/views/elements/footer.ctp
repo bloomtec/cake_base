@@ -1,5 +1,5 @@
 <div id="footer">
-	<ul>
+	<ul class="tahoma">
 		<li>
 			<ul class="menu_footer">
 				<li>

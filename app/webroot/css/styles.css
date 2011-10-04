@@ -59,9 +59,10 @@ h5 {
 #content_wrapper {
 	min-height: 500px;
 	background-color: #282828;
-	-moz-box-shadow: 2px 2px 3px #888;
-	-webkit-box-shadow: 2px 2px 6px #888;
-	box-shadow: 2px 2px 6px #888;
+	-moz-box-shadow: 2px 3px 2px #888888;
+	-webkit-box-shadow: 2px 3px 2px #888888;
+	box-shadow: 2px 3px 2px #888888;
+	position: relative;
 }
 #content {
 	width: 730px;
@@ -87,13 +88,14 @@ h5 {
 }
 .subcategories_index .filtrar li.titulos_rosado{
 	margin:0;
+	font-size: 15px;
 }
 .subcategories_index .filtrar li.titulos_gris{
 	margin:0;
 }
 .subcategories_index .filtrar li{
 	display:inline;
-	margin-right: 9px;
+	margin-right: 5px;
 }
 .subcategories_index .filtrar li a{
 	text-decoration: none;	
@@ -287,6 +289,7 @@ h5 {
 	display:inline;
 	margin-left:7px;
 	margin-right: 6px;
+	font-style: normal;
 }
 #comments .comments{
 	margin:0;
@@ -326,6 +329,7 @@ h5 {
 }
 .products_view #detalle_der h1.titulos_rosado{
 	margin-bottom: 5px;
+	font-size: 15px;
 }
 .products_view #detalle_der .puntos{
 	display: block;
@@ -377,7 +381,7 @@ h5 {
 	font-family: Tw Cen MT,Arial, "MS Trebuchet", sans-serif;
 	font-size: 14px;
 	border:1px solid #6CFFE6;
-	padding:4px;
+	padding:3px;
 	margin:2px;
 }
 .agregar .agregar_carrito h1 a , .agregar_regalo h1 a{
@@ -469,10 +473,13 @@ ul.social li {
 	margin-right:3px;
 	color:#FFF;	
 }
-#header ul li.home a{
-	font-size: 33px;
+#header ul li.home{
+	padding: 1px 23px;
 }
-#header ul li a {
+#header ul li.home a{
+	font-size: 30px;
+}
+#header ul li a{
 	text-decoration:none;
 	color:#FFF;
 	font-family:Tahoma;
@@ -583,7 +590,7 @@ ul.social li {
 	border-right:none;
 }
 .subtitulos_gris {
-	font-family:Myriad Pro;
+	font-family:Myriad Pro,Arial, Helvetica, sans-serif;
 	font-size:12px;
 	color:#595959;
 	font-weight:500;
@@ -679,27 +686,12 @@ h4.footer {
 /*OVERLAY*/
 /* the overlayed element */
 	.apple_overlay {
-		
-		/* initially overlay is hidden */
 		display:none;
-		
-		/* growing background image */
 		background-image:url(../img/overlay/white.png);
-		
-		/* 
-			width after the growing animation finishes
-			height is automatically calculated
-		*/
-		width:640px;		
-		
-		/* some padding to layout nested elements nicely  */
-		padding:35px;
-	
-		/* a little styling */	
+		width:960px;		
+		padding:571px;
 		font-size:11px;
 	}
-	
-	/* default close button positioned on upper right corner */
 	.apple_overlay .close {
 		background-image:url(../img/close.png);
 		position:absolute; right:5px; top:5px;
@@ -712,9 +704,44 @@ h4.footer {
 		color:#efefef;
 		height:450px;
 	}
-	
-	/* container for external content. uses vertical scrollbar, if needed */
 	div.contentWrap {
 		height:441px;
 		overflow-y:auto;
 	}
+.overlay-wrap{
+		width:960px;
+		height: 571px;
+	}
+.overlay-wrap .header {
+	padding-left: 300px;
+	background-color:#cbcbcb;
+	background-image: url(../img/logo_header.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+	height: 105px;
+	border-bottom: solid 1px #494949;
+}
+.overlay-wrap .header h2{
+	font-size: 22px;
+	color:#ec1c75;
+	text-transform: uppercase;
+	background-color:#dddddd;
+	height: 25px;
+	margin-top: 20px;
+	display: block;
+	float: right;
+	margin-right: 20px;
+	padding: 20px;
+	border: solid 1px white;
+}
+.overlay-wrap .content{
+	background-image: url(../img/trama-overlay.png);
+	height: 426px;
+	padding: 0 20px;
+}
+.overlay-wrap .content .wrapper{
+	width: 700px;
+	margin:0 auto;
+	padding-top: 82px;
+	height: 344px;
+}
