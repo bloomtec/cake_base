@@ -6,6 +6,7 @@ class SubcategoriesController extends AppController {
 	function getList($brandId=null){
 		return $this->Subcategory->find("all",array("conditions"=>array("brand_id"=>$brandId)));
 	}
+	
 	function listBrandCategories($brand_id = null) {
 		$this -> autoRender = false;
 		if ($brand_id) {
