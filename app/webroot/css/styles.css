@@ -798,7 +798,6 @@ h4.footer {
 		display:none;
 		background-image:url(../img/overlay/white.png);
 		width:960px;		
-		padding:571px;
 		font-size:11px;
 	}
 .apple_overlay .close {
@@ -811,15 +810,15 @@ h4.footer {
 #overlay {
 		background-image:url(http://static.flowplayer.org/img/overlay/transparent.png);
 		color:#efefef;
-		height:450px;
+		height:531px;
 	}
 div.contentWrap {
-		height:441px;
+		height:531px;
 		overflow-y:auto;
 	}
 .overlay-wrap{
 		width:960px;
-		height: 571px;
+		height: 531px;
 	}
 .overlay-wrap .header {
 	padding-left: 300px;
@@ -846,14 +845,14 @@ div.contentWrap {
 
 .overlay-wrap .content{
 	background-image: url(../img/trama-overlay.png);
-	height: 426px;
+	height: 424px;
 	padding: 0 20px;
 }
 .overlay-wrap .content .wrapper{
 	width: 700px;
 	margin:0 auto;
 	padding-top: 82px;
-	height: 450px;
+	height: 325px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;

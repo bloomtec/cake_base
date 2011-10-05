@@ -48,7 +48,6 @@ Cufon.replace('.halo', { fontFamily: 'HaloHandLetter', 	trim:"simple" });
 	//OVERLAY
 	$("#footer a[rel]").overlay({
 		mask: 'black',
-		effect: 'apple',
 		onBeforeLoad: function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load(this.getTrigger().attr("href"));

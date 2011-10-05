@@ -73,8 +73,20 @@
 		</div>
 		<h2 class="titulos_rosado">COMPARTE ESTE PRODUCTO</h2>
         <ul class="social">
-        <li><a class="facebook" href="#">facebook</a></li>
-        <li><a class="twitter" href="#">twitter</a></li>
+        <li>
+        	<a class='facebook' href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');">
+				Compartir en facebook
+			</a> 
+			<div style='clear:both;'></div>
+        </li>
+        <li>
+        	<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+			<!-- <a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com&amp;via=your_screen_name" class="boton-twitter">Compartir en twitter</a>--> 
+			<a  onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode("http://".$_SERVER["SERVER_NAME"]."/products/view/".$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="twitter" target="_blank">
+				twitter
+			</a>
+			<div style='clear:both;'></div>
+       </li>
         </ul>
 		<span class="puntos"></span>
 		
