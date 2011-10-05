@@ -16,6 +16,9 @@
 			</ul>
 		</li>
 		<li>
+			<a href="/admin/size_references"><img class="iconos"/><span>TALLAS</span></a>
+		</li>
+		<li>
 			<a href="#"><img class="iconos"/><span>CATEGORÍAS</span></a>
 			<ul>
 				<li><a href="/admin/categories">Ver Categorías</a></li>
@@ -55,22 +58,6 @@
 			<ul>
 				<li><a href="/admin/product_pictures">Ver Fotografías</a></li>
 				<li><a href="/admin/product_pictures/add">Agregar Fotografía</a></li>
-			</ul>
-		</li>
-		
-		
-		<li>
-			<a href="#"><img class="iconos"/><span>TALLAS</span></a>
-			<ul>
-				<li><a href="/admin/sizes">Ver Tallas</a></li>
-				<li><a href="/admin/sizes/add">Agregar Talla</a></li>
-				<li><a href="/admin/size_references">Tallas De Referencia</a></li>
-			</ul>
-		</li>
-		<li>
-			<a href="#"><img class="iconos"/><span>INVENTARIO</span></a>
-			<ul>
-				<li><a href="/admin/inventories/listInventory">Manejar Inventario</a></li>
 			</ul>
 		</li>
 </ul>
