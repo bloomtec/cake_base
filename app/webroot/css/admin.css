@@ -20,3 +20,43 @@
 .index td img{
 	max-height: 50px;
 }
+/*
+ * INVENTORY :: LIST PRODUCT INVENTORY
+ */
+div.inventory h2 {
+	text-align: center;
+}
+div.inventory input, label {
+	height: 20px;
+	text-align: center;
+}
+div#addInventoryForm table tbody tr td, div#updateInventoryForm table tbody tr td {
+	text-align: center;
+}
+div#updateInventoryForm table tbody tr td input {
+	/*width: 70px;
+	margin-top: -23px;*/
+}
+div#updateInventoryForm table tbody tr td div {
+	width: 80%;
+}
+div#addInventoryForm, div#updateInventoryForm {
+	margin-left: auto;
+	margin-right: auto;
+	width: 450px;
+}
+div#addInventoryForm #col-submit {
+	width: 180px;
+}
+div#addInventoryForm form .submit input[type="submit"] {
+	border-radius: 30%;
+	width: auto;
+}
+div#updateInventoryForm form .submit {
+	margin-bottom: 10px;
+}
+div#updateInventoryForm form .submit input[type="submit"] {
+	border-radius: 30%;
+	width: auto;
+	margin-left: 27%;
+}
