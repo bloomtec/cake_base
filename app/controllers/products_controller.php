@@ -103,6 +103,7 @@ class ProductsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('product', $this -> Product -> read(null, $id));
+		$this -> set('inventory', $this -> Product -> Inventory -> paginate('Inventory', array('Inventory.product_id'=>$id)));
 	}
 
 	function admin_add() {
