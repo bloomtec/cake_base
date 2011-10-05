@@ -119,12 +119,7 @@ h5 {
 	display:block;
 }
 
-.azul {
-	font-family: Tw Cen MT,Arial,sans-serif;
-	font-size: 14px;
-	color:#00CFB5;
-	font-style: normal;
-}
+
 .second_nav {
 	width: 100%;
 	height: auto;	
@@ -915,4 +910,145 @@ div.contentWrap {
 }
 .overlay-wrap form.duda input[type=text]{
 	height: 110px;
+}
+/* ESTILOS DEL CARRITO */
+
+.menu_carrito{
+	margin-top: 35px;
+	float: left;
+	margin-left:23px;
+	margin-bottom: 30px;
+}
+.menu_carrito li{
+	display: inline;
+	
+}
+.menu_carrito li a{
+	color:#fff;
+	padding: 0 6px;
+	border-right:1px solid #fff;
+	text-decoration: none;
+}
+.menu_carrito li a.azul{
+	color:#00CFB5;
+}
+.menu_carrito li:last-child a{
+	border:none;
+}
+thead th{
+	color:#BCBCBC;
+	font-size: 13px;
+	border-bottom:1px solid #494949;
+	height: 25px;
+}
+tbody tr{
+	border-bottom: 1px solid #494949;
+}
+tbody tr td{
+	padding:5px 0;
+}
+tbody tr td .img_carrito img {
+	width: 69px;
+	height: 84px;
+	background-color: #fff;
+	float: left;
+	margin-top: 10px;
+}
+tbody tr td h1 , tbody tr th h2{
+	float: left;
+	margin-left: 10px;
+}
+tbody tr td h2.titulos_gris{
+	font-size: 12px;
+	margin-left: 80px;
+}
+tbody tr td h1.titulos_rosado{
+	margin-top: 30px;
+	font-size: 14px;
+	margin-bottom: 7px;
+	margin-top: 22px;
+}
+td.descripcion {
+	width: 260px;
+}
+tbody form.marcar_regalo {
+	float: left;
+	color:#00CFB5;
+	font-size: 10px;
+	margin-left: 6px;
+}
+tbody form.marcar_regalo input[type=checkbox]{
+	vertical-align: middle;
+}
+tbody tr .talla{
+	width: 138px;
+}
+tbody tr .talla.quitar {
+	width: 60px;
+}
+tbody tr .talla h1 , tbody tr .talla a{
+	font-size: 12px;
+	vertical-align: middle;
+	color:#7E7E7D;
+	text-decoration: none;
+}
+tbody tr .talla select{
+	float: left;
+}
+table.tahoma {
+	margin:0 auto;
+}
+#cupon{
+	float: right;
+	width: 400px;
+	margin-right: 53px;
+	margin-top: 60px;
+}
+#cupon h1 a.titulos_gris {
+	display: block;
+    text-align: right;
+    text-decoration: none;
+    width: 275px;
+}
+#cupon h1, #cupon form{
+	float: right;
+	font-size: 16px;
+}
+#cupon label{
+	font-size: 16px;
+}
+#cupon h1 span{
+	color:#fff;
+	
+}
+#cupon form{
+	margin-bottom: 7px;
+}
+#cupon form  input[type=text]{
+	background-color: #333333;
+	border:1px solid #858585;
+	margin-left: 3px;
+	
+}
+#cupon form  input[type=submit]{
+	background-color: #EC1C75;
+	border:1px solid #858585;
+	color:#fff;
+	font-size: 12px;
+	width: 65px;
+	font-family: tahoma,Arial, "MS Trebuchet", sans-serif;
+	margin-left: 5px;
+}
+#cupon .agregar_regalo{
+	width: 139px;
+	float: right;
+}
+#cupon .agregar_regalo.verde{
+	width: 76px;
+	background-color: #00CFB5;
+}
+#cupon #btn_cupon{
+	float: right;
+	width: 400px;
+	margin-bottom: 70px;
 }
