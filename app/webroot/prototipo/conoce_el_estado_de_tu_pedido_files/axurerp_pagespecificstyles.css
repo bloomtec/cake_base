@@ -1,0 +1,120 @@
+body {
+    margin: 0px;
+    background-color: #CBCBCB;
+    text-align: center;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+    position: relative;
+    left: --80px;
+    width: 2670px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u1_original {
+    background-image: url('../conoce_el_estado_de_tu_pedido_files/u1_original.png');
+}
+
+.u1_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:2670px;
+    height:2080px;
+}
+
+#u1_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:2676px;
+    height:2086px;
+}
+
+.u2 {
+    position:absolute;
+    left:2px;
+    top:1032px;
+    width:2666px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u1 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:2670px;
+    height:2080px
+}
+
+.u3_container {
+    position:absolute;
+    left:0px;
+    top:393px;
+    width:1023px;
+    height:567px;
+}
+
+#u3_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:1023px;
+    height:567px;
+}
+
+.u4 {
+    position:absolute;
+    left:2px;
+    top:276px;
+    width:1019px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u3 {
+    position:absolute;
+    left:0px;
+    top:393px;
+    width:1023px;
+    height:567px
+}
+
+.u5 {
+    position:absolute;
+    left:39px;
+    top:403px;
+    width:151px;
+    height:70px
+}
+
