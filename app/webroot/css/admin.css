@@ -17,3 +17,6 @@
 .images-1 img, .images-2 img {
 	max-width: 150px;
 }
+.index td img{
+	max-height: 50px;
+}

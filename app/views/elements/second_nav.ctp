@@ -5,10 +5,10 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 ?>
 <div class="second_nav tahoma">
 	<?php if($brands):?>
-	<ul>
+	<ul class='brands-menu'>
 		<?php foreach($brands as $librand):?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>">
+			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>" alt="<?php echo $librand["Brand"]["name"]?>">
 				<?php if(!isset($brand) || $librand["Brand"]["id"]!=$brand["Brand"]["id"]){?>
 				<img src="/img/uploads/<?php echo $librand["Brand"]["image_brand"];?>" rel="<?php echo $librand["Brand"]["image_hover"];?>" image="<?php echo $librand["Brand"]["image_brand"];?>" />
 				<?php }else{?>

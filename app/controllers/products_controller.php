@@ -12,7 +12,9 @@ class ProductsController extends AppController {
 				),
 				'conditions'=>array(
 					'Recommendation.product_id'=>$product_id
-				)
+				),
+				'limit'=>5,
+				'order'=>'rand()'
 			)
 		);
 		return $this->Product->find('all', array('conditions'=>array('Product.id'=>$recommended_product_ids)));
@@ -27,7 +29,9 @@ class ProductsController extends AppController {
 				),
 				'conditions'=>array(
 					'OtherRecommendation.product_id'=>$product_id
-				)
+				),
+				'limit'=>5,
+				'order'=>'rand()'
 			)
 		);
 		return $this->Product->find('all', array('conditions'=>array('Product.id'=>$recommended_product_ids)));

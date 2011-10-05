@@ -245,8 +245,11 @@ h5 {
 	display:block;
 	float:left;
 	margin-right:5px;
-	
 }
+ .category ul.img_catalogo li img{
+	width: 140px;
+	height: 210px; 	
+ }
 .category a.azul{
 	float:right;
 	margin-top: 7px;

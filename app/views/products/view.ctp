@@ -1,7 +1,7 @@
 <div class="products_view tahoma">
 	<div id="detalle_izq">
 		<div id="gallery">
-			<?php echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
+			<?php if(!empty($product['ProductPicture'])) echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
 		</div>
 		<div style="clear: both"></div>
 			
@@ -62,11 +62,8 @@
 		<span class="puntos"></span>
 		<div id="caracteristicas">
 		<h1 class="titulos_rosado">CARACTERISTICAS:</h1>
-		<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico 
-		que permite amoldarse a las distintas alturas del empeine. Reforzadas en la 
-		punta y talón para prolongar su duración. Por dentro tiene una lona 
-		estampada que protege y es suave al tacto.
-		La suela en EVA combinada con caucho mejora la tracción al caminar.
+		<p>
+			<?php echo $product['Product']['description'];?>
 		</p>
 		<span class="puntos"></span>
 		</div>
@@ -80,7 +77,19 @@
         <li><a class="twitter" href="#">twitter</a></li>
         </ul>
 		<span class="puntos"></span>
-		<?php echo $this->element("recomendado");?> 
+		
+		
+		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
+		<?php if($recomendados1):?>
+		<h3 class="titulos_rosado">CON QUE LO PODRÍAS USAR </h1>
+		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
+		<?php endif; ?>
+		
+		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
+		<?php if($recomendados1):?>
+		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
+		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
+		<?php endif; ?>
 	</div>
 
 </div>

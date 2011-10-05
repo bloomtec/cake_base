@@ -1,8 +1,8 @@
-<h3 class="titulos_rosado">CON QUE LO PODRÍAS USAR </h1>
-<?php for($i=0;$i<5;$i++):?>
+<?php foreach($products as $product):?>
 <div class="recomendado">
-	<a><img src="" /></a>
-	<h2>NOMBRE PRENDA</h2>
-	<h3>PRECIO</h3>
+	<a href='/products/view/<?php echo $product['Product']['id']?>' ><img src="/img/uploads/100x100/<?php echo $product['Product']['image']?>" /></a>
+	<h2><?php echo $product['Product']['name']?></h2>
+	<h3>PRECIO: <?php echo $product['Product']['price']?></h3>
 </div>
-<?php endfor;?>
+<?php endforeach;?>
+<div style='clear:both;'></div>
