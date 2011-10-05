@@ -5,6 +5,7 @@
 	<label for='pedido' class='azul'>NUMERO DE PEDIDO</label>
 	<input id='pedido' name='data[Order][order_number]'>
 	<input class="input_verde" type="submit" value="Conocer Estado" />
+	<div style="clear: both"></div>
 
 </form>
 <h1 class="subtitulos_gris">NOMBRE CLIENTE: <span class="subtitulos_blanco">JORGE CEBALLOS</span></h1>

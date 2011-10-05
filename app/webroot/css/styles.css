@@ -824,7 +824,7 @@ div.contentWrap {
 	padding-left: 300px;
 	background-color:#cbcbcb;
 	background-image: url(../img/logo_header.png);
-	background-position: left center;
+	background-position: 5% 50%;
 	background-repeat: no-repeat;
 	height: 105px;
 	border-bottom: solid 1px #494949;
@@ -860,11 +860,19 @@ div.contentWrap {
 .overlay-wrap form{
 	width: 80%;
 	margin:0 auto;
+	padding: 5px 0;
+}
+.overlay-wrap form label{
+	margin-left: 15px;
 }
 .overlay-wrap input{
 	background: #333333;
 	border:1px solid #858585;
 	width: 340px;
+	float:right;
+	margin-right: 35px;
+	padding-left: 2px;
+	color:#fff;
 
 }
 .overlay-wrap .content .input_verde{
@@ -873,13 +881,15 @@ div.contentWrap {
 	color:#fff;
 	padding:3px 6px;
 	width: auto;
-	margin-left: 90px;
-	margin-top: 20px;
+	margin-left: 130px;
+	margin-top: 15px;
 	margin-bottom: 20px;
+	float: none;
 	
 }
 .overlay-wrap .content h1.subtitulos_gris{
 	text-align: center;
+
 }
 .overlay-wrap .content .subtitulos_blanco{
 	color:#fff;
@@ -887,4 +897,22 @@ div.contentWrap {
 }
 .overlay-wrap .content p.subtitulos_gris{
 	margin-top: 20px;
+}
+.overlay-wrap form input[type=checkbox]{
+	width: 0;
+	float: none;
+	margin: 0;
+}
+.overlay-wrap form.newsletter{
+	text-align: center;
+		clear: both;
+}
+.overlay-wrap form.newsletter label{
+	margin-left: 0;
+}
+.overlay-wrap form.newsletter .subtitulos_blanco{
+	font-size: 12px;
+}
+.overlay-wrap form.duda input[type=text]{
+	height: 110px;
 }
