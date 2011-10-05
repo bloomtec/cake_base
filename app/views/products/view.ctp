@@ -1,7 +1,7 @@
 <div class="products_view tahoma">
 	<div id="detalle_izq">
 		<div id="gallery">
-			<?php echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
+			<?php if(!empty($product['ProductPicture'])) echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
 		</div>
 		<div style="clear: both"></div>
 			
@@ -62,11 +62,8 @@
 		<span class="puntos"></span>
 		<div id="caracteristicas">
 		<h1 class="titulos_rosado">CARACTERISTICAS:</h1>
-		<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico 
-		que permite amoldarse a las distintas alturas del empeine. Reforzadas en la 
-		punta y talón para prolongar su duración. Por dentro tiene una lona 
-		estampada que protege y es suave al tacto.
-		La suela en EVA combinada con caucho mejora la tracción al caminar.
+		<p>
+			<?php echo $product['Product']['description'];?>
 		</p>
 		<span class="puntos"></span>
 		</div>
@@ -76,11 +73,35 @@
 		</div>
 		<h2 class="titulos_rosado">COMPARTE ESTE PRODUCTO</h2>
         <ul class="social">
-        <li><a class="facebook" href="#">facebook</a></li>
-        <li><a class="twitter" href="#">twitter</a></li>
+        <li>
+        	<a class='facebook' href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');">
+				Compartir en facebook
+			</a> 
+			<div style='clear:both;'></div>
+        </li>
+        <li>
+        	<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+			<!-- <a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com&amp;via=your_screen_name" class="boton-twitter">Compartir en twitter</a>--> 
+			<a  onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode("http://".$_SERVER["SERVER_NAME"]."/products/view/".$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="twitter" target="_blank">
+				twitter
+			</a>
+			<div style='clear:both;'></div>
+       </li>
         </ul>
 		<span class="puntos"></span>
-		<?php echo $this->element("recomendado");?> 
+		
+		
+		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
+		<?php if($recomendados1):?>
+		<h3 class="titulos_rosado">CON QUE LO PODRÍAS USAR </h1>
+		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
+		<?php endif; ?>
+		
+		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
+		<?php if($recomendados1):?>
+		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
+		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
+		<?php endif; ?>
 	</div>
 
 </div>

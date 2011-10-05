@@ -27,6 +27,12 @@ class PagesController extends AppController {
 	function ayuda(){
 		$this->layout="pages";
 	}
+	function nosotros(){
+		$this->layout="pages";
+	}
+	function contacto(){
+		$this->layout="pages";
+	}
 	function admin_ez(){
 		
 	}

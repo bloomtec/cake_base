@@ -28,7 +28,7 @@ Cufon.replace('.halo', { fontFamily: 'HaloHandLetter', 	trim:"simple" });
 
 
 //EFECTO HOVER DE LAS MARCAS
-	$(".second_nav li a img").hover(
+	$(".brands-menu li a img").hover(
 		function(){
 			$(this).attr("src","/img/uploads/"+$(this).attr("rel"));
 		},
@@ -48,7 +48,6 @@ Cufon.replace('.halo', { fontFamily: 'HaloHandLetter', 	trim:"simple" });
 	//OVERLAY
 	$("#footer a[rel]").overlay({
 		mask: 'black',
-		effect: 'apple',
 		onBeforeLoad: function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load(this.getTrigger().attr("href"));

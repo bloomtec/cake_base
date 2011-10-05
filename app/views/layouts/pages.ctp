@@ -44,10 +44,33 @@
 <div id="container">
 		<?php echo $this->element("header");?>    
 		<div id="content">
-
+			<ul class="nav_estaticas twCenMt">
+				<li><a href="#">NOSOTROS</a></li>
+				<li><a href="#">TIENDAS</a></li>
+				<li><a href="#">AYUDA</a></li>
+				<li><a href="#">CONTACTO</a></li>
+			</ul>
+			<div style="clear: both"></div>
 			<?php echo $this->Session->flash(); ?>
-
 			<?php echo $content_for_layout; ?>
+			<div class="social_estaticas">
+				<h3 class="subtitulos_gris twCenMt">Visita nuestra</h3>
+                <h1 class="fan_page twCenMt"><a href="#">fans page</a></h1>
+			</div>
+			<div class="social_estaticas">
+				<h2 class="titulos_rosado twCenMt">Síguenos también en</h2>
+                <ul class="social">
+                	<li><a class="facebook" href="#">facebook</a></li>
+                    <li><a class="twitter" href="#">twitter</a></li>
+                </ul>
+			</div>
+			<div class="social_estaticas">
+				<h3 class="subtitulos_gris">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
+                <p>Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
+                </p>
+			</div>
+			<div style="clear: both"></div>
+
 
 		</div>
 		<?php echo $this->element("footer");?>
