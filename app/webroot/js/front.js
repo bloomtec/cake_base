@@ -46,7 +46,7 @@ Cufon.replace('.halo', { fontFamily: 'HaloHandLetter', 	trim:"simple" });
 	});
 	
 	//OVERLAY
-	$("#footer a[rel]").overlay({
+	$("a[rel='#overlay']").overlay({
 		mask: 'black',
 		onBeforeLoad: function() {
 			var wrap = this.getOverlay().find(".contentWrap");
