@@ -20,8 +20,8 @@ set :user, "embalao"
 # VERSION TRACKER INFORMATION
 set :scm, :git
 set :use_sudo, false
-set :repository,  "git@github.com:bloomtec/colors.git"
-set :branch, "master"
+set :repository,  "git@github.com:bloomtec/cake_base.git"
+set :branch, "colors"
 
 # TASKS
 namespace :deploy do
