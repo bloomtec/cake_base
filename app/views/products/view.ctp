@@ -35,9 +35,28 @@
 		</ul>
 		<ul class="product_info">
 			<li>TALLA
-			 <select>
-				<option>10</option>
-				<option>12</option>
+			 <select class="ids-tallas">
+			 	<?php
+			 		$inventory_size_ids = $this->requestAction('/inventories/listSizeIDs/'.$product['Product']['id']);
+					$size_size_reference_ids = array();
+					foreach ($inventory_size_ids as $key => $value) {
+						$size_size_reference_ids[] = $this->requestAction('/sizes/getSizeReferenceID/'.$value);
+					}
+					$size_reference_ids = $this->requestAction('/size_references/listSizes');
+					$product_sizes = array();
+					foreach($size_reference_ids as $sr_key => $sr_value) {
+						foreach($size_size_reference_ids as $key=>$val){
+							if($val==$sr_key){
+								$product_sizes[$sr_key]=$sr_value;
+							}
+						} 
+					}
+					foreach ($product_sizes as $sr_key => $sr_value) {
+						echo "<option id=" . $sr_key . ">$sr_value</option>";
+					}
+			 	?>
+			<!--	<option>10</option>
+				<option>12</option> -->
 			</select>
 			</li>			
 		</ul>
@@ -49,11 +68,11 @@
 		</ul>	
 		<div style="clear: both"></div>
 		<div class="agregar">
-			<div class="agregar_carrito twCenMt">
-				<h1><a href="#">Agregar al carrito</a></h1>
+			<div class="agregar_carrito shop-cart-item twCenMt" rel="Product:<?php echo $product['Product']['id'];?>:0">
+				<h1><a class="add-to-cart" href="#">Agregar al carrito</a></h1>
 			</div>
-			<div class="agregar_regalo twCenMt">
-				<h1><a href="#">Agregar como regalo</a></h1>
+			<div class="agregar_regalo shop-cart-item twCenMt" rel="Product:<?php echo $product['Product']['id'];?>:1">
+				<h1><a class="add-to-cart" href="#">Agregar como regalo</a></h1>
 			</div>
 			<div style="clear: both"></div>
 		</div>	
@@ -97,7 +116,7 @@
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 		
-		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
+		<?php $recomendados1=$this->requestAction('/products/findOtherRecommendedProducts/'.$product['Product']['id']);?>
 		<?php if($recomendados1):?>
 		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 

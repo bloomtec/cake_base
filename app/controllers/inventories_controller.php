@@ -6,6 +6,10 @@ class InventoriesController extends AppController {
 	function listProductIDs($size_id) {
 		return $this -> Inventory -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.quantity >' => 0, 'Inventory.size_id' => $size_id)));
 	}
+	
+	function listSizeIDs($product_id) {
+		return $this -> Inventory -> find('list', array('fields' => array('Inventory.size_id'), 'conditions' => array('Inventory.quantity >' => 0, 'Inventory.product_id' => $product_id)));
+	}
 
 	function index() {
 		$this -> Inventory -> recursive = 0;
@@ -164,7 +168,8 @@ class InventoriesController extends AppController {
 					foreach($this->data['Inventory'] as $key=>$data) {
 						if($data) {
 							$prod_id_size_id = split(",", $key);
-							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id_size_id[0], 'Inventory.size_id'=>$prod_id_size_id[1])));
+							$size_id = $this->requestAction("/sizes/getSizeID/".$prod_id_size_id[1]);
+							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id_size_id[0], 'Inventory.size_id'=>$size_id)));
 							$value = (int)($data);
 							$old_value = (int)$inventory['Inventory']['quantity'];
 							if(($new_value = $old_value + $value) >= 0) {
@@ -192,11 +197,14 @@ class InventoriesController extends AppController {
 					 */
 					$inventory = $this->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id, 'Inventory.size_id'=>$this->data['Inventory']['size_id'])));
 					if(empty($inventory)) {
-						/**
-						 * No existe el inventario, crearlo
-						 */
+						
+						 // No existe el inventario, crearlo
+						 
 						$this -> Inventory -> create();
-						if ($this -> Inventory -> save($this -> data)) {
+						$this -> Inventory -> set('product_id', $product_id);
+						$this -> Inventory -> set('size_id', $this->data['Inventory']['size_id']);
+						$this -> Inventory -> set('quantity', $this->data['Inventory']['quantity']);
+						if ($this -> Inventory -> save()) {
 							$inventory = $this -> Inventory -> read(null, $this -> Inventory -> id);
 							$this -> Inventory -> InventoryAudit -> create();
 							$this -> Inventory -> InventoryAudit -> set('user_id', $this -> Session -> read('Auth.User.id'));
@@ -209,9 +217,9 @@ class InventoriesController extends AppController {
 							$this -> Session -> setFlash(__('Error al añadir el inventario, intente de nuevo', true));
 						}
 					} else {
-						/**
-						 * Existe el inventario
-						 */
+					
+						//Existe el inventario
+						
 						$this -> Session -> setFlash(__('Esta talla ya existe en inventario para el producto. Intente agregar otra talla o modifique la cantidad de producto para esta talla.', true));
 					}
 				}
@@ -219,7 +227,7 @@ class InventoriesController extends AppController {
 			$this -> paginate = array('recursive' => 0, 'limit' => 20, 'conditions' => array('Inventory.product_id' => $product_id));
 			$inventory = $this -> paginate('Inventory');
 			$product = $this -> Inventory -> Product -> findById($product_id);
-			$size_id = $this -> Inventory -> Size -> find('list');
+			$size_id = $this -> Inventory -> Size -> find('list', array('conditions'=>array('Size.subcategory_id'=>$product['Subcategory']['id'])));
 			foreach ($size_id as $key => $val) {
 				$size_id[$key] = $this -> requestAction('/size_references/getSize/' . $val);
 			}

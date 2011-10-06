@@ -2,6 +2,16 @@
 class SizesController extends AppController {
 
 	var $name = 'Sizes';
+	
+	function getSizeReferenceID($size_id) {
+		$size = $this->Size->read(null, $size_id);
+		return $size['Size']['size_reference_id'];
+	}
+	
+	function getSizeID($size_reference) {
+		$size = $this->Size->find('first', array('conditions'=>array('Size.size_reference_id'=>$size_reference)));
+		return $size['Size']['id'];
+	}
 
 	function index() {
 		$this -> Size -> recursive = 0;

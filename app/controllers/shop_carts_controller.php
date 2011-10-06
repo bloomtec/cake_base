@@ -27,10 +27,32 @@ class ShopCartsController extends AppController {
 		 */
 		$user_id = $this->Session->read('Auth.User.id');
 		if($user_id) {
-			// Hay sesión abierta
+			// Hay sesión abierta, utilizar el carrito de la persona
 			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
 		} else {
-			// No hay sesión, cargar de cookie si la hay
+			// No hay sesión de usuario iniciada, utilizar _userAgent de la sesión
+			// Luego, primero validar que el _userAgent de la sesión tiene carrito o no
+			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.user_agent"=>$this->Session->_userAgent)));
+			if(empty($shopping_cart)) {
+				// Crear un carrito especifico para este explorador
+				$this->ShopCart->create();
+				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
+				if($shopping_cart = $this->ShopCart->save()){
+					// Se creo el carrito, guardar la info
+					$this->ShopCart->ShopCartItem->create();
+					$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
+					$item = $this->ShopCart->ShopCartItem->save($this->data);
+				} else {
+					// No se creo el carrito, retornar algo
+					echo "error";
+				}
+			} else {
+				echo "Hay carrito para este explorador";
+				$this->ShopCart->ShopCartItem->create();
+				$this->data['ShopCartItem']['shop_cart_id']=$shopping_cart['ShopCart']['id'];
+				$item = $this->ShopCart->ShopCartItem->save($this->data);
+				echo print_r($item);
+			}
 		}
 		exit(0);
 	}

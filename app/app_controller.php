@@ -36,7 +36,6 @@ class AppController extends Controller {
 	var $components = array('Auth', 'Acl', 'Session');
 	
 	function beforeFilter() {
-		
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
@@ -44,7 +43,19 @@ class AppController extends Controller {
 		} else {
 			$this->Auth->allow($this->action);
 		}
+		/**
+		 * Cookie
+		 * $this->Cookie->name = 'Colors';
+		 * $this->Cookie->time = '5 Days'; // or '1 hour'
+		 * $this->Cookie->path = '/';
+		 * $this->Cookie->domain = 'localhost';
+		 * $this->Cookie->secure = false; //i.e. only sent if using secure HTTPS
+		 * $this->Cookie->key = 'sfWQAFgg5as57ees344ddhyuj31sXOw!';
+		 * $this->Cookie->write('_data', $this->Session->read('Auth.User.id'));
+		 * $user_id = $_COOKIE["_data"];
+		*/
 	}
+	
 	function getList(){
 		$modelName=$this->modelNames[0];
 		return $this->$modelName->find("list");
