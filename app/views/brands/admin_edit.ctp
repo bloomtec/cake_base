@@ -22,8 +22,9 @@
 			<?php echo $this -> Html -> image("/img/uploads/200x200/".$this->data['Brand']['image_brand']);?>
 		</div>
 	</div>
+	<div id="single-upload-1" controller="brands"></div>
 </div>
-<div id="single-upload-1 images-div" controller="brands"></div>
+
 <div class="images-2" style="float: right;">
 	<h2>Hover Image</h2>
 	<div class="preview-2">
