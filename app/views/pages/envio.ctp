@@ -1,85 +1,62 @@
 <?php echo $this->element("menu-shop-cart");?> 
-<table class="tahoma">
-	<thead>
-		<tr>
-			<th align="left">Descripcion de la Prenda</th>
-			<th align="left">Talla</th>
-			<th align="left">Valor Unidad</th>
-			<th align="left">Cantidad</th>
-			<th align="left">Total</th>
-			<th align="left">Eliminar</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td class="descripcion">
-				<div class="img_carrito"><img src="#"/></div>
-				<h1 class="titulos_rosado">NOMBRE PRENDA</h1>
-				<h2 class="titulos_gris">CLASIFICACION</h2>
-				<form class="marcar_regalo">
-					<input type="checkbox" /> <label>MARCAR COMO REGALO</label>
-				</form>
-				<div style="clear: both"></div>
-			</td>
-			<td class="talla">
-				<h1>Small</h1>
-			</td>
-			<td class="talla">
-				<h1>$40.000</h1>
-			</td>
-			<td class="talla">
-				<select>
-					<option>1</option>
-					<option>2</option>
-				</select>
-			</td>
-			<td class="talla">
-				<h1>$80.000</h1>
-			</td>
-			<td class="talla quitar">
-				<h1><a href="#">QUITAR</a></h1>
-			</td>
-		</tr>
-<tr>
-			<td class="descripcion">
-				<div class="img_carrito"><img src="#"/></div>
-				<h1 class="titulos_rosado">NOMBRE PRENDA</h1>
-				<h2 class="titulos_gris">CLASIFICACION</h2>
-				<form class="marcar_regalo">
-					<input type="checkbox" /> <label>MARCAR COMO REGALO</label>
-				</form>
-				<div style="clear: both"></div>
-			</td>
-			<td class="talla">
-				<h1>Small</h1>
-			</td>
-			<td class="talla">
-				<h1>$40.000</h1>
-			</td>
-			<td class="talla">
-				<select>
-					<option>1</option>
-					<option>2</option>
-				</select>
-			</td>
-			<td class="talla">
-				<h1>$80.000</h1>
-			</td>
-			<td class="talla quitar">
-				<h1><a href="#">QUITAR</a></h1>
-			</td>
-		</tr>
-	</tbody>
-	
-</table>
-<div id="cupon" class="twCenMt">
-	<h1><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
-	<h1 class="titulos_rosado">SUBTOTAL <span>$457.000</span></h1>
-	<form >
-		<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>
+<div class="datos_envio">
+	<h1>Datos de envio</h1>
+	<h1 class="der">Datos de envio para el regalo</h1>
+</div>
+<div class="form_envio tahoma">
+	<form>
+		<label>Datos Usuario</label>
+		<select></select>
+		<label>Pais</label>
+		<select></select>
+		<label>Nombre</label>
 		<input type="text" />
-		<input type="submit" value="APLICAR" />
+		<label>Apellido</label>
+		<input type="text" />
+		<label>Dirección</label>
+		<input type="text" />
+		<label>Numero Telefónico</label>
+		<input type="text" />
+		<label>Celular</label>
+		<input type="text" />
+		<label>Departamento</label>
+		<select></select>
+		<label>Ciudad</label>
+		<select></select>
+		<div style="clear: both"></div>
+		<input type="checkbox" />
+		<label class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
+		<div style="clear: both"></div>
+		<input type="checkbox" />
+		<label class="azul">  Acepto terminos y condiciones de la compra.</label>
+		<div style="clear: both"></div>
 	</form>
+	
+	<div style="clear: both"></div>
+</div>
+<div class="form_envio der">
+	<form>
+		<label>Pais</label>
+		<select></select>	
+		<label>Nombre destinatario</label>
+		<input type="text" />
+		<label>Apellido destinatarioo</label>
+		<input type="text" />
+		<label>Dirección destinatario</label>
+		<input type="text" />
+		<label>Numero Telefónico</label>
+		<input type="text" />
+		<label>Departamento</label>
+		<select></select>
+		<label>Ciudad</label>
+		<select></select>
+
+
+	</form>
+	<div style="clear: both"></div>
+</div>
+<div style="clear: both"></div>
+<div id="cupon" class="twCenMt">	
 	<h1 class="titulos_rosado">TOTAL <span>$457.000</span></h1>
 		<div id="btn_cupon">
 			<div class="agregar_regalo verde twCenMt">
