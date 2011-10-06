@@ -1,36 +1,30 @@
 <?php echo $this->element("menu-shop-cart");?> 
-<p class="costo_envio tahoma">
-Recuerda que puedes recibir tu pedido en cualquier parte de Colombia, el tiempo aproximado de entrega es de 3 a 5 días después de haber realizado el 
-pago.  También puedes enviar un regalo a cualquier parte de Colombia, pero si tienes varios productos como regalo, todos serán enviados a una única 
-dirección. El costo del envió en contra entrega, envíos a la ciudad de Cali no tienen costo o si tu pedido tiene un valor de pago igual o superior a 
-$120.000 tampoco tienen costo. 
-</p>
 <div class="datos_envio form_envio">
-	<h1>Datos de envio</h1>
+	<h1>¿Donde vas a recibir el envio? </h1>
 </div>
 <div id="der" class="datos_envio form_envio">
-	<h1 class="der">Datos de envio para el regalo</h1>
+	<h1 class="der">Servicio de Mensajeria</h1>
 </div>
 <div class="form_envio tahoma">
 	<form>
 		<label>Datos Usuario</label>
-		<select></select>
+		<span>Jorge Enrique Ceballos Delgado</span>
 		<label>Pais</label>
-		<select></select>
+		<span>Colombia</span>
 		<label>Nombre</label>
-		<input type="text" />
+		<span>Jorge Enrique</span>
 		<label>Apellido</label>
-		<input type="text" />
+		<span>Ceballos Delgado</span>
 		<label>Dirección</label>
-		<input type="text" />
+		<span>Carrera 60A # 2A-174</span>
 		<label>Numero Telefónico</label>
-		<input type="text" />
+		<span>5519552</span>
 		<label>Celular</label>
-		<input type="text" />
+		<span>3137430119</span>
 		<label>Departamento</label>
-		<select></select>
+		<span>Valle del Cauca</span>
 		<label>Ciudad</label>
-		<select></select>
+		<span>Cali</span>
 		<div style="clear: both"></div>
 		<input type="checkbox" />
 		<label class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
