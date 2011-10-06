@@ -47,7 +47,6 @@
 		<th><?php __('Birthday'); ?></th>
 		<th><?php __('Gender'); ?></th>
 		<th><?php __('Image'); ?></th>
-		<th><?php __('Position Id'); ?></th>
 		<th><?php __('Foot Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
@@ -69,7 +68,6 @@
 			<td><?php echo $userField['birthday'];?></td>
 			<td><?php echo $userField['gender'];?></td>
 			<td><?php echo $userField['image'];?></td>
-			<td><?php echo $userField['position_id'];?></td>
 			<td><?php echo $userField['foot_id'];?></td>
 			<td><?php echo $userField['created'];?></td>
 			<td><?php echo $userField['updated'];?></td>
@@ -96,6 +94,9 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('User Id'); ?></th>
+		<th><?php __('Friend Id'); ?></th>
+		<th><?php __('Match Id'); ?></th>
+		<th><?php __('Team Id'); ?></th>
 		<th><?php __('Subject'); ?></th>
 		<th><?php __('Content'); ?></th>
 		<th><?php __('Created'); ?></th>
@@ -112,6 +113,9 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $userNotification['id'];?></td>
 			<td><?php echo $userNotification['user_id'];?></td>
+			<td><?php echo $userNotification['friend_id'];?></td>
+			<td><?php echo $userNotification['match_id'];?></td>
+			<td><?php echo $userNotification['team_id'];?></td>
 			<td><?php echo $userNotification['subject'];?></td>
 			<td><?php echo $userNotification['content'];?></td>
 			<td><?php echo $userNotification['created'];?></td>
