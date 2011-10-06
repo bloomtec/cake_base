@@ -21,15 +21,25 @@ class ShopCartsController extends AppController {
 	 * Añadir ítems al carrito
 	 **/
 	function addToCart() {
+		$this->layout="ajax";
 		/**
 		 * Se debe verificar si hay o no sesión de usuario.
 		 */
+		$user_id = $this->Session->read('Auth.User.id');
+		if($user_id) {
+			// Hay sesión abierta
+			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
+		} else {
+			// No hay sesión, cargar de cookie si la hay
+		}
+		exit(0);
 	}
 	/**
 	 * Remover ítems del carrito
 	 */
 	function removeFromCart() {
-		
+		$this->layout="ajax";
+		exit(0);
 	}
 	/**
 	 * Pasar a generar la orden con los ítems del carrito
@@ -54,7 +64,7 @@ class ShopCartsController extends AppController {
 		} else {
 			// No hay sesión, cargar de cookie si la hay
 		}
-		$this -> set('shopCart', $this -> ShopCart -> read(null, $id));
+		$this -> set('shopping_cart', $shopping_cart);
 	}
 	
 	/**
