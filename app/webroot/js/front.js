@@ -21,6 +21,39 @@ $(function(){
 			return	params+param+":"+value;
 		}
 	}
+	bloomCart={};
+	bloomCart.add=function(botonAdd,sizeId){ 
+		var rel=$(botonAdd).parent('.shop-cart-item').attr('rel'); //Product:1;
+		rel=rel.split();
+		BJS.post('/shopCarts/addToCart',{'data[shopCartItem][model_name]':rel[0],'data[shopCartItem][model_name]':rel[1],'data[shopCartItem][is_gif]':0,'data[shopCartItem][is_gif]':sizeId},function(confirm){
+			if(idItem){
+				//Escribe mensaje de confirmacion con link al checkout
+			}else{
+				
+			}
+		});	
+	}
+	bloomCart.addGif=function(){
+		//Igual al anterior pero con is gif en 1
+	}
+	bloomCart.markAsGif=function(){
+		
+	}
+	bloomCart.remove=function(itemId){
+		
+	}
+	bloomCart.getItems=function(){
+		
+	}
+	bloomCart.updateItem=function(itemId,value){
+		
+	}
+	bloomCart.updateItems=function(){
+		
+	}
+	bloomCart.refresh=function(){
+		
+	}
 //CLASES DE LAS FUENTES
 Cufon.replace('.japan', { fontFamily: 'Japan', 	trim:"simple" });
 Cufon.replace('.twCenMt', { fontFamily: 'TwCenMt', 	trim:"simple" }); 
