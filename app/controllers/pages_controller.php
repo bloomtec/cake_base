@@ -30,6 +30,9 @@ class PagesController extends AppController {
 	function envio(){
 		$this->layout="carrito";
 	}
+	function metodo_envio(){
+		$this->layout="carrito";
+	}
 	function ayuda(){
 		$this->layout="pages";
 	}

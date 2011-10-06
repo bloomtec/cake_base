@@ -1052,9 +1052,21 @@ table.tahoma {
 	width: 400px;
 	margin-bottom: 70px;
 }
-.datos_envio{
+.costo_envio{
+	width: 880px;
+	color:#BCBCBC;
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+.datos_envio.form_envio{
 	border-bottom:1px solid #494949;
-	padding-bottom:3px;
+	padding-bottom:7px;
+	border-right: 0 none;
+    margin-top: 0;
+}
+#der.datos_envio.form_envio{
+	margin-left:0;
+	padding-left: 30px;
 }
 .datos_envio h1{
 	display:inline;
@@ -1083,11 +1095,14 @@ table.tahoma {
 	border:0;
 	margin-left: 30px;
 }
-.form_envio form label {
+.form_envio form label, .form_envio form span {
 	font-size: 12px;
 	color:#7E7E7D;
 	float:left;
 	width: 108px;
+}
+.form_envio form span{
+	width: 200px;
 }
 .form_envio form input[type=checkbox]{
 	display: block;
@@ -1103,7 +1118,7 @@ table.tahoma {
     font-size: 10px;
     width: auto;
 }
-.form_envio form input[type=text], .form_envio form select{
+.form_envio form input[type=text], .form_envio form select, .form_envio form span{
 	margin-bottom: 15px;
 }
 .form_envio form select{
