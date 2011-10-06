@@ -25,7 +25,9 @@
 		<?php if($field=="active"){?>
 			<th><?php echo "<?php echo \$this->Paginator->sort('Status','{$field}');?>";?></th>
 		<?php }else{?>	
-		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
+			<?php if($field!="id"){?>
+				<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
+			<?php } ?>
 		<?php }?>
 	<?php endforeach;?>
 		<th class="actions"><?php echo "<?php __('Actions');?>";?></th>
@@ -44,11 +46,25 @@
 			$isKey = false;
 			$isActiveField=false;
 			$isImage=false;
+			$picturesController=false;
+			$asoc=false;
+			$aliases=false;
 			if (!empty($associations['belongsTo'])) {
 				foreach ($associations['belongsTo'] as $alias => $details) {
 					if ($field === $details['foreignKey']) {
 						$isKey = true;
 						echo "\t\t<td>\n\t\t\t<?php echo \$this->Html->link(\${$singularVar}['{$alias}']['{$details['displayField']}'], array('controller' => '{$details['controller']}', 'action' => 'view', \${$singularVar}['{$alias}']['{$details['primaryKey']}'])); ?>\n\t\t</td>\n";
+						break;
+					}
+				}
+			}
+			if (!empty($associations['hasMany'])){
+				foreach ($associations['hasMany'] as $alias => $details) {
+					$asoc[]=$details;
+					$aliases=substr($alias,-7, 7);
+					if($picturesController) break;
+					if ( strlen($alias)>=7 && substr($alias,-7, 7) === "Picture") {
+						$picturesController = $details["controller"];
 						break;
 					}
 				}
@@ -68,15 +84,19 @@
 				$isImage=true;
 				echo "\t\t<td><?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";			
 			}
-			if ($isKey !== true && $isActiveField!== true && $isImage!==true) {
+			if ($isKey !== true && $isActiveField!== true && $isImage!==true && $field!="id") {
 				echo "\t\t<td><?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>&nbsp;</td>\n";
 			}
 		}
 
 		echo "\t\t<td class=\"actions\">\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>\n";
-		echo "\t\t\t<?php echo \$this->Html->link(__(' ', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
+		
+		echo "\t\t\t<?php echo \$this->Html->link(__('View', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
+		echo "\t\t\t<?php echo \$this->Html->link(__('Edit', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>\n";
+		if($picturesController){
+			echo "\t\t\t<?php echo \$this->Html->link(__('Gallery', true), array('controller' => '$picturesController','action'=>'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";	
+		}
+		echo "\t\t\t<?php echo \$this->Html->link(__('Delete', true), array('action' => 'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); ?>\n";
 		
 	echo "\t\t\t<?php if(isset(\${$singularVar}['{$modelClass}']['active'])&& \${$singularVar}['{$modelClass}']['active']){\n";
 			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setInactive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}']));\n";	
@@ -103,5 +123,10 @@
 	<?php echo "\t<?php echo \$this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>\n";?>
 	 | <?php echo "\t<?php echo \$this->Paginator->numbers();?>\n"?> |
 	<?php echo "\t<?php echo \$this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>\n";?>
+	</div>
+	<div class="actions">
+		<ul>
+			<li><?php echo "\t<?php echo \$this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add')); ?>\n";?></li>
+		</ul>
 	</div>
 </div>

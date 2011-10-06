@@ -71,9 +71,15 @@
 				///	echo $this->Form->input('user_id');
 				echo $this->Form->input('name',array("label"=>"Nombre"));
 				echo $this->Form->input('surname',array("label"=>"Apellidos"));
-				echo $this->Form->input('birthday',array("label"=>"Nacimiento","minYear"=>"1950"));
-				echo $this->Form->input('foot_id',array("options"=>$feets,"div"=>"float","label"=>"Pierna"));
-				echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"checkbox","div"=>"float","label"=>"Posición"));
+				echo $this->Form->input('birthday',array('type'=>'text',"label"=>"Nacimiento","minYear"=>"1950"));
+				echo $this->Form->input('foot_id',array('type'=>'text',"value"=>$feets[$this->data['UserField']['foot_id']],"label"=>"Pierna"));
+				//echo $this->Form->input('Position',array("options"=>$positions,"multiple"=>"multiple","div"=>"float","label"=>"Posición"));
+				echo '<div class="input text">';
+				echo $this->Form->label('Posición');
+				foreach($this->data['Position'] as $posicion){
+					echo $form->input('pos',array('value'=>$posicion['positions'],'label'=>false,'style'=>'float:left;width:60px;margin-right:5px;'));
+				}
+				echo "</div>";
 				echo $this->Form->end();
 				?>
 				

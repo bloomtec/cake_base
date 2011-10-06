@@ -23,14 +23,14 @@
 
 /** General Style Info **/
 body {
-	background: white;
+	background-color:#333333;;
 	color: black;
-	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-family: arial,helvetica,sans-serif;
 	font-size:90%;
 	margin: 0;
 }
 a {
-	color: #003d4c;
+	color: #000;
 	text-decoration: underline;
 	font-weight: bold;
 }
@@ -46,20 +46,22 @@ h1, h2, h3, h4 {
 	margin-bottom:0.5em;
 }
 h1 {
-	background:#fff;
+	background:none;
 	color: #003d4c;
 	font-size: 100%;
 }
 h2 {
-	background:#fff;
-	color: #e32;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	background:transparent;
+	color: #0090d6;
+	font-family: arial, helvetica, sans-serif;
 	font-size: 190%;
+	font-weight: bold;
 }
 h3 {
-	color: #993;
-	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
+	color: #0090d6;
+	font-family:arial, helvetica,  sans-serif;
 	font-size: 165%;
+	margin-left: 2%;
 }
 h4 {
 	color: #993;
@@ -71,40 +73,133 @@ ul, li {
 
 /** Layout **/
 #container {
-	text-align: left;
+	width: 1024px;
+	margin:0 auto;
 }
 
 #header{
-	padding: 10px 20px;
+	height: 130px;
+	background-image: url(../img/cms/linea_header.png);
+	background-position: bottom center;
+	background-repeat: no-repeat;
+	margin-bottom: 7px;
 }
-#header h1 {
-	line-height:20px;
-	background: #003d4c url('../img/cake.icon.png') no-repeat left;
-	color: #fff;
-	padding: 0px 30px;
+#header .logo_interna {
+	background-image: url(../img/cms/ez_logo_interna.png);
+	background-repeat: no-repeat;
+	display: block;
+	width: 110px;
+	height:87px;
+	background-color: transparent;
+	margin-top: 20px;
+	float:left;
 }
-#header h1 a {
-	color: #fff;
-	background: #003d4c;
-	font-weight: normal;
+#header h2 a.salir{
+	float:right;
+	background-image: url(../img/cms/flecha_salir.png);
+	background-color: transparent;
+	background-position: center right;
+	padding-right: 19px;
+	background-repeat: no-repeat;
+	color:#fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: bold;
+	margin-right: 12px;
+	margin-top: 60px;
 	text-decoration: none;
 }
-#header h1 a:hover {
-	color: #fff;
-	background: #003d4c;
-	text-decoration: underline;
-}
 #content{
-	background: #fff;
-	clear: both;
+	background: #f4f2f2;
+	width:750px;
+	float:right;
 	color: #333;
-	padding: 10px 20px 40px 20px;
+	padding: 20px;
 	overflow: auto;
+}
+#main_menu {
+	float:left;
+	margin:0;
+}
+#main_menu li  {
+	list-style: none;
+	margin-bottom:4px;
+	position:relative;
+	margin-right: 0;
+	margin-left: 0;
+	background-image: url(../img/cms/menu_inact.png);
+	background-repeat:no-repeat;
+}
+#main_menu li:hover{
+	background-image: url(../img/cms/menu_act.png);
+}
+#main_menu li a {
+	display:block;
+	width: 228px;
+	height: 56px;
+	text-decoration: none;
+}
+
+#main_menu li a .iconos {
+	margin-top:13px;
+	margin-left:12px;
+}
+#main_menu li a span{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:15px;
+	font-weight: bold;
+	color:#fff;
+	position:absolute;
+	top:19px;
+	left:58px;
+} 
+#main_menu  li ul{
+	background-image:none;
+	background:#0090d6;
+	width:90%;
+	padding-bottom:10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+
+}
+#main_menu li li {
+	background:none;
+	height:20px;
+	border-bottom:solid 1px #77d2fe;
+	margin:0 auto;
+	width:90%;
+	margin-bottom:3px;
+}
+#main_menu li a.down{
+	background:url(../img/cms/flecha_abajo.png);
+	background-position:204px 22.5px;
+	background-repeat:no-repeat;
+}
+#main_menu li li:hover{
+	background:none;
+}
+
+#main_menu li li a{
+	line-height:20px;
+	display:inline;
+	color:white;
+}
+#main_menu li li a:hover{
+	background-image:none;
 }
 #footer {
 	clear: both;
-	padding: 6px 10px;
+	padding: 15px 10px;
 	text-align: right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color:#fff;
+	margin-top:12px;
 }
 
 /** containers **/
@@ -121,20 +216,18 @@ div.form2{/*Form whith image*/
 div.images{
 	float:right;
 	width:35%;
-	min-width:335px;
-	min-height:335px;
+
 }
 div.images .preview{
-	min-width:335px;
-	min-height:335px;
+
 }
-div.images .preview .wrapper img{
+div.images .preview  img{
 	max-width:100%;
 }
 div.actions {
 	float:left;
 	width:16%;
-	padding:10px 1.5%;
+	padding:10px 2%;
 }
 div.actions h3 {
 	padding-top:0;
@@ -144,7 +237,7 @@ div.actions h3 {
 
 /** Tables **/
 table {
-	background: #fff;
+	background: none;
 	border-right:0;
 	clear: both;
 	color: #333;
@@ -182,7 +275,7 @@ table .altrow td {
 	background: #f5f5f5;
 }
 td.actions {
-	text-align: center;
+	text-align: left;
 	white-space: nowrap;
 }
 table td.actions a {
@@ -203,10 +296,11 @@ table td.actions a {
 
 /** Paging **/
 div.paging {
-	background:#fff;
-	color: #ccc;
+	background:none;
+	color: #262626;
 	margin-top: 1em;
 	clear:both;
+	text-align: center;
 }
 div.paging span.disabled {
 	color: #ddd;
@@ -221,7 +315,7 @@ div.paging span a {
 /** Scaffold View **/
 dl {
 	line-height: 2em;
-	margin: 0em 0em;
+	margin-left: 1.5%;
 	width: 60%;
 }
 dl .altrow {
@@ -252,8 +346,8 @@ fieldset {
 	padding: 16px 20px;
 }
 fieldset legend {
-	background:#fff;
-	color: #e32;
+	background:none;
+	color: #0090d6;
 	font-size: 160%;
 	font-weight: bold;
 }
@@ -272,8 +366,7 @@ fieldset fieldset div {
 }
 form div {
 	clear: both;
-	margin-bottom: 1em;
-	padding: .5em;
+	padding: .4em;
 	vertical-align: text-top;
 }
 form .input {
@@ -299,10 +392,13 @@ label {
 }
 input, textarea {
 	clear: both;
-	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 1%;
+	font-size: 100%;
+	font-family: Arial, Helvetica, sans-serif;
 	width:98%;
+	height: 50px;
+}
+input{
+	height: 27px;
 }
 select {
 	clear: both;
@@ -313,14 +409,15 @@ select[multiple=multiple] {
 	width: 100%;
 }
 option {
-	font-size: 120%;
+	font-size: 100%;
 	padding: 0 3px;
 }
 input[type=checkbox] {
 	clear: left;
 	float: left;
-	margin: 0px 6px 7px 2px;
+	margin: 3px 6px 7px 2px;
 	width: auto;
+	height: auto;
 }
 div.checkbox label {
 	display: inline;
@@ -338,18 +435,20 @@ input[type=submit] {
 	font-size: 110%;
 	width: auto;
 }
-form .submit input[type=submit] {
-	background:#62af56;
-	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
-	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
-	border-color: #2d6324;
-	color: #000;
-	text-shadow: #8cee7c 0px 1px 0px;
-}
-form .submit input[type=submit]:hover {
-	background:#4ca83d;
-	background: -webkit-gradient(linear, left top, left bottom, from(#85e573), to(#4ca83d));
-	background-image: -moz-linear-gradient(top, #85e573, #4ca83d);
+form .submit input[type=submit] , div.actions ul li a{
+	background-image:url(../img/trama_boton.png);
+	border-color: #666666;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 15px;
+	text-transform: uppercase;
+	width: 110px;
+	height: 31px;
+	cursor:pointer; 
+	-moz-box-shadow::1px 3px 2px #a9a8a8;
+	-webkit-box-shadow: 1px 3px 2px #a9a8a8;
+	box-shadow: 1px 3px 2px #a9a8a8;
 }
 
 /** Notices and Errors **/
@@ -408,11 +507,7 @@ div.actions li {
 	white-space: nowrap;
 	padding: 0;
 }
-div.actions ul li a {
-	font-weight: normal;
-	display: block;
-	clear: both;
-}
+
 div.actions ul li a:hover {
 	text-decoration: underline;
 }
@@ -422,25 +517,36 @@ div.actions ul li a,
 td.actions a {
 	font-weight:normal;
 	padding: 4px 8px;
-	background:#e6e49f;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f1f1d4), to(#e6e49f));
-	background-image: -moz-linear-gradient(top, #f1f1d4, #e6e49f);
-	color:#333;
-	border:1px solid #aaac62;
+	background-color: black;
+	color:#fff;
+	border:1px solid #555;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
 	border-radius:8px;
 	text-decoration:none;
-	text-shadow: #fff 0px 1px 0px;
 	min-width: 0;
+	-moz-box-shadow::1px 2px 1px #aaa;
+	-webkit-box-shadow: 1px 2px 1px #aaa;
+	box-shadow: 1px 2px 1px #aaa;
+	font-weight: bold;
+	font-size: 12px;
 }
 input[type=submit]:hover,
 div.actions ul li a:hover,
 td.actions a:hover {
-	background: #f0f09a;
-	background: -webkit-gradient(linear, left top, left bottom, from(#f7f7e1), to(#eeeca9));
+	text-decoration: none;
 }
-
+div.actions ul li a {
+	font-weight: normal;
+	display: block;
+	clear: both;
+	padding:0;
+	color:#fff;
+	text-align: center;
+	line-height:31px;
+	font-weight: bold;
+	
+}
 /** Related **/
 div.related {
 	clear: both;
@@ -554,26 +660,99 @@ div.code-coverage-results span.result-good {
 #url-rewriting-warning {
 	display: none;
 }
-/** ICONS BACK */
-.icon{
-	float:left;
-	display:block;
-	width:25px;
-	height:25px;
-	background:black;
+/** login styles **/
+	
+.centrar {
+	margin: 0 auto;
+	background-image: url('../img/cms/ez_logo.png');
+	background-position:45px 38px;
+	background-repeat:no-repeat;
 }
-.view{
-	background-image:url(../img/view.png);
+#login #container{
+	position: absolute;
+	z-index: 2;
+	height:294px;
+	top:50%;
+	margin-top:-147px;
+	width: 100%;
+	
 }
-.delete{
-	background-image:url(../img/delete.png);
+	
+	
+#login #content {
+	background: none;
+	margin:0 auto;
 }
-.edit{
-	background-image:url(../img/edit.png);
+#login fieldset {
+	background-color: #f4f2f2;
+	width: 560px;
+	border: 1px solid #000;
+	-moz-box-shadow::1px 3px 2px #201F1F;
+	-webkit-box-shadow: 1px 3px 2px #201F1F;
+	box-shadow: 1px 3px 2px #201F1F;
+	
 }
-.setActive{
-	background-image:url(../img/set-active.png);
+#login input [type=submit] {
+	width: 300px;
+	height: 32px;
+
+	
 }
-.setInactive{
-	background-image:url(../img/set-inactive.png);
+#login form .required{
+	float:right;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+#login form .input{
+	float:right;
+	width: 300px;
+
+}
+#login form input{
+	border:1px solid #333333;
+}
+#login label{
+	margin-bottom: 8px;
+	font-size: 14px;
+	color:#000000;
+}
+#login form div{
+	margin: 0;
+}
+#login .submit {
+	float:right;
+}
+#login #footer{
+	width: 482px;
+	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color:#fff;
+}
+#login #content {
+	padding-bottom:0;
+	float:none;
+}
+#login {
+	position:absolute;
+	width: 100%;
+	height:100%;
+	
+}
+#background2{
+	background-image: url('../img/cms/logo_fondo.png');
+	background-position:left bottom;
+	background-repeat:no-repeat;
+	position:absolute;
+	width: 348px;
+	height:342%;
+	bottom:0;
+	left:0;
+}
+#login div.message {
+	background: none;
+	color:red;
+	font-size: 10px;
+	float:right;
 }
