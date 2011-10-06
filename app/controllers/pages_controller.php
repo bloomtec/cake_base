@@ -61,6 +61,18 @@ class PagesController extends AppController {
 		$this->layout='overlay';
 		$this->set('titulo','conoce el estado de tu pedido');
 	}
+	function login(){
+		$this->layout='overlay';
+		$this->set('titulo','LOGIN / REGÍSTRATE');
+	}
+	function olvidaste_contrasena(){
+		$this->layout='overlay';
+		$this->set('titulo','¿OLVIDASTE TU CONTRASEÑA?');
+	}
+	function recomendar(){
+		$this->layout='overlay';
+		$this->set('titulo','REGISTRADO');
+	}
 	function index() {
 		$this->Page->recursive = 0;
 		$this->set('pages', $this->paginate());

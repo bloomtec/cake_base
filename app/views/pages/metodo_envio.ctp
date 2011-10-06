@@ -26,35 +26,46 @@
 		<label>Ciudad</label>
 		<span>Cali</span>
 		<div style="clear: both"></div>
-		<input type="checkbox" />
-		<label class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
-		<div style="clear: both"></div>
-		<input type="checkbox" />
-		<label class="azul">  Acepto terminos y condiciones de la compra.</label>
-		<div style="clear: both"></div>
+		
 	</form>
 	
 	<div style="clear: both"></div>
 </div>
 <div class="form_envio der">
 	<form>
-		<label>Pais</label>
-		<select></select>	
-		<label>Nombre destinatario</label>
-		<input type="text" />
-		<label>Apellido destinatarioo</label>
-		<input type="text" />
-		<label>Dirección destinatario</label>
-		<input type="text" />
-		<label>Numero Telefónico</label>
-		<input type="text" />
-		<label>Departamento</label>
-		<select></select>
-		<label>Ciudad</label>
-		<select></select>
+		<label>Entidad</label>
+		<span>Servientrega</span>
+		<label>Tipo de envio</label>
+		<span>Contraentrega/gratis</span>
 
 
 	</form>
+	<div style="clear: both"></div>
+		<div class="envio_regalo">
+			<h1>¿Dónde vamos a enviar tu regalo? </h1>
+		
+			<form>
+				<label>Datos Usuario</label>
+				<span>Jorge Enrique Ceballos Delgado</span>
+				<label>Pais</label>
+				<span>Colombia</span>
+				<label>Nombre</label>
+				<span>Jorge Enrique</span>
+				<label>Apellido</label>
+				<span>Ceballos Delgado</span>
+				<label>Dirección</label>
+				<span>Carrera 60A # 2A-174</span>
+				<label>Numero Telefónico</label>
+				<span>5519552</span>
+				<label>Celular</label>
+				<span>3137430119</span>
+				<label>Departamento</label>
+				<span>Valle del Cauca</span>
+				<label>Ciudad</label>
+				<span>Cali</span>
+				<div style="clear: both"></div>
+			</form>
+		</div>
 	<div style="clear: both"></div>
 </div>
 <div style="clear: both"></div>
