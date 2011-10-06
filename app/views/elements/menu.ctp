@@ -17,7 +17,7 @@
 			</ul>		
 		</li>
 		<li>
-			<a href="#"><img class="iconos"/><span>PRODUCTOS</span></a>
+			<a href="#"><img class="iconos" src="/img/cms/producto.png"/><span>PRODUCTOS</span></a>
 			<ul>
 				<li><a href="/admin/products">Ver Productos</a></li>
 				<li><a href="/admin/products/add">Agregar Producto</a></li>
