@@ -14,6 +14,7 @@
 		<?php
 			if(empty($shopping_cart['ShopCartItem'])) {
 				// No hay items en el carrito
+				e("<tr><td><h2>NO HAY ITEMS EN EL CARRITO</h2></td></tr>");
 			} else {
 				foreach($shopping_cart['ShopCartItem'] as $shoppin_cart_item) :
 				$model_name = $shoppin_cart_item['ShopCartItem']['model_name'];
@@ -32,22 +33,22 @@
 					<label>MARCAR COMO REGALO</label> <!-- revisar esto del marcado -->
 				</form>
 				<div style="clear: both"></div></td>
-				<td class="talla">
+				<td class="talla"><!-- celda con la talla -->
 					<h1><?=$this->requestAction("/size_references/getSize/" . $this->$item["$model_name"]["size_id"])?></h1>					
 				</td>
-				<td class="talla">
-					<h1>$40.000</h1>
+				<td class="talla"><!-- celda con el precio -->
+					<h1><?=$item["$model_name"]["price"]?></h1>
 				</td>
-				<td class="talla">
+				<td class="talla"><!-- celda con el select para modificar la cantidad -->
 					<select>
 						<option>1</option>
 						<option>2</option>
 					</select></td>
 				<td class="talla">
-					<h1>$80.000</h1>
+					<h1 class="price">$80.000</h1><!-- celda con el total -->
 				</td>
-				<td class="talla quitar">
-						<h1><a href="#">QUITAR</a></h1>
+				<td>
+					<h1 class="quitar"><a href="#">QUITAR</a></h1>
 				</td>
 			</tr>
 		<?php
@@ -58,13 +59,13 @@
 </table>
 <div id="cupon" class="twCenMt">
 	<h1><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
-	<h1 class="titulos_rosado">SUBTOTAL <span>$457.000</span></h1>
+	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$457.000</span></h1>
 	<form >
 		<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>
 		<input type="text" />
 		<input type="submit" value="APLICAR" />
 	</form>
-	<h1 class="titulos_rosado">TOTAL <span>$457.000</span></h1>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$457.000</span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a href="#">Continuar</a></h1>

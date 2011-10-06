@@ -34,20 +34,6 @@ class ShopCart extends AppModel {
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 */
 	
-	var $name = 'Cart';
-	var $displayField = 'cantidad';
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	var $belongsTo = array(
-		'Inventory' => array(
-			'className' => 'Inventory',
-			'foreignKey' => 'inventory_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-	);
-
 	/*
  	Get all item in current session
  	from shopping cart table

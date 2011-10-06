@@ -80,20 +80,6 @@ class ShopCartsController extends AppController {
 		$this -> set('shopCarts', $this -> paginate());
 	}
 
-	function add() {
-		if (!empty($this -> data)) {
-			$this -> ShopCart -> create();
-			if ($this -> ShopCart -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The shop cart has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The shop cart could not be saved. Please, try again.', true));
-			}
-		}
-		$users = $this -> ShopCart -> User -> find('list');
-		$this -> set(compact('users'));
-	}
-
 	function edit($id = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid shop cart', true));
@@ -266,9 +252,6 @@ class ShopCartsController extends AppController {
 	/**
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 */
-
-	function index() {
-	}
 
 	function cesta() {
 		$this -> layout = "ajax";
