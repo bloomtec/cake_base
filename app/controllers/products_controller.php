@@ -2,6 +2,15 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
+	
+	function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('getProduct');
+	}
+	
+	function getProduct($product_id = null) {
+		return $this->Product->read(null, $product_id);
+	}
 
 	function findRecommendedProducts($product_id) {
 		$recommended_product_ids = $this -> Product -> Recommendation -> find('list', array('fields' => array('Recommendation.recommended_product_id'), 'conditions' => array('Recommendation.product_id' => $product_id), 'limit' => 5, 'order' => 'rand()'));

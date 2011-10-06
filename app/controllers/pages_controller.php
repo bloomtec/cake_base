@@ -27,6 +27,9 @@ class PagesController extends AppController {
 	function shop_cart(){
 		$this->layout="carrito";
 	}
+	function envio(){
+		$this->layout="carrito";
+	}
 	function ayuda(){
 		$this->layout="pages";
 	}

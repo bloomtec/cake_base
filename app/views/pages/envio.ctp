@@ -1,4 +1,4 @@
-<?php echo $this->element("menu-shop-cart");?>
+<?php echo $this->element("menu-shop-cart");?> 
 <table class="tahoma">
 	<thead>
 		<tr>
