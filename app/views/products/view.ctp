@@ -73,6 +73,9 @@
 				<h1><a class="add-to-cart" href="#">Agregar como regalo</a></h1>
 			</div>
 			<div style="clear: both"></div>
+			<div class='add-cart-confirm'>
+				Produccto agregaro pagar
+			</div>
 		</div>	
 		<span class="puntos"></span>
 		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/notificacionDisponibilidad">¿NO ENCONTRASTE LO QUE BUSCABAS?</a></h1>
