@@ -5,7 +5,7 @@
 	</h1>
 	<ul class="tahoma">
 		<li>
-			<a href="/users/login">Login</a>
+			<a rel="#overlay" href="/users/login">Login</a>
 		</li>
 		<li>
 			/

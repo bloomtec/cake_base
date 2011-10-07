@@ -15,6 +15,7 @@ class UsersController extends AppController {
 	}
 
 	function login() {
+		$this->layout=("overlay");
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
 			if (!empty($user) && $this -> Auth -> login($user)) {
@@ -25,6 +26,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
 			}
 		}
+		$this->set('titulo','LOGIN / REGÍSTRATE');
 	}
 
 	function admin_login() {

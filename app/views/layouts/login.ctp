@@ -33,6 +33,11 @@
 		echo $this->Html->Script("jquery");
 		echo $this->Html->Script("swfobject");
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
+		echo $this->Html->script('cufon-yui');
+		echo $this->Html->script('HaloHandLetter_500.font');
+		echo $this->Html->script('Japan_500.font');
+		echo $this->Html->script('TwCenMt_400.font');
+		echo $this->Html->script('Tahoma_400.font');
 		echo $this->Html->Script("upload");
 		echo $this->Html->Script("ckeditor/ckeditor");
 		
