@@ -12,16 +12,17 @@
 				<select></select>
 			</div>
 			<div class="comments">
-				<ul>
-					<li class="titulos_rosado twCenMt">GEORGECE007</li>
-					<li class="azul twCenMt">12-08-2011</li>
-				</ul>
-				<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico que permite amoldarse a las distintas alturas del empeine.
-				</p>
-				<div style="clear: both"></div>
-				
+				<div class="linea_comment">
+					<ul>
+						<li class="titulos_rosado twCenMt">GEORGECE007</li>
+						<li class="azul twCenMt">12-08-2011</li>
+					</ul>
+					<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico que permite amoldarse a las distintas alturas del empeine.
+					</p>
+					<div style="clear: both"></div>
+				</div>
 			</div>
-		<a class="azul" href="#">ESCRIBIR COMENTARIO</a>
+		<a class="azul tahoma" href="#">ESCRIBIR COMENTARIO</a>
 		</div>
 
 	</div>
@@ -59,10 +60,10 @@
 			</li>			
 		</ul>
 		<ul class="product_info">
-			<li><a href="#">anterior</a></li>
+			<li><a href="#">Anterior</a></li>
 		</ul>
-		<ul class="product_info" style='margin-right: 0;'>
-			<li><a href="#">siguiente</a></li>			
+		<ul class="product_info ultimo">
+			<li><a href="#">Siguiente</a></li>			
 		</ul>	
 		<div style="clear: both"></div>
 		<div class="agregar">

@@ -51,7 +51,17 @@ h4 {
 h5 {
 	font-size:11px;
 	}
-	
+a.titulos_rosado:visited{
+	color: #EC1C75;
+}
+a.azul:visited{
+	color: #00CFB5;
+}
+select{
+	background-color: #333;
+	border:1px solid #878787;
+	color:#fff;
+}
 #container{
 	width:980px;
 	margin:auto;
@@ -63,6 +73,7 @@ h5 {
 	-webkit-box-shadow: 2px 3px 2px #888888;
 	box-shadow: 2px 3px 2px #888888;
 	position: relative;
+	min-height: 1014px;
 }
 #content {
 	width: 730px;
@@ -89,6 +100,7 @@ h5 {
 .subcategories_index .filtrar li.titulos_rosado{
 	margin:0;
 	font-size: 15px;
+	vertical-align: middle;
 }
 .subcategories_index .filtrar li.titulos_gris{
 	margin:0;
@@ -97,8 +109,13 @@ h5 {
 	display:inline;
 	margin-right: 5px;
 }
+.subcategories_index .filtrar li.azul{
+	color: #00CFB5;
+	vertical-align: middle;
+}
 .subcategories_index .filtrar li a{
 	text-decoration: none;	
+	color: #00CFB5;
 }
 .subcategories_index ul li ul{
 	margin-top: 10px;
@@ -111,6 +128,18 @@ h5 {
 }
 .subcategories_index ul.products li h1{
 	margin-top:6px;
+	margin-bottom: 4px;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+ul.products li h2, ul.products li h3{
+	padding-left:5px;
+	font-style: normal;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+ul.products li h3{
+	color:#00CFB5;
 }
 .subcategories_index ul li.info a, .subcategories_index ul li.info img{
 	width: 140px;
@@ -130,7 +159,7 @@ h5 {
 	text-decoration: none;
 	color:#BCBCBC;
 	position: absolute;
-	top:23px;
+	top:13px;
 	right: 55px;
 	background-image: url(/img/carrito.png);
 	background-position: center right;
@@ -141,7 +170,7 @@ h5 {
 }
 .second_nav .info_carrito{
 	position: absolute;
-	top:43px;
+	top:32px;
 	right: 55px;
 	color:#BCBCBC;
 	font-size: 12px;
@@ -153,8 +182,8 @@ h5 {
     margin: 0 auto;
     width: 890px;
     border-bottom:1px solid #564E1B;
-    padding-bottom: 17px;
-    padding-top:23px;
+    padding-bottom: 7px;
+    padding-top:17px;
 }
 .second_nav ul li{
 	display:inline;
@@ -169,6 +198,7 @@ h5 {
 	float:left;
 	margin-left:45px;
 	border-right: 1px solid #F1F1F1;
+	min-height: 690px;
 }
 .sub_category ul{
 	margin-top:20px;
@@ -250,7 +280,9 @@ h5 {
 	margin-top: 7px;
 	text-decoration: none;
 	margin-right: 42px;
+	color: #00CFB5;
 }
+
 /*detalle del producto*/
 
 .products_view #detalle_izq{
@@ -294,17 +326,26 @@ h5 {
 	margin:0;
 	background-color: #191919;
 	width: 100%;
-	border-bottom: 1px solid #494949;
 	
 }
 .comments ul{
 	float:left;
-	padding:19px;
+	padding:13px;
+}
+.comments ul li.azul{
+	color:#00CFB5;
+}
+.comments .linea_comment{
+	height: 100%;
+	border-bottom: 1px solid #494949;
+	height: 100%;
+    margin: 0 auto;
+    width: 96%;
 }
 .comments p{
 	width: 190px;
 	float:right;
-	padding-top: 19px;
+	padding-top: 13px;
 	padding-bottom: 15px;
 	padding-right: 12px;
 	font-family: Arial, "MS Trebuchet", sans-serif;
@@ -317,7 +358,11 @@ h5 {
     display: block;
     line-height: 50px;
 	background:#191919;
+	color:#00CFB5;
 	
+}
+#comments a.azul:visited{
+	color:#00CFB5;
 }
 .comments ul li.titulos_rosado{
 	margin-bottom: 2px;
@@ -353,6 +398,10 @@ h5 {
 }
 .products_view #detalle_der .product_info li a{
 	color:#BCBCBC;
+}
+.products_view #detalle_der .product_info.ultimo{
+	margin-right: 0px;
+	margin-left:30px;
 }
 .products_view #detalle_der .product_info li select{
 	vertical-align: top;
@@ -466,7 +515,15 @@ ul.social li {
 	padding: 4px 15px;
 	border: 1px solid #666666;
 	border-top:none;
+	border-bottom:none;
+	
 }
+#header ul.tahoma{
+	-moz-box-shadow: -0.1px 3.3px 5px #999999;
+	-webkit-box-shadow:-0.1px 3.3px 5px #999999;
+	box-shadow:-0.1px 3.3px 5px #999999;
+}
+
 #header ul li{
 	float:left;
 	margin-right:3px;
@@ -499,9 +556,9 @@ ul.social li {
 	margin-right:15px;
 	border:1px solid #D2D4D4;
 	border-bottom:none;
-	-moz-box-shadow: 0 -2px 2px #B5B5B5;
-	-webkit-box-shadow:0 -2px 2px #B5B5B5;
-	box-shadow:0 -3px 2px #B5B5B5;
+	-moz-box-shadow: 0.9px 0.3px 10px #999;
+	-webkit-box-shadow:0.9px 0.3px 10px #999;
+	box-shadow:0.9px 0.3px 10px #999;
 }
 #header .main_nav li.categoria {
 	background-color:#282828;
@@ -524,9 +581,9 @@ ul.social li {
 	background-color:#F1F1F1;
 	border:1px solid #D2D4D4;
 	border-top:none;
-	-moz-box-shadow: 2px 5px 3px #888888;
-	-webkit-box-shadow: 2px 5px 3px #888888;
-	box-shadow: 2px 5px 3px #888888;
+	-moz-box-shadow: 0.9px 0.3px 10px #999;
+	-webkit-box-shadow: 0.9px 0.3px 10px #999;
+	box-shadow: 0.9px 0.3px 10px #999;
 	float: none;
 	width: auto;
 	margin:0;
@@ -537,6 +594,20 @@ ul.social li {
 	margin-right:24px;
 	margin-top:10px;
 	margin-bottom:7px;
+}
+#home form.buscador input[type=text]{
+	width: 300px;
+	background-color: #888888;
+	color:#fff;
+	border:1px solid #D2D4D4;
+}
+#home form.buscador input[type=submit]{
+	width: 17px;
+	height: 17px;
+	background-color: #00CFB5;
+	border:none;
+	color: #fff;
+	margin-right: 15px;
 }
 #home #foto_principal {
 	text-align:center;
@@ -579,6 +650,15 @@ ul.social li {
 	margin-bottom:12px;
 	text-decoration: none;
 }
+a.titulos_rosado:hover{
+	color:#EA3B96;
+}
+a.azul:hover{
+	color:#76F4DF;
+}
+#comments a.azul:hover{
+	color:#76F4DF;
+}
 #home #content ul li p{
 	color:#7E7E7D;
 	font-size:10px;
@@ -591,7 +671,7 @@ ul.social li {
 }
 .subtitulos_gris {
 	font-family:Myriad Pro,Arial, Helvetica, sans-serif;
-	font-size:12px;
+	font-size:13px;
 	color:#595959;
 	font-weight:500;
 	margin-bottom: 4px;
@@ -644,6 +724,7 @@ ul li a.twitter {
 #home #content ul li.puntos#grupo_bb h3{
 	font-size:11px;
 	margin-bottom:11px;
+	font-style: normal;
 }
 
 /* PAGINAS ESTATICAS*/
@@ -760,6 +841,12 @@ ul li a.twitter {
 	background-image:url(../img/logo_footer.png);
 	background-repeat:no-repeat;
 	background-position: 30px 17px;
+}
+.linea_footer{
+	border: 1px solid #D2D4D4;
+    height: 93%;
+    margin: 3px auto;
+    width: 99%;
 }
 #footer ul {
     float: left;
@@ -1169,7 +1256,7 @@ table.tahoma {
 	font-size:12px;
 	margin-left:0;
 	float:left;
-	width: 190px;
+	width: 185px;
 	text-align: right;
 }
 .login_izq form input[type=text], .olvidar_contr form input[type=text], .recomendar form input[type=text]{
@@ -1183,7 +1270,7 @@ table.tahoma {
 	width: 135px;
 }
 .login_izq form input.fecha[type=text]{
-	width: 56px;
+	width: 53px;
 
 }
 .login_izq form a.azul{
