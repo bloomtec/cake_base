@@ -216,7 +216,7 @@ $(function() {
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		console.log(itemId);
-		bloomCart.removeItem(itemId);
+		bloomCart.remove(itemId);
 	});
 	/**
 	// Enviar el formulario con los datos de envío
