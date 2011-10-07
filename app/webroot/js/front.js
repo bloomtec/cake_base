@@ -83,7 +83,7 @@ $(function() {
 		}, function(cart) {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
-				//bloomCart.resumeRefresh(cart);
+				bloomCart.resumeRefresh();
 				$('.add-cart-confirm').html('Producto agregado <a href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
 				setTimeout(function(){
 					$('.add-cart-confirm').css({visibility:'hidden'});
@@ -95,8 +95,8 @@ $(function() {
 	}
 	bloomCart.resumeRefresh=function(){
 		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
-			 $('span.cart-num-items').html(shopCart.items);
-			 $('span.cart-price-total').html(shopCart.total);
+			 $('span.cart-num-items').html(shopCart.ShopCart.items);
+			 $('span.cart-price-total').html("$"+shopCart.ShopCart.total);
 		});
 	}
 
@@ -127,6 +127,7 @@ $(function() {
 	bloomCart.refresh = function() {
 
 	}
+	bloomCart.resumeRefresh();
 	// CLASES DE LAS FUENTES
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
