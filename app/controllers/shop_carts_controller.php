@@ -29,6 +29,8 @@ class ShopCartsController extends AppController {
 		if($user_id) {
 			// Hay sesión abierta, utilizar el carrito de la persona
 			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
+			echo "Hay sesión";
+			echo print_r($shopping_cart);
 		} else {
 			// No hay sesión de usuario iniciada, utilizar _userAgent de la sesión
 			// Luego, primero validar que el _userAgent de la sesión tiene carrito o no
@@ -42,6 +44,7 @@ class ShopCartsController extends AppController {
 					$this->ShopCart->ShopCartItem->create();
 					$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
 					$item = $this->ShopCart->ShopCartItem->save($this->data);
+					echo print_r($item);
 				} else {
 					// No se creo el carrito, retornar algo
 					echo "error";

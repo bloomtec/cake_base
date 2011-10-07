@@ -55,8 +55,6 @@
 						echo "<option id=" . $sr_key . ">$sr_value</option>";
 					}
 			 	?>
-			<!--	<option>10</option>
-				<option>12</option> -->
 			</select>
 			</li>			
 		</ul>

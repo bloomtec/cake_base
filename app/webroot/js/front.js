@@ -64,7 +64,7 @@ $(function() {
 	bloomCart.add = function(botonAdd) { //shop-cart-item-yes-gift
 		var rel = $(botonAdd).parents('.shop-cart-item').attr('rel'); // Product:1;
 		rel = rel.split(":");
-		sizeId = $(botonAdd).parents()selected();
+		sizeId = $('.ids-tallas option:selected').attr('id');
 		BJS.post('/shopCarts/addToCart', {
 			'data[ShopCartItem][model_name]' : rel[0],
 			'data[ShopCartItem][foreign_key]' : rel[1],
@@ -151,6 +151,6 @@ $(function() {
 	 * Funcionalidad Carrito
 	 */
 	$(".add-to-cart").click(function(e){
-		bloomCart.add(this, "1");
+		bloomCart.add(this);
 	});
 });
