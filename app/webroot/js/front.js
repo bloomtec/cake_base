@@ -83,7 +83,11 @@ $(function() {
 		}, function(cart) {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
-				bloomCart.resumeRefresh(cart);
+				//bloomCart.resumeRefresh(cart);
+				$('.add-cart-confirm').html('Producto agregado <a href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				setTimeout(function(){
+					$('.add-cart-confirm').css({visibility:'hidden'});
+				},3000);
 			} else {
 				//
 			}
