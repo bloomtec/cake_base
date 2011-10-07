@@ -100,11 +100,11 @@ $(function() {
 		});
 	}
 
-	bloomCart.addGif = function() {
+	bloomCart.addGift = function() {
 		// Igual al anterior pero con is gif en 1
 	}
 
-	bloomCart.markAsGif = function() {
+	bloomCart.markAsGift = function() {
 
 	}
 
@@ -116,8 +116,14 @@ $(function() {
 
 	}
 
-	bloomCart.updateItem = function(itemId, value) {
-
+	bloomCart.updateItem = function(itemId,fieldName ,value) {
+		BJS.JSON('/updateShopCartItem/'+itemId+'/'+fieldName+'/'+value,{},function(data){
+			if(data){
+				//recargar carrito
+			}else{
+				
+			}
+		});
 	}
 
 	bloomCart.updateItems = function() {
@@ -141,6 +147,10 @@ $(function() {
 
 	Cufon.replace('.halo', {
 		fontFamily : 'HaloHandLetter',
+		trim : "simple"
+	});
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
 		trim : "simple"
 	});
 
@@ -175,6 +185,11 @@ $(function() {
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
+	});
+	$('input.gift-control').click(function(){
+		var value=$(this).is(':checked');
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		bloomCart.updateItem(itemId,'is_gift',value);
 	});
 	/**
 	// Enviar el formulario con los datos de envío
