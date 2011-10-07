@@ -79,12 +79,20 @@ class ShopCartsController extends AppController {
 		);
 		if($cart_item) {
 			$cart_item['ShopCartItem']['quantity'] = $cart_item['ShopCartItem']['quantity'] + 1;
-			$this->ShopCart->ShopCartItem->save($cart_item); 
+			if($this->ShopCart->ShopCartItem->save($cart_item)) {
+				echo "agregado";
+			} else {
+				echo "error";
+			}
 		} else {
 			// No está el ítem
 			$this->ShopCart->ShopCartItem->create();
 			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
-			$this->ShopCart->ShopCartItem->save($this->data);
+			if($this->ShopCart->ShopCartItem->save($this->data)) {
+				echo "agregado";
+			} else {
+				echo "error";
+			}
 		}
 		exit(0);
 	}
