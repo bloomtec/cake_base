@@ -32,6 +32,16 @@ $(function() {
 		});
 	}
 
+	BJS.JSONP = function(url, params, callback) {
+		jQuery.ajax({
+			url : url,
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : params,
+			success : callback
+		});
+	}
 	BJS.setParam = function(param, value) {
 		/* añande o modifica un parametro de la forma param:value */
 		var url = document.URL;
@@ -65,17 +75,24 @@ $(function() {
 		var rel = $(botonAdd).parents('.shop-cart-item').attr('rel'); // Product:1;
 		rel = rel.split(":");
 		sizeId = $('.ids-tallas option:selected').attr('id');
-		BJS.post('/shopCarts/addToCart', {
+		BJS.JSONP('/shopCarts/addToCart', {
 			'data[ShopCartItem][model_name]' : rel[0],
 			'data[ShopCartItem][foreign_key]' : rel[1],
 			'data[ShopCartItem][is_gift]' : rel[2],
 			'data[ShopCartItem][size_id]' : sizeId
-		}, function(idItem) {
-			if (idItem) {
+		}, function(cart) {
+			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
+				bloomCart.resumeRefresh(cart);
 			} else {
 				//
 			}
+		});
+	}
+	bloomCart.resumeRefresh=function(){
+		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
+			 $('span.cart-num-items').html(shopCart.items);
+			 $('span.cart-price-total').html(shopCart.total);
 		});
 	}
 
