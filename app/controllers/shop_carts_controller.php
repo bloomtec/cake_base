@@ -21,6 +21,7 @@ class ShopCartsController extends AppController {
 	
 	function getResume() {
 		$this->autoRender=false;
+		$this->layout="ajax";
 		// precio total
 		// cantidad de items
 		$shop_cart = $this -> getCart();
@@ -29,21 +30,21 @@ class ShopCartsController extends AppController {
 			$info = array();
 			$total_items = 0;
 			$total_price = 0.0;
-			foreach($shop_cart['ShopCartItems'] as $item) {
+			foreach($shop_cart['ShopCartItem'] as $item) {
 				$total_items++;
-				$product = $this->ShopCart->ShopCartItem->$item['model_name']->read($item['foreign_key']);
+				$this->loadModel('Product');
+				$product = $this->Product->read(null, $item['foreign_key']);
 				$value = $product['Product']['price'];
 				$quantity = $item['quantity'];
 				$total_price = $quantity * $value;
 			}
 			$info['ShopCart']['items']=$total_items;
 			$info['ShopCart']['total']=$total_price;
-			debug($info);
-			//return json_encode($info);
+			return json_encode($info);
 		} else {
-			debug("false");
-			//return false;
+			return false;
 		}
+		exit(0);
 	}
 	
 	/**
@@ -71,6 +72,7 @@ class ShopCartsController extends AppController {
 	 * Añadir ítems al carrito
 	 **/
 	function addToCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
 		$cart_id = -1;
@@ -128,6 +130,7 @@ class ShopCartsController extends AppController {
 	 * Remover ítems del carrito
 	 */
 	function removeFromCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$item_id = null; // Definir como llega el id del ítem
 		$shopping_cart = $this->getCart();
@@ -154,6 +157,7 @@ class ShopCartsController extends AppController {
 	 * Pasar a generar la orden con los ítems del carrito
 	 */
 	function checkoutCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
 		if(empty($shopping_cart)) {
