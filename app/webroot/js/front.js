@@ -150,6 +150,7 @@ $(function() {
 	/**
 	 * Funcionalidad Carrito
 	 */
+	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
 	});

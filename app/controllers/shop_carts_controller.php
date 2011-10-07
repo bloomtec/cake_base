@@ -133,7 +133,7 @@ class ShopCartsController extends AppController {
 			// No hay carrito; hacer algo?
 		} else {
 			// Hay carrito, crear la orden
-			$this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
+			// $this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
 		}
 		exit(0);
 	}
