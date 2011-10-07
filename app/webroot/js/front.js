@@ -109,7 +109,13 @@ $(function() {
 	}
 
 	bloomCart.remove = function(itemId) {
-
+		BJS.JSON('/shopCarts/removeFromCart/'+itemId,{},function(shopcart){
+			if(data){
+				bloomCart.refresh();
+			}else{
+						
+			}
+		});
 	}
 
 	bloomCart.getItems = function() {
@@ -119,9 +125,9 @@ $(function() {
 	bloomCart.updateItem = function(itemId,fieldName ,value) {
 		BJS.JSON('/updateShopCartItem/'+itemId+'/'+fieldName+'/'+value,{},function(data){
 			if(data){
-				//recargar carrito
+				bloomCart.refresh();
 			}else{
-				
+						
 			}
 		});
 	}
@@ -131,7 +137,14 @@ $(function() {
 	}
 
 	bloomCart.refresh = function() {
-
+		BJS.get("/shopCarts/refresh",{},function(data){
+			if(data){
+				$('.shop-cart-list-container').load(data);
+				bloomCart.resumeRefresh();	
+			}else{
+						
+			}
+		});
 	}
 	bloomCart.resumeRefresh();
 	// CLASES DE LAS FUENTES
@@ -186,10 +199,21 @@ $(function() {
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
 	});
-	$('input.gift-control').click(function(){
+	$('input.gift-control').live('click',function(){
 		var value=$(this).is(':checked');
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		bloomCart.updateItem(itemId,'is_gift',value);
+	});
+	$('.item-quantity').live('change',function(){
+		var value=$(this).val();
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		bloomCart.updateItem(itemId,'quantity',value);
+	});
+	$('.quitar a').live('click',function(e){
+		e.preventDefault();
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		console.log(itemId);
+		bloomCart.removeItem(itemId);
 	});
 	/**
 	// Enviar el formulario con los datos de envío

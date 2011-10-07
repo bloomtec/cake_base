@@ -1,5 +1,6 @@
 <?php echo $this -> element("menu-shop-cart");?>
-<table class="tahoma">
+<div class="shop-cart-list-container">
+<table id="shop-cart-list" class="tahoma">
 	<thead>
 		<tr>
 			<th align="left">Descripcion de la Prenda</th>
@@ -24,10 +25,11 @@
 			<tr class="shop-cart-item" rel="<?=$shoppin_cart_item["id"]?>">
 				<td class="descripcion">
 				<div class="img_carrito">
-					<img src="<?="/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
+					<img src="<?php echo"/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
 				</div>
-				<h1 class="titulos_rosado"><?=$item["$model_name"]["name"]?></h1>
-				<h2 class="titulos_gris"><?=$item["$model_name"]["clasification"]?></h2>
+				<div class='info-item'>
+				<h1 class="titulos_rosado"><?php echo $item["$model_name"]["name"]?></h1>
+				<h2 class="titulos_gris"><?php echo $item["$model_name"]["clasification"]?></h2>
 				<form class="marcar_regalo">
 					<?php if($shoppin_cart_item['is_gift']){?>
 					<input class='gift-control' type="checkbox" checked="checked"/>
@@ -36,6 +38,7 @@
 					<?php } ?>
 					<label>MARCAR COMO REGALO</label> <!-- revisar esto del marcado -->
 				</form>
+				</div>
 				<div style="clear: both"></div></td>
 				<td class="talla"><!-- celda con la talla -->
 					<h1><?php echo $this->requestAction("/size_references/getSize/" .$shoppin_cart_item["size_id"])?></h1>					
@@ -44,7 +47,7 @@
 					<h1><?=$item["$model_name"]["price"]?></h1>
 				</td>
 				<td class="talla"><!-- celda con el select para modificar la cantidad -->
-					<select>
+					<select class='item-quantity'>
 						<option>1</option>
 						<option>2</option>
 					</select></td>
@@ -61,6 +64,7 @@
 		?>
 	</tbody>
 </table>
+</div>
 <div id="cupon" class="twCenMt">
 	<h1><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
 	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$457.000</span></h1>
@@ -81,3 +85,4 @@
 	</div>
 	<div style="clear: both"></div>
 </div>
+

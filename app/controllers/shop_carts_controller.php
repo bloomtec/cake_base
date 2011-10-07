@@ -174,6 +174,11 @@ class ShopCartsController extends AppController {
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 	}
+	function refresh() {
+		$this->layout='ajax';
+		$shopping_cart = $this->getCart();
+		$this -> set('shopping_cart', $shopping_cart);
+	}
 	
 	/**
 	 * ---------------------------------------------------------------------------------------------

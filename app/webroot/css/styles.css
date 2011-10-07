@@ -393,6 +393,15 @@ h5 {
 	text-decoration: none;
 	color:#fff;
 }
+.shop-cart-item .img_carrito{
+	float: left;
+}
+.shop-cart-item .info-item{
+	float: left;
+}
+.shop-cart-item .titulos_gris{
+	margin-left: 10px;
+}
 #caracteristicas {
 	width: 100%;
 	margin-top:17px;
@@ -952,6 +961,7 @@ tbody tr{
 }
 tbody tr td{
 	padding:5px 0;
+	vertical-align: middle;
 }
 tbody tr td .img_carrito img {
 	width: 69px;
@@ -961,7 +971,7 @@ tbody tr td .img_carrito img {
 	margin-top: 10px;
 }
 tbody tr td h1 , tbody tr th h2{
-	float: left;
+
 	margin-left: 10px;
 }
 tbody tr td h2.titulos_gris{
