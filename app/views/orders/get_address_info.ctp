@@ -9,14 +9,14 @@
 	$departamento = "";
 	$ciudad = "";
 	if($user) {
-		$pais = $user['UserField'][''];
-		$nombre = $user['UserField'][''];
-		$appelido = $user['UserField'][''];
-		$direccion = $user['UserField'][''];
-		$telefono = $user['UserField'][''];
-		$celular = $user['UserField'][''];
-		$departamento = $user['UserField'][''];
-		$ciudad = $user['UserField'][''];
+		$pais = $user['UserField']['country'];
+		$nombre = $user['UserField']['name'];
+		$appelido = $user['UserField']['surname'];
+		$direccion = $user['UserField']['address'];
+		$telefono = $user['UserField']['phone'];
+		$celular = $user['UserField']['mobile'];
+		$departamento = $user['UserField']['state'];
+		$ciudad = $user['UserField']['city'];
 	}
 ?>
 <p class="costo_envio tahoma">
@@ -33,62 +33,48 @@ $120.000 tampoco tienen costo.
 </div>
 <div class="form_envio tahoma">
 	<?php e($this->Form->create('Order')); ?>
-		<?php e($this->Form->input('user_name', array('label'=>'Datos De Usuario'))); ?>
-		<?php e($this->Form->input('country', array('label'=>'País'))); ?>
-		<label>Nombre</label>
-		<input type="text" />
-		<label>Apellido</label>
-		<input type="text" />
-		<label>Dirección</label>
-		<input type="text" />
-		<label>Numero Telefónico</label>
-		<input type="text" />
-		<label>Celular</label>
-		<input type="text" />
-		<?php e($this->Form->input('state', array('label'=>'Departamento'))); ?>
-		<?php e($this->Form->input('city', array('label'=>'Ciudad'))); ?>
+		<?php e($this->Form->input('Envio.full_name', array('label'=>'Datos Usuario', 'value'=>$nombre . " " . $appelido))); ?>
+		<?php e($this->Form->input('Envio.country', array('label'=>'País', 'value'=>$pais))); ?>
+		<?php e($this->Form->input('Envio.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>
+		<?php e($this->Form->input('Envio.surname', array('label'=>'Apellido', 'value'=>$appelido))); ?>
+		<?php e($this->Form->input('Envio.address', array('label'=>'Nombre', 'value'=>$direccion))); ?>
+		<?php e($this->Form->input('Envio.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
+		<?php e($this->Form->input('Envio.mobile', array('label'=>'Celular', 'value'=>$celular))); ?>
+		<?php e($this->Form->input('Envio.state', array('label'=>'Departamento'))); ?>
+		<?php e($this->Form->input('Envio.city', array('label'=>'Ciudad'))); ?>
 		<div style="clear: both"></div>
-		<input type="checkbox" />
-		<label class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
+		<input id="EnvioAuthorize" name="data[Envio][authorize]" type="checkbox" />
+		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
 		<div style="clear: both"></div>
-		<input type="checkbox" />
-		<label class="azul">  Acepto terminos y condiciones de la compra.</label>
+		<input id="EnvioConditions" name="data[Envio][conditions]" type="checkbox" />
+		<label for="EnvioConditions" class="azul">  Acepto terminos y condiciones de la compra.</label>
 		<div style="clear: both"></div>
-	
+	</form>
 	<div style="clear: both"></div>
 </div>
 <div class="form_envio der">
 	<form>
-		<label>Pais</label>
-		<select></select>	
-		<label>Nombre destinatario</label>
-		<input type="text" />
-		<label>Apellido destinatarioo</label>
-		<input type="text" />
-		<label>Dirección destinatario</label>
-		<input type="text" />
-		<label>Numero Telefónico</label>
-		<input type="text" />
-		<label>Departamento</label>
-		<select></select>
-		<label>Ciudad</label>
-		<select></select>
-
-
+		<?php e($this->Form->input('Gift.country', array('label'=>'País'))); ?>
+		<?php e($this->Form->input('Gift.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>
+		<?php e($this->Form->input('Gift.surname', array('label'=>'Apellido', 'value'=>$appelido))); ?>
+		<?php e($this->Form->input('Gift.address', array('label'=>'Nombre', 'value'=>$direccion))); ?>
+		<?php e($this->Form->input('Gift.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
+		<?php e($this->Form->input('Gift.state', array('label'=>'Departamento'))); ?>
+		<?php e($this->Form->input('Gift.city', array('label'=>'Ciudad'))); ?>
 	</form>
 	<div style="clear: both"></div>
 </div>
 <div style="clear: both"></div>
 <div id="cupon" class="twCenMt">	
 	<h1 class="titulos_rosado">TOTAL <span>$457.000</span></h1>
-		<div id="btn_cupon">
-			<div class="agregar_regalo verde twCenMt">
-				<h1><a class="envio-form" href="#">Continuar</a></h1>
-			</div>
-			<div class="agregar_regalo twCenMt">
-				<h1><a href="#">Seguir Comprando</a></h1>
-			</div>
-			<div style="clear: both"></div>
+	<div id="btn_cupon">
+		<div class="agregar_regalo verde twCenMt">
+			<h1><a class="envio-form" href="#">Continuar</a></h1>
 		</div>
-		<div style="clear: both"></div>	
+		<div class="agregar_regalo twCenMt">
+			<h1><a href="#">Seguir Comprando</a></h1>
+		</div>
+		<div style="clear: both"></div>
+	</div>
+	<div style="clear: both"></div>	
 </div>

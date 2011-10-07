@@ -220,8 +220,7 @@ $(function() {
 	});
 	/**
 	// Enviar el formulario con los datos de envío
-	$(".envio-form").click(function(e)) {
+	$(".add-to-cart").click(function(e){
 		$("#OrderGetAddressInfoForm").submit();
-	};
-	*/
+	});*/
 });
