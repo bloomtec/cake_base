@@ -413,7 +413,13 @@ ul.products li h3{
 	width: 100%;
 	clear: both;
 	margin-top: 25px;
-	margin-bottom: 22px;
+	margin-bottom: 5px;
+}
+.agregar .add-cart-confirm{
+	color:white;
+	font-size: 12px;
+	margin-top: 5px;
+	visibility: hidden;
 }
 .agregar_carrito , .agregar_regalo{
 	width: 120px;

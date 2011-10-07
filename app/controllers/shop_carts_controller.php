@@ -19,6 +19,34 @@ class ShopCartsController extends AppController {
 	 * ---------------------------------------------------------------------------------------------
 	 */
 	
+	function getResume() {
+		$this->autoRender=false;
+		$this->layout="ajax";
+		// precio total
+		// cantidad de items
+		$shop_cart = $this -> getCart();
+		if($shop_cart) {
+			// items y total
+			$info = array();
+			$total_items = 0;
+			$total_price = 0.0;
+			foreach($shop_cart['ShopCartItem'] as $item) {
+				$total_items++;
+				$this->loadModel('Product');
+				$product = $this->Product->read(null, $item['foreign_key']);
+				$value = $product['Product']['price'];
+				$quantity = $item['quantity'];
+				$total_price = $quantity * $value;
+			}
+			$info['ShopCart']['items']=$total_items;
+			$info['ShopCart']['total']= "$" . number_format($total_price, 0, ' ', '.');
+			return json_encode($info);
+		} else {
+			return false;
+		}
+		exit(0);
+	}
+	
 	/**
 	 * Encontrar el carrito
 	 */
@@ -44,13 +72,14 @@ class ShopCartsController extends AppController {
 	 * Añadir ítems al carrito
 	 **/
 	function addToCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
 		$cart_id = -1;
 		if(empty($shopping_cart)) {
 			// Crear un carrito porque no lo hay
 			$this->ShopCart->create();
-			if($this->Session->read('Auth.User.id')) {
+			if($user_id=$this->Session->read('Auth.User.id')) {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
 				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
@@ -60,7 +89,7 @@ class ShopCartsController extends AppController {
 				$cart_id=$this->ShopCart->id;				
 			} else {
 				// No se creo el carrito, retornar algo
-				echo "error";
+				echo false;
 			}
 		} else {
 			$cart_id=$shopping_cart['ShopCart']['id'];
@@ -80,18 +109,18 @@ class ShopCartsController extends AppController {
 		if($cart_item) {
 			$cart_item['ShopCartItem']['quantity'] = $cart_item['ShopCartItem']['quantity'] + 1;
 			if($this->ShopCart->ShopCartItem->save($cart_item)) {
-				echo "agregado";
+				echo json_encode($cart_item);
 			} else {
-				echo "error";
+				echo false;
 			}
 		} else {
 			// No está el ítem
 			$this->ShopCart->ShopCartItem->create();
 			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
-			if($this->ShopCart->ShopCartItem->save($this->data)) {
-				echo "agregado";
+			if($cart=$this->ShopCart->ShopCartItem->save($this->data)) {
+				 echo json_encode($cart);
 			} else {
-				echo "error";
+				echo false;
 			}
 		}
 		exit(0);
@@ -101,6 +130,7 @@ class ShopCartsController extends AppController {
 	 * Remover ítems del carrito
 	 */
 	function removeFromCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$item_id = null; // Definir como llega el id del ítem
 		$shopping_cart = $this->getCart();
@@ -127,18 +157,20 @@ class ShopCartsController extends AppController {
 	 * Pasar a generar la orden con los ítems del carrito
 	 */
 	function checkoutCart() {
+		$this->autoRender=false;
 		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
 		if(empty($shopping_cart)) {
 			// No hay carrito; hacer algo?
 		} else {
 			// Hay carrito, crear la orden
-			$this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
+			// $this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
 		}
 		exit(0);
 	}
 	
 	function viewCart() {
+		$this->layout='carrito';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 	}

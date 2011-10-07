@@ -231,7 +231,7 @@ class ProductsController extends AppController {
 						$this -> Product -> OtherRecommendation -> save();
 					}
 					$this -> Session -> setFlash(__('The product has been saved', true));
-					$this -> redirect(array('action' => 'index'));
+					$this -> redirect(array('controller'=>'inventories','action' => 'listProductInventory',$this->Product->id));
 				} else {
 					$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
 				}

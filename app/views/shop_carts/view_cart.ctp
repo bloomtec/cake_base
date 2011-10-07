@@ -17,11 +17,11 @@
 				e("<tr><td><h2>NO HAY ITEMS EN EL CARRITO</h2></td></tr>");
 			} else {
 				foreach($shopping_cart['ShopCartItem'] as $shoppin_cart_item) :
-				$model_name = $shoppin_cart_item['ShopCartItem']['model_name'];
-				$foreign_key =  $shoppin_cart_item['ShopCartItem']['foreign_key'];
+				$model_name = $shoppin_cart_item['model_name'];
+				$foreign_key =  $shoppin_cart_item['foreign_key'];
 				$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key");
 		?>
-			<tr class="shop-cart-item" rel="Product:<?=$item["$model_name"]["id"]?>">
+			<tr class="shop-cart-item" rel="<?=$shoppin_cart_item["id"]?>">
 				<td class="descripcion">
 				<div class="img_carrito">
 					<img src="<?="/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
@@ -29,12 +29,16 @@
 				<h1 class="titulos_rosado"><?=$item["$model_name"]["name"]?></h1>
 				<h2 class="titulos_gris"><?=$item["$model_name"]["clasification"]?></h2>
 				<form class="marcar_regalo">
-					<input type="checkbox" />
+					<?php if($shoppin_cart_item['is_gift']){?>
+					<input class='gift-control' type="checkbox" checked="checked"/>
+					<?php }else{?>
+					<input class='gift-control' type="checkbox" />
+					<?php } ?>
 					<label>MARCAR COMO REGALO</label> <!-- revisar esto del marcado -->
 				</form>
 				<div style="clear: both"></div></td>
 				<td class="talla"><!-- celda con la talla -->
-					<h1><?=$this->requestAction("/size_references/getSize/" . $this->$item["$model_name"]["size_id"])?></h1>					
+					<h1><?php echo $this->requestAction("/size_references/getSize/" .$shoppin_cart_item["size_id"])?></h1>					
 				</td>
 				<td class="talla"><!-- celda con el precio -->
 					<h1><?=$item["$model_name"]["price"]?></h1>

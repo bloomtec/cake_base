@@ -32,6 +32,16 @@ $(function() {
 		});
 	}
 
+	BJS.JSONP = function(url, params, callback) {
+		jQuery.ajax({
+			url : url,
+			type : "POST",
+			cache : false,
+			dataType : "json",
+			data : params,
+			success : callback
+		});
+	}
 	BJS.setParam = function(param, value) {
 		/* añande o modifica un parametro de la forma param:value */
 		var url = document.URL;
@@ -65,25 +75,36 @@ $(function() {
 		var rel = $(botonAdd).parents('.shop-cart-item').attr('rel'); // Product:1;
 		rel = rel.split(":");
 		sizeId = $('.ids-tallas option:selected').attr('id');
-		BJS.post('/shopCarts/addToCart', {
+		BJS.JSONP('/shopCarts/addToCart', {
 			'data[ShopCartItem][model_name]' : rel[0],
 			'data[ShopCartItem][foreign_key]' : rel[1],
 			'data[ShopCartItem][is_gift]' : rel[2],
 			'data[ShopCartItem][size_id]' : sizeId
-		}, function(idItem) {
-			if (idItem) {
+		}, function(cart) {
+			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
+				bloomCart.resumeRefresh();
+				$('.add-cart-confirm').html('Producto agregado <a href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				setTimeout(function(){
+					$('.add-cart-confirm').css({visibility:'hidden'});
+				},3000);
 			} else {
 				//
 			}
 		});
 	}
+	bloomCart.resumeRefresh=function(){
+		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
+			 $('span.cart-num-items').html(shopCart.ShopCart.items);
+			 $('span.cart-price-total').html("$"+shopCart.ShopCart.total);
+		});
+	}
 
-	bloomCart.addGif = function() {
+	bloomCart.addGift = function() {
 		// Igual al anterior pero con is gif en 1
 	}
 
-	bloomCart.markAsGif = function() {
+	bloomCart.markAsGift = function() {
 
 	}
 
@@ -95,8 +116,14 @@ $(function() {
 
 	}
 
-	bloomCart.updateItem = function(itemId, value) {
-
+	bloomCart.updateItem = function(itemId,fieldName ,value) {
+		BJS.JSON('/updateShopCartItem/'+itemId+'/'+fieldName+'/'+value,{},function(data){
+			if(data){
+				//recargar carrito
+			}else{
+				
+			}
+		});
 	}
 
 	bloomCart.updateItems = function() {
@@ -106,6 +133,7 @@ $(function() {
 	bloomCart.refresh = function() {
 
 	}
+	bloomCart.resumeRefresh();
 	// CLASES DE LAS FUENTES
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
@@ -119,6 +147,10 @@ $(function() {
 
 	Cufon.replace('.halo', {
 		fontFamily : 'HaloHandLetter',
+		trim : "simple"
+	});
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
 		trim : "simple"
 	});
 
@@ -150,7 +182,19 @@ $(function() {
 	/**
 	 * Funcionalidad Carrito
 	 */
+	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
 	});
+	$('input.gift-control').click(function(){
+		var value=$(this).is(':checked');
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		bloomCart.updateItem(itemId,'is_gift',value);
+	});
+	/**
+	// Enviar el formulario con los datos de envío
+	$(".envio-form").click(function(e)) {
+		$("#OrderGetAddressInfoForm").submit();
+	};
+	*/
 });
