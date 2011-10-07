@@ -1,6 +1,6 @@
-<form class="buscador" name="buscador"> <span class="subtitulos_gris">¿NECESITAS ALGO ESPECÍFICO? UTILIZA NUESTRO BUSCADOR</span>
-        <input type="text" />
-        <input type="submit" />
+<form class="buscador" name="buscador"> <span class="subtitulos_gris twCenMt">¿NECESITAS ALGO ESPECÍFICO? UTILIZA NUESTRO BUSCADOR</span>
+        <input type="text" placeholder="BUSCAR"/>
+        <input type="submit" value="Ir" />
         </form>
         <div style="clear:both"></div>
 	<div id="foto_principal"><img src="img/foto_principal.jpg" />
@@ -39,7 +39,7 @@
                 </ul>
             </li>
             <li class="puntos" id="grupo_bb">
-            	<h3 class="subtitulos_gris">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
+            	<h3 class="subtitulos_gris tahoma">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
                 <p>Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
                 </p>
             </li>
