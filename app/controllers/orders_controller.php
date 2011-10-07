@@ -81,6 +81,7 @@ class OrdersController extends AppController {
 	 * Obtener información de envío
 	 */
 	function getAddressInfo() {
+		$this->layout="carrito";
 		$user_id = $this->Session->read('Auth.User.id');
 		$user = null;
 		$user_agent = $this->Session->_userAgent;

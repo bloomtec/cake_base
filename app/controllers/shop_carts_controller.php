@@ -129,16 +129,16 @@ class ShopCartsController extends AppController {
 	/**
 	 * Remover ítems del carrito
 	 */
-	function removeFromCart() {
+	function removeFromCart($item_id) {
 		$this->autoRender=false;
 		$this->layout="ajax";
-		$item_id = null; // Definir como llega el id del ítem
 		$shopping_cart = $this->getCart();
 		if(empty($shopping_cart)) {
 			// No hay carrito; hacer algo?
 		} else {
 			// Hay carrito, borrar el ítem acorde su id
 			$this->ShopCart->ShopCartItem->delete($item_id);
+			return json_encode($this->getCart());
 		}
 		exit(0);
 	}
@@ -146,11 +146,16 @@ class ShopCartsController extends AppController {
 	/**
 	 * Actualizar la cantidad de un ítem
 	 */
-	function updateShopCartItemQuantity() {
-		$item_id = null; // Definir como llega el id del ítem
+	function updateShopCartItem($item_id, $field_name, $value) {
+		$this->autoRender=false;
+		$this->layout="ajax";
+		
 		$this->ShopCart->ShopCartItem->read(null, $item_id);
-		$this -> Cart -> doUpdate($this -> data['Cart']['cantidad'], $this -> data['Cart']['id']);
-		$this -> redirect(array('controller' => 'carts', 'action' => 'view'));
+		$this->ShopCart->ShopCartItem->saveField($field_name, $value);
+		
+		return json_encode($this->getCart());
+		
+		exit(0);
 	}
 	
 	/**
