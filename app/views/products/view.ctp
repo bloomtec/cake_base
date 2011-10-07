@@ -5,8 +5,8 @@
 		</div>
 		<div style="clear: both"></div>
 			
-		<div id="comments">
-			<div>
+		<div id="comments" class="tahoma">
+			<div class="comment_header">
 				<h3>QUE HAN DICHO OTROS CLIENTES</h3>
 				<h3>ORDENAR POR</h3>
 				<select></select>
@@ -67,8 +67,8 @@
 		</ul>	
 		<div style="clear: both"></div>
 		<div class="agregar">
-			<div class="agregar_carrito shop-cart-item twCenMt" rel="Product:<?php echo $product['Product']['id'];?>:0">
-				<h1><a class="add-to-cart" href="#">Agregar al carrito</a></h1>
+			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
+				<h1 class="twCenMt"><a class="add-to-cart" href="#">Agregar al carrito</a></h1>
 			</div>
 			<div class="agregar_regalo shop-cart-item twCenMt" rel="Product:<?php echo $product['Product']['id'];?>:1">
 				<h1><a class="add-to-cart" href="#">Agregar como regalo</a></h1>

@@ -135,22 +135,25 @@ $(function() {
 	}
 	bloomCart.resumeRefresh();
 	// CLASES DE LAS FUENTES
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
+		trim : "simple"
+	});
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
 		trim : "simple"
 	});
 
+
+
+	
 	Cufon.replace('.twCenMt', {
 		fontFamily : 'TwCenMt',
 		trim : "simple"
 	});
-
+	
 	Cufon.replace('.halo', {
 		fontFamily : 'HaloHandLetter',
-		trim : "simple"
-	});
-	Cufon.replace('.tahoma', {
-		fontFamily : 'Tahoma',
 		trim : "simple"
 	});
 
