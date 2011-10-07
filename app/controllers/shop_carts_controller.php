@@ -45,6 +45,7 @@ class ShopCartsController extends AppController {
 	function addToCart() {
 		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
+		$cart_id = -1;
 		if(empty($shopping_cart)) {
 			// Crear un carrito porque no lo hay
 			$this->ShopCart->create();
@@ -55,18 +56,35 @@ class ShopCartsController extends AppController {
 			}
 			if($this->ShopCart->save()){
 				// Se creo el carrito, guardar la info
-				$this->ShopCart->ShopCartItem->create();				
-				$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
-				$this->ShopCart->ShopCartItem->save($this->data);
+				$cart_id=$this->ShopCart->id;				
 			} else {
 				// No se creo el carrito, retornar algo
 				echo "error";
 			}
 		} else {
+			$cart_id=$shopping_cart['ShopCart']['id'];
+		}
+		// Verificar si el ítem ya esta dentro del carrito
+		$cart_item = $this->ShopCart->ShopCartItem->find(
+			'first',
+			array(
+				'conditions'=>array(
+					'ShopCartItem.shop_cart_id'=>$cart_id,
+					'ShopCartItem.foreign_key'=>$this->data['ShopCartItem']['foreign_key'],
+					'ShopCartItem.is_gift'=>$this->data['ShopCartItem']['is_gift'],
+					'ShopCartItem.size_id'=>$this->data['ShopCartItem']['size_id']
+				)
+			)
+		);
+		if($cart_item) {
+			$cart_item['ShopCartItem']['quantity'] = $cart_item['ShopCartItem']['quantity'] + 1;
+			$this->ShopCart->ShopCartItem->save($cart_item); 
+		} else {
+			// No está el ítem
 			$this->ShopCart->ShopCartItem->create();
-			$this->data['ShopCartItem']['shop_cart_id']=$shopping_cart['ShopCart']['id'];
+			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
 			$this->ShopCart->ShopCartItem->save($this->data);
-		}		
+		}
 		exit(0);
 	}
 	
@@ -87,6 +105,16 @@ class ShopCartsController extends AppController {
 	}
 	
 	/**
+	 * Actualizar la cantidad de un ítem
+	 */
+	function updateShopCartItem() {
+		$item_id = null; // Definir como llega el id del ítem
+		$this->ShopCart->ShopCartItem->read(null, $item_id);
+		$this -> Cart -> doUpdate($this -> data['Cart']['cantidad'], $this -> data['Cart']['id']);
+		$this -> redirect(array('controller' => 'carts', 'action' => 'view'));
+	}
+	
+	/**
 	 * Pasar a generar la orden con los ítems del carrito
 	 */
 	function checkoutCart() {
@@ -96,7 +124,7 @@ class ShopCartsController extends AppController {
 			// No hay carrito; hacer algo?
 		} else {
 			// Hay carrito, crear la orden
-			
+			$this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
 		}
 		exit(0);
 	}
@@ -117,77 +145,6 @@ class ShopCartsController extends AppController {
 	function index() {
 		$this -> ShopCart -> recursive = 0;
 		$this -> set('shopCarts', $this -> paginate());
-	}
-
-	function edit($id = null) {
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid shop cart', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if (!empty($this -> data)) {
-			if ($this -> ShopCart -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The shop cart has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The shop cart could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> ShopCart -> read(null, $id);
-		}
-		$users = $this -> ShopCart -> User -> find('list');
-		$this -> set(compact('users'));
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for shop cart', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if ($this -> ShopCart -> delete($id)) {
-			$this -> Session -> setFlash(__('Shop cart deleted', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Shop cart was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setInactive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for shop cart', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> ShopCart -> read(null, $id);
-		$oldData["ShopCart"]["active"] = false;
-		if ($this -> ShopCart -> save($oldData)) {
-			$this -> Session -> setFlash(__('Shop cart archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Shop cart was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setActive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for shop cart', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> ShopCart -> read(null, $id);
-		$oldData["ShopCart"]["active"] = true;
-		if ($this -> ShopCart -> save($oldData)) {
-			$this -> Session -> setFlash(__('Shop cart archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Shop cart was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function requestFind($type, $findParams, $key) {
-		if ($key == Configure::read("key")) {
-			return $this -> ShopCart -> find($type, $findParams);
-		} else {
-			return null;
-		}
 	}
 
 	function admin_index() {
@@ -287,18 +244,5 @@ class ShopCartsController extends AppController {
 			return null;
 		}
 	}
-
-	/**
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 */
-
-	function updates() {
-		$this -> Cart -> doUpdate($this -> data['Cart']['cantidad'], $this -> data['Cart']['id']);
-		$this -> redirect(array('controller' => 'carts', 'action' => 'view'));
-	}
-	
-	/**
-	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	 */
 
 }

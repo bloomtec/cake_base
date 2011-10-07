@@ -6,7 +6,7 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(
-			'confirmarPagosOnline', 'callBackPagosOnline', 'generateOrder', 'removeFromOrder', 'payOrder'
+			'confirmarPagosOnline', 'callBackPagosOnline', 'createOrder', 'removeFromOrder', 'payOrder'
 		);
 	}
 	
@@ -34,7 +34,7 @@ class OrdersController extends AppController {
 	/**
 	 * Generar la orden como tal
 	 */
-	function generateOrder() {
+	function createOrder() {
 		
 	}
 	/**
