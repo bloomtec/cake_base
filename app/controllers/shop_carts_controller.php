@@ -19,6 +19,33 @@ class ShopCartsController extends AppController {
 	 * ---------------------------------------------------------------------------------------------
 	 */
 	
+	function getResume() {
+		$this->autoRender=false;
+		// precio total
+		// cantidad de items
+		$shop_cart = $this -> getCart();
+		if($shop_cart) {
+			// items y total
+			$info = array();
+			$total_items = 0;
+			$total_price = 0.0;
+			foreach($shop_cart['ShopCartItems'] as $item) {
+				$total_items++;
+				$product = $this->ShopCart->ShopCartItem->$item['model_name']->read($item['foreign_key']);
+				$value = $product['Product']['price'];
+				$quantity = $item['quantity'];
+				$total_price = $quantity * $value;
+			}
+			$info['ShopCart']['items']=$total_items;
+			$info['ShopCart']['total']=$total_price;
+			debug($info);
+			//return json_encode($info);
+		} else {
+			debug("false");
+			//return false;
+		}
+	}
+	
 	/**
 	 * Encontrar el carrito
 	 */
