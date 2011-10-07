@@ -39,7 +39,7 @@ class ShopCartsController extends AppController {
 				$total_price = $quantity * $value;
 			}
 			$info['ShopCart']['items']=$total_items;
-			$info['ShopCart']['total']=$total_price;
+			$info['ShopCart']['total']= "$" . number_format($total_price, 0, ' ', '.');
 			return json_encode($info);
 		} else {
 			return false;
