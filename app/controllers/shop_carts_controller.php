@@ -6,7 +6,7 @@ class ShopCartsController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(
-			'addToCart', 'removeFromCart', 'checkoutCart', 'viewCart'
+			'addToCart', 'removeFromCart', 'checkoutCart', 'viewCart', 'getCart'
 		);
 	}
 	
@@ -17,93 +17,92 @@ class ShopCartsController extends AppController {
 	 * El carrito debe de poder ser accedido por cualquiera.
 	 * ---------------------------------------------------------------------------------------------
 	 */
+	
+	/**
+	 * Encontrar el carrito
+	 */
+	function getCart() {
+		$user_id = $this->Session->read('Auth.User.id');
+		$user_agent = $this->Session->_userAgent;
+		$shopping_cart = null;
+		if($user_id) {
+			/**
+			 * buscar el carrito con el id de usuario
+			 */
+			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
+		} else {
+			/**
+			 * buscar el carrito con el userAgent
+			 */
+			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.user_agent"=>$user_agent)));
+		}
+		return $shopping_cart;
+	}
+	
 	/**
 	 * Añadir ítems al carrito
 	 **/
 	function addToCart() {
 		$this->layout="ajax";
-		/**
-		 * Se debe verificar si hay o no sesión de usuario.
-		 */
-		$user_id = $this->Session->read('Auth.User.id');
-		if($user_id) {
-			// Hay sesión abierta, utilizar el carrito de la persona
-			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
-			if(empty($shopping_cart)) {
-				// Crear un carrito especifico para este explorador
-				$this->ShopCart->create();
+		$shopping_cart = $this->getCart();
+		if(empty($shopping_cart)) {
+			// Crear un carrito porque no lo hay
+			$this->ShopCart->create();
+			if($this->Session->read('Auth.User.id')) {
 				$this->ShopCart->set('user_id', $user_id);
-				if($shopping_cart = $this->ShopCart->save()){
-					// Se creo el carrito, guardar la info
-					$this->ShopCart->ShopCartItem->create();
-					$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
-					$item = $this->ShopCart->ShopCartItem->save($this->data);
-				} else {
-					// No se creo el carrito, retornar algo
-					echo "error";
-				}
 			} else {
-				$this->ShopCart->ShopCartItem->create();
-				$this->data['ShopCartItem']['shop_cart_id']=$shopping_cart['ShopCart']['id'];
-				$item = $this->ShopCart->ShopCartItem->save($this->data);
+				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
+			}
+			if($this->ShopCart->save()){
+				// Se creo el carrito, guardar la info
+				$this->ShopCart->ShopCartItem->create();				
+				$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
+				$this->ShopCart->ShopCartItem->save($this->data);
+			} else {
+				// No se creo el carrito, retornar algo
+				echo "error";
 			}
 		} else {
-			// No hay sesión de usuario iniciada, utilizar _userAgent de la sesión
-			// Luego, primero validar que el _userAgent de la sesión tiene carrito o no
-			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.user_agent"=>$this->Session->_userAgent)));
-			if(empty($shopping_cart)) {
-				// Crear un carrito especifico para este explorador
-				$this->ShopCart->create();
-				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
-				if($shopping_cart = $this->ShopCart->save()){
-					// Se creo el carrito, guardar la info
-					$this->ShopCart->ShopCartItem->create();
-					$this->data['ShopCartItem']['shop_cart_id']=$this->ShopCart->id;
-					$item = $this->ShopCart->ShopCartItem->save($this->data);
-				} else {
-					// No se creo el carrito, retornar algo
-					echo "error";
-				}
-			} else {
-				echo "Hay carrito para este explorador";
-				$this->ShopCart->ShopCartItem->create();
-				$this->data['ShopCartItem']['shop_cart_id']=$shopping_cart['ShopCart']['id'];
-				$item = $this->ShopCart->ShopCartItem->save($this->data);
-				echo print_r($item);
-			}
-		}
+			$this->ShopCart->ShopCartItem->create();
+			$this->data['ShopCartItem']['shop_cart_id']=$shopping_cart['ShopCart']['id'];
+			$this->ShopCart->ShopCartItem->save($this->data);
+		}		
 		exit(0);
 	}
+	
 	/**
 	 * Remover ítems del carrito
 	 */
 	function removeFromCart() {
 		$this->layout="ajax";
+		$item_id = null; // Definir como llega el id del ítem
+		$shopping_cart = $this->getCart();
+		if(empty($shopping_cart)) {
+			// No hay carrito; hacer algo?
+		} else {
+			// Hay carrito, borrar el ítem acorde su id
+			$this->ShopCart->ShopCartItem->delete($item_id);
+		}
 		exit(0);
 	}
+	
 	/**
 	 * Pasar a generar la orden con los ítems del carrito
 	 */
 	function checkoutCart() {
-		
+		$this->layout="ajax";
+		$shopping_cart = $this->getCart();
+		if(empty($shopping_cart)) {
+			// No hay carrito; hacer algo?
+		} else {
+			// Hay carrito, crear la orden
+			
+		}
+		exit(0);
 	}
 	
-	/**
-	 * Ver el carrito del usuario
-	 * -- Si existe sesión entonces mostrar el carrito del usuario
-	 * -- Si no hay sesión verificar si hay cookie y mostrar datos acorde
-	 * -- Si no hay cookie generar cookie y carrito vacío
-	 */
 	function viewCart() {
-		// Verificar si hay o no sesión abierta
-		$shopping_cart = null;
-		$user_id = $this->Session->read('Auth.User.id');
-		if($user_id) {
-			// Hay sesión abierta
-			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
-		} else {
-			// No hay sesión, cargar de cookie si la hay
-		}
+		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 	}
 	
@@ -292,125 +291,6 @@ class ShopCartsController extends AppController {
 	/**
 	 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	 */
-
-	function cesta() {
-		$this -> layout = "ajax";
-	}
-
-	function checkout() {
-		$this -> set('cartContents', $this -> getMiniCart());
-	}
-
-	/*
-	 Get all item in current session
-	 from shopping cart table
-	 */
-	// This renders the mini cart based on the current session id
-	function getMiniCart() {
-		return $this -> Cart -> getCartContent($this -> session_id);
-	}
-
-	function add() {
-		$data = $this -> Inventory -> findById($this -> inventory_id);
-
-		if (is_array($data) && !($data['Inventory']['disponible'] = 1)) {
-			$this -> Session -> setFlash('Lo que ha pedido ya no se encuentra en stock');
-			$this -> redirect('/');
-		}
-
-		// check if the product is already
-		// in cart table for this session
-		$sessionData = $this -> Cart -> getCart($this -> inventory_id, $this -> session_id);
-		if (empty($sessionData)) {
-			// put the product in cart table
-			$this -> Cart -> addCart($this -> inventory_id, $this -> session_id);
-		} else {
-			// update product quantity in cart table
-			$this -> Cart -> updateCart($this -> inventory_id, $this -> session_id);
-		}
-
-		// an extra job for us here is to remove abandoned carts.
-		// right now the best option is to call this function here
-		$this -> Cart -> cleanUp();
-		$this -> redirect($this -> referer());
-		//$this -> redirect( array('controller' => 'inventories', 'action' => "view/inventory_id:$this->inventory_id"));
-	}
-
-	function ajaxAdd() {
-
-		$product_id = $_POST['product_id'];
-		$color_id = $_POST['color_id'];
-		$talla_id = $_POST['talla_id'];
-
-		$inventoy_id = $this -> requestAction('/inventories/getInventoryID/' . $product_id . '/' . $color_id . '/' . $talla_id);
-
-		$data = $this -> Inventory -> findById($inventoy_id);
-
-		if (is_array($data) && !($data['Inventory']['disponible'] = 1)) {
-			echo false;
-			Configure::write("debug", 0);
-			$this -> autoRender = false;
-			exit(0);
-			return;
-
-		}
-
-		// check if the product is already
-		// in cart table for this session
-		$sessionData = $this -> Cart -> getCart($inventoy_id, $this -> session_id);
-		if (empty($sessionData)) {
-			// put the product in cart table
-			$this -> Cart -> addCart($inventoy_id, $this -> session_id);
-		} else {
-			// update product quantity in cart table
-			$this -> Cart -> updateCart($inventoy_id, $this -> session_id);
-		}
-
-		// an extra job for us here is to remove abandoned carts.
-		// right now the best option is to call this function here
-		$this -> Cart -> cleanUp();
-
-		// $this -> redirect( array('controller' => 'inventories', 'action' => "view/inventory_id:$this->inventory_id"));
-
-		echo true;
-		Configure::write("debug", 0);
-		$this -> autoRender = false;
-		exit(0);
-		return;
-	}
-
-	function getCart() {
-		$carts = $this -> Cart -> find('all', array('conditions' => array('Cart.session_id' => $this -> passedArgs['s']), 'recursive' => 2));
-		if (isset($this -> params['requested'])) {
-			return $carts;
-		}
-		$this -> set('carts', $carts);
-	}
-
-	function view() {
-		$this -> layout = "virtual";
-	}
-
-	function remove() {
-		$this -> Cart -> emptyBasket($this -> passedArgs['cart_id']);
-		$this -> redirect($this -> referer());
-
-		/* if($this -> Cart -> isCartEmpty($this -> session_id)) {
-		 $this -> redirect( array('controller' => 'carts', 'action' => 'view'));
-		 } else {
-		 $this -> redirect( array('controller' => 'inventories', 'action' => 'index'));
-		 } */
-	}
-
-	function ajaxRemove() {
-		$this -> Cart -> emptyBasket($_POST["cart_id"]);
-		echo true;
-		Configure::write("debug", 0);
-		$this -> autoRender = false;
-		exit(0);
-		return;
-
-	}
 
 	function updates() {
 		$this -> Cart -> doUpdate($this -> data['Cart']['cantidad'], $this -> data['Cart']['id']);
