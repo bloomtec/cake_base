@@ -6,7 +6,8 @@ class ShopCartsController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(
-			'addToCart', 'removeFromCart', 'checkoutCart', 'viewCart', 'getCart'
+			'addToCart', 'removeFromCart', 'checkoutCart', 'viewCart', 'getCart',
+			'updateShopCartItemQuantity'
 		);
 	}
 	
@@ -107,7 +108,7 @@ class ShopCartsController extends AppController {
 	/**
 	 * Actualizar la cantidad de un ítem
 	 */
-	function updateShopCartItem() {
+	function updateShopCartItemQuantity() {
 		$item_id = null; // Definir como llega el id del ítem
 		$this->ShopCart->ShopCartItem->read(null, $item_id);
 		$this -> Cart -> doUpdate($this -> data['Cart']['cantidad'], $this -> data['Cart']['id']);
