@@ -77,7 +77,7 @@ class ShopCartsController extends AppController {
 		if(empty($shopping_cart)) {
 			// Crear un carrito porque no lo hay
 			$this->ShopCart->create();
-			if($this->Session->read('Auth.User.id')) {
+			if($user_id=$this->Session->read('Auth.User.id')) {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
 				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
@@ -87,7 +87,7 @@ class ShopCartsController extends AppController {
 				$cart_id=$this->ShopCart->id;				
 			} else {
 				// No se creo el carrito, retornar algo
-				echo "error";
+				echo false;
 			}
 		} else {
 			$cart_id=$shopping_cart['ShopCart']['id'];
@@ -107,18 +107,18 @@ class ShopCartsController extends AppController {
 		if($cart_item) {
 			$cart_item['ShopCartItem']['quantity'] = $cart_item['ShopCartItem']['quantity'] + 1;
 			if($this->ShopCart->ShopCartItem->save($cart_item)) {
-				echo "agregado";
+				echo json_encode($cart_item);
 			} else {
-				echo "error";
+				echo false;
 			}
 		} else {
 			// No está el ítem
 			$this->ShopCart->ShopCartItem->create();
 			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
-			if($this->ShopCart->ShopCartItem->save($this->data)) {
-				echo "agregado";
+			if($cart=$this->ShopCart->ShopCartItem->save($this->data)) {
+				 echo json_encode($cart);
 			} else {
-				echo "error";
+				echo false;
 			}
 		}
 		exit(0);
@@ -166,6 +166,7 @@ class ShopCartsController extends AppController {
 	}
 	
 	function viewCart() {
+		$this->layout='carrito';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 	}

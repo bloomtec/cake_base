@@ -23,6 +23,6 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 	<?php if(!$brands):?>
 		no hay categorias
 	<?php endif;?>
-	<a class="carrito" href="#">Mi Carrito</a>
-<a href="#" class="info_carrito">0 Prendas $900.000</a>
+	<a class="carrito" href="/shopCarts/viewCart">Mi Carrito</a>
+<a href="#" class="info_carrito"><span class='cart-num-items'>0</span> Prendas <span class='cart-price-total'>$900.000</span></a>
 </div>
