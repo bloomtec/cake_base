@@ -131,14 +131,13 @@ class ShopCartsController extends AppController {
 	 */
 	function removeFromCart($item_id) {
 		$this->autoRender=false;
-		$this->layout="ajax";
 		$shopping_cart = $this->getCart();
 		if(empty($shopping_cart)) {
 			// No hay carrito; hacer algo?
 		} else {
 			// Hay carrito, borrar el ítem acorde su id
 			$this->ShopCart->ShopCartItem->delete($item_id);
-			return json_encode($this->getCart());
+			echo json_encode($this->getCart());
 		}
 		exit(0);
 	}
@@ -148,12 +147,10 @@ class ShopCartsController extends AppController {
 	 */
 	function updateShopCartItem($item_id, $field_name, $value) {
 		$this->autoRender=false;
-		$this->layout="ajax";
-		
 		$this->ShopCart->ShopCartItem->read(null, $item_id);
 		$this->ShopCart->ShopCartItem->saveField($field_name, $value);
 		
-		return json_encode($this->getCart());
+		echo json_encode($this->getCart());
 		
 		exit(0);
 	}

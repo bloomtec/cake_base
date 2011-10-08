@@ -123,7 +123,7 @@ $(function() {
 	}
 
 	bloomCart.updateItem = function(itemId,fieldName ,value) {
-		BJS.JSON('/updateShopCartItem/'+itemId+'/'+fieldName+'/'+value,{},function(data){
+		BJS.JSON('/shopCarts/updateShopCartItem/'+itemId+'/'+fieldName+'/'+value,{},function(data){
 			if(data){
 				bloomCart.refresh();
 			}else{
@@ -139,8 +139,9 @@ $(function() {
 	bloomCart.refresh = function() {
 		BJS.get("/shopCarts/refresh",{},function(data){
 			if(data){
-				$('.shop-cart-list-container').load(data);
-				bloomCart.resumeRefresh();	
+				$('.shop-cart-list-container').html(data);
+				bloomCart.resumeRefresh();
+				refreshCufon();	
 			}else{
 						
 			}
@@ -148,27 +149,8 @@ $(function() {
 	}
 	bloomCart.resumeRefresh();
 	// CLASES DE LAS FUENTES
-	Cufon.replace('.tahoma', {
-		fontFamily : 'Tahoma',
-		trim : "simple"
-	});
-	Cufon.replace('.japan', {
-		fontFamily : 'Japan',
-		trim : "simple"
-	});
-
-
-
 	
-	Cufon.replace('.twCenMt', {
-		fontFamily : 'TwCenMt',
-		trim : "simple"
-	});
-	
-	Cufon.replace('.halo', {
-		fontFamily : 'HaloHandLetter',
-		trim : "simple"
-	});
+	refreshCufon();
 
 	// EFECTO HOVER DE LAS MARCAS
 	$(".brands-menu li a img").hover(function() {
@@ -204,6 +186,11 @@ $(function() {
 	});
 	$('input.gift-control').live('click',function(){
 		var value=$(this).is(':checked');
+		if(value){
+			value=1;
+		}else{
+			value=0;
+		}
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		bloomCart.updateItem(itemId,'is_gift',value);
 	});
@@ -224,3 +211,23 @@ $(function() {
 		$("#OrderGetAddressInfoForm").submit();
 	});*/
 });
+function refreshCufon(){
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
+		trim : "simple"
+	});
+	Cufon.replace('.japan', {
+		fontFamily : 'Japan',
+		trim : "simple"
+	});
+
+	Cufon.replace('.twCenMt', {
+		fontFamily : 'TwCenMt',
+		trim : "simple"
+	});
+	
+	Cufon.replace('.halo', {
+		fontFamily : 'HaloHandLetter',
+		trim : "simple"
+	});	
+}
