@@ -96,7 +96,7 @@ $(function() {
 	bloomCart.resumeRefresh=function(){
 		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
 			 $('span.cart-num-items').html(shopCart.ShopCart.items);
-			 $('span.cart-price-total').html("$"+shopCart.ShopCart.total);
+			 $('span.cart-price-total').html(shopCart.ShopCart.total);
 		});
 	}
 
@@ -110,14 +110,22 @@ $(function() {
 
 	bloomCart.remove = function(itemId) {
 		BJS.JSON('/shopCarts/removeFromCart/'+itemId,{},function(shopcart){
-			if(data){
+			if(shopcart){
 				bloomCart.refresh();
 			}else{
 						
 			}
 		});
 	}
-
+	bloomCart.removeAll = function(itemId) {
+		BJS.JSON('/shopCarts/removeAllFromCart',{},function(shopcart){
+			if(shopcart){
+				bloomCart.refresh();
+			}else{
+						
+			}
+		});
+	}
 	bloomCart.getItems = function() {
 
 	}
@@ -204,6 +212,12 @@ $(function() {
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		console.log(itemId);
 		bloomCart.remove(itemId);
+	});
+	$('.quitar-todos a').live('click',function(e){
+		e.preventDefault();
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		console.log(itemId);
+		bloomCart.removeAll(itemId);
 	});
 	/**
 	// Enviar el formulario con los datos de envío
