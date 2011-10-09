@@ -92,150 +92,166 @@ class ProductsController extends AppController {
 
 	function admin_add() {
 		if (!empty($this -> data)) {
-			$valid_recommendations = true;
-			$valid_other_recommendations = true;
-			/**
-			 * Contenedor de recomencdaciones
-			 */
-			$recommendations = split(",", $this -> data['Product']['recommendations']);
-			/*
-			 * Hacer trim a los valores y validar
-			 */
-			foreach ($recommendations as $key => $recommendation) {
-				$recommendations[$key] = trim($recommendation);
-				$prod_classification = $recommendations[$key];
-				if (empty($recommendations[$key])) {
-					unset($recommendations[$key]);
-				} else {
-					$product = $this -> Product -> findByClasification($prod_classification);
-					if (empty($product)) {
-						$valid_recommendations = false;
-					}
-				}
-			}
-			$this -> data['Product']['recommendations'] = "";
-			foreach ($recommendations as $key => $val) {
-				$this -> data['Product']['recommendations'] = $this -> data['Product']['recommendations'] . $val . ",";
-			}
-			$this -> data['Product']['recommendations'] = substr($this -> data['Product']['recommendations'], 0, strlen($this -> data['Product']['recommendations']) - 1);
-			/**
-			 * Revisar datos dobles
-			 */
-			foreach ($recommendations as $key1 => $recommendation1) {
-				foreach ($recommendations as $key2 => $recommendation2) {
-					if ($key1 != $key2) {
-						if ($recommendation1 == $recommendation2) {
+			if($this->Product->findByClasification($this->data['Product']['clasification'])) {
+				$this -> Session -> setFlash(__('Ya existe un producto con esa clasificación', true));
+			} else {
+				$valid_recommendations = true;
+				$valid_other_recommendations = true;
+				/**
+				 * Contenedor de recomencdaciones
+				 */
+				$recommendations = split(",", $this -> data['Product']['recommendations']);
+				/*
+				 * Hacer trim a los valores y validar
+				 */
+				foreach ($recommendations as $key => $recommendation) {
+					$recommendations[$key] = trim($recommendation);
+					$prod_classification = $recommendations[$key];
+					if (empty($recommendations[$key])) {
+						unset($recommendations[$key]);
+					} else {
+						$product = $this -> Product -> findByClasification($prod_classification);
+						if (empty($product)) {
 							$valid_recommendations = false;
 						}
 					}
 				}
-			}
-			/**
-			 * Revisar si es el mismo producto el que se recomienda
-			 */
-			foreach ($recommendations as $key => $recommendation) {
-				if ($recommendation == $this -> data['Product']['clasification']) {
-					$valid_recommendations = false;
+				$this -> data['Product']['recommendations'] = "";
+				foreach ($recommendations as $key => $val) {
+					$this -> data['Product']['recommendations'] = $this -> data['Product']['recommendations'] . $val . ",";
 				}
-			}
-			/**
-			 * Contenedor de otras recomendaciones
-			 */
-			$other_recommendations = split(",", $this -> data['Product']['other_recommendations']);
-			/*
-			 * Hacer trim a los valores
-			 */
-			foreach ($other_recommendations as $key => $other_recommendation) {
-				$other_recommendations[$key] = trim($other_recommendation);
-				$prod_classification = $other_recommendations[$key];
-				if (empty($other_recommendations[$key])) {
-					unset($other_recommendations[$key]);
-				} else {
-					$product = $this -> Product -> findByClasification($prod_classification);
-					if (empty($product)) {
-						$valid_other_recommendations = false;
+				$this -> data['Product']['recommendations'] = substr($this -> data['Product']['recommendations'], 0, strlen($this -> data['Product']['recommendations']) - 1);
+				/**
+				 * Revisar datos dobles
+				 */
+				foreach ($recommendations as $key1 => $recommendation1) {
+					foreach ($recommendations as $key2 => $recommendation2) {
+						if ($key1 != $key2) {
+							if ($recommendation1 == $recommendation2) {
+								$valid_recommendations = false;
+							}
+						}
 					}
 				}
-			}
-			$this -> data['Product']['other_recommendations'] = "";
-			foreach ($other_recommendations as $key => $val) {
-				$this -> data['Product']['other_recommendations'] = $this -> data['Product']['other_recommendations'] . $val . ",";
-			}
-			$this -> data['Product']['other_recommendations'] = substr($this -> data['Product']['other_recommendations'], 0, strlen($this -> data['Product']['other_recommendations']) - 1);
-			/**
-			 * Revisar datos dobles
-			 */
-			foreach ($other_recommendations as $key1 => $other_recommendation1) {
-				foreach ($recommendations as $key2 => $other_recommendation2) {
-					if ($key1 != $key2) {
-						if ($other_recommendation1 == $other_recommendation2) {
+				/**
+				 * Revisar si es el mismo producto el que se recomienda
+				 */
+				foreach ($recommendations as $key => $recommendation) {
+					if ($recommendation == $this -> data['Product']['clasification']) {
+						$valid_recommendations = false;
+					}
+				}
+				/**
+				 * Contenedor de otras recomendaciones
+				 */
+				$other_recommendations = split(",", $this -> data['Product']['other_recommendations']);
+				/*
+				 * Hacer trim a los valores
+				 */
+				foreach ($other_recommendations as $key => $other_recommendation) {
+					$other_recommendations[$key] = trim($other_recommendation);
+					$prod_classification = $other_recommendations[$key];
+					if (empty($other_recommendations[$key])) {
+						unset($other_recommendations[$key]);
+					} else {
+						$product = $this -> Product -> findByClasification($prod_classification);
+						if (empty($product)) {
 							$valid_other_recommendations = false;
 						}
 					}
 				}
-			}
-			/**
-			 * Revisar si es el mismo producto el que se recomienda
-			 */
-			foreach ($other_recommendations as $key => $other_recommendation) {
-				if ($other_recommendation == $this -> data['Product']['clasification']) {
-					$valid_other_recommendations = false;
+				$this -> data['Product']['other_recommendations'] = "";
+				foreach ($other_recommendations as $key => $val) {
+					$this -> data['Product']['other_recommendations'] = $this -> data['Product']['other_recommendations'] . $val . ",";
 				}
-			}
-			/**
-			 * Revisar que no se meta el mismo producto en ambos tipos de recomendacion
-			 */
-			foreach ($recommendations as $key1 => $value1) {
-				foreach ($other_recommendations as $key2 => $value2) {
-					if ($value1 == $value2) {
+				$this -> data['Product']['other_recommendations'] = substr($this -> data['Product']['other_recommendations'], 0, strlen($this -> data['Product']['other_recommendations']) - 1);
+				/**
+				 * Revisar datos dobles
+				 */
+				foreach ($other_recommendations as $key1 => $other_recommendation1) {
+					foreach ($recommendations as $key2 => $other_recommendation2) {
+						if ($key1 != $key2) {
+							if ($other_recommendation1 == $other_recommendation2) {
+								$valid_other_recommendations = false;
+							}
+						}
+					}
+				}
+				/**
+				 * Revisar si es el mismo producto el que se recomienda
+				 */
+				foreach ($other_recommendations as $key => $other_recommendation) {
+					if ($other_recommendation == $this -> data['Product']['clasification']) {
 						$valid_other_recommendations = false;
-						$valid_recommendations = false;
 					}
 				}
-			}
-			if (!$valid_recommendations && !$valid_other_recommendations) {
-				$this -> Session -> setFlash(__('Error en recomendaciones, revise que no exista un producto en ambos campos de recomendación.', true));
-			} else {
-				if (!$valid_recommendations) {
-					$this -> Session -> setFlash(__('Error en recomendaciones, revise que no haya valor duplicado y que no sea el mismo producto', true));
-				}
-				if (!$valid_other_recommendations) {
-					$this -> Session -> setFlash(__('Error en otras recomendaciones, revise que no haya valor duplicado y que no sea el mismo producto', true));
-				}
-			}
-			/**
-			 * Si estan validos ambos campos entonces guardar
-			 * Limpiar y guardar las recomendaciones correspondientes
-			 */
-			if ($valid_recommendations && $valid_other_recommendations) {
-				$this -> Product -> create();
-				if ($this -> Product -> save($this -> data)) {
-					/*
-					 * Crear las recomendaciones
-					 */
-					foreach ($recommendations as $clasification) {
-						$recommended_product = $this -> Product -> findByClasification($clasification);
-						$this -> Product -> Recommendation -> create();
-						$this -> Product -> Recommendation -> set('product_id', $this -> Product -> id);
-						$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
-						$this -> Product -> Recommendation -> save();
+				/**
+				 * Revisar que no se meta el mismo producto en ambos tipos de recomendacion
+				 */
+				foreach ($recommendations as $key1 => $value1) {
+					foreach ($other_recommendations as $key2 => $value2) {
+						if ($value1 == $value2) {
+							$valid_other_recommendations = false;
+							$valid_recommendations = false;
+						}
 					}
-					/*
-					 * Crear las otras recomendaciones
-					 */
-					foreach ($other_recommendations as $clasification) {
-						$recommended_product = $this -> Product -> findByClasification($clasification);
-						$this -> Product -> OtherRecommendation -> create();
-						$this -> Product -> OtherRecommendation -> set('product_id', $this -> Product -> id);
-						$this -> Product -> OtherRecommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
-						$this -> Product -> OtherRecommendation -> save();
-					}
-					$this -> Session -> setFlash(__('The product has been saved', true));
-					$this -> redirect(array('controller'=>'inventories','action' => 'listProductInventory',$this->Product->id));
+				}
+				if (!$valid_recommendations && !$valid_other_recommendations) {
+					$this -> Session -> setFlash(__('Error en recomendaciones, revise que no exista un producto en ambos campos de recomendación.', true));
 				} else {
-					$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
+					if (!$valid_recommendations) {
+						$this -> Session -> setFlash(__('Error en recomendaciones, revise que no haya valor duplicado y que no sea el mismo producto', true));
+					}
+					if (!$valid_other_recommendations) {
+						$this -> Session -> setFlash(__('Error en otras recomendaciones, revise que no haya valor duplicado y que no sea el mismo producto', true));
+					}
 				}
-			}
+				/**
+				 * Si estan validos ambos campos entonces guardar
+				 * Limpiar y guardar las recomendaciones correspondientes
+				 */
+				if ($valid_recommendations && $valid_other_recommendations) {
+					$this -> Product -> create();
+					if ($this -> Product -> save($this -> data)) {
+						/*
+						 * Crear las recomendaciones
+						 */
+						foreach ($recommendations as $clasification) {
+							$recommended_product = $this -> Product -> findByClasification($clasification);
+							$this -> Product -> Recommendation -> create();
+							$this -> Product -> Recommendation -> set('product_id', $this -> Product -> id);
+							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
+							$this -> Product -> Recommendation -> save();
+						}
+						/*
+						 * Crear las otras recomendaciones
+						 */
+						foreach ($other_recommendations as $clasification) {
+							$recommended_product = $this -> Product -> findByClasification($clasification);
+							$this -> Product -> OtherRecommendation -> create();
+							$this -> Product -> OtherRecommendation -> set('product_id', $this -> Product -> id);
+							$this -> Product -> OtherRecommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
+							$this -> Product -> OtherRecommendation -> save();
+						}
+						/**
+						 * Iniciar los inventarios en 0
+						 */
+						// obtener los size_id de sizes que correspondan a la subcategoría
+						$product = $this->Product->read(null, $this->Product->id);
+						$size_ids = $this->requestAction('/sizes/getSizeIDs/'.$product['Product']['subcategory_id']);
+						foreach($size_ids as $key=>$val) {
+							$this->Product->Inventory->create();
+							$this->Product->Inventory->set('product_id', $this->Product->id);
+							$this->Product->Inventory->set('size_id', $val);
+							$this->Product->Inventory->save();
+						}
+						$this -> Session -> setFlash(__('The product has been saved', true));
+						$this -> redirect(array('controller'=>'inventories','action' => 'listProductInventory',$this->Product->id));
+					} else {
+						$this -> Session -> setFlash(__('The product could not be saved. Please, try again.', true));
+					}
+				}
+			}			
 		}
 		$this -> loadModel('Brand');
 		$brands = $this -> Brand -> find('list');
