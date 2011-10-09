@@ -14,6 +14,9 @@
 
 				<li><a href="/admin/collections">Ver Colecciones</a></li>
 				<li><a href="/admin/collections/add">Agregar Colección</a></li>
+				
+				<li><a href="/admin/coupon_batches">Ver Packs De Cupones</a></li>
+				<li><a href="/admin/coupon_batches/add">Agregar Pack De Cupones</a></li>
 			</ul>		
 		</li>
 		<li>
