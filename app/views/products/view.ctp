@@ -74,7 +74,7 @@
 				<h1><a class="add-to-cart" href="#">Agregar como regalo</a></h1>
 			</div>
 			<div style="clear: both"></div>
-			<div class='add-cart-confirm'>
+			<div class='add-cart-confirm tahoma'>
 				Produccto agregaro pagar
 			</div>
 		</div>	
