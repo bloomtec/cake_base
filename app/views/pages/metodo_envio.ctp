@@ -1,9 +1,9 @@
 <?php echo $this->element("menu-shop-cart");?> 
 <div class="datos_envio form_envio">
-	<h1>¿Donde vas a recibir el envio? </h1>
+	<h1 class="tahoma">¿Donde vas a recibir el envio? </h1>
 </div>
 <div id="der" class="datos_envio form_envio">
-	<h1 class="der">Servicio de Mensajeria</h1>
+	<h1 class="der tahoma">Servicio de Mensajeria</h1>
 </div>
 <div class="form_envio tahoma">
 	<form>
@@ -32,7 +32,7 @@
 	<div style="clear: both"></div>
 </div>
 <div class="form_envio der">
-	<form>
+	<form class="tahoma">
 		<label>Entidad</label>
 		<span>Servientrega</span>
 		<label>Tipo de envio</label>
@@ -42,9 +42,9 @@
 	</form>
 	<div style="clear: both"></div>
 		<div class="envio_regalo">
-			<h1>¿Dónde vamos a enviar tu regalo? </h1>
+			<h1 class="tahoma">¿Dónde vamos a enviar tu regalo? </h1>
 		
-			<form>
+			<form class="tahoma">
 				<label>Datos Usuario</label>
 				<span>Jorge Enrique Ceballos Delgado</span>
 				<label>Pais</label>

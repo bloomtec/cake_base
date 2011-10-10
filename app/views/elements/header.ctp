@@ -11,12 +11,12 @@
 			/
 		</li>
 		<li>
-			<a href="#">Regístrate</a>
+			<a rel="#overlay" href="/users/login">Regístrate</a>
 		</li>
 	</ul>
 	<ul class="main_nav twCenMt">
 		<li class="home halo">
-			<a href="#">Home</a>
+			<a href="/">Home</a>
 		</li>
 		<?php foreach($categories as $id=>$name):?>
 		<li class="categoria">

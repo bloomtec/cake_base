@@ -7,15 +7,15 @@
 						<h1 class="titulos_rosado">SOBRE NOSOTROS</h1>
 					</li>
 					<li>
-						<a class="subtitulos_gris"  rel="#overlay" href="/products">Que es color tennis</a>
+						<a class="subtitulos_gris" href="/pages/nosotros">Que es color tennis</a>
 					</li>
 					<li>
-						<a class="subtitulos_gris" href="#">Contácto</a>
+						<a class="subtitulos_gris" href="/pages/contacto">Contácto</a>
 					</li>
 				</ul>
 				<ul class="separacion">
 					<li>
-						<a class="subtitulos_gris" rel="#overlay" href="/brands/index">Marcas</a>
+						<a class="subtitulos_gris" rel="#overlay" href="/pages/marcas">Marcas</a>
 					</li>
 				</ul>
 				<ul>
@@ -23,7 +23,7 @@
 						<h1 class="titulos_rosado">ATENCIÓN AL CLIENTE</h1>
 					</li>
 					<li>
-						<a class="subtitulos_gris" href="#">Ayuda</a>
+						<a class="subtitulos_gris" href="/pages/ayuda">Ayuda</a>
 					</li>
 					<li>
 						<a class="subtitulos_gris" rel="#overlay" href="/pages/seguimientoPedidos">Estado del pedido</a>
