@@ -15,6 +15,9 @@ class PagesController extends AppController {
 		$positions=$this->User->UserField->Position->find("list",array("fields"=>array("id","positions")));
 		$this->set(compact("feets","positions","userField"));
 	}
+	function admin_ez(){
+		
+	}
 	function index() {
 		$this->Page->recursive = 0;
 		$this->set('pages', $this->paginate());

@@ -28,6 +28,7 @@
  */
 	Router::connect('/', array('controller' => 'users', 'action' => 'register'));
 	Router::connect('/fpt', array('controller' => 'pages', 'action' => 'fpt'));
+	Router::connect('/admin', array('controller' => 'users', 'action' => 'login','admin'=>true));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

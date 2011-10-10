@@ -25,7 +25,7 @@ $(document).ready(function() {
 					var nombre = file[(file.length - 1)];
 					var name = c.name;
 					$("#single-field").val(nombre);
-						$.post(server + "images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+						$.post("/images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
 					
 						});
 					}
@@ -46,7 +46,6 @@ $(document).ready(function() {
 					$('#status-message').text(data.filesSelected+ ' files have been added to the queue.');
 				},
 				'onComplete' : function(a, b, c, d) {
-					console.log("completo");
 					var file = d.split("/");
 					var nombre = file[(file.length - 1)];
 					var parentId=$('#pictures-uploader').attr("rel");

@@ -6,7 +6,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('desccription');
+		echo $this->Form->input('description');
 		echo $this->Form->input('wysiwyg_content',array('label'=>false));
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 	?>

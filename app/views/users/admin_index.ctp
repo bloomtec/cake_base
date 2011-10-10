@@ -6,7 +6,7 @@
 									
 							<th><?php echo $this->Paginator->sort('email');?></th>
 									
-							<th><?php echo $this->Paginator->sort('password');?></th>
+	
 									
 							<th><?php echo $this->Paginator->sort('role_id');?></th>
 									
@@ -25,7 +25,6 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
 		</td>

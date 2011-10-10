@@ -35,7 +35,6 @@
 class AppController extends Controller {
 	var $components = array(
 		'Auth' => array(
-			'authorize' => 'actions',
 			'fields' => array('username' => 'email', 'password' => 'password'),
 			'loginRedirect'=>array("controller"=>"pages","action"=>"fpt"),
 			'loginError' => 'Error al iniciar sesión. Revisa los datos e intenta de nuevo.',
@@ -48,11 +47,13 @@ class AppController extends Controller {
 	function beforeFilter() {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->Auth->deny($this->action);
+			$this->Auth->loginRedirect=array('controller'=>'users','action'=>'index','admin'=>true);
+			$this->Auth->userScope=array('User.role_id'=>1);
 			$this->layout="bloom";
 		} else {
 			$this->Auth->allow($this->action);
 		}
-		$this->Auth->allow("*");
+		
 	}
 	
 }

@@ -6,7 +6,7 @@
 									
 							<th><?php echo $this->Paginator->sort('name');?></th>
 									
-							<th><?php echo $this->Paginator->sort('desccription');?></th>
+							<th><?php echo $this->Paginator->sort('description');?></th>
 									
 							<th><?php echo $this->Paginator->sort('wysiwyg_content');?></th>
 									
@@ -27,7 +27,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $news['News']['name']; ?>&nbsp;</td>
-		<td><?php echo $news['News']['desccription']; ?>&nbsp;</td>
+		<td><?php echo $news['News']['description']; ?>&nbsp;</td>
 		<td><?php echo $news['News']['wysiwyg_content']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$news['News']['image']); ?>&nbsp;</td>
 		<td><?php echo $news['News']['created']; ?>&nbsp;</td>

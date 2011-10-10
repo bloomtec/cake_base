@@ -2,7 +2,10 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this->Auth->allow("*");
+	}
 	function getUserName($user_id = null) {
 		if($user_id) {
 			$user_fields = $this -> User -> UserField -> find(
@@ -242,14 +245,20 @@ class UsersController extends AppController {
 		$this->set('friends', $this->paginate('User', array('User.id' => $friends_ids, 'NOT User.id' => $team_users_ids)));
 	}
 
-	function login() {}
+	function login() {
+		
+	}
 
-	function admin_login() {}
+	function admin_login() {
+		$this->layout='login';
+	}
 
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-	
+	function admin_logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
 	function changePassword() {
 		if(!empty($this->data)) {
 			// Validar el id del usuario
