@@ -58,10 +58,11 @@ class ShopCartsController extends AppController {
 					echo json_encode(array('result'=>false, 'message'=>'El cupon ya ha sido previamente asignado a otro carrito de compras'));
 				} else {
 					// El cupon no ha sido asignado en otro carrito
+					$batch = $this->ShopCart->Coupon->CouponBatch->read(null, $coupon['Coupon']['coupon_batch_id']);
 					$shop_cart = $this->getCart();
 					$shop_cart['ShopCart']['coupon_id']=$coupon['Coupon']['id'];
+					$shop_cart['ShopCart']['coupon_value']=$batch['CouponBatch']['value'];
 					if($this->ShopCart->save($shop_cart)) {
-						$batch = $this->ShopCart->Coupon->CouponBatch->read(null, $coupon['Coupon']['coupon_batch_id']);
 						echo json_encode(array('result'=>true, 'message'=>'Se aplicó el cupon', 'value'=>$batch['CouponBatch']['value']));
 					} else {
 						echo json_encode(array('result'=>false, 'message'=>'Ocurrió un error al aplicar el cupon'));

@@ -188,13 +188,12 @@ $(function() {
 	/**
 	 * Funcionalidad Carrito
 	 */
-	$("#set-coupon").parent().submit(function(e){
-		alert("fuck!");
+	$("#set-coupon").live('submit', function(e){
 		e.preventDefault();
 		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
 			console.log(data);
+			bloomCart.refresh();
 		});
-		//bloomCart.refresh();
 	});
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
