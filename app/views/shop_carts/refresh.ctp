@@ -70,7 +70,7 @@
 	<form id="set-coupon">
 		<?php if(!$shopping_cart['ShopCart']['coupon_id']) : ?>
 		<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>
-		<input id="get-serial" type="text" />
+		<input id="get-serial" style="text-align: center; color: white;" type="text" />
 		<input type="submit" value="APLICAR" />
 		<?php endif; ?>
 		<?php if($shopping_cart['ShopCart']['coupon_id']) : ?>
