@@ -26,10 +26,10 @@ dirección. El costo del envió en contra entrega, envíos a la ciudad de Cali n
 $120.000 tampoco tienen costo. 
 </p>
 <div class="datos_envio form_envio">
-	<h1>Datos de envio</h1>
+	<h1 class="tahoma">Datos de envio</h1>
 </div>
 <div id="der" class="datos_envio form_envio">
-	<h1 class="der">Datos de envio para el regalo</h1>
+	<h1 class="der tahoma">Datos de envio para el regalo</h1>
 </div>
 <div class="form_envio tahoma">
 	<?php e($this->Form->create('Order')); ?>
@@ -52,7 +52,7 @@ $120.000 tampoco tienen costo.
 	</form>
 	<div style="clear: both"></div>
 </div>
-<div class="form_envio der">
+<div class="form_envio der tahoma">
 	<form>
 		<?php e($this->Form->input('Gift.country', array('label'=>'País'))); ?>
 		<?php e($this->Form->input('Gift.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>

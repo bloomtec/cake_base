@@ -46,10 +46,10 @@
 		<?php echo $this->element("header");?>    
 		<div id="content">
 			<ul class="nav_estaticas twCenMt">
-				<li><a href="#">NOSOTROS</a></li>
+				<li><a href="/pages/nosotros">NOSOTROS</a></li>
 				<li><a href="#">TIENDAS</a></li>
-				<li><a href="#">AYUDA</a></li>
-				<li><a href="#">CONTACTO</a></li>
+				<li><a href="/pages/ayuda">AYUDA</a></li>
+				<li><a href="/pages/contacto">CONTACTO</a></li>
 			</ul>
 			<div style="clear: both"></div>
 			<?php echo $this->Session->flash(); ?>
@@ -66,7 +66,7 @@
                 </ul>
 			</div>
 			<div class="social_estaticas">
-				<h3 class="subtitulos_gris">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
+				<h3 class="subtitulos_gris tahoma">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
                 <p>Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
                 </p>
 			</div>

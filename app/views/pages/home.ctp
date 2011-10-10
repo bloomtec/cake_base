@@ -1,6 +1,6 @@
 <form class="buscador" name="buscador"> <span class="subtitulos_gris twCenMt">¿NECESITAS ALGO ESPECÍFICO? UTILIZA NUESTRO BUSCADOR</span>
         <input type="text" placeholder="BUSCAR"/>
-        <input type="submit" value="Ir" />
+        <input type="submit" value="Ir"/>
         </form>
         <div style="clear:both"></div>
 	<div id="foto_principal"><img src="img/foto_principal.jpg" />
