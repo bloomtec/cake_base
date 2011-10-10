@@ -83,17 +83,9 @@ class OrdersController extends AppController {
 	function getAddressInfo() {
 		$this->layout="carrito";
 		$user_id = $this->Session->read('Auth.User.id');
-		$user = null;
-		$user_agent = $this->Session->_userAgent;
-		$shop_cart = null;
-		if($user_id) {
-			$user = $this->Order->User->read(null, $user_id);
-			$shop_cart = $this->Order->User->ShopCart->find('first', array('recursive'=>-1, 'conditions'=>array('ShopCart.user_id'=>$user_id)));
-		} else {
-			$shop_cart = $this->Order->User->ShopCart->find('first', array('recursive'=>-1, 'conditions'=>array('ShopCart.user_agent'=>$user_agent)));
-		}
+		$user = $this->Order->User->read(null, $user_id);
+		$shop_cart = $this->requestAction('/shop_carts/getCart');
 		$this->set('user', $user);
-		$this->set('user_agent', $user_agent);
 		$this->set('shop_cart', $shop_cart);
 	}
 

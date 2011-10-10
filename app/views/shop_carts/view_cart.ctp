@@ -76,8 +76,7 @@
 		<input type="submit" value="APLICAR" />
 		<?php endif; ?>
 		<?php if($shopping_cart['ShopCart']['coupon_id']) : ?>
-		<label class="titulos_rosado">DESCUENTO APLICADO</label>
-		<input style="text-align: center; color: white; width: 48px;" type="text" value="<?=(100 * $shopping_cart['ShopCart']['coupon_value'])."%"?>" />
+			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shopping_cart['ShopCart']['coupon_value'])."%"?></span></h1>
 		<?php endif; ?>
 	</form>
 	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php echo number_format(($subtotal * (1 - $shopping_cart['ShopCart']['coupon_value'])), 0, ' ', '.');?></span></h1>

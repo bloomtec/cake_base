@@ -36,7 +36,7 @@ class ShopCartsController extends AppController {
 				$product = $this->Product->read(null, $item['foreign_key']);
 				$value = $product['Product']['price'];
 				$quantity = $item['quantity'];
-				$total_price = $quantity * $value;
+				$total_price += $quantity * $value;
 			}
 			$info['ShopCart']['items']=$total_items;
 			$info['ShopCart']['total']= "$" . number_format($total_price, 0, ' ', '.');

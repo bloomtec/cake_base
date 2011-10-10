@@ -1230,21 +1230,21 @@ table.tahoma {
 	border-left:1px solid #494949;
 	margin-left: 0;
 }
-.form_envio form label, .form_envio form span {
+.form_envio .form label, .form_envio .form span {
 	font-size: 12px;
 	color:#7E7E7D;
 	float:left;
 	width: 108px;
 }
-.form_envio form span{
+.form_envio .form span{
 	width: 200px;
 }
-.form_envio form input[type=checkbox]{
+.form_envio .form input[type=checkbox]{
 	display: block;
     float: left;
     margin-top: 8px;
 }
-.form_envio form label.azul{
+.form_envio .form label.azul{
 	float: none;
 	display: block;
 	margin-left: 29px;
@@ -1253,17 +1253,17 @@ table.tahoma {
     font-size: 10px;
     width: auto;
 }
-.form_envio form input[type=text], .form_envio form select, .form_envio form span{
+.form_envio .form input[type=text], .form_envio .form select, .form_envio .form span{
 	margin-bottom: 15px;
 }
-.form_envio form select{
+.form_envio .form select{
 	width: 145px;
 	height: 20px;
 	border:1px solid #858585;
 	background-color: #333333;
 	margin-left:20px;
 }
-.form_envio form input[type=text]{
+.form_envio .form input[type=text]{
 	width:190px;
 	height: 20px;
 	border:1px solid #858585;
