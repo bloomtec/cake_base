@@ -7,7 +7,9 @@ class NewsController extends AppController {
 		$this->News->recursive = 0;
 		$this->set('news', $this->paginate());
 	}
-
+	function getNews(){
+		return $this->News->find('all');
+	}
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid news', true));

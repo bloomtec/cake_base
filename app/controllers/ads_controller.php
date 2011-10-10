@@ -120,6 +120,8 @@ function requestFind($type,$findParams,$key) {
 				$this->Session->setFlash(__('The ad could not be saved. Please, try again.', true));
 			}
 		}
+		$adPositions=$this->Ad->AdPosition->find('list');
+		$this->set(compact('adPositions'));
 	}
 
 	function admin_edit($id = null) {
@@ -138,6 +140,7 @@ function requestFind($type,$findParams,$key) {
 		if (empty($this->data)) {
 			$this->data = $this->Ad->read(null, $id);
 		}
+		$this->set(compact('adPositions'));
 	}
 
 	function admin_delete($id = null) {

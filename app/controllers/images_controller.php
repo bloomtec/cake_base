@@ -103,5 +103,12 @@ class ImagesController extends AppController {
 		
 		exit(0);
 	}
+ 	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+	    $this->layout="file_browser";
+	    App::import("Folder");
+	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
+	    $this->set("folder",$folder->read());
+	    $this->set("folderPath",DS."wysiwyg");
+  }
 	
 }

@@ -19,7 +19,7 @@
 		<li>
 			<a href="#"><img class="iconos" src="/img/cms/multimedia.png"/><span>Publicidad</span></a>
 			<ul>
-				<li><a href="/admin/ads">Ver Avisos</a></li>
+				<li><a href="/admin/adPositions">Ver Avisos</a></li>
 				<li><a href="/admin/ads/add">Agregar Aviso</a></li>
 			</ul>
 		</li>	

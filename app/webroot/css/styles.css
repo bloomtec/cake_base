@@ -542,3 +542,23 @@ div.code-coverage-results span.result-good {
 .team-notifications{
 	font-size: 12px;
 }
+.new{
+	clear: both;
+	margin: 25px auto;
+}
+.new .image{
+	float: left;
+	width: 147.5px;
+}
+.new .description{
+	float:left;
+	padding-left: 25px;
+	width:415px;
+} 
+.new p{
+	font-size: 12px;
+}
+.news .content{
+	height: 600px;
+	overflow-y:auto;
+}

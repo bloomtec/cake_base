@@ -36,6 +36,7 @@
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
 		echo $this->Html->Script("upload");
 		echo $this->Html->Script("ckeditor/ckeditor");
+		echo $this->Html->Script('fileBrowser');
 		
 		echo $scripts_for_layout;
 	?>

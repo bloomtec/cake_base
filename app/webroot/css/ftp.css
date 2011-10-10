@@ -650,3 +650,24 @@ div.contentWrap {
 	margin-right: 50px;
 	color:#BD0C1E;
 }
+.home-container{
+	width: 810px;
+	margin-left:50px;
+	margin-top: 50px;
+}
+.new{
+	clear: both;
+	margin: 25px auto;
+}
+.new .image{
+	float: left;
+	width: 295px;
+}
+.new .description{
+	float:left;
+	padding-left: 25px;
+	width: 490px;
+} 
+.new p{
+	font-size: 12px;
+}

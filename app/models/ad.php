@@ -13,9 +13,9 @@ class Ad extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'wysiwyg_content' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'link' => array(
+			'url' => array(
+				'rule' => array('url'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -23,5 +23,16 @@ class Ad extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+	);
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	var $belongsTo = array(
+		'AdPosition' => array(
+			'className' => 'AdPosition',
+			'foreignKey' => 'ad_position_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
 	);
 }

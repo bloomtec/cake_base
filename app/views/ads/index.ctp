@@ -11,6 +11,14 @@
 							<th><?php echo $this->Paginator->sort('created');?></th>
 									
 							<th><?php echo $this->Paginator->sort('updated');?></th>
+									
+							<th><?php echo $this->Paginator->sort('prints');?></th>
+									
+							<th><?php echo $this->Paginator->sort('clicks');?></th>
+									
+							<th><?php echo $this->Paginator->sort('ad_position_id');?></th>
+									
+							<th><?php echo $this->Paginator->sort('link');?></th>
 								<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -26,6 +34,12 @@
 		<td><?php echo $ad['Ad']['wysiwyg_content']; ?>&nbsp;</td>
 		<td><?php echo $ad['Ad']['created']; ?>&nbsp;</td>
 		<td><?php echo $ad['Ad']['updated']; ?>&nbsp;</td>
+		<td><?php echo $ad['Ad']['prints']; ?>&nbsp;</td>
+		<td><?php echo $ad['Ad']['clicks']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($ad['AdPosition']['name'], array('controller' => 'ad_positions', 'action' => 'view', $ad['AdPosition']['id'])); ?>
+		</td>
+		<td><?php echo $ad['Ad']['link']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $ad['Ad']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $ad['Ad']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
