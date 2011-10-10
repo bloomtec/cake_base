@@ -11,6 +11,13 @@ class ShopCart extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Coupon' => array(
+			'className' => 'Coupon',
+			'foreignKey' => 'coupon_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

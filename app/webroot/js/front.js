@@ -188,6 +188,14 @@ $(function() {
 	/**
 	 * Funcionalidad Carrito
 	 */
+	$("#set-coupon").parent().submit(function(e){
+		alert("fuck!");
+		e.preventDefault();
+		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
+			console.log(data);
+		});
+		//bloomCart.refresh();
+	});
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
@@ -219,11 +227,6 @@ $(function() {
 		console.log(itemId);
 		bloomCart.removeAll(itemId);
 	});
-	/**
-	// Enviar el formulario con los datos de envío
-	$(".add-to-cart").click(function(e){
-		$("#OrderGetAddressInfoForm").submit();
-	});*/
 });
 function refreshCufon(){
 	Cufon.replace('.tahoma', {
