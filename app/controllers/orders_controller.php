@@ -36,44 +36,47 @@ class OrdersController extends AppController {
 	/**
 	 * Generar la orden como tal
 	 */
-	function createOrder($shop_cart) {
-		$this->loadModel('ShopCart');
-		$this->loadModel('ShopCartItem');
-		/**
-		 * Datos de la orden
-		 */
-		
-		// Código de la orden
-		$order_code = null;
-		do {
-			$out = 'no';
-			$order_code = rand(1, 999);
-			$longitud = strlen($order_code);
-			$order_code = $shop_cart['ShopCart']['id'] . $order_code;
-			$order = $this -> Order -> findBy('code');
-			if (!empty($order)) {
-				$out = 'no';
+	function createOrder($shop_cart = null, $data = null) {
+		if($shop_cart) {
+			/**
+			 * Datos de la orden
+			 */
+			
+			// Código de la orden
+			$code = $this->Order->find('first', array('fields' => array('MAX(Order.code) as max_code')));
+			if($code[0]['max_code']) {
+				$code = $code[0]['max_code'] + 1;
 			} else {
-				$out = 'si';
+				$code = "000000001";
 			}
-		} while($out=='no');
-		// Fin código de la órden
-		
-		/**
-		 * Crear la orden
-		 */
-		$this->Order->create();
-		$this->Order->set('code', $order_code);
-		if(!empty($shop_cart['ShopCart']['user_id'])) {
-			$this->Order->set('user_id', $user_id);
+			$longitud = strlen($code);
+			for ($i = (9 - $longitud); $i > 0; $i--) {
+				$code = "0" . $code;
+			}
+			
+			/**
+			 * Crear la orden
+			 */
+			$this->Order->create();
+			$this->Order->set('code', $code); // Asignar el código de la orden
+			if(!empty($shop_cart['ShopCart']['user_id'])) {
+				// Si hay sesión de usuario entonces asignar el id del usuario
+				$this->Order->set('user_id', $shop_cart['ShopCart']['user_id']);
+			} else {
+				// Si no hay sesión asignar el user_agent
+				$this->Order->set('user_agent', $shop_cart['ShopCart']['user_agent']);
+			}
+			$this->Order->set('order_state', 1); // Asignar el estado de la orden
+			if(!empty($shop_cart['ShopCart']['coupon_id'])) {
+				$this->Order->set('coupon_id', $shop_cart['ShopCart']['coupon_id']);
+			}
+			if($this->Order->save()) {
+				foreach ($shop_cart['ShopCart']['ShopCartItem'] as $key => $cart_item) {
+					
+				}
+			}
 		} else {
-			$this->Order->set('user_agent', null);
-		}		
-		$this->Order->set('order_state', 1);
-		if($this->Order->save()) {
-			foreach ($shop_cart['ShopCart']['ShopCartItem'] as $key => $cart_item) {
-				
-			}
+			
 		}
 	}
 	
@@ -82,9 +85,12 @@ class OrdersController extends AppController {
 	 */
 	function getAddressInfo() {
 		$this->layout="carrito";
+		$shop_cart = $this->requestAction('/shop_carts/getCart');
+		if(!empty($this->data)) {
+			$this->createOrder($shop_cart, $this->data);
+		}
 		$user_id = $this->Session->read('Auth.User.id');
 		$user = $this->Order->User->read(null, $user_id);
-		$shop_cart = $this->requestAction('/shop_carts/getCart');
 		$this->set('user', $user);
 		$this->set('shop_cart', $shop_cart);
 	}

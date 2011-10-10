@@ -188,6 +188,7 @@ $(function() {
 	/**
 	 * Funcionalidad Carrito
 	 */
+	// Aplicar cupon
 	$("#set-coupon").live('submit', function(e){
 		e.preventDefault();
 		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
@@ -195,6 +196,20 @@ $(function() {
 			bloomCart.refresh();
 		});
 	});
+	// Continuar con la orden
+	$(".envio-form").click(function(e){
+		$("#OrderGetAddressInfoForm").submit();
+	});
+	/*
+	$("#OrderGetAddressInfoForm").live('submit', function(e){
+		e.preventDefault();
+		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
+			console.log(data);
+			bloomCart.refresh();
+		});
+	});
+	*/
+	
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
