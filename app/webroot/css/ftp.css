@@ -654,6 +654,8 @@ div.contentWrap {
 	width: 810px;
 	margin-left:50px;
 	margin-top: 50px;
+	height:550px;
+	overflow-y: scroll;
 }
 .new{
 	clear: both;
@@ -666,7 +668,7 @@ div.contentWrap {
 .new .description{
 	float:left;
 	padding-left: 25px;
-	width: 490px;
+	width: 480px;
 } 
 .new p{
 	font-size: 12px;
