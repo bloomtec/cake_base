@@ -29,7 +29,7 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('style.css');
+		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
@@ -38,25 +38,26 @@
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
-		</div>
+		<a class="logo" href="#"></a>
+		<?php echo $this->element('main_nav'); ?>
+		<div style="clear: both"></div>
+		<a class="logo_2y1"></a>
+		<img class="ilustracion" src="/img/ilustracion.jpg"/>
 		<div id="content">
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $content_for_layout; ?>
-
+			<h1>amarillo2</h1>
+			<p>cada imagen es un pensamiento, un pequeño fragmento de historias cotidianas plasmadas sobre cartón. toma tu tiempo para leerlas.
+			pensamientos que dejan huella,
+			que se pueden compartir, tocar y oler.
+			pensamientos de color amarillo, 
+			¡dale color al tuyo!
+			</p>
+			<h1>descripción</h1>
+			<p>reloj para pared hecho a mano con cartón y papel.
+			Las manecillas de colores rompen de modo agradable el trazo de los anillos concéntricos y los ángulos que parecen casi hipnóticos de las diferentes carátulas, generando una armónica propuesta de diseño ideal para hogares y oficinas. Los relojes amarillo2 se presentan en un empaque perfecto para regalar.
+			</p>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
-					'http://www.bloomweb.co/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
-	</div>
+
+	</div>	
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
