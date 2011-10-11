@@ -216,12 +216,12 @@ $(function(){
 	//OVERLAY	
 	$("a.overlay").live("click",function(e){
 		// CARGA UN OVERLAY CON EL CONTENIDO DE LA PAGINA
-		console.log("entro aqui");
+
 		e.preventDefault();
 		var $that=$(this);
 		var overlay=$("#overlay");
 		var wrap = overlay.find(".contentWrap");
-		console.log($that.attr("href"));
+	//	console.log($that.attr("href"));
 		wrap.load($that.attr("href"),function(){
 			var $container=wrap.find(".container-paginado");
 			$container.load($container.attr("rel"));

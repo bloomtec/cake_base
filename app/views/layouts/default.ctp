@@ -59,14 +59,11 @@
 							<?php echo $html->link("Ingresar",array("controller"=>"users","action"=>"login"))
 							?>
 						</li>
-						<li>
-							<?php echo $html->link("RED","#")
-							?>
-						</li>
+		<!--
 						<li>
 							<?php echo $html->link("EVENTOS","#")
 							?>
-						</li>
+						</li> -->
 						<li>
 							<?php echo $html->link("NOTICIAS","/news")
 							?>
