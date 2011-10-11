@@ -5,7 +5,9 @@
 	$almenosUnAd=false;
 	$iNews=0;
 ?>
-<?php foreach($news as $new):?>
+<?php 
+	if($news):
+	foreach($news as $new):?>
 	<div class='new'>
 		<div class='image'>
 			<?php echo $html->link($html->image('uploads/'.$new['News']['image'],array('width'=>295,'height'=>88)),array('controller'=>'news','action'=>'view',$new['News']['id']),array('target'=>'_blank','escape'=>false));?>
@@ -22,6 +24,9 @@
 			 echo $ads[0]['Ad']['wysiwyg_content']; 
 		}
 	?>
-<?php endforeach;?>
+<?php 
+	endforeach;
+	endif;
+?>
 <?php if(!$almenosUnAd) echo "<a href='".$ads[0]['Ad']['link']."' target='_blank'>".$ads[0]['Ad']['wysiwyg_content']."</a>" ?>
 </div>
