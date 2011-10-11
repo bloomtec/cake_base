@@ -47,25 +47,52 @@ body{
 	right: 50px;
 }
 #container .ilustracion{
-	width: 396px;
-	height: 542px;
 	margin-left:60px;
 	margin-top: 10px;
 }
 #content{
-	float: right;
-    height: 490px;
-    margin-right: 165px;
-    margin-top: 65px;
-    width: 305px;
     font-family: Arial, "MS Trebuchet", sans-serif;
     color:#A5A5A5;
 }
 #content h1{
 	margin-bottom:7px;
 	font-size: 22px;;
+	width: 305px;
 }
 #content p{
 	margin-bottom:45px;
 	font-size:11px;
+	width: 305px;
+}
+.img-contenido{
+	float: left;
+}
+.contenido{
+	float: left;
+    margin-left: 90px;
+    padding-top: 65px;
+    width: 320px;
+}
+.contenido label{
+	width: 56px;
+	float: left;
+	padding-bottom: 11px;
+}
+.contenido input{
+	float: right;
+    width: 240px;
+    margin-bottom: 5px;
+}
+.contenido input.mensaje{
+	height: 145px;
+}
+input.submit{
+	background-color: #A5A5A5;
+	border:none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color:#FFFFFF;
+	height: 26px;
+	width: 86px;
+	font-weight: bold;
 }
