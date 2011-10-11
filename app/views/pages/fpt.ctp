@@ -28,5 +28,5 @@
 	endforeach;
 	endif;
 ?>
-<?php if(!$almenosUnAd) echo "<a href='".$ads[0]['Ad']['link']."' target='_blank'>".$ads[0]['Ad']['wysiwyg_content']."</a>" ?>
+<?php if(!$almenosUnAd&&$ads) echo "<a href='".$ads[0]['Ad']['link']."' target='_blank'>".$ads[0]['Ad']['wysiwyg_content']."</a>" ?>
 </div>
