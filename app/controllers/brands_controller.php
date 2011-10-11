@@ -2,13 +2,17 @@
 class BrandsController extends AppController {
 
 	var $name = 'Brands';
-
-	function view($id = null) {
-		if (!$id) {
+	function beforeFilter(){
+		parent::beforeFilter();
+		$this -> Auth -> allow('*');
+	}
+	function view($slug = null) {
+		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid brand', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$brand = $this -> Brand -> read(null, $id);
+		$brand = $this -> Brand -> find('first', array('slug'=>$slug));
+		$id=$brand['Brand']['id'];
 		$category["Category"] = $brand["Category"];
 		$pageURL = $this -> getUrl();
 		/** 

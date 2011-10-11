@@ -183,6 +183,9 @@ $(function() {
 		onBeforeLoad : function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load(this.getTrigger().attr("href"));
+		},
+		onLoad:function(){
+			refreshCufon();
 		}
 	});
 	/**

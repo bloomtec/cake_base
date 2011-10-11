@@ -975,6 +975,10 @@ div.contentWrap {
 	padding-top: 82px;
 	height: 325px;
 }
+#overlay2 .content .wrapper{
+	width:890px;
+	padding-top: 50px;
+}
 .overlay-wrap .titulos_rosado{
 	text-align: center;
 }
