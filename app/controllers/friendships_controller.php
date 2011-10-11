@@ -103,9 +103,9 @@ class FriendshipsController extends AppController {
 			 * Enviar notificación informando al usuario que han aceptado la solicitud
 			 */
 			$user_b_name = $this -> requestAction('/users/getUserName/' . $user_b_id);
-			$subject = "Solicitud de amistad confirmada";
+			$subject = "Solicitud de amistad confirmada por <a class=\"overlay\" href=\"/users/profile/$user_b_id/\">$user_b_name</a>";
 			$message = rawurlencode("$user_b_name ha aceptado tu solicitud de amistad");
-			$content = "<div class=\"notificacion-usuario\"><a class=\"overlay\" href=\"/friendships/confirmFriendshipRequest/$user_a_id/$user_b_id/$message\">Aceptar</a></div>";
+			$content = "";
 			$this->loadModel("UserNotification");
 			$this->UserNotification->create();
 			$this->UserNotification->set('user_id', $user_a_id);
