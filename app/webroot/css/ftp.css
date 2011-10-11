@@ -655,7 +655,7 @@ div.contentWrap {
 	margin-left:50px;
 	margin-top: 50px;
 	height:550px;
-	overflow-y: scroll;
+	overflow: auto;
 }
 .new{
 	clear: both;
