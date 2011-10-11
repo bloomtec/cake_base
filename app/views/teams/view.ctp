@@ -1,5 +1,5 @@
-<div class="teams data">
-	<?php echo $html->image("uploads/100x100".$team["Team"]["image"]); ?>
+<div class=" data">
+	<?php echo $html->image("uploads/100x100/".$team["Team"]["image"],array('height'=>100)); ?>
 	<p>
 		<h2><?php echo $team["Team"]["name"];?></h2>
 	</p>
