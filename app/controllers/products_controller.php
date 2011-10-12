@@ -40,7 +40,7 @@ class ProductsController extends AppController {
 			$products = $this->Product->find(
 				'all',
 				array(
-					'recursive' => -1,
+					'recursive' => 1,
 					'conditions' => array(
 						'OR' => array(
 							'Product.subcategory_id' => $subcategories_ids,
