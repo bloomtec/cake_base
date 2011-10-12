@@ -31,20 +31,26 @@
 		echo $this->Html->css('ie.css');
 		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
+		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('front');
 
 		echo $scripts_for_layout;
 	?>
 </head>
 <body>
-	<div id="container">
-		<a class="logo" href="#"></a>
-		<?php echo $this->element('main_nav'); ?>
-		<div style="clear: both"></div>
-		<a class="logo_2y1"></a>
-		<div id="content">
-			
+	<div id="container" class="posicion">
+		<div id="header">
+			<a class="logo" href="/pages/home"></a>
+			<?php echo $this->element('main_nav'); ?>
+			<div style="clear: both"></div>
+		</div>
+		
+		<div id="content">			
 			<?php echo $content_for_layout; ?>
+		</div>
+		<div id="footer">
+			<a class="logo_2y1"></a>
+		</div>
 	</div>	
 	<?php echo $this->element('sql_dump'); ?>
 </body>

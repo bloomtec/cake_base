@@ -1,17 +1,15 @@
 body{
 	background-color: #fff;
 }
-#container {
+#container, #background, #minuteros, #horarios{
 	width: 960px;
-	height:730px;
+	height:720px;
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	border-radius: 10px;
-	-moz-box-shadow: 1px 0 6px #dfdede;
-	-webkit-box-shadow: 1px 0 6px #dfdede;
-	box-shadow: 1px 0 6px #dfdede;
-	margin:0 auto;
-	position:relative;
+	-moz-box-shadow: 1px 0 6px #D2D2D2;
+	-webkit-box-shadow: 1px 0 6px #D2D2D2;
+	box-shadow: 1px 0 6px #D2D2D2;
 }
 #container a.logo{
 	background-image: url(/img/logo_amarillo2.png);
@@ -76,7 +74,9 @@ body{
 .contenido label{
 	width: 56px;
 	float: left;
-	padding-bottom: 11px;
+	padding-bottom: 14px;
+	font-weight: bold;
+	font-size: 13px;
 }
 .contenido input{
 	float: right;
@@ -95,4 +95,151 @@ input.submit{
 	height: 26px;
 	width: 86px;
 	font-weight: bold;
+}
+.datos-contacto{
+	margin-top: 20px;
+	margin-left: 77px;
+}
+#content .contenido .datos-contacto h1{
+	font-size: 13px;
+}
+#content .contenido .datos-contacto h2{
+	font-size: 12px;
+	font-weight: lighter;
+}
+#aplicacion #container{
+	background-color:transparent;
+	z-index: 2;
+}
+#aplicacion #header{
+	width: 960px;
+}
+#background img{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 1px 0 6px #D2D2D2;
+	-webkit-box-shadow: 1px 0 6px #D2D2D2;
+	box-shadow: 1px 0 6px #D2D2D2;
+}
+.posicion{
+	position: absolute;
+	top: 50%;
+	margin-top:-365px;
+	left: 50%;
+	margin-left: -480px;
+}
+.trama_menu{
+	background-image:url(/img/transparente_menu.png);
+	width: 485px;
+	height: 60px;
+	float: right;
+	margin-top: 46px;
+}
+.trama_menu ul.main-nav{
+	margin-top: 24px;
+	
+}
+.trama_menu ul.main-nav li a{
+	color: #FFFFFF;
+}
+#background{
+	z-index: -1;
+}
+#minuteros{
+	z-index: 0;
+}
+#horarios {
+	z-index: 1;
+}
+#aplicacion #content{
+	background-image: url("/img/trama_aplicacion.png");
+    bottom: 21px;
+    height: 240px;
+    left: 12px;
+    position: absolute;
+    width: 933px; 
+}
+#caratulas .caratulas a{
+	display: block;
+	height: 138px;
+	width: 138px;
+	background-color: #000;
+	margin-top: 13px;
+}
+#caratulas{
+	margin-top: 11px;
+	margin-bottom: 12px;
+}
+#caratulas h1,#caratulas h2, #manecillas .info_aplicacion h1,#manecillas .info_aplicacion h2 {
+	font-size:16px;
+	color: #FFFFFF;
+	width: auto;
+}
+.info_aplicacion{
+	float: left;
+    margin-left: 25px;
+    margin-top: 89px;
+}
+#caratulas h2,  #manecillas .info_aplicacion h2{
+	font-size: 13px;
+}
+#caratulas .caratulas{
+	float: right;
+}
+#caratulas .caratulas li{
+	text-align: right;
+	width: 138px;
+	color: #FFFFFF;
+	margin-right: 34px;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	width: 135px;
+	height: 135px;
+	background-color: #000;
+	position: relative;
+	margin-top: 15px;
+	cursor: pointer;
+}
+#caratulas .caratulas span{
+	position: absolute;
+	top: -20px;
+	right: 3px;
+}
+#manecillas .info_aplicacion{
+	margin-top: 0;
+	margin-right: 40px;
+}
+#manecillas .info_aplicacion.der{
+	margin-left: 70px;
+}
+#manecillas ul{
+	margin-left: 5px;	
+}
+#manecillas ul li{
+	float: left;
+	margin-right: 3px;
+	margin-top: 11px;
+	width: 20px;
+	height: 20px;
+	background-color: #000000;
+	cursor: pointer;
+}
+/*validator*/
+#errors {
+	background-color:#163356;
+	color:#fff;
+	width:400px;
+	padding:20px;
+	margin:5px auto;
+	display:none;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;			
+}
+
+/* title */
+#errors h2 {
+	margin:-5px 0;
+	color:yellow;
 }

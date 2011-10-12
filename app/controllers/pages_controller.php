@@ -20,7 +20,7 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->layout="construccion";
+		$this->layout="default";
 		$this->set(compact('page', 'subpage', 'title_for_layout'));
 		$this->render(implode('/', $path));
 	}
@@ -29,6 +29,9 @@ class PagesController extends AppController {
 	}
 	function contacto(){
 		$this->layout="default";
+	}
+	function aplicacion(){
+		$this->layout="aplicacion";
 	}
 	function admin_ez(){
 		
