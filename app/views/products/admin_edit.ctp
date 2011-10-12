@@ -22,7 +22,7 @@
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
 				<?php
-				echo $this -> Form -> input('brand_id');
+				echo $this -> Form -> input('brand_id', array('value' => $this -> data['Subcategory']['brand_id']));
 				echo $this -> Form -> hidden('brand_id_value', array('value' => $this -> data['Subcategory']['brand_id']));
 				?>
 			</div>
