@@ -28,16 +28,13 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('ez');
-		echo $this->Html->css('admin');
 		echo $this->Html->css('superfish');
 		echo $this->Html->css('uploadify');
 		echo $this->Html->Script("jquery");
-		echo $this->Html->Script("menu");
 		echo $this->Html->Script("swfobject");
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
 		echo $this->Html->Script("upload");
 		echo $this->Html->Script("ckeditor/ckeditor");
-	
 		
 		echo $scripts_for_layout;
 	?>
@@ -46,9 +43,8 @@
 	<div id="container">
 		<div id="header">
 			<h1 class="logo_interna"></h1>
-			<h2><a class="salir" href="/admin/users/logout">SALIR</a></h2>
+			<?php echo $this->element("menu");?>
 		</div>
-		<?php echo $this->element("menu");?>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
