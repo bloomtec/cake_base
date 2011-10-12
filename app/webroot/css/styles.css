@@ -1407,7 +1407,6 @@ table.tahoma {
 	width: 127px;
 	height: 41px;
 	float: left;
-	margin-left: 20px;
 	border:1px solid #858585;
 }
 .buscar .izq h1, .brands .marcas h1{
@@ -1415,14 +1414,16 @@ table.tahoma {
 	color:#EC1C75;
 	margin:0;
 	width: 39%;
-	float: right;
+	float: left;
+	margin-left: 10px;
 }
 .buscar .izq h2, .brands .marcas h2{
 	font-size: 14px;
 	color:#00CFB5;
 	margin:0;
 	width: 39%;
-	float: right;
+	float: left;
+	margin-left: 10px;
 }
 .buscar .izq h3, .buscar .der h3{
 	font-size: 12px;
@@ -1434,9 +1435,10 @@ table.tahoma {
 	margin-bottom:25px;
 }
 .buscar .der{
-	width: 635px;
+	width: 605px;
 	min-height: 358px;
-	float: right;
+	float: left;
+	padding-left: 25px;
 }
 .brands{
 	margin-top:20px;
@@ -1463,6 +1465,10 @@ table.tahoma {
 	color:#EC1C75;
 }
 /*ESTILOS EXCLUSIVOS LISTADO PRODUCCTOS BUSQUEDA*/
+#overlay2 ul.products{
+	margin:0 auto;
+	width: 585px;s
+}
 #overlay2 ul.products li {
 	margin-right: 6px;
 	float:left;
