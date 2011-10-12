@@ -20,6 +20,20 @@ class CollectionsController extends AppController {
 		}
 		exit(0);		
 	}
+	
+	function localListBrandCollections($brand_id = null) {
+		$this->autoRender=false;
+		if($brand_id) {
+			return $this->Collection->find(
+				'list',
+				array(
+					'conditions' => array(
+						'Collection.brand_id'=>$brand_id
+					)
+				)
+			);
+		}		
+	}
 
 	function index() {
 		$this->Collection->recursive = 0;

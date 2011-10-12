@@ -1,5 +1,5 @@
 <div class="products form2">
-	<?php echo $this -> Form -> create('Product');?>
+	<?php echo $this -> Form -> create('Product'); ?>
 	<fieldset>
 		<legend>
 			<?php __('Admin Edit Product');?>
@@ -22,7 +22,7 @@
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
 				<?php
-				echo $this -> Form -> input('brand_id');
+				echo $this -> Form -> input('brand_id', array('value' => $this -> data['Subcategory']['brand_id']));
 				echo $this -> Form -> hidden('brand_id_value', array('value' => $this -> data['Subcategory']['brand_id']));
 				?>
 			</div>
@@ -35,12 +35,12 @@
 		<div style="clear: both;">
 			<div style="clear: none; float: right;">
 				<?php
-				echo $this -> Form -> input('collection_id');
+				echo $this -> Form -> input('collection_id', array('value'=>$this->data['Product']['collection_id']));
 				?>
 			</div>
 			<div style="clear: none; float: left;;">
 				<?php
-				echo $this -> Form -> input('subcategory_id');
+				echo $this -> Form -> input('subcategory_id', array('value'=>$this->data['Product']['subcategory_id']));
 				?>
 			</div>
 		</div>
@@ -77,7 +77,7 @@
 				}
 			}
 		});
-		jQuery.ajax({
+		/*jQuery.ajax({
 			url : "/subcategories/listBrandCategories/" + brand_id,
 			type : "post",
 			cache : false,
@@ -93,8 +93,8 @@
 					alert("Error");
 				}
 			}
-		});
-		jQuery.ajax({
+		});*/
+		/*jQuery.ajax({
 			url : "/collections/listBrandCollections/" + brand_id,
 			type : "post",
 			cache : false,
@@ -110,7 +110,7 @@
 					alert("Error");
 				}
 			}
-		});
+		});*/
 	});
 	/**
 	 * Ejecutar cuando se cambie el valor de marca
