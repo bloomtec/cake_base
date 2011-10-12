@@ -33,7 +33,16 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	var $components = array('Auth', 'Acl', 'Session');
+	//var $loginError = __('asdf', true);
+	var $components = array(
+		'Session',
+		'Auth' => array(
+			'fields' => array(
+				'username' => 'email',
+				'password' => 'password'
+			)
+		)
+	);
 	
 	function beforeFilter() {
 		
