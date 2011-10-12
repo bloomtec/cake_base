@@ -9,11 +9,11 @@ class UsersController extends AppController {
 	}
 
 	function login() {
-		
+		$this->layout="login";
 	}
 	
 	function admin_login() {
-		
+		$this->layout="admin_login";
 	}
 	
 	function logout() {
