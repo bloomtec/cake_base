@@ -54,6 +54,8 @@ class ProductsController extends AppController {
 				)
 			);
 			$this->set('products', $products);
+		}else{
+			$this->set('products', $this->Product->find('all'));
 		}
 	}
 	function getProduct($product_id = null) {

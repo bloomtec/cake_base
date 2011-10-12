@@ -249,6 +249,7 @@ $(function() {
 		e.preventDefault();
 		$('#overlay2').overlay({
 			mask : 'black',
+			load:true,
 			onBeforeLoad : function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load('/products/search/'+$('#query').val());

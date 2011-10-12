@@ -941,6 +941,9 @@ h4.footer {
 		color:#efefef;
 		height:531px;
 	}
+#overlay2 {
+	/*height: 600px;	*/
+}
 div.contentWrap {
 		height:531px;
 		overflow-y:auto;
@@ -976,6 +979,7 @@ div.contentWrap {
 	background-image: url(../img/trama-overlay.png);
 	height: 424px;
 	padding: 0 20px;
+	overflow: auto;
 }
 .overlay-wrap .content .wrapper{
 	width: 700px;
@@ -1394,7 +1398,7 @@ table.tahoma {
 }
 .buscar .izq{
 	width: 250px;
-	min-height: 440px;
+	min-height: 358px;
 	float: left;
 	border-right:1px solid #494949;
 }
@@ -1431,8 +1435,7 @@ table.tahoma {
 }
 .buscar .der{
 	width: 635px;
-	height: 610px;
-
+	min-height: 358px;
 	float: right;
 }
 .brands{
