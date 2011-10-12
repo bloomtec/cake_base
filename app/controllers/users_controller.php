@@ -20,6 +20,10 @@ class UsersController extends AppController {
 		$this -> redirect($this -> Auth -> logout());
 	}
 	
+	function admin_logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
+	
 	function register() {
 		if(!empty($this->data)) {
 			/**
