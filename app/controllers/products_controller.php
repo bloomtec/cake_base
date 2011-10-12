@@ -474,10 +474,11 @@ class ProductsController extends AppController {
 				}
 			}
 		}
-		$this -> loadModel('Brand');
-		$brands = $this -> Brand -> find('list');
-		$this -> set(compact('brands'));
 		$this -> data = $this -> Product -> read(null, $id);
+		$brands = $this -> Product -> Brand -> find('list');
+		$collections = $this -> requestAction('/collections/localListBrandCollections/' . $this -> data['Product']['brand_id']);
+		$subcategories = $this -> requestAction('/subcategories/localListBrandCategories/' . $this -> data['Product']['brand_id']);
+		$this -> set(compact('brands', 'collections', 'subcategories'));
 	}
 
 	function admin_delete($id = null) {
