@@ -3,7 +3,7 @@
 	<fieldset>
 		<legend><?php __('Admin Add Page'); ?></legend>
 	<?php
-		echo $this->Form->input('title');
+		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('keywords');
 		echo $this->Form->input('active');
