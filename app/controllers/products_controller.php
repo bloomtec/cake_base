@@ -7,10 +7,54 @@ class ProductsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('getProduct');
 	}
-	function search(){
+	function search($criteria = null){
 		$this->layout='overlay2';
 		$this->set('titulo','RESULTADO DE BÚSQUEDA');
-		$this->set('brands',$this->Product->Brand->find('all',array('recursive'=>-1)));
+		$this->set('brands', $this->Product->Brand->find('all',array('recursive'=>-1)));
+		/**
+		 * Palabra clave que busca en:
+		 * Subcategorias, marcas, colecciones -> nombre
+		 */
+		if($criteria) {
+			$subcategories_ids = $this->Product->Subcategory->find(
+				'list',
+				array(
+					'fields' => array('Subcategory.id'),
+					'conditions' => array('Subcategory.name LIKE' => "%$criteria%")
+				)
+			);
+			$brands_ids = $this->Product->Brand->find(
+				'list',
+				array(
+					'fields' => array('Brand.id'),
+					'conditions' => array('Brand.name LIKE' => "%$criteria%")
+				)
+			);
+			$collections_ids = $this->Product->Collection->find(
+				'list',
+				array(
+					'fields' => array('Collection.id'),
+					'conditions' => array('Collection.name LIKE' => "%$criteria%")
+				)
+			);
+			$products = $this->Product->find(
+				'all',
+				array(
+					'recursive' => -1,
+					'conditions' => array(
+						'OR' => array(
+							'Product.subcategory_id' => $subcategories_ids,
+							'Product.brand_id' => $brands_ids,
+							'Product.collection_id' => $collections_ids,
+							'Product.name LIKE' => "%$criteria%",
+							'Product.description LIKE' => "%$criteria%",
+							'Product.clasification LIKE' => "%$criteria%"
+						)
+					)
+				)
+			);
+			$this->set('products', $products);
+		}
 	}
 	function getProduct($product_id = null) {
 		return $this->Product->read(null, $product_id);
