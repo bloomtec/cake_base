@@ -121,7 +121,7 @@ foreach ($fields as $field) {
 	<?php foreach($wysiwyg as $field):?>
 		CKEDITOR.replace('<?php echo "data[{$modelClass}][{$field}]"; ?>',{
         	filebrowserUploadUrl : '/upload.php',
-        	filebrowserBrowseUrl : '/admin/images/wysiwyg',
+        	filebrowserBrowseUrl : '/admin/pages/wysiwyg',
 		} );
 	<?php endforeach ?>
 	</script>

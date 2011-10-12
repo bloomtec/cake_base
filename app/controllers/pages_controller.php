@@ -28,7 +28,13 @@ class PagesController extends AppController {
 	function admin_ez() {
 
 	}
-
+	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+	    $this->layout="file_browser";
+	    App::import("Folder");
+	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
+	    $this->set("folder",$folder->read());
+	    $this->set("folderPath",DS."wysiwyg");
+ 	}
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
