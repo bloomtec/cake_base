@@ -6,6 +6,7 @@
 		</legend>
 		<?php
 		echo $this -> Form -> input('name');
+		echo $this -> Form -> input('country');
 		echo $this -> Form -> hidden('image_brand', array('id' => 'single-field-1'));
 		echo $this -> Form -> hidden('image_hover', array('id' => 'single-field-2'));
 		echo $this -> Form -> hidden('sort');

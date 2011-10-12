@@ -40,13 +40,14 @@ class AppController extends Controller {
 				'password'=>'password'
 			)
 		),
-		'Session'
+		'Session',
 	);
 	
 	function beforeFilter() {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
+			$this->Auth->loginAction=array('controller'=>'users','action'=>'login','admin'=>true);
 			$this->Auth->deny($this->action);
 		} else {
 			$this->Auth->allow($this->action);

@@ -7,7 +7,11 @@ class ProductsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('getProduct');
 	}
-	
+	function search(){
+		$this->layout='overlay2';
+		$this->set('titulo','RESULTADO DE BÚSQUEDA');
+		$this->set('brands',$this->Product->Brand->find('all',array('recursive'=>-1)));
+	}
 	function getProduct($product_id = null) {
 		return $this->Product->read(null, $product_id);
 	}

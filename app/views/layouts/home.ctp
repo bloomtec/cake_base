@@ -55,5 +55,11 @@
 		<?php echo $this->element("footer");?>
 		
 	<?php echo $this->element('sql_dump'); ?>
+	<div class="apple_overlay" id="overlay2">
+
+	<!-- the external content is loaded inside this tag -->
+	<div class="contentWrap"></div>
+
+</div>
 </body>
 </html>

@@ -15,13 +15,14 @@
 		</li>
 	</ul>
 	<ul class="main_nav twCenMt">
-		<li class="home halo">
+		<li class="home halo <?php if(!isset($category)) echo 'current'?>">
 			<a href="/">Home</a>
 		</li>
 		<?php foreach($categories as $id=>$name):?>
-		<li class="categoria">
+		<li class="categoria <?php if(isset($category)&&$category['Category']['id']==$id) echo 'current'?>">
 			<a href="/categories/view/<?php echo $id?>"><?php echo $name?></a>
 		</li>
 		<?php endforeach;?>
 	</ul>
+	
 </div>

@@ -46,7 +46,7 @@ class PagesController extends AppController {
 		
 	}
 	function buscar(){
-		$this->layout='overlay';
+		$this->layout='overlay2';
 		$this->set('titulo','RESULTADO DE BÚSQUEDA');
 	}
 	function marcas(){

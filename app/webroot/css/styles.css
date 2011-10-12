@@ -580,8 +580,10 @@ ul.social li {
 	padding:0px;
 	top:89px;
 	
+	
 }
 #header .main_nav li {
+	
 	padding:3px 23px;
 	background-color:#F1F1F1;
 	margin-right:15px;
@@ -590,6 +592,12 @@ ul.social li {
 	-moz-box-shadow: 0.9px 0.3px 10px #999;
 	-webkit-box-shadow:0.9px 0.3px 10px #999;
 	box-shadow:0.9px 0.3px 10px #999;
+}
+#header .main_nav li.current{
+	position:relative;
+	z-index:2;
+	box-shadow:0.9px -3.8px 3px  #b1afaf;
+
 }
 #header .main_nav li.categoria {
 	background-color:#282828;
@@ -928,8 +936,8 @@ h4.footer {
 		height:35px;
 		width:35px;
 	}
-#overlay {
-		background-image:url(http://static.flowplayer.org/img/overlay/transparent.png);
+#overlay ,#overlay2 {
+
 		color:#efefef;
 		height:531px;
 	}

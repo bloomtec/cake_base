@@ -95,8 +95,8 @@ $(function() {
 	}
 	bloomCart.resumeRefresh=function(){
 		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
-			 $('span.cart-num-items').html(shopCart.ShopCart.items);
-			 $('span.cart-price-total').html(shopCart.ShopCart.total);
+			if(shopCart) $('span.cart-num-items').html(shopCart.ShopCart.items);
+			 if(shopCart) $('span.cart-price-total').html(shopCart.ShopCart.total);
 		});
 	}
 
@@ -243,6 +243,20 @@ $(function() {
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		console.log(itemId);
 		bloomCart.removeAll(itemId);
+	});
+	
+	$('.buscador').submit(function(e){
+		e.preventDefault();
+		$('#overlay2').overlay({
+			mask : 'black',
+			onBeforeLoad : function() {
+			var wrap = this.getOverlay().find(".contentWrap");
+			wrap.load('/products/search/'+$('#query').val());
+			},
+			onLoad:function(){
+				refreshCufon();
+			}
+		}).load();
 	});
 });
 function refreshCufon(){
