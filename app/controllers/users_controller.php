@@ -17,7 +17,7 @@ class UsersController extends AppController {
 	}
 	
 	function logout() {
-		
+		$this -> redirect($this -> Auth -> logout());
 	}
 	
 	function register() {
