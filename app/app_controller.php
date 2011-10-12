@@ -47,7 +47,7 @@ class AppController extends Controller {
 	function beforeFilter() {
 		
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
-			$this->layout="bloom";
+			$this->layout="ez";
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
 			$this->Auth->deny($this->action);
 		} else {
@@ -55,7 +55,8 @@ class AppController extends Controller {
 		}
 	}
 	function getList(){
-		return $this->modelName->find("list");
+		
+		return $this->$this->modelNames[0]->find("list");
 	}
 	
 }
