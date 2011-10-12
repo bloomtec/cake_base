@@ -157,13 +157,13 @@ ul, li {
 	color: #fff;
 	padding:17px 17px;
 }
-#main_menu li.flecha a, #main_menu li.flecah a:hover{
+#main_menu li.desplegable > a, #main_menu li.desplegable > a:hover{
 	background-image: url(../img/cms/flecha_menu.png);
 	background-repeat: no-repeat;
 	background-position: 50% 86%;
 }
-#main_menu li.flecha ul.deplegable a {
-	background: none;
+#main_menu li.desplegable ul a, #main_menu li.desplegable ul li{
+	background: #049ae1;
 }
 
 #main_menu li a.ultimo:hover, #main_menu li.final{
@@ -175,12 +175,13 @@ ul, li {
     position: absolute;
     top: 49px;
     margin:0;
+    
 }
-#main_menu li ul.deplegable li{
+#main_menu li ul li{
 	background: #049ae1;
 	width: 210px;
 }
-#main_menu li ul.deplegable li a {
+#main_menu li ul li a {
 	border-bottom: 1px solid #64d7f3;
 	padding-bottom: 4px;
 	margin-bottom:5px;
