@@ -1,7 +1,7 @@
 <ul id="main_menu">
 		<li><a href="">INICIO</a></li>
-		<li class="flecha"><a href="">MENÚS</a>
-			<ul class="deplegable">
+		<li><a href="">MENÚS</a>
+			<ul>
 				<li><a href="">AGREGAR</a></li>
 				<li><a href="">ADMINISTRAR</a></li>
 			</ul>
