@@ -1462,3 +1462,23 @@ table.tahoma {
 .add-cart-confirm a{
 	color:#EC1C75;
 }
+/*ESTILOS EXCLUSIVOS LISTADO PRODUCCTOS BUSQUEDA*/
+#overlay2 ul.products li {
+	margin-right: 6px;
+	float:left;
+	margin-bottom:35px;
+	
+}
+#overlay2  ul.products li h1{
+	margin-top:6px;
+	margin-bottom: 4px;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+#overlay2  ul li.info a, #overlay2  ul li.info img{
+	width: 140px;
+	height: 210px;
+	background-color: #fff;
+	display:block;
+}
