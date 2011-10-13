@@ -8,4 +8,5 @@
 		<h3 class="azul">PRECIO: <?php echo $product['Product']["price"]?></h3>
 	</li>
 	<?php endforeach;?>
+	<div style='clear:both;'></div>
 </ul>

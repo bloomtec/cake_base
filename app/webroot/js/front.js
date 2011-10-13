@@ -259,11 +259,14 @@ $(function() {
 			}
 		}).load();
 	});
+
 });
 function refreshCufon(){
 	Cufon.replace('.tahoma', {
 		fontFamily : 'Tahoma',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true}
+
 	});
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
@@ -272,7 +275,9 @@ function refreshCufon(){
 
 	Cufon.replace('.twCenMt', {
 		fontFamily : 'TwCenMt',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#00CFB5'}
 	});
 	
 	Cufon.replace('.halo', {
