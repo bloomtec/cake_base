@@ -79,7 +79,8 @@
 			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shopping_cart['ShopCart']['coupon_value'])."%"?></span></h1>
 		<?php endif; ?>
 	</form>
-	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $shopping_cart['ShopCart']['coupon_value'])), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
+	<?php $coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_value'])) $coupon_value = $shopping_cart['ShopCart']['coupon_value']; ?>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a href="/orders/getAddressInfo">Continuar</a></h1>

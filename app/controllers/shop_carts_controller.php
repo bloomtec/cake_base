@@ -171,6 +171,7 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
+	
 	/**
 	 * Remover todos los  ítems del carrito
 	 */
@@ -186,6 +187,7 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
+	
 	/**
 	 * Actualizar la cantidad de un ítem
 	 */
@@ -221,6 +223,7 @@ class ShopCartsController extends AppController {
 		$this -> set('shopping_cart', $shopping_cart);
 		$this->set('referer',$this->referer());
 	}
+
 	function refresh() {
 		$this->layout='ajax';
 		$shopping_cart = $this->getCart();

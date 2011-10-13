@@ -195,23 +195,87 @@ $(function() {
 	$("#set-coupon").live('submit', function(e){
 		e.preventDefault();
 		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
-			console.log(data);
 			bloomCart.refresh();
 		});
 	});
+	
 	// Continuar con la orden
 	$(".envio-form").click(function(e){
+		/*// Revisar que la información requerida haya sido ingresada
+		var validForm = true;
+		var message = "";
+		
+		// País Envío
+		var info = $("#EnvioCountry").val();
+		if(info == null || info == "") {
+			message = "Ingrese el país de destino";
+			validForm = false;
+		}
+		// Nombre Envío
+		if(validForm) {
+			info = $("#EnvioName").val();
+			if(info == null || info == "") {
+				message = "Ingrese un nombre";
+				validForm = false;
+			}
+		}
+		
+		// Apellido Envío
+		if(validForm) {
+			info = $("#EnvioSurname").val();
+			if(info == null || info == "") {
+				message = "Ingrese un apellido";
+				validForm = false;
+			}
+		}
+		
+		// Dirección Envío
+		if(validForm) {
+			info = $("#EnvioAddress").val();
+			if(info == null || info == "") {
+				message = "Ingrese una dirección de destino";
+				validForm = false;
+			}
+		}
+		
+		// Departamento Envío
+		if(validForm) {
+			info = $("#EnvioState").val();
+			if(info == null || info == "") {
+				message = "Ingrese el departamento de destino";
+				validForm = false;
+			}
+		}
+		
+		// Ciudad Envío
+		if(validForm) {
+			info = $("#EnvioCity").val();
+			if(info == null || info == "") {
+				message = "Ingrese la ciudad de destino";
+				validForm = false;
+			}
+		}
+		
+		// Teléfono Envío
+		if(validForm) {
+			info = $("#EnvioPhone").val();
+			if(info == null || info == "") {
+				message = "Ingrese un teléfono de contacto";
+				validForm = false;
+			}
+		}*/
+		
+		/*if(validForm) {*/
+			$("#OrderGetAddressInfoForm").submit();
+		/*} else {
+			alert(message);
+		}*/
+	});
+	
+	// Página envío
+	$(".mailing-form").click(function(e){
 		$("#OrderGetAddressInfoForm").submit();
 	});
-	/*
-	$("#OrderGetAddressInfoForm").live('submit', function(e){
-		e.preventDefault();
-		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
-			console.log(data);
-			bloomCart.refresh();
-		});
-	});
-	*/
 	
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
