@@ -11,7 +11,7 @@ class BrandsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid brand', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$brand = $this -> Brand -> find('first', array('slug'=>$slug));
+		$brand = $this -> Brand -> findBySlug($slug);
 		$id=$brand['Brand']['id'];
 		$category["Category"] = $brand["Category"];
 		$pageURL = $this -> getUrl();
