@@ -6,31 +6,33 @@
 	<h1 class="der tahoma">Servicio de Mensajeria</h1>
 </div>
 <div class="form_envio tahoma">
+	<div class="form">
 	<form>
 		<label>Datos Usuario</label>
-		<span>Jorge Enrique Ceballos Delgado</span>
+		<span><?php if($user) echo $user['UserField']['name'] . " " . $user['UserField']['surname']; ?></span>
 		<label>Pais</label>
-		<span>Colombia</span>
+		<span><?=$shop_cart['ShopCart']['pais']?></span>
 		<label>Nombre</label>
-		<span>Jorge Enrique</span>
+		<span><?=$shop_cart['ShopCart']['nombre']?></span>
 		<label>Apellido</label>
-		<span>Ceballos Delgado</span>
+		<span><?=$shop_cart['ShopCart']['apellido']?></span>
 		<label>Dirección</label>
-		<span>Carrera 60A # 2A-174</span>
+		<span><?=$shop_cart['ShopCart']['direccion']?></span>
 		<label>Numero Telefónico</label>
-		<span>5519552</span>
+		<span><?=$shop_cart['ShopCart']['telefono']?></span>
 		<label>Celular</label>
-		<span>3137430119</span>
+		<span><?=$shop_cart['ShopCart']['celular']?></span>
 		<label>Departamento</label>
-		<span>Valle del Cauca</span>
+		<span><?=$shop_cart['ShopCart']['estado']?></span>
 		<label>Ciudad</label>
-		<span>Cali</span>
+		<span><?=$shop_cart['ShopCart']['ciudad']?></span>
 		<div style="clear: both"></div>
 	</form>
-	
+	</div>
 	<div style="clear: both"></div>
 </div>
 <div class="form_envio der">
+	<div class="form">
 	<form class="tahoma">
 		<label>Entidad</label>
 		<span>Servientrega</span>
@@ -38,57 +40,67 @@
 		<span>Contraentrega/gratis</span>
 	</form>
 	<div style="clear: both"></div>
+	<?php
+		$found_gift = false;
+		$gift = null;
+		foreach($shop_cart['ShopCartItem'] as $item) {
+			if($item['is_gift']) {
+				$found_gift = true;
+				$gift = $item;
+				break;
+			}
+		}
+		if(true) :
+	?>
 		<div class="envio_regalo">
 			<h1 class="tahoma">¿Dónde vamos a enviar tu regalo? </h1>
 		
 			<form class="tahoma">
-				<label>Datos Usuario</label>
-				<span>Jorge Enrique Ceballos Delgado</span>
 				<label>Pais</label>
-				<span>Colombia</span>
+				<span><?=$gift['pais']?></span>
 				<label>Nombre</label>
-				<span>Jorge Enrique</span>
+				<span><?=$gift['nombre']?></span>
 				<label>Apellido</label>
-				<span>Ceballos Delgado</span>
+				<span><?=$gift['apellido']?></span>
 				<label>Dirección</label>
-				<span>Carrera 60A # 2A-174</span>
+				<span><?=$gift['direccion']?></span>
 				<label>Numero Telefónico</label>
-				<span>5519552</span>
-				<label>Celular</label>
-				<span>3137430119</span>
+				<span><?=$gift['telefono']?></span>
 				<label>Departamento</label>
-				<span>Valle del Cauca</span>
+				<span><?=$gift['estado']?></span>
 				<label>Ciudad</label>
-				<span>Cali</span>
+				<span><?=$gift['ciudad']?></span>
 				<div style="clear: both"></div>
 			</form>
 		</div>
+		<?php endif; ?>
+	</div>
 	<div style="clear: both"></div>
 </div>
 <div style="clear: both"></div>
 <div class="hidden-form">
 	<!-- formulario pagos online -->
 	<form id="PagosOnlineForm" method="post" action="https://gateway2.pagosonline.net/apps/gateway/index.html">
-		<input name="usuarioId" type="text" value="76075" />
-		<input name="refVenta" type="text" value="<?=$refVenta?>" />
-		<input name="descripcion" type="text" value="<?=$descripcion?>" />
-		<input name="valor" type="text" value="<?=$valor?>" />
-		<input name="iva" type="text" value="0" />
-		<input name="baseDevolucionIva" type="text" value="0" />
-		<input name="firma" type="text" value="<?=$firma?>" />
-		<input name="emailComprador" type="text" value="<?=$email?>" />
-		<input name="moneda" type="text" value="<?=$moneda?>" />
-		<input name="nombreComprador" type="text" value="<?=$nombre?>" />
-		<input name="extra1" type="text" value="<?=$extra1?>" />
-		<input name="extra2" type="text" value="<?=$extra2?>" />
-		<input name="prueba" type="text" value="1" />
-		<input name="url_confirmacion" type="text" value="http://colors.bloomweb.co/orders/confirmarPagosOnline" />
-		<input name="url_respuesta" type="text" value="http://colors.bloomweb.co/orders/callBackPagosOnline" />
+		<input name="usuarioId" type="hidden" value="76075" />
+		<input name="refVenta" type="hidden" value="<?=$refVenta?>" />
+		<input name="descripcion" type="hidden" value="<?=$descripcion?>" />
+		<input name="valor" type="hidden" value="<?=$valor?>" />
+		<input name="iva" type="hidden" value="0" />
+		<input name="baseDevolucionIva" type="hidden" value="0" />
+		<input name="firma" type="hidden" value="<?=$firma?>" />
+		<input name="emailComprador" type="hidden" value="<?=$email?>" />
+		<input name="moneda" type="hidden" value="<?=$moneda?>" />
+		<input name="nombreComprador" type="hidden" value="<?=$nombre?>" />
+		<input name="extra1" type="hidden" value="<?=$extra1?>" />
+	<!--	<input name="extra2" type="text" value="<?=$extra2?>" /> -->
+		<input name="prueba" type="hidden" value="1" />
+		<input name="url_confirmacion" type="hidden" value="http://colors.bloomweb.co/orders/confirmarPagosOnline" />
+		<input name="url_respuesta" type="hidden" value="http://colors.bloomweb.co/orders/callBackPagosOnline" />
 	<!--	<input name="Submit" type="submit" value="Enviar" /> -->
 	</form>
 </div>
-<div id="cupon" class="twCenMt">	
-	<h1 class="titulos_rosado">TOTAL <span>$457.000</span></h1>
+<div id="cupon" class="twCenMt">
+	<h1 class="titulos_rosado">TOTAL <span>$<?=number_format($shop_cart['ShopCart']['total'], 0, ' ', '.')?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a class="mailing-form" href="#">Continuar</a></h1>
