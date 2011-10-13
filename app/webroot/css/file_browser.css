@@ -17,8 +17,8 @@ div#fileBrowser {
 	position:relative;
 }
 #fileBrowser img.preview{
-	width:130px;
-	height: 130px;
+	max-width:130px;
+	max-height: 130px;
 	margin-top: 10px;
 }
 #fileBrowser .info{

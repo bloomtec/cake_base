@@ -17,6 +17,6 @@
 	<script type="text/javascript">
 			CKEDITOR.replace('data[Page][wysiwyg_content]',{
         	filebrowserUploadUrl : '/upload.php',
-        	filebrowserBrowseUrl : '/admin/images/wysiwyg',
+        	filebrowserBrowseUrl : '/admin/pages/wysiwyg',
 		} );
 		</script>

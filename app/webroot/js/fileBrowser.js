@@ -15,9 +15,9 @@ $(function(){
 		});
 		$(".delete").click(function(){
 			var source=this;
-			$.post("/gps/admin/images/eliminarImagen",{path:$(this).attr("rel")},function(borrada){
+			$.post("/admin/images/deleteWysiwygImage",{path:$(this).attr("rel")},function(borrada){
 				if(borrada){
-				//	$(source).parent().parent().parent().remove();
+					$(source).parents('li').remove();
 				}
 			})
 		});
