@@ -9,14 +9,8 @@
 							<th><?php echo $this->Paginator->sort('description');?></th>
 									
 							<th><?php echo $this->Paginator->sort('keywords');?></th>
-											<th><?php echo $this->Paginator->sort('Status','active');?></th>
-						
-							<th><?php echo $this->Paginator->sort('wysiwyg_content');?></th>
-									
-							<th><?php echo $this->Paginator->sort('slug');?></th>
-									
-							<th><?php echo $this->Paginator->sort('created');?></th>
-									
+							<th><?php echo $this->Paginator->sort('Status','active');?></th>									
+							<th><?php echo $this->Paginator->sort('created');?></th>									
 							<th><?php echo $this->Paginator->sort('updated');?></th>
 								<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -37,8 +31,7 @@
 <?php }else{ ?>
 		<td><?php echo 'Inactive'; ?>&nbsp;</td>
 <?php }
- ?>		<td><?php echo $page['Page']['wysiwyg_content']; ?>&nbsp;</td>
-		<td><?php echo $page['Page']['slug']; ?>&nbsp;</td>
+ ?>		
 		<td><?php echo $page['Page']['created']; ?>&nbsp;</td>
 		<td><?php echo $page['Page']['updated']; ?>&nbsp;</td>
 		<td class="actions">

@@ -14,18 +14,21 @@ class Page extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		'slug' => array(
-			'notempty' => array(
+			'isUnique' => array(
 				'rule' => array(
-					'notempty'
+					'isUnique'
 				),
-				//'message' => 'Your custom message here',
+				'message' => 'The name you entered is already created',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		
 	);
+	function beforeSave(){
+		$this->data['Page']['slug']=strtolower(str_ireplace(" ", "-", $this->data['Page']['name']));
+		return true;
+	}
 }

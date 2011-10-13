@@ -28,6 +28,7 @@
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('ez');
+		echo $this->Html->css('admin');
 		echo $this->Html->css('superfish');
 		echo $this->Html->css('uploadify');
 		echo $this->Html->Script("jquery");

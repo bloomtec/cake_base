@@ -8,7 +8,6 @@
 		echo $this->Form->input('keywords');
 		echo $this->Form->input('active');
 		echo $this->Form->input('wysiwyg_content',array('label'=>false));
-		echo $this->Form->input('slug');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

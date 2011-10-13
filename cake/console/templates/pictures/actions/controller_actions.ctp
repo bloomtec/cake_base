@@ -19,11 +19,14 @@
  */
 ?>
 
-	function <?php echo $admin ?>index($parentId) {
+	function beforeFilter() {
+		parent::beforeFilter();
+		//$this->Auth->allow('*');
+	}
+	
+	function <?php echo $admin ?>index() {
 		$this-><?php echo $currentModelName ?>->recursive = 0;
-		<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-		$this->set('<?php echo $pluralName ?>', $this->paginate(array('<?php echo $parent_id?>'=>$parentId)));
-		$this->set('parent_id',$parentId);
+		$this->set('<?php echo $pluralName ?>', $this->paginate());
 	}
 
 	function <?php echo $admin ?>view($id = null) {
@@ -35,18 +38,7 @@
 			$this->flash(__('Invalid <?php echo strtolower($singularHumanName); ?>', true), array('action' => 'index'));
 <?php endif; ?>
 		}
-		$this-><?php echo $currentModelName ?>->recursive = 0;
-		<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-		$this->set('<?php echo $pluralName ?>', $this->paginate(array('<?php echo $parent_id?>'=>$id)));
-		$this->set('parent_id',$id);
-			<?php $parentModel=substr($currentModelName,0,strpos($currentModelName, 'Picture'));?>
-		$parent=$this-><?php echo $currentModelName ?>-><?php echo $parentModel ?>->read(null,$id); 
-			 if (isset($parent['<?php echo $parentModel ?>']['name'])){
-			 	 $this->set('parentName',$parent['<?php echo $parentModel ?>']['name']);
-			}else{
-			  if (isset($parent['<?php echo $parentModel;?>']['title'])) $this->set('parentName',$parent['<?php echo $parentModel ?>']['title']);
-			}
-			 
+		$this->set('<?php echo $singularName; ?>', $this-><?php echo $currentModelName; ?>->read(null, $id));
 	}
 
 <?php $compact = array(); ?>
@@ -126,7 +118,7 @@
 		endif;
 	?>
 	}
-
+	
 	function <?php echo $admin; ?>delete($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
@@ -136,12 +128,10 @@
 			$this->flash(sprintf(__('Invalid <?php echo strtolower($singularHumanName); ?>', true)), array('action' => 'index'));
 <?php endif; ?>
 		}
-		$toDelete=$this-><?php  echo $currentModelName; ?>->read(null,$id);
 		if ($this-><?php echo $currentModelName; ?>->delete($id)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true));
-			<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-			$this->redirect(array('action'=>'view',$toDelete['<?php  echo $currentModelName; ?>']['<?php echo $parent_id; ?>']));
+			$this->redirect(array('action'=>'index'));
 <?php else: ?>
 			$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true), array('action' => 'index'));
 <?php endif; ?>
@@ -153,6 +143,7 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+	
 	function <?php echo $admin; ?>setInactive($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
@@ -179,6 +170,7 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+	
 	function <?php echo $admin; ?>setActive($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
@@ -205,32 +197,11 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+	
 	function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
-		if($key==Configure::read("key")){
-			return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
-		}else{
-			return null;
-		}
+	if($key==Configure::read("key")){
+		return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
+	}else{
+		return null;
 	}
-	function <?php echo $admin; ?>uploadfy_add() {
-	<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id"; ?>
-		if($_POST["name"]&&$_POST["folder"]){
-			if(isset($_POST['parent_id'])){
-				$picture['<?php echo $currentModelName; ?>']['<?php echo $parent_id; ?>']=$_POST["parent_id"];
-				$picture['<?php echo $currentModelName; ?>']['path']=$_POST["name"];
-				$this-><?php echo $currentModelName; ?>->create();
-				$this-><?php echo $currentModelName; ?>->save($picture);
-				echo $this-><?php echo $currentModelName; ?>->id;
-			}else{
-				
-				echo false;
-			}
-			
-		}else{
-			echo false;
-		}
-		
-		Configure::write("debug",0);
-		$this->autoRender=false;
-		exit(0);
-	}
+}

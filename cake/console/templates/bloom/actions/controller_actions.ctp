@@ -19,6 +19,11 @@
  */
 ?>
 
+	function beforeFilter() {
+		parent::beforeFilter();
+		//$this->Auth->allow('*');
+	}
+	
 	function <?php echo $admin ?>index() {
 		$this-><?php echo $currentModelName ?>->recursive = 0;
 		$this->set('<?php echo $pluralName ?>', $this->paginate());
@@ -113,7 +118,7 @@
 		endif;
 	?>
 	}
-
+	
 	function <?php echo $admin; ?>delete($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
@@ -138,10 +143,7 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
-
-
-
-
+	
 	function <?php echo $admin; ?>setInactive($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
@@ -168,7 +170,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
-function <?php echo $admin; ?>setActive($id = null) {
+	
+	function <?php echo $admin; ?>setActive($id = null) {
 		if (!$id) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('Invalid id for <?php echo strtolower($singularHumanName); ?>', true));
@@ -194,7 +197,8 @@ function <?php echo $admin; ?>setActive($id = null) {
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
-function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
+	
+	function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
 	if($key==Configure::read("key")){
 		return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
 	}else{
