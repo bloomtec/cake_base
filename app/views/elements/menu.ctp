@@ -34,6 +34,14 @@
 				<!-- <li><a href="/admin/pages/add">Agregar Página</a></li> -->
 			</ul>
 		</li>
+		</li>
+		<li>
+			<a href="#"><img class="iconos" src="/img/cms/menus.png"/><span>Paginas</span></a>
+			<ul>
+				<li><a href="/admin/pages">Ver Páginas</a></li>
+				<!-- <li><a href="/admin/pages/add">Agregar Página</a></li> -->
+			</ul>
+		</li>
 		<li>
 			<a href="#"><img class="iconos" src="/img/cms/usuarios.png"/><span>USUARIOS</span></a>
 			<ul>
