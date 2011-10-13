@@ -9,7 +9,7 @@
 <?php echo "<?php echo \$this->Html->css('pictures'); ?>\n"; ?>
 <div class="gallery_view">
 	<div class="pictures">
-	<h2><?php echo "<?php if(isset(\$parentName)) echo \$parentName ?>" ?> </h2>
+	<h2><?php echo "<?php if(isset(\$parentName)) echo \$this->Html->link(\$parentName,array('controller'=>'".$associations['belongsTo'][substr($modelClass,0,strpos($modelClass, 'Picture'))]['controller']."','action'=>'view', \$parent_id)) ?>" ?> </h2>
 	<?php echo "<?php foreach (\${$pluralVar} as \${$singularVar}): ?>\n"; ?>
 		<div class='image-container'>
 			<div class="image">

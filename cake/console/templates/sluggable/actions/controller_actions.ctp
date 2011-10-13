@@ -29,8 +29,8 @@
 		$this->set('<?php echo $pluralName ?>', $this->paginate());
 	}
 
-	function <?php echo $admin ?>view($id = null) {
-		if (!$id) {
+	function <?php echo $admin ?>view($slug = null) {
+		if (!$slug) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('Invalid <?php echo strtolower($singularHumanName) ?>', true));
 			$this->redirect(array('action' => 'index'));
@@ -38,18 +38,7 @@
 			$this->flash(__('Invalid <?php echo strtolower($singularHumanName); ?>', true), array('action' => 'index'));
 <?php endif; ?>
 		}
-		$this-><?php echo $currentModelName ?>->recursive = 0;
-		<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-		$this->set('<?php echo $pluralName ?>', $this->paginate(array('<?php echo $parent_id?>'=>$id)));
-		$this->set('parent_id',$id);
-			<?php $parentModel=substr($currentModelName,0,strpos($currentModelName, 'Picture'));?>
-		$parent=$this-><?php echo $currentModelName ?>-><?php echo $parentModel ?>->read(null,$id); 
-			 if (isset($parent['<?php echo $parentModel ?>']['name'])){
-			 	 $this->set('parentName',$parent['<?php echo $parentModel ?>']['name']);
-			}else{
-			  if (isset($parent['<?php echo $parentModel;?>']['title'])) $this->set('parentName',$parent['<?php echo $parentModel ?>']['title']);
-			}
-			 
+		$this->set('<?php echo $singularName; ?>', $this-><?php echo $currentModelName; ?>->findBySlug($slug));
 	}
 
 <?php $compact = array(); ?>
@@ -207,4 +196,12 @@
 		$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> was not archived', true), array('action' => 'index'));
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
+	if($key==Configure::read("key")){
+		return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
+	}else{
+		return null;
+	}
 	}

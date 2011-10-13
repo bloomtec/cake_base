@@ -19,7 +19,7 @@
  */
 ?>
 
-	function beforeFilter() {
+	function <?php echo $admin ?>beforeFilter() {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
@@ -204,4 +204,4 @@
 	}else{
 		return null;
 	}
-}
+	}
