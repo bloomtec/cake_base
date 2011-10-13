@@ -61,7 +61,7 @@ class ShopCartsController extends AppController {
 					$batch = $this->ShopCart->Coupon->CouponBatch->read(null, $coupon['Coupon']['coupon_batch_id']);
 					$shop_cart = $this->getCart();
 					$shop_cart['ShopCart']['coupon_id']=$coupon['Coupon']['id'];
-					$shop_cart['ShopCart']['coupon_value']=$batch['CouponBatch']['value'];
+					$shop_cart['ShopCart']['coupon_discount']=$batch['CouponBatch']['value'];
 					if($this->ShopCart->save($shop_cart)) {
 						echo json_encode(array('result'=>true, 'message'=>'Se aplicó el cupon', 'value'=>$batch['CouponBatch']['value']));
 					} else {

@@ -143,7 +143,8 @@ class OrdersController extends AppController {
 		$shop_cart = $this->requestAction('/shop_carts/getCart');
 		if(!empty($this->data)) {
 			if($shop_cart) {
-				debug($shop_cart);
+				//debug($shop_cart);
+				debug($this->data);
 				/**
 				 * El carrito existe, pasar a recolectar/generar la
 				 * información necesaria para crear la orden

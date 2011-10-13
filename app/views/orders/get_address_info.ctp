@@ -83,9 +83,9 @@ $120.000 tampoco tienen costo.
 <div id="cupon" class="twCenMt">
 	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<?php if($shop_cart['ShopCart']['coupon_id']) : ?>
-	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_value'])."%"?></span></h1>
+	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
 	<?php endif; ?>
-	<?php $coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_value'])) $coupon_value = $shopping_cart['ShopCart']['coupon_value']; ?>
+	<?php $coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount']; ?>
 	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
@@ -101,7 +101,7 @@ $120.000 tampoco tienen costo.
 <?php
 	if(isset($subtotal)) {
 		e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal)));
-		$coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_value'])) $coupon_value = $shopping_cart['ShopCart']['coupon_value'];
+		$coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount'];
 		e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $coupon_value)))));
 	} else {
 		e($this->Form->hidden('Order.subtotal', array('value'=>0)));
