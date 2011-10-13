@@ -29,7 +29,7 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('style.css');
+		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
@@ -37,26 +37,66 @@
 	?>
 </head>
 <body>
-	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
+    	<div class="wrapper">
+        	<a class="logo_header" href="#">Excelenter</a>
+            <form name="buscador">
+            <input type="text" class="input_buscar" placeholder="Buscar..."/>
+            <input type="submit" class="submit" value="" />
+            </form>
+            <ul id="main_menu">
+            	<li><a href="" style="background-image: url(/img/inicio.png); width: 54px;"></a></li>
+                <li><a href="" style="background-image: url(/img/productos.png); width: 111px;"></a></li>
+                <li><a href="" style="background-image: url(/img/empresas.png); width: 98px;"></a></li>
+                <li class="ultimo"><a href="" style="background-image: url(/img/contactenos.png); width: 136px; height: 18px;"></a></li>
+                <div style="clear: both"></div>
+            </ul>                
+        </div>
+    </div>
+    <div id="container">
+    	<div id="zona_gamers" class="border_radius">
+        	<a class="border_radius" href="#">zona gamers</a>
+        </div>
+        <div id="slide" class="border_radius"></div>
+        <div id="login" class="border_radius">
+        	<h1 class="titulos_lateral">Área de clientes</h1>
+            <form name="login">
+            <h2>Usuario:</h2>
+            <input type="text" class="input"/>
+            <h2>Password:</h2>
+            <input type="text" class="input"/>
+            <h3><a href="#">¿Olvido su contraseña?</a></h3>
+            <a href="">registrarse</a>
+            <input type="submit" class="submit" />
+            </form>
+            
+        </div>
+        <div id="content" class="border_radius">
+        	<?php echo $content_for_layout; ?>
+        </div>
+        <div id="respaldados" class="border_radius"></div>
+        <div style="clear:both"></div>
+    </div>
+    <div id="footer">
+    	<span class="logo_footer">logo footer</span>
+        <span class="linea_footer">linea footer</span>
+        <div class="wrapper">
+        	<ul>
+            	<li><h1>Nuestra Empresa</h1></li>
+                <li><a href="#">¿Quienes somos?</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Procesos de pago</a></li>
+                <li><a href="#">Políticas de Garantía</a></li>
+            </ul>
+            <ul id="menu_footer">
+            	<li><h1>Encuentranos también en:</h1></li>
+                <li class="facebook"><a href="#">facebook</a></li>
+                <li class="twitter"><a href="#">twitter</a></li>
+            </ul>
+	        <h3>Excelenter.com.co  2011 Copyright        Todos los derechos reservados - Diseño y desarrollo por Bloom</h3>            
+        </div> 
 
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $content_for_layout; ?>
-
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
-					'http://www.bloomweb.co/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
-		</div>
-	</div>
+    </div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
