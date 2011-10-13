@@ -122,15 +122,24 @@ class OrdersController extends AppController {
 	/**
 	 * Generar la orden como tal
 	 */
-	function mailingMethod($refVenta, $descripcion, $valor, $firma, $email, $moneda, $nombre) {
+	function mailingMethod($data) {
 		$this->layout="carrito";
-		$this->set('refVenta', $refVenta);
-		$this->set('descripcion', $descripcion);
-		$this->set('valor', $valor);
-		$this->set('firma', $firma);
-		$this->set('email', $email);
-		$this->set('moneda', $moneda);
-		$this->set('nombre', $nombre);
+		$shop_cart = $this->requestAction('/shop_carts/getCart');
+		$data = split("~", urldecode($data));
+		$this->set('refVenta', $data[0]);
+		$this->set('descripcion', $data[1]);
+		$this->set('valor', $data[2]);
+		$this->set('firma', $data[3]);
+		$this->set('email', $data[4]);
+		$this->set('moneda', $data[5]);
+		$this->set('nombre', $data[6]);
+		$this->set('extra1', $shop_cart['ShopCart']['id']);
+		$this->set('shop_cart', $shop_cart);
+		$this->loadModel('User');
+		$user_id = $this->Session->read('Auth.User.id');
+		$user = null;
+		if($user_id) $user = $this->User->read(null, $user_id);
+		$this->set('user', $user);
 	}
 	
 	/**
@@ -165,57 +174,24 @@ class OrdersController extends AppController {
 					}
 					
 					// Description
-					$description = "Pago de compra en www.colorstennis.com :: Referencia $order_code";
+					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
 					
 					// Valor
-					$valor = 0;
+					$valor = $this->data['Order']['total'];
 					
 					// Moneda
 					$moneda = "COP";
 					
 					// Nombre
-					$nombre = "";
+					$nombre = $this->data['Envio']['name'] . " " . $this->data['Envio']['surname'];
+					
+					// Email
+					$email = $this->data['Envio']['email'];
 					
 					// Firma :: 132f4e12b03 <-- llave
 					// formato firma --> "llaveEncripcion~usuarioId~refVenta~valor~moneda"
 					$firma = "132f4e12b03~76075~$order_code~$valor~$moneda";
 					$firma = md5($firma);
-					
-					/*
-					 
-					[Envio] => Array
-				        (
-				            [full_name] =>  
-				            [country] => Colombia
-				            [name] => Julio
-				            [surname] => Dominguez
-				            [address] => Calle 12 # 85 - 115
-				            [state] => Valle Del Cauca
-				            [city] => Santiago De Cali
-				            [phone] => 3307737
-				            [mobile] => 
-				            [authorize] => 0
-				            [conditions] => 0
-				        )
-				
-				    [Gift] => Array
-				        (
-				            [country] => 
-				            [name] => 
-				            [surname] => 
-				            [address] => 
-				            [state] => 
-				            [city] => 
-				            [phone] => 
-				        )
-				
-				    [Order] => Array
-				        (
-				            [subtotal] => 273000
-				            [total] => 229320
-				        )
-					 
-					 */
 					
 					/**
 					 * Organizar la información en el carrito de compras
@@ -236,20 +212,21 @@ class OrdersController extends AppController {
 					
 					for ($i=0; $i < count($shop_cart['ShopCartItem']); $i++) {
 						if($shop_cart['ShopCartItem'][$i]['is_gift']) {
-							$shop_cart['ShopCartItem'][$i]['nombre'] = $this->data['Gift']['name']; 
-							$shop_cart['ShopCartItem'][$i]['apellido'] = $this->data['Gift']['surname'];
-							$shop_cart['ShopCartItem'][$i]['pais'] = $this->data['Gift']['country'];
-							$shop_cart['ShopCartItem'][$i]['estado'] = $this->data['Gift']['state'];
-							$shop_cart['ShopCartItem'][$i]['ciudad'] = $this->data['Gift']['city'];
-							$shop_cart['ShopCartItem'][$i]['direccion'] = $this->data['Gift']['address'];
-							$shop_cart['ShopCartItem'][$i]['telefono'] = $this->data['Gift']['phone'];
+							$this->ShopCart->ShopCartItem->read(null, $shop_cart['ShopCartItem'][$i]['id']);
+							$this->ShopCart->ShopCartItem->saveField('nombre', $this->data['Gift']['name']);
+							$this->ShopCart->ShopCartItem->saveField('apellido', $this->data['Gift']['surname']);
+							$this->ShopCart->ShopCartItem->saveField('pais', $this->data['Gift']['country']);
+							$this->ShopCart->ShopCartItem->saveField('estado', $this->data['Gift']['state']);
+							$this->ShopCart->ShopCartItem->saveField('ciudad', $this->data['Gift']['city']);
+							$this->ShopCart->ShopCartItem->saveField('direccion', $this->data['Gift']['address']);
+							$this->ShopCart->ShopCartItem->saveField('telefono', $this->data['Gift']['phone']);
 						}
 					}
 					
 					if($this->ShopCart->save($shop_cart)) {
 						// Redireccionar a la información final de envío
 						// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
-						$this->redirect(array('action'=>'mailingMethod', $order_code, $descripcion, $valor, $firma, $email, $moneda, $nombre));
+						$this->redirect(array('action'=>'mailingMethod', urlencode("$order_code~$descripcion~$valor~$firma~$email~$moneda~$nombre")));
 					}
 				} else {
 					/**
