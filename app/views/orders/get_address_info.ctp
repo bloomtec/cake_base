@@ -81,11 +81,11 @@ $120.000 tampoco tienen costo.
 	}
 ?>
 <div id="cupon" class="twCenMt">
-	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php echo number_format($subtotal, 0, ' ', '.');?></span></h1>
+	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<?php if($shop_cart['ShopCart']['coupon_id']) : ?>
 	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_value'])."%"?></span></h1>
 	<?php endif; ?>
-	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php echo number_format(($subtotal * (1 - $shop_cart['ShopCart']['coupon_value'])), 0, ' ', '.');?></span></h1>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $shopping_cart['ShopCart']['coupon_value'])), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
@@ -97,5 +97,13 @@ $120.000 tampoco tienen costo.
 	</div>
 	<div style="clear: both"></div>	
 </div>
-<?php e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal))); ?>
-<?php e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $shop_cart['ShopCart']['coupon_value']))))); ?></form>
+<?php
+	if(isset($subtotal)) {
+		e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal)));
+		e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $shop_cart['ShopCart']['coupon_value'])))));
+	} else {
+		e($this->Form->hidden('Order.subtotal', array('value'=>0)));
+		e($this->Form->hidden('Order.total', array('value'=>0)));
+	}
+?>
+</form>
