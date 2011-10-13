@@ -40,7 +40,7 @@
 		}
 		$this-><?php echo $currentModelName ?>->recursive = 0;
 		<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-		$this->set('<?php echo $pluralName ?>', $this->paginate(array('<?php echo $parent_id?>'=>$id)));
+		$this->set('<?php echo $pluralName ?>', $this-><?php echo  $currentModelName ?>->find('all',array('conditions'=>array('<?php echo $parent_id?>'=>$id),'order'=>'sort ASC')));
 		$this->set('parent_id',$id);
 			<?php $parentModel=substr($currentModelName,0,strpos($currentModelName, 'Picture'));?>
 		$parent=$this-><?php echo $currentModelName ?>-><?php echo $parentModel ?>->read(null,$id); 
@@ -139,10 +139,12 @@
 			$this->flash(sprintf(__('Invalid <?php echo strtolower($singularHumanName); ?>', true)), array('action' => 'index'));
 <?php endif; ?>
 		}
+		$toDelete=$this-><?php  echo $currentModelName; ?>->read(null,$id);
 		if ($this-><?php echo $currentModelName; ?>->delete($id)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true));
-			$this->redirect(array('action'=>'index'));
+			<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
+			$this->redirect(array('action'=>'view',$toDelete['<?php  echo $currentModelName; ?>']['<?php echo $parent_id; ?>']));
 <?php else: ?>
 			$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true), array('action' => 'index'));
 <?php endif; ?>
@@ -207,4 +209,37 @@
 		$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> was not archived', true), array('action' => 'index'));
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
+	}
+	function <?php echo $admin; ?>uploadfy_add() {
+	<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id"; ?>
+		if($_POST["name"]&&$_POST["folder"]){
+			if(isset($_POST['parent_id'])){
+				$picture['<?php echo $currentModelName; ?>']['<?php echo $parent_id; ?>']=$_POST["parent_id"];
+				$picture['<?php echo $currentModelName; ?>']['path']=$_POST["name"];
+				$this-><?php echo $currentModelName; ?>->create();
+				$this-><?php echo $currentModelName; ?>->save($picture);
+				echo $this-><?php echo $currentModelName; ?>->id;
+			}else{
+				
+				echo false;
+			}
+			
+		}else{
+			echo false;
+		}
+		
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
+	
+	function <?php echo $admin; ?>reOrder(){
+    	foreach($this->data["Item"] as $id=>$position){
+    		$this-><?php echo $currentModelName; ?>->id=$id;
+    		$this-><?php echo $currentModelName; ?>->saveField("sort",$position); 
+    	}
+		echo true;
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		exit();
 	}

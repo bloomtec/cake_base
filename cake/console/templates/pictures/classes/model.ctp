@@ -138,4 +138,11 @@ if (!empty($associations['hasAndBelongsToMany'])):
 	echo "\n\t);\n\n";
 endif;
 ?>
+	
+	function afterSave($created){
+		if($created){
+			$this->data['<?php echo $name; ?>']['sort']=10000;
+			$this->save($this->data);
+		}
+	}
 }

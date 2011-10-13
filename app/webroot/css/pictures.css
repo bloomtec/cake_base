@@ -8,9 +8,10 @@
 	width:200px;
 	height: 210px;
 	background: #111111;
-	margin:1em;
+	margin:0.5em;
 	text-align: center;
 	position:relative;
+	list-style: none;
 }
  .image-container .actions{
  	width:100%;
