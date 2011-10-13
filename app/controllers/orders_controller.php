@@ -22,7 +22,7 @@ class OrdersController extends AppController {
 		$this->autoRender = false;
 		//Extra 1 es el id del usuario y la cantidad id:cantidad
 		//Extra 2 es la cadena de ids de los productos de la venta
-		debug($_POST);
+		//debug($_POST);
 		/*
 		$productox=$this->Product->read(null,1);
 		$pdocutox["Product"]["descripcion"]=print_r($_POST,false);
@@ -110,7 +110,10 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
-		
+		$this->autoRender=false;
+		debug($_POST);
+		exit(0);
+		return;
 	}
 
 	/**
