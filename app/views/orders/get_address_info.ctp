@@ -8,6 +8,7 @@
 	$celular = "";
 	$departamento = "";
 	$ciudad = "";
+	$email = "";
 	if($user) {
 		$pais = $user['UserField']['country'];
 		$nombre = $user['UserField']['name'];
@@ -17,6 +18,7 @@
 		$celular = $user['UserField']['mobile'];
 		$departamento = $user['UserField']['state'];
 		$ciudad = $user['UserField']['city'];
+		$email = $user['User']['email'];
 	}
 ?>
 <?php e($this->Form->create('Order')); ?>
@@ -41,13 +43,14 @@ $120.000 tampoco tienen costo.
 		<?php e($this->Form->input('Envio.address', array('label'=>'Dirección', 'value'=>$direccion))); ?>
 		<?php e($this->Form->input('Envio.state', array('label'=>'Departamento', 'value'=>$departamento))); ?>
 		<?php e($this->Form->input('Envio.city', array('label'=>'Ciudad', 'value'=>$ciudad))); ?>
+		<?php e($this->Form->input('Envio.email', array('label'=>'Correo Electrónico', 'value'=>$email))); ?>
 		<?php e($this->Form->input('Envio.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
 		<?php e($this->Form->input('Envio.mobile', array('label'=>'Celular', 'value'=>$celular))); ?>
 		<div style="clear: both"></div>
-		<input id="EnvioAuthorize" name="data[Envio][authorize]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.authorize', array('label'=>false))); ?>
 		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
 		<div style="clear: both"></div>
-		<input id="EnvioConditions" name="data[Envio][conditions]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.conditions', array('label'=>false))); ?>
 		<label for="EnvioConditions" class="azul">  Acepto terminos y condiciones de la compra.</label>
 		<div style="clear: both"></div>
 	</div>

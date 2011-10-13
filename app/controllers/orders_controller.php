@@ -143,8 +143,6 @@ class OrdersController extends AppController {
 		$shop_cart = $this->requestAction('/shop_carts/getCart');
 		if(!empty($this->data)) {
 			if($shop_cart) {
-				//debug($shop_cart);
-				debug($this->data);
 				/**
 				 * El carrito existe, pasar a recolectar/generar la
 				 * información necesaria para crear la orden
@@ -183,9 +181,76 @@ class OrdersController extends AppController {
 					$firma = "132f4e12b03~76075~$order_code~$valor~$moneda";
 					$firma = md5($firma);
 					
-					// Redireccionar a la información final de envío
-					// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
-					//$this->redirect(array('action'=>'mailingMethod', $order_code, $descripcion, $valor, $firma, $email, $moneda, $nombre));
+					/*
+					 
+					[Envio] => Array
+				        (
+				            [full_name] =>  
+				            [country] => Colombia
+				            [name] => Julio
+				            [surname] => Dominguez
+				            [address] => Calle 12 # 85 - 115
+				            [state] => Valle Del Cauca
+				            [city] => Santiago De Cali
+				            [phone] => 3307737
+				            [mobile] => 
+				            [authorize] => 0
+				            [conditions] => 0
+				        )
+				
+				    [Gift] => Array
+				        (
+				            [country] => 
+				            [name] => 
+				            [surname] => 
+				            [address] => 
+				            [state] => 
+				            [city] => 
+				            [phone] => 
+				        )
+				
+				    [Order] => Array
+				        (
+				            [subtotal] => 273000
+				            [total] => 229320
+				        )
+					 
+					 */
+					
+					/**
+					 * Organizar la información en el carrito de compras
+					 */
+					$this->loadModel('ShopCart');
+					$shop_cart['ShopCart']['nombre'] = $this->data['Envio']['name'];
+					$shop_cart['ShopCart']['apellido'] = $this->data['Envio']['surname'];
+					$shop_cart['ShopCart']['pais'] = $this->data['Envio']['country'];
+					$shop_cart['ShopCart']['estado'] = $this->data['Envio']['state'];
+					$shop_cart['ShopCart']['ciudad'] = $this->data['Envio']['city'];
+					$shop_cart['ShopCart']['direccion'] = $this->data['Envio']['address'];
+					$shop_cart['ShopCart']['telefono'] = $this->data['Envio']['phone'];
+					$shop_cart['ShopCart']['celular'] = $this->data['Envio']['mobile'];
+					$shop_cart['ShopCart']['email'] = $this->data['Envio']['email'];
+					$shop_cart['ShopCart']['subtotal'] = $this->data['Order']['subtotal'];
+					$shop_cart['ShopCart']['descuento'] = $this->data['Order']['subtotal'] - $this->data['Order']['total'];
+					$shop_cart['ShopCart']['total'] = $this->data['Order']['total'];
+					
+					for ($i=0; $i < count($shop_cart['ShopCartItem']); $i++) {
+						if($shop_cart['ShopCartItem'][$i]['is_gift']) {
+							$shop_cart['ShopCartItem'][$i]['nombre'] = $this->data['Gift']['name']; 
+							$shop_cart['ShopCartItem'][$i]['apellido'] = $this->data['Gift']['surname'];
+							$shop_cart['ShopCartItem'][$i]['pais'] = $this->data['Gift']['country'];
+							$shop_cart['ShopCartItem'][$i]['estado'] = $this->data['Gift']['state'];
+							$shop_cart['ShopCartItem'][$i]['ciudad'] = $this->data['Gift']['city'];
+							$shop_cart['ShopCartItem'][$i]['direccion'] = $this->data['Gift']['address'];
+							$shop_cart['ShopCartItem'][$i]['telefono'] = $this->data['Gift']['phone'];
+						}
+					}
+					
+					if($this->ShopCart->save($shop_cart)) {
+						// Redireccionar a la información final de envío
+						// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
+						$this->redirect(array('action'=>'mailingMethod', $order_code, $descripcion, $valor, $firma, $email, $moneda, $nombre));
+					}
 				} else {
 					/**
 					 * No hay ítems en el carrito, por ende se hace nada.
