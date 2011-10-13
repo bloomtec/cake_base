@@ -77,5 +77,8 @@ class Brand extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
+	function beforeSave(){
+		$this->data['Brand']['slug']=strtolower(str_ireplace(" ", "-", $this->data['Brand']['name']));
+		return true;
+	}
 }

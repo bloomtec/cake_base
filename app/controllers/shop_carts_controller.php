@@ -36,7 +36,7 @@ class ShopCartsController extends AppController {
 				$product = $this->Product->read(null, $item['foreign_key']);
 				$value = $product['Product']['price'];
 				$quantity = $item['quantity'];
-				$total_price = $quantity * $value;
+				$total_price += $quantity * $value;
 			}
 			$info['ShopCart']['items']=$total_items;
 			$info['ShopCart']['total']= "$" . number_format($total_price, 0, ' ', '.');
@@ -46,7 +46,37 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
-	
+	function setCoupon($coupon_serial = null) {
+		$this->autoRender=false;
+		$this->layout="ajax";
+		// Verificar que el cupon existe
+		if($coupon_serial) {
+			if($coupon = $this->ShopCart->Coupon->findBySerial($coupon_serial)) {
+				// El cupon existe -> validar que no este en otro carrito
+				if(($this->ShopCart->findByCouponId($coupon['Coupon']['id'])) || ($this->ShopCart->User->Order->findByCouponId($coupon['Coupon']['id']))) {
+					// Ya esta el cupon en otro carrito
+					echo json_encode(array('result'=>false, 'message'=>'El cupon ya ha sido previamente asignado a otro carrito de compras'));
+				} else {
+					// El cupon no ha sido asignado en otro carrito
+					$batch = $this->ShopCart->Coupon->CouponBatch->read(null, $coupon['Coupon']['coupon_batch_id']);
+					$shop_cart = $this->getCart();
+					$shop_cart['ShopCart']['coupon_id']=$coupon['Coupon']['id'];
+					$shop_cart['ShopCart']['coupon_discount']=$batch['CouponBatch']['value'];
+					if($this->ShopCart->save($shop_cart)) {
+						echo json_encode(array('result'=>true, 'message'=>'Se aplicó el cupon', 'value'=>$batch['CouponBatch']['value']));
+					} else {
+						echo json_encode(array('result'=>false, 'message'=>'Ocurrió un error al aplicar el cupon'));
+					}
+				}
+			} else {
+				// El cupon no existe
+				echo json_encode(array('result'=>false, 'message'=>'El cupon ingresado no existe'));
+			}
+		} else {
+			echo json_encode(array('result'=>false, 'message'=>'No ha ingresado un serial de cupon'));
+		}		
+		exit(0);
+	}
 	/**
 	 * Encontrar el carrito
 	 */
@@ -141,6 +171,7 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
+	
 	/**
 	 * Remover todos los  ítems del carrito
 	 */
@@ -156,6 +187,7 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
+	
 	/**
 	 * Actualizar la cantidad de un ítem
 	 */
@@ -191,6 +223,7 @@ class ShopCartsController extends AppController {
 		$this -> set('shopping_cart', $shopping_cart);
 		$this->set('referer',$this->referer());
 	}
+
 	function refresh() {
 		$this->layout='ajax';
 		$shopping_cart = $this->getCart();

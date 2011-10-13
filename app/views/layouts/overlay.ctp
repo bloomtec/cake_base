@@ -1,4 +1,3 @@
-<?php echo $this->Html->css('styles');?>
 <div class='overlay-wrap'>
 	<div class="header">
 		<h2><?php echo $titulo;?></h2>

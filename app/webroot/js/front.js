@@ -95,8 +95,8 @@ $(function() {
 	}
 	bloomCart.resumeRefresh=function(){
 		BJS.JSON('/shopCarts/getResume',{},function(shopCart){
-			 $('span.cart-num-items').html(shopCart.ShopCart.items);
-			 $('span.cart-price-total').html(shopCart.ShopCart.total);
+			if(shopCart) $('span.cart-num-items').html(shopCart.ShopCart.items);
+			 if(shopCart) $('span.cart-price-total').html(shopCart.ShopCart.total);
 		});
 	}
 
@@ -183,11 +183,32 @@ $(function() {
 		onBeforeLoad : function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load(this.getTrigger().attr("href"));
+		},
+		onLoad:function(){
+			refreshCufon();
 		}
 	});
 	/**
 	 * Funcionalidad Carrito
 	 */
+	// Aplicar cupon
+	$("#set-coupon").live('submit', function(e){
+		e.preventDefault();
+		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
+			bloomCart.refresh();
+		});
+	});
+	
+	// Continuar con la orden
+	$(".envio-form").click(function(e){
+		$("#OrderGetAddressInfoForm").submit();		
+	});
+	
+	// Página envío
+	$(".mailing-form").click(function(e){
+		$("#PagosOnlineForm").submit();
+	});
+	
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);
@@ -219,16 +240,29 @@ $(function() {
 		console.log(itemId);
 		bloomCart.removeAll(itemId);
 	});
-	/**
-	// Enviar el formulario con los datos de envío
-	$(".add-to-cart").click(function(e){
-		$("#OrderGetAddressInfoForm").submit();
-	});*/
+	
+	$('.buscador').submit(function(e){
+		e.preventDefault();
+		$('#overlay2').overlay({
+			mask : 'black',
+			load:true,
+			onBeforeLoad : function() {
+			var wrap = this.getOverlay().find(".contentWrap");
+			wrap.load('/products/search/'+$('#query').val());
+			},
+			onLoad:function(){
+				refreshCufon();
+			}
+		}).load();
+	});
+
 });
 function refreshCufon(){
 	Cufon.replace('.tahoma', {
 		fontFamily : 'Tahoma',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true}
+
 	});
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
@@ -237,7 +271,9 @@ function refreshCufon(){
 
 	Cufon.replace('.twCenMt', {
 		fontFamily : 'TwCenMt',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#00CFB5'}
 	});
 	
 	Cufon.replace('.halo', {

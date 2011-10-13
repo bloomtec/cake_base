@@ -8,6 +8,7 @@
 	$celular = "";
 	$departamento = "";
 	$ciudad = "";
+	$email = "";
 	if($user) {
 		$pais = $user['UserField']['country'];
 		$nombre = $user['UserField']['name'];
@@ -17,8 +18,10 @@
 		$celular = $user['UserField']['mobile'];
 		$departamento = $user['UserField']['state'];
 		$ciudad = $user['UserField']['city'];
+		$email = $user['User']['email'];
 	}
 ?>
+<?php e($this->Form->create('Order')); ?>
 <p class="costo_envio tahoma">
 Recuerda que puedes recibir tu pedido en cualquier parte de Colombia, el tiempo aproximado de entrega es de 3 a 5 días después de haber realizado el 
 pago.  También puedes enviar un regalo a cualquier parte de Colombia, pero si tienes varios productos como regalo, todos serán enviados a una única 
@@ -26,47 +29,67 @@ dirección. El costo del envió en contra entrega, envíos a la ciudad de Cali n
 $120.000 tampoco tienen costo. 
 </p>
 <div class="datos_envio form_envio">
-	<h1>Datos de envio</h1>
+	<h1 class="tahoma">Datos de envio</h1>
 </div>
 <div id="der" class="datos_envio form_envio">
-	<h1 class="der">Datos de envio para el regalo</h1>
+	<h1 class="der tahoma">Datos de envio para el regalo</h1>
 </div>
 <div class="form_envio tahoma">
-	<?php e($this->Form->create('Order')); ?>
+	<div class="form">
 		<?php e($this->Form->input('Envio.full_name', array('label'=>'Datos Usuario', 'value'=>$nombre . " " . $appelido))); ?>
 		<?php e($this->Form->input('Envio.country', array('label'=>'País', 'value'=>$pais))); ?>
 		<?php e($this->Form->input('Envio.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>
 		<?php e($this->Form->input('Envio.surname', array('label'=>'Apellido', 'value'=>$appelido))); ?>
-		<?php e($this->Form->input('Envio.address', array('label'=>'Nombre', 'value'=>$direccion))); ?>
+		<?php e($this->Form->input('Envio.address', array('label'=>'Dirección', 'value'=>$direccion))); ?>
+		<?php e($this->Form->input('Envio.state', array('label'=>'Departamento', 'value'=>$departamento))); ?>
+		<?php e($this->Form->input('Envio.city', array('label'=>'Ciudad', 'value'=>$ciudad))); ?>
+		<?php e($this->Form->input('Envio.email', array('label'=>'Correo Electrónico', 'value'=>$email))); ?>
 		<?php e($this->Form->input('Envio.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
 		<?php e($this->Form->input('Envio.mobile', array('label'=>'Celular', 'value'=>$celular))); ?>
-		<?php e($this->Form->input('Envio.state', array('label'=>'Departamento'))); ?>
-		<?php e($this->Form->input('Envio.city', array('label'=>'Ciudad'))); ?>
 		<div style="clear: both"></div>
-		<input id="EnvioAuthorize" name="data[Envio][authorize]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.authorize', array('label'=>false))); ?>
 		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
 		<div style="clear: both"></div>
-		<input id="EnvioConditions" name="data[Envio][conditions]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.conditions', array('label'=>false))); ?>
 		<label for="EnvioConditions" class="azul">  Acepto terminos y condiciones de la compra.</label>
 		<div style="clear: both"></div>
-	</form>
+	</div>
 	<div style="clear: both"></div>
 </div>
-<div class="form_envio der">
-	<form>
+<div class="form_envio der tahoma">
+	<div class="form">
 		<?php e($this->Form->input('Gift.country', array('label'=>'País'))); ?>
-		<?php e($this->Form->input('Gift.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>
-		<?php e($this->Form->input('Gift.surname', array('label'=>'Apellido', 'value'=>$appelido))); ?>
-		<?php e($this->Form->input('Gift.address', array('label'=>'Nombre', 'value'=>$direccion))); ?>
-		<?php e($this->Form->input('Gift.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
+		<?php e($this->Form->input('Gift.name', array('label'=>'Nombre'))); ?>
+		<?php e($this->Form->input('Gift.surname', array('label'=>'Apellido'))); ?>
+		<?php e($this->Form->input('Gift.address', array('label'=>'Dirección'))); ?>
 		<?php e($this->Form->input('Gift.state', array('label'=>'Departamento'))); ?>
 		<?php e($this->Form->input('Gift.city', array('label'=>'Ciudad'))); ?>
-	</form>
+		<?php e($this->Form->input('Gift.phone', array('label'=>'Número Telefónico'))); ?>
+	</div>
 	<div style="clear: both"></div>
 </div>
 <div style="clear: both"></div>
-<div id="cupon" class="twCenMt">	
-	<h1 class="titulos_rosado">TOTAL <span>$457.000</span></h1>
+<?php
+	if(empty($shop_cart['ShopCartItem'])) {
+		// No hay items en el carrito
+		e("<tr><td colspan='6'><h2>NO HAY ITEMS EN EL CARRITO</h2></td></tr>");
+	} else {
+		$subtotal=0;
+		foreach($shop_cart['ShopCartItem'] as $shoppin_cart_item) {
+			$model_name = $shoppin_cart_item['model_name'];
+			$foreign_key =  $shoppin_cart_item['foreign_key'];
+			$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key");
+			$subtotal+=$item[$model_name]["price"]*$shoppin_cart_item['quantity'];
+		}
+	}
+?>
+<div id="cupon" class="twCenMt">
+	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
+	<?php if($shop_cart['ShopCart']['coupon_id']) : ?>
+	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
+	<?php endif; ?>
+	<?php $coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount']; ?>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
@@ -78,3 +101,14 @@ $120.000 tampoco tienen costo.
 	</div>
 	<div style="clear: both"></div>	
 </div>
+<?php
+	if(isset($subtotal)) {
+		e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal)));
+		$coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount'];
+		e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $coupon_value)))));
+	} else {
+		e($this->Form->hidden('Order.subtotal', array('value'=>0)));
+		e($this->Form->hidden('Order.total', array('value'=>0)));
+	}
+?>
+</form>

@@ -33,27 +33,25 @@
  * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
-	var $components = array('Auth', 'Acl', 'Session');
+	var $components = array(
+		'Auth' => array(
+			'fields' => array(
+				'username'=>'email',
+				'password'=>'password'
+			)
+		),
+		'Session',
+	);
 	
 	function beforeFilter() {
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
+			$this->Auth->loginAction=array('controller'=>'users','action'=>'login','admin'=>true);
 			$this->Auth->deny($this->action);
 		} else {
 			$this->Auth->allow($this->action);
 		}
-		/**
-		 * Cookie
-		 * $this->Cookie->name = 'Colors';
-		 * $this->Cookie->time = '5 Days'; // or '1 hour'
-		 * $this->Cookie->path = '/';
-		 * $this->Cookie->domain = 'localhost';
-		 * $this->Cookie->secure = false; //i.e. only sent if using secure HTTPS
-		 * $this->Cookie->key = 'sfWQAFgg5as57ees344ddhyuj31sXOw!';
-		 * $this->Cookie->write('_data', $this->Session->read('Auth.User.id'));
-		 * $user_id = $_COOKIE["_data"];
-		*/
 	}
 	
 	function getList(){

@@ -6,6 +6,7 @@ class CouponBatchesController extends AppController {
 	function admin_add() {
 		if (!empty($this -> data)) {
 			$this -> CouponBatch -> create();
+			$this -> data['CouponBatch']['value'] = ($this -> data['CouponBatch']['value'] / 100); 
 			if ($this -> CouponBatch -> save($this -> data)) {
 				for($i=$this->data['CouponBatch']['quantity']; $i > 0; $i--) {
 					$coupon_made = false;

@@ -69,9 +69,9 @@ select{
 #content_wrapper {
 	min-height: 500px;
 	background-color: #282828;
-	-moz-box-shadow: 2px 3px 2px #888888;
-	-webkit-box-shadow: 2px 3px 2px #888888;
-	box-shadow: 2px 3px 2px #888888;
+	-moz-box-shadow: 0.9px 0.3px 10px #999;
+	-webkit-box-shadow: 0.9px 0.3px 10px #999;
+	box-shadow: 0.9px 0.3px 10px #999;
 	position: relative;
 	min-height: 1014px;
 }
@@ -558,6 +558,11 @@ ul.social li {
 #header ul li.home{
 	padding: 1px 23px;
 }
+/*aqui deben ir los estilos para la propiedad activa del menu del header*/
+#header ul li.home.activa{
+	
+}
+/*fin estilos*/
 #header ul li.home a{
 	font-size: 30px;
 }
@@ -575,8 +580,10 @@ ul.social li {
 	padding:0px;
 	top:89px;
 	
+	
 }
 #header .main_nav li {
+	
 	padding:3px 23px;
 	background-color:#F1F1F1;
 	margin-right:15px;
@@ -586,14 +593,25 @@ ul.social li {
 	-webkit-box-shadow:0.9px 0.3px 10px #999;
 	box-shadow:0.9px 0.3px 10px #999;
 }
+#header .main_nav li.current{
+	position:relative;
+	z-index:2;
+	box-shadow:0.9px -3.8px 3px  #b1afaf;
+
+}
 #header .main_nav li.categoria {
 	background-color:#282828;
-	
 }
+/*aqui deben ir los estilos para la propiedad activa del menu del header*/
+
+#header .main_nav li.categoria.activa{
+	z-index: 999;
+	box-shadow:none;
+}
+/*fin estilos*/
 #header .main_nav li a {
 	color:#00CFB5;
 	font-size:25px;
-	font-family:Tw Cen MT;
 }
 #header .main_nav li.categoria a {
 	color:#FFF;
@@ -835,6 +853,7 @@ ul li a.twitter {
 	color:#fff;
 	height: 28px;
 	float: right;
+	border:1px solid #FF90C4;
 
 }
 #pages #estaticas_info .formulario_contacto input.comentario{
@@ -917,11 +936,14 @@ h4.footer {
 		height:35px;
 		width:35px;
 	}
-#overlay {
-		background-image:url(http://static.flowplayer.org/img/overlay/transparent.png);
+#overlay ,#overlay2 {
+
 		color:#efefef;
 		height:531px;
 	}
+#overlay2 {
+	/*height: 600px;	*/
+}
 div.contentWrap {
 		height:531px;
 		overflow-y:auto;
@@ -957,12 +979,17 @@ div.contentWrap {
 	background-image: url(../img/trama-overlay.png);
 	height: 424px;
 	padding: 0 20px;
+	overflow: auto;
 }
 .overlay-wrap .content .wrapper{
 	width: 700px;
 	margin:0 auto;
 	padding-top: 82px;
 	height: 325px;
+}
+#overlay2 .content .wrapper{
+	width:890px;
+	padding-top: 50px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -1058,6 +1085,10 @@ thead th{
 }
 tbody tr{
 	border-bottom: 1px solid #494949;
+}
+.quitar a{
+	text-decoration: none;
+	color:#7E7E7D;
 }
 tbody tr td{
 	padding:5px 0;
@@ -1185,11 +1216,13 @@ table.tahoma {
 	margin-left:0;
 	padding-left: 30px;
 }
+#der.datos_envio.form_envio h1.der{
+	font-size: 13px;
+}
 .datos_envio h1{
 	display:inline;
 	font-size: 13px;
 	color:#BCBCBC;
-	margin-right: 340px;
 }
 .datos_envio h1.der{
 	margin-right: 0;
@@ -1213,21 +1246,21 @@ table.tahoma {
 	border-left:1px solid #494949;
 	margin-left: 0;
 }
-.form_envio form label, .form_envio form span {
+.form_envio .form label, .form_envio .form span {
 	font-size: 12px;
 	color:#7E7E7D;
 	float:left;
 	width: 108px;
 }
-.form_envio form span{
+.form_envio .form span{
 	width: 200px;
 }
-.form_envio form input[type=checkbox]{
+.form_envio .form input[type=checkbox]{
 	display: block;
     float: left;
     margin-top: 8px;
 }
-.form_envio form label.azul{
+.form_envio .form label.azul{
 	float: none;
 	display: block;
 	margin-left: 29px;
@@ -1236,22 +1269,23 @@ table.tahoma {
     font-size: 10px;
     width: auto;
 }
-.form_envio form input[type=text], .form_envio form select, .form_envio form span{
+.form_envio .form input[type=text], .form_envio .form select, .form_envio .form span{
 	margin-bottom: 15px;
 }
-.form_envio form select{
+.form_envio .form select{
 	width: 145px;
 	height: 20px;
 	border:1px solid #858585;
 	background-color: #333333;
 	margin-left:20px;
 }
-.form_envio form input[type=text]{
+.form_envio .form input[type=text]{
 	width:190px;
 	height: 20px;
 	border:1px solid #858585;
 	background-color: #333333;
 	margin-left:20px;
+	color:#fff;
 }
 
 .envio_regalo h1{
@@ -1361,4 +1395,96 @@ table.tahoma {
 .olvidar_contr form label, .recomendar form label{
 	border-right: 1px solid #494949;
 	padding-right:4px;
+}
+.buscar .izq{
+	width: 250px;
+	min-height: 358px;
+	float: left;
+	border-right:1px solid #494949;
+}
+.buscar .izq img, .brands .marcas img{
+	background-color: #333;
+	width: 127px;
+	height: 41px;
+	float: left;
+	border:1px solid #858585;
+}
+.buscar .izq h1, .brands .marcas h1{
+	font-size:20px;
+	color:#EC1C75;
+	margin:0;
+	width: 39%;
+	float: left;
+	margin-left: 10px;
+}
+.buscar .izq h2, .brands .marcas h2{
+	font-size: 14px;
+	color:#00CFB5;
+	margin:0;
+	width: 39%;
+	float: left;
+	margin-left: 10px;
+}
+.buscar .izq h3, .buscar .der h3{
+	font-size: 12px;
+	color:#7E7E7D;
+	margin-bottom: 25px;
+	font-style: normal;
+}
+.izq .marcas{
+	margin-bottom:25px;
+}
+.buscar .der{
+	width: 605px;
+	min-height: 358px;
+	float: left;
+	padding-left: 25px;
+}
+.brands{
+	margin-top:20px;
+}
+.brands .marcas{
+	width: 230px;
+	border-right:1px solid #494949;
+	height: 70px;
+	float: left;
+}
+.brands .marcas img{
+	margin:0;
+}
+.brands .marcas{
+	margin-bottom: 25px;
+}
+.brands p{
+	width: 450px;
+	font-size: 12px;
+	float: right;
+	color:#7E7E7D;
+}
+.add-cart-confirm a{
+	color:#EC1C75;
+}
+/*ESTILOS EXCLUSIVOS LISTADO PRODUCCTOS BUSQUEDA*/
+#overlay2 ul.products{
+	margin:0 auto;
+	width: 585px;s
+}
+#overlay2 ul.products li {
+	margin-right: 6px;
+	float:left;
+	margin-bottom:35px;
+	
+}
+#overlay2  ul.products li h1{
+	margin-top:6px;
+	margin-bottom: 4px;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+#overlay2  ul li.info a, #overlay2  ul li.info img{
+	width: 140px;
+	height: 210px;
+	background-color: #fff;
+	display:block;
 }

@@ -8,7 +8,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 	<ul class='brands-menu'>
 		<?php foreach($brands as $librand):?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>" alt="<?php echo $librand["Brand"]["name"]?>">
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>" alt="<?php echo $librand["Brand"]["name"]?>">
 				<?php if(!isset($brand) || $librand["Brand"]["id"]!=$brand["Brand"]["id"]){?>
 				<img src="/img/uploads/<?php echo $librand["Brand"]["image_brand"];?>" rel="<?php echo $librand["Brand"]["image_hover"];?>" image="<?php echo $librand["Brand"]["image_brand"];?>" />
 				<?php }else{?>

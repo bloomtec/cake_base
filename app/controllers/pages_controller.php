@@ -45,6 +45,14 @@ class PagesController extends AppController {
 	function admin_ez(){
 		
 	}
+	function buscar(){
+		$this->layout='overlay2';
+		$this->set('titulo','RESULTADO DE BÚSQUEDA');
+	}
+	function marcas(){
+		$this->layout='overlay';
+		$this->set('titulo','MARCAS');
+	}
 	function notificacionDisponibilidad(){
 		$this->layout='overlay';
 		$this->set('titulo','notificarme cuando este disponible');

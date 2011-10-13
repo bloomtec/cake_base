@@ -8,7 +8,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 <div class="category">
 	<ul class='brands-menu'>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>" alt="<?php echo $librand["Brand"]["name"]?>" >
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>" alt="<?php echo $librand["Brand"]["name"]?>" >
 				<img src="/img/uploads/<?php echo $librand["Brand"]["image_brand"];?>" rel="<?php echo $librand["Brand"]["image_hover"];?>" image="<?php echo $librand["Brand"]["image_brand"];?>" />
 			</a>			
 		</li>
@@ -20,7 +20,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 		<?php if(!empty($librand["Subcategory"])): ?>
 		<?php foreach($librand["Subcategory"] as $subcategory):?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>/subcategory:<?php echo $subcategory['id']?>"><?php echo $subcategory["name"]; ?></a>
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategory:<?php echo $subcategory['id']?>"><?php echo $subcategory["name"]; ?></a>
 		</li>
 		<?php endforeach;?>
 		<?php endif;?>
@@ -34,7 +34,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 				$i++;
 		?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["id"]?>/subcategory:<?php echo $subcategory['id']?>">
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategory:<?php echo $subcategory['id']?>">
 				<img src="/img/uploads/200x200/<?php echo $product['image']?>" />
 			</a>
 		</li>
@@ -42,7 +42,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 		<?php endif;?>
 		<div style="clear: both"></div>
 	</ul>
-	<a class="azul twCenMt" href="/marcas/<?php echo $librand["Brand"]["id"]?>">VER CATALOGO DE <?php echo strtoupper($librand["Brand"]["name"]);?></a>
+	<a class="azul twCenMt" href="/marcas/<?php echo $librand["Brand"]["slug"]?>">VER CATALOGO DE <?php echo strtoupper($librand["Brand"]["name"]);?></a>
 	<div style="clear: both"></div>
 </div>
 <?php endforeach; ?>
