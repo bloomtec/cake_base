@@ -168,8 +168,10 @@ class InventoriesController extends AppController {
 					foreach($this->data['Inventory'] as $key=>$data) {
 						if($data) {
 							$prod_id_size_id = split(",", $key);
+							$prod_id = $prod_id_size_id[0];
 							$size_id = $this->requestAction("/sizes/getSizeID/".$prod_id_size_id[1]);
-							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id_size_id[0], 'Inventory.size_id'=>$size_id)));
+							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id, 'Inventory.size_id'=>$size_id)));
+							$inv_id = $inventory['Inventory']['id'];
 							$value = (int)($data);
 							$old_value = (int)$inventory['Inventory']['quantity'];
 							if(($new_value = $old_value + $value) >= 0) {
@@ -183,6 +185,8 @@ class InventoriesController extends AppController {
 									$this -> Inventory -> InventoryAudit -> set('new_value', $new_value);
 									$this -> Inventory -> InventoryAudit -> save();
 									$this -> Session -> setFlash(__('Se modificó el inventario.', true));
+								} else {
+									$this -> Session -> setFlash(__("Error al modificar inventario. Información :: size_id:$size_id - prod_id:$prod_id - inv_id:$inv_id", true));
 								}
 							} else {
 								$this -> Session -> setFlash(__('Está intentando restar más ítems de los que actualmente hay en uno o más campos. Revise cuidadosamente los datos e intente de nuevo.', true));
