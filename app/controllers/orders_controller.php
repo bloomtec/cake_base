@@ -20,13 +20,8 @@ class OrdersController extends AppController {
 
 	function confirmarPagosOnline() {
 		$this->autoRender = false;
-		//Extra 1 es el id del usuario y la cantidad id:cantidad
-		//Extra 2 es la cadena de ids de los productos de la venta
-		//debug($_POST);
-		/*
-		$productox=$this->Product->read(null,1);
-		$pdocutox["Product"]["descripcion"]=print_r($_POST,false);
-		$this->Product->save($pdocutox);
+		//Extra 1 es el id del carrito
+		//Extra 2 no lo estoy usando
 		$usuario_id=$_POST["usuario_id"];
 		$estado_pol=$_POST["estado_pol"];
 		$riesgo=$_POST["riesgo"];
@@ -35,7 +30,7 @@ class OrdersController extends AppController {
 		$ref_pol=$_POST["ref_pol"];
 		$firma=$_POST["firma"];
 		$extra1=$_POST["extra1"];
-		$extra2=$_POST["extra2"];
+		//$extra2=$_POST["extra2"];
 		$medio_pago=$_POST["medio_pago"];
 		$tipo_medio_pago=$_POST["tipo_medio_pago"];
 		$cuotas=$_POST["cuotas"];
@@ -47,60 +42,15 @@ class OrdersController extends AppController {
 		$cus=$_POST["cus"];
 		$banco_pse=$_POST["banco_pse"];
 		$email_comprador=$_POST["email_comprador"];
-		$productos=explode(",",$extra2);
-		$errors="";
-		if($estado_pol==4){
-			foreach($productos as $id_cantidad){
-				$datoProducto=explode(":",$id_cantidad);
-				$this->OnlineSale->create();
-				$producto=null;
-				$this->Product->recursive=-1;
-				$producto=$this->Product->read(null,$datoProducto[0]);
-				$OnlineSale=array(
-					"OnlineSale"=>array(
-						"user_id"=>$extra1,
-						"product_id"=>$producto["Product"]["id"],
-						"category_id"=>$producto["Product"]["category_id"],
-						"codigo_venta"=>$ref_venta,
-						"cantidad"=>$datoProducto[1],//cantidad
-						"valor_unit"=>$producto["Product"]["valor_venta"],
-						"subtotal"=>$producto["Product"]["valor_venta"]-$producto["Product"]["valor_iva"],
-						"valor_iva"=>$producto["Product"]["valor_iva"],
-						"valor_total"=>$producto["Product"]["valor_venta"]*$datoProducto[1]//cantidad
-					)
-				);
-				$this->OnlineSale->save($OnlineSale);
-				$this->OnlineSale->id=0;
-				$user=$this->User->read(null, $extra1);
-				if($user["User"]["role_id"]==4){
-					$user["User"]["role_id"]=5;
-					$this->User->save($user);
-				}
-			}
+		
+		if($codigo_respuesta_pol == 1) {
+			// Transacción Aprobada
+			$order = $this->Order->findByCode($ref_venta);
+			$this->Order->read(null, $order['Order']['id']);
+			$this->Order->saveField('order_status_id', 2); // Estado orden pagada
 		} else {
 			
 		}
-		*/
-		/*
-		 // Crear la orden
-				$this->Order->create();
-				$this->Order->set('code', $order_code); // Asignar el código de la orden
-				if(!empty($shop_cart['ShopCart']['user_id'])) {
-					// Si hay sesión de usuario entonces asignar el id del usuario
-					$this->Order->set('user_id', $shop_cart['ShopCart']['user_id']);
-				} else {
-					// Si no hay sesión asignar el user_agent
-					$this->Order->set('user_agent', $shop_cart['ShopCart']['user_agent']);
-				}
-				$this->Order->set('order_state', 1); // Asignar el estado de la orden
-				if(!empty($shop_cart['ShopCart']['coupon_id'])) {
-					$this->Order->set('coupon_id', $shop_cart['ShopCart']['coupon_id']);
-				}
-				if($this->Order->save()) {
-					foreach ($shop_cart['ShopCart']['ShopCartItem'] as $key => $cart_item) {
-						
-					}
-				}*/
 		
 		/**
 		 * fin recibir datos pagos online
@@ -110,8 +60,11 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
+		$post = $_POST;
+		$get = $_GET;
+		debug($post);
+		debug($get);
 		$this->autoRender=false;
-		debug($_POST);
 		exit(0);
 		return;
 	}
