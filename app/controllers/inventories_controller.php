@@ -171,7 +171,10 @@ class InventoriesController extends AppController {
 							$prod_id = $prod_id_size_id[0];
 							$size_id = $this->requestAction("/sizes/getSizeID/".$prod_id_size_id[1]);
 							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id, 'Inventory.size_id'=>$size_id)));
-							$inv_id = $inventory['Inventory']['id'];
+							$inv_id = -1;
+							if(!isset($inventory) && !empty($inventory)) {
+								$inv_id = $inventory['Inventory']['id'];
+							}
 							$value = (int)($data);
 							$old_value = (int)$inventory['Inventory']['quantity'];
 							if(($new_value = $old_value + $value) >= 0) {
