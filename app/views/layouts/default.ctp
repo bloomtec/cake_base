@@ -50,6 +50,7 @@
 		</div>
 		<div id="footer">
 			<a class="logo_2y1"></a>
+			<div style="clear: both"></div>
 		</div>
 	</div>	
 	<?php echo $this->element('sql_dump'); ?>

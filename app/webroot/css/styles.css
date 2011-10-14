@@ -40,9 +40,9 @@ body{
 	width: 180px;
 	height: 41px;
 	background-image: url(/img/logo_2y1.png);
-	position:absolute;
-	bottom:13px;
-	right: 50px;
+	margin-right:50px;
+	margin-bottom: 10px;
+	float: right;
 }
 #container .ilustracion{
 	margin-left:60px;
@@ -226,6 +226,10 @@ input.submit{
 	height: 20px;
 	background-color: #000000;
 	cursor: pointer;
+}
+#footer {
+	clear: both;
+	width: 100%;
 }
 /*validator*/
 #errors {
