@@ -171,7 +171,7 @@ class InventoriesController extends AppController {
 							$prod_id = (int)$prod_id_size_id[0];
 							$size_id = (int)$prod_id_size_id[1];
 							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id' => $prod_id, 'Inventory.size_id' => $size_id)));
-							if(!isset($inventory) && !empty($inventory)) {
+							if(!empty($inventory)) {
 								$inv_id = $inventory['Inventory']['id'];
 								$value = (int)($data);
 								$old_value = (int)$inventory['Inventory']['quantity'];
@@ -194,7 +194,6 @@ class InventoriesController extends AppController {
 								}
 							} else {
 								$this -> Session -> setFlash(__("¡No se encontró el inventario! :: Información :: size_id:$size_id - prod_id:$prod_id", true));
-								debug($inventory);
 							}
 						}
 					}					
