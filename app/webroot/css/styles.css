@@ -1269,7 +1269,7 @@ table.tahoma {
     font-size: 10px;
     width: auto;
 }
-.form_envio .form input[type=text], .form_envio .form select, .form_envio .form span{
+.form_envio .form input[type=text],.form_envio .form input[type=email], .form_envio .form select, .form_envio .form span{
 	margin-bottom: 15px;
 }
 .form_envio .form select{
@@ -1279,8 +1279,8 @@ table.tahoma {
 	background-color: #333333;
 	margin-left:20px;
 }
-.form_envio .form input[type=text]{
-	width:190px;
+.form_envio .form input[type=text], .form_envio .form input[type=email]{
+	width:180px;
 	height: 20px;
 	border:1px solid #858585;
 	background-color: #333333;
@@ -1487,4 +1487,28 @@ table.tahoma {
 	height: 210px;
 	background-color: #fff;
 	display:block;
+}
+
+/* error message */
+.error {
+	height:15px;
+	background-color:#00CFB5;
+	font-size:11px;
+	border:1px solid #50efd8;
+	padding:3px 3px;
+	color:#000;
+	display:none;	
+	
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px; 
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-topleft:0;	
+	-webkit-border-bottom-left-radius:0; 
+	-webkit-border-top-left-radius:0;
+	
+	
+}
+
+.error p {
+	margin:0;		
 }

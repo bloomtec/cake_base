@@ -198,9 +198,18 @@ $(function() {
 			bloomCart.refresh();
 		});
 	});
-	
+	$.tools.validator.localize("es", {
+		'*'			: 'datos no validos',
+		':email'  	: 'email no valido',
+		':number' 	: 'el campo debe ser numerico',
+		':url' 		: 'URL no valida',
+		'[max]'	 	: 'Arvon on oltava pienempi, kuin $1',
+		'[min]'		: 'Arvon on oltava suurempi, kuin $1',
+		'[required]'	: 'campo obligatorio'
+	});
 	// Continuar con la orden
 	$(".envio-form").click(function(e){
+		e.preventDefault();
 		$("#OrderGetAddressInfoForm").submit();		
 	});
 	
