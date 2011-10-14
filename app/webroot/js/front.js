@@ -195,23 +195,19 @@ $(function() {
 	$("#set-coupon").live('submit', function(e){
 		e.preventDefault();
 		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
-			console.log(data);
 			bloomCart.refresh();
 		});
 	});
+	
 	// Continuar con la orden
 	$(".envio-form").click(function(e){
-		$("#OrderGetAddressInfoForm").submit();
+		$("#OrderGetAddressInfoForm").submit();		
 	});
-	/*
-	$("#OrderGetAddressInfoForm").live('submit', function(e){
-		e.preventDefault();
-		BJS.post('/shop_carts/setCoupon/' + $("#get-serial").val(), null, function(data){
-			console.log(data);
-			bloomCart.refresh();
-		});
+	
+	// Página envío
+	$(".mailing-form").click(function(e){
+		$("#PagosOnlineForm").submit();
 	});
-	*/
 	
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
@@ -249,6 +245,7 @@ $(function() {
 		e.preventDefault();
 		$('#overlay2').overlay({
 			mask : 'black',
+			load:true,
 			onBeforeLoad : function() {
 			var wrap = this.getOverlay().find(".contentWrap");
 			wrap.load('/products/search/'+$('#query').val());
@@ -258,11 +255,14 @@ $(function() {
 			}
 		}).load();
 	});
+
 });
 function refreshCufon(){
 	Cufon.replace('.tahoma', {
 		fontFamily : 'Tahoma',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true}
+
 	});
 	Cufon.replace('.japan', {
 		fontFamily : 'Japan',
@@ -271,7 +271,9 @@ function refreshCufon(){
 
 	Cufon.replace('.twCenMt', {
 		fontFamily : 'TwCenMt',
-		trim : "simple"
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#00CFB5'}
 	});
 	
 	Cufon.replace('.halo', {

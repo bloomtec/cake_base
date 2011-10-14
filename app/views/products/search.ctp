@@ -11,8 +11,7 @@
 		<?php endforeach;?>
 	</div>
 	<div class="der">
-	<h3>También puedes buscar por marca</h3>
-		<h1>¡¡poner elemento!</h1>
-
+	<h3>Resultados</h3>
+	<?php e($this->element('product-list', $products)); ?>
 	</div>
-</div>
+</div

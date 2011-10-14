@@ -941,6 +941,9 @@ h4.footer {
 		color:#efefef;
 		height:531px;
 	}
+#overlay2 {
+	/*height: 600px;	*/
+}
 div.contentWrap {
 		height:531px;
 		overflow-y:auto;
@@ -976,6 +979,7 @@ div.contentWrap {
 	background-image: url(../img/trama-overlay.png);
 	height: 424px;
 	padding: 0 20px;
+	overflow: auto;
 }
 .overlay-wrap .content .wrapper{
 	width: 700px;
@@ -1394,7 +1398,7 @@ table.tahoma {
 }
 .buscar .izq{
 	width: 250px;
-	min-height: 440px;
+	min-height: 358px;
 	float: left;
 	border-right:1px solid #494949;
 }
@@ -1403,7 +1407,6 @@ table.tahoma {
 	width: 127px;
 	height: 41px;
 	float: left;
-	margin-left: 20px;
 	border:1px solid #858585;
 }
 .buscar .izq h1, .brands .marcas h1{
@@ -1411,14 +1414,16 @@ table.tahoma {
 	color:#EC1C75;
 	margin:0;
 	width: 39%;
-	float: right;
+	float: left;
+	margin-left: 10px;
 }
 .buscar .izq h2, .brands .marcas h2{
 	font-size: 14px;
 	color:#00CFB5;
 	margin:0;
 	width: 39%;
-	float: right;
+	float: left;
+	margin-left: 10px;
 }
 .buscar .izq h3, .buscar .der h3{
 	font-size: 12px;
@@ -1430,10 +1435,10 @@ table.tahoma {
 	margin-bottom:25px;
 }
 .buscar .der{
-	width: 635px;
-	height: 610px;
-
-	float: right;
+	width: 605px;
+	min-height: 358px;
+	float: left;
+	padding-left: 25px;
 }
 .brands{
 	margin-top:20px;
@@ -1458,4 +1463,28 @@ table.tahoma {
 }
 .add-cart-confirm a{
 	color:#EC1C75;
+}
+/*ESTILOS EXCLUSIVOS LISTADO PRODUCCTOS BUSQUEDA*/
+#overlay2 ul.products{
+	margin:0 auto;
+	width: 585px;s
+}
+#overlay2 ul.products li {
+	margin-right: 6px;
+	float:left;
+	margin-bottom:35px;
+	
+}
+#overlay2  ul.products li h1{
+	margin-top:6px;
+	margin-bottom: 4px;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+
+#overlay2  ul li.info a, #overlay2  ul li.info img{
+	width: 140px;
+	height: 210px;
+	background-color: #fff;
+	display:block;
 }

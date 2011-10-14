@@ -68,7 +68,7 @@
 
 <div id="cupon" class="twCenMt">
 	<h1 class='quitar-todos'><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
-	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php echo number_format($subtotal, 0, ' ', '.');?></span></h1>
+	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<form id="set-coupon">
 		<?php if(!$shopping_cart['ShopCart']['coupon_id']) : ?>
 		<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>
@@ -76,10 +76,11 @@
 		<input type="submit" value="APLICAR" />
 		<?php endif; ?>
 		<?php if($shopping_cart['ShopCart']['coupon_id']) : ?>
-			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shopping_cart['ShopCart']['coupon_value'])."%"?></span></h1>
+			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shopping_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
 		<?php endif; ?>
 	</form>
-	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php echo number_format(($subtotal * (1 - $shopping_cart['ShopCart']['coupon_value'])), 0, ' ', '.');?></span></h1>
+	<?php $coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_discount'])) $coupon_value = $shopping_cart['ShopCart']['coupon_discount']; ?>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a href="/orders/getAddressInfo">Continuar</a></h1>

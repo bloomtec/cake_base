@@ -8,6 +8,7 @@
 	$celular = "";
 	$departamento = "";
 	$ciudad = "";
+	$email = "";
 	if($user) {
 		$pais = $user['UserField']['country'];
 		$nombre = $user['UserField']['name'];
@@ -17,6 +18,7 @@
 		$celular = $user['UserField']['mobile'];
 		$departamento = $user['UserField']['state'];
 		$ciudad = $user['UserField']['city'];
+		$email = $user['User']['email'];
 	}
 ?>
 <?php e($this->Form->create('Order')); ?>
@@ -38,16 +40,17 @@ $120.000 tampoco tienen costo.
 		<?php e($this->Form->input('Envio.country', array('label'=>'País', 'value'=>$pais))); ?>
 		<?php e($this->Form->input('Envio.name', array('label'=>'Nombre', 'value'=>$nombre))); ?>
 		<?php e($this->Form->input('Envio.surname', array('label'=>'Apellido', 'value'=>$appelido))); ?>
-		<?php e($this->Form->input('Envio.address', array('label'=>'Nombre', 'value'=>$direccion))); ?>
-		<?php e($this->Form->input('Envio.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
-		<?php e($this->Form->input('Envio.mobile', array('label'=>'Celular', 'value'=>$celular))); ?>
+		<?php e($this->Form->input('Envio.address', array('label'=>'Dirección', 'value'=>$direccion))); ?>
 		<?php e($this->Form->input('Envio.state', array('label'=>'Departamento', 'value'=>$departamento))); ?>
 		<?php e($this->Form->input('Envio.city', array('label'=>'Ciudad', 'value'=>$ciudad))); ?>
+		<?php e($this->Form->input('Envio.email', array('label'=>'Correo Electrónico', 'value'=>$email))); ?>
+		<?php e($this->Form->input('Envio.phone', array('label'=>'Número Telefónico', 'value'=>$telefono))); ?>
+		<?php e($this->Form->input('Envio.mobile', array('label'=>'Celular', 'value'=>$celular))); ?>
 		<div style="clear: both"></div>
-		<input id="EnvioAuthorize" name="data[Envio][authorize]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.authorize', array('label'=>false))); ?>
 		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
 		<div style="clear: both"></div>
-		<input id="EnvioConditions" name="data[Envio][conditions]" type="checkbox" />
+		<?php e($this->Form->checkbox('Envio.conditions', array('label'=>false))); ?>
 		<label for="EnvioConditions" class="azul">  Acepto terminos y condiciones de la compra.</label>
 		<div style="clear: both"></div>
 	</div>
@@ -58,10 +61,10 @@ $120.000 tampoco tienen costo.
 		<?php e($this->Form->input('Gift.country', array('label'=>'País'))); ?>
 		<?php e($this->Form->input('Gift.name', array('label'=>'Nombre'))); ?>
 		<?php e($this->Form->input('Gift.surname', array('label'=>'Apellido'))); ?>
-		<?php e($this->Form->input('Gift.address', array('label'=>'Nombre'))); ?>
-		<?php e($this->Form->input('Gift.phone', array('label'=>'Número Telefónico'))); ?>
+		<?php e($this->Form->input('Gift.address', array('label'=>'Dirección'))); ?>
 		<?php e($this->Form->input('Gift.state', array('label'=>'Departamento'))); ?>
 		<?php e($this->Form->input('Gift.city', array('label'=>'Ciudad'))); ?>
+		<?php e($this->Form->input('Gift.phone', array('label'=>'Número Telefónico'))); ?>
 	</div>
 	<div style="clear: both"></div>
 </div>
@@ -81,11 +84,12 @@ $120.000 tampoco tienen costo.
 	}
 ?>
 <div id="cupon" class="twCenMt">
-	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php echo number_format($subtotal, 0, ' ', '.');?></span></h1>
+	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<?php if($shop_cart['ShopCart']['coupon_id']) : ?>
-	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_value'])."%"?></span></h1>
+	<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shop_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
 	<?php endif; ?>
-	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php echo number_format(($subtotal * (1 - $shop_cart['ShopCart']['coupon_value'])), 0, ' ', '.');?></span></h1>
+	<?php $coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount']; ?>
+	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
@@ -97,5 +101,14 @@ $120.000 tampoco tienen costo.
 	</div>
 	<div style="clear: both"></div>	
 </div>
-<?php e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal))); ?>
-<?php e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $shop_cart['ShopCart']['coupon_value']))))); ?></form>
+<?php
+	if(isset($subtotal)) {
+		e($this->Form->hidden('Order.subtotal', array('value'=>$subtotal)));
+		$coupon_value = 0; if(isset($shop_cart['ShopCart']['coupon_discount'])) $coupon_value = $shop_cart['ShopCart']['coupon_discount'];
+		e($this->Form->hidden('Order.total', array('value'=>($subtotal * (1 - $coupon_value)))));
+	} else {
+		e($this->Form->hidden('Order.subtotal', array('value'=>0)));
+		e($this->Form->hidden('Order.total', array('value'=>0)));
+	}
+?>
+</form>
