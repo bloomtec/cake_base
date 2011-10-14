@@ -168,8 +168,8 @@ class InventoriesController extends AppController {
 					foreach($this->data['Inventory'] as $key=>$data) {
 						if($data) {
 							$prod_id_size_id = split(",", $key);
-							$prod_id = $prod_id_size_id[0];
-							$size_id = $prod_id_size_id[1];
+							$prod_id = (int)$prod_id_size_id[0];
+							$size_id = (int)$prod_id_size_id[1];
 							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id, 'Inventory.size_id'=>$size_id)));
 							if(!isset($inventory) && !empty($inventory)) {
 								$inv_id = $inventory['Inventory']['id'];
