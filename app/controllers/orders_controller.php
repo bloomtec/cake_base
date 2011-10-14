@@ -164,6 +164,9 @@ class OrdersController extends AppController {
 				if(count($shop_cart['ShopCartItem']) >= 1) {
 					// El carrito tiene al menos un ítem, proceder
 					
+					// Crear una orden
+					$this->Order->create();
+					
 					// Generar el código de la orden
 					$order_code = $this->Order->find('first', array('fields' => array('MAX(Order.code) as max_code')));
 					if($order_code[0]['max_code']) {
@@ -175,6 +178,10 @@ class OrdersController extends AppController {
 					for ($i = (9 - $longitud); $i > 0; $i--) {
 						$order_code = "0" . $order_code;
 					}
+					
+					//Asignar el codigo de orden y su status inicial
+					$this->Order->set('code', $order_code);
+					$this->Order->set('order_state_id', 1);
 					
 					// Description
 					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
@@ -198,31 +205,63 @@ class OrdersController extends AppController {
 					
 					/**
 					 * Organizar la información en el carrito de compras
+					 * y asignarla de una vez a la orden
 					 */
 					$this->loadModel('ShopCart');
 					$shop_cart['ShopCart']['nombre'] = $this->data['Envio']['name'];
+					$this->Order->set('nombre', $this->data['Envio']['name']);
 					$shop_cart['ShopCart']['apellido'] = $this->data['Envio']['surname'];
+					$this->Order->set('apellido', $this->data['Envio']['surname']);
 					$shop_cart['ShopCart']['pais'] = $this->data['Envio']['country'];
+					$this->Order->set('pais', $this->data['Envio']['country']);
 					$shop_cart['ShopCart']['estado'] = $this->data['Envio']['state'];
+					$this->Order->set('estado', $this->data['Envio']['state']);
 					$shop_cart['ShopCart']['ciudad'] = $this->data['Envio']['city'];
+					$this->Order->set('ciudad', $this->data['Envio']['city']);
 					$shop_cart['ShopCart']['direccion'] = $this->data['Envio']['address'];
+					$this->Order->set('direccion', $this->data['Envio']['address']);
 					$shop_cart['ShopCart']['telefono'] = $this->data['Envio']['phone'];
+					$this->Order->set('telefono', $this->data['Envio']['phone']);
 					$shop_cart['ShopCart']['celular'] = $this->data['Envio']['mobile'];
+					$this->Order->set('celular', $this->data['Envio']['mobile']);
 					$shop_cart['ShopCart']['email'] = $this->data['Envio']['email'];
+					$this->Order->set('email', $this->data['Envio']['email']);
 					$shop_cart['ShopCart']['subtotal'] = $this->data['Order']['subtotal'];
+					$this->Order->set('subtotal', $this->data['Order']['subtotal']);
 					$shop_cart['ShopCart']['descuento'] = $this->data['Order']['subtotal'] - $this->data['Order']['total'];
+					$this->Order->set('descuento', $this->data['Order']['subtotal'] - $this->data['Order']['total']);
 					$shop_cart['ShopCart']['total'] = $this->data['Order']['total'];
+					$this->Order->set('total', $this->data['Order']['total']);
 					
+					$this->Order->save();
+					$order_id = $this->Order->id;
 					for ($i=0; $i < count($shop_cart['ShopCartItem']); $i++) {
+						$shop_cart_item = $this->ShopCart->ShopCartItem->read(null, $shop_cart['ShopCartItem'][$i]['id']);
+						$this->Order->OrderItem->create();
+						$this->Order->OrderItem->set('order_id', $order_id);
+						$this->Order->OrderItem->set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
+						$this->Order->OrderItem->set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
+						$this->Order->OrderItem->set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
+						$this->Order->OrderItem->set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
+						$this->Order->OrderItem->set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
+						$this->Order->OrderItem->save();
 						if($shop_cart['ShopCartItem'][$i]['is_gift']) {
+							$this->Order->OrderItem->read(null, $this->Order->OrderItem->id);
 							$this->ShopCart->ShopCartItem->read(null, $shop_cart['ShopCartItem'][$i]['id']);
 							$this->ShopCart->ShopCartItem->saveField('nombre', $this->data['Gift']['name']);
+							$this->Order->OrderItem->saveField('nombre', $this->data['Gift']['name']);
 							$this->ShopCart->ShopCartItem->saveField('apellido', $this->data['Gift']['surname']);
+							$this->Order->OrderItem->saveField('apellido', $this->data['Gift']['surname']);
 							$this->ShopCart->ShopCartItem->saveField('pais', $this->data['Gift']['country']);
+							$this->Order->OrderItem->saveField('pais', $this->data['Gift']['country']);
 							$this->ShopCart->ShopCartItem->saveField('estado', $this->data['Gift']['state']);
+							$this->Order->OrderItem->saveField('estado', $this->data['Gift']['state']);
 							$this->ShopCart->ShopCartItem->saveField('ciudad', $this->data['Gift']['city']);
+							$this->Order->OrderItem->saveField('ciudad', $this->data['Gift']['city']);
 							$this->ShopCart->ShopCartItem->saveField('direccion', $this->data['Gift']['address']);
+							$this->Order->OrderItem->saveField('direccion', $this->data['Gift']['address']);
 							$this->ShopCart->ShopCartItem->saveField('telefono', $this->data['Gift']['phone']);
+							$this->Order->OrderItem->saveField('telefono', $this->data['Gift']['phone']);
 						}
 					}
 					
