@@ -179,8 +179,9 @@ class OrdersController extends AppController {
 						$order_code = "0" . $order_code;
 					}
 					
-					//Asignar el codigo de orden
+					//Asignar el codigo de orden y su status inicial
 					$this->Order->set('code', $order_code);
+					$this->Order->set('order_state_id', 1);
 					
 					// Description
 					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
