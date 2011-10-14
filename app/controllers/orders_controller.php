@@ -19,10 +19,6 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$this->autoRender = false;
-		//Extra 1 es el id del carrito
-		//Extra 2 es el id del usuario si habia sesión
-		
 		$usuario_id=null;
 		$estado_pol=null;
 		$riesgo=null;
@@ -90,7 +86,7 @@ class OrdersController extends AppController {
 			}
 		}
 		
-		if($codigo_respuesta_pol == 1) {
+		if((int)$codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
 			$order = $this->Order->find('first', array('conditions'=>array('Order.code'=>$ref_venta)));
 			$this->Order->read(null, $order['Order']['id']);
@@ -103,6 +99,7 @@ class OrdersController extends AppController {
 		/**
 		 * fin recibir datos pagos online
 		 */
+		$this->autoRender = false;
 		exit(0);
 		return;
 	}
