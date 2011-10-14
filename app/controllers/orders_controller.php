@@ -21,40 +21,83 @@ class OrdersController extends AppController {
 	function confirmarPagosOnline() {
 		$this->autoRender = false;
 		//Extra 1 es el id del carrito
-		//Extra 2 no lo estoy usando
-		$usuario_id=$_POST["usuario_id"];
-		$estado_pol=$_POST["estado_pol"];
-		$riesgo=$_POST["riesgo"];
-		$codigo_respuesta_pol=$_POST["codigo_respuesta_pol"];
-		$ref_venta=$_POST["ref_venta"];
-		$ref_pol=$_POST["ref_pol"];
-		$firma=$_POST["firma"];
-		$extra1=$_POST["extra1"];
-		$extra2=$_POST["extra2"];
-		$medio_pago=$_POST["medio_pago"];
-		$tipo_medio_pago=$_POST["tipo_medio_pago"];
-		$cuotas=$_POST["cuotas"];
-		$iva=$_POST["iva"];
-		$valorAdicional=$_POST["valorAdicional"];
-		$moneda=$_POST["moneda"];
-		$fecha_transaccion=$_POST["fecha_transaccion"];
-		$codigo_autorizacion=$_POST["codigo_autorizacion"];
-		$cus=$_POST["cus"];
-		$banco_pse=$_POST["banco_pse"];
-		$email_comprador=$_POST["email_comprador"];
+		//Extra 2 es el id del usuario si habia sesión
+		
+		$usuario_id=null;
+		$estado_pol=null;
+		$riesgo=null;
+		$codigo_respuesta_pol=null;
+		$ref_venta=null;
+		$ref_pol=null;
+		$firma=null;
+		$extra1=null;
+		$extra2=null;
+		$medio_pago=null;
+		$tipo_medio_pago=null;
+		$cuotas=null;
+		$iva=null;
+		$valorAdicional=null;
+		$moneda=null;
+		$fecha_transaccion=null;
+		$codigo_autorizacion=null;
+		$cus=null;
+		$banco_pse=null;
+		$email_comprador=null;
+		
+		if(!empty($_GET)) {
+			$usuario_id=$_GET["usuario_id"];
+			$estado_pol=$_GET["estado_pol"];
+			$riesgo=$_GET["riesgo"];
+			$codigo_respuesta_pol=$_GET["codigo_respuesta_pol"];
+			$ref_venta=$_GET["ref_venta"];
+			$ref_pol=$_GET["ref_pol"];
+			$firma=$_GET["firma"];
+			$extra1=$_GET["extra1"];
+			$extra2=$_GET["extra2"];
+			$medio_pago=$_GET["medio_pago"];
+			$tipo_medio_pago=$_GET["tipo_medio_pago"];
+			$cuotas=$_GET["cuotas"];
+			$iva=$_GET["iva"];
+			$valorAdicional=$_GET["valorAdicional"];
+			$moneda=$_GET["moneda"];
+			$fecha_transaccion=$_GET["fecha_transaccion"];
+			$codigo_autorizacion=$_GET["codigo_autorizacion"];
+			$cus=$_GET["cus"];
+			$banco_pse=$_GET["banco_pse"];
+			$email_comprador=$_GET["email_comprador"];
+		} else {
+			if(!empty($_POST)) {
+				$usuario_id=$_POST["usuario_id"];
+				$estado_pol=$_POST["estado_pol"];
+				$riesgo=$_POST["riesgo"];
+				$codigo_respuesta_pol=$_POST["codigo_respuesta_pol"];
+				$ref_venta=$_POST["ref_venta"];
+				$ref_pol=$_POST["ref_pol"];
+				$firma=$_POST["firma"];
+				$extra1=$_POST["extra1"];
+				$extra2=$_POST["extra2"];
+				$medio_pago=$_POST["medio_pago"];
+				$tipo_medio_pago=$_POST["tipo_medio_pago"];
+				$cuotas=$_POST["cuotas"];
+				$iva=$_POST["iva"];
+				$valorAdicional=$_POST["valorAdicional"];
+				$moneda=$_POST["moneda"];
+				$fecha_transaccion=$_POST["fecha_transaccion"];
+				$codigo_autorizacion=$_POST["codigo_autorizacion"];
+				$cus=$_POST["cus"];
+				$banco_pse=$_POST["banco_pse"];
+				$email_comprador=$_POST["email_comprador"];
+			}
+		}
 		
 		if($codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
-			$order = $this->Order->findByCode($ref_venta);
+			$order = $this->Order->find('first', array('conditions'=>array('Order.code'=>$ref_venta)));
 			$this->Order->read(null, $order['Order']['id']);
 			$this->Order->saveField('order_status_id', 2); // Estado orden pagada
 			$this->requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
-			$order = $this->Order->findByCode($ref_venta);
-			$this->Order->read(null, $order['Order']['id']);
-			$this->Order->saveField('order_status_id', 4); // Estado orden pagada
-			$this->requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		}
 		
 		/**
@@ -65,11 +108,22 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
-		if(!empty($_GET["extra2"])) {
-			$this->loadModel('User');
-			$user = $this->User->read(null, $_GET["extra2"]);
-			$this->Auth->login($user);
-		}
+		if(!empty($_GET)) {
+			if(!empty($_GET["extra2"])) {
+				$this->loadModel('User');
+				$user = $this->User->read(null, $_GET["extra2"]);
+				$this->Auth->login($user);
+			}
+		} else {
+			if(!empty($_POST)) {
+				if(!empty($_POST["extra2"])) {
+					$this->loadModel('User');
+					$user = $this->User->read(null, $_POST["extra2"]);
+					$this->Auth->login($user);
+				}
+			}
+		}		
+		
 		$this->redirect('/');
 		$this->autoRender=false;
 		exit(0);
