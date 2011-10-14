@@ -226,11 +226,11 @@ class OrdersController extends AppController {
 					$shop_cart['ShopCart']['email'] = $this->data['Envio']['email'];
 					$this->Order->set('email', $this->data['Envio']['email']);
 					$shop_cart['ShopCart']['subtotal'] = $this->data['Order']['subtotal'];
-					$this->Order->set('subtotal', $this->data['Envio']['subtotal']);
+					$this->Order->set('subtotal', $this->data['Order']['subtotal']);
 					$shop_cart['ShopCart']['descuento'] = $this->data['Order']['subtotal'] - $this->data['Order']['total'];
 					$this->Order->set('descuento', $this->data['Order']['subtotal'] - $this->data['Order']['total']);
 					$shop_cart['ShopCart']['total'] = $this->data['Order']['total'];
-					$this->Order->set('total', $this->data['Envio']['total']);
+					$this->Order->set('total', $this->data['Order']['total']);
 					
 					$this->Order->save();
 					$order_id = $this->Order->id;
