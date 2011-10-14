@@ -48,7 +48,6 @@
 		<div id="content">
 			<ul class="nav_estaticas twCenMt">
 				<li><a href="/pages/nosotros">NOSOTROS</a></li>
-				<li><a href="#">TIENDAS</a></li>
 				<li><a href="/pages/ayuda">AYUDA</a></li>
 				<li><a href="/pages/contacto">CONTACTO</a></li>
 			</ul>

@@ -41,7 +41,8 @@ class PagesController extends AppController {
 	    $this->set("folder",$folder->read());
 	    $this->set("folderPath",DS."wysiwyg");
  	}
-	function index() {$this->layout="ez.ctp";
+	function index() {
+		$this->layout="ez.ctp";
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}

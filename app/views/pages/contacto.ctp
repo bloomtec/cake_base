@@ -8,7 +8,7 @@
 		<input type="text" />
 		<h2 class="titulos_rosado">COMENTARIO</h2>
 		<input type="text" class="comentario" />
-		<input type="submit" value="Encargar par" class="twCenMt" />
+		<input type="submit" value="Enviar" class="twCenMt" />
 	</div>
 	
 </div>
