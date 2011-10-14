@@ -22,26 +22,26 @@ class OrdersController extends AppController {
 		$this->autoRender = false;
 		//Extra 1 es el id del carrito
 		//Extra 2 no lo estoy usando
-		$usuario_id=$_GET["usuario_id"];
-		$estado_pol=$_GET["estado_pol"];
-		$riesgo=$_GET["riesgo"];
-		$codigo_respuesta_pol=$_GET["codigo_respuesta_pol"];
-		$ref_venta=$_GET["ref_venta"];
-		$ref_pol=$_GET["ref_pol"];
-		$firma=$_GET["firma"];
-		$extra1=$_GET["extra1"];
-		$extra2=$_GET["extra2"];
-		$medio_pago=$_GET["medio_pago"];
-		$tipo_medio_pago=$_GET["tipo_medio_pago"];
-		$cuotas=$_GET["cuotas"];
-		$iva=$_GET["iva"];
-		$valorAdicional=$_GET["valorAdicional"];
-		$moneda=$_GET["moneda"];
-		$fecha_transaccion=$_GET["fecha_transaccion"];
-		$codigo_autorizacion=$_GET["codigo_autorizacion"];
-		$cus=$_GET["cus"];
-		$banco_pse=$_GET["banco_pse"];
-		$email_comprador=$_GET["email_comprador"];
+		$usuario_id=$_POST["usuario_id"];
+		$estado_pol=$_POST["estado_pol"];
+		$riesgo=$_POST["riesgo"];
+		$codigo_respuesta_pol=$_POST["codigo_respuesta_pol"];
+		$ref_venta=$_POST["ref_venta"];
+		$ref_pol=$_POST["ref_pol"];
+		$firma=$_POST["firma"];
+		$extra1=$_POST["extra1"];
+		$extra2=$_POST["extra2"];
+		$medio_pago=$_POST["medio_pago"];
+		$tipo_medio_pago=$_POST["tipo_medio_pago"];
+		$cuotas=$_POST["cuotas"];
+		$iva=$_POST["iva"];
+		$valorAdicional=$_POST["valorAdicional"];
+		$moneda=$_POST["moneda"];
+		$fecha_transaccion=$_POST["fecha_transaccion"];
+		$codigo_autorizacion=$_POST["codigo_autorizacion"];
+		$cus=$_POST["cus"];
+		$banco_pse=$_POST["banco_pse"];
+		$email_comprador=$_POST["email_comprador"];
 		
 		if($codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
@@ -51,6 +51,10 @@ class OrdersController extends AppController {
 			$this->requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
+			$order = $this->Order->findByCode($ref_venta);
+			$this->Order->read(null, $order['Order']['id']);
+			$this->Order->saveField('order_status_id', 4); // Estado orden pagada
+			$this->requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		}
 		
 		/**
