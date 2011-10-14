@@ -48,10 +48,59 @@ a.logo_header {
 	margin-top: -4px;
 }
 #main_menu li a{
-	display: block;
-	height: 14px;
+	text-decoration: none;
+	font-size: 19px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: 500;
+	color: #FFFFFF;
+	letter-spacing: -1px;
+}
+#main_menu li{
+	position: relative;
+	padding-bottom: 30px;
+}
+#main_menu li a:hover{
+	color: #ff7800;
+}
+
+#main_menu .desplegable{
+	display: none;
+	position: absolute;
+	background-color: #000;
+	width: 400px;
+	min-height: 236px;
+	background-image: url(/img/deplegable_fondo.png);
+	background-position: top left;
 	background-repeat: no-repeat;
-	min-width: 54px;
+	padding:0 20px;
+	left: 0;
+	top:28px;
+	-moz-box-shadow: 0px 0px 6px #141414;
+	-webkit-box-shadow: 0px 0px 6px #141414;
+	box-shadow: 0px 0px 6px #141414;
+}
+#main_menu li:hover .desplegable{
+	display: block;
+}
+#main_menu .izq{
+	float: left;
+	margin-top: 20px;
+}
+#main_menu .der{
+	float: right;
+	margin-top: 20px;
+}
+#main_menu ul li{
+	float: none;
+	margin-bottom: 8px;	
+	padding: 0;
+}
+#main_menu ul a{
+	color: #FFFFFF;
+	font-size: 14px;
+}
+#main_menu a.hover ul{
+	display: block;
 }
 input.input_buscar{
 	background-image: url(/img/trama_buscar.png);
@@ -73,8 +122,14 @@ input.submit{
 }
 /*CONTENIDO */
 
-
-
+#second_nav{
+	width: 300px;
+	float: left;
+}
+#main_content{
+	width: 600px;
+	float: right;
+}
 #container {
 	width:940px;
 	margin:0 auto;
@@ -86,39 +141,39 @@ input.submit{
 	border-radius:1em;
 	background-color:#fff;
 	margin-top:12px;
+	-moz-box-shadow: 4px 7px 6px #141414;
+	-webkit-box-shadow: 4px 7px 6px #141414;
+	box-shadow: 4px 7px 6px #141414;
+	behavior: url(/PIE/PIE.htc);
 	
 }
-#zona_gamers {
+#zona_gamers , #producto_destacado{
 	width:300px;
 	height:220px;
-	float:left;
 	background-color: #000;
 }
-#zona_gamers a{
-	background-image:url(/img/zona_gamers.jpg);
-	width:300px;
-	height:220px;
-	display:block;
-	text-indent:-9999px;
+#zona_gamers a img{	
 	margin: 0;
+	background-color: #000;
+}
+#producto_destacado{
+	background-color: #FFFFFF;
 }
 #slide {
 	width:600px;
 	height:220px;
-	float:right;
 	
 }
 #login {
 	width:300px;
 	height:160px;
-	float:left;
 }
-#login h1{
+#login h1, #respaldados h1{
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 18px;
-	margin-top: 12px;
+	padding-top: 12px;
 	margin-bottom: 17px;
 }
 #login h2{
@@ -146,18 +201,174 @@ input.submit{
 	width: 166px;
 	margin-bottom: 6px;
 }
-#content {
-	width:600px;
-	height:539px;
-	float:right;
-	margin-bottom:12px;
+#login input.submit{
+	color:#262525;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	background-image: url(/img/btn_registro.png);
+	background-color: transparent;
+	width: 81px;
+	height: 29px;
+	background-position:center;
+	background-repeat: no-repeat;
+	font-size:14px;
+	float: right;
+	margin-right: 17px;
+    margin-top: 7px;
+    text-align: center;
+
 }
-#respaldados{
+#login input.submit.primero{
+	margin-right: 7px;
+}
+#content {
+	width:540px;
+	margin-bottom:12px;
+	padding: 30px;
+}
+#respaldados, #listado_fltro{
 	width:300px;
 	height:360px;
-	float:left;
 	margin-bottom:12px;
 }
+
+#respaldados img{
+	display: block;
+	margin: 0 auto;
+	padding-bottom: 5px;
+}
+#producto_destacado h1, .producto h1{
+	font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 auto;
+    padding-top: 20px;
+    text-align: center;
+    width: 208px;
+}
+#producto_destacado img{
+	width: 158px;
+	height: 116px;
+	margin-top: 15px;
+	margin-left: 4px;
+}
+#producto_destacado a img{
+	width: auto;
+	height: auto;
+	margin-left:0;
+	margin-top: 9px;
+}
+.info_destacado{
+	float: right;
+    margin-right: 10px;
+    margin-top: 15px;
+    width: 115px;
+}
+.info_destacado p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.estrellas_wrapper ul{
+	margin: 0 auto;
+	width: 96px;
+	padding-top: 3px;
+}
+.estrellas_wrapper li{
+	background-image: url(/img/estrella_categoria.png);
+	width: 17px;
+	height: 17px;
+	float: left;
+	margin-right: 2px;
+	cursor: pointer;
+}
+.ordenar{
+	width: 532px;
+	height: 30px;
+	background-color: #d8d5d5;
+	text-align: right;
+	position: relative;
+}
+.ordenar label, .ordenar select, #listado_fltro h1{
+	margin-top: 5px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+.ordenar select{
+	margin-right: 20px;
+}
+.ordenar ul{
+	margin-top: -10px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 40%
+}
+.ordenar li{
+	display: inline;
+}
+.ordenar ul a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: black;
+	text-decoration: none;
+}
+.ordenar ul a:hover{
+	color: #ff7800;
+}
+.producto{
+	width: 137px;
+	text-align: center;
+	float: left;
+	margin: 8px 20px;
+}
+.producto h1{
+	width: 100%;
+}
+.producto h2{
+	width: 100%;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+.producto .foto_producto{
+	margin: 15px auto;
+}
+.info_categoria{
+	padding: 12px;
+	width: 245px;
+	float: left;
+	padding-top:0;
+	margin-top: 12px;
+}
+.info_categoria h1, .info_categoria p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.info_categoria p{
+	margin-bottom: 12px;
+}
+.info_categoria h1{
+	font-size:12px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+.info_categoria.primero{
+	border-right:2px dotted #939393;
+}
+#listado_fltro h1{
+	background-color: #D8D5D5;
+	width: 270px;
+	margin: 0 auto;
+	height: 30px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+
 
 
 /*FOOTER */
@@ -172,6 +383,7 @@ input.submit{
 	background-image:url(/img/trama_footer.png);
 	background-repeat:repeat-x;
 	position:relative;
+	clear: both;
 }
 span.logo_footer {
 	background-image: url(/img/logo_footer.png);
@@ -198,9 +410,14 @@ span.linea_footer {
 	left:240px;
 	top:56px;
 }
-#footer ul#menu_footer{
+#footer #social{
 	position:relative;
 	margin-left:223px;
+	width: 260px;
+}
+#footer #social img{
+	float: left;
+	margin-right:10px;
 }
 #footer li h1 {
 	font-family:Arial, Helvetica, sans-serif;
@@ -232,6 +449,9 @@ span.linea_footer {
 }
 #footer li{
 	margin-bottom:10px;
+}
+#footer h3 img{
+	margin-left: 3px;
 }
 #footer li a{
 	color:#FFFFFF;

@@ -27,6 +27,9 @@ class PagesController extends AppController {
 	function home(){
 		$this->layout="default";
 	}
+	function categoria(){
+		$this->layout="categoria";
+	}
 	function admin_ez() {
 
 	}

@@ -32,51 +32,48 @@
 		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
+
 		echo $scripts_for_layout;
 	?>
-
-
-
 </head>
-<body>
+<body id="categoria">
 	
 	<?php echo $this->element("header");?> 		
-	
     <div id="container">
     	<div id="second_nav">
-			<div id="zona_gamers" class="border_radius">
-        		<a href="#"><img src="/img/zona_gamers.jpg" class="border_radius" /></a>
+	    	<div id="producto_destacado" class="border_radius">
+	    		<h1>Computador portátil hp Core i5 
+				pantalla de 20”
+				</h1>
+				<img src="/img/producto_destacado.jpg" />
+				<div class="info_destacado">
+					<p>
+					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat 
+					</p>
+					<a href=""><img src="/img/facebook.png" /></a>
+					<a href=""><img src="/img/twitter.png" /></a>
+					<a href=""><img src="/img/btn_agregar.png"/></a>
+					<?php echo $this->element("estrellas_categoria");?> 
+				</div>
         	</div>
-        	<div id="login" class="border_radius">
-	        	<h1>Área de clientes</h1>
-	            <form name="login">
-	            <h2>Usuario:</h2>
-	            <input type="text" class="input"/>
-	            <h2>Password:</h2>
-	            <input type="text" class="input"/>
-	            <h3><a href="#">¿Olvido su contraseña?</a></h3>
-	            <input type="submit" class="submit" value="Ingresar" />
-	            <input type="submit" class="submit primero" value="Registrese" />
-	            </form>
-            </div>
-            <div id="respaldados" class="border_radius">
-        	<h1>Respaldados por</h1>
-        	<img src="/img/camara_comercio.png" />
-        	<img src="/img/pagos_online.png" />
-        	<img src="/img/covicheque.png" />
-        	<img src="/img/fenalcheque.png" />
+        	 <div id="listado_fltro" class="border_radius">
+        	 	<h1>Buscar por:</h1>
+        		<ul>
+        			<li></li>
+        		</ul>
         	</div>
-   			<div style="clear: both"></div>
-		</div>
-		<div id="main_content">
-			<div id="slide" class="border_radius"></div>
-			 <div id="content" class="border_radius">
+    	</div>
+    	<div id="main_content">
+    		<div id="slide" class="border_radius">
+    			
+    			
+    		</div>
+        	<div id="content" class="border_radius">
         	<?php echo $content_for_layout; ?>
         	</div>
-		</div>        
-       
-        
-        <div style="clear:both"></div>
+    		
+    	</div>
+ 
     </div>
    	<?php echo $this->element("footer");?> 
 	<?php echo $this->element('sql_dump'); ?>
