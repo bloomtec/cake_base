@@ -5,7 +5,9 @@ class OrdersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo');
+		$this -> Auth -> allow(
+			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo'
+		);
 	}
 
 	/**
@@ -17,79 +19,143 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
+		/**
+		 * [url] => orders/callBackPagosOnline
+		 * [usuario_id] => 76075
+		 * [estado] => 2
+		 * [mensaje] => transaccion aprobada
+		 * [ref_venta] => 000000011
+		 * [ref_pol] => 1377233
+		 * [descripcion] => Pago de compra en www.colorstennis.com - Referencia 000000011
+		 * [extra1] => 4
+		 * [extra2] =>
+		 * [estado_pol] => 4
+		 * [firma] => EA628EEA1EE1D469604FE1838539AF26
+		 * [codigo_respuesta_pol] => 1
+		 * [riesgo] => .00
+		 * [medio_pago] => 10
+		 * [tipo_medio_pago] => 2
+		 * [cuotas] => 12
+		 * [valor] => 124900.00
+		 * [valorPesos] => 124900.00
+		 * [iva] => .00
+		 * [valorAdicional] => .00
+		 * [moneda] => COP
+		 * [idioma] => es
+		 * [cus] => 20111015
+		 * [ciclo_pse] => null
+		 * [emailComprador] => juliodominguez@gmail.com
+		 * [banco_pse] =>
+		 * [pse_referencia1] =>
+		 * [pse_referencia2] =>
+		 * [pse_referencia3] =>
+		 * [codigo_autorizacion] => 909352
+		 * [fecha_procesamiento] => 2011-10-15
+		 */
 		$usuario_id = null;
-		$estado_pol = null;
-		$riesgo = null;
-		$codigo_respuesta_pol = null;
+		$estado = null;
+		$mensaje = null;
 		$ref_venta = null;
 		$ref_pol = null;
+		$descripcion = null;
+		$extra1 = null; // id del carrito respectivo
+		$extra2 = null; // id del usuario si habia sesión
+		$estado_pol = null;
 		$firma = null;
-		$extra1 = null;
-		$extra2 = null;
+		$codigo_respuesta_pol = null;
+		$riesgo = null;
 		$medio_pago = null;
 		$tipo_medio_pago = null;
 		$cuotas = null;
+		$valor = null;
+		$valorPesos = null;
 		$iva = null;
 		$valorAdicional = null;
 		$moneda = null;
-		$fecha_transaccion = null;
-		$codigo_autorizacion = null;
+		$idioma = null;
 		$cus = null;
+		$ciclo_pse = null;
+		$emailComprador = null;
 		$banco_pse = null;
-		$email_comprador = null;
+		$pse_referencia1 = null;
+		$pse_referencia2 = null;
+		$pse_referencia3 = null;
+		$codigo_autorizacion = null;
+		$fecha_procesamiento = null;
 
 		if (!empty($_GET)) {
-			$usuario_id = $_GET["usuario_id"];
-			$estado_pol = $_GET["estado_pol"];
-			$riesgo = $_GET["riesgo"];
-			$codigo_respuesta_pol = $_GET["codigo_respuesta_pol"];
-			$ref_venta = $_GET["ref_venta"];
-			$ref_pol = $_GET["ref_pol"];
-			$firma = $_GET["firma"];
-			$extra1 = $_GET["extra1"];
-			$extra2 = $_GET["extra2"];
-			$medio_pago = $_GET["medio_pago"];
-			$tipo_medio_pago = $_GET["tipo_medio_pago"];
-			$cuotas = $_GET["cuotas"];
-			$iva = $_GET["iva"];
-			$valorAdicional = $_GET["valorAdicional"];
-			$moneda = $_GET["moneda"];
-			$fecha_transaccion = $_GET["fecha_transaccion"];
-			$codigo_autorizacion = $_GET["codigo_autorizacion"];
-			$cus = $_GET["cus"];
-			$banco_pse = $_GET["banco_pse"];
-			$email_comprador = $_GET["email_comprador"];
+			$usuario_id = $_GET['usuario_id'];
+			$estado = $_GET['estado'];
+			$mensaje = $_GET['mensaje'];
+			$ref_venta = $_GET['ref_venta'];
+			$ref_pol = $_GET['ref_pol'];
+			$descripcion = $_GET['descripcion'];
+			$extra1 = $_GET['extra1'];
+			$extra2 = $_GET['extra2'];
+			$estado_pol = $_GET['estado_pol'];
+			$firma = $_GET['firma'];
+			$codigo_respuesta_pol = $_GET['codigo_respuesta_pol'];
+			$riesgo = $_GET['riesgo'];
+			$medio_pago = $_GET['medio_pago'];
+			$tipo_medio_pago = $_GET['tipo_medio_pago '];
+			$cuotas = $_GET['cuotas'];
+			$valor = $_GET['valor'];
+			$valorPesos = $_GET['valorPesos'];
+			$iva = $_GET['iva'];
+			$valorAdicional = $_GET['valorAdicional'];
+			$moneda = $_GET['moneda'];
+			$idioma = $_GET['idioma'];
+			$cus = $_GET['cus'];
+			$ciclo_pse = $_GET['ciclo_pse'];
+			$emailComprador = $_GET['emailComprador'];
+			$banco_pse = $_GET['banco_pse'];
+			$pse_referencia1 = $_GET['pse_referencia1'];
+			$pse_referencia2 = $_GET['pse_referencia2'];
+			$pse_referencia3 = $_GET['pse_referencia3'];
+			$codigo_autorizacion = $_GET['codigo_autorizacion'];
+			$fecha_procesamiento = $_GET['fecha_procesamiento'];
 		} else {
 			if (!empty($_POST)) {
-				$usuario_id = $_POST["usuario_id"];
-				$estado_pol = $_POST["estado_pol"];
-				$riesgo = $_POST["riesgo"];
-				$codigo_respuesta_pol = $_POST["codigo_respuesta_pol"];
-				$ref_venta = $_POST["ref_venta"];
-				$ref_pol = $_POST["ref_pol"];
-				$firma = $_POST["firma"];
-				$extra1 = $_POST["extra1"];
-				$extra2 = $_POST["extra2"];
-				$medio_pago = $_POST["medio_pago"];
-				$tipo_medio_pago = $_POST["tipo_medio_pago"];
-				$cuotas = $_POST["cuotas"];
-				$iva = $_POST["iva"];
-				$valorAdicional = $_POST["valorAdicional"];
-				$moneda = $_POST["moneda"];
-				$fecha_transaccion = $_POST["fecha_transaccion"];
-				$codigo_autorizacion = $_POST["codigo_autorizacion"];
-				$cus = $_POST["cus"];
-				$banco_pse = $_POST["banco_pse"];
-				$email_comprador = $_POST["email_comprador"];
+				$usuario_id = $_POST['usuario_id'];
+				$estado = $_POST['estado'];
+				$mensaje = $_POST['mensaje'];
+				$ref_venta = $_POST['ref_venta'];
+				$ref_pol = $_POST['ref_pol'];
+				$descripcion = $_POST['descripcion'];
+				$extra1 = $_POST['extra1'];
+				$extra2 = $_POST['extra2'];
+				$estado_pol = $_POST['estado_pol'];
+				$firma = $_POST['firma'];
+				$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
+				$riesgo = $_POST['riesgo'];
+				$medio_pago = $_POST['medio_pago'];
+				$tipo_medio_pago = $_POST['tipo_medio_pago '];
+				$cuotas = $_POST['cuotas'];
+				$valor = $_POST['valor'];
+				$valorPesos = $_POST['valorPesos'];
+				$iva = $_POST['iva'];
+				$valorAdicional = $_POST['valorAdicional'];
+				$moneda = $_POST['moneda'];
+				$idioma = $_POST['idioma'];
+				$cus = $_POST['cus'];
+				$ciclo_pse = $_POST['ciclo_pse'];
+				$emailComprador = $_POST['emailComprador'];
+				$banco_pse = $_POST['banco_pse'];
+				$pse_referencia1 = $_POST['pse_referencia1'];
+				$pse_referencia2 = $_POST['pse_referencia2'];
+				$pse_referencia3 = $_POST['pse_referencia3'];
+				$codigo_autorizacion = $_POST['codigo_autorizacion'];
+				$fecha_procesamiento = $_POST['fecha_procesamiento'];
 			}
 		}
 
-		if ((int)$codigo_respuesta_pol == 1) {
+		if ($codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
+			$this->loadModel('Order');
 			$order = $this -> Order -> find('first', array('conditions' => array('Order.code' => $ref_venta)));
 			$this -> Order -> read(null, $order['Order']['id']);
 			$this -> Order -> saveField('order_status_id', 2);
-			// Estado orden pagada
+			// Remover los items del carrito
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
@@ -105,16 +171,14 @@ class OrdersController extends AppController {
 
 	function callBackPagosOnline() {
 		if (!empty($_GET)) {
-			debug($_GET);
-			if (!empty($_GET["extra2"])) {
+			if (!empty($_GET['extra2'])) {
 				$this -> loadModel('User');
 				$user = $this -> User -> read(null, $_GET["extra2"]);
 				$this -> Auth -> login($user);
 			}
 		} else {
 			if (!empty($_POST)) {
-				debug($_POST);
-				if (!empty($_POST["extra2"])) {
+				if (!empty($_POST['extra2'])) {
 					$this -> loadModel('User');
 					$user = $this -> User -> read(null, $_POST["extra2"]);
 					$this -> Auth -> login($user);
