@@ -24,16 +24,14 @@ class OrdersController extends AppController {
 		$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
 		$refVenta = $_POST['ref_venta'];
 
+		$this->loadModel('Order');
+		$order = $this -> Order -> findByCode($refVenta);
+		$this -> Order -> read(null, $order['Order']['id']);		
 		if ($codigo_respuesta_pol == 1) {
-			// Transacción Aprobada
-			$this->loadModel('Order');
-			$order = $this -> Order -> findByCode($refVenta);
-			$this -> Order -> read(null, $order['Order']['id']);
 			$this -> Order -> saveField('order_state_id', 2);
-			// Remover los items del carrito
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
-			// Transaccion no aprobada, hacer algo?
+			$this -> Order -> saveField('order_state_id', 4);
 		}
 		$this -> autoRender = false;
 		exit(0);
