@@ -132,10 +132,10 @@ class OrdersController extends AppController {
 		$this->loadModel('Order');
 		$this->Order->read(null, 1);
 		if(!empty($_POST)) {
-			$this->Order->saveField('confirmacionpol', print_r($_POST));
+			$this->Order->saveField('confirmacionpol', print_r($_POST, true));
 		} else {
 			if(!empty($_GET)) {
-				$this->Order->saveField('confirmacionpol', print_r($_GET));
+				$this->Order->saveField('confirmacionpol', print_r($_GET, true));
 			}
 		}
 		$this -> autoRender = false;
