@@ -19,10 +19,10 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$extra1 = $_GET['extra1']; // id del carrito respectivo
-		$firma = $_GET['firma'];
-		$codigo_respuesta_pol = $_GET['codigo_respuesta_pol'];
-		$refVenta = $_GET['ref_venta'];
+		$extra1 = $_POST['extra1']; // id del carrito respectivo
+		$firma = $_POST['firma'];
+		$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
+		$refVenta = $_POST['ref_venta'];
 
 		$this->loadModel('Order');
 		$this->Order->read(null, 1);
