@@ -7,8 +7,8 @@
 		<h2 class="titulos_rosado">CORREO ELECTRONICO</h2>
 		<input type="text" />
 		<h2 class="titulos_rosado">COMENTARIO</h2>
-		<input type="text" class="comentario" />
-		<input type="submit" value="Encargar par" class="twCenMt" />
+		<textarea class="comentario"></textarea>
+		<input type="submit" value="Enviar" class="twCenMt" />
 	</div>
 	
 </div>

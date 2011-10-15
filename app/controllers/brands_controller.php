@@ -97,7 +97,11 @@ class BrandsController extends AppController {
 		$products = $this -> paginate('Product');
 		$this -> set('products', $products);
 	}
-
+	function index() {
+		$this ->layout='overlay';
+		$this -> set('brands', $this -> paginate());
+		$this->set('titulo','MARCAS');
+	}
 	function admin_index() {
 		$this -> Brand -> recursive = 0;
 		$this -> set('brands', $this -> paginate());
