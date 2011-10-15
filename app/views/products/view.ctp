@@ -27,12 +27,12 @@
 
 	</div>
 	<div id="detalle_der">
-		<h1 class="titulos_rosado">NOMBRE PRENDA</h1>
+		<h1 class="titulos_rosado" style='text-transform: uppercase;'><?php echo $product['Product']['name'];?></h1>
 		<span class="puntos"></span>
 		<ul class="product_info">
-			<li>CLASIFICACION</li>
-			<li>MARCA</li>
-			<li><span>PRECIO:</span></li>
+			<li>CLASIFICACION: <?php $product['Product']["clasification"];?></li>
+			<li>MARCA: <?php echo $product['Brand']["name"];?></li>
+			<li><span>PRECIO: <?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?></span></li>
 		</ul>
 		<ul class="product_info">
 			<li>TALLA
@@ -59,12 +59,14 @@
 			</select>
 			</li>			
 		</ul>
+		<!--
 		<ul class="product_info">
 			<li><a href="#">Anterior</a></li>
 		</ul>
 		<ul class="product_info ultimo">
 			<li><a href="#">Siguiente</a></li>			
-		</ul>	
+		</ul>
+		-->	
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
@@ -82,7 +84,7 @@
 		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/notificacionDisponibilidad">¿NO ENCONTRASTE LO QUE BUSCABAS?</a></h1>
 		<span class="puntos"></span>
 		<div id="caracteristicas">
-		<h1 class="titulos_rosado">CARACTERISTICAS:</h1>
+		<h1 class="titulos_rosado" style="font-size: 12px;">CARACTERISTICAS:</h1>
 		<p>
 			<?php echo $product['Product']['description'];?>
 		</p>

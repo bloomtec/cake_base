@@ -74,6 +74,7 @@ select{
 	box-shadow: 0.9px 0.3px 10px #999;
 	position: relative;
 	min-height: 1014px;
+	padding-bottom: 50px;
 }
 #content {
 	width: 730px;
@@ -88,6 +89,12 @@ select{
 }
 .puntos{
 	border-bottom:2px dotted #564E1B;
+}
+.filtrar .azul{
+	font-size: 15px;
+}
+.azul #tallas{
+	margin-left: 10px;
 }
 .subcategories_index .filtrar{
 	padding-top:10px;
@@ -216,6 +223,7 @@ ul.products li h3{
 	color:#7E7E7D;
 	font-family:Tw Cen MT,Arial,sans-serif;
 	font-size:16px;
+	text-transform: uppercase;
 }
 .sub_category a:hover{
 	color:#00CFB5;
@@ -856,10 +864,13 @@ ul li a.twitter {
 	border:1px solid #FF90C4;
 
 }
-#pages #estaticas_info .formulario_contacto input.comentario{
+#pages #estaticas_info .formulario_contacto textarea.comentario{
 	height: 160px;
 	margin-bottom: 15px;
+	width: 363px;
+	background: #888888;
 }
+
 #pages .social_estaticas{
 	float: left;
 	padding-right: 20px;

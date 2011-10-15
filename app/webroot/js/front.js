@@ -270,7 +270,8 @@ function refreshCufon(){
 	Cufon.replace('.tahoma', {
 		fontFamily : 'Tahoma',
 		trim : "simple",
-		hoverables:{a:true}
+		hoverables:{a:true},
+		hover:{color:'#ffaedc'}
 
 	});
 	Cufon.replace('.japan', {
