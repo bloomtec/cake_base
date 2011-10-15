@@ -19,124 +19,38 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		/*
-		$usuario_id = null;
-		$estado = null;
-		$mensaje = null;
-		$ref_venta = null;
-		$ref_pol = null;
-		$descripcion = null;
 		$extra1 = null; // id del carrito respectivo
-		$extra2 = null; // id del usuario si habia sesión
-		$estado_pol = null;
+		//$extra2 = null; // id del usuario si habia sesión
 		$firma = null;
 		$codigo_respuesta_pol = null;
-		$riesgo = null;
-		$medio_pago = null;
-		$tipo_medio_pago = null;
-		$cuotas = null;
-		$valor = null;
-		$valorPesos = null;
-		$iva = null;
-		$valorAdicional = null;
-		$moneda = null;
-		$idioma = null;
-		$cus = null;
-		$ciclo_pse = null;
-		$emailComprador = null;
-		$banco_pse = null;
-		$pse_referencia1 = null;
-		$pse_referencia2 = null;
-		$pse_referencia3 = null;
-		$codigo_autorizacion = null;
-		$fecha_procesamiento = null;
-
+		$refVenta = null;
+		
 		if (!empty($_GET)) {
-			$usuario_id = $_GET['usuario_id'];
-			$estado = $_GET['estado'];
-			$mensaje = $_GET['mensaje'];
-			$ref_venta = $_GET['ref_venta'];
-			$ref_pol = $_GET['ref_pol'];
-			$descripcion = $_GET['descripcion'];
 			$extra1 = $_GET['extra1'];
-			$extra2 = $_GET['extra2'];
-			$estado_pol = $_GET['estado_pol'];
+			//$extra2 = $_GET['extra2'];
 			$firma = $_GET['firma'];
 			$codigo_respuesta_pol = $_GET['codigo_respuesta_pol'];
-			$riesgo = $_GET['riesgo'];
-			$medio_pago = $_GET['medio_pago'];
-			$tipo_medio_pago = $_GET['tipo_medio_pago '];
-			$cuotas = $_GET['cuotas'];
-			$valor = $_GET['valor'];
-			$valorPesos = $_GET['valorPesos'];
-			$iva = $_GET['iva'];
-			$valorAdicional = $_GET['valorAdicional'];
-			$moneda = $_GET['moneda'];
-			$idioma = $_GET['idioma'];
-			$cus = $_GET['cus'];
-			$ciclo_pse = $_GET['ciclo_pse'];
-			$emailComprador = $_GET['emailComprador'];
-			$banco_pse = $_GET['banco_pse'];
-			$pse_referencia1 = $_GET['pse_referencia1'];
-			$pse_referencia2 = $_GET['pse_referencia2'];
-			$pse_referencia3 = $_GET['pse_referencia3'];
-			$codigo_autorizacion = $_GET['codigo_autorizacion'];
-			$fecha_procesamiento = $_GET['fecha_procesamiento'];
+			$refVenta = $_GET['ref_venta'];
 		} else {
 			if (!empty($_POST)) {
-				$usuario_id = $_POST['usuario_id'];
-				$estado = $_POST['estado'];
-				$mensaje = $_POST['mensaje'];
-				$ref_venta = $_POST['ref_venta'];
-				$ref_pol = $_POST['ref_pol'];
-				$descripcion = $_POST['descripcion'];
 				$extra1 = $_POST['extra1'];
-				$extra2 = $_POST['extra2'];
-				$estado_pol = $_POST['estado_pol'];
+				//$extra2 = $_POST['extra2'];
 				$firma = $_POST['firma'];
 				$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
-				$riesgo = $_POST['riesgo'];
-				$medio_pago = $_POST['medio_pago'];
-				$tipo_medio_pago = $_POST['tipo_medio_pago '];
-				$cuotas = $_POST['cuotas'];
-				$valor = $_POST['valor'];
-				$valorPesos = $_POST['valorPesos'];
-				$iva = $_POST['iva'];
-				$valorAdicional = $_POST['valorAdicional'];
-				$moneda = $_POST['moneda'];
-				$idioma = $_POST['idioma'];
-				$cus = $_POST['cus'];
-				$ciclo_pse = $_POST['ciclo_pse'];
-				$emailComprador = $_POST['emailComprador'];
-				$banco_pse = $_POST['banco_pse'];
-				$pse_referencia1 = $_POST['pse_referencia1'];
-				$pse_referencia2 = $_POST['pse_referencia2'];
-				$pse_referencia3 = $_POST['pse_referencia3'];
-				$codigo_autorizacion = $_POST['codigo_autorizacion'];
-				$fecha_procesamiento = $_POST['fecha_procesamiento'];
+				$refVenta = $_POST['ref_venta'];
 			}
 		}
 
 		if ($codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
 			$this->loadModel('Order');
-			$order = $this -> Order -> find('first', array('conditions' => array('Order.code' => $ref_venta)));
+			$order = $this -> Order -> findByCode($refVenta);
 			$this -> Order -> read(null, $order['Order']['id']);
 			$this -> Order -> saveField('order_state_id', 2);
 			// Remover los items del carrito
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
-		}
-		*/
-		$this->loadModel('Order');
-		$this->Order->read(null, 1);
-		if(!empty($_POST)) {
-			$this->Order->saveField('confirmacionpol', print_r($_POST, true));
-		} else {
-			if(!empty($_GET)) {
-				$this->Order->saveField('confirmacionpol', print_r($_GET, true));
-			}
 		}
 		$this -> autoRender = false;
 		exit(0);
