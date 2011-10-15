@@ -24,17 +24,7 @@ class OrdersController extends AppController {
 		$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
 		$refVenta = $_POST['ref_venta'];
 
-		$this->loadModel('Order');
-		$this->Order->read(null, 1);
-		$this->Order->saveField('copagos', $extra1);
-		$this->Order->read(null, 2);
-		$this->Order->saveField('copagos', $firma);
-		$this->Order->read(null, 3);
-		$this->Order->saveField('copagos', $codigo_respuesta_pol);
-		$this->Order->read(null, 4);
-		$this->Order->saveField('copagos', $refVenta);
-
-		/*if ($codigo_respuesta_pol == 1) {
+		if ($codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
 			$this->loadModel('Order');
 			$order = $this -> Order -> findByCode($refVenta);
@@ -44,7 +34,7 @@ class OrdersController extends AppController {
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
-		}*/
+		}
 		$this -> autoRender = false;
 		exit(0);
 		return;
