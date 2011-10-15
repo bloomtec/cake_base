@@ -127,7 +127,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
 		</div>
 		<div class="agregar_regalo twCenMt">
-			<h1><a href="#">Seguir Comprando</a></h1>
+			<h1><a class="seguir-comprando" href="#">Seguir Comprando</a></h1>
 		</div>
 		<div style="clear: both"></div>
 	</div>

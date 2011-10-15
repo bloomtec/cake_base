@@ -5,9 +5,7 @@ class OrdersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow(
-			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo'
-		);
+		$this -> Auth -> allow('confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo');
 	}
 
 	/**
@@ -19,110 +17,111 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$usuario_id=null;
-		$estado_pol=null;
-		$riesgo=null;
-		$codigo_respuesta_pol=null;
-		$ref_venta=null;
-		$ref_pol=null;
-		$firma=null;
-		$extra1=null;
-		$extra2=null;
-		$medio_pago=null;
-		$tipo_medio_pago=null;
-		$cuotas=null;
-		$iva=null;
-		$valorAdicional=null;
-		$moneda=null;
-		$fecha_transaccion=null;
-		$codigo_autorizacion=null;
-		$cus=null;
-		$banco_pse=null;
-		$email_comprador=null;
-		
-		if(!empty($_GET)) {
-			$usuario_id=$_GET["usuario_id"];
-			$estado_pol=$_GET["estado_pol"];
-			$riesgo=$_GET["riesgo"];
-			$codigo_respuesta_pol=$_GET["codigo_respuesta_pol"];
-			$ref_venta=$_GET["ref_venta"];
-			$ref_pol=$_GET["ref_pol"];
-			$firma=$_GET["firma"];
-			$extra1=$_GET["extra1"];
-			$extra2=$_GET["extra2"];
-			$medio_pago=$_GET["medio_pago"];
-			$tipo_medio_pago=$_GET["tipo_medio_pago"];
-			$cuotas=$_GET["cuotas"];
-			$iva=$_GET["iva"];
-			$valorAdicional=$_GET["valorAdicional"];
-			$moneda=$_GET["moneda"];
-			$fecha_transaccion=$_GET["fecha_transaccion"];
-			$codigo_autorizacion=$_GET["codigo_autorizacion"];
-			$cus=$_GET["cus"];
-			$banco_pse=$_GET["banco_pse"];
-			$email_comprador=$_GET["email_comprador"];
+		$usuario_id = null;
+		$estado_pol = null;
+		$riesgo = null;
+		$codigo_respuesta_pol = null;
+		$ref_venta = null;
+		$ref_pol = null;
+		$firma = null;
+		$extra1 = null;
+		$extra2 = null;
+		$medio_pago = null;
+		$tipo_medio_pago = null;
+		$cuotas = null;
+		$iva = null;
+		$valorAdicional = null;
+		$moneda = null;
+		$fecha_transaccion = null;
+		$codigo_autorizacion = null;
+		$cus = null;
+		$banco_pse = null;
+		$email_comprador = null;
+
+		if (!empty($_GET)) {
+			$usuario_id = $_GET["usuario_id"];
+			$estado_pol = $_GET["estado_pol"];
+			$riesgo = $_GET["riesgo"];
+			$codigo_respuesta_pol = $_GET["codigo_respuesta_pol"];
+			$ref_venta = $_GET["ref_venta"];
+			$ref_pol = $_GET["ref_pol"];
+			$firma = $_GET["firma"];
+			$extra1 = $_GET["extra1"];
+			$extra2 = $_GET["extra2"];
+			$medio_pago = $_GET["medio_pago"];
+			$tipo_medio_pago = $_GET["tipo_medio_pago"];
+			$cuotas = $_GET["cuotas"];
+			$iva = $_GET["iva"];
+			$valorAdicional = $_GET["valorAdicional"];
+			$moneda = $_GET["moneda"];
+			$fecha_transaccion = $_GET["fecha_transaccion"];
+			$codigo_autorizacion = $_GET["codigo_autorizacion"];
+			$cus = $_GET["cus"];
+			$banco_pse = $_GET["banco_pse"];
+			$email_comprador = $_GET["email_comprador"];
 		} else {
-			if(!empty($_POST)) {
-				$usuario_id=$_POST["usuario_id"];
-				$estado_pol=$_POST["estado_pol"];
-				$riesgo=$_POST["riesgo"];
-				$codigo_respuesta_pol=$_POST["codigo_respuesta_pol"];
-				$ref_venta=$_POST["ref_venta"];
-				$ref_pol=$_POST["ref_pol"];
-				$firma=$_POST["firma"];
-				$extra1=$_POST["extra1"];
-				$extra2=$_POST["extra2"];
-				$medio_pago=$_POST["medio_pago"];
-				$tipo_medio_pago=$_POST["tipo_medio_pago"];
-				$cuotas=$_POST["cuotas"];
-				$iva=$_POST["iva"];
-				$valorAdicional=$_POST["valorAdicional"];
-				$moneda=$_POST["moneda"];
-				$fecha_transaccion=$_POST["fecha_transaccion"];
-				$codigo_autorizacion=$_POST["codigo_autorizacion"];
-				$cus=$_POST["cus"];
-				$banco_pse=$_POST["banco_pse"];
-				$email_comprador=$_POST["email_comprador"];
+			if (!empty($_POST)) {
+				$usuario_id = $_POST["usuario_id"];
+				$estado_pol = $_POST["estado_pol"];
+				$riesgo = $_POST["riesgo"];
+				$codigo_respuesta_pol = $_POST["codigo_respuesta_pol"];
+				$ref_venta = $_POST["ref_venta"];
+				$ref_pol = $_POST["ref_pol"];
+				$firma = $_POST["firma"];
+				$extra1 = $_POST["extra1"];
+				$extra2 = $_POST["extra2"];
+				$medio_pago = $_POST["medio_pago"];
+				$tipo_medio_pago = $_POST["tipo_medio_pago"];
+				$cuotas = $_POST["cuotas"];
+				$iva = $_POST["iva"];
+				$valorAdicional = $_POST["valorAdicional"];
+				$moneda = $_POST["moneda"];
+				$fecha_transaccion = $_POST["fecha_transaccion"];
+				$codigo_autorizacion = $_POST["codigo_autorizacion"];
+				$cus = $_POST["cus"];
+				$banco_pse = $_POST["banco_pse"];
+				$email_comprador = $_POST["email_comprador"];
 			}
 		}
-		
-		if((int)$codigo_respuesta_pol == 1) {
+
+		if ((int)$codigo_respuesta_pol == 1) {
 			// Transacción Aprobada
-			$order = $this->Order->find('first', array('conditions'=>array('Order.code'=>$ref_venta)));
-			$this->Order->read(null, $order['Order']['id']);
-			$this->Order->saveField('order_status_id', 2); // Estado orden pagada
-			$this->requestAction('/shop_carts/removeAllFromCart/' . $extra1);
+			$order = $this -> Order -> find('first', array('conditions' => array('Order.code' => $ref_venta)));
+			$this -> Order -> read(null, $order['Order']['id']);
+			$this -> Order -> saveField('order_status_id', 2);
+			// Estado orden pagada
+			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
 			// Transaccion no aprobada, hacer algo?
 		}
-		
+
 		/**
 		 * fin recibir datos pagos online
 		 */
-		$this->autoRender = false;
+		$this -> autoRender = false;
 		exit(0);
 		return;
 	}
 
 	function callBackPagosOnline() {
-		if(!empty($_GET)) {
-			if(!empty($_GET["extra2"])) {
-				$this->loadModel('User');
-				$user = $this->User->read(null, $_GET["extra2"]);
-				$this->Auth->login($user);
+		if (!empty($_GET)) {
+			if (!empty($_GET["extra2"])) {
+				$this -> loadModel('User');
+				$user = $this -> User -> read(null, $_GET["extra2"]);
+				$this -> Auth -> login($user);
 			}
 		} else {
-			if(!empty($_POST)) {
-				if(!empty($_POST["extra2"])) {
-					$this->loadModel('User');
-					$user = $this->User->read(null, $_POST["extra2"]);
-					$this->Auth->login($user);
+			if (!empty($_POST)) {
+				if (!empty($_POST["extra2"])) {
+					$this -> loadModel('User');
+					$user = $this -> User -> read(null, $_POST["extra2"]);
+					$this -> Auth -> login($user);
 				}
 			}
-		}		
-		
-		$this->redirect('/');
-		$this->autoRender=false;
+		}
+
+		$this -> redirect('/');
+		$this -> autoRender = false;
 		exit(0);
 		return;
 	}
@@ -132,55 +131,56 @@ class OrdersController extends AppController {
 	 * 									METODOS PARA MANEJO DE ORDENES
 	 * ----------------------------------------------------------------------------------------------------
 	 */
-	
+
 	/**
 	 * Generar la orden como tal
 	 */
 	function mailingMethod($data) {
-		$this->layout="carrito";
-		$shop_cart = $this->requestAction('/shop_carts/getCart');
+		$this -> layout = "carrito";
+		$shop_cart = $this -> requestAction('/shop_carts/getCart');
 		$data = split("~", urldecode($data));
-		$this->set('refVenta', $data[0]);
-		$this->set('descripcion', $data[1]);
-		$this->set('valor', $data[2]);
-		$this->set('firma', $data[3]);
-		$this->set('email', $data[4]);
-		$this->set('moneda', $data[5]);
-		$this->set('nombre', $data[6]);
-		$this->set('extra1', $shop_cart['ShopCart']['id']);
-		$this->set('shop_cart', $shop_cart);
-		$this->loadModel('User');
-		$user_id = $this->Session->read('Auth.User.id');
+		$this -> set('refVenta', $data[0]);
+		$this -> set('descripcion', $data[1]);
+		$this -> set('valor', $data[2]);
+		$this -> set('firma', $data[3]);
+		$this -> set('email', $data[4]);
+		$this -> set('moneda', $data[5]);
+		$this -> set('nombre', $data[6]);
+		$this -> set('extra1', $shop_cart['ShopCart']['id']);
+		$this -> set('shop_cart', $shop_cart);
+		$this -> loadModel('User');
+		$user_id = $this -> Session -> read('Auth.User.id');
 		$user = null;
-		if($user_id) $user = $this->User->read(null, $user_id);
-		$this->set('user', $user);
+		if ($user_id)
+			$user = $this -> User -> read(null, $user_id);
+		$this -> set('user', $user);
 	}
-	
+
 	/**
 	 * Obtener información de envío
 	 */
 	function getAddressInfo() {
-		$this->layout="carrito";
-		
+		$this -> layout = "carrito";
+
 		// Obtener el carrito
-		$shop_cart = $this->requestAction('/shop_carts/getCart');
-		if(!empty($this->data)) {
-			if($shop_cart) {
+		$shop_cart = $this -> requestAction('/shop_carts/getCart');
+		if (!empty($this -> data)) {
+			if ($shop_cart) {
 				/**
 				 * El carrito existe, pasar a recolectar/generar la
 				 * información necesaria para crear la orden
 				 * Primero revisar que hayan ítems en el carrito!
 				 */
 				// Revisar si hay ítems en el carrito
-				if(count($shop_cart['ShopCartItem']) >= 1) {
+				if (count($shop_cart['ShopCartItem']) >= 1) {
 					// El carrito tiene al menos un ítem, proceder
-					
+
 					// Crear una orden
-					$this->Order->create();
-					
+					$this -> Order -> create();
+
 					// Generar el código de la orden
-					$order_code = $this->Order->find('first', array('fields' => array('MAX(Order.code) as max_code')));
-					if($order_code[0]['max_code']) {
+					$order_code = $this -> Order -> find('first', array('fields' => array('MAX(Order.code) as max_code')));
+					if ($order_code[0]['max_code']) {
 						$order_code = $order_code[0]['max_code'] + 1;
 					} else {
 						$order_code = "000000001";
@@ -189,97 +189,97 @@ class OrdersController extends AppController {
 					for ($i = (9 - $longitud); $i > 0; $i--) {
 						$order_code = "0" . $order_code;
 					}
-					
+
 					//Asignar el codigo de orden y su status inicial
-					$this->Order->set('code', $order_code);
-					$this->Order->set('order_state_id', 1);
-					
+					$this -> Order -> set('code', $order_code);
+					$this -> Order -> set('order_state_id', 1);
+
 					// Description
 					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
-					
+
 					// Valor
-					$valor = $this->data['Order']['total'];
-					
+					$valor = $this -> data['Order']['total'];
+
 					// Moneda
 					$moneda = "COP";
-					
+
 					// Nombre
-					$nombre = $this->data['Envio']['name'] . " " . $this->data['Envio']['surname'];
-					
+					$nombre = $this -> data['Envio']['name'] . " " . $this -> data['Envio']['surname'];
+
 					// Email
-					$email = $this->data['Envio']['email'];
-					
+					$email = $this -> data['Envio']['email'];
+
 					// Firma :: 132f4e12b03 <-- llave
 					// formato firma --> "llaveEncripcion~usuarioId~refVenta~valor~moneda"
 					$firma = "132f4e12b03~76075~$order_code~$valor~$moneda";
 					$firma = md5($firma);
-					
+
 					/**
 					 * Organizar la información en el carrito de compras
 					 * y asignarla de una vez a la orden
 					 */
-					$this->loadModel('ShopCart');
-					$shop_cart['ShopCart']['nombre'] = $this->data['Envio']['name'];
-					$this->Order->set('nombre', $this->data['Envio']['name']);
-					$shop_cart['ShopCart']['apellido'] = $this->data['Envio']['surname'];
-					$this->Order->set('apellido', $this->data['Envio']['surname']);
-					$shop_cart['ShopCart']['pais'] = $this->data['Envio']['country'];
-					$this->Order->set('pais', $this->data['Envio']['country']);
-					$shop_cart['ShopCart']['estado'] = $this->data['Envio']['state'];
-					$this->Order->set('estado', $this->data['Envio']['state']);
-					$shop_cart['ShopCart']['ciudad'] = $this->data['Envio']['city'];
-					$this->Order->set('ciudad', $this->data['Envio']['city']);
-					$shop_cart['ShopCart']['direccion'] = $this->data['Envio']['address'];
-					$this->Order->set('direccion', $this->data['Envio']['address']);
-					$shop_cart['ShopCart']['telefono'] = $this->data['Envio']['phone'];
-					$this->Order->set('telefono', $this->data['Envio']['phone']);
-					$shop_cart['ShopCart']['celular'] = $this->data['Envio']['mobile'];
-					$this->Order->set('celular', $this->data['Envio']['mobile']);
-					$shop_cart['ShopCart']['email'] = $this->data['Envio']['email'];
-					$this->Order->set('email', $this->data['Envio']['email']);
-					$shop_cart['ShopCart']['subtotal'] = $this->data['Order']['subtotal'];
-					$this->Order->set('subtotal', $this->data['Order']['subtotal']);
-					$shop_cart['ShopCart']['descuento'] = $this->data['Order']['subtotal'] - $this->data['Order']['total'];
-					$this->Order->set('descuento', $this->data['Order']['subtotal'] - $this->data['Order']['total']);
-					$shop_cart['ShopCart']['total'] = $this->data['Order']['total'];
-					$this->Order->set('total', $this->data['Order']['total']);
-					
-					$this->Order->save();
-					$order_id = $this->Order->id;
-					for ($i=0; $i < count($shop_cart['ShopCartItem']); $i++) {
-						$shop_cart_item = $this->ShopCart->ShopCartItem->read(null, $shop_cart['ShopCartItem'][$i]['id']);
-						$this->Order->OrderItem->create();
-						$this->Order->OrderItem->set('order_id', $order_id);
-						$this->Order->OrderItem->set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
-						$this->Order->OrderItem->set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
-						$this->Order->OrderItem->set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
-						$this->Order->OrderItem->set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
-						$this->Order->OrderItem->set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
-						$this->Order->OrderItem->save();
-						if($shop_cart['ShopCartItem'][$i]['is_gift']) {
-							$this->Order->OrderItem->read(null, $this->Order->OrderItem->id);
-							$this->ShopCart->ShopCartItem->read(null, $shop_cart['ShopCartItem'][$i]['id']);
-							$this->ShopCart->ShopCartItem->saveField('nombre', $this->data['Gift']['name']);
-							$this->Order->OrderItem->saveField('nombre', $this->data['Gift']['name']);
-							$this->ShopCart->ShopCartItem->saveField('apellido', $this->data['Gift']['surname']);
-							$this->Order->OrderItem->saveField('apellido', $this->data['Gift']['surname']);
-							$this->ShopCart->ShopCartItem->saveField('pais', $this->data['Gift']['country']);
-							$this->Order->OrderItem->saveField('pais', $this->data['Gift']['country']);
-							$this->ShopCart->ShopCartItem->saveField('estado', $this->data['Gift']['state']);
-							$this->Order->OrderItem->saveField('estado', $this->data['Gift']['state']);
-							$this->ShopCart->ShopCartItem->saveField('ciudad', $this->data['Gift']['city']);
-							$this->Order->OrderItem->saveField('ciudad', $this->data['Gift']['city']);
-							$this->ShopCart->ShopCartItem->saveField('direccion', $this->data['Gift']['address']);
-							$this->Order->OrderItem->saveField('direccion', $this->data['Gift']['address']);
-							$this->ShopCart->ShopCartItem->saveField('telefono', $this->data['Gift']['phone']);
-							$this->Order->OrderItem->saveField('telefono', $this->data['Gift']['phone']);
+					$this -> loadModel('ShopCart');
+					$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
+					$this -> Order -> set('nombre', $this -> data['Envio']['name']);
+					$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];
+					$this -> Order -> set('apellido', $this -> data['Envio']['surname']);
+					$shop_cart['ShopCart']['pais'] = $this -> data['Envio']['country'];
+					$this -> Order -> set('pais', $this -> data['Envio']['country']);
+					$shop_cart['ShopCart']['estado'] = $this -> data['Envio']['state'];
+					$this -> Order -> set('estado', $this -> data['Envio']['state']);
+					$shop_cart['ShopCart']['ciudad'] = $this -> data['Envio']['city'];
+					$this -> Order -> set('ciudad', $this -> data['Envio']['city']);
+					$shop_cart['ShopCart']['direccion'] = $this -> data['Envio']['address'];
+					$this -> Order -> set('direccion', $this -> data['Envio']['address']);
+					$shop_cart['ShopCart']['telefono'] = $this -> data['Envio']['phone'];
+					$this -> Order -> set('telefono', $this -> data['Envio']['phone']);
+					$shop_cart['ShopCart']['celular'] = $this -> data['Envio']['mobile'];
+					$this -> Order -> set('celular', $this -> data['Envio']['mobile']);
+					$shop_cart['ShopCart']['email'] = $this -> data['Envio']['email'];
+					$this -> Order -> set('email', $this -> data['Envio']['email']);
+					$shop_cart['ShopCart']['subtotal'] = $this -> data['Order']['subtotal'];
+					$this -> Order -> set('subtotal', $this -> data['Order']['subtotal']);
+					$shop_cart['ShopCart']['descuento'] = $this -> data['Order']['subtotal'] - $this -> data['Order']['total'];
+					$this -> Order -> set('descuento', $this -> data['Order']['subtotal'] - $this -> data['Order']['total']);
+					$shop_cart['ShopCart']['total'] = $this -> data['Order']['total'];
+					$this -> Order -> set('total', $this -> data['Order']['total']);
+
+					$this -> Order -> save();
+					$order_id = $this -> Order -> id;
+					for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
+						$shop_cart_item = $this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+						$this -> Order -> OrderItem -> create();
+						$this -> Order -> OrderItem -> set('order_id', $order_id);
+						$this -> Order -> OrderItem -> set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
+						$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
+						$this -> Order -> OrderItem -> set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
+						$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
+						$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
+						$this -> Order -> OrderItem -> save();
+						if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
+							$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
+							$this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+							$this -> ShopCart -> ShopCartItem -> saveField('nombre', $this -> data['Gift']['name']);
+							$this -> Order -> OrderItem -> saveField('nombre', $this -> data['Gift']['name']);
+							$this -> ShopCart -> ShopCartItem -> saveField('apellido', $this -> data['Gift']['surname']);
+							$this -> Order -> OrderItem -> saveField('apellido', $this -> data['Gift']['surname']);
+							$this -> ShopCart -> ShopCartItem -> saveField('pais', $this -> data['Gift']['country']);
+							$this -> Order -> OrderItem -> saveField('pais', $this -> data['Gift']['country']);
+							$this -> ShopCart -> ShopCartItem -> saveField('estado', $this -> data['Gift']['state']);
+							$this -> Order -> OrderItem -> saveField('estado', $this -> data['Gift']['state']);
+							$this -> ShopCart -> ShopCartItem -> saveField('ciudad', $this -> data['Gift']['city']);
+							$this -> Order -> OrderItem -> saveField('ciudad', $this -> data['Gift']['city']);
+							$this -> ShopCart -> ShopCartItem -> saveField('direccion', $this -> data['Gift']['address']);
+							$this -> Order -> OrderItem -> saveField('direccion', $this -> data['Gift']['address']);
+							$this -> ShopCart -> ShopCartItem -> saveField('telefono', $this -> data['Gift']['phone']);
+							$this -> Order -> OrderItem -> saveField('telefono', $this -> data['Gift']['phone']);
 						}
 					}
-					
-					if($this->ShopCart->save($shop_cart)) {
+
+					if ($this -> ShopCart -> save($shop_cart)) {
 						// Redireccionar a la información final de envío
 						// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
-						$this->redirect(array('action'=>'mailingMethod', urlencode("$order_code~$descripcion~$valor~$firma~$email~$moneda~$nombre")));
+						$this -> redirect(array('action' => 'mailingMethod', urlencode("$order_code~$descripcion~$valor~$firma~$email~$moneda~$nombre")));
 					}
 				} else {
 					/**
@@ -290,10 +290,10 @@ class OrdersController extends AppController {
 				// El usuario no tiene carrito asignado
 			}
 		}
-		$user_id = $this->Session->read('Auth.User.id');
-		$user = $this->Order->User->read(null, $user_id);
-		$this->set('user', $user);
-		$this->set('shop_cart', $shop_cart);
+		$user_id = $this -> Session -> read('Auth.User.id');
+		$user = $this -> Order -> User -> read(null, $user_id);
+		$this -> set('user', $user);
+		$this -> set('shop_cart', $shop_cart);
 	}
 
 	/**
