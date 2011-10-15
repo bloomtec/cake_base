@@ -19,39 +19,7 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		/**
-		 * [url] => orders/callBackPagosOnline
-		 * [usuario_id] => 76075
-		 * [estado] => 2
-		 * [mensaje] => transaccion aprobada
-		 * [ref_venta] => 000000011
-		 * [ref_pol] => 1377233
-		 * [descripcion] => Pago de compra en www.colorstennis.com - Referencia 000000011
-		 * [extra1] => 4
-		 * [extra2] =>
-		 * [estado_pol] => 4
-		 * [firma] => EA628EEA1EE1D469604FE1838539AF26
-		 * [codigo_respuesta_pol] => 1
-		 * [riesgo] => .00
-		 * [medio_pago] => 10
-		 * [tipo_medio_pago] => 2
-		 * [cuotas] => 12
-		 * [valor] => 124900.00
-		 * [valorPesos] => 124900.00
-		 * [iva] => .00
-		 * [valorAdicional] => .00
-		 * [moneda] => COP
-		 * [idioma] => es
-		 * [cus] => 20111015
-		 * [ciclo_pse] => null
-		 * [emailComprador] => juliodominguez@gmail.com
-		 * [banco_pse] =>
-		 * [pse_referencia1] =>
-		 * [pse_referencia2] =>
-		 * [pse_referencia3] =>
-		 * [codigo_autorizacion] => 909352
-		 * [fecha_procesamiento] => 2011-10-15
-		 */
+		/*
 		$usuario_id = null;
 		$estado = null;
 		$mensaje = null;
@@ -160,10 +128,16 @@ class OrdersController extends AppController {
 		} else {
 			// Transaccion no aprobada, hacer algo?
 		}
-
-		/**
-		 * fin recibir datos pagos online
-		 */
+		*/
+		$this->loadModel('Order');
+		$this->Order->read(null, 1);
+		if(!empty($_POST)) {
+			$this->Order->saveField('confirmacionpol', print_r($_POST));
+		} else {
+			if(!empty($_GET)) {
+				$this->Order->saveField('confirmacionpol', print_r($_GET));
+			}
+		}
 		$this -> autoRender = false;
 		exit(0);
 		return;
