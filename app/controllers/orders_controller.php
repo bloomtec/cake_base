@@ -39,20 +39,11 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
-		if (!empty($_GET)) {
-			if (!empty($_GET['extra2'])) {
-				$this -> loadModel('User');
-				$user = $this -> User -> read(null, $_GET["extra2"]);
-				$this -> Auth -> login($user);
-			}
-		} else {
-			if (!empty($_POST)) {
-				if (!empty($_POST['extra2'])) {
-					$this -> loadModel('User');
-					$user = $this -> User -> read(null, $_POST["extra2"]);
-					$this -> Auth -> login($user);
-				}
-			}
+		$user_id = $_GET['extra2']; 
+		if ($user_id) {
+			$this -> loadModel('User');
+			$user = $this -> User -> read(null, $user_id);
+			$this -> Auth -> login($user);
 		}
 
 		$this -> redirect('/');
@@ -126,6 +117,8 @@ class OrdersController extends AppController {
 				 * Organizar la información en el carrito de compras
 				 * y asignarla de una vez a la orden
 				 */
+				$this -> Order -> set('user_id', $shop_cart['ShopCart']['user_id']);
+				$this -> Order -> set('user_agent', $shop_cart['ShopCart']['user_agent']);
 				$this -> Order -> set('nombre', $shop_cart['ShopCart']['nombre']);
 				$this -> Order -> set('apellido', $shop_cart['ShopCart']['apellido']);
 				$this -> Order -> set('pais', $shop_cart['ShopCart']['pais']);
@@ -175,7 +168,7 @@ class OrdersController extends AppController {
 					$this -> set('moneda', $moneda);
 					$this -> set('nombre', $nombre);
 					$this -> set('extra1', $shop_cart['ShopCart']['id']);
-					$this -> set('shop_cart', $shop_cart);
+					$this -> set('order', $this->Order->read(null, $order_id));
 					$user_id = $this -> Session -> read('Auth.User.id');
 					$user = null;
 					if ($user_id)
