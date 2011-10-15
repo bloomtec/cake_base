@@ -154,7 +154,7 @@ class OrdersController extends AppController {
 			$this->loadModel('Order');
 			$order = $this -> Order -> find('first', array('conditions' => array('Order.code' => $ref_venta)));
 			$this -> Order -> read(null, $order['Order']['id']);
-			$this -> Order -> saveField('order_status_id', 2);
+			$this -> Order -> saveField('order_state_id', 2);
 			// Remover los items del carrito
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
