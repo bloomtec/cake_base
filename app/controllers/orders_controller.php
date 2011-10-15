@@ -19,27 +19,10 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$extra1 = null; // id del carrito respectivo
-		//$extra2 = null; // id del usuario si habia sesión
-		$firma = null;
-		$codigo_respuesta_pol = null;
-		$refVenta = null;
-		
-		if (!empty($_GET)) {
-			$extra1 = $_GET['extra1'];
-			//$extra2 = $_GET['extra2'];
-			$firma = $_GET['firma'];
-			$codigo_respuesta_pol = $_GET['codigo_respuesta_pol'];
-			$refVenta = $_GET['ref_venta'];
-		} else {
-			if (!empty($_POST)) {
-				$extra1 = $_POST['extra1'];
-				//$extra2 = $_POST['extra2'];
-				$firma = $_POST['firma'];
-				$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
-				$refVenta = $_POST['ref_venta'];
-			}
-		}
+		$extra1 = $_GET['extra1']; // id del carrito respectivo
+		$firma = $_GET['firma'];
+		$codigo_respuesta_pol = $_GET['codigo_respuesta_pol'];
+		$refVenta = $_GET['ref_venta'];
 
 		$this->loadModel('Order');
 		$this->Order->read(null, 1);
