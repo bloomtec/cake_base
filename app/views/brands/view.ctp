@@ -1,7 +1,9 @@
 <div class="subcategories_index">
+	<?php if(isset($subcategory) && !empty($subcategory)):?>
 	<div id="slide_categoria">
-		<?php echo $html->image('uploads/'.$brand['Brand']['image']);?>
+		<?php echo $html->image('uploads/'.$subcategory['Subcatgory']['image']);?>
 	</div>
+	<?php endif;?>
 	<ul class="filtrar twCenMt">
 		<li class="titulos_rosado">
 			FILTRAR POR

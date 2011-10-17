@@ -138,7 +138,8 @@ select{
 	margin-bottom: 4px;
 	font-size: 13px;
 	text-transform: uppercase;
-	width: 140px;
+	max-width: 132px;
+	height: 24px;
 }
 ul.products li h2, ul.products li h3{
 	padding-left:5px;
