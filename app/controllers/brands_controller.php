@@ -25,7 +25,7 @@ class BrandsController extends AppController {
 			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
 			$this->Brand->Subcategory->recursive=-1;
 			$subcategory=$this->Brand->Subcategory->read(null,$this->params['named']['subcategoria']);
-			$this->set(compact($subcategory));
+			$this->set(compact('subcategory'));
 		}
 		if((isset($this->params['named']['coleccion'])) && (!empty($this->params['named']['coleccion']))) {
 			$conditions['Product.collection_id']=$this->params['named']['coleccion'];
