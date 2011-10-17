@@ -66,8 +66,22 @@ class BrandsController extends AppController {
 	}
 
 	function brandOfCategory($categoryId = null) {
-		
-		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId),'order'=>'rand()'));
+		$this->Brand->Product->bindModel(array('hasMany'=>array(
+			'Product'=>array(
+			'className' => 'Product',
+			'foreignKey' => 'brand_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'rand()',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+		)));
+		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
 	}
 
 	function brandsView() {
