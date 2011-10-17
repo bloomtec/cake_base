@@ -11,21 +11,21 @@
 		<label>Datos Usuario</label>
 		<span><?php if($user) echo $user['UserField']['name'] . " " . $user['UserField']['surname']; ?></span>
 		<label>Pais</label>
-		<span><?=$shop_cart['ShopCart']['pais']?></span>
+		<span><?=$order['Order']['pais']?></span>
 		<label>Nombre</label>
-		<span><?=$shop_cart['ShopCart']['nombre']?></span>
+		<span><?=$order['Order']['nombre']?></span>
 		<label>Apellido</label>
-		<span><?=$shop_cart['ShopCart']['apellido']?></span>
+		<span><?=$order['Order']['apellido']?></span>
 		<label>Dirección</label>
-		<span><?=$shop_cart['ShopCart']['direccion']?></span>
+		<span><?=$order['Order']['direccion']?></span>
 		<label>Numero Telefónico</label>
-		<span><?=$shop_cart['ShopCart']['telefono']?></span>
+		<span><?=$order['Order']['telefono']?></span>
 		<label>Celular</label>
-		<span><?=$shop_cart['ShopCart']['celular']?></span>
+		<span><?=$order['Order']['celular']?></span>
 		<label>Departamento</label>
-		<span><?=$shop_cart['ShopCart']['estado']?></span>
+		<span><?=$order['Order']['estado']?></span>
 		<label>Ciudad</label>
-		<span><?=$shop_cart['ShopCart']['ciudad']?></span>
+		<span><?=$order['Order']['ciudad']?></span>
 		<div style="clear: both"></div>
 	</form>
 	</div>
@@ -33,28 +33,112 @@
 </div>
 <div class="form_envio der">
 	<div class="form">
+	<?php
+		$found_gift = false;
+		$gift = null;
+		$total_regalo = 0;
+		foreach($order['OrderItem'] as $item) {
+			if($item['is_gift']) {
+				$found_gift = true;
+				$gift = $item;
+				$model_name = $item['model_name'];
+				$foreign_key = $item['foreign_key'];
+				$product = $this -> requestAction("/$model_name" . "s/getProduct/$foreign_key");
+				$total_regalo += $product[$model_name]["price"] * $item['quantity'];
+			}
+		}
+		$total = $order['Order']['total'];
+		$total_para_envio = $total - $total_regalo;
+		$message = "";
+		if($found_gift) {
+			// Hay regalo
+			if($total_para_envio > 0) {
+				// Hay regalo y envio
+				// Revision detalle envío
+				if($total_para_envio >= 120000) {
+					$message = "Envío Gratis :: ";
+				} else {
+					$message = "Envío Contraentrega :: ";
+				}
+				// Revisar si es Cali la ciudad destino
+				if(strcasecmp(trim($order['Order']['pais']), "Colombia") == 0) {
+					// Destino Colombia
+					$words = explode(" ", $order['Order']['ciudad']);
+					foreach($words as $word) {
+						if(strcasecmp(trim($word), "Cali") == 0) {
+							$message = "Envío Gratis :: ";
+						}
+					}
+				}
+				// Revision detalle regalo
+				if($total_regalo >= 120000) {
+					$message = $message . "Envío Regalo Gratis";
+				} else {
+					$cali_found = false;
+					// Revisar si es Cali la ciudad destino
+					if(strcasecmp(trim($gift['pais']), "Colombia") == 0) {
+						// Destino Colombia
+						$words = explode(" ", $gift['ciudad']);
+						foreach($words as $word) {
+							if(strcasecmp(trim($word), "Cali") == 0) {
+								$cali_found = true;
+							}
+						}
+					}
+					if($cali_found) {
+						$message = $message . "Envío Regalo Gratis";
+					} else {
+						$message = $message . "Envío Regalo Contraentrega";
+					}
+				}
+			} else {
+				// Solo hay regalo
+				// Revisar si es Cali la ciudad destino
+				$cali_found = false;
+				if(strcasecmp(trim($order['Order']['pais']), "Colombia") == 0) {
+					// Destino Colombia
+					$words = explode(" ", $order['Order']['ciudad']);
+					foreach($words as $word) {
+						if(strcasecmp(trim($word), "Cali") == 0) {
+							$cali_found = true;
+						}
+					}
+				}
+				if($cali_found || ($total_regalo >= 120000)) {
+					$message = "Envío Regalo Gratis";
+				}
+			}
+		} else {
+			// No hay regalo
+			if($total >= 120000) {
+				$message = "Envío Gratis";
+			} else {
+				$message = "Envío Contraentrega";
+			}
+			// Revisar si es Cali la ciudad destino
+			if(strcasecmp(trim($order['Order']['pais']), "Colombia") == 0) {
+				// Destino Colombia
+				$words = explode(" ", $order['Order']['ciudad']);
+				foreach($words as $word) {
+					if(strcasecmp(trim($word), "Cali") == 0) {
+						$message = "Envío Gratis";
+					}
+				}
+			}
+		}
+	?>
 	<form class="tahoma">
 		<label>Entidad</label>
 		<span>Servientrega</span>
 		<label>Tipo de envio</label>
-		<span>Contraentrega/gratis</span>
+		<span><?=$message?></span>
 	</form>
 	<div style="clear: both"></div>
 	<?php
-		$found_gift = false;
-		$gift = null;
-		foreach($shop_cart['ShopCartItem'] as $item) {
-			if($item['is_gift']) {
-				$found_gift = true;
-				$gift = $item;
-				break;
-			}
-		}
-		if(true) :
+		if($found_gift) :
 	?>
 		<div class="envio_regalo">
-			<h1 class="tahoma">¿Dónde vamos a enviar tu regalo? </h1>
-		
+			<h1 class="tahoma">¿Dónde vamos a enviar tu regalo? </h1>		
 			<form class="tahoma">
 				<label>Pais</label>
 				<span><?=$gift['pais']?></span>
@@ -100,13 +184,13 @@
 	</form>
 </div>
 <div id="cupon" class="twCenMt">
-	<h1 class="titulos_rosado">TOTAL <span>$<?=number_format($shop_cart['ShopCart']['total'], 0, ' ', '.')?></span></h1>
+	<h1 class="titulos_rosado">TOTAL <span>$<?=number_format($order['Order']['total'], 0, ' ', '.')?></span></h1>
 	<div id="btn_cupon">
 		<div class="agregar_regalo verde twCenMt">
 			<h1><a class="mailing-form" href="#">Continuar</a></h1>
 		</div>
 		<div class="agregar_regalo twCenMt">
-			<h1><a href="#">Seguir Comprando</a></h1>
+			<h1><a class="seguir-comprando" href="#">Seguir Comprando</a></h1>
 		</div>
 		<div style="clear: both"></div>
 	</div>

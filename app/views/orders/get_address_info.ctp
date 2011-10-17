@@ -20,7 +20,7 @@ if ($user) {
 	$ciudad = $user['UserField']['city'];
 	$email = $user['User']['email'];
 }
-$isThereGift=false;
+$foundGift = false;
 if (empty($shop_cart['ShopCartItem'])) {
 	// No hay items en el carrito
 	e("<tr><td colspan='6'><h2>NO HAY ITEMS EN EL CARRITO</h2></td></tr>");
@@ -31,7 +31,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 		$foreign_key = $shoppin_cart_item['foreign_key'];
 		$item = $this -> requestAction("/$model_name" . "s/getProduct/$foreign_key");
 		$subtotal += $item[$model_name]["price"] * $shoppin_cart_item['quantity'];
-		if($shoppin_cart_item['is_gift']) $isThereGift=true;
+		if($shoppin_cart_item['is_gift']) $foundGift=true;
 	}
 }
 
@@ -40,14 +40,14 @@ if (empty($shop_cart['ShopCartItem'])) {
 <p class="costo_envio tahoma">
 	Recuerda que puedes recibir tu pedido en cualquier parte de Colombia, el tiempo aproximado de entrega es de 3 a 5 días después de haber realizado el
 	pago.  También puedes enviar un regalo a cualquier parte de Colombia, pero si tienes varios productos como regalo, todos serán enviados a una única
-	dirección. El costo del envió en contra entrega, envíos a la ciudad de Cali no tienen costo o si tu pedido tiene un valor de pago igual o superior a
-	$120.000 tampoco tienen costo.
+	dirección. El costo del envió se asume contra entrega; envíos a la ciudad de Cali, o pedidos con un valor de pago igual o superior a $120.000, no tienen
+	costo.
 </p>
 <div class="datos_envio form_envio">
 	<h1 class="tahoma">Datos de envio</h1>
 </div>
 <div id="der" class="datos_envio form_envio">
-	<h1 class="der tahoma">Datos de envio para el regalo</h1>
+	<h1 class="der tahoma"><?php if($foundGift) {echo "Datos de envio para el regalo";} else {echo "No agregó ítems como regalo";} ?></h1>
 </div>
 <div class="form_envio tahoma">
 	<div class="form">
@@ -77,7 +77,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 </div>
 <div class="form_envio der tahoma">
 	<div class="form">
-		<?php if($isThereGift): ?>
+		<?php if($foundGift): ?>
 		<?php e($this -> Form -> input('Gift.country', array('label' => 'País',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido',"required" => "required")));?>
@@ -87,15 +87,15 @@ if (empty($shop_cart['ShopCartItem'])) {
 		<?php e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico',"required" => "required")));?>
 		<?php endif;?>
 		
-		<?php if(!$isThereGift): ?>
-		<?php e($this -> Form -> input('Gift.country', array('label' => 'País')));?>
-		<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre')));?>
-		<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido')));?>
-		<?php e($this -> Form -> input('Gift.address', array('label' => 'Dirección')));?>
-		<?php e($this -> Form -> input('Gift.state', array('label' => 'Departamento')));?>
-		<?php e($this -> Form -> input('Gift.city', array('label' => 'Ciudad')));?>
-		<?php e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico')));?>
-		<?php endif;?>
+		<?php //if(!$foundGift): ?>
+		<?php //e($this -> Form -> input('Gift.country', array('label' => 'País')));?>
+		<?php //e($this -> Form -> input('Gift.name', array('label' => 'Nombre')));?>
+		<?php //e($this -> Form -> input('Gift.surname', array('label' => 'Apellido')));?>
+		<?php //e($this -> Form -> input('Gift.address', array('label' => 'Dirección')));?>
+		<?php //e($this -> Form -> input('Gift.state', array('label' => 'Departamento')));?>
+		<?php //e($this -> Form -> input('Gift.city', array('label' => 'Ciudad')));?>
+		<?php //e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico')));?>
+		<?php //endif;?>
 		
 	</div>
 	<div style="clear: both"></div>
@@ -127,7 +127,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
 		</div>
 		<div class="agregar_regalo twCenMt">
-			<h1><a href="#">Seguir Comprando</a></h1>
+			<h1><a class="seguir-comprando" href="#">Seguir Comprando</a></h1>
 		</div>
 		<div style="clear: both"></div>
 	</div>
