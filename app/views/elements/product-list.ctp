@@ -10,9 +10,3 @@
 	<?php endforeach;?>
 	<div style='clear:both;'></div>
 </ul>
-<div class="paging tahoma">
-	<?php echo $this -> Paginator -> prev('<< ' . __('anterior', true), array(), null, array('class' => 'disabled'));?>
-	| 	<?php echo $this -> Paginator -> numbers();?>
-	|
-	<?php echo $this -> Paginator -> next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-</div>

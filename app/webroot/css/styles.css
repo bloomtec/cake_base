@@ -1416,9 +1416,6 @@ table.tahoma {
 }
 .buscar .izq img, .brands .marcas img{
 	background-color: #333;
-	width: 127px;
-	height: 41px;
-	float: left;
 	border:1px solid #858585;
 }
 .buscar .izq h1, .brands .marcas h1{
@@ -1428,6 +1425,10 @@ table.tahoma {
 	width: 39%;
 	float: left;
 	margin-left: 10px;
+}
+.brands .marcas h1{
+	float:none;
+	width: 100%;
 }
 .buscar .izq h2, .brands .marcas h2{
 	font-size: 14px;
