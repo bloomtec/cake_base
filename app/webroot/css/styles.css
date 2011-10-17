@@ -1524,6 +1524,9 @@ table.tahoma {
 .error p {
 	margin:0;		
 }
+.paging{
+	#7e7e7d;
+}
 .paging .disabled{
 	color: #7e7e7d;
 }
