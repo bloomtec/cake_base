@@ -13,8 +13,6 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 			</a>			
 		</li>
 	</ul>
-	
-
 	<ul class="twCenMt">
 		<?php //debug($brand);?>
 		<?php if(!empty($librand["Subcategory"])): ?>

@@ -66,7 +66,8 @@ class BrandsController extends AppController {
 	}
 
 	function brandOfCategory($categoryId = null) {
-		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
+		
+		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId),'order'=>'rand()'));
 	}
 
 	function brandsView() {
