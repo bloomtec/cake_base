@@ -1525,10 +1525,10 @@ table.tahoma {
 	margin:0;		
 }
 .paging .disabled{
-	color: #e7e77d;
+	color: #7e7e7d;
 }
-.paging a.current{
-	color: #e7e77d;
+.paging .current{
+	color: #7e7e7d;
 }
 .paging a{
 	color: #00CFB5;
