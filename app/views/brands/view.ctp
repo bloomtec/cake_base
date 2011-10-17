@@ -1,5 +1,6 @@
 <div class="subcategories_index">
-	<div id="slide_categoria"><img src="" />
+	<div id="slide_categoria">
+		<?php echo $html->image('uploads/'.$brand['Brand']['image']);?>
 	</div>
 	<ul class="filtrar twCenMt">
 		<li class="titulos_rosado">
