@@ -66,7 +66,7 @@ class BrandsController extends AppController {
 	}
 
 	function brandOfCategory($categoryId = null) {
-		$this->Brand->Product->bindModel(array('hasMany'=>array(
+		$this->Brand->bindModel(array('hasMany'=>array(
 			'Product'=>array(
 			'className' => 'Product',
 			'foreignKey' => 'brand_id',
