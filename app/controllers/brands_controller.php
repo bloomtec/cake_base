@@ -37,7 +37,7 @@ class BrandsController extends AppController {
 		}
 		$this->paginate=array(
 			"Product" => array(
-				'limit' => 20,
+				'limit' => 100,
 				'conditions' => $conditions
 			)
 		);
