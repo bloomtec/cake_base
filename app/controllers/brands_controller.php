@@ -23,8 +23,6 @@ class BrandsController extends AppController {
 		$conditions = array();
 		if((isset($this->params['named']['subcategoria'])) && (!empty($this->params['named']['subcategoria']))) {
 			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
-		}else{
-			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
 		}
 		if((isset($this->params['named']['coleccion'])) && (!empty($this->params['named']['coleccion']))) {
 			$conditions['Product.collection_id']=$this->params['named']['coleccion'];
