@@ -49,7 +49,7 @@
 					<h1>$ <?php echo number_format($item["$model_name"]["price"], 0, ' ', '.'); ?></h1>
 				</td>
 				<td class="talla"><!-- celda con el select para modificar la cantidad -->
-					
+					<?php debug($item['Inventory']);?>
 					<?php echo $form->input('cantidad',array('class'=>'item-quantity','options'=>array(1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10),"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));?>
 					</td>
 				<td class="talla">
