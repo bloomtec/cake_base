@@ -104,8 +104,26 @@ class ShopCartsController extends AppController {
 	function addToCart() {
 		$this->autoRender=false;
 		$this->layout="ajax";
+		$this->loadModel('Product');
+		$this->loadModel('Subcategory');
+		$this->loadModel('Size');
 		$shopping_cart = $this->getCart();
 		$cart_id = -1;
+		$size_reference_id = $this->data['ShopCartItem']['size_id'];
+		$this->Product->recursive=0;
+		$product = $this->Product->read(null, $this->data['ShopCartItem']['foreign_key']);
+		$size = $this->Size->find(
+			'first',
+			array(
+				'recursive'=>-1,
+				'conditions'=>array(
+					'Size.subcategory_id'=>$product['Subcategory']['id'],
+					'Size.size_reference_id'=>$size_reference_id
+				)
+			)
+		);
+		$this->data['ShopCartItem']['size_id'] = $size['Size']['id'];
+		
 		if(empty($shopping_cart)) {
 			// Crear un carrito porque no lo hay
 			$this->ShopCart->create();
@@ -116,7 +134,7 @@ class ShopCartsController extends AppController {
 			}
 			if($this->ShopCart->save()){
 				// Se creo el carrito, guardar la info
-				$cart_id=$this->ShopCart->id;				
+				$cart_id=$this->ShopCart->id;
 			} else {
 				// No se creo el carrito, retornar algo
 				echo false;
