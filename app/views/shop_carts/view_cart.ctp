@@ -22,7 +22,6 @@
 				$model_name = $shoppin_cart_item['model_name'];
 				$foreign_key =  $shoppin_cart_item['foreign_key'];
 				$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key/".$shoppin_cart_item['size_id']);
-				debug($shoppin_cart_item);
 				$subtotal+=$item[$model_name]["price"]*$shoppin_cart_item['quantity'];
 		?>
 			<tr class="shop-cart-item" rel="<?=$shoppin_cart_item["id"]?>">
@@ -50,8 +49,13 @@
 					<h1>$ <?php echo number_format($item["$model_name"]["price"], 0, ' ', '.'); ?></h1>
 				</td>
 				<td class="talla"><!-- celda con el select para modificar la cantidad -->
-					<?php debug($item);?>
-					<?php echo $form->input('cantidad',array('class'=>'item-quantity','options'=>array(1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10),"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));?>
+					<?php 
+						$cantidades=array();
+						for($i=1; $i <= $item['Inventory']['quantity']; $i++ ){
+							$cantidades[$i]=$i;
+						}
+					?>
+					<?php echo $form->input('cantidad',array('class'=>'item-quantity','options'=>$cantidades,"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));?>
 					</td>
 				<td class="talla">
 					<h1 class="price">$<?php echo number_format($shoppin_cart_item['quantity']* $item["$model_name"]["price"], 0, ' ', '.');?></h1><!-- celda con el total -->
