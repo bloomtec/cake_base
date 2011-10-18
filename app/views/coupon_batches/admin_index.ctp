@@ -26,12 +26,11 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $couponBatch['CouponBatch']['name']; ?>&nbsp;</td>
 		<td><?php echo $couponBatch['CouponBatch']['description']; ?>&nbsp;</td>
-		<td><?php echo $couponBatch['CouponBatch']['value']; ?>&nbsp;</td>
+		<td><?php echo (100*$couponBatch['CouponBatch']['value'])."%"; ?>&nbsp;</td>
 		<td><?php echo $couponBatch['CouponBatch']['created']; ?>&nbsp;</td>
 		<td><?php echo $couponBatch['CouponBatch']['updated']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $couponBatch['CouponBatch']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $couponBatch['CouponBatch']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $couponBatch['CouponBatch']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $couponBatch['CouponBatch']['id'])); ?>
 			<?php if(isset($couponBatch['CouponBatch']['active'])&& $couponBatch['CouponBatch']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $couponBatch['CouponBatch']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $couponBatch['CouponBatch']['id']));

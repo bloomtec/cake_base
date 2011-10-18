@@ -20,6 +20,18 @@ class UsersController extends AppController {
 		exit(0);
 		return;
 	}
+	
+	function isLoggedIn() {
+		$this->layout="ajax";
+		$x = $this->Session->read('Auth.User.id');
+		if(!empty($x)) {
+			echo 'true';
+		} else {
+			echo 'false';
+		}
+		exit(0);
+		return;
+	}
 
 	function login() {
 		$this->layout=("overlay2");
