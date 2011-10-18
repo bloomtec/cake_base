@@ -39,17 +39,45 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
-		$user_id = $_GET['extra2']; 
+		$user_id = $_REQUEST['extra2']; 
 		if ($user_id) {
 			$this -> loadModel('User');
 			$user = $this -> User -> read(null, $user_id);
 			$this -> Auth -> login($user);
 		}
-
-		$this -> redirect('/');
-		$this -> autoRender = false;
-		exit(0);
-		return;
+		$llave="132f4e12b03";/////llave de usuario de pruebas 2
+		$usuario_id=$_REQUEST['usuario_id'];
+		$descripcion=$_REQUEST['descripcion'];
+		$ref_venta=$_REQUEST['ref_venta'];
+		$valor=$_REQUEST['valor'];
+		$moneda=$_REQUEST['moneda'];
+		$estado_pol=$_REQUEST['estado_pol'];
+		$firma_cadena= "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
+		$firmacreada = md5($firma_cadena);//firma que generaron ustedes
+		$firma =$_REQUEST['firma'];//firma que envía nuestro sistema
+		$ref_venta=$_REQUEST['ref_venta'];
+		$fecha_procesamiento=$_REQUEST['fecha_procesamiento'];
+		$ref_pol=$_REQUEST['ref_pol'];
+		$cus=$_REQUEST['cus'];
+		$banco_pse=$_REQUEST['banco_pse'];
+		if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 5) {
+			$estadoTx = "Transacci&oacute;n fallida";
+		} else if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
+			$estadoTx = "Transacci&oacute;n rechazada";
+		} else if($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
+			$estadoTx = "Pendiente, Por favor revisar si el d&eacute;bito fue realizado en el Banco";
+		} else if($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
+			$estadoTx = "Transacci&oacute;n aprobada";
+		} else {
+			$estadoTx=$_REQUEST['mensaje'];
+		}
+		$this->set(
+			compact(
+				'firma', 'firmacreada', 'fecha_procesamiento', 'estadoTx',
+				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda'
+			)
+		);
+		$this->layout="category";
 	}
 
 	/**
@@ -73,110 +101,140 @@ class OrdersController extends AppController {
 			 */
 			// Revisar si hay ítems en el carrito y que ya haya un valor total de pago
 			if ((count($shop_cart['ShopCartItem']) >= 1) && (!empty($shop_cart['ShopCart']['total']))) {
-				// El carrito tiene al menos un ítem y ya tiene un total asignado, proceder
-
-				// Crear una orden
-				$this -> Order -> create();
-
-				// Generar el código de la orden
-				$order_code = $this -> Order -> find('first', array('fields' => array('MAX(Order.code) as max_code')));
-				if ($order_code[0]['max_code']) {
-					$order_code = $order_code[0]['max_code'] + 1;
-				} else {
-					$order_code = "000000001";
-				}
-				$longitud = strlen($order_code);
-				for ($i = (9 - $longitud); $i > 0; $i--) {
-					$order_code = "0" . $order_code;
-				}
-
-				//Asignar el codigo de orden y su status inicial
-				$this -> Order -> set('code', $order_code);
-				$this -> Order -> set('order_state_id', 1);
-
-				// Description
-				$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
-
-				// Valor
-				$valor = $shop_cart['ShopCart']['total'];
-
-				// Moneda
-				$moneda = "COP";
-
-				// Nombre
-				$nombre = $shop_cart['ShopCart']['nombre'] . " " . $shop_cart['ShopCart']['apellido'];
-
-				// Email
-				$email = $shop_cart['ShopCart']['email'];
-
-				// Firma :: 132f4e12b03 <-- llave
-				// formato firma --> "llaveEncripcion~usuarioId~refVenta~valor~moneda"
-				$firma = md5("132f4e12b03~76075~$order_code~$valor~$moneda");
-
 				/**
-				 * Organizar la información en el carrito de compras
-				 * y asignarla de una vez a la orden
+				 * Ultima validación de inventario para proceder a pagar
 				 */
-				$this -> Order -> set('user_id', $shop_cart['ShopCart']['user_id']);
-				$this -> Order -> set('user_agent', $shop_cart['ShopCart']['user_agent']);
-				$this -> Order -> set('nombre', $shop_cart['ShopCart']['nombre']);
-				$this -> Order -> set('apellido', $shop_cart['ShopCart']['apellido']);
-				$this -> Order -> set('pais', $shop_cart['ShopCart']['pais']);
-				$this -> Order -> set('estado', $shop_cart['ShopCart']['estado']);
-				$this -> Order -> set('ciudad', $shop_cart['ShopCart']['ciudad']);
-				$this -> Order -> set('direccion', $shop_cart['ShopCart']['direccion']);
-				$this -> Order -> set('telefono', $shop_cart['ShopCart']['telefono']);
-				$this -> Order -> set('celular', $shop_cart['ShopCart']['celular']);
-				$this -> Order -> set('email', $shop_cart['ShopCart']['email']);
-				$this -> Order -> set('subtotal', $shop_cart['ShopCart']['subtotal']);
-				$this -> Order -> set('descuento', $shop_cart['ShopCart']['descuento']);
-				$this -> Order -> set('total', $shop_cart['ShopCart']['total']);
-
-				if ($this -> Order -> save()) {
-					$order_id = $this -> Order -> id;
-					for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
-						$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
-						$this -> Order -> OrderItem -> create();
-						$this -> Order -> OrderItem -> set('order_id', $order_id);
-						$this -> Order -> OrderItem -> set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
-						$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
-						$this -> Order -> OrderItem -> set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
-						$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
-						$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
-						$this -> Order -> OrderItem -> save();
-						if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
-							$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
-							$this -> Order -> OrderItem -> saveField('nombre', $shop_cart_item['ShopCartItem']['nombre']);
-							$this -> Order -> OrderItem -> saveField('apellido', $shop_cart_item['ShopCartItem']['apellido']);
-							$this -> Order -> OrderItem -> saveField('pais', $shop_cart_item['ShopCartItem']['pais']);
-							$this -> Order -> OrderItem -> saveField('estado', $shop_cart_item['ShopCartItem']['estado']);
-							$this -> Order -> OrderItem -> saveField('ciudad', $shop_cart_item['ShopCartItem']['ciudad']);
-							$this -> Order -> OrderItem -> saveField('direccion', $shop_cart_item['ShopCartItem']['direccion']);
-							$this -> Order -> OrderItem -> saveField('telefono', $shop_cart_item['ShopCartItem']['telefono']);
-						}
+				$this->loadModel('Inventory');
+				$inventario_existente = true;
+				for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
+					$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+					$aInventory = $this->Inventory->find(
+						'first',
+						array(
+							'conditions' => array(
+								'Inventory.product_id'=>$shop_cart_item['ShopCartItem']['foreign_key'],
+								'Inventory.size_id'=>$shop_cart_item['ShopCartItem']['size_id']
+							)
+						)
+					);
+					if($aInventory['Inventory']['quantity'] < $shop_cart_item['ShopCartItem']['quantity']) {
+						$inventario_existente = false;
+						$shop_cart_item['ShopCartItem']['quantity'] = $aInventory['Inventory']['quantity'];
+						$this -> Order -> User-> ShopCart -> ShopCartItem ->save($shop_cart_item);
 					}
-
+				}
+				/**
+				 * Fin validación de inventario existente
+				 */
+				
+				if($inventario_existente) {
+					// El carrito tiene al menos un ítem y ya tiene un total asignado con inventario existente, proceder
+					// Crear una orden
+					$this -> Order -> create();
+	
+					// Generar el código de la orden
+					$order_code = $this -> Order -> find('first', array('fields' => array('MAX(Order.code) as max_code')));
+					if ($order_code[0]['max_code']) {
+						$order_code = $order_code[0]['max_code'] + 1;
+					} else {
+						$order_code = "000000001";
+					}
+					$longitud = strlen($order_code);
+					for ($i = (9 - $longitud); $i > 0; $i--) {
+						$order_code = "0" . $order_code;
+					}
+	
+					//Asignar el codigo de orden y su status inicial
+					$this -> Order -> set('code', $order_code);
+					$this -> Order -> set('order_state_id', 1);
+	
+					// Description
+					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
+	
+					// Valor
+					$valor = $shop_cart['ShopCart']['total'];
+	
+					// Moneda
+					$moneda = "COP";
+	
+					// Nombre
+					$nombre = $shop_cart['ShopCart']['nombre'] . " " . $shop_cart['ShopCart']['apellido'];
+	
+					// Email
+					$email = $shop_cart['ShopCart']['email'];
+	
+					// Firma :: 132f4e12b03 <-- llave
+					// formato firma --> "llaveEncripcion~usuarioId~refVenta~valor~moneda"
+					$firma = md5("132f4e12b03~76075~$order_code~$valor~$moneda");
+	
 					/**
-					 * Asignar los datos requeridos en el formulario!
+					 * Organizar la información en el carrito de compras
+					 * y asignarla de una vez a la orden
 					 */
-					//urlencode("$order_code~$descripcion~$valor~$firma~$email~$moneda~$nombre")
-					$this -> set('refVenta', $order_code);
-					$this -> set('descripcion', $descripcion);
-					$this -> set('valor', $valor);
-					$this -> set('firma', $firma);
-					$this -> set('email', $email);
-					$this -> set('moneda', $moneda);
-					$this -> set('nombre', $nombre);
-					$this -> set('extra1', $shop_cart['ShopCart']['id']);
-					$this -> set('order', $this->Order->read(null, $order_id));
-					$user_id = $this -> Session -> read('Auth.User.id');
-					$user = null;
-					if ($user_id)
-						$user = $this -> Order -> User -> read(null, $user_id);
-					$this -> set('user', $user);
-
+					$this -> Order -> set('user_id', $shop_cart['ShopCart']['user_id']);
+					$this -> Order -> set('user_agent', $shop_cart['ShopCart']['user_agent']);
+					$this -> Order -> set('nombre', $shop_cart['ShopCart']['nombre']);
+					$this -> Order -> set('apellido', $shop_cart['ShopCart']['apellido']);
+					$this -> Order -> set('pais', $shop_cart['ShopCart']['pais']);
+					$this -> Order -> set('estado', $shop_cart['ShopCart']['estado']);
+					$this -> Order -> set('ciudad', $shop_cart['ShopCart']['ciudad']);
+					$this -> Order -> set('direccion', $shop_cart['ShopCart']['direccion']);
+					$this -> Order -> set('telefono', $shop_cart['ShopCart']['telefono']);
+					$this -> Order -> set('celular', $shop_cart['ShopCart']['celular']);
+					$this -> Order -> set('email', $shop_cart['ShopCart']['email']);
+					$this -> Order -> set('subtotal', $shop_cart['ShopCart']['subtotal']);
+					$this -> Order -> set('descuento', $shop_cart['ShopCart']['descuento']);
+					$this -> Order -> set('total', $shop_cart['ShopCart']['total']);
+	
+					if ($this -> Order -> save()) {
+						$order_id = $this -> Order -> id;
+						for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
+							$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+							$this -> Order -> OrderItem -> create();
+							$this -> Order -> OrderItem -> set('order_id', $order_id);
+							$this -> Order -> OrderItem -> set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
+							$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
+							$this -> Order -> OrderItem -> set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
+							$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
+							$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
+							$this -> Order -> OrderItem -> save();
+							if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
+								$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
+								$this -> Order -> OrderItem -> saveField('nombre', $shop_cart_item['ShopCartItem']['nombre']);
+								$this -> Order -> OrderItem -> saveField('apellido', $shop_cart_item['ShopCartItem']['apellido']);
+								$this -> Order -> OrderItem -> saveField('pais', $shop_cart_item['ShopCartItem']['pais']);
+								$this -> Order -> OrderItem -> saveField('estado', $shop_cart_item['ShopCartItem']['estado']);
+								$this -> Order -> OrderItem -> saveField('ciudad', $shop_cart_item['ShopCartItem']['ciudad']);
+								$this -> Order -> OrderItem -> saveField('direccion', $shop_cart_item['ShopCartItem']['direccion']);
+								$this -> Order -> OrderItem -> saveField('telefono', $shop_cart_item['ShopCartItem']['telefono']);
+							}
+						}
+	
+						/**
+						 * Asignar los datos requeridos en el formulario!
+						 */
+						//urlencode("$order_code~$descripcion~$valor~$firma~$email~$moneda~$nombre")
+						$this -> set('refVenta', $order_code);
+						$this -> set('descripcion', $descripcion);
+						$this -> set('valor', $valor);
+						$this -> set('firma', $firma);
+						$this -> set('email', $email);
+						$this -> set('moneda', $moneda);
+						$this -> set('nombre', $nombre);
+						$this -> set('extra1', $shop_cart['ShopCart']['id']);
+						$this -> set('order', $this->Order->read(null, $order_id));
+						$user_id = $this -> Session -> read('Auth.User.id');
+						$user = null;
+						if ($user_id)
+							$user = $this -> Order -> User -> read(null, $user_id);
+						$this -> set('user', $user);
+	
+					} else {
+						// No se pudo crear la orden, hacer algo?
+					}
 				} else {
-					// No se pudo crear la orden, hacer algo?
+					//Qué hacer si no hay inventario de los items?
+					$this->redirect(array('controller'=>'shop_carts', 'action'=>'viewCart'));
 				}
 			} else {
 				// El carrito no tiene ítems, hacer algo?
