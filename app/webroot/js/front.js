@@ -81,6 +81,7 @@ $(function() {
 			'data[ShopCartItem][is_gift]' : rel[2],
 			'data[ShopCartItem][size_id]' : sizeId
 		}, function(cart) {
+			console.log(cart);
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
 				bloomCart.resumeRefresh();
