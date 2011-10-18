@@ -90,14 +90,14 @@
 			</select>
 			</li>			
 		</ul>
-		<!--
+		
 		<ul class="product_info">
 			<li><a href="#">Anterior</a></li>
 		</ul>
 		<ul class="product_info ultimo">
 			<li><a href="#">Siguiente</a></li>			
 		</ul>
-		-->	
+		
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
