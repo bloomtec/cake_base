@@ -48,10 +48,4 @@
  |
 		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
-	<div class="actions">
-		<ul>
-			<li>	<?php echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add')); ?>
-</li>
-		</ul>
-	</div>
 </div>
