@@ -77,7 +77,7 @@ class OrdersController extends AppController {
 				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda', 'descripcion'
 			)
 		);
-		$this->layout="category";
+		$this->layout="callback";
 	}
 
 	/**
