@@ -67,7 +67,7 @@
 			</div>
 			<div class="social_estaticas">
 				<h3 class="subtitulos_gris tahoma">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
-                <p class="tahoma" style="color:#7E7E7D">Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
+                <p class="tahoma" style="color:#7E7E7D; font-size: 13px;">Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
                 </p>
 			</div>
 			<div style="clear: both"></div>

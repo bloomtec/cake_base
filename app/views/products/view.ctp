@@ -30,7 +30,7 @@
 		<h1 class="titulos_rosado" style='text-transform: uppercase;'><?php echo $product['Product']['name'];?></h1>
 		<span class="puntos"></span>
 		<ul class="product_info">
-			<li>CLASIFICACION: <?php $product['Product']["clasification"];?></li>
+			<li><?php echo $product['Product']["clasification"];?></li>
 			<li>MARCA: <?php echo $product['Brand']["name"];?></li>
 			<li><span>PRECIO: $<?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?></span></li>
 		</ul>

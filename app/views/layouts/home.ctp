@@ -52,7 +52,6 @@
 					&nbsp;
 				</form>
 				<div style="clear:both">
-					&nbsp;
 				</div>
 				<?php echo $content_for_layout;?>
 			</div>
