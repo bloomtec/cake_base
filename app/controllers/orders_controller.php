@@ -73,7 +73,7 @@ class OrdersController extends AppController {
 		}
 		$this->set(
 			compact(
-				'firma', 'firmaCreada', 'fecha_procesamiento', 'estadoTx',
+				'firma', 'firmacreada', 'fecha_procesamiento', 'estadoTx',
 				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda'
 			)
 		);
