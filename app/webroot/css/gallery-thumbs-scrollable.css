@@ -53,7 +53,7 @@
 	/* required settings */
 	position: relative;
 	overflow: hidden;
-	width: 100%;
+	width: 302px;
 	height: 71px;
 	margin: 0 auto;
 }
@@ -70,7 +70,7 @@
 }
 .controls .next {
 	float: right;
-	background-image: url(../img/sig.png);
+	background-image: url(../img/ant.png);
 	background-repeat: no-repeat;
 	display: block;
 	width: 12px;
@@ -80,7 +80,7 @@
 }
 .controls .prev {
 	float: left;
-	background-image: url(../img/ant.png);
+	background-image: url(../img/sig.png);
 	background-position: right;
 	background-repeat: no-repeat;
 	width: 12px;
