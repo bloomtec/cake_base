@@ -88,7 +88,10 @@ select{
 	background-color: #fff;
 }
 .puntos{
-	border-bottom:2px dotted #564E1B;
+	background-image:url(../img/puntos.png); 
+	min-height: 4px;
+	background-position: bottom;
+	background-repeat: repeat-x;
 }
 .filtrar .azul{
 	font-size: 14px;
@@ -266,6 +269,7 @@ ul.products li h3{
 .category ul li{
 	display:inline;
 	margin-right:60px;
+	text-transform: uppercase;
 }
 .category ul li img{
 	vertical-align: top;
@@ -424,7 +428,8 @@ ul.products li h3{
 	margin-left:17px;
 }
 .products_view #detalle_der .product_info li select{
-	vertical-align: top;
+	vertical-align:middle;
+	margin-left: 6px;
 }
 .products_view #detalle_der .product_info li span{
 	color:#00CFB5;
@@ -612,6 +617,11 @@ ul.social li {
 }
 #header .main_nav li.categoria {
 	background-color:#282828;
+	background-color: #F1F1F1;
+}
+#header .main_nav li.categoria.current {
+	background-color:#282828;
+
 }
 /*aqui deben ir los estilos para la propiedad activa del menu del header*/
 
@@ -625,9 +635,11 @@ ul.social li {
 	font-size:25px;
 }
 #header .main_nav li.categoria a {
-	color:#FFF;
+	color:#00CFB5;
 }
-
+#header .main_nav li.categoria.current a {
+	color:#fff;
+}
 
 /* CONTENIDO */
 
@@ -1535,4 +1547,9 @@ table.tahoma {
 }
 .paging a{
 	color: #00CFB5;
+}
+.ir{
+	margin-left: 5px;
+	text-decoration: none;
+	margin-top: -2px;
 }

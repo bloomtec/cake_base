@@ -32,7 +32,7 @@
 		<ul class="product_info">
 			<li>CLASIFICACION: <?php $product['Product']["clasification"];?></li>
 			<li>MARCA: <?php echo $product['Brand']["name"];?></li>
-			<li><span>PRECIO: <?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?></span></li>
+			<li><span>PRECIO: $<?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?></span></li>
 		</ul>
 		<ul class="product_info">
 			<li>TALLA

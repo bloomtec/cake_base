@@ -84,7 +84,8 @@ $(function() {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
 				bloomCart.resumeRefresh();
-				$('.add-cart-confirm').html('Producto agregado <a href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				$('.add-cart-confirm').html('Producto agregado <a class="twCenMt ir" href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				refreshCufon();
 				setTimeout(function(){
 					$('.add-cart-confirm').css({visibility:'hidden'});
 				},3000);
