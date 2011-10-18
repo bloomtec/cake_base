@@ -1,6 +1,6 @@
 <div class='overlay-wrap' id='overlay2'>
 	<div class="header">
-		<h2><?php echo $titulo;?></h2>
+		<h2 class='twCenMt'><?php echo $titulo;?></h2>
 	</div>
 	<div class="content">
 		<div class='wrapper'>

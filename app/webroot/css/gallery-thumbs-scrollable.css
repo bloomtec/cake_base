@@ -1,6 +1,6 @@
 #image_wrap {
 	/* dimensions */
-	width: 100%;
+	width: 310px;
 	height: 400px;;
 	/* centered */
 	text-align: center;
@@ -65,28 +65,26 @@
 .controls {
 	position: relative;
 	width: 100%;
-	background-image: url(../images/pixel-50.png);
-	background-repeat: repeat;
 	height: 71px;
 	margin-top: 5px;
 }
 .controls .next {
 	float: right;
-	background-image: url(../images/slider-scroll-right.png);
+	background-image: url(../img/sig.png);
 	background-repeat: no-repeat;
 	display: block;
-	width: 8px;
-	height: 13px;
+	width: 12px;
+	height: 71px;
 	margin-top: 23.5px;
 	padding-right: 10px;
 }
 .controls .prev {
 	float: left;
-	background-image: url(../images/slider-scroll-left.png);
+	background-image: url(../img/ant.png);
 	background-position: right;
 	background-repeat: no-repeat;
-	width: 8px;
-	height: 13px;
+	width: 12px;
+	height: 71px;
 	margin-top: 23.5px;
 	padding-left: 10px;
 }

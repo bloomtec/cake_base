@@ -1000,7 +1000,7 @@ div.contentWrap {
 }
 #overlay2 .content .wrapper{
 	width:890px;
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -1374,6 +1374,7 @@ table.tahoma {
     margin-top: 15px;
     width: 80px;
     border:1px solid #FF7BAB;
+    padding: 5px 0;
 }
 .overlay_social{
 	margin-left: 210px;
