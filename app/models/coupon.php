@@ -70,7 +70,7 @@ class Coupon extends AppModel {
 			$string .= $char;
 		}
 		
-		$code = $code . $coupon_batch_id;
+		$code = $coupon_batch_id;
 		$longitud = strlen($coupon_batch_id);
 		for ($i = (3 - $longitud); $i > 0; $i--) {
 			$code = "0" . $code;
