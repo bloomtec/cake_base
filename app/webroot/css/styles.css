@@ -703,7 +703,7 @@ ul.social li {
 	margin-bottom:6px;
 }
 #home a.fotos_pequenas {
-	background-color:#000;
+
 	width:208px;
 	height:104px;
 	text-indent:-9999px;
@@ -754,6 +754,7 @@ h1.fan_page a {
 }
 #home #content ul li h2 {
 	font-size: 15px;
+	margin-top: 8px;
 }
 #home #content ul li.puntos h3{
 	font-size: 15px;
