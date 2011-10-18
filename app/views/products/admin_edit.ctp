@@ -11,6 +11,7 @@
 		echo $this -> Form -> input('price');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> input('clasification');
+		echo $this -> Form -> input('is_visible');
 		?>
 		<br /><strong>
 			Ingrese en los siguientes campos las clasificaciones de los productos separadas por coma ","

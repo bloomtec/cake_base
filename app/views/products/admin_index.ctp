@@ -8,6 +8,7 @@
 			<th><?php echo $this -> Paginator -> sort('brand_id');?></th>
 			<th><?php echo $this -> Paginator -> sort('collection_id');?></th>
 			<th><?php echo $this -> Paginator -> sort('subcategory_id');?></th>
+			<th><?php echo $this -> Paginator -> sort('is_visible');?></th>
 			<th class="actions"><?php __('Actions');?></th>
 		</tr>
 		<?php
@@ -25,6 +26,7 @@ $class = ' class="altrow"';
 			<td><?php echo $this -> Html -> link($product['Brand']['name'], array('controller' => 'brands', 'action' => 'view', $product['Brand']['id']));?></td>
 			<td><?php echo $this -> Html -> link($product['Collection']['name'], array('controller' => 'collections', 'action' => 'view', $product['Collection']['id']));?></td>
 			<td><?php echo $this -> Html -> link($product['Subcategory']['name'], array('controller' => 'subcategories', 'action' => 'view', $product['Subcategory']['id']));?></td>
+			<td><?php echo $product['Product']['is_visible'];?>&nbsp;</td>
 			<td class="actions"><?php echo $this -> Html -> link(__('View', true), array('action' => 'view', $product['Product']['id']), array('class' => 'view icon', 'title' => __('View', true)));?>
 			<?php echo $this -> Html -> link(__('Edit', true), array('action' => 'edit', $product['Product']['id']), array('class' => 'edit icon', 'title' => __('Edit', true)));?>
 			<?php echo $this -> Html -> link(__('Pictures', true), array('controller' => 'product_pictures', 'action' => 'view', $product['Product']['id']), array('class' => 'view icon', 'title' => __('View', true)));?>
