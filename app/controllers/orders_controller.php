@@ -260,18 +260,6 @@ class OrdersController extends AppController {
 	 * 						REVISAR QUE METODOS QUEDAN PARA EL FINAL
 	 * ----------------------------------------------------------------------------------------------------
 	 */
-	function index() {
-		$this -> Order -> recursive = 0;
-		$this -> set('orders', $this -> paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid order', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('order', $this -> Order -> read(null, $id));
-	}
 
 	function admin_index() {
 		$this -> Order -> recursive = 0;
@@ -284,21 +272,6 @@ class OrdersController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('order', $this -> Order -> read(null, $id));
-	}
-
-	function admin_add() {
-		if (!empty($this -> data)) {
-			$this -> Order -> create();
-			if ($this -> Order -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The order has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The order could not be saved. Please, try again.', true));
-			}
-		}
-		$users = $this -> Order -> User -> find('list');
-		$orderStates = $this -> Order -> OrderState -> find('list');
-		$this -> set(compact('users', 'orderStates'));
 	}
 
 	function admin_edit($id = null) {
