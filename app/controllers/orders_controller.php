@@ -20,19 +20,43 @@ class OrdersController extends AppController {
 
 	function confirmarPagosOnline() {
 		$extra1 = $_POST['extra1']; // id del carrito respectivo
-		$firma = $_POST['firma'];
-		$codigo_respuesta_pol = $_POST['codigo_respuesta_pol'];
-		$refVenta = $_POST['ref_venta'];
-
+		$llave="132f4e12b03";/////llave de usuario de pruebas 2
+		$usuario_id=$_POST['usuario_id'];
+		$descripcion=$_POST['descripcion'];
+		$ref_venta=$_POST['ref_venta'];
+		$valor=$_POST['valor'];
+		$moneda=$_POST['moneda'];
+		$estado_pol=$_POST['estado_pol'];
+		$codigo_respuesta_pol=$_POST['codigo_respuesta_pol'];
+		$firma_cadena= "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
+		$firmacreada = md5($firma_cadena);//firma que generaron ustedes
+		$firma =$_POST['firma'];//firma que envía nuestro sistema
+		$ref_venta=$_POST['ref_venta'];
+		$fecha_procesamiento=$_POST['fecha_procesamiento'];
+		$ref_pol=$_POST['ref_pol'];
+		$cus=$_POST['cus'];
+		$banco_pse=$_POST['banco_pse'];
 		$this->loadModel('Order');
-		$order = $this -> Order -> findByCode($refVenta);
-		$this -> Order -> read(null, $order['Order']['id']);		
-		if ($codigo_respuesta_pol == 1) {
+		$order = $this -> Order -> findByCode($ref_venta);
+		$this -> Order -> read(null, $order['Order']['id']);
+		if($estado_pol == 6 && $codigo_respuesta_pol == 5) {
+			//"Transacción fallida"
+			$this -> Order -> saveField('order_state_id', 4);
+		} else if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
+			//"Transacción rechazada"
+			$this -> Order -> saveField('order_state_id', 5);
+		} else if($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
+			//"Pendiente, Por favor revisar si el débito fue realizado en el Banco"
+			$this -> Order -> saveField('order_state_id', 6);
+		} else if($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
+			//"Transacción aprobada"
 			$this -> Order -> saveField('order_state_id', 2);
 			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
 		} else {
-			$this -> Order -> saveField('order_state_id', 4);
+			//"Otro, revisar con P.O."
+			$this -> Order -> saveField('order_state_id', 7);
 		}
+		
 		$this -> autoRender = false;
 		exit(0);
 		return;
