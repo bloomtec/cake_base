@@ -21,7 +21,7 @@
 				foreach($shopping_cart['ShopCartItem'] as $shoppin_cart_item) :
 				$model_name = $shoppin_cart_item['model_name'];
 				$foreign_key =  $shoppin_cart_item['foreign_key'];
-				$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key");
+				$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key/".$shoppin_cart_item['size_id']);
 				$subtotal+=$item[$model_name]["price"]*$shoppin_cart_item['quantity'];
 		?>
 			<tr class="shop-cart-item" rel="<?=$shoppin_cart_item["id"]?>">
