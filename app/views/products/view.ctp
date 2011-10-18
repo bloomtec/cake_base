@@ -90,14 +90,14 @@
 			</select>
 			</li>			
 		</ul>
-		<!--
+		
 		<ul class="product_info">
 			<li><a href="#">Anterior</a></li>
 		</ul>
 		<ul class="product_info ultimo">
 			<li><a href="#">Siguiente</a></li>			
 		</ul>
-		-->	
+		
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
@@ -156,6 +156,11 @@
 		<h3 class="titulos_rosado">LO PUEDES USAR CON</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
+		
+		<?php $visited_products = $this->requestAction('/visited_products/sync/'.$product['Product']['id']); ?>
+		<?php if($visited_products):?>
+		<h3 class="titulos_rosado">LO QUE HAS VISTO ULTIMAMENTE</h1>
+		<?php echo $this->element("recomendado",array("products"=>$visited_products));?> 
+		<?php endif; ?>
 	</div>
-
 </div>
