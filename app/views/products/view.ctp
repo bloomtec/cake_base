@@ -1,4 +1,3 @@
-<?php $visited_products = $this->requestAction('/visited_products/sync/'.$product['Product']['id']); ?>
 <div class="products_view tahoma">
 	<div id="detalle_izq">
 		<div id="gallery">
@@ -156,6 +155,12 @@
 		<?php if($recomendados1):?>
 		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
+		<?php endif; ?>
+		
+		<?php $visited_products = $this->requestAction('/visited_products/sync/'.$product['Product']['id']); ?>
+		<?php if($visited_products):?>
+		<h3 class="titulos_rosado">LO QUE HAS VISTO ULTIMAMENTE</h1>
+		<?php echo $this->element("recomendado",array("products"=>$visited_products));?> 
 		<?php endif; ?>
 	</div>
 </div>
