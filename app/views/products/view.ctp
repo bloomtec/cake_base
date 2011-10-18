@@ -1,3 +1,4 @@
+<?php $visited_products = $this->requestAction('/visited_products/sync/'.$product['Product']['id']); ?>
 <div class="products_view tahoma">
 	<div id="detalle_izq">
 		<div id="gallery">
@@ -157,5 +158,4 @@
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 	</div>
-
 </div>
