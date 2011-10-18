@@ -26,11 +26,9 @@
 						<a class="subtitulos_gris" href="/pages/ayuda">Ayuda</a>
 					</li>
 					<li>
-						<a class="subtitulos_gris" rel="#overlay" href="/pages/seguimientoPedidos">Estado del pedido</a>
+						<a class="subtitulos_gris" rel="#overlay" href="/seguimientoPedidos">Estado del pedido</a>
 					</li>
-					<li>
-						<a class="subtitulos_gris" rel="#overlay" href="/pages/buscar">Buscar</a>
-					</li>
+					
 				</ul>
 				<ul class="separacion">
 					<li>

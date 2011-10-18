@@ -27,6 +27,12 @@ class PagesController extends AppController {
 	function contacto(){
 		$this->layout='pages';
 	}
+	function seguimiento_pedidos(){
+		$this->layout='overlay';
+	}
+	function dudas_compra(){
+		$this->layout='overlay';
+	}
 	function admin_ez() {
 
 	}

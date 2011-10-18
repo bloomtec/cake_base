@@ -122,7 +122,7 @@
 		<span class="puntos"></span>
 		</div>
 		<div class="dudas">
-		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/dudasCompra">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
+		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="dudas_compra">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
 		<span class="puntos"></span>
 		</div>
 		<h2 class="titulos_rosado">COMPARTE ESTE PRODUCTO</h2>
