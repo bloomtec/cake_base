@@ -184,5 +184,10 @@ class Product extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	function beforeSave() {
+		$this->data['Product']['clasification'] = trim($this->data['Product']['clasification']);
+		return true;
+	}
 
 }
