@@ -77,6 +77,7 @@ class OrdersController extends AppController {
 				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda'
 			)
 		);
+		$this->layout="category";
 	}
 
 	/**
@@ -106,6 +107,7 @@ class OrdersController extends AppController {
 				$this->loadModel('Inventory');
 				$inventario_existente = true;
 				for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
+					$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
 					$aInventory = $this->Inventory->find(
 						'first',
 						array(
@@ -118,7 +120,7 @@ class OrdersController extends AppController {
 					if($aInventory['Inventory']['quantity'] < $shop_cart_item['ShopCartItem']['quantity']) {
 						$inventario_existente = false;
 						$shop_cart_item['ShopCartItem']['quantity'] = $aInventory['Inventory']['quantity'];
-						//TODO:seguir esto!
+						$this -> Order -> User-> ShopCart -> ShopCartItem ->save($shop_cart_item);
 					}
 				}
 				/**
