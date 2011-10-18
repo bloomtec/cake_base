@@ -22,7 +22,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('Web site:'); ?>
+		<?php __('Colors Tennis:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
@@ -45,7 +45,7 @@
 <body id="category">
 	<div id="container">
 		<?php echo $this->element("header");?>
-		<div id="content_wrapper">
+		<divsite id="content_wrapper">
 			<?php echo $this->element("second_nav");?>
 		
 			<div id="content">

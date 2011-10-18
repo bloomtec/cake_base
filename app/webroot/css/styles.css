@@ -1422,14 +1422,11 @@ table.tahoma {
 	font-size:20px;
 	color:#EC1C75;
 	margin:0;
-	width: 39%;
-	float: left;
+	width: 100%;
+	float: none;
 	margin-left: 10px;
 }
-.brands .marcas h1{
-	float:none;
-	width: 100%;
-}
+
 .buscar .izq h2, .brands .marcas h2{
 	font-size: 14px;
 	color:#00CFB5;
