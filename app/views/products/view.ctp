@@ -122,7 +122,7 @@
 		<span class="puntos"></span>
 		</div>
 		<div class="dudas">
-		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="dudas_compra">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
+		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/dudasCompra">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
 		<span class="puntos"></span>
 		</div>
 		<h2 class="titulos_rosado">COMPARTE ESTE PRODUCTO</h2>
@@ -147,13 +147,13 @@
 		
 		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
 		<?php if($recomendados1):?>
-		<h3 class="titulos_rosado">CON QUE LO PODRÍAS USAR </h1>
+		<h3 class="titulos_rosado">TAMBIÉN TE PODRÍA GUSTAR</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 		
 		<?php $recomendados1=$this->requestAction('/products/findOtherRecommendedProducts/'.$product['Product']['id']);?>
 		<?php if($recomendados1):?>
-		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
+		<h3 class="titulos_rosado">LO PUEDES USAR CON</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 	</div>

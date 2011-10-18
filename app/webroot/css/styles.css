@@ -510,7 +510,6 @@ ul.social li {
 	width: 68.42px;
 	height: 102.63px;
 	background-color: #fff;
-	margin-top: 15px;
 }
 .recomendado h2{
 	font-family: Tahoma,serif;
@@ -1539,7 +1538,9 @@ table.tahoma {
 	margin:0;		
 }
 .paging{
-	#7e7e7d;
+	color:#7e7e7d;
+	text-align:center;
+	font-size:11px;
 }
 .paging .disabled{
 	color: #7e7e7d;
@@ -1549,9 +1550,11 @@ table.tahoma {
 }
 .paging a{
 	color: #00CFB5;
+	text-decoration: none;
 }
 .ir{
 	margin-left: 5px;
 	text-decoration: none;
 	margin-top: -2px;
 }
+
