@@ -10,11 +10,11 @@
 		<div style="clear: both"></div>
 		<input type="checkbox" />	
 		<label class="olvidaste"> Recordar esta información </label>	
-		<input type="submit" value="Entrar" />
+		<input type="submit" class='twCenMt' value="Entrar" />
 		<div style="clear: both"></div>
 	</form>
 </div>
-<div class="login_izq">
+<div class="login_izq tahoma">
 	<h1 class="titulos_rosado">REGÍSTRATE</h1>
 	<?php e($this->Form->create('User', array('controller'=>'users', 'action'=>'register'))); ?>
 		<label>NOMBRE *</label>
@@ -37,7 +37,22 @@
 		<input type="text"/>
 		<input type="checkbox" />	
 		<label class="olvidaste">  Autorizo a Colors Tennis  que me envíe información por correo electrónico </label>	
-		<input type="submit" value="Registrate" />
+		<input type="submit" class='twCenMt' value="Registrate" />
 		<div style="clear: both"></div>
 	</form>
 </div>
+<script>
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#ffaedc'}
+
+	});
+	Cufon.replace('.twCenMt', {
+		fontFamily : 'TwCenMt',
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#00CFB5'}
+	});
+</script>

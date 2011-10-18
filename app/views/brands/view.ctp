@@ -6,7 +6,7 @@
 	<?php endif;?>
 	<ul class="filtrar twCenMt">
 		<li class="titulos_rosado">
-			FILTRAR POR
+			FILTRAR:
 		</li>
 		<li class="azul">
 			COLECCIÓN 
@@ -29,7 +29,7 @@
 			?>
 		</li>
 		<li class="titulos_rosado">
-			ORDENAR POR
+			ORDENAR:
 		</li>
 		<li>
 			<a class="azul order" href="<?php echo $pageURL?>/orden:nuevo/" rel='nuevo'>¿QUE ES LO NUEVO?</a>

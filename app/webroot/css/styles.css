@@ -91,10 +91,10 @@ select{
 	border-bottom:2px dotted #564E1B;
 }
 .filtrar .azul{
-	font-size: 15px;
+	font-size: 14px;
 }
 .azul #tallas{
-	margin-left: 10px;
+	margin-left: 3px;
 }
 .subcategories_index .filtrar{
 	padding-top:10px;
@@ -106,7 +106,7 @@ select{
 }
 .subcategories_index .filtrar li.titulos_rosado{
 	margin:0;
-	font-size: 15px;
+	font-size: 14px;
 	vertical-align: middle;
 }
 .subcategories_index .filtrar li.titulos_gris{
@@ -114,7 +114,6 @@ select{
 }
 .subcategories_index .filtrar li{
 	display:inline;
-	margin-right: 5px;
 }
 .subcategories_index .filtrar li.azul{
 	color: #00CFB5;
