@@ -11,24 +11,14 @@
 			<?php echo $order['Order']['code']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('User'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($order['User']['email'], array('controller' => 'users', 'action' => 'view', $order['User']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('User Agent'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $order['Order']['user_agent']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Order State'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($order['OrderState']['name'], array('controller' => 'order_states', 'action' => 'view', $order['OrderState']['id'])); ?>
+			<?php echo $order['OrderState']['name']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Coupon'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($order['Coupon']['serial'], array('controller' => 'coupons', 'action' => 'view', $order['Coupon']['id'])); ?>
+			<?php $order['Coupon']['serial']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nombre'); ?></dt>
@@ -157,19 +147,8 @@
 			<td><?php echo $orderItem['telefono'];?></td>
 			<td><?php echo $orderItem['created'];?></td>
 			<td><?php echo $orderItem['updated'];?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'order_items', 'action' => 'view', $orderItem['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'order_items', 'action' => 'edit', $orderItem['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'order_items', 'action' => 'delete', $orderItem['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $orderItem['id'])); ?>
-			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
-
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Order Item', true), array('controller' => 'order_items', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
 </div>
