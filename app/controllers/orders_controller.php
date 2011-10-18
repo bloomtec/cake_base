@@ -74,7 +74,7 @@ class OrdersController extends AppController {
 		$this->set(
 			compact(
 				'firma', 'firmacreada', 'fecha_procesamiento', 'estadoTx',
-				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda'
+				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda', 'descripcion'
 			)
 		);
 		$this->layout="category";
