@@ -40,7 +40,7 @@ class VisitedProductsController extends AppController {
 					'fields' => array(
 						'VisitedProduct.product_id'
 					),
-					'order'=>array('VisitedProduct.created'=>'DESC'),
+					'order'=>array('VisitedProduct.updated'=>'DESC'),
 					'limit'=>5
 				)
 			);
