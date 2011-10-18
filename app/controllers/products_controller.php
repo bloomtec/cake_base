@@ -5,8 +5,9 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getProduct');
+		$this->Auth->allow('getProduct', 'getComments');
 	}
+	
 	function search($criteria = null){
 		$this->layout='overlay2';
 		$this->set('titulo','RESULTADO DE BÚSQUEDA');
@@ -58,6 +59,11 @@ class ProductsController extends AppController {
 			$this->set('products', $this->Product->find('all'));
 		}
 	}
+	
+	function getComments($product_id = null) {
+		return $this -> Product -> Comment -> find('all', array('recursive' => 1, 'conditions' => array('Comment.product_id' => $product_id, 'Comment.is_visible' => TRUE)));
+	}
+
 	function getProduct($product_id = null) {
 		return $this->Product->read(null, $product_id);
 	}
@@ -86,7 +92,8 @@ class ProductsController extends AppController {
 		$product = $this -> Product -> read(null, $id);
 		$brand = $this -> Product -> Subcategory -> Brand -> read(null, $product['Subcategory']['brand_id']);
 		$category['Category'] = $brand['Category'];
-		$this -> set(compact('product', 'brand', 'category'));
+		$comments = $this->getComments($product['Product']['id']);
+		$this -> set(compact('product', 'brand', 'category', 'comments'));
 	}
 
 	function setInactive($id = null) {
