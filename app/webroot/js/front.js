@@ -195,12 +195,11 @@ $(function() {
 	 * --> id del link :: escribir-comentario
 	 */
 	$("#escribir-comentario").click(function(e){
+		e.preventDefault();
 		BJS.post("/users/isLoggedIn", null, function(info){
 			if(info == "true") {
-				console.log('esta logueado');
 				$('#create-comment').css('visibility','visible');
 			} else {
-				console.log('no esta logueado');
 				$('#user-info').css('visibility','visible');
 			}
 		});
