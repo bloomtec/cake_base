@@ -1047,7 +1047,8 @@ div.contentWrap {
 	margin-top: 20px;
 }
 .overlay-wrap form input[type=checkbox]{
-	float: none;
+	width: 15px;
+	float: left;
 	margin: 0;
 }
 .overlay-wrap form.newsletter{
