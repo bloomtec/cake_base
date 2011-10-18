@@ -45,7 +45,7 @@
 <body id="category">
 	<div id="container">
 		<?php echo $this->element("header");?>
-		<divsite id="content_wrapper">
+		<div id="content_wrapper">
 			<?php echo $this->element("second_nav");?>
 		
 			<div id="content">
