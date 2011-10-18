@@ -18,7 +18,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 		<?php if(!empty($librand["Subcategory"])): ?>
 		<?php foreach($librand["Subcategory"] as $subcategory):?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategory:<?php echo $subcategory['id']?>"><?php echo $subcategory["name"]; ?></a>
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategoria:<?php echo $subcategory['id']?>"><?php echo $subcategory["name"]; ?></a>
 		</li>
 		<?php endforeach;?>
 		<?php endif;?>
@@ -32,7 +32,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 				$i++;
 		?>
 		<li>
-			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategory:<?php echo $subcategory['id']?>">
+			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategoria:<?php echo $subcategory['id']?>">
 				<img src="/img/uploads/<?php echo $product['image']?>" />
 			</a>
 		</li>
