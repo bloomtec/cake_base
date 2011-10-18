@@ -5,6 +5,8 @@
 				
 									
 							<th><?php echo $this->Paginator->sort('name');?></th>
+							
+							<th><?php echo $this->Paginator->sort('description');?></th>
 									
 							<th><?php echo $this->Paginator->sort('image_brand');?></th>
 									
@@ -27,6 +29,7 @@
 	?>
 	<tr<?php echo $class;?>>
 		<td><?php echo $brand['Brand']['name']; ?>&nbsp;</td>
+		<td><?php echo $brand['Brand']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_brand']); ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$brand['Brand']['image_hover']); ?>&nbsp;</td>
 		<td>

@@ -168,24 +168,32 @@ class InventoriesController extends AppController {
 					foreach($this->data['Inventory'] as $key=>$data) {
 						if($data) {
 							$prod_id_size_id = split(",", $key);
-							$size_id = $this->requestAction("/sizes/getSizeID/".$prod_id_size_id[1]);
-							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id'=>$prod_id_size_id[0], 'Inventory.size_id'=>$size_id)));
-							$value = (int)($data);
-							$old_value = (int)$inventory['Inventory']['quantity'];
-							if(($new_value = $old_value + $value) >= 0) {
-								$inventory['Inventory']['quantity']=$new_value;
-								if($this->Inventory->save($inventory)){
-									$inventory = $this -> Inventory -> read(null, $this -> Inventory -> id);
-									$this -> Inventory -> InventoryAudit -> create();
-									$this -> Inventory -> InventoryAudit -> set('user_id', $this -> Session -> read('Auth.User.id'));
-									$this -> Inventory -> InventoryAudit -> set('inventory_id', $inventory['Inventory']['id']);
-									$this -> Inventory -> InventoryAudit -> set('old_value', $old_value);
-									$this -> Inventory -> InventoryAudit -> set('new_value', $new_value);
-									$this -> Inventory -> InventoryAudit -> save();
-									$this -> Session -> setFlash(__('Se modificó el inventario.', true));
+							$prod_id = (int)$prod_id_size_id[0];
+							$size_id = (int)$prod_id_size_id[1];
+							$inventory = $this->Inventory->find('first', array('recursive'=>-1, 'conditions'=>array('Inventory.product_id' => $prod_id, 'Inventory.size_id' => $size_id)));
+							if(!empty($inventory)) {
+								$inv_id = $inventory['Inventory']['id'];
+								$value = (int)($data);
+								$old_value = (int)$inventory['Inventory']['quantity'];
+								if(($new_value = $old_value + $value) >= 0) {
+									$inventory['Inventory']['quantity']=$new_value;
+									if($this->Inventory->save($inventory)){
+										$inventory = $this -> Inventory -> read(null, $this -> Inventory -> id);
+										$this -> Inventory -> InventoryAudit -> create();
+										$this -> Inventory -> InventoryAudit -> set('user_id', $this -> Session -> read('Auth.User.id'));
+										$this -> Inventory -> InventoryAudit -> set('inventory_id', $inventory['Inventory']['id']);
+										$this -> Inventory -> InventoryAudit -> set('old_value', $old_value);
+										$this -> Inventory -> InventoryAudit -> set('new_value', $new_value);
+										$this -> Inventory -> InventoryAudit -> save();
+										$this -> Session -> setFlash(__('Se modificó el inventario.', true));
+									} else {
+										$this -> Session -> setFlash(__("Error al modificar inventario. Información :: size_id:$size_id - prod_id:$prod_id - inv_id:$inv_id", true));
+									}
+								} else {
+									$this -> Session -> setFlash(__('Está intentando restar más ítems de los que actualmente hay en uno o más campos. Revise cuidadosamente los datos e intente de nuevo.', true));
 								}
 							} else {
-								$this -> Session -> setFlash(__('Está intentando restar más ítems de los que actualmente hay en uno o más campos. Revise cuidadosamente los datos e intente de nuevo.', true));
+								$this -> Session -> setFlash(__("¡No se encontró el inventario! :: Información :: size_id:$size_id - prod_id:$prod_id", true));
 							}
 						}
 					}					

@@ -17,6 +17,8 @@
 				
 				<li><a href="/admin/coupon_batches">Ver Packs De Cupones</a></li>
 				<li><a href="/admin/coupon_batches/add">Agregar Pack De Cupones</a></li>
+				
+				<li><a href="/admin/comments">Ver Comentarios</a></li>
 			</ul>		
 		</li>
 		<li>

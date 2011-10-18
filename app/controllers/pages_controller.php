@@ -30,6 +30,10 @@ class PagesController extends AppController {
 	function admin_ez() {
 
 	}
+	function admin_layouts(){
+		$layouts=array('home'=>'home','pages'=>'pages');		
+		return $layouts;
+	}
 	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
 	    $this->layout="file_browser";
 	    App::import("Folder");
@@ -38,6 +42,7 @@ class PagesController extends AppController {
 	    $this->set("folderPath",DS."wysiwyg");
  	}
 	function index() {
+		$this->layout="ez.ctp";
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}

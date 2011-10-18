@@ -18,7 +18,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Value'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $couponBatch['CouponBatch']['value']; ?>
+			<?php echo (100*$couponBatch['CouponBatch']['value'])."%"; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
@@ -64,8 +64,6 @@
 			<td><?php echo $coupon['created'];?></td>
 			<td><?php echo $coupon['updated'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'coupons', 'action' => 'view', $coupon['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'coupons', 'action' => 'edit', $coupon['id'])); ?>
 				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'coupons', 'action' => 'delete', $coupon['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $coupon['id'])); ?>
 			</td>
 		</tr>
@@ -75,7 +73,7 @@
 
 	<div class="actions">
 		<ul>
-			<li><?php echo $this->Html->link(__('New Coupon', true), array('controller' => 'coupons', 'action' => 'add'));?> </li>
+			<li><?php echo $this->Html->link(__('Back', true), array('controller' => 'coupon_batches', 'action' => 'index'));?> </li>
 		</ul>
 	</div>
 </div>

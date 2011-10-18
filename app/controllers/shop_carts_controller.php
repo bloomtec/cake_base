@@ -6,8 +6,8 @@ class ShopCartsController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(
-			'addToCart', 'removeFromCart', 'checkoutCart', 'viewCart', 'getCart',
-			'updateShopCartItemQuantity'
+			'addToCart', 'removeFromCart', 'removeAllFromCart', 'checkoutCart', 'viewCart', 'getCart',
+			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon'
 		);
 	}
 	
@@ -175,9 +175,14 @@ class ShopCartsController extends AppController {
 	/**
 	 * Remover todos los  ítems del carrito
 	 */
-	function removeAllFromCart() {
+	function removeAllFromCart($shop_cart_id = null) {
 		$this->autoRender=false;
-		$shopping_cart = $this->getCart();
+		$shopping_cart = null;
+		if($shop_cart_id) {
+			$shopping_cart = $this->ShopCart->read(null, $shop_cart_id);
+		} else {
+			$shopping_cart = $this->getCart();
+		}
 		if(empty($shopping_cart)) {
 			// No hay carrito; hacer algo?
 		} else {
@@ -198,22 +203,6 @@ class ShopCartsController extends AppController {
 		
 		echo json_encode($this->getCart());
 		
-		exit(0);
-	}
-	
-	/**
-	 * Pasar a generar la orden con los ítems del carrito
-	 */
-	function checkoutCart() {
-		$this->autoRender=false;
-		$this->layout="ajax";
-		$shopping_cart = $this->getCart();
-		if(empty($shopping_cart)) {
-			// No hay carrito; hacer algo?
-		} else {
-			// Hay carrito, crear la orden
-			// $this->requestAction('orders/createOrder/'.$shopping_cart['ShopCart']['id']);
-		}
 		exit(0);
 	}
 	

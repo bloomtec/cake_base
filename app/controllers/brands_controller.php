@@ -23,6 +23,9 @@ class BrandsController extends AppController {
 		$conditions = array();
 		if((isset($this->params['named']['subcategoria'])) && (!empty($this->params['named']['subcategoria']))) {
 			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
+			$this->Brand->Subcategory->recursive=-1;
+			$subcategory=$this->Brand->Subcategory->read(null,$this->params['named']['subcategoria']);
+			$this->set(compact('subcategory'));
 		}
 		if((isset($this->params['named']['coleccion'])) && (!empty($this->params['named']['coleccion']))) {
 			$conditions['Product.collection_id']=$this->params['named']['coleccion'];
@@ -37,7 +40,7 @@ class BrandsController extends AppController {
 		}
 		$this->paginate=array(
 			"Product" => array(
-				'limit' => 12,
+				'limit' => 35,
 				'conditions' => $conditions
 			)
 		);
@@ -66,6 +69,21 @@ class BrandsController extends AppController {
 	}
 
 	function brandOfCategory($categoryId = null) {
+		$this->Brand->bindModel(array('hasMany'=>array(
+			'Product'=>array(
+			'className' => 'Product',
+			'foreignKey' => 'brand_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => 'rand()',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+		)));
 		return $this -> Brand -> find("all", array("conditions" => array("category_id" => $categoryId)));
 	}
 
@@ -97,7 +115,11 @@ class BrandsController extends AppController {
 		$products = $this -> paginate('Product');
 		$this -> set('products', $products);
 	}
-
+	function index() {
+		$this ->layout='overlay';
+		$this -> set('brands', $this -> paginate());
+		$this->set('titulo','MARCAS');
+	}
 	function admin_index() {
 		$this -> Brand -> recursive = 0;
 		$this -> set('brands', $this -> paginate());

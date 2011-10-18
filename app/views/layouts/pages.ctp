@@ -48,7 +48,6 @@
 		<div id="content">
 			<ul class="nav_estaticas twCenMt">
 				<li><a href="/pages/nosotros">NOSOTROS</a></li>
-				<li><a href="#">TIENDAS</a></li>
 				<li><a href="/pages/ayuda">AYUDA</a></li>
 				<li><a href="/pages/contacto">CONTACTO</a></li>
 			</ul>
@@ -62,13 +61,13 @@
 			<div class="social_estaticas">
 				<h2 class="titulos_rosado twCenMt">Síguenos también en</h2>
                 <ul class="social">
-                	<li><a class="facebook" href="#">facebook</a></li>
-                    <li><a class="twitter" href="#">twitter</a></li>
+                	<li><a class="facebook" href="https://www.facebook.com/ColorsTennis" target="_blank">facebook</a></li>
+                    <li><a class="twitter" href="http://twitter.com/#!/colors_tennis" target="_blank">twitter</a></li>
                 </ul>
 			</div>
 			<div class="social_estaticas">
 				<h3 class="subtitulos_gris tahoma">DISFRUTA DE NUESTRO GRUPO EN BLACKBERRY</h3>
-                <p>Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
+                <p class="tahoma" style="color:#7E7E7D; font-size: 13px;">Agrega nuestro pin 26C8DFF8 <br />y conoce las promociones desde tu móvil.
                 </p>
 			</div>
 			<div style="clear: both"></div>

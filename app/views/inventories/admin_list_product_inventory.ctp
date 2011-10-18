@@ -39,7 +39,7 @@
 			<tr<?php echo $class;?>>
 				<td><?php echo $this->requestAction('/size_references/getSize/' . $data['Size']['size_reference_id']);?></td>
 				<td><?php echo $data['Inventory']['quantity'];?>&nbsp;</td>
-				<td><?php $iid=$pid.",".$data['Size']['size_reference_id']; e($this->Form->input("$iid", array('label'=>false, 'value'=>0))); ?></td>
+				<td><?php $iid=$pid.",".$data['Size']['id']; e($this->Form->input("$iid", array('label'=>false, 'value'=>0))); ?></td>
 			</tr>
 			<?php endforeach;?>	
 		</table>

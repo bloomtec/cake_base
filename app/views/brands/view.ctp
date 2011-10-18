@@ -1,9 +1,12 @@
 <div class="subcategories_index">
-	<div id="slide_categoria"><img src="" />
+	<?php if(isset($subcategory) && !empty($subcategory)):?>
+	<div id="slide_categoria">
+		<?php echo $html->image('uploads/'.$subcategory['Subcategory']['image']);?>
 	</div>
+	<?php endif;?>
 	<ul class="filtrar twCenMt">
 		<li class="titulos_rosado">
-			FILTRAR POR
+			FILTRAR:
 		</li>
 		<li class="azul">
 			COLECCIÓN 
@@ -26,7 +29,7 @@
 			?>
 		</li>
 		<li class="titulos_rosado">
-			ORDENAR POR
+			ORDENAR:
 		</li>
 		<li>
 			<a class="azul order" href="<?php echo $pageURL?>/orden:nuevo/" rel='nuevo'>¿QUE ES LO NUEVO?</a>
@@ -39,4 +42,10 @@
 		</li>
 	</ul>
 	<?php echo $this -> element("product-list");?>
+	<div class="paging tahoma">
+	<?php echo $this -> Paginator -> prev('<< ' . __('anterior', true), array(), null, array('class' => 'disabled'));?>
+	| 	<?php echo $this -> Paginator -> numbers();?>
+	|
+	<?php echo $this -> Paginator -> next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+</div>
 </div>

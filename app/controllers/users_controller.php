@@ -11,7 +11,26 @@ class UsersController extends AppController {
 	 */
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('register');
+		$this -> Auth -> allow('register', 'keepShopping');
+	}
+	
+	function keepShopping() {
+		$this->layout="ajax";
+		echo $this->webroot;
+		exit(0);
+		return;
+	}
+	
+	function isLoggedIn() {
+		$this->layout="ajax";
+		$x = $this->Session->read('Auth.User.id');
+		if(!empty($x)) {
+			echo 'true';
+		} else {
+			echo 'false';
+		}
+		exit(0);
+		return;
 	}
 
 	function login() {

@@ -74,6 +74,7 @@ select{
 	box-shadow: 0.9px 0.3px 10px #999;
 	position: relative;
 	min-height: 1014px;
+	padding-bottom: 50px;
 }
 #content {
 	width: 730px;
@@ -87,7 +88,16 @@ select{
 	background-color: #fff;
 }
 .puntos{
-	border-bottom:2px dotted #564E1B;
+	background-image:url(../img/puntos.png); 
+	min-height: 4px;
+	background-position: bottom;
+	background-repeat: repeat-x;
+}
+.filtrar .azul{
+	font-size: 14px;
+}
+.azul #tallas{
+	margin-left: 3px;
 }
 .subcategories_index .filtrar{
 	padding-top:10px;
@@ -99,7 +109,7 @@ select{
 }
 .subcategories_index .filtrar li.titulos_rosado{
 	margin:0;
-	font-size: 15px;
+	font-size: 14px;
 	vertical-align: middle;
 }
 .subcategories_index .filtrar li.titulos_gris{
@@ -107,7 +117,6 @@ select{
 }
 .subcategories_index .filtrar li{
 	display:inline;
-	margin-right: 5px;
 }
 .subcategories_index .filtrar li.azul{
 	color: #00CFB5;
@@ -131,6 +140,8 @@ select{
 	margin-bottom: 4px;
 	font-size: 13px;
 	text-transform: uppercase;
+	max-width: 132px;
+	height: 24px;
 }
 ul.products li h2, ul.products li h3{
 	padding-left:5px;
@@ -216,6 +227,7 @@ ul.products li h3{
 	color:#7E7E7D;
 	font-family:Tw Cen MT,Arial,sans-serif;
 	font-size:16px;
+	text-transform: uppercase;
 }
 .sub_category a:hover{
 	color:#00CFB5;
@@ -257,6 +269,7 @@ ul.products li h3{
 .category ul li{
 	display:inline;
 	margin-right:60px;
+	text-transform: uppercase;
 }
 .category ul li img{
 	vertical-align: top;
@@ -415,7 +428,8 @@ ul.products li h3{
 	margin-left:17px;
 }
 .products_view #detalle_der .product_info li select{
-	vertical-align: top;
+	vertical-align:middle;
+	margin-left: 6px;
 }
 .products_view #detalle_der .product_info li span{
 	color:#00CFB5;
@@ -493,8 +507,8 @@ ul.social li {
 	float: left;
 }
 .recomendado a img{
-	width: 69px;
-	height: 84px;
+	width: 68.42px;
+	height: 102.63px;
 	background-color: #fff;
 	margin-top: 15px;
 }
@@ -510,6 +524,8 @@ ul.social li {
 	font-size: 12px;
 	color:#00CFB5;
 	font-style: normal;
+	width: 66px;
+	height: 22px;
 }
 /*Estilos del Home*/
 
@@ -601,6 +617,11 @@ ul.social li {
 }
 #header .main_nav li.categoria {
 	background-color:#282828;
+	background-color: #F1F1F1;
+}
+#header .main_nav li.categoria.current {
+	background-color:#282828;
+
 }
 /*aqui deben ir los estilos para la propiedad activa del menu del header*/
 
@@ -614,9 +635,11 @@ ul.social li {
 	font-size:25px;
 }
 #header .main_nav li.categoria a {
-	color:#FFF;
+	color:#00CFB5;
 }
-
+#header .main_nav li.categoria.current a {
+	color:#fff;
+}
 
 /* CONTENIDO */
 
@@ -680,11 +703,10 @@ ul.social li {
 	margin-bottom:6px;
 }
 #home a.fotos_pequenas {
-	background-color:#000;
+
 	width:208px;
 	height:104px;
 	text-indent:-9999px;
-	display:block;
 	margin-bottom:12px;
 }
 	
@@ -732,6 +754,7 @@ h1.fan_page a {
 }
 #home #content ul li h2 {
 	font-size: 15px;
+	margin-top: 8px;
 }
 #home #content ul li.puntos h3{
 	font-size: 15px;
@@ -856,10 +879,14 @@ ul li a.twitter {
 	border:1px solid #FF90C4;
 
 }
-#pages #estaticas_info .formulario_contacto input.comentario{
+#pages #estaticas_info .formulario_contacto textarea.comentario{
 	height: 160px;
 	margin-bottom: 15px;
+	width: 363px;
+	background: #888888;
+	border:none;
 }
+
 #pages .social_estaticas{
 	float: left;
 	padding-right: 20px;
@@ -989,7 +1016,7 @@ div.contentWrap {
 }
 #overlay2 .content .wrapper{
 	width:890px;
-	padding-top: 50px;
+	padding-top: 40px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -1036,8 +1063,8 @@ div.contentWrap {
 	margin-top: 20px;
 }
 .overlay-wrap form input[type=checkbox]{
-	width: 0;
-	float: none;
+	width: 15px;
+	float: left;
 	margin: 0;
 }
 .overlay-wrap form.newsletter{
@@ -1269,7 +1296,7 @@ table.tahoma {
     font-size: 10px;
     width: auto;
 }
-.form_envio .form input[type=text], .form_envio .form select, .form_envio .form span{
+.form_envio .form input[type=text],.form_envio .form input[type=email], .form_envio .form select, .form_envio .form span{
 	margin-bottom: 15px;
 }
 .form_envio .form select{
@@ -1279,8 +1306,8 @@ table.tahoma {
 	background-color: #333333;
 	margin-left:20px;
 }
-.form_envio .form input[type=text]{
-	width:190px;
+.form_envio .form input[type=text], .form_envio .form input[type=email]{
+	width:180px;
 	height: 20px;
 	border:1px solid #858585;
 	background-color: #333333;
@@ -1363,6 +1390,7 @@ table.tahoma {
     margin-top: 15px;
     width: 80px;
     border:1px solid #FF7BAB;
+    padding: 5px 0;
 }
 .overlay_social{
 	margin-left: 210px;
@@ -1404,19 +1432,17 @@ table.tahoma {
 }
 .buscar .izq img, .brands .marcas img{
 	background-color: #333;
-	width: 127px;
-	height: 41px;
-	float: left;
 	border:1px solid #858585;
 }
 .buscar .izq h1, .brands .marcas h1{
 	font-size:20px;
 	color:#EC1C75;
 	margin:0;
-	width: 39%;
-	float: left;
+	width: 100%;
+	float: none;
 	margin-left: 10px;
 }
+
 .buscar .izq h2, .brands .marcas h2{
 	font-size: 14px;
 	color:#00CFB5;
@@ -1487,4 +1513,45 @@ table.tahoma {
 	height: 210px;
 	background-color: #fff;
 	display:block;
+}
+
+/* error message */
+.error {
+	height:15px;
+	background-color:#00CFB5;
+	font-size:11px;
+	border:1px solid #50efd8;
+	padding:3px 3px;
+	color:#000;
+	display:none;	
+	
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px; 
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-topleft:0;	
+	-webkit-border-bottom-left-radius:0; 
+	-webkit-border-top-left-radius:0;
+	
+	
+}
+
+.error p {
+	margin:0;		
+}
+.paging{
+	#7e7e7d;
+}
+.paging .disabled{
+	color: #7e7e7d;
+}
+.paging .current{
+	color: #7e7e7d;
+}
+.paging a{
+	color: #00CFB5;
+}
+.ir{
+	margin-left: 5px;
+	text-decoration: none;
+	margin-top: -2px;
 }

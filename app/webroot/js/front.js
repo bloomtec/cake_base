@@ -84,7 +84,8 @@ $(function() {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
 				bloomCart.resumeRefresh();
-				$('.add-cart-confirm').html('Producto agregado <a href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				$('.add-cart-confirm').html('Producto agregado <a class="twCenMt ir" href="/shopCarts/viewCart" >ir a pagar</a>').css({'visibility':'visible'});
+				refreshCufon();
 				setTimeout(function(){
 					$('.add-cart-confirm').css({visibility:'hidden'});
 				},3000);
@@ -188,6 +189,26 @@ $(function() {
 			refreshCufon();
 		}
 	});
+	
+	/**
+	 * Comentarios
+	 * --> id del link :: escribir-comentario
+	 */
+	$("#escribir-comentario").click(function(e){
+		BJS.post("/users/isLoggedIn", null, function(info){
+			if(info == "true") {
+				console.log('esta logueado');
+				$('#create-comment').css('visibility','visible');
+			} else {
+				console.log('no esta logueado');
+				$('#user-info').css('visibility','visible');
+			}
+		});
+	});
+	$("#enviar-comentario").click(function(e){
+		$("#CommentAddForm").submit();
+	});
+	
 	/**
 	 * Funcionalidad Carrito
 	 */
@@ -198,15 +219,31 @@ $(function() {
 			bloomCart.refresh();
 		});
 	});
-	
+	$.tools.validator.localize("es", {
+		'*'			: 'datos no validos',
+		':email'  	: 'email no valido',
+		':number' 	: 'el campo debe ser numerico',
+		':url' 		: 'URL no valida',
+		'[max]'	 	: 'Arvon on oltava pienempi, kuin $1',
+		'[min]'		: 'Arvon on oltava suurempi, kuin $1',
+		'[required]'	: 'campo obligatorio'
+	});
 	// Continuar con la orden
 	$(".envio-form").click(function(e){
+		e.preventDefault();
 		$("#OrderGetAddressInfoForm").submit();		
 	});
 	
 	// Página envío
 	$(".mailing-form").click(function(e){
 		$("#PagosOnlineForm").submit();
+	});
+	
+	// Seguir Comprando
+	$(".seguir-comprando").click(function(e){
+		BJS.post('/users/keepShopping/', null, function(redirect){
+			window.location.replace(redirect);
+		});
 	});
 	
 	// Añadir al carrito un ítem
@@ -261,7 +298,8 @@ function refreshCufon(){
 	Cufon.replace('.tahoma', {
 		fontFamily : 'Tahoma',
 		trim : "simple",
-		hoverables:{a:true}
+		hoverables:{a:true},
+		hover:{color:'#ffaedc'}
 
 	});
 	Cufon.replace('.japan', {

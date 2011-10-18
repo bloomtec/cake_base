@@ -22,7 +22,7 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('Web site:'); ?>
+		<?php __('Colors Tennis:'); ?>
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php

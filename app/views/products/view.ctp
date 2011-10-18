@@ -7,32 +7,63 @@
 			
 		<div id="comments" class="tahoma">
 			<div class="comment_header">
+			<?php
+				if($comments) {
+			?>
 				<h3>QUE HAN DICHO OTROS CLIENTES</h3>
-				<h3>ORDENAR POR</h3>
-				<select></select>
+			<?php
+				} else {
+			?>
+				<h3>ESTE PRODUCTO TODAVÍA NO TIENE COMENTARIOS</h3>
+				<br />
+				<h3>¡SE EL PRIMERO EN ESCRIBIR UNO!</h3>
+			<?php
+				}
+			?>
+			<!--	<h3>ORDENAR POR</h3>
+				<select></select> -->
 			</div>
+			<?php
+				if($comments) {
+					foreach ($comments as $key => $comment) {
+						
+			?>
 			<div class="comments">
 				<div class="linea_comment">
 					<ul>
-						<li class="titulos_rosado twCenMt">GEORGECE007</li>
-						<li class="azul twCenMt">12-08-2011</li>
+						<?php $user_email = split("@", $comment['User']['email']); ?>
+						<li class="titulos_rosado twCenMt"><?=$user_email[0]?></li>
+						<li class="azul twCenMt"><?=$comment['Comment']['created']?></li>
 					</ul>
-					<p>Tiene un forro superior o Capellada en lona algodón (100%), con un elástico que permite amoldarse a las distintas alturas del empeine.
-					</p>
+					<p><?=$comment['Comment']['comment']?></p>
 					<div style="clear: both"></div>
 				</div>
 			</div>
-		<a class="azul tahoma" href="#">ESCRIBIR COMENTARIO</a>
+			<?php
+					}
+				}
+			?>
+		<a id="escribir-comentario" class="azul tahoma" href="#">ESCRIBIR COMENTARIO</a>
+		<div id="user-info" class="azul tahoma" style="visibility: hidden;">
+			<h3>¡DEBES ESTAR REGISTRADO PARA DEJAR UN COMENTARIO!</h3>
+		</div>
+		<div id="create-comment" style="visibility: hidden;">
+			<form id="CommentAddForm" class="comment-form" accept-charset="utf-8" method="post" action="/comments/add">
+			<input id="CommentProductId" type="hidden" value="<?=$product['Product']['id']?>" name="data[Comment][product_id]">
+			<textarea id="CommentComment" name="data[Comment][comment]" style="width: 100%; background-color: #282828; color: #A1A1A1;"></textarea>
+			</form>
+			<a id="enviar-comentario" class="azul tahoma" href="#">ENVIAR COMENTARIO</a>
+		</div>
 		</div>
 
 	</div>
 	<div id="detalle_der">
-		<h1 class="titulos_rosado">NOMBRE PRENDA</h1>
+		<h1 class="titulos_rosado" style='text-transform: uppercase;'><?php echo $product['Product']['name'];?></h1>
 		<span class="puntos"></span>
 		<ul class="product_info">
-			<li>CLASIFICACION</li>
-			<li>MARCA</li>
-			<li><span>PRECIO:</span></li>
+			<li><?php echo $product['Product']["clasification"];?></li>
+			<li>MARCA: <?php echo $product['Brand']["name"];?></li>
+			<li><span>PRECIO: $<?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?></span></li>
 		</ul>
 		<ul class="product_info">
 			<li>TALLA
@@ -59,12 +90,14 @@
 			</select>
 			</li>			
 		</ul>
+		<!--
 		<ul class="product_info">
 			<li><a href="#">Anterior</a></li>
 		</ul>
 		<ul class="product_info ultimo">
 			<li><a href="#">Siguiente</a></li>			
-		</ul>	
+		</ul>
+		-->	
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
@@ -82,7 +115,7 @@
 		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/notificacionDisponibilidad">¿NO ENCONTRASTE LO QUE BUSCABAS?</a></h1>
 		<span class="puntos"></span>
 		<div id="caracteristicas">
-		<h1 class="titulos_rosado">CARACTERISTICAS:</h1>
+		<h1 class="titulos_rosado" style="font-size: 12px;">CARACTERISTICAS:</h1>
 		<p>
 			<?php echo $product['Product']['description'];?>
 		</p>
