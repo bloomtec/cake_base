@@ -33,7 +33,7 @@ $brands = $this -> requestAction("/brands/brandOfCategory/" . $category["Categor
 		?>
 		<li>
 			<a href="/marcas/<?php echo $librand["Brand"]["slug"]?>/subcategory:<?php echo $subcategory['id']?>">
-				<img src="/img/uploads/200x200/<?php echo $product['image']?>" />
+				<img src="/img/uploads/<?php echo $product['image']?>" />
 			</a>
 		</li>
 		<?php endforeach;?>
