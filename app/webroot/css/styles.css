@@ -422,6 +422,11 @@ ul.products li h3{
 }
 .products_view #detalle_der .product_info li a{
 	color:#BCBCBC;
+	font-size: 10px;
+}
+.products_view #detalle_der .product_info.primero{
+	margin-right: 0;
+	margin-left: 11px;
 }
 .products_view #detalle_der .product_info.ultimo{
 	margin-right: 0px;
@@ -510,7 +515,6 @@ ul.social li {
 	width: 68.42px;
 	height: 102.63px;
 	background-color: #fff;
-	margin-top: 15px;
 }
 .recomendado h2{
 	font-family: Tahoma,serif;
@@ -1020,6 +1024,7 @@ div.contentWrap {
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
+	margin-bottom: 20px;
 }
 .overlay-wrap form{
 	width: 80%;
@@ -1028,6 +1033,12 @@ div.contentWrap {
 }
 .overlay-wrap form label{
 	margin-left: 15px;
+	width: 150px;
+	text-align: right;
+	float: left;
+	margin-bottom: 11px;
+	padding-top: 7px;
+	color: #00CFB5;
 }
 .overlay-wrap input{
 	background: #333333;
@@ -1037,7 +1048,11 @@ div.contentWrap {
 	margin-right: 35px;
 	padding-left: 2px;
 	color:#fff;
+	margin-bottom: 10px;
 
+}
+.overlay-wrap input.comentario{
+	height: 110px;
 }
 .overlay-wrap .content .input_verde{
 	background-color: #00CFB5;
@@ -1052,20 +1067,34 @@ div.contentWrap {
 	
 }
 .overlay-wrap .content h1.subtitulos_gris{
-	text-align: center;
-
+	float: left;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    text-align: right;
+    width: 150px;
 }
 .overlay-wrap .content .subtitulos_blanco{
-	color:#fff;
-	text-align: center;
+	color: #FFFFFF;
+    float: right;
+    margin-bottom: 12px;
+    text-align: left;
+    width: 377px;
+}
+.overlay-wrap .content label.subtitulos_blanco{
+	width: 277px;
 }
 .overlay-wrap .content p.subtitulos_gris{
-	margin-top: 20px;
+	padding-top: 20px;
+	text-align: center;
+	clear: both;
+	font-size: 12px;
 }
 .overlay-wrap form input[type=checkbox]{
-	width: 15px;
 	float: left;
-	margin: 0;
+    margin-left: 55px;
+    margin-right: 0;
+    width: 15px;
+    margin-top: 6px;
 }
 .overlay-wrap form.newsletter{
 	text-align: center;
@@ -1073,6 +1102,10 @@ div.contentWrap {
 }
 .overlay-wrap form.newsletter label{
 	margin-left: 0;
+}
+.overlay-wrap .newsletter_wrapper{
+	width: 365px;
+	margin: 0 auto;
 }
 .overlay-wrap form.newsletter .subtitulos_blanco{
 	font-size: 12px;
@@ -1383,6 +1416,10 @@ table.tahoma {
     margin-left: 91px;
     margin-top: 19px;
 }
+input[type=submit]{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-shadow:1px 1px 2px #000;
+}
 .login_izq form input[type=submit], .olvidar_contr form input[type=submit], .recomendar form input[type=submit]{
 	background-color: #EC1C75;
     float: left;
@@ -1539,7 +1576,9 @@ table.tahoma {
 	margin:0;		
 }
 .paging{
-	#7e7e7d;
+	color:#7e7e7d;
+	text-align:center;
+	font-size:11px;
 }
 .paging .disabled{
 	color: #7e7e7d;
@@ -1549,9 +1588,11 @@ table.tahoma {
 }
 .paging a{
 	color: #00CFB5;
+	text-decoration: none;
 }
 .ir{
 	margin-left: 5px;
 	text-decoration: none;
 	margin-top: -2px;
 }
+

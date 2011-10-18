@@ -27,6 +27,18 @@ class PagesController extends AppController {
 	function contacto(){
 		$this->layout='pages';
 	}
+	function seguimientoPedidos(){
+		$this->layout='overlay';
+		$this->set('titulo','CONOCE EL ESTADO DE TU PEDIDO');
+	}
+	function notificacionDisponibilidad(){
+		$this->layout='overlay';
+		$this->set('titulo','NOTIFICARME CUANDO ESTÉ DISPONIBLE');
+	}
+	function dudasCompra(){
+		$this->layout='overlay';
+		$this->set('titulo','¿TIENES ALGUNA DUDA DE TU COMPRA?');
+	}
 	function admin_ez() {
 
 	}
