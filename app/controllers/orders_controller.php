@@ -245,6 +245,9 @@ class OrdersController extends AppController {
 							$this -> Order -> OrderItem -> set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
 							$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
 							$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
+							$product = $this->requestAction('/products/getProduct/'.$shop_cart_item['ShopCartItem']['foreign_key'].'/'.$shop_cart_item['ShopCartItem']['size_id']);
+							$this -> Order -> OrderItem -> set('price_item', $product['Product']['price']);
+							$this -> Order -> OrderItem -> set('price_total', ($product['Product']['price']*$shop_cart_item['ShopCartItem']['quantity']));
 							$this -> Order -> OrderItem -> save();
 							if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
 								$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
