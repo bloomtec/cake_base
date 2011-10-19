@@ -14,9 +14,7 @@
 			<?php
 				} else {
 			?>
-				<h3>ESTE PRODUCTO TODAVÍA NO TIENE COMENTARIOS</h3>
-				<br />
-				<h3>¡SE EL PRIMERO EN ESCRIBIR UNO!</h3>
+				<h3>¡SE EL PRIMERO EN ESCRIBIR UN COMENTARIO!</h3>
 			<?php
 				}
 			?>

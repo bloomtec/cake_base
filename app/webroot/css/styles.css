@@ -348,6 +348,7 @@ ul.products li h3{
 	margin-right: 6px;
 	font-style: normal;
 	padding-bottom: 5px;
+	line-height: 27px;
 }
 
 #comments .comments{
@@ -362,6 +363,7 @@ ul.products li h3{
 }
 .comments ul li.azul{
 	color:#00CFB5;
+	font-size: 10px;
 }
 .comments .linea_comment{
 	height: 100%;
@@ -396,6 +398,8 @@ ul.products li h3{
 }
 .comments ul li.titulos_rosado{
 	margin-bottom: 2px;
+	font-size: 12px;
+	text-transform: uppercase;
 }
 .products_view #detalle_der{
 	float: right;
@@ -689,6 +693,7 @@ ul.social li {
 	color: #fff;
 	margin-right: 15px;
 	padding-left: 3px;
+	text-shadow: none;
 }
 #home #foto_principal {
 	text-align:center;
