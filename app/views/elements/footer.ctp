@@ -47,7 +47,7 @@
 		</ul>
 	</div>
 </div>
-<h4 class="footer">Colors Tennis - Todos los derechos reservados - 2011</h4>
+<h4 class="footer">Colors Tennis - Todos los derechos reservados - 2011 | desarrollada por <a href="http://www.bloomweb.co" target="_blank"> <img alt='bloom web company' src="/img/bloom_colors.png"/></a></h4>
 </div>
 <div class="apple_overlay" id="overlay">
 

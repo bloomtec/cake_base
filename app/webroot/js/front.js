@@ -202,13 +202,28 @@ $(function() {
 		BJS.post("/users/isLoggedIn", null, function(info){
 			if(info == "true") {
 				$('#create-comment').css('visibility','visible');
+				$('#CommentComment').focus();
 			} else {
 				$('#user-info').css('visibility','visible');
 			}
 		});
 	});
 	$("#enviar-comentario").click(function(e){
+		e.preventDefault();
 		$("#CommentAddForm").submit();
+	});
+	$("#CommentAddForm").submit(function(e){
+		e.preventDefault();
+		var $form=$(this);
+		var fields=$form.serialize();
+		BJS.post($form.attr('action'), fields, function(info){
+			if(info == 1) {
+				$('#create-comment').hide().after('Comentario en espera de ser aprobado');
+			} else {
+				alert('no se pudo enviar el comentario');
+				// lo que debe hacer si no
+			}
+		});
 	});
 	
 	/**

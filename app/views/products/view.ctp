@@ -43,17 +43,21 @@
 					}
 				}
 			?>
+		<!--
 		<a id="escribir-comentario" class="azul tahoma" href="#">ESCRIBIR COMENTARIO</a>
 		<div id="user-info" class="azul tahoma" style="visibility: hidden;">
 			<h3>¡DEBES ESTAR REGISTRADO PARA DEJAR UN COMENTARIO!</h3>
 		</div>
-		<div id="create-comment" style="visibility: hidden;">
+		-->
+		<?php if($this->Session->read('Auth.User.id')): ?>
+		<div id="create-comment" style='margin-top: 5px;'>
 			<form id="CommentAddForm" class="comment-form" accept-charset="utf-8" method="post" action="/comments/add">
 			<input id="CommentProductId" type="hidden" value="<?=$product['Product']['id']?>" name="data[Comment][product_id]">
-			<textarea id="CommentComment" name="data[Comment][comment]" style="width: 100%; background-color: #282828; color: #A1A1A1;"></textarea>
+			<textarea placeholder='Escribe aqui tu comentario' id="CommentComment" name="data[Comment][comment]" style="width: 99%; background: transparent; color: #A1A1A1;"></textarea>
 			</form>
 			<a id="enviar-comentario" class="azul tahoma" href="#">ENVIAR COMENTARIO</a>
 		</div>
+		<?php endif;?>
 		</div>
 
 	</div>
