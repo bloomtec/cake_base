@@ -11,6 +11,7 @@ class UsersController extends AppController {
 	 */
 	function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->logoutRedirect='/';
 		$this -> Auth -> allow('register', 'keepShopping','ajaxRegister');
 	}
 	
@@ -19,6 +20,9 @@ class UsersController extends AppController {
 		echo $this->webroot;
 		exit(0);
 		return;
+	}
+	function profile(){
+		$this->layout='callback';
 	}
 	
 	function isLoggedIn() {

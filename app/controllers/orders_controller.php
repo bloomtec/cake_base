@@ -335,7 +335,16 @@ class OrdersController extends AppController {
 		$this -> set('user', $user);
 		$this -> set('shop_cart', $shop_cart);
 	}
-
+	
+	function getOrders(){
+		$userId=$this->Auth->user('id');
+		if($userId){
+			return $this->Order->find('all',array('conditions'=>array('user_id'=>$userId)));
+		}else{
+			return null;
+		}	
+	}
+	
 	/**
 	 * ----------------------------------------------------------------------------------------------------
 	 * 										METODOS CRUD
