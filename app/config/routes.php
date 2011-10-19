@@ -30,8 +30,9 @@
 	Router::connect('/pages/seguimientoPedidos', array('controller' => 'pages', 'action' => 'seguimientoPedidos'));
 	Router::connect('/pages/contacto', array('controller' => 'pages', 'action' => 'contacto'));
 	Router::connect('/pages/enviarDuda', array('controller' => 'pages', 'action' => 'enviarDuda'));
-	Router::connect('/pages/notificacionDisponibilidad', array('controller' => 'pages', 'action' => 'notificacionDisponibilidad'));
+	Router::connect('/pages/notificacionDisponibilidad/*', array('controller' => 'pages', 'action' => 'notificacionDisponibilidad'));
 	Router::connect('/pages/dudasCompra', array('controller' => 'pages', 'action' => 'dudasCompra'));
+	Router::connect('/pages/enviarDisponibilidad', array('controller' => 'pages', 'action' => 'enviarDisponibilidad'));
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'view'));
 	Router::connect('/admin', array('controller' => 'users', 'action' => 'login',"admin"=>true));
 	Router::connect('/admin/ez', array('controller' => 'pages', 'action' => 'ez',"admin"=>true));
