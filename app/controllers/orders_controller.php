@@ -334,6 +334,10 @@ class OrdersController extends AppController {
 		$this -> set('user', $user);
 		$this -> set('shop_cart', $shop_cart);
 	}
+	function view($id){
+		$this->layout='callback';
+		$this->set('order',$this->Order->findById($id));
+	}
 	
 	function getOrders(){
 		$userId=$this->Auth->user('id');

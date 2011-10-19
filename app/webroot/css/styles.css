@@ -1603,3 +1603,27 @@ input[type=submit]{
 	margin-top: -2px;
 }
 
+/*PROFILE*/
+table td.first{
+	text-align: right;
+	color: #00CFB5;
+	width: 200px;
+	padding-right: 20px;
+}
+table td.second{
+	width:200px;
+	text-align: left;
+	color: #7E7E7D;
+	padding-left: 20px;
+}
+.profile{
+	padding: 50px;
+	width: auto;
+}
+.profile table.tahoma{
+	margin: 0;
+}
+.profile.category ul{
+	margin: 0;
+	width: 810px;
+}
