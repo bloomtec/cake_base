@@ -55,9 +55,34 @@ $cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
 		$this->layout='overlay';
 		$this->set('titulo','CONOCE EL ESTADO DE TU PEDIDO');
 	}
-	function notificacionDisponibilidad(){
+	function notificacionDisponibilidad($productId){
+		$this -> loadModel('Product');
 		$this->layout='overlay';
 		$this->set('titulo','NOTIFICARME CUANDO ESTÉ DISPONIBLE');
+		$this->set('product',$this->Product->read(null,$productId));
+	}
+	function enviarDisponibilidad(){
+		if(!empty($this->data)){
+			$email=$this->data['email'];
+			//$userName=$this->data['name'];
+			$subscribir=$this->data['subscribe'];
+			$asunto="Solicitud disponibilidad ".$this->data['brand']." / ".$this->data['clasification'];
+			$mensaje="de: ".$email." <br />".$asunto."<br /> Talla: ".$this->data['talla'];
+			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+// Cabeceras adicionales
+$cabeceras .= 'From:  <'.$email.'>' . "\r\n";
+//debug($mensaje);
+			if(mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)){
+				echo true;
+			}else{
+				echo false;	
+			}
+		}else{
+			echo false;
+		}
+		Configure::write('debug',0);
+		$this->autoRender=false;
+		exit(0);	
 	}
 	function dudasCompra(){
 		$this->layout='overlay';

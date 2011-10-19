@@ -116,7 +116,7 @@
 			</div>
 		</div>	
 		<span class="puntos"></span>
-		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/notificacionDisponibilidad">¿NO ENCONTRASTE LO QUE BUSCABAS?</a></h1>
+		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/notificacionDisponibilidad/<?php echo $product['Product']['id'];?>">¿NO ENCONTRASTE LO QUE BUSCABAS?</a></h1>
 		<span class="puntos"></span>
 		<div id="caracteristicas">
 		<h1 class="titulos_rosado" style="font-size: 12px;">CARACTERISTICAS:</h1>
