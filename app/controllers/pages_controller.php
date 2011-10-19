@@ -33,7 +33,7 @@ class PagesController extends AppController {
 			$mensaje="de: ".$userName." <".$email."> <br />".$userName;
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 // Cabeceras adicionales
-$cabeceras .= 'From: '.$this->data["Paquete"]["nombre_cotizante"].' <'.$this->data["Paquete"]["email"].'>' . "\r\n";
+$cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
 //debug($mensaje);
 			if(mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)){
 				echo true;
