@@ -1625,5 +1625,9 @@ table td.second{
 }
 .profile.category ul{
 	margin: 0;
-	width: 810px;
+	
+}
+.profile.category ul li{
+	margin-bottom: 5px;
+	
 }
