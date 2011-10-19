@@ -51,7 +51,15 @@ class OrdersController extends AppController {
 		} else if($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
 			//"Transacción aprobada"
 			$this -> Order -> saveField('order_state_id', 2);
-			$this -> requestAction('/shop_carts/removeAllFromCart/' . $extra1);
+			if(!empty($order['Order']['coupon_id'])) {
+				// Se utilizó un cupon, marcarlo como redimido
+				$this->loadModel('Coupon');
+				$this->Coupon->read(null, $order['Order']['coupon_id']);
+				$this->Coupon->saveField('is_redeemed', 1);
+			}
+			// Eliminar el carrito porque ya se pago
+			$this->loadModel('ShopCart');
+			$this->ShopCart->delete($extra1);
 		} else {
 			//"Otro, revisar con P.O."
 			$this -> Order -> saveField('order_state_id', 7);

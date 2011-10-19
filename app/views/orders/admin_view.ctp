@@ -1,5 +1,5 @@
 <div class="orders view">
-<h2><?php  __('Order');?></h2>
+<h2><?php  __('Order'); ?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -13,7 +13,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Coupon'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php $order['Coupon']['serial']; ?>
+			<?php echo $order['Coupon']['serial']; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nombre'); ?></dt>
