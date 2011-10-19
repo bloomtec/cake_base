@@ -187,6 +187,9 @@ $(function() {
 		},
 		onLoad:function(){
 			refreshCufon();
+		},
+		onClose: function() {
+			$('.error').remove();
 		}
 	});
 	

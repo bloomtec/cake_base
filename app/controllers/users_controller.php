@@ -11,7 +11,7 @@ class UsersController extends AppController {
 	 */
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('register', 'keepShopping');
+		$this -> Auth -> allow('register', 'keepShopping','ajaxRegister');
 	}
 	
 	function keepShopping() {
@@ -65,73 +65,57 @@ class UsersController extends AppController {
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-
+	function ajaxLogin(){
+		if($this->Auth->login($this->data)){
+			echo true;
+		}else{
+			echo json_encode(array("data[User][email]"=>"Verifique sus datos","data[User][password]"=>"Verifique sus datos"));
+		}
+		$this->autoRender=false;
+		Configure::write('debug',0);
+		exit(0);
+	}
 	function register() {
 		if (!empty($this -> data)) {
-			$isUserNameValid = false;
-			$isDocumentValid = false;
-			$isPasswordValid = false;
-			$isMailValid = false;
 			// Validar el nombre de usuario
 			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
-			if (empty($tempUser)) {
-				$isUserNameValid = true;
+			$user['User']['role_id'] = 2;
+			if($this->User->saveAll($this->data)){
+					$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			}else{
+				
 			}
-			// Validar el documento
-			$tempUserFields = $this -> User -> UserField -> findByDocument($this -> data['User']['document']);
-			if (empty($tempUserFields)) {
-				$isDocumentValid = true;
-			}
-			$user = array();
-			$user['User']['username'] = $this -> data['User']['username'];
-			if (!empty($this -> data['User']['enter_password']) && ($this -> data['User']['enter_password'] == $this -> data['User']['confirm_password'])) {
-				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['enter_password']);
-				$isPasswordValid = true;
-			}
-			$user['User']['role_id'] = 3;
-			// 1 - Admin; 2 - Gerente; 3 - Usuario
-			$user['User']['active'] = 1;
-			// Validar el correo
-			$tempUser = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (empty($tempUser) && !empty($this -> data['User']['email']) && ($this -> data['User']['email'] == $this -> data['User']['confirm_email'])) {
-				$isMailValid = true;
-				$user['User']['email'] = $this -> data['User']['email'];
-			}
-			if ($isUserNameValid) {
-				if ($isDocumentValid) {
-					if ($isPasswordValid && $isMailValid) {
-						if ($this -> User -> save($user)) {
-							$user = $this -> User -> read(null, $this -> User -> id);
-							$userFields = array();
-							$userFields['UserField']['user_id'] = $user['User']['id'];
-							$userFields['UserField']['document_type_id'] = $this -> data['User']['document_type_id'];
-							$userFields['UserField']['document'] = $this -> data['User']['document'];
-							$userFields['UserField']['name'] = $this -> data['User']['name'];
-							$userFields['UserField']['surname'] = $this -> data['User']['surname'];
-							$userFields['UserField']['phone'] = $this -> data['User']['phone'];
-							$userFields['UserField']['address'] = $this -> data['User']['address'];
-							$userFields['UserField']['birthday'] = $this -> data['User']['birthday'];
-							$this -> User -> UserField -> save($userFields);
-							$this -> Session -> setFlash(__('The user has been saved', true));
-							$this -> redirect(array('/'));
-						} else {
-							$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
-						}
-					} else {
-						$this -> Session -> setFlash(__('Password or email mismatch, email already registered or one of these fields was left empty. Please, try again.', true));
-					}
-				} else {
-					$this -> Session -> setFlash(__('Document already registered. Please, try again.', true));
-				}
-			} else {
-				$this -> Session -> setFlash(__('Username already registered. Please, try again.', true));
-			}
+
 		}
 		$this -> loadModel('DocumentType');
 		$documentTypes = $this -> DocumentType -> find('list');
 		$this -> set(compact('documentTypes'));
 	}
-
+	function ajaxRegister() {
+		if (!empty($this -> data)) {
+			// Validar el nombre de usuario
+			$user['User']['role_id'] = 2;
+			$this -> User -> create();
+			$this->User->set( $this->data );
+			if($this->User->saveAll($this->data)){
+				$this->Auth->login($this->data);
+				echo true;
+			}else{
+				$errors=array();
+				foreach($this->User->invalidFields() as $name => $value){
+					$errors["data[User][".$name."]"]=$value;
+				}
+				
+				echo json_encode($errors); 
+			}
+		}
+		$this->autoRender=false;
+		Configure::write('debug',0);
+		exit(0);
+	}
+	function validateEmail(){
+		
+	}
 	function admin_index() {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());

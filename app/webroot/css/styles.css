@@ -1017,6 +1017,7 @@ div.contentWrap {
 #overlay2 .content .wrapper{
 	width:890px;
 	padding-top: 40px;
+	height: 381px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -1347,11 +1348,11 @@ table.tahoma {
 	font-size:12px;
 	margin-left:0;
 	float:left;
-	width: 185px;
+	width: 180px;
 	text-align: right;
 }
-.login_izq form input[type=text], .olvidar_contr form input[type=text], .recomendar form input[type=text]{
-	width: 185px;
+.login_izq form input[type=text], .login_izq form input[type=password],.login_izq form input[type=email],.olvidar_contr form input[type=text], .recomendar form input[type=text]{
+	width: 193px;
 	margin-right:0;
 	float:none;
 	margin-bottom: 10px;
@@ -1524,7 +1525,7 @@ table.tahoma {
 	padding:3px 3px;
 	color:#000;
 	display:none;	
-	
+	z-index:10000;
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px; 
 	-moz-border-radius-bottomleft:0;

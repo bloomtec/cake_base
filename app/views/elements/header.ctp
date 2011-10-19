@@ -4,6 +4,8 @@
 	<a  href="/">Color Tennis</a>
 	</h1>
 	<ul class="tahoma">
+
+		<?php $userS=$this->Session->read('Auth.User'); if(empty($userS)){?>
 		<li>
 			<a rel="#overlay" href="/users/login">Login</a>
 		</li>
@@ -13,6 +15,17 @@
 		<li>
 			<a rel="#overlay" href="/users/login">Regístrate</a>
 		</li>
+		<?php }else{ ?>
+		<li>
+			<a rel="#overlay" href="/users">Mi Cuenta</a>
+		</li>
+		<li>
+			/
+		</li>
+		<li>
+			<a  href="/users/logout"> Salir </a>
+		</li>	
+		<?php } ?>
 	</ul>
 	<ul class="main_nav twCenMt">
 		<li class="home halo <?php if(!isset($category)) echo 'current'?>">
