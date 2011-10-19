@@ -111,86 +111,96 @@ ul, li {
 }
 #content{
 	background: #f4f2f2;
-	width:750px;
+	width:96%;
 	float:right;
 	color: #333;
-	padding: 20px;
+	padding: 2%;
 	overflow: auto;
 }
-#main_menu {
-	float:left;
-	margin:0;
+#main_menu{
+	background-image: url(../img/cms/trama_menu.png);
+	background-repeat: repeat-x;
+	height: 49px;
+	float:right;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	-moz-border-radius-bottomleft:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-moz-box-shadow: 2px 3px 2px #202020;
+	-webkit-box-shadow: 2px 3px 2px #202020;
+	box-shadow: 2px 3px 2px #202020;
+	margin-top:50px;
 }
 #main_menu li  {
 	list-style: none;
 	margin-bottom:4px;
-	position:relative;
 	margin-right: 0;
 	margin-left: 0;
-	background-image: url(../img/cms/menu_inact.png);
-	background-repeat:no-repeat;
+	display: block;
+	height: 100%;
+	background-image: url(../img/cms/separador_menu.png);
+	background-repeat: no-repeat;
+	background-position: center right;
+	float: left;
+	position:relative;
 }
-#main_menu li:hover{
-	background-image: url(../img/cms/menu_act.png);
+#main_menu li:hover, #main_menu li.final:hover{
+	background-image: url(../img/cms/trama_menu_active.png);
+	background-repeat: repeat-x;
+	background-position: top left;
 }
 #main_menu li a {
 	display:block;
-	width: 228px;
-	height: 56px;
 	text-decoration: none;
+	color: #fff;
+	padding:17px 17px;
+}
+#main_menu li.desplegable > a, #main_menu li.desplegable > a:hover{
+	background-image: url(../img/cms/flecha_menu.png);
+	background-repeat: no-repeat;
+	background-position: 50% 86%;
+}
+#main_menu li.desplegable ul a, #main_menu li.desplegable ul li{
+	background: #049ae1;
 }
 
-#main_menu li a .iconos {
-	margin-top:13px;
-	margin-left:12px;
-}
-#main_menu li a span{
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:15px;
-	font-weight: bold;
-	color:#fff;
-	position:absolute;
-	top:19px;
-	left:58px;
-} 
-#main_menu  li ul{
-	background-image:none;
-	background:#0090d6;
-	width:90%;
-	padding-bottom:10px;
-	-webkit-border-bottom-right-radius: 10px;
-	-webkit-border-bottom-left-radius: 10px;
-	-moz-border-radius-bottomright: 10px;
-	-moz-border-radius-bottomleft: 10px;
-	border-bottom-right-radius: 10px;
-	border-bottom-left-radius: 10px;
-
-}
-#main_menu li li {
-	background:none;
-	height:20px;
-	border-bottom:solid 1px #77d2fe;
-	margin:0 auto;
-	width:90%;
-	margin-bottom:3px;
-}
-#main_menu li a.down{
-	background:url(../img/cms/flecha_abajo.png);
-	background-position:204px 22.5px;
-	background-repeat:no-repeat;
-}
-#main_menu li li:hover{
+#main_menu li a.ultimo:hover, #main_menu li.final{
 	background:none;
 }
+#main_menu li ul{
+	display: none;
+    left: 0px;
+    position: absolute;
+    top: 49px;
+    margin:0;
+    
+}
+#main_menu li ul li{
+	background: #049ae1;
+	width: 210px;
+}
+#main_menu li ul li a {
+	border-bottom: 1px solid #64d7f3;
+	padding-bottom: 4px;
+	margin-bottom:5px;
+	margin-left:14px;
+	padding-left:4px;
+	margin-right: 14px;
+	padding-top: 9px;
+}
+#main_menu li ul li{
+	background:none;
+	float: left;
+    margin: 0;
+    padding-bottom: 0;
+    z-index: 999;
+}
+#main_menu li:hover ul{
+	display: block;
+}
 
-#main_menu li li a{
-	line-height:20px;
-	display:inline;
-	color:white;
-}
-#main_menu li li a:hover{
-	background-image:none;
-}
 #footer {
 	clear: both;
 	padding: 15px 10px;

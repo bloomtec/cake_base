@@ -45,9 +45,9 @@
 	<div id="container">
 		<div id="header">
 			<h1 class="logo_interna"></h1>
-			<h2><a class="salir" href="/admin/users/logout">SALIR</a></h2>
+			<?php echo $this->element("menu");?>
 		</div>
-		<?php echo $this->element("menu");?>
+		
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>

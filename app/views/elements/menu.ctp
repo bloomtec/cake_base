@@ -1,7 +1,7 @@
 <ul id="main_menu">
-		<li><a href="/admin/ez"><img class="iconos" src="/img/cms/inicio.png"/><span>INICIO</span></a></li>
+		<li><a href="/admin/ez"><span>INICIO</span></a></li>
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/menus.png"/><span>NAVEGACIÓN</span></a>
+			<a href="#"><span>NAVEGACIÓN</span></a>
 			<ul>
 				<li><a href="/admin/categories">Ver Categorías</a></li>
 				<li><a href="/admin/categories/add">Agregar Categorías</a></li>
@@ -22,7 +22,7 @@
 			</ul>		
 		</li>
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/producto.png"/><span>PRODUCTOS</span></a>
+			<a href="#"><span>PRODUCTOS</span></a>
 			<ul>
 				<li><a href="/admin/products">Ver Productos</a></li>
 				<li><a href="/admin/products/add">Agregar Producto</a></li>
@@ -30,26 +30,29 @@
 			</ul>
 		</li>
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/contenido.png"/><span>ORDENES</span></a>
+			<a href="#"><span>ORDENES</span></a>
 			<ul>
 				<li><a href="/admin/orders">Ver Ordenes</a></li>
 				<!-- <li><a href="/admin/pages/add">Agregar Página</a></li> -->
 			</ul>
 		</li>
-		</li>
+
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/menus.png"/><span>Paginas</span></a>
+			<a href="#"><span>PÁGINAS</span></a>
 			<ul>
 				<li><a href="/admin/pages">Ver Páginas</a></li>
 				<!-- <li><a href="/admin/pages/add">Agregar Página</a></li> -->
 			</ul>
 		</li>
 		<li>
-			<a href="#"><img class="iconos" src="/img/cms/usuarios.png"/><span>USUARIOS</span></a>
+			<a href="#"><span>USUARIOS</span></a>
 			<ul>
 				<li><a href="/admin/users">Ver Usuarios</a></li>
 				<li><a href="/admin/users/add">Agregar Usuario</a></li>
 			</ul>
+		</li>
+		<li>
+			<a href="/admin/users/logout"><span>SALIR</span></a>
 		</li>
 		
 		
