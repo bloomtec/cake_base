@@ -17,7 +17,7 @@
 		</li>
 		<?php }else{ ?>
 		<li>
-			<a rel="#overlay" href="/users">Mi Cuenta</a>
+			<a href="/users/profile">Mi Cuenta</a>
 		</li>
 		<li>
 			/
