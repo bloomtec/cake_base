@@ -1,5 +1,5 @@
 # INITIAL CONFIGURATION
-set :application, "colors.bloomweb.co"
+set :application, "colorstennis.com"
 set :export, :remote_cache
 set :keep_releases, 5
 set :cakephp_app_path, "app"
