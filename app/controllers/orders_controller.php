@@ -94,6 +94,8 @@ class OrdersController extends AppController {
 			//"Otro, revisar con P.O."
 			$this -> Order -> saveField('order_state_id', 7);
 		}
+		} else {
+			echo "Ha llegado a esta vista de manera incorrecta";
 		}
 		$this -> autoRender = false;
 		exit(0);
