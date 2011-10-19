@@ -9,12 +9,14 @@ class CommentsController extends AppController {
 			$this -> data['Comment']['is_visible'] = 0;
 			$this -> Comment -> create();
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
-				$this -> redirect(array('controller' => 'products', 'action' => 'view', $this -> data['Comment']['product_id']));
+				echo true;
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				echo false;
 			}
 		}
+		Configure::write('debug',0);
+		$this->autoRender=false;
+		exit(0);
 	}
 
 	function admin_index() {
