@@ -154,12 +154,11 @@ input.submit{
 	z-index: 1;
 }
 #aplicacion #content{
-	background-image: url("/img/trama_aplicacion.png");
-    bottom: 21px;
-    height: 240px;
-    left: 12px;
+	bottom: 0;
+    height: 190px;
     position: absolute;
-    width: 933px; 
+    width: 100%; 
+  
 }
 #caratulas .caratulas a{
 	display: block;
@@ -169,24 +168,54 @@ input.submit{
 	margin-top: 13px;
 }
 #caratulas{
-	margin-top: 11px;
-	margin-bottom: 12px;
+	margin-bottom: 2px;
+	background-image: url("/img/trama_aplicacion.png");
+	padding-bottom: 12px;
+}
+#caratulas h1, #caratulas h2{
+	padding-left: 20px;
+}
+#caratulas .caratulas li.anterior, #caratulas .caratulas li.siguiente{
+	background-image:url(/img/anterior.png);
+	width: 16px;
+	height: 31px;
+	background-color: transparent;
+	border: none;
+	margin-right: 34px;
+	margin-top: 48px;
+}
+#caratulas .caratulas li.siguiente{
+	background-image:url(/img/siguiente.png);
+	margin-right: 0;
+}
+#manecillas{
+	background-image: url("/img/trama_aplicacion.png");
+	-moz-border-radius-bottomright: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius:10px;
 }
 #caratulas h1,#caratulas h2, #manecillas .info_aplicacion h1,#manecillas .info_aplicacion h2 {
-	font-size:16px;
+	font-size:22px;
 	color: #FFFFFF;
 	width: auto;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 5px;
 }
+
 .info_aplicacion{
 	float: left;
     margin-left: 25px;
-    margin-top: 89px;
+    margin-top: 45px;
 }
 #caratulas h2,  #manecillas .info_aplicacion h2{
-	font-size: 13px;
+	font-size: 11px;
 }
 #caratulas .caratulas{
 	float: right;
+	margin-right: 70px;
 }
 #caratulas .caratulas li{
 	text-align: right;
@@ -196,21 +225,30 @@ input.submit{
 	float: left;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
-	width: 135px;
-	height: 135px;
-	background-color: #000;
+	width: 108px;
+	height: 108px;
+	background-color: transparent;
 	position: relative;
-	margin-top: 15px;
+	margin-top: 10px;
 	cursor: pointer;
+	border: 1px solid #fff;
 }
 #caratulas .caratulas span{
-	position: absolute;
-	top: -20px;
-	right: 3px;
+	 background-color: #FFFFFF;
+    color: #000000;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
 }
 #manecillas .info_aplicacion{
-	margin-top: 0;
-	margin-right: 40px;
+	margin-top: 0px;
+	margin-right: 20px;
+	padding: 8px 20px 5px;
+	background-image:url(/img/trama_manecillas.png);
 }
 #manecillas .info_aplicacion.der{
 	margin-left: 70px;
@@ -221,7 +259,7 @@ input.submit{
 #manecillas ul li{
 	float: left;
 	margin-right: 3px;
-	margin-top: 11px;
+	margin-top: 21px;
 	width: 20px;
 	height: 20px;
 	background-color: #000000;

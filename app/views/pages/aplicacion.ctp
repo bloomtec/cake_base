@@ -4,6 +4,7 @@
 		<h2>selecciona tu textura</h2>
 	</div>
 	<ul class="caratulas">
+		<li class="anterior"></li>
 		<li rel="caratula1.jpg">
 			<span>1</span>
 		</li>
@@ -16,6 +17,7 @@
 		<li rel="caratula4.png">
 			<span>4</span>
 		</li>
+		<li class="siguiente"></li>
 	</ul>
 	<div style="clear: both"></div>
 </div>
@@ -55,4 +57,5 @@
 		<li rel="minutero10.png" style="background-color: #ff5500"></li>
 		<li rel="minutero11.png" style="background-color: #fffeff"></li>
 	</ul>
+	<div style="clear: both"></div>
 </div>
