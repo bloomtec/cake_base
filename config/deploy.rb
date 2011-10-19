@@ -7,12 +7,12 @@ set :cakephp_core_path, "cake"
 default_run_options[:pty] = true # Para pedir la contraseña de la llave publica de github via consola, sino sale error de llave publica.
 
 # DEPLOYMENT DIRECTORY STRUCTURE
-set :deploy_to, "/home/embalao/colors.bloomweb.co"
+set :deploy_to, "/home/embalao/colorstennis.com"
 
 # ROLES
-role :app, "colors.bloomweb.co"
-role :web, "colors.bloomweb.co"
-role :db, "colors.bloomweb.co", :primary => true
+role :app, "colorstennis.com"
+role :web, "colorstennis.com"
+role :db, "colorstennis.com", :primary => true
 
 # DREAMHOST INFORMATION
 set :user, "embalao"
@@ -28,9 +28,9 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cp /home/embalao/colors.bloomweb.co/current/. /home/embalao/colors.bloomweb.co/ -R"
-    run "chmod 777 /home/embalao/colors.bloomweb.co/app/tmp/ -R"
-    run "chmod 777 /home/embalao/colors.bloomweb.co/app/webroot/img/uploads/ -R"
-    run "chmod 777 /home/embalao/colors.bloomweb.co/app/webroot/files/uploads/ -R"
+    run "cp /home/embalao/colorstennis.com/current/. /home/embalao/colorstennis.com/ -R"
+    run "chmod 777 /home/embalao/colorstennis.com/app/tmp/ -R"
+    run "chmod 777 /home/embalao/colorstennis.com/app/webroot/img/uploads/ -R"
+    run "chmod 777 /home/embalao/colorstennis.com/app/webroot/files/uploads/ -R"
   end
 end
