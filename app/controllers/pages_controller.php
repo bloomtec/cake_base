@@ -29,8 +29,9 @@ class PagesController extends AppController {
 			$email=$this->data['email'];
 			$userName=$this->data['name'];
 			$subscribir=$this->data['subscribe'];
+			$comentario=$this->data['comentario'];
 			$asunto="Duda enviada desde la página web";
-			$mensaje="de: ".$userName." <".$email."> <br />".$userName;
+			$mensaje="de: ".$userName." <".$email."> <br />".$comentario;
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 // Cabeceras adicionales
 $cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
