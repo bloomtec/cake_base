@@ -55,9 +55,11 @@ $cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
 		$this->layout='overlay';
 		$this->set('titulo','CONOCE EL ESTADO DE TU PEDIDO');
 	}
-	function notificacionDisponibilidad(){
+	function notificacionDisponibilidad($productId){
+		$this -> loadModel('Product');
 		$this->layout='overlay';
 		$this->set('titulo','NOTIFICARME CUANDO ESTÉ DISPONIBLE');
+		$this->set('Product',$this->Product->read(null,$productId));
 	}
 	function dudasCompra(){
 		$this->layout='overlay';

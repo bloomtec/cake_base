@@ -4,13 +4,13 @@ combinación que buscas esté disponible!
 </p>
 <form class="tahoma">
 	<label for='pedido' class='azul'>CORREO ELECTRONICO</label>
-	<input type="text" />
+	<input type="email" required="required" />
 <h1 class="subtitulos_gris">MARCA:</h1> <h2 class="subtitulos_blanco">PAEZ </h2>
 <h1 class="subtitulos_gris">NOMBRE PRENDA:</h1> <h2 class="subtitulos_blanco">NOMBRE </h2>
 <h1 class="subtitulos_gris">CLASIFICACION:</h1><h2 class="subtitulos_blanco">REFRE</h2>
-<h1 class="subtitulos_gris">TALLA:</h1> <h2 class="subtitulos_blanco">35</h2>
+<h1 class="subtitulos_gris">TALLA:</h1> <input name='data[talla]' required="required" />
 	<div class="newsletter_wrapper">
-		<input type="checkbox" />
+		<?php echo $form->checkbox('subscribe',array('label'=>'false','name'=>'data[subscribe]','div'=>false))?>
 		<label class="subtitulos_blanco tahoma">Suscribirme al NewsLetter de Colors Tennis</label>
 		<div style="clear: both"></div>
 	</div>
