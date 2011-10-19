@@ -197,6 +197,7 @@ class OrdersController extends AppController {
 					 */
 					$this -> Order -> set('user_id', $shop_cart['ShopCart']['user_id']);
 					$this -> Order -> set('user_agent', $shop_cart['ShopCart']['user_agent']);
+					$this -> Order -> set('coupon_id', $shop_cart['ShopCart']['coupon_id']);
 					$this -> Order -> set('nombre', $shop_cart['ShopCart']['nombre']);
 					$this -> Order -> set('apellido', $shop_cart['ShopCart']['apellido']);
 					$this -> Order -> set('pais', $shop_cart['ShopCart']['pais']);
