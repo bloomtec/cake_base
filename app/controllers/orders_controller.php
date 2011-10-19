@@ -60,6 +60,21 @@ class OrdersController extends AppController {
 			// Eliminar el carrito porque ya se pago
 			$this->loadModel('ShopCart');
 			$this->ShopCart->delete($extra1);
+			// Reducir de inventario la cantidad de items comprados
+			$this->loadModel('Inventory');
+			foreach($order['OrderItem'] as $item) {
+				$inventario = $this->Inventory->find(
+					'first',
+					array(
+						'conditions'=>array(
+							'Inventory.product_id'=>$item['foreign_key'],
+							'Inventory.size_id'=>$item['size_id']
+						)
+					)
+				);
+				$inventario['Inventory']['quantity']-=$item['quantity'];
+				$this->Inventory->save($inventario);
+			}
 		} else {
 			//"Otro, revisar con P.O."
 			$this -> Order -> saveField('order_state_id', 7);
