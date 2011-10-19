@@ -95,6 +95,7 @@
 	<?php if (!empty($order['OrderItem'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
+		<th><?php __('Product'); ?></th>
 		<th><?php __('Size'); ?></th>
 		<th><?php __('Is Gift'); ?></th>
 		<th><?php __('Quantity'); ?></th>
@@ -117,6 +118,7 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
+			<td><?php echo $this->requestAction('/products/getClasification/'.$orderItem['foreign_key']);?></td>
 			<td><?php echo $this->requestAction('/sizes/humanizeSize/'.$orderItem['size_id']); ?></td>
 			<td><?php echo $orderItem['is_gift'];?></td>
 			<td><?php echo $orderItem['quantity'];?></td>
