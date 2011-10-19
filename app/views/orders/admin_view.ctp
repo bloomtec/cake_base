@@ -1,11 +1,6 @@
 <div class="orders view">
 <h2><?php  __('Order');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $order['Order']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $order['Order']['code']; ?>
@@ -68,17 +63,17 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Subtotal'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $order['Order']['subtotal']; ?>
+			$<?php echo number_format($order['Order']['subtotal'], 0, ' ', '.'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Descuento'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $order['Order']['descuento']; ?>
+			$<?php echo number_format($order['Order']['descuento'], 0, ' ', '.'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Total'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $order['Order']['total']; ?>
+			$<?php echo number_format($order['Order']['total'], 0, ' ', '.'); ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
@@ -100,11 +95,7 @@
 	<?php if (!empty($order['OrderItem'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Order Id'); ?></th>
-		<th><?php __('Model Name'); ?></th>
-		<th><?php __('Foreign Key'); ?></th>
-		<th><?php __('Size Id'); ?></th>
+		<th><?php __('Size'); ?></th>
 		<th><?php __('Is Gift'); ?></th>
 		<th><?php __('Quantity'); ?></th>
 		<th><?php __('Price Item'); ?></th>
@@ -116,9 +107,6 @@
 		<th><?php __('Ciudad'); ?></th>
 		<th><?php __('Direccion'); ?></th>
 		<th><?php __('Telefono'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
-		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 		$i = 0;
@@ -129,15 +117,11 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $orderItem['id'];?></td>
-			<td><?php echo $orderItem['order_id'];?></td>
-			<td><?php echo $orderItem['model_name'];?></td>
-			<td><?php echo $orderItem['foreign_key'];?></td>
-			<td><?php echo $orderItem['size_id'];?></td>
+			<td><?php echo $this->requestAction('/sizes/humanizeSize/'.$orderItem['size_id']); ?></td>
 			<td><?php echo $orderItem['is_gift'];?></td>
 			<td><?php echo $orderItem['quantity'];?></td>
-			<td><?php echo $orderItem['price_item'];?></td>
-			<td><?php echo $orderItem['price_total'];?></td>
+			<td>$<?php echo number_format($orderItem['price_item'], 0, ' ', '.');?></td>
+			<td>$<?php echo number_format($orderItem['price_total'], 0, ' ', '.');?></td>
 			<td><?php echo $orderItem['nombre'];?></td>
 			<td><?php echo $orderItem['apellido'];?></td>
 			<td><?php echo $orderItem['pais'];?></td>
@@ -145,8 +129,6 @@
 			<td><?php echo $orderItem['ciudad'];?></td>
 			<td><?php echo $orderItem['direccion'];?></td>
 			<td><?php echo $orderItem['telefono'];?></td>
-			<td><?php echo $orderItem['created'];?></td>
-			<td><?php echo $orderItem['updated'];?></td>
 		</tr>
 	<?php endforeach; ?>
 	</table>

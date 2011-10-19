@@ -3,6 +3,12 @@ class SizesController extends AppController {
 
 	var $name = 'Sizes';
 	
+	function humanizeSize($size_id) {
+		$size = $this->Size->read(null, $size_id);
+		$reference = $this->Size->SizeReference->read(null, $size['Size']['size_reference_id']);
+		return $reference['SizeReference']['size'];
+	}
+	
 	function getSizeReferenceID($size_id) {
 		$size = $this->Size->read(null, $size_id);
 		return $size['Size']['size_reference_id'];
