@@ -21,6 +21,7 @@ class BrandsController extends AppController {
 		$this->loadModel("Product");
 		//$products = $this -> Brand -> Subcategory -> Product -> find('all');
 		$conditions = array();
+		$conditions['Product.is_visible']=true;
 		if((isset($this->params['named']['subcategoria'])) && (!empty($this->params['named']['subcategoria']))) {
 			$conditions['Product.subcategory_id']=$this->params['named']['subcategoria'];
 			$this->Brand->Subcategory->recursive=-1;
@@ -74,7 +75,7 @@ class BrandsController extends AppController {
 			'className' => 'Product',
 			'foreignKey' => 'brand_id',
 			'dependent' => false,
-			'conditions' => '',
+			'conditions' => array('Product.is_visible'=>true),
 			'fields' => '',
 			'order' => 'rand()',
 			'limit' => '',
