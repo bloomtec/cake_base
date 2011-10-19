@@ -90,14 +90,14 @@
 			</select>
 			</li>			
 		</ul>
-		
-		<ul class="product_info">
+		<!--
+		<ul class="product_info primero">
 			<li><a href="#">Anterior</a></li>
 		</ul>
 		<ul class="product_info ultimo">
 			<li><a href="#">Siguiente</a></li>			
 		</ul>
-		
+		-->
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
@@ -147,13 +147,13 @@
 		
 		<?php $recomendados1=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
 		<?php if($recomendados1):?>
-		<h3 class="titulos_rosado">CON QUE LO PODRÍAS USAR </h1>
+		<h3 class="titulos_rosado">TAMBIÉN TE PODRÍA GUSTAR</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 		
 		<?php $recomendados1=$this->requestAction('/products/findOtherRecommendedProducts/'.$product['Product']['id']);?>
 		<?php if($recomendados1):?>
-		<h3 class="titulos_rosado">TAMBIÉN TE RECOMENDAMOS</h1>
+		<h3 class="titulos_rosado">LO PUEDES USAR CON</h1>
 		<?php echo $this->element("recomendado",array("products"=>$recomendados1));?> 
 		<?php endif; ?>
 		
