@@ -1664,7 +1664,7 @@ table.recibo {
 	text-align: left;
 	padding-right:50px;
 }
-h1.recibo{
+h1.recibo, h1.orden{
 	width: 885px;
 	color:#fff;
 	text-align: left;
@@ -1673,6 +1673,11 @@ h1.recibo{
 	margin:0 auto;
 	padding-bottom:50px;
 	padding-top:50px;
+}
+h1.orden{
+	padding-bottom: 15px;
+	margin-bottom: 25px;
+	padding-top: 0;
 }
 .submit_rosado{
 	background-color: #EC1C75;
@@ -1683,4 +1688,14 @@ h1.recibo{
 	text-shadow:1px 1px 2px #000;
 	margin-top: 130px;
 	margin-left: 240px;
+}
+#create-comment textarea{
+	border: 1px solid #7E7E7D;
+	color: #fff;
+}
+#shop-cart-list.tahoma{
+	margin:0 auto;
+}
+.volver{
+	margin-top: 10px;
 }

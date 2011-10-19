@@ -1,8 +1,9 @@
 <div class="profile tahoma category">
+	<h1 class="orden twCenMt">ORDEN</h1>
 	<div class='volver'>
 		<a href='/users/profile' class="azul"> Volver </a>
 	</div>
-	<table>
+	<table class="recibo tahoma">
 		<tr>
 			<td class='first'>Código</td>
 			<td class='second'><?php echo $order['Order']['code']
@@ -94,7 +95,7 @@ $foreign_key =  $order_item['foreign_key'];
 $item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key/".$order_item['size_id']);
 $subtotal+=$item[$model_name]["price"]*$order_item['quantity'];
 			?>
-			<tr class="shop-cart-item" rel="<?=$order_item["id"]?>">
+			<tr class="shop-cart-item" rel="<?php echo $order_item["id"]?>">
 				<td class="descripcion">
 				<div class="img_carrito">
 					<img src="<?php echo"/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>

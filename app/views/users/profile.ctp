@@ -15,7 +15,7 @@
 		</li>
 		<?php endforeach;?>
 		<?php }else{?>
-		<li>
+		<li class="azul">
 			No tienes pedidos
 		</li>
 		<?php }?>
