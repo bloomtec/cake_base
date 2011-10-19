@@ -180,7 +180,6 @@
 		<input name="prueba" type="hidden" value="1" />
 		<input name="url_confirmacion" type="hidden" value="http://www.colorstennis.com/orders/confirmarPagosOnline" />
 		<input name="url_respuesta" type="hidden" value="http://www.colorstennis.com/orders/callBackPagosOnline" />
-	<!--	<input name="Submit" type="submit" value="Enviar" /> -->
 	</form>
 </div>
 <div id="cupon" class="twCenMt">

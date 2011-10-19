@@ -22,9 +22,9 @@
 	<tr<?php echo $class;?>>
 		<td><?php echo $order['Order']['code']; ?>&nbsp;</td>
 		<td><?php echo $order['OrderState']['name']; ?>&nbsp;</td>
-		<td><?php echo $order['Order']['subtotal']; ?>&nbsp;</td>
-		<td><?php echo $order['Order']['descuento']; ?>&nbsp;</td>
-		<td><?php echo $order['Order']['total']; ?>&nbsp;</td>
+		<td>$<?php echo number_format($order['Order']['subtotal'], 0, ' ', '.'); ?>&nbsp;</td>
+		<td>$<?php echo number_format($order['Order']['descuento'], 0, ' ', '.'); ?>&nbsp;</td>
+		<td>$<?php echo number_format($order['Order']['total'], 0, ' ', '.'); ?>&nbsp;</td>
 		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
 		<td><?php echo $order['Order']['updated']; ?>&nbsp;</td>
 		<td class="actions">

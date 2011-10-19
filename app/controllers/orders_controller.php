@@ -6,7 +6,7 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this -> Auth -> allow(
-			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo','seguimiento'
+			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo', 'seguimiento'
 		);
 	}
 
@@ -19,26 +19,32 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$extra1 = $_POST['extra1']; // id del carrito respectivo
-		$llave="132f4e12b03";/////llave de usuario de pruebas 2
-		$usuario_id=$_POST['usuario_id'];
-		$descripcion=$_POST['descripcion'];
-		$ref_venta=$_POST['ref_venta'];
-		$valor=$_POST['valor'];
-		$moneda=$_POST['moneda'];
-		$estado_pol=$_POST['estado_pol'];
-		$codigo_respuesta_pol=$_POST['codigo_respuesta_pol'];
+		$extra1 = $_REQUEST['extra1']; // id del carrito respectivo
+		$llave="132f4e12b03";
+		$usuario_id=$_REQUEST['usuario_id'];
+		$descripcion=$_REQUEST['descripcion'];
+		$ref_venta=$_REQUEST['ref_venta'];
+		$valor=$_REQUEST['valor'];
+		$moneda=$_REQUEST['moneda'];
+		$estado_pol=$_REQUEST['estado_pol'];
+		$codigo_respuesta_pol=$_REQUEST['codigo_respuesta_pol'];
 		$firma_cadena= "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
 		$firmacreada = md5($firma_cadena);//firma que generaron ustedes
-		$firma =$_POST['firma'];//firma que envía nuestro sistema
-		$ref_venta=$_POST['ref_venta'];
-		$fecha_procesamiento=$_POST['fecha_procesamiento'];
-		$ref_pol=$_POST['ref_pol'];
-		$cus=$_POST['cus'];
-		$banco_pse=$_POST['banco_pse'];
+		$firma =$_REQUEST['firma'];//firma que envía nuestro sistema
+		$ref_venta=$_REQUEST['ref_venta'];
+		$fecha_procesamiento=$_REQUEST['fecha_procesamiento'];
+		$ref_pol=$_REQUEST['ref_pol'];
+		$cus=$_REQUEST['cus'];
+		$banco_pse=$_REQUEST['banco_pse'];
 		$this->loadModel('Order');
 		$order = $this -> Order -> findByCode($ref_venta);
 		$this -> Order -> read(null, $order['Order']['id']);
+		if(strtoupper($firma)!=strtoupper($firmacreada)){
+			$this -> Order -> saveField('order_state_id', 7);
+			$this -> autoRender = false;
+			exit(0);
+			return;
+		}
 		if($estado_pol == 6 && $codigo_respuesta_pol == 5) {
 			//"Transacción fallida"
 			$this -> Order -> saveField('order_state_id', 4);
@@ -79,7 +85,6 @@ class OrdersController extends AppController {
 			//"Otro, revisar con P.O."
 			$this -> Order -> saveField('order_state_id', 7);
 		}
-		
 		$this -> autoRender = false;
 		exit(0);
 		return;
