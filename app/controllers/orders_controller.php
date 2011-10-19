@@ -6,7 +6,7 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this -> Auth -> allow(
-			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo'
+			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo','seguimiento'
 		);
 	}
 
@@ -365,7 +365,10 @@ class OrdersController extends AppController {
 		$this->layout='callback';
 		$this->set('order',$this->Order->findById($id));
 	}
-	
+	function seguimiento($code){
+		$this->layout='ajax';
+		$this->set('order',$this->Order->findByCode($code));
+	}
 	function getOrders(){
 		$userId=$this->Auth->user('id');
 		if($userId){

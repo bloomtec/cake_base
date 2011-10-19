@@ -29,6 +29,7 @@
 	Router::connect('/', array('controller' => 'pages', 'action' => 'view', 'home'));
 	Router::connect('/pages/seguimientoPedidos', array('controller' => 'pages', 'action' => 'seguimientoPedidos'));
 	Router::connect('/pages/contacto', array('controller' => 'pages', 'action' => 'contacto'));
+	Router::connect('/pages/enviarDuda', array('controller' => 'pages', 'action' => 'enviarDuda'));
 	Router::connect('/pages/notificacionDisponibilidad', array('controller' => 'pages', 'action' => 'notificacionDisponibilidad'));
 	Router::connect('/pages/dudasCompra', array('controller' => 'pages', 'action' => 'dudasCompra'));
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'view'));

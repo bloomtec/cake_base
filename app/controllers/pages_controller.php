@@ -24,6 +24,29 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
+	function enviarDuda(){
+		if(!empty($this->data)){
+			$email=$this->data['email'];
+			$userName=$this->data['name'];
+			$subscribir=$this->data['subscribe'];
+			$asunto="Duda enviada desde la página web";
+			$mensaje="de: ".$userName." <".$email."> <br />".$userName;
+			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+// Cabeceras adicionales
+$cabeceras .= 'From: '.$this->data["Paquete"]["nombre_cotizante"].' <'.$this->data["Paquete"]["email"].'>' . "\r\n";
+//debug($mensaje);
+			if(mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)){
+				echo true;
+			}else{
+				echo false;	
+			}
+		}else{
+			echo false;
+		}
+		Configure::write('debug',0);
+		$this->autoRender=false;
+		exit(0);	
+	}
 	function contacto(){
 		$this->layout='pages';
 	}

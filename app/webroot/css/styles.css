@@ -1058,8 +1058,16 @@ div.contentWrap {
 	margin-bottom: 10px;
 
 }
-.overlay-wrap input.comentario{
+.overlay-wrap textarea.comentario{
 	height: 110px;
+	background: #333333;
+	width: 340px;
+	float:right;
+	margin-right: 35px;
+	padding-left: 2px;
+	color:#fff;
+	margin-bottom: 10px;
+	border:1px solid #858585;
 }
 .overlay-wrap .content .input_verde{
 	background-color: #00CFB5;

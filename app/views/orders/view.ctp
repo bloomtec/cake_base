@@ -9,8 +9,8 @@
 			?></td>
 		</tr>
 		<tr>
-			<td class='first'>Estado</td>
-			<td class='second'><?php echo $order['Order']['estado']
+			<td class='first'>Estado del pedido</td>
+			<td class='second'><?php echo $order['OrderState']['name']
 			?></td>
 		</tr>
 		<tr>
@@ -36,6 +36,11 @@
 		<tr>
 			<td class='first'>País</td>
 			<td class='second'><?php echo $order['Order']['pais']
+			?></td>
+		</tr>
+		<tr>
+			<td class='first'>Estado</td>
+			<td class='second'><?php echo $order['Order']['estado']
 			?></td>
 		</tr>
 		<tr>

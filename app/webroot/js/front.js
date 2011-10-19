@@ -309,6 +309,9 @@ $(function() {
 			}
 		}).load();
 	});
+	/*
+	 SEGUIMIENTO DEL PEDIDO
+	 * */
 
 });
 function refreshCufon(){
