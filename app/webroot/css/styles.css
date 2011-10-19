@@ -65,6 +65,9 @@ select{
 .azul{
 	color:#00CFB5;
 }
+.gris{
+	color:#7E7E7D;
+}
 #container{
 	width:980px;
 	margin:auto;
@@ -1638,4 +1641,46 @@ table td.second{
 .profile.category ul li{
 	margin-bottom: 5px;
 	
+}
+table.recibo {
+	margin-left:50px;
+	margin-top:37px;
+	border-right: 1px solid #7E7E7D;
+	
+	
+}
+.recibo tr{
+	border:none;
+	
+}
+.recibo td{
+	padding-left:25px;
+	
+}
+.recibo td.azul{
+	text-align: right;
+}
+.recibo td.gris{
+	text-align: left;
+	padding-right:50px;
+}
+h1.recibo{
+	width: 885px;
+	color:#fff;
+	text-align: left;
+	border-bottom:1px solid #7E7E7D;
+	font-size:16px;
+	margin:0 auto;
+	padding-bottom:50px;
+	padding-top:50px;
+}
+.submit_rosado{
+	background-color: #EC1C75;
+	border:1px solid #FF7BAB;
+	color:#fff;
+	padding:4px 15px;
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-shadow:1px 1px 2px #000;
+	margin-top: 130px;
+	margin-left: 240px;
 }
