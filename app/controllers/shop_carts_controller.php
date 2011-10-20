@@ -227,7 +227,6 @@ class ShopCartsController extends AppController {
 	}
 	
 	function viewCart() {
-		debug($this->Session->read('carrito'));
 		$this->layout='carrito';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
