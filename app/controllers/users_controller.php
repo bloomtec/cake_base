@@ -124,7 +124,9 @@ class UsersController extends AppController {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());
 	}
-
+	function admin_logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
 	function admin_view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid user', true));
@@ -152,7 +154,9 @@ class UsersController extends AppController {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		
 		if (!empty($this -> data)) {
+			if(!empty($this->data['User']['pass'])) $this->data['User']['password']=$this->Auth->password($this->data['User']['pass']);
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
