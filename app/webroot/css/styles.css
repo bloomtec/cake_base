@@ -1004,7 +1004,8 @@ div.contentWrap {
 	background-position: 5% 50%;
 	background-repeat: no-repeat;
 	height: 105px;
-	border-bottom: solid 1px #494949;
+	
+	
 }
 .overlay-wrap .header h2{
 	font-size: 22px;
@@ -1025,6 +1026,10 @@ div.contentWrap {
 	height: 424px;
 	padding: 0 20px;
 	overflow: auto;
+	-moz-box-shadow: 1px 1px 8px #000;
+	-webkit-box-shadow: 1px 1px 8px #000;
+	box-shadow: 1px 1px 8px #000;
+	border-top: solid 2px #494949;
 }
 .overlay-wrap .content .wrapper{
 	width: 700px;

@@ -38,3 +38,30 @@
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	Cufon.replace('.tahoma', {
+		fontFamily : 'Tahoma',
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#ffaedc'}
+
+	});
+	Cufon.replace('.japan', {
+		fontFamily : 'Japan',
+		trim : "simple"
+	});
+
+	Cufon.replace('.twCenMt', {
+		fontFamily : 'TwCenMt',
+		trim : "simple",
+		hoverables:{a:true},
+		hover:{color:'#00CFB5'}
+	});
+	
+	Cufon.replace('.halo', {
+		fontFamily : 'HaloHandLetter',
+		trim : "simple"
+	});	
+	
+</script>
