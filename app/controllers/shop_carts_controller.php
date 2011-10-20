@@ -82,7 +82,7 @@ class ShopCartsController extends AppController {
 	 */
 	function getCart() {
 		$user_id = $this->Session->read('Auth.User.id');
-		$user_agent = $this->Session->_userAgent;
+		$user_agent = $this->Session->read('carrito');
 		$shopping_cart = null;
 		if($user_id) {
 			/**
@@ -130,7 +130,9 @@ class ShopCartsController extends AppController {
 			if($user_id=$this->Session->read('Auth.User.id')) {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
-				$this->ShopCart->set('user_agent', $this->Session->_userAgent);
+				$time=system('date +%s%N');
+				$this->ShopCart->set('user_agent', $time);
+				$this->Session->write('carrito', $time);
 			}
 			if($this->ShopCart->save()){
 				// Se creo el carrito, guardar la info
@@ -225,6 +227,7 @@ class ShopCartsController extends AppController {
 	}
 	
 	function viewCart() {
+		debug($this->Session->read('carrito'));
 		$this->layout='carrito';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
