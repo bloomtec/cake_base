@@ -153,7 +153,7 @@ class SubcategoriesController extends AppController {
 				}
 				if(!$errores) {
 					$this -> Session -> setFlash(__('Se editó la subcategoría', true));
-					//$this -> redirect(array('action' => 'index'));
+					$this -> redirect(array('action' => 'index'));
 				}
 			} else {
 				$this -> Session -> setFlash(__('No se pudo editar la subcateogría', true));
