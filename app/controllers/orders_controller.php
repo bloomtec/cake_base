@@ -19,15 +19,6 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		if(
-			isset($_REQUEST['extra1']) && isset($_REQUEST['usuario_id'])
-			&& isset($_REQUEST['descripcion']) && isset($_REQUEST['ref_venta'])
-			&& isset($_REQUEST['valor']) && isset($_REQUEST['moneda'])
-			&& isset($_REQUEST['estado_pol']) && isset($_REQUEST['codigo_respuesta_pol'])
-			&& isset($_REQUEST['firma']) && isset($_REQUEST['fecha_procesamiento'])
-			&& isset($_REQUEST['ref_pol']) && isset($_REQUEST['cus'])
-			&& isset($_REQUEST['banco_pse'])
-		) {
 		$extra1 = $_REQUEST['extra1']; // id del carrito respectivo
 		$llave="132f4e12b03";
 		$usuario_id=$_REQUEST['usuario_id'];
@@ -93,9 +84,6 @@ class OrdersController extends AppController {
 		} else {
 			//"Otro, revisar con P.O."
 			$this -> Order -> saveField('order_state_id', 7);
-		}
-		} else {
-			echo "Ha llegado a esta vista de manera incorrecta";
 		}
 		$this -> autoRender = false;
 		exit(0);
