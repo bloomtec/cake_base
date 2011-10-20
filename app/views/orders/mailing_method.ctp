@@ -164,8 +164,8 @@
 <div style="clear: both"></div>
 <div class="hidden-form">
 	<!-- formulario pagos online -->
-<!--	<form id="PagosOnlineForm" method="post" action="https://gateway.pagosonline.net/apps/gateway/index.html"> -->
-	<form id="PagosOnlineForm" method="post" action="https://gateway2.pagosonline.net/apps/gateway/index.html">
+	<form id="PagosOnlineForm" method="post" action="https://gateway.pagosonline.net/apps/gateway/index.html">
+<!--	<form id="PagosOnlineForm" method="post" action="https://gateway2.pagosonline.net/apps/gateway/index.html"> -->
 		<input name="usuarioId" type="hidden" value="76075" />
 		<input name="refVenta" type="hidden" value="<?=$refVenta?>" />
 		<input name="descripcion" type="hidden" value="<?=$descripcion?>" />
@@ -178,8 +178,8 @@
 		<input name="nombreComprador" type="hidden" value="<?=$nombre?>" />
 		<input name="extra1" type="hidden" value="<?=$extra1?>" />
 		<input name="extra2" type="hidden" value="<?php if($user) echo $user['User']['id']; ?>" />
-	<!--	<input name="prueba" type="hidden" value="0" /> -->
-		<input name="prueba" type="hidden" value="1" />
+		<input name="prueba" type="hidden" value="0" />
+	<!--	<input name="prueba" type="hidden" value="1" /> -->
 		<input name="url_confirmacion" type="hidden" value="http://www.colorstennis.com/orders/confirmarPagosOnline" />
 		<input name="url_respuesta" type="hidden" value="http://www.colorstennis.com/orders/callBackPagosOnline" />
 	<!--	<input name="url_confirmacion" type="hidden" value="http://colors.bloomweb.co/orders/confirmarPagosOnline" />
