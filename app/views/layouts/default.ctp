@@ -29,7 +29,7 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('style.css');
+		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
@@ -37,10 +37,21 @@
 	?>
 </head>
 <body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+	<div id="header">
+		<div class="menu_wrapper">
+		<ul>
+			<li><a href="#" >INICIO<span>Quienes somos</span></a> </li>
+			<li><a href="#" >SERVICIOS<span>Lo que ofrecemos</span></a> </li>
+			<li><a href="#" >CLIENTES<span>Que hacemos</span></a> </li>
+			<li><a href="#" >PROCESOS<span>Como lo hacemos</span></a> </li>
+			
+		</ul>
+		<h1></h1>
 		</div>
+	</div>
+	<div id="container">
+		<div id="slide">
+		</div>		
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
@@ -49,13 +60,27 @@
 
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
-					'http://www.bloomweb.co/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+			<ul>
+				<li><h1></h1></li>
+				<li>
+					<h2>Contácto</h2>
+					<p>Teléfono: 326 59 68</p>
+					<p>Celular: 301 356 5896</p>
+					<p>Dirección:</p>
+					<p>E-mail: gerencia@bloomtec.com</p>
+				</li>
+				<li>
+					<ul class="redes">
+						<li><a class="facebook" href="#" title="Página de Facebook">facebook</a></li>
+						<li><a class="twitter" href="#" title="Sígenos en Twitter">twitter</a></li>
+						<li><a class="mail" href="#" title="Envíanos un E-mail">mail</a></li>
+					</ul>
+				</li>
+				
+			</ul>
 		</div>
+
+
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
