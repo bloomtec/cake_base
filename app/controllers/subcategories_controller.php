@@ -112,24 +112,37 @@ class SubcategoriesController extends AppController {
 			 * Salvar la subcategoria
 			 */
 			if ($this -> Subcategory -> save($this -> data)) {
+				$errores = false;
 				/**
 				 * Salvar la información de tallas
 				 */
-				// Quitar las tallas actuales
 				$actual_size_ids = $this -> Subcategory -> Size -> find('list', array('conditions' => array('Size.subcategory_id' => $id)));
-				foreach ($actual_size_ids as $key => $val) {
-					$this -> Subcategory -> Size -> delete($key);
-				}
-				// Llenar las tallas seleccionadas de las previas
+				// Recorrer para verificar cuales de las previas siguen seleccionadas
 				if (!empty($this -> data['Subcategory']['current_sizes'])) {
 					foreach ($this->data['Subcategory']['current_sizes'] as $key => $val) {
-						$this -> Subcategory -> Size -> create();
-						$this -> Subcategory -> Size -> set('size_reference_id', $val);
-						$this -> Subcategory -> Size -> set('subcategory_id', $id);
-						$this -> Subcategory -> Size -> save();
+						for ($i=0, $deleted=false; !$deleted; $i++) { 
+							if(isset($actual_size_ids[$i])) {
+								if($actual_size_ids[$i]==$val) {
+									unset($actual_size_ids[$i]);
+									$deleted = true;
+								} 
+							}
+						}
 					}
 				}
-				// Llevar las tallas seleccionadas de las nuevas
+				// Recorrer en caso de que se quiera eliminar alguna
+				if(!empty($actual_size_ids)) {
+					foreach ($actual_size_ids as $key => $val) {
+						$size = $this -> Subcategory -> Size -> read(null, $key);
+						if(isset($size['Inventory']) && !empty($size['Inventory'])) {
+							$errores = true;
+							$this->Session->setFlash("La talla que quiere eliminar tiene registros de inventario");
+						} else {
+							$this -> Subcategory -> Size -> delete($key);
+						}
+					}
+				}
+				// En caso de haber nuevas tallas seleccionadas agregarlas
 				if (!empty($this -> data['Subcategory']['sizes'])) {
 					foreach ($this->data['Subcategory']['sizes'] as $key => $size_reference_id) {
 						$this -> Subcategory -> Size -> create();
@@ -138,10 +151,12 @@ class SubcategoriesController extends AppController {
 						$this -> Subcategory -> Size -> save();
 					}
 				}
-				$this -> Session -> setFlash(__('Se editó la subcategoría', true));
-				$this -> redirect(array('action' => 'index'));
+				if(!$errores) {
+					$this -> Session -> setFlash(__('Se editó la subcategoría', true));
+					//$this -> redirect(array('action' => 'index'));
+				}
 			} else {
-				$this -> Session -> setFlash(__('.', true));
+				$this -> Session -> setFlash(__('No se pudo editar la subcateogría', true));
 			}
 		}
 		if (empty($this -> data)) {
