@@ -25,13 +25,13 @@ $(function() {
         }
     );
     }
-	$( "#sortable" ).sortable({
+	/*$( "#sortable" ).sortable({
 		revert:true,
 		 update:function(event, ui){
 		 	//console.log(($(this).sortable("toArray")));
       		sendData($(this).sortable("toArray"),$(this).attr("controller"));
     	}
 	});
-	$( "#sortable" ).disableSelection();
+	$( "#sortable" ).disableSelection();*/
 	
 });

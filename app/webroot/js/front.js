@@ -309,9 +309,9 @@ $(function() {
 			}
 		}).load();
 	});
-	/*
-	 SEGUIMIENTO DEL PEDIDO
-	 * */
+	$('.menu_carrito a').click(function(e){
+		e.preventDefault();
+	});
 
 });
 function refreshCufon(){
