@@ -191,7 +191,7 @@
 			<h1><a class="mailing-form" href="#">Continuar</a></h1>
 		</div>
 		<div class="agregar_regalo twCenMt">
-			<h1><a class="seguir-comprando" href="#">Seguir Comprando</a></h1>
+			<h1><a class="seguir-comprando" href="<?php echo $session->read('referer');?>">Seguir Comprando</a></h1>
 		</div>
 		<div style="clear: both"></div>
 	</div>

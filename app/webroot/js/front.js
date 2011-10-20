@@ -256,13 +256,6 @@ $(function() {
 		$("#PagosOnlineForm").submit();
 	});
 	
-	// Seguir Comprando
-	$(".seguir-comprando").click(function(e){
-		BJS.post('/users/keepShopping/', null, function(redirect){
-			window.location.replace(redirect);
-		});
-	});
-	
 	// Añadir al carrito un ítem
 	$(".add-to-cart").click(function(e){
 		bloomCart.add(this);

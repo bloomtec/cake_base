@@ -228,7 +228,7 @@ class ShopCartsController extends AppController {
 		$this->layout='carrito';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
-		$this->set('referer',$this->referer());
+		$this->Session->write('referer',$this->referer());
 	}
 
 	function refresh() {
