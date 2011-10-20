@@ -395,7 +395,7 @@ class OrdersController extends AppController {
 		$this->paginate=array(
 			'recursive'=>1,
 			'conditions'=>array(
-				'Order.code >'=>'000000099'
+				'Order.code >'=>'000000100'
 			)
 		);
 		$orders = $this->paginate('Order');
