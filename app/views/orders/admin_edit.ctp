@@ -5,6 +5,9 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('order_state_id');
+		echo $this->Form->input('transportadora');
+		echo $this->Form->input('guia');
+		echo $this->Form->input('web_transportadora');
 		echo $this->Form->input('coupon_id', array("readonly"=>true));
 		echo $this->Form->input('nombre', array("readonly"=>true));
 		echo $this->Form->input('apellido', array("readonly"=>true));

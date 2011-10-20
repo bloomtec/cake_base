@@ -392,8 +392,14 @@ class OrdersController extends AppController {
 	 */
 
 	function admin_index() {
-		$this -> Order -> recursive = 0;
-		$this -> set('orders', $this -> paginate());
+		$this->paginate=array(
+			'recursive'=>1,
+			'conditions'=>array(
+				'Order.code >'=>'000000099'
+			)
+		);
+		$orders = $this->paginate('Order');
+		$this -> set('orders', $orders);
 	}
 
 	function admin_view($id = null) {
