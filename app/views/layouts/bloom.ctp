@@ -37,7 +37,8 @@
 		echo $this->Html->Script("jquery.uploadify.v2.1.4.min");
 		echo $this->Html->Script("upload");
 		echo $this->Html->Script("ckeditor/ckeditor");
-		echo $this->Html->Script("admin");		
+		echo $this->Html->Script("jquery-ui-1.8.16.custom.min");
+		echo $this->Html->Script("admin");
 		
 		echo $scripts_for_layout;
 	?>

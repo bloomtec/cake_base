@@ -8,16 +8,17 @@ class SizeReferencesController extends AppController {
 	 * Ordena las categorias se une con el widget de sortable
 	 **/
 	 foreach($this->data["Item"] as $id=>$posicion){
-	 	$this->Subasta->id=$id;
-	 	$this->Subasta->saveField("posicion_en_cola",$posicion);
+	 	$this->SizeReference->id=$id;
+	 	$this->SizeReference->saveField("sort",$posicion);
 	 }
+	 echo "yes";
 	 Configure::write('debug', 0);
 	 $this->layout="ajax";
 	 exit(0);
   }
 
 	function listSizes() {
-		return $this -> SizeReference -> find('list');
+		return $this -> SizeReference -> find('list', array('order'=>array('SizeReference.sort'=>'ASC')));
 	}
 
 	function listSize($id = null) {
