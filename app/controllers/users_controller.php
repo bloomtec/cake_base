@@ -71,6 +71,8 @@ class UsersController extends AppController {
 	}
 	function ajaxLogin(){
 		if($this->Auth->login($this->data)){
+			$userField=$this->User->read(null,$this->Auth->user('id'));
+			$this->Session->write('Auth.User.UserField',$userField['UserField']);
 			echo true;
 		}else{
 			echo json_encode(array("data[User][email]"=>"Verifique sus datos","data[User][password]"=>"Verifique sus datos"));
@@ -103,6 +105,8 @@ class UsersController extends AppController {
 			$this->User->set( $this->data );
 			if($this->User->saveAll($this->data)){
 				$this->Auth->login($this->data);
+				$userField=$this->User->read(null,$this->Auth->user('id'));
+				$this->Session->write('Auth.User.UserField',$userField['UserField']);
 				echo true;
 			}else{
 				$errors=array();

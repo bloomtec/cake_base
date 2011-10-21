@@ -7,6 +7,7 @@
 			
 		<div id="comments" class="tahoma">
 			<div class="comment_header">
+			
 			<?php
 				if($comments) {
 			?>
@@ -18,6 +19,12 @@
 			<?php
 				}
 			?>
+			<?php if(!$this->Session->read('Auth.User.id')){ ?>		
+				<div class="solicitud-registro"> 
+					<h1 class="titulos_rosado"> DEBES REGISTRARTE PARA COMENTAR</h1> 
+					<h1 class="azul"> REGISTRATE DANDO CLIC <a style='color: #00CFB5; margin-left: 3px;' rel="#overlay" href="/users/login">AQUÍ</a></h1>
+				</div> 
+			<?php 	} ?>
 			<!--	<h3>ORDENAR POR</h3>
 				<select></select> -->
 			</div>

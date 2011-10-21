@@ -15,7 +15,7 @@
 				</ul>
 				<ul class="separacion">
 					<li>
-						<a class="subtitulos_gris" rel="#overlay" href="/marcas">Marcas</a>
+						<a class="subtitulos_gris" rel="#overlay" href="/brands">Marcas</a>
 					</li>
 				</ul>
 				<ul>

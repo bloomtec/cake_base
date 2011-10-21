@@ -21,8 +21,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title><?php __('Web site:');?>
-			<?php echo $title_for_layout;?></title>
+		<title><?php echo $page['Page']['name'];?></title>
 		<?php
 		echo $this -> Html -> meta('icon');
 		echo $this -> Html -> css('reset.css');
@@ -39,6 +38,21 @@
 
 		echo $scripts_for_layout;
 		?>
+		<meta name="description" content="<?php echo $page['Page']['description'];?>" />
+	<meta name="keywords" content="<?php echo $page['Page']['keywords'];?>" />
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-23065906-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
 	</head>
 	<body id="home">
 		<div id="container">

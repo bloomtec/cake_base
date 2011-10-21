@@ -17,7 +17,7 @@
 		</li>
 		<?php }else{ ?>
 		<li>
-			<a href="/users/profile">Mi Cuenta</a>
+			<a href="/users/profile"><?php echo $this->Session->read('Auth.User.UserField.name'); ?></a>
 		</li>
 		<li>
 			/

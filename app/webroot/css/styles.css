@@ -984,13 +984,13 @@ h4.footer {
 #overlay ,#overlay2 {
 
 		color:#efefef;
-		height:531px;
+		height:560px;
 	}
 #overlay2 {
 	/*height: 600px;	*/
 }
 div.contentWrap {
-		height:531px;
+		min-height:531px;
 		overflow-y:auto;
 	}
 .overlay-wrap{
@@ -1031,16 +1031,19 @@ div.contentWrap {
 	box-shadow: 1px 1px 8px #000;
 	border-top: solid 2px #494949;
 }
+#overlay2  .content{
+	height: 450px;
+}
 .overlay-wrap .content .wrapper{
 	width: 700px;
 	margin:0 auto;
-	padding-top: 82px;
+	padding-top: 38px;
 	height: 325px;
 }
 #overlay2 .content .wrapper{
 	width:890px;
-	padding-top: 40px;
-	height: 381px;
+	padding-top: 33px;
+	height: 410px;
 }
 .overlay-wrap .titulos_rosado{
 	text-align: center;
@@ -1112,7 +1115,7 @@ div.contentWrap {
 	width: 277px;
 }
 .overlay-wrap .content p.subtitulos_gris{
-	padding-top: 20px;
+	padding-top: 10px;
 	text-align: center;
 	clear: both;
 	font-size: 12px;
@@ -1408,7 +1411,7 @@ table.tahoma {
 	font-size:12px;
 	margin-left:0;
 	float:left;
-	width: 180px;
+	width: 175px;
 	text-align: right;
 }
 .login_izq form input[type=text], .login_izq form input[type=password],.login_izq form input[type=email],.olvidar_contr form input[type=text], .recomendar form input[type=text]{
@@ -1506,6 +1509,9 @@ input[type=submit]{
 	width: 100%;
 	float: none;
 	margin-left: 10px;
+}
+.brands .marcas h1{ 
+	text-transform: uppercase;
 }
 
 .buscar .izq h2, .brands .marcas h2{
@@ -1708,4 +1714,18 @@ h1.orden{
 }
 .volver{
 	margin-top: 10px;
+}
+.solicitud-registro{
+	background: #191919;
+	height: 74px;
+	width: 100%;
+	text-align: center;
+}
+.solicitud-registro .titulos_rosado{
+	font-size: 12px;
+	margin-bottom: 3px;
+	padding-top: 25px;
+}
+.solicitud-registro .azul{	
+	font-size: 10px;	
 }

@@ -43,10 +43,15 @@
 	</ul>
 	<?php echo $this -> element("product-list");?>
 	<div class="paging tahoma">
-	<?php echo $this -> Paginator -> prev('<< ' . __('Anterior', true), array(), null, array('class' => 'disabled'));?>
+	<?php 
+	if($this-> Paginator -> hasPage(2)){
+	echo $this -> Paginator -> prev('<< ' . __('Anterior', true), array(), null, array('class' => 'disabled'));?>
 	| 	<?php echo $this -> Paginator -> numbers();?>
 	|
-	<?php echo $this -> Paginator -> next(__('Siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	<?php echo $this -> Paginator -> next(__('Siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));
+	}
+	?>
+	
 </div>
 </div>
 <script type="text/javascript">
