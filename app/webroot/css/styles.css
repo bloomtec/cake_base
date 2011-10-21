@@ -1054,7 +1054,7 @@ div.contentWrap {
 	margin:0 auto;
 	padding: 5px 0;
 }
-.overlay-wrap form label{
+.overlay-wrap form label, .users label{
 	margin-left: 15px;
 	width: 150px;
 	text-align: right;
@@ -1063,7 +1063,7 @@ div.contentWrap {
 	padding-top: 7px;
 	color: #00CFB5;
 }
-.overlay-wrap input{
+.overlay-wrap input,.users  input{
 	background: #333333;
 	border:1px solid #858585;
 	width: 340px;
@@ -1084,8 +1084,10 @@ div.contentWrap {
 	color:#fff;
 	margin-bottom: 10px;
 	border:1px solid #858585;
+	font-family: verdana;
+    font-size: 12px;
 }
-.overlay-wrap .content .input_verde{
+.content .input_verde, #content .input_verde{
 	background-color: #00CFB5;
 	border:1px solid #6CFFE6;
 	color:#fff;
@@ -1731,4 +1733,33 @@ h1.orden{
 }
 #rememberForm, .confirmacion-remember{
 	display: none;
+}
+.profile.category ul .azul a{
+	color: #00CFB5;
+}
+.users form{
+	padding: 50px;
+	position: relative;;
+}
+.users fieldset{
+	width: 64%;
+}
+.users label{
+	margin-bottom: 5px;
+	
+}
+.users select#UserFieldBirthdayMonth, .users select#UserFieldSex{
+	margin-bottom: 9px;
+    margin-left: 20px;
+}
+.volver_profile{
+	position: absolute;
+    right: 50px;
+    text-decoration: none;
+    top: 100px;
+}
+.users h1{
+	color:#EC1C75;
+	font-size: 20px;
+	
 }

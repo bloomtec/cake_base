@@ -1,7 +1,10 @@
-<div class="users form">
+<div class="users form tahoma">
 <?php echo $this->Form->create('User');?>
+
+<h1 class="orden twCenMt">Mis datos</h1>
+
 	<fieldset>
-		<legend>Mis datos </legend>
+		
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->hidden('email');
@@ -20,6 +23,11 @@
 		echo $this->Form->input('UserField.mobile',array('label'=>'Celular'));
 		
 	?>
+	<div style="clear: both"></div>
 	</fieldset>
-<?php echo $this->Form->end(__('Guardar', true));?>
+	<input type="submit" class="input_verde" value="Guardar" />
+	<a href='/users/profile' class="azul volver_profile"> Volver </a>
+	
+	
+<?php echo $this->Form->end();?>
 </div>
