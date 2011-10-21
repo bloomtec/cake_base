@@ -2,62 +2,252 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	
+
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('register');
+		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
+			$this -> Auth -> logoutRedirect = '/admin';
+		}else{
+			$this -> Auth -> logoutRedirect = '/';
+		}
+		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword');
+	}
+	function register() {
+		if (!empty($this -> data)) {
+			// Validar el nombre de usuario		$this->layout='callback';
+			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
+			$user['User']['role_id'] = 2;
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			} else {
+
+			}
+
+		}
 	}
 
-	function login() {
-		$this->layout="login";
+	function ajaxRegister() {
+		if (!empty($this -> data)) {
+			// Validar el nombre de usuario
+			$user['User']['role_id'] = 2;
+			$this -> User -> create();
+			$this -> User -> set($this -> data);
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Auth -> login($this -> data);
+				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+				$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
+				echo true;
+			} else {
+				$errors = array();
+				foreach ($this->User->invalidFields() as $name => $value) {
+					$errors["data[User][" . $name . "]"] = $value;
+				}
+
+				echo json_encode($errors);
+			}
+		}
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		exit(0);
 	}
 	
-	function admin_login() {
-		$this->layout="admin_login";
+	function login() {
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
 	}
 	
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
+		
+	function profile() {
+
+	}
+
+	function edit($id) {
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Usuario no valid', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+
+		if (!empty($this -> data)) {
+			if (!empty($this -> data['User']['pass']))
+				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
+				$this -> redirect(array('action' => 'profile'));
+			} else {
+				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		$roles = $this -> User -> Role -> find('list');
+		$this -> set(compact('roles'));
+	}
+	function changePassword($id=null){
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> redirect(array('action' => 'profile'));
+		}
+		if(!empty($this->data)){
+			$user=$this->User->findById($id);
+			if($user['User']['password']==$this->Auth->password($this->data['User']['old_password'])){
+				$user['User']['password']=$this->Auth->password($this->data['User']['new_password']);
+				if($this->data['User']['new_password']==$this->data['User']['confirm_password']&&$this->User->save($user)){					
+					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
+					$this -> redirect($this->referer());
+				}else{
+					$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
+					$this -> redirect($this->referer());
+				}
+				
+			}else{
+				$this -> Session -> setFlash(__('Su password anterior no es valido', true));
+				$this -> redirect($this->referer());
+			}
+		}
+	}
 	
+	function rememberPassword() {
+		if (!empty($this -> data)) {
+			$this -> User -> recursive = 0;
+			$user = $this -> User -> find("first", array('conditions' => array('User.email' => trim($this -> data['User']['email']))));
+			if ($user) {
+				$newPassword = $this -> _generarPassword();
+				$user["User"]["password"] = $this -> Auth -> password($newPassword);
+				//debug($datos);
+				$email = $user['User']['email'];
+				$asunto = "Tu password de color tennis";
+				$mensaje = "Tu nuevo password: " . $newPassword;
+				$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+				// Cabeceras adicionales
+				$cabeceras .= 'From: Colors Tennis <info@colorstennis.com>' . "\r\n";
+				//debug($mensaje);
+				if (mail($email, $asunto, $mensaje, $cabeceras) && $this -> User -> save($user)) {
+					echo true;
+				} else {
+					echo false;
+				}
+			} else {
+				echo false;
+			}
+
+		}
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
+		exit(0);
+	}
+	
+	function admin_login() {
+		$this -> layout = "ez/login";
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function _generarPassword() {
+		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+		$cad = "";
+		for ($i = 0; $i < 8; $i++) {
+			$cad .= substr($str, rand(0, 62), 1);
+		}
+		return $cad;
+	}
+	function ajaxLogin() {
+		if ($this -> Auth -> login($this -> data)) {
+			$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+			$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
+			echo true;
+		} else {
+			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
+		}
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		exit(0);
+	}
+
+	function admin_index() {
+		$this -> User -> recursive = 0;
+		$this -> set('users', $this -> paginate());
+	}
+
 	function admin_logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-	
-	function register() {
-		if(!empty($this->data)) {
-			/**
-			 * Comprobar si los campos de correo son iguales
-			 */
-			if($this->data['User']['email'] != $this->data['User']['confirm_email']) {
-				$this->Session->setFlash(__("The emails you entered are not equal.", true));
+
+	function admin_view($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> set('user', $this -> User -> read(null, $id));
+	}
+
+	function admin_add() {
+		if (!empty($this -> data)) {
+			$this -> User -> create();
+			if ($this -> User -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> redirect(array('action' => 'index'));
 			} else {
-				/**
-				 * Comprobar si alguien ya esta registrado con el correo ingresado
-				 */
-				if($this->User->find('first', array('conditions'=>array('User.email' => $this->data['User']['email'])))) {
-					$this->Session->setFlash(__("The email you entered is already registered.", true));
-				} else {
-					/**
-					 * Comprobar que las contraseñas ingresadas son iguales
-					 */
-					if($this->data['User']['enter_password'] != $this->data['User']['confirm_password']) {
-						$this->Session->setFlash(__("The passwords you entered are not equal.", true));
-					} else {
-						/**
-						 * Registrar el usuario
-						 */
-						$this->User->create();
-						$this->data['password'] = $this->Auth->password($this->data['User']['enter_password']);
-						if($this->User->save($this->data)) {
-							$this->Session->setFlash(__("Registration succesfull.", true));
-						} else {
-							$this->Session->setFlash(__("Registration failed, please try again.", true));
-						}
-					}
-				}
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
+		$roles = $this -> User -> Role -> find('list');
+		$this -> set(compact('roles'));
+	}
+
+	function admin_edit($id = null) {
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+
+		if (!empty($this -> data)) {
+			if (!empty($this -> data['User']['pass']))
+				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			if ($this -> User -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> redirect(array('action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		$roles = $this -> User -> Role -> find('list');
+		$this -> set(compact('roles'));
+	}
+
+	function admin_delete($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		if ($this -> User -> delete($id)) {
+			$this -> Session -> setFlash(__('User deleted', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> Session -> setFlash(__('User was not deleted', true));
+		$this -> redirect(array('action' => 'index'));
 	}
 
 }

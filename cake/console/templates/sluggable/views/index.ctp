@@ -23,10 +23,10 @@
 	<tr>
 	<?php  foreach ($fields as $field):?>
 		<?php if($field=="active"){?>
-			<th><?php echo "<?php echo \$this->Paginator->sort('Status','{$field}');?>";?></th>
+		<th><?php echo "<?php echo \$this->Paginator->sort('Status','{$field}');?>";?></th>
 		<?php }else{?>	
 			<?php if($field!="id"&& $field!="slug"){?>
-				<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
+		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
 			<?php } ?>
 		<?php }?>
 	<?php endforeach;?>
@@ -105,7 +105,7 @@
 	echo "\t\t\t<?php if(isset(\${$singularVar}['{$modelClass}']['active'])&& !\${$singularVar}['{$modelClass}']['active']){\n";
 			echo "\t\t\t echo \$this->Html->link(__(' ', true), array('action' => 'setActive', \${$singularVar}['{$modelClass}']['{$primaryKey}']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), \${$singularVar}['{$modelClass}']['{$primaryKey}'])); \n";	
 	echo "}?>\n";
-		
+	echo "\t\t</td>\n";	
 	echo "\t</tr>\n";
 
 	echo "<?php endforeach; ?>\n";

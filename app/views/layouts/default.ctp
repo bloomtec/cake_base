@@ -22,10 +22,19 @@
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php __('Web site:'); ?>
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
+		<?php
+		$model = $this -> params['models'][0];
+		$singularVar = strtolower($model);
+		if (isset(${$singularVar}[$model]['name'])) {
+			echo ${$singularVar}[$model]['name'];
+		} else {
+			echo $title_for_layout;
+		}
+			?>
+		</title>
+		<?php
+		if (isset(${$singularVar}[$model]['keywords'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
+		if (isset(${$singularVar}[$model]['description'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');

@@ -28,13 +28,25 @@ class PagesController extends AppController {
 	function admin_ez() {
 
 	}
+	function admin_layouts(){
+		App::import("Folder");
+		$folder = new Folder(LAYOUTS);
+		$layoutsCtp=$folder->read();
+		$layouts;
+		foreach($layoutsCtp[1] as $layout){
+				$layout=substr($layout,0, -4);
+				$layouts[$layout]=$layout;
+		}
+		return $layouts;
+	}
 	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="file_browser";
+	    $this->layout="ez/file_browser";
 	    App::import("Folder");
 	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
 	    $this->set("folder",$folder->read());
 	    $this->set("folderPath",DS."wysiwyg");
  	}
+	
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());

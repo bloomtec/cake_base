@@ -3,8 +3,10 @@
 	<fieldset>
 		<legend><?php __('Admin Edit Page'); ?></legend>
 	<?php
+		$layouts=$this->requestAction('/admin/pages/layouts');
 		echo $this->Form->input('id');
 		echo $this->Form->input('name');
+		echo $this->Form->input('layout',array('options'=>$layouts));
 		echo $this->Form->input('description');
 		echo $this->Form->input('keywords');
 		echo $this->Form->input('active');
