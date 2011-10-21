@@ -105,7 +105,24 @@ class ProductsController extends AppController {
 		$brand = $this -> Product -> Subcategory -> Brand -> read(null, $product['Subcategory']['brand_id']);
 		$category['Category'] = $brand['Category'];
 		$comments = $this->getComments($product['Product']['id']);
-		$this -> set(compact('product', 'brand', 'category', 'comments'));
+		$this->Product->id=$id;
+		$neighbors = $this->Product->find(
+			'neighbors',
+			array(
+				'fields'=>array(
+					'Product.id'
+				),
+				'conditions'=>array(
+					'Product.brand_id'=>$product['Product']['brand_id']
+				),
+				'recursive'=>-1,
+				'order'=>array(
+					'Product.category_id'=>'ASC',
+					'Product.id'=>'ASC'
+				)
+			)
+		);
+		$this -> set(compact('product', 'brand', 'category', 'comments', 'neighbors'));
 	}
 
 	function setInactive($id = null) {

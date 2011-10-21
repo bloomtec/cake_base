@@ -99,14 +99,16 @@
 			</select>
 			</li>			
 		</ul>
-		<!--
 		<ul class="product_info primero">
-			<li><a href="#">Anterior</a></li>
+			<?php if(!empty($neighbors['prev'])) : ?>
+			<li><a href="/products/view/<?=$neighbors['prev']['Product']['id']?>">Anterior</a></li>
+			<?php endif; ?>
 		</ul>
 		<ul class="product_info ultimo">
-			<li><a href="#">Siguiente</a></li>			
+			<?php if(!empty($neighbors['next'])) : ?>
+			<li><a href="/products/view/<?=$neighbors['next']['Product']['id']?>">Siguiente</a></li>
+			<?php endif; ?>			
 		</ul>
-		-->
 		<div style="clear: both"></div>
 		<div class="agregar">
 			<div class="agregar_carrito shop-cart-item" rel="Product:<?php echo $product['Product']['id'];?>:0">
