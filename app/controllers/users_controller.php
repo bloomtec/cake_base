@@ -12,30 +12,11 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this -> Auth -> logoutRedirect = '/';
-		$this -> Auth -> allow('register', 'keepShopping', 'ajaxRegister', 'rememberPassword');
-	}
-
-	function keepShopping() {
-		$this -> layout = "ajax";
-		echo $this -> webroot;
-		exit(0);
-		return;
+		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword');
 	}
 
 	function profile() {
 		$this -> layout = 'callback';
-	}
-
-	function isLoggedIn() {
-		$this -> layout = "ajax";
-		$x = $this -> Session -> read('Auth.User.id');
-		if (!empty($x)) {
-			echo 'true';
-		} else {
-			echo 'false';
-		}
-		exit(0);
-		return;
 	}
 
 	function login() {
@@ -117,7 +98,7 @@ class UsersController extends AppController {
 	function edit($id) {
 		$this->layout='callback';
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> Session -> setFlash(__('Usuario no valid', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 
@@ -125,10 +106,10 @@ class UsersController extends AppController {
 			if (!empty($this -> data['User']['pass']))
 				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
 			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
 				$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
