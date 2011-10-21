@@ -12,7 +12,7 @@ class UsersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this -> Auth -> logoutRedirect = '/';
-		$this -> Auth -> allow('register', 'keepShopping', 'ajaxRegister','rememberPassword');
+		$this -> Auth -> allow('register', 'keepShopping', 'ajaxRegister', 'rememberPassword');
 	}
 
 	function keepShopping() {
@@ -77,19 +77,43 @@ class UsersController extends AppController {
 				// Cabeceras adicionales
 				$cabeceras .= 'From: Colors Tennis <info@colorstennis.com>' . "\r\n";
 				//debug($mensaje);
-				if (mail($email, $asunto, $mensaje, $cabeceras)&&$this->User->save($user)) {
+				if (mail($email, $asunto, $mensaje, $cabeceras) && $this -> User -> save($user)) {
 					echo true;
 				} else {
 					echo false;
 				}
-			}else{
+			} else {
 				echo false;
 			}
 
 		}
-		Configure::write('debug',0);
-		$this->autoRender=false;
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
 		exit(0);
+	}
+
+	function edit($id) {
+		$this->layout='callback';
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+
+		if (!empty($this -> data)) {
+			if (!empty($this -> data['User']['pass']))
+				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> redirect(array('action' => 'profile'));
+			} else {
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		$roles = $this -> User -> Role -> find('list');
+		$this -> set(compact('roles'));
 	}
 
 	function admin_login() {

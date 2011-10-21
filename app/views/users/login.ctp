@@ -39,7 +39,7 @@
 		<label>CONTRASEÑA *</label>
 		<input id="UserPassword" name="data[User][password]" type="password" required="required" />
 		<label>SEXO *</label>
-		<?php echo $this->Form->input('UserField.sex',array('options'=>array('Hombre'=>'Hombre','Mujer'=>'Mujer'),'div'=>false,'label'=>false));?>
+		<?php echo $this->Form->input('UserField.sex',array('options'=>array('Hombre','Mujer'),'div'=>false,'label'=>false));?>
 		<br /><br />
 		<label>FECHA DE NACIMIENTO</label>
 		<?php echo $this->Form->input('UserField.birthday',array('div'=>false,'label'=>false));?>

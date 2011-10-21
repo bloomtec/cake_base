@@ -1,4 +1,8 @@
 <div class="profile tahoma category">
+	<ul class='profile-menu'>
+		<li><a href='/users/edit/<?php echo $this->Session->read('Auth.User.id') ?>'> Mis datos</a></li>
+		
+	</ul>
 	<ul>
 		<li class="azul">
 			Mis Ordenes
