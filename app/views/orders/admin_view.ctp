@@ -76,6 +76,21 @@
 			$<?php echo number_format($order['Order']['total'], 0, ' ', '.'); ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Transportadora'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $order['Order']['transportadora']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Guía'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $order['Order']['guia']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Página Web'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $order['Order']['web_transportadora']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $order['Order']['created']; ?>
@@ -95,19 +110,13 @@
 	<?php if (!empty($order['OrderItem'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Product'); ?></th>
-		<th><?php __('Size'); ?></th>
-		<th><?php __('Is Gift'); ?></th>
-		<th><?php __('Quantity'); ?></th>
-		<th><?php __('Price Item'); ?></th>
-		<th><?php __('Price Total'); ?></th>
-		<th><?php __('Nombre'); ?></th>
-		<th><?php __('Apellido'); ?></th>
-		<th><?php __('Pais'); ?></th>
-		<th><?php __('Estado'); ?></th>
-		<th><?php __('Ciudad'); ?></th>
-		<th><?php __('Direccion'); ?></th>
-		<th><?php __('Telefono'); ?></th>
+		<th><?php __('Producto'); ?></th>
+		<th><?php __('Talla'); ?></th>
+		<th><?php __('Es Regalo'); ?></th>
+		<th><?php __('Cantidad'); ?></th>
+		<th><?php __('Precio'); ?></th>
+		<th><?php __('Total'); ?></th>
+		<th><?php __('Opciones'); ?></th>
 	</tr>
 	<?php
 		$i = 0;
@@ -120,17 +129,14 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $this->requestAction('/products/getClasification/'.$orderItem['foreign_key']);?></td>
 			<td><?php echo $this->requestAction('/sizes/humanizeSize/'.$orderItem['size_id']); ?></td>
-			<td><?php echo $orderItem['is_gift'];?></td>
+			<td><?php if($orderItem['is_gift']){echo "Sí";} else {echo "No";} ?></td>
 			<td><?php echo $orderItem['quantity'];?></td>
 			<td>$<?php echo number_format($orderItem['price_item'], 0, ' ', '.');?></td>
 			<td>$<?php echo number_format($orderItem['price_total'], 0, ' ', '.');?></td>
-			<td><?php echo $orderItem['nombre'];?></td>
-			<td><?php echo $orderItem['apellido'];?></td>
-			<td><?php echo $orderItem['pais'];?></td>
-			<td><?php echo $orderItem['estado'];?></td>
-			<td><?php echo $orderItem['ciudad'];?></td>
-			<td><?php echo $orderItem['direccion'];?></td>
-			<td><?php echo $orderItem['telefono'];?></td>
+			<td>
+				<?php echo $this->Html->link(__('Ver', true), array('controller'=>'order_items', 'action' => 'view', $orderItem['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
+				<?php echo $this->Html->link(__('Editar', true), array('controller'=>'order_items', 'action' => 'edit', $orderItem['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
+			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>

@@ -136,7 +136,7 @@ class OrderItemsController extends AppController {
 		if (!empty($this -> data)) {
 			if ($this -> OrderItem -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The order item has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+				$this -> redirect(array('controller'=>'orders', 'action' => 'view', $this->data['OrderItem']['order_id']));
 			} else {
 				$this -> Session -> setFlash(__('The order item could not be saved. Please, try again.', true));
 			}
@@ -144,7 +144,7 @@ class OrderItemsController extends AppController {
 		if (empty($this -> data)) {
 			$this -> data = $this -> OrderItem -> read(null, $id);
 		}
-		$orders = $this -> OrderItem -> Order -> find('list');
+		$orders = $this -> OrderItem -> Order -> find('list', array('conditions'=>array('Order.id'=>$this->data['OrderItem']['order_id'])));
 		$this -> set(compact('orders'));
 	}
 
