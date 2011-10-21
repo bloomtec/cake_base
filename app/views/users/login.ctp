@@ -1,3 +1,6 @@
+<style>
+	.ui-autocomplete-loading { background: white url('/img/ui-anim_basic_16x16.gif') right center no-repeat; }
+</style>
 <div class="login_izq tahoma">
 	<h1 class="titulos_rosado">LOGIN</h1>
 	<?php e($this->Form->create('User', array('controller'=>'users', 'action'=>'login'))); ?>
@@ -47,7 +50,7 @@
 		<label>DEPARTAMENTO</label>
 		<input type="text"/>
 		<label>CIUDAD</label>
-		<input type="text"/>
+		<input type="text" id='city' />
 		<input type="checkbox" />	
 		<label class="olvidaste">  Autorizo a Colors Tennis  que me envíe información por correo electrónico </label>	
 		<input type="submit" class='twCenMt' value="Registrate" />
@@ -111,4 +114,45 @@ $('#UserLoginForm').validator({lang:'es'}).submit(function(e){
 		hover:{color:'#00CFB5'}
 	});
 	
+		$(function() {
+		function log( message ) {
+			$( "<div/>" ).text( message ).prependTo( "#log" );
+			$( "#log" ).scrollTop( 0 );
+		}
+
+		$( "#city" ).autocomplete({
+			source: function( request, response ) {
+				$.ajax({
+					url: "http://ws.geonames.org/searchJSON",
+					dataType: "jsonp",
+					data: {
+						featureClass: "P",
+						style: "full",
+						maxRows: 12,
+						name_startsWith: request.term
+					},
+					success: function( data ) {
+						response( $.map( data.geonames, function( item ) {
+							return {
+								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+								value: item.name
+							}
+						}));
+					}
+				});
+			},
+			minLength: 2,
+			select: function( event, ui ) {
+				log( ui.item ?
+					"Selected: " + ui.item.label :
+					"Nothing selected, input was " + this.value);
+			},
+			open: function() {
+				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			},
+			close: function() {
+				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			}
+		});
+	});
 </script>
