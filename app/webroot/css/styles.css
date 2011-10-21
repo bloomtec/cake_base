@@ -1757,3 +1757,9 @@ h1.orden{
     right: 50px;
     text-decoration: none;
     top: 100px;
+}
+.users h1{
+	color:#EC1C75;
+	font-size: 20px;
+	
+}
