@@ -2,6 +2,19 @@
 class SizeReferencesController extends AppController {
 
 	var $name = 'SizeReferences';
+	
+	function reOrder(){
+	/**
+	 * Ordena las categorias se une con el widget de sortable
+	 **/
+	 foreach($this->data["Item"] as $id=>$posicion){
+	 	$this->Subasta->id=$id;
+	 	$this->Subasta->saveField("posicion_en_cola",$posicion);
+	 }
+	 Configure::write('debug', 0);
+	 $this->layout="ajax";
+	 exit(0);
+  }
 
 	function listSizes() {
 		return $this -> SizeReference -> find('list');
@@ -118,7 +131,7 @@ class SizeReferencesController extends AppController {
 
 	function admin_index() {
 		$this -> SizeReference -> recursive = 0;
-		$this -> set('sizeReferences', $this -> paginate());
+		$this -> set('sizeReferences', $this -> SizeReference->find('all', array('order'=>array('SizeReference.sort'=>'ASC'))));
 	}
 
 	function admin_view($id = null) {
