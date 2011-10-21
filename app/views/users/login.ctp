@@ -47,10 +47,12 @@
 		<label>FECHA DE NACIMIENTO</label>
 		<?php echo $this->Form->input('UserField.birthday',array('div'=>false,'label'=>false));?>
 		<br /><br />
-		<label>DEPARTAMENTO</label>
-		<input type="text"/>
+	
+		<input type="hidden" id='country' name='data[UserField][country]'/>
+		<input type="hidden" id='state' name='data[UserField][state]'/>
+		<input type="hidden" id='city'name='data[UserField][city]' />
 		<label>CIUDAD</label>
-		<input type="text" id='city' />
+		<input type='text' id='resultGeo' placeholder="ciudad/departamento/pais" >
 		<input type="checkbox" />	
 		<label class="olvidaste">  Autorizo a Colors Tennis  que me envíe información por correo electrónico </label>	
 		<input type="submit" class='twCenMt' value="Registrate" />
@@ -115,12 +117,14 @@ $('#UserLoginForm').validator({lang:'es'}).submit(function(e){
 	});
 	
 		$(function() {
-		function log( message ) {
-			$( "<div/>" ).text( message ).prependTo( "#log" );
-			$( "#log" ).scrollTop( 0 );
+		function log( city, state, country) {
+			$('#city').val(city);
+			$('#state').val(state);
+			$('#country').val(country);
+			//$('#resultGeo').val(city+', '+state+', '+country);
 		}
 
-		$( "#city" ).autocomplete({
+		$( "#resultGeo" ).autocomplete({
 			source: function( request, response ) {
 				$.ajax({
 					url: "http://ws.geonames.org/searchJSON",
@@ -135,7 +139,10 @@ $('#UserLoginForm').validator({lang:'es'}).submit(function(e){
 						response( $.map( data.geonames, function( item ) {
 							return {
 								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-								value: item.name
+								city: item.name,
+								country: item.countryName,
+								state:  item.adminName1 ? item.adminName1 : "", 
+								value: item.name+', '+item.adminName1+', '+item.countryName
 							}
 						}));
 					}
@@ -143,9 +150,7 @@ $('#UserLoginForm').validator({lang:'es'}).submit(function(e){
 			},
 			minLength: 2,
 			select: function( event, ui ) {
-				log( ui.item ?
-					"Selected: " + ui.item.label :
-					"Nothing selected, input was " + this.value);
+				log( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
 			},
 			open: function() {
 				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
