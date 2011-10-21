@@ -211,23 +211,6 @@ $(function() {
 			}
 		}).load();
 	});
-	$("#crear-comentario").live('click',function(e){
-		e.preventDefault();
-		$("#CommentAddForm").submit();
-	});
-	$("#CommentAddForm").live('submit',function(e){
-		e.preventDefault();
-		var $form=$(this);
-		var fields=$form.serialize();
-		BJS.post($form.attr('action'), fields, function(info){
-			if(info == 1) {
-				$('#crear-comentario').hide().after('Comentario en espera de ser aprobado');
-			} else {
-				alert('no se pudo enviar el comentario');
-				// lo que debe hacer si no
-			}
-		});
-	});
 	
 	/**
 	 * Funcionalidad Carrito
