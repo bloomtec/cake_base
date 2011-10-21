@@ -198,28 +198,30 @@ $(function() {
 	 * Comentarios
 	 * --> id del link :: escribir-comentario
 	 */
-	$("#escribir-comentario").click(function(e){
-		e.preventDefault();
-		BJS.post("/users/isLoggedIn", null, function(info){
-			if(info == "true") {
-				$('#create-comment').css('visibility','visible');
-				$('#CommentComment').focus();
-			} else {
-				$('#user-info').css('visibility','visible');
-			}
-		});
-	});
 	$("#enviar-comentario").click(function(e){
+		e.preventDefault();
+		var source=$(this);
+		$('#overlay').overlay({
+			mask : 'black',
+			load:true,
+			onBeforeLoad : function() {
+				var wrap = this.getOverlay().find(".contentWrap");
+				wrap.html('');
+				wrap.load(source.attr('href'));
+			}
+		}).load();
+	});
+	$("#crear-comentario").live('click',function(e){
 		e.preventDefault();
 		$("#CommentAddForm").submit();
 	});
-	$("#CommentAddForm").submit(function(e){
+	$("#CommentAddForm").live('submit',function(e){
 		e.preventDefault();
 		var $form=$(this);
 		var fields=$form.serialize();
 		BJS.post($form.attr('action'), fields, function(info){
 			if(info == 1) {
-				$('#create-comment').hide().after('Comentario en espera de ser aprobado');
+				$('#crear-comentario').hide().after('Comentario en espera de ser aprobado');
 			} else {
 				alert('no se pudo enviar el comentario');
 				// lo que debe hacer si no
@@ -296,13 +298,11 @@ $(function() {
 			load:true,
 			onBeforeLoad : function() {
 				var wrap = this.getOverlay().find(".contentWrap");
+				wrap.html('');
 				wrap.load('/products/search/'+$('#query').val());
 			},
 			onLoad:function(){
 				refreshCufon();
-			},
-			onBeforeLoad:function(){
-				this.getOverlay().find(".contentWrap").html('');	
 			}
 		}).load();
 	});

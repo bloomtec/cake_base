@@ -18,7 +18,11 @@ class CommentsController extends AppController {
 		$this->autoRender=false;
 		exit(0);
 	}
-
+	function writeComment($productId){
+		$this->layout='overlay';
+		$this->set(compact('productId'));
+		$this->set('titulo','Escribe tu comentario');
+	}
 	function admin_index() {
 		$this -> Comment -> recursive = 0;
 		$this -> set('comments', $this -> paginate());

@@ -83,6 +83,10 @@
 			<?php echo $this->element("footer");?>
 		
 	</div>
+	<div class="apple_overlay" id="overlay2">
+				<!-- the external content is loaded inside this tag -->
+				<div class="contentWrap"></div>
+			</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

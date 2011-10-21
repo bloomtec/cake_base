@@ -19,15 +19,17 @@
 			<?php
 				}
 			?>
+			
+			<!--	<h3>ORDENAR POR</h3>
+				<select></select> -->
+			</div>
 			<?php if(!$this->Session->read('Auth.User.id')){ ?>		
 				<div class="solicitud-registro"> 
 					<h1 class="titulos_rosado"> DEBES REGISTRARTE PARA COMENTAR</h1> 
 					<h1 class="azul"> REGISTRATE DANDO CLIC <a style='color: #00CFB5; margin-left: 3px;' rel="#overlay" href="/users/login">AQUÍ</a></h1>
 				</div> 
 			<?php 	} ?>
-			<!--	<h3>ORDENAR POR</h3>
-				<select></select> -->
-			</div>
+			<div style='clear:both;'></div>
 			<?php
 				if($comments) {
 					foreach ($comments as $key => $comment) {
@@ -56,11 +58,7 @@
 		-->
 		<?php if($this->Session->read('Auth.User.id')): ?>
 		<div id="create-comment" style='margin-top: 5px;'>
-			<form id="CommentAddForm" class="comment-form" accept-charset="utf-8" method="post" action="/comments/add">
-			<input id="CommentProductId" type="hidden" value="<?=$product['Product']['id']?>" name="data[Comment][product_id]">
-			<textarea placeholder='Escribe aqui tu comentario' id="CommentComment" name="data[Comment][comment]" style="width: 99%; background: transparent; color: #A1A1A1;"></textarea>
-			</form>
-			<a id="enviar-comentario" class="azul tahoma" href="#">ENVIAR COMENTARIO</a>
+			<a id="enviar-comentario" class="azul tahoma" href="/comments/writeComment/<?php echo $product['Product']['id']?>">ENVIAR COMENTARIO</a>
 		</div>
 		<?php endif;?>
 		</div>
