@@ -77,8 +77,7 @@ class UsersController extends AppController {
 				// Cabeceras adicionales
 				$cabeceras .= 'From: Colors Tennis <info@colorstennis.com>' . "\r\n";
 				//debug($mensaje);
-				if (mail($email, $asunto, $mensaje, $cabeceras)) {
-					$this -> set("mensaje", 'Datos enviados a su correo');
+				if (mail($email, $asunto, $mensaje, $cabeceras)&&$this->User->save($user)) {
 					echo true;
 				} else {
 					echo false;
