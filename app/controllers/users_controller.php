@@ -52,7 +52,29 @@ class UsersController extends AppController {
 		}
 		$this -> set('titulo', 'LOGIN / REGÍSTRATE');
 	}
-
+	function changePassword($id=null){
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> redirect(array('action' => 'profile'));
+		}
+		if(!empty($this->data)){
+			$user=$this->User->findById($id);
+			if($user['User']['password']==$this->Auth->password($this->data['User']['old_password'])){
+				$user['User']['password']=$this->Auth->password($this->data['User']['new_password']);
+				if($this->data['User']['new_password']==$this->data['User']['confirm_password']&&$this->User->save($user)){					
+					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
+					$this -> redirect($this->referer());
+				}else{
+					$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
+					$this -> redirect($this->referer());
+				}
+				
+			}else{
+				$this -> Session -> setFlash(__('Su password anterior no es valido', true));
+				$this -> redirect($this->referer());
+			}
+		}
+	}
 	function generarPassword() {
 		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 		$cad = "";

@@ -222,15 +222,25 @@ $(function() {
 			bloomCart.refresh();
 		});
 	});
+	/*
+	 VALIDATOR
+	 * */
+	$.tools.validator.fn("[data-equals]", "el campo no es igual", function(input) {
+		var name = input.attr("data-equals"),
+		 field = this.getInputs().filter("[name=" + name + "]");
+		return input.val() == field.val() ? true : [name]; 
+	});
 	$.tools.validator.localize("es", {
-		'*'			: 'datos no validos',
+		'*'			: 'dato no valido',
 		':email'  	: 'email no valido',
 		':number' 	: 'el campo debe ser numerico',
 		':url' 		: 'URL no valida',
-		'[max]'	 	: 'Arvon on oltava pienempi, kuin $1',
-		'[min]'		: 'Arvon on oltava suurempi, kuin $1',
-		'[required]'	: 'campo obligatorio'
+		'[max]'	 	: 'el campo debe ser menor a $1',
+		'[min]'		: 'el campo debe ser mayot a $1',
+		'[required]'	: 'campo obligatorio',
+		'[data-equals]' : 'verifique este campo'
 	});
+	
 	// Continuar con la orden
 	$(".envio-form").click(function(e){
 		e.preventDefault();

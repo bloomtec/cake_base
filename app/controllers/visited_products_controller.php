@@ -33,7 +33,7 @@ class VisitedProductsController extends AppController {
 		if ($user_id) {
 			$product_ids = $this -> VisitedProduct -> find('list', array('conditions' => array('VisitedProduct.user_id' => $user_id), 'fields' => array('VisitedProduct.product_id'), 'order' => array('VisitedProduct.updated' => 'DESC'), 'limit' => 15));
 			$this -> loadModel('Product');
-			return $this -> Product -> find('all', array('conditions' => array('Product.id' => $product_ids)));
+			return $this -> Product -> find('all', array('conditions' => array('Product.id' => $product_ids),'limit'=>12));
 		} else {
 			return null;
 		}
