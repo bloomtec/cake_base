@@ -37,13 +37,71 @@
 	?>
 </head>
 <body>
+	<div id="comentario">
+		<a class="icono"></a>
+		<form></form>
+	</div>
 	<div id="header">
 		<div class="menu_wrapper">
 		<ul>
 			<li><a href="#" >INICIO<span>Quienes somos</span></a> </li>
-			<li><a href="#" >SERVICIOS<span>Lo que ofrecemos</span></a> </li>
+			<li><a href="#" >SERVICIOS<span>Lo que ofrecemos</span></a> 
+				<ul class="desplegable">
+					<li>
+						<div class="imagen_menu">
+							<a href=""><img  src="/img/movil_menu.jpg"/></a>
+							<div style="clear: both"></div>
+						</div>
+						<div class="titulos_wrapper">
+							<a href="">Aplicaciones Móviles</a>
+							<br />
+							<span>slogan del servicio</span>
+						</div>
+						
+					</li>
+					<li>
+						<div class="imagen_menu">
+							<a href=""><img  src="/img/e-shop_menu.jpg"/></a>
+							<div style="clear: both"></div>
+						</div>
+						<div class="titulos_wrapper">
+							<a href="">Tiendas Virtuales</a>
+							<br />
+							<span>slogan del servicio</span>
+						</div>
+						
+					</li>
+					<li>
+						<div class="imagen_menu">
+							<a href=""><img src="/img/diseno-flexible-menu.jpg"/></a>
+							<div style="clear: both"></div>
+						</div>
+						<div class="titulos_wrapper">
+							<a href="">Diseño Web a la Medida</a>
+							<br />
+							<span>slogan del servicio</span>
+						</div>
+						
+					</li>
+					<li>
+						<div class="imagen_menu">
+							<a href=""><img src="/img/blog.png" /></a>
+							<div style="clear: both"></div>
+						</div>
+						<div class="titulos_wrapper">
+							<a href="">Blog</a>
+							<br />
+							<span>slogan del servicio</span>
+						</div>
+						
+					</li>
+				</ul>	
+			</li>
 			<li><a href="#" >CLIENTES<span>Que hacemos</span></a> </li>
+			<!--
 			<li><a href="#" >PROCESOS<span>Como lo hacemos</span></a> </li>
+			-->
+			<li><a href="#" >BLOG<span>Ninja master</span></a> </li>
 			
 		</ul>
 		<h1></h1>
@@ -57,17 +115,18 @@
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $content_for_layout; ?>
+			<?php echo $this -> element("blog");?>
 
 		</div>
 		<div id="footer">
 			<ul>
 				<li><h1></h1></li>
 				<li>
-					<h2>Contácto</h2>
+					<h2>Info:</h2>
 					<p>Teléfono: 326 59 68</p>
 					<p>Celular: 301 356 5896</p>
 					<p>Dirección:</p>
-					<p>E-mail: gerencia@bloomtec.com</p>
+					<p>E-mail: gerencia@blooweb.co</p>
 				</li>
 				<li>
 					<ul class="redes">
