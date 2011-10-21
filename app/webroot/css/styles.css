@@ -1729,3 +1729,6 @@ h1.orden{
 .solicitud-registro .azul{	
 	font-size: 10px;	
 }
+#rememberForm, .confirmacion-remember{
+	display: none;
+}

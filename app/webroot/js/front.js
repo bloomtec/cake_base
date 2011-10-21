@@ -183,6 +183,7 @@ $(function() {
 		mask : 'black',
 		onBeforeLoad : function() {
 			var wrap = this.getOverlay().find(".contentWrap");
+			wrap.html('');	
 			wrap.load(this.getTrigger().attr("href"));
 		},
 		onLoad:function(){
@@ -251,7 +252,7 @@ $(function() {
 		$("#OrderGetAddressInfoForm").submit();		
 	});
 	
-	// Página envío
+	// Página envíoario
 	$(".mailing-form").click(function(e){
 		$("#PagosOnlineForm").submit();
 	});
@@ -294,16 +295,50 @@ $(function() {
 			mask : 'black',
 			load:true,
 			onBeforeLoad : function() {
-			var wrap = this.getOverlay().find(".contentWrap");
-			wrap.load('/products/search/'+$('#query').val());
+				var wrap = this.getOverlay().find(".contentWrap");
+				wrap.load('/products/search/'+$('#query').val());
 			},
 			onLoad:function(){
 				refreshCufon();
+			},
+			onBeforeLoad:function(){
+				this.getOverlay().find(".contentWrap").html('');	
 			}
 		}).load();
 	});
 	$('.menu_carrito a').click(function(e){
 		e.preventDefault();
+	});
+	
+	/*
+	 Recordar Contraseña
+	 * */
+	$('.remember').live('click',function(e){
+		e.preventDefault();
+		$('.error').remove();
+		$('#UserLoginForm').hide(function(){
+			$("#rememberForm").show();
+		});
+		
+	});
+	$('.ingresar').live('click',function(e){
+		e.preventDefault();
+		$('.error').remove();
+		$('#UserLoginForm').show(function(){
+			$("#rememberForm").hide();
+		});
+		
+	});
+	$("#rememberForm").live('submit',function(e){
+		e.preventDefault();
+		var fields=$(this).serialize();
+		BJS.post('/users/rememberPassword',fields,function(response){
+			if(response){
+				$('.confirmacion-remember').show();
+			}else{
+				$('.confirmacion-remember').html('no se pudo realizar tu solicitud verifica tu email').show();
+			}
+		})
 	});
 
 });

@@ -11,24 +11,25 @@ class UsersController extends AppController {
 	 */
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->logoutRedirect='/';
-		$this -> Auth -> allow('register', 'keepShopping','ajaxRegister');
+		$this -> Auth -> logoutRedirect = '/';
+		$this -> Auth -> allow('register', 'keepShopping', 'ajaxRegister','rememberPassword');
 	}
-	
+
 	function keepShopping() {
-		$this->layout="ajax";
-		echo $this->webroot;
+		$this -> layout = "ajax";
+		echo $this -> webroot;
 		exit(0);
 		return;
 	}
-	function profile(){
-		$this->layout='callback';
+
+	function profile() {
+		$this -> layout = 'callback';
 	}
-	
+
 	function isLoggedIn() {
-		$this->layout="ajax";
-		$x = $this->Session->read('Auth.User.id');
-		if(!empty($x)) {
+		$this -> layout = "ajax";
+		$x = $this -> Session -> read('Auth.User.id');
+		if (!empty($x)) {
 			echo 'true';
 		} else {
 			echo 'false';
@@ -38,7 +39,7 @@ class UsersController extends AppController {
 	}
 
 	function login() {
-		$this->layout=("overlay2");
+		$this -> layout = ("overlay2");
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
 			if (!empty($user) && $this -> Auth -> login($user)) {
@@ -49,11 +50,51 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
 			}
 		}
-		$this->set('titulo','LOGIN / REGÍSTRATE');
+		$this -> set('titulo', 'LOGIN / REGÍSTRATE');
+	}
+
+	function generarPassword() {
+		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+		$cad = "";
+		for ($i = 0; $i < 8; $i++) {
+			$cad .= substr($str, rand(0, 62), 1);
+		}
+		return $cad;
+	}
+
+	function rememberPassword() {
+		if (!empty($this -> data)) {
+			$this -> User -> recursive = 0;
+			$user = $this -> User -> find("first", array('conditions' => array('User.email' => trim($this -> data['User']['email']))));
+			if ($user) {
+				$newPassword = $this -> generarPassword();
+				$user["User"]["password"] = $this -> Auth -> password($newPassword);
+				//debug($datos);
+				$email = $user['User']['email'];
+				$asunto = "Tu password de color tennis";
+				$mensaje = "Tu nuevo password: " . $newPassword;
+				$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+				// Cabeceras adicionales
+				$cabeceras .= 'From: Colors Tennis <info@colorstennis.com>' . "\r\n";
+				//debug($mensaje);
+				if (mail($email, $asunto, $mensaje, $cabeceras)) {
+					$this -> set("mensaje", 'Datos enviados a su correo');
+					echo true;
+				} else {
+					echo false;
+				}
+			}else{
+				echo false;
+			}
+
+		}
+		Configure::write('debug',0);
+		$this->autoRender=false;
+		exit(0);
 	}
 
 	function admin_login() {
-		$this->layout="login";
+		$this -> layout = "login";
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
 			if (!empty($user) && $this -> Auth -> login($user)) {
@@ -69,27 +110,29 @@ class UsersController extends AppController {
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-	function ajaxLogin(){
-		if($this->Auth->login($this->data)){
-			$userField=$this->User->read(null,$this->Auth->user('id'));
-			$this->Session->write('Auth.User.UserField',$userField['UserField']);
+
+	function ajaxLogin() {
+		if ($this -> Auth -> login($this -> data)) {
+			$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+			$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
 			echo true;
-		}else{
-			echo json_encode(array("data[User][email]"=>"Verifique sus datos","data[User][password]"=>"Verifique sus datos"));
+		} else {
+			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
 		}
-		$this->autoRender=false;
-		Configure::write('debug',0);
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
 		exit(0);
 	}
+
 	function register() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
 			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
 			$user['User']['role_id'] = 2;
-			if($this->User->saveAll($this->data)){
-					$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
-			}else{
-				
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			} else {
+
 			}
 
 		}
@@ -97,40 +140,45 @@ class UsersController extends AppController {
 		$documentTypes = $this -> DocumentType -> find('list');
 		$this -> set(compact('documentTypes'));
 	}
+
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
 			$user['User']['role_id'] = 2;
 			$this -> User -> create();
-			$this->User->set( $this->data );
-			if($this->User->saveAll($this->data)){
-				$this->Auth->login($this->data);
-				$userField=$this->User->read(null,$this->Auth->user('id'));
-				$this->Session->write('Auth.User.UserField',$userField['UserField']);
+			$this -> User -> set($this -> data);
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Auth -> login($this -> data);
+				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+				$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
 				echo true;
-			}else{
-				$errors=array();
-				foreach($this->User->invalidFields() as $name => $value){
-					$errors["data[User][".$name."]"]=$value;
+			} else {
+				$errors = array();
+				foreach ($this->User->invalidFields() as $name => $value) {
+					$errors["data[User][" . $name . "]"] = $value;
 				}
-				
-				echo json_encode($errors); 
+
+				echo json_encode($errors);
 			}
 		}
-		$this->autoRender=false;
-		Configure::write('debug',0);
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
 		exit(0);
 	}
-	function validateEmail(){
-		
+
+	function validateEmail() {
+
 	}
+
 	function admin_index() {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());
 	}
+
 	function admin_logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
+
 	function admin_view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid user', true));
@@ -158,9 +206,10 @@ class UsersController extends AppController {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		
+
 		if (!empty($this -> data)) {
-			if(!empty($this->data['User']['pass'])) $this->data['User']['password']=$this->Auth->password($this->data['User']['pass']);
+			if (!empty($this -> data['User']['pass']))
+				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
