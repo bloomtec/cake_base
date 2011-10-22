@@ -147,20 +147,6 @@ class UsersController extends AppController {
 		$this -> autoRender = false;
 		exit(0);
 	}
-	
-	function admin_login() {
-		$this -> layout = "ez/login";
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if ($this -> Auth -> autoRedirect) {
-					$this -> redirect($this -> Auth -> redirect());
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
 
 	function _generarPassword() {
 		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
@@ -182,7 +168,21 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-
+	
+	function admin_login() {
+		$this -> layout = "ez/login";
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+	
 	function admin_index() {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());
