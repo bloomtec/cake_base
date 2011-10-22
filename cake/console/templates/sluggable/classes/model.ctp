@@ -139,7 +139,7 @@ if (!empty($associations['hasAndBelongsToMany'])):
 endif;
 ?>
 	function beforeSave(){
-		$this->data['<?php echo $name; ?>']['slug']=strtolower(str_ireplace(" ", "-", $this->data['<?php echo $name; ?>']['name']));
+		if(isset($this->data['<?php echo $name; ?>']['slug'])) $this->data['<?php echo $name; ?>']['slug']=strtolower(str_ireplace(" ", "-", $this->data['<?php echo $name; ?>']['name']));
 		return true;	
 	}
 }
