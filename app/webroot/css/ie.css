@@ -11,9 +11,6 @@ em, i {
 	
 /* Eliminates the doubled-margin bug in IE;
 see http://www.positioniseverything.net/explorer/doubled-margin.html */
-#header ul {
-	display: inline;
-	}	
 
 #header form input[type="text"] {
 	padding-top: 4px;
