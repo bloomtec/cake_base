@@ -84,7 +84,7 @@ class Product extends AppModel {
 		'ProductPicture' => array(
 			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

@@ -8,6 +8,7 @@
 		echo $this->Form->input('architecture_id');
 		echo $this->Form->input('socket_id');
 		echo $this->Form->input('slot_id');
+		echo $this->Form->input('is_video_included');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->input('ref');

@@ -12,6 +12,8 @@
 									
 					<th><?php echo $this->Paginator->sort('slot_id');?></th>
 									
+					<th><?php echo $this->Paginator->sort('is_video_included');?></th>
+									
 					<th><?php echo $this->Paginator->sort('name');?></th>
 									
 					<th><?php echo $this->Paginator->sort('description');?></th>
@@ -52,6 +54,7 @@
 		<td>
 			<?php echo $this->Html->link($product['Slot']['name'], array('controller' => 'slots', 'action' => 'view', $product['Slot']['id'])); ?>
 		</td>
+		<td><?php echo $product['Product']['is_video_included']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['description']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
