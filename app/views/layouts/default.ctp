@@ -39,7 +39,20 @@
 <body>
 	<div id="comentario">
 		<a class="icono"></a>
-		<form></form>
+		<form>
+			<label><span>*</span>Nombre:</label>
+			<input type="text" required="required" />
+			<label><span>*</span>E-mail:</label>
+			<input type="email" required="required" />
+			<label><span>*</span>Comentario:</label>
+			<textarea required="required"></textarea>
+			<input type="checkbox" class="check_box"/>
+			<label class="newslwtter">Suscribirme al newsletter de BLOOMWEB</label>
+			<input type="submit" class="submit" value=""/>
+		</form>
+		<p>
+			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut 
+		</p>
 	</div>
 	<div id="header">
 		<div class="menu_wrapper">
@@ -132,7 +145,6 @@
 					<ul class="redes">
 						<li><a class="facebook" href="#" title="Página de Facebook">facebook</a></li>
 						<li><a class="twitter" href="#" title="Sígenos en Twitter">twitter</a></li>
-						<li><a class="mail" href="#" title="Envíanos un E-mail">mail</a></li>
 					</ul>
 				</li>
 				
