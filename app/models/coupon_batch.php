@@ -23,16 +23,6 @@ class CouponBatch extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'value' => array(
-			'money' => array(
-				'rule' => array('money'),
-				'message' => 'Enter the value of the coupons to create',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'quantity' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
