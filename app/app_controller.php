@@ -57,4 +57,21 @@ class AppController extends Controller {
 	   
 	}
 	
+	function getComments($foreign_key){
+		return $this->$this->modelNames[0]->find('all',array('conditions'=>array('model'=>$this->modelNames[0],'foreign_key'=>$foreign_key)));
+	}
+	
+	function addComments(){
+		$this->data['Comment']['model']=$this->modelNames[0];
+		$this->loadModel('Comment');
+		if (!empty($this->data)) {
+			$this->Comment->create();
+			if ($this->Comment->save($this->data)) {
+				$this->Session->setFlash(__('The comment has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The comment could not be saved. Please, try again.', true));
+			}
+		}
+	}
 }
