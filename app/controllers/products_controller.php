@@ -102,6 +102,8 @@ class ProductsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 		}
 		$product = $this -> Product -> read(null, $id);
+		$product['Product']['num_visits']+=1;
+		$this->Product->save($product);
 		$brand = $this -> Product -> Subcategory -> Brand -> read(null, $product['Subcategory']['brand_id']);
 		$category['Category'] = $brand['Category'];
 		$comments = $this->getComments($product['Product']['id']);
@@ -113,7 +115,8 @@ class ProductsController extends AppController {
 					'Product.id'
 				),
 				'conditions'=>array(
-					'Product.brand_id'=>$product['Product']['brand_id']
+					'Product.brand_id'=>$product['Product']['brand_id'],
+					'Product.is_visible'=>true
 				),
 				'recursive'=>-1,
 				'order'=>array(
@@ -122,6 +125,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
+	
 		$this -> set(compact('product', 'brand', 'category', 'comments', 'neighbors'));
 	}
 

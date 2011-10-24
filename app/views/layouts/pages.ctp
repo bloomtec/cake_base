@@ -23,7 +23,7 @@
 	<?php echo $this->Html->charset(); ?>
 	<title>
 
-		<?php echo $page['Page']['name']; ?>
+		<?php if(isset( $page['Page']['name'])) echo $page['Page']['name']; else echo 'Colors Tennis' ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
@@ -43,8 +43,10 @@
 
 		echo $scripts_for_layout;
 	?>
+	<?php if(isset($page)):?>
 	<meta name="description" content="<?php echo $page['Page']['description'];?>" />
 	<meta name="keywords" content="<?php echo $page['Page']['keywords'];?>" />
+	<?php endif;?>
 	<script type="text/javascript">
 
 	  var _gaq = _gaq || [];

@@ -48,11 +48,7 @@
 		<?php echo $this->Form->input('UserField.birthday',array('div'=>false,'label'=>false));?>
 		<br /><br />
 	
-		<input type="hidden" id='country' name='data[UserField][country]'/>
-		<input type="hidden" id='state' name='data[UserField][state]'/>
-		<input type="hidden" id='city'name='data[UserField][city]' />
-		<label>CIUDAD</label>
-		<input type='text' id='resultGeo' placeholder="ciudad/departamento/pais" >
+		
 		<input type="checkbox" />	
 		<label class="olvidaste">  Autorizo a Colors Tennis  que me envíe información por correo electrónico </label>	
 		<input type="submit" class='twCenMt' value="Registrate" />
@@ -102,62 +98,16 @@ $('#UserLoginForm').validator({lang:'es'}).submit(function(e){
 		e.preventDefault();
 	}
 });
-	Cufon.replace('.tahoma', {
-		fontFamily : 'Tahoma',
-		trim : "simple",
-		hoverables:{a:true},
-		hover:{color:'#ffaedc'}
-
-	});
-	Cufon.replace('.twCenMt', {
-		fontFamily : 'TwCenMt',
-		trim : "simple",
-		hoverables:{a:true},
-		hover:{color:'#00CFB5'}
-	});
-	
-		$(function() {
-		function log( city, state, country) {
-			$('#city').val(city);
-			$('#state').val(state);
-			$('#country').val(country);
-			//$('#resultGeo').val(city+', '+state+', '+country);
-		}
-
-		$( "#resultGeo" ).autocomplete({
-			source: function( request, response ) {
-				$.ajax({
-					url: "http://ws.geonames.org/searchJSON",
-					dataType: "jsonp",
-					data: {
-						featureClass: "P",
-						style: "full",
-						maxRows: 12,
-						name_startsWith: request.term
-					},
-					success: function( data ) {
-						response( $.map( data.geonames, function( item ) {
-							return {
-								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-								city: item.name,
-								country: item.countryName,
-								state:  item.adminName1 ? item.adminName1 : "", 
-								value: item.name+', '+item.adminName1+', '+item.countryName
-							}
-						}));
-					}
-				});
-			},
-			minLength: 2,
-			select: function( event, ui ) {
-				log( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
-			},
-			open: function() {
-				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-			},
-			close: function() {
-				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-			}
-		});
-	});
+Cufon.replace('.tahoma', {
+	fontFamily : 'Tahoma',
+	trim : "simple",
+	hoverables:{a:true},
+	hover:{color:'#ffaedc'}
+});
+Cufon.replace('.twCenMt', {
+	fontFamily : 'TwCenMt',
+	trim : "simple",
+	hoverables:{a:true},
+	hover:{color:'#00CFB5'}
+});
 </script>

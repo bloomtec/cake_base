@@ -52,19 +52,23 @@ if (empty($shop_cart['ShopCartItem'])) {
 <div class="form_envio tahoma">
 	<div class="form">
 		<?php //e($this -> Form -> input('Envio.full_name', array("required" => "required",'label' => 'Datos Usuario', 'value' => $nombre . " " . $appelido)));?>
-		<?php e($this -> Form -> input('Envio.country', array('label' => 'País', 'value' => $pais, "required" => "required")));?>
+		
 		<?php e($this -> Form -> input('Envio.name', array('label' => 'Nombre', 'value' => $nombre, "required" => "required")));?>
 		<?php e($this -> Form -> input('Envio.surname', array('label' => 'Apellido', 'value' => $appelido, "required" => "required")));?>
+		<?php e($this -> Form -> hidden('Envio.country', array('label' => 'País', 'value' => $pais, "required" => "required")));?>
+		<?php e($this -> Form -> hidden('Envio.state', array('label' => 'Departamento', 'value' => $departamento, "required" => "required")));?>
+		<?php e($this -> Form -> hidden('Envio.city', array('label' => 'Ciudad', 'value' => $ciudad, "required" => "required")));?>
+		<?php e($this -> Form -> input('Envio.result', array('label' => 'Ciudad', 'id' => 'resultGeo')));?>
 		<?php e($this -> Form -> input('Envio.address', array('label' => 'Dirección', 'value' => $direccion, "required" => "required")));?>
-		<?php e($this -> Form -> input('Envio.state', array('label' => 'Departamento', 'value' => $departamento, "required" => "required")));?>
-		<?php e($this -> Form -> input('Envio.city', array('label' => 'Ciudad', 'value' => $ciudad, "required" => "required")));?>
+		
 		<?php // e($this -> Form -> input('Envio.email', array('label' => 'Correo Electrónico', 'value' => $email, "required" => "required")));?>
+		
 		<div class="input text">
 			<label for="EnvioEmail"> Correo Electrónico</label>
 			<input type="email" id="EnvioEmail" required="required" value="<?php echo $email?>" name="data[Envio][email]">
 		</div>
 		<?php e($this -> Form -> input('Envio.phone', array('label' => 'Número Telefónico', 'value' => $telefono)));?>
-		<?php e($this -> Form -> input('Envio.mobile', array('label' => 'Celular', 'value' => $celular)));?>
+		<?php e($this -> Form -> input('Envio.mobile', array('label' => 'Celular', 'value' => $celular,'required'=>'required')));?>
 		<div style="clear: both"></div>
 		<?php e($this -> Form -> checkbox('Envio.authorize', array('label' => false)));?>
 		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
@@ -78,12 +82,13 @@ if (empty($shop_cart['ShopCartItem'])) {
 <div class="form_envio der tahoma">
 	<div class="form">
 		<?php if($foundGift): ?>
-		<?php e($this -> Form -> input('Gift.country', array('label' => 'País',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido',"required" => "required")));?>
-		<?php e($this -> Form -> input('Gift.address', array('label' => 'Dirección',"required" => "required")));?>
+		<?php e($this -> Form -> input('Gift.country', array('label' => 'País',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.state', array('label' => 'Departamento',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.city', array('label' => 'Ciudad',"required" => "required")));?>
+		<?php e($this -> Form -> input('Gift.result', array('label' => 'Ciudad', 'id' => 'resultGeoGift')));?>
+		<?php e($this -> Form -> input('Gift.address', array('label' => 'Dirección',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico',"required" => "required")));?>
 		<?php endif;?>
 		
@@ -150,4 +155,92 @@ if (isset($subtotal)) {
 	$(function(){
 		$("#OrderGetAddressInfoForm").validator({lang:'es'});
 	});
+	
+		
+$(function() {
+		function logEnvio( city, state, country) {
+			$('#EnvioCity').val(city);
+			$('#EnvioState').val(state);
+			$('#EnvioCountry').val(country);
+			//$('#resultGeo').val(city+', '+state+', '+country);
+		}
+		$("#resultGeo" ).autocomplete({
+			source: function( request, response ) {
+				$.ajax({
+					url: "http://ws.geonames.org/searchJSON",
+					dataType: "jsonp",
+					data: {
+						featureClass: "P",
+						style: "full",
+						maxRows: 12,
+						name_startsWith: request.term
+					},
+					success: function( data ) {
+						response( $.map( data.geonames, function( item ) {
+							return {
+								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+								city: item.name,
+								country: item.countryName,
+								state:  item.adminName1 ? item.adminName1 : "", 
+								value: item.name+', '+item.adminName1+', '+item.countryName
+							}
+						}));
+					}
+				});
+			},
+			minLength: 2,
+			select: function( event, ui ) {
+				logEnvio( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
+			},
+			open: function() {
+				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			},
+			close: function() {
+				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			}
+		});
+	
+		function logGift( city, state, country) {
+			$('#GiftCity').val(city);
+			$('#GiftState').val(state);
+			$('#GiftCountry').val(country);
+			//$('#resultGeo').val(city+', '+state+', '+country);
+		}
+
+		$( "#resultGeoGift" ).autocomplete({
+			source: function( request, response ) {
+				$.ajax({
+					url: "http://ws.geonames.org/searchJSON",
+					dataType: "jsonp",
+					data: {
+						featureClass: "P",
+						style: "full",
+						maxRows: 12,
+						name_startsWith: request.term
+					},
+					success: function( data ) {
+						response( $.map( data.geonames, function( item ) {
+							return {
+								label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
+								city: item.name,
+								country: item.countryName,
+								state:  item.adminName1 ? item.adminName1 : "", 
+								value: item.name+', '+item.adminName1+', '+item.countryName
+							}
+						}));
+					}
+				});
+			},
+			minLength: 2,
+			select: function( event, ui ) {
+				logGift( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
+			},
+			open: function() {
+				$( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+			},
+			close: function() {
+				$( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+			}
+		});
+});
 </script>

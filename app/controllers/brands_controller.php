@@ -39,10 +39,20 @@ class BrandsController extends AppController {
 			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$this->params['named']['talla']);
 			$conditions['Product.id']=$product_ids;
 		}
+	$order=array();
+	if((isset($this->params['named']['orden'])) && (!empty($this->params['named']['orden']))) {
+		if($this->params['named']['orden']=='nuevo'){
+			$order='Product.created desc';
+		}
+		if($this->params['named']['orden']=='preferido'){
+			$order='Product.num_visits desc';
+		}
+	}
 		$this->paginate=array(
 			"Product" => array(
 				'limit' => 35,
-				'conditions' => $conditions
+				'conditions' => $conditions,
+				'order'=>$order
 			)
 		);
 		$products = $this->paginate('Product', array('Product.brand_id'=>$id));

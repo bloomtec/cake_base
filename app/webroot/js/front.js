@@ -169,8 +169,7 @@ $(function() {
 	});
 	$("select.filter").change(
 			function() {
-				document.location.href = BJS.setParam($(this).attr('rel'), $(
-						this).find("option:selected").val());
+				document.location.href = BJS.setParam($(this).attr('rel'), $(this).find("option:selected").val());
 			});
 	$('a.order').click(function(e) {
 		e.preventDefault();
@@ -309,17 +308,15 @@ $(function() {
 	$('.remember').live('click',function(e){
 		e.preventDefault();
 		$('.error').remove();
-		$('#UserLoginForm').hide(function(){
-			$("#rememberForm").show();
-		});
+		$('#UserLoginForm').hide();
+		$("#rememberForm").show();
 		
 	});
 	$('.ingresar').live('click',function(e){
 		e.preventDefault();
 		$('.error').remove();
-		$('#UserLoginForm').show(function(){
-			$("#rememberForm").hide();
-		});
+		$('#UserLoginForm').show();
+		$("#rememberForm").hide();
 		
 	});
 	$("#rememberForm").live('submit',function(e){

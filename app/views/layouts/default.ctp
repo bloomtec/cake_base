@@ -38,8 +38,9 @@
 		echo $this->Html->css('jquery-ui-1.8.16.custom.css');
 		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
-		echo $this->Html->script('jquery.tools.min');
 		echo $this->Html->script('jquery-ui-1.8.16.custom.min');
+		echo $this->Html->script('jquery.tools.min');
+		
 		echo $this->Html->script('cufon-yui');
 		echo $this->Html->script('HaloHandLetter_500.font');
 		echo $this->Html->script('Japan_500.font');

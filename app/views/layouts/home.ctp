@@ -63,7 +63,7 @@
 				<?php echo $this -> Session -> flash();?>
 				<form class="buscador" name="buscador">
 					<span class="subtitulos_gris twCenMt">&iquest;NECESITAS ALGO ESPEC&Iacute;FICO? UTILIZA NUESTRO BUSCADOR</span>
-					<input placeholder="BUSCAR" type="text" />
+					<input placeholder="BUSCAR" type="text" id='query' />
 					<input type="submit" value="Ir" />
 					&nbsp;
 				</form>
