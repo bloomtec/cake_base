@@ -42,13 +42,11 @@ foreach ($fields as $field) {
 		foreach ($fields as $field) {
 			if (strpos($action, 'add') !== false && $field == $primaryKey) {
 				continue;
-			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
+			} elseif (!in_array($field, array('created', 'modified', 'updated','sort','slug'))) {
 				if(strpos($field,"wysiwyg")===0){
 						echo "\t\techo \$this->Form->input('{$field}',array('label'=>false));\n";	
 					}else{
-						if($field!='slug'){
-							echo "\t\techo \$this->Form->input('{$field}');\n";
-						}		
+						echo "\t\techo \$this->Form->input('{$field}');\n";		
 				}
 			}
 		}
@@ -75,16 +73,14 @@ foreach ($fields as $field) {
 		foreach ($fields as $field) {
 			if (strpos($action, 'add') !== false && $field == $primaryKey) {
 				continue;
-			} elseif (!in_array($field, array('created', 'modified', 'updated'))) {
+			} elseif (!in_array($field, array('created', 'modified', 'updated','sort','slug'))) {
 				if(strpos($field,"image")===0){
 					echo "\t\techo \$this->Form->hidden('{$field}',array('id' => 'single-field'));\n";
 				}else{
 					if(strpos($field,"wysiwyg")===0){
 						echo "\t\techo \$this->Form->input('{$field}',array('label'=>false));\n";	
 					}else{
-						if($field!='slug'){
-							echo "\t\techo \$this->Form->input('{$field}');\n";
-						}
+						echo "\t\techo \$this->Form->input('{$field}');\n";
 					}
 				}
 			}

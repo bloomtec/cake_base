@@ -18,82 +18,7 @@
  * @subpackage    cake.console.libs.templates.objects
  * @since         CakePHP(tm) v 1.3
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- EJEMPLO DE VARIABLES PARA LA TABLA COMMENTS QUE TIENE  UNA RELACION BELONGSTO USERS
- Array
-(
-    [directory] => classes
-    [filename] => model
-    [vars] => 
-    [themePath] => /home/usuario/Escritorio/httdocs/ez/cake/console/templates/sluggable/
-    [templateFile] => /home/usuario/Escritorio/httdocs/ez/cake/console/templates/sluggable/classes/model.ctp
-    [plugin] => 
-    [associations] => Array
-        (
-            [belongsTo] => Array
-                (
-                    [0] => Array
-                        (
-                            [alias] => Users
-                            [className] => Users
-                            [foreignKey] => users_id
-                        )
-
-                )
-
-            [hasMany] => Array
-                (
-                )
-
-            [hasOne] => Array
-                (
-                )
-
-            [hasAndBelongsToMany] => Array
-                (
-                )
-
-        )
-
-    [validate] => Array
-        (
-        )
-
-    [primaryKey] => id
-    [useTable] => comments
-    [useDbConfig] => default
-    [displayField] => 
-    [name] => Comment
-    [assoc] => Array
-        (
-            [0] => Array
-                (
-                    [alias] => Users
-                    [className] => Users
-                    [foreignKey] => users_id
-                )
-
-        )
-
-    [assocType] => belongsTo
-    [typeCount] => 1
-    [relation] => Array
-        (
-            [alias] => Users
-            [className] => Users
-            [foreignKey] => users_id
-        )
-
-    [i] => 0
-    [out] => 
-		'Users' => array(
-			'className' => 'Users',
-			'foreignKey' => 'users_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-)
- */
+ **/
 
 echo "<?php\n"; ?>
 class <?php echo $name ?> extends <?php echo $plugin; ?>AppModel {
@@ -111,19 +36,26 @@ if ($primaryKey !== 'id'): ?>
 if ($displayField): ?>
 	var $displayField = '<?php echo $displayField; ?>';
 <?php endif;
-if ($imagesFields): 
+if ($sortable): ?>
+	var $order = '<?php echo $name.'.sort asc'; ?>';
+<?php endif;
+if (!$isPicture&&$imagesFields): 
 	$string='';
 	if($imagesFields) foreach($imagesFields as $field){ $string.="'".$field."',";}
 	?>
-	var $imagesFields = array(<?php echo substr($string,0,-1); ?>);
+ 	var $imagesFields = array(<?php echo substr($string,0,-1); ?>);
 <?php endif;
 if ($wysiwygFields):
 	$string='';
 	if($wysiwygFields) foreach($wysiwygFields as $field){ $string.="'".$field."',";}
 	?>
 	var $wysiwygFields = array(<?php echo substr($string,0,-1); ?>);
+	
 <?php endif; ?>
+	var $isPicture=<?php echo ($isPicture)?'true':'false';?>;
 	var $sluggable=<?php echo ($sluggable)?'true':'false';?>;
+	var $sortable=<?php echo ($sortable)?'true':'false';?>;
+	var $activable=<?php echo ($activable)?'true':'false';?>;
 
 <?php
 if (!empty($validate)):

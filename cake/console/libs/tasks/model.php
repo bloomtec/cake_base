@@ -203,9 +203,35 @@ class ModelTask extends BakeTask {
 		return $wysiwygFields;	
 	}
 	
-	function isPicture(){
-		
+/**
+ * Verifica si una tabla se puede ordenar
+ */
+	function isSortable($fields){
+		$return=false;
+		foreach($fields as $fieldName => $value){
+			if($fieldName=='sort'){
+				$return=true;
+			}
+		}
+		return $return;	
 	}
+	
+	function isActivable($fields){
+		$return=false;
+		foreach($fields as $fieldName => $value){
+			if($fieldName=='is_active'){
+				$return=true;
+			}
+		}
+		return $return;	
+	}
+	function isPicture($modelName){
+		$return=false;
+		if(substr($modelName, -7)=="Picture"){
+			$return=true;
+		}
+		return $return;	
+	} 
 	
 /**
  * Handles interactive baking
@@ -290,7 +316,10 @@ class ModelTask extends BakeTask {
 			$sluggable=$this->checkSluggable($tempModel);
 			$imagesFields=$this->getImagesFields($tempModel->schema());
 			$wysiwygFields=$this->getWysiwygFields($tempModel->schema());			
-			$vars = compact('associations', 'validate', 'primaryKey', 'useTable', 'displayField','sluggable','imagesFields','wysiwygFields');
+			$sortable=$this->isSortable($tempModel->schema());
+			$activable=$this->isActivable($tempModel->schema());
+			$isPicture=$this->isPicture($currentModelName);
+			$vars = compact('associations', 'validate', 'primaryKey', 'useTable', 'displayField','sluggable','imagesFields','wysiwygFields','sortable','activable','isPicture');
 			$vars['useDbConfig'] = $this->connection;
 			if ($this->bake($currentModelName, $vars)) {
 				if ($this->_checkUnitTest()) {

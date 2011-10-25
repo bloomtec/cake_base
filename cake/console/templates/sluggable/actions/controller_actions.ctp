@@ -18,19 +18,21 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-
+<?php if(!$admin): ?>
+	
 	function <?php echo $admin ?>beforeFilter() {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+<?php endif;?>
 	
 	function <?php echo $admin ?>index() {
 		$this-><?php echo $currentModelName ?>->recursive = 0;
 		$this->set('<?php echo $pluralName ?>', $this->paginate());
 	}
 
-	function <?php echo $admin ?>view($slug = null) {
-		if (!$slug) {
+	function <?php echo $admin ?>view(<?php if($modelObj->sluggable) echo '$slug = null'; else echo '$id = null'; ?>) {
+		if (<?php if($modelObj->sluggable) echo '!$slug'; else echo '!$id'; ?>) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('Invalid <?php echo strtolower($singularHumanName) ?>', true));
 			$this->redirect(array('action' => 'index'));
@@ -38,10 +40,14 @@
 			$this->flash(__('Invalid <?php echo strtolower($singularHumanName); ?>', true), array('action' => 'index'));
 <?php endif; ?>
 		}
+<?php if($modelObj->sluggable){ ?>
 		$this->set('<?php echo $singularName; ?>', $this-><?php echo $currentModelName; ?>->findBySlug($slug));
+<?php }else{ ?>
+		$this->set('<?php echo $singularName; ?>', $this-><?php echo $currentModelName; ?>->read(null, $id));	
+<?php } ?>
 	}
-
-<?php $compact = array(); ?>
+<?php if($admin):  $compact = array(); ?>
+	
 	function <?php echo $admin ?>add() {
 		if (!empty($this->data)) {
 			$this-><?php echo $currentModelName; ?>->create();
@@ -74,8 +80,9 @@
 	endif;
 ?>
 	}
-
-<?php $compact = array(); ?>
+<?php endif; ?>
+<?php if($admin):  $compact = array(); ?>
+	
 	function <?php echo $admin; ?>edit($id = null) {
 		if (!$id && empty($this->data)) {
 <?php if ($wannaUseSession): ?>
@@ -118,6 +125,8 @@
 		endif;
 	?>
 	}
+<?php endif;?>
+<?php if($admin): ?>
 	
 	function <?php echo $admin; ?>delete($id = null) {
 		if (!$id) {
@@ -143,6 +152,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+<?php endif; ?>	
+<?php if($modelObj->activable && $admin): ?>
 	
 	function <?php echo $admin; ?>setInactive($id = null) {
 		if (!$id) {
@@ -154,7 +165,7 @@
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData["<?php echo $currentModelName; ?>"]["active"]=false;
+		$oldData["<?php echo $currentModelName; ?>"]['is_active']=false;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));
@@ -170,6 +181,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+<?php endif; ?>
+<?php if($modelObj->activable && $admin): ?>
 	
 	function <?php echo $admin; ?>setActive($id = null) {
 		if (!$id) {
@@ -181,7 +194,7 @@
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData["<?php echo $currentModelName; ?>"]["active"]=true;
+		$oldData["<?php echo $currentModelName; ?>"]['is_active']=true;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));
@@ -197,11 +210,17 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+<?php endif;?>
+<?php if($modelObj->sortable && $admin): ?>
 	
-	function <?php echo $admin; ?>requestFind($type,$findParams,$key) {
-	if($key==Configure::read("key")){
-		return $this-><?php echo $currentModelName; ?>->find($type, $findParams);
-	}else{
-		return null;
+	function <?php echo $admin; ?>reOrder(){
+    	foreach($this->data["Item"] as $id=>$position){
+    		$this-><?php echo $currentModelName; ?>->id=$id;
+    		$this-><?php echo $currentModelName; ?>->saveField("sort",$position); 
+    	}
+		echo true;
+		Configure::write('debug', 0);
+		$this->autoRender = false;
+		exit();
 	}
-	}
+<?php endif;?>
