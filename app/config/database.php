@@ -78,8 +78,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => 'root',
-		'database' => 'bloomweb_excelenter',
+		'password' => '',
+		'database' => 'bloomweb_ez',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
