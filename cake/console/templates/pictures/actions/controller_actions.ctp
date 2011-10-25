@@ -18,11 +18,13 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
-
+<?php if(!$admin): ?>
+	
 	function <?php echo $admin ?>beforeFilter() {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+<?php endif;?>
 	
 	function <?php echo $admin ?>index() {
 		$this-><?php echo $currentModelName ?>->recursive = 0;
@@ -40,7 +42,7 @@
 		}
 		$this-><?php echo $currentModelName ?>->recursive = 0;
 		<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-		$this->set('<?php echo $pluralName ?>', $this-><?php echo  $currentModelName ?>->find('all',array('conditions'=>array('<?php echo $parent_id?>'=>$id),'order'=>'sort ASC')));
+		$this->set('<?php echo $pluralName ?>', $this-><?php echo  $currentModelName ?>->find('all',array('conditions'=>array('<?php echo $parent_id?>'=>$id))));
 		$this->set('parent_id',$id);
 			<?php $parentModel=substr($currentModelName,0,strpos($currentModelName, 'Picture'));?>
 		$parent=$this-><?php echo $currentModelName ?>-><?php echo $parentModel ?>->read(null,$id); 
@@ -48,11 +50,10 @@
 			 	 $this->set('parentName',$parent['<?php echo $parentModel ?>']['name']);
 			}else{
 			  if (isset($parent['<?php echo $parentModel;?>']['title'])) $this->set('parentName',$parent['<?php echo $parentModel ?>']['title']);
-			}
-			 
+			}		 
 	}
-
-<?php $compact = array(); ?>
+<?php if($admin):  $compact = array(); ?>
+	
 	function <?php echo $admin ?>add() {
 		if (!empty($this->data)) {
 			$this-><?php echo $currentModelName; ?>->create();
@@ -85,8 +86,9 @@
 	endif;
 ?>
 	}
-
-<?php $compact = array(); ?>
+<?php endif; ?>
+<?php if($admin):  $compact = array(); ?>
+	
 	function <?php echo $admin; ?>edit($id = null) {
 		if (!$id && empty($this->data)) {
 <?php if ($wannaUseSession): ?>
@@ -129,6 +131,8 @@
 		endif;
 	?>
 	}
+<?php endif;?>
+<?php if($admin): ?>
 	
 	function <?php echo $admin; ?>delete($id = null) {
 		if (!$id) {
@@ -139,12 +143,10 @@
 			$this->flash(sprintf(__('Invalid <?php echo strtolower($singularHumanName); ?>', true)), array('action' => 'index'));
 <?php endif; ?>
 		}
-		$toDelete=$this-><?php  echo $currentModelName; ?>->read(null,$id);
 		if ($this-><?php echo $currentModelName; ?>->delete($id)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true));
-			<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
-			$this->redirect(array('action'=>'view',$toDelete['<?php  echo $currentModelName; ?>']['<?php echo $parent_id; ?>']));
+			$this->redirect(array('action'=>'index'));
 <?php else: ?>
 			$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true), array('action' => 'index'));
 <?php endif; ?>
@@ -156,6 +158,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+<?php endif; ?>	
+<?php if($modelObj->activable && $admin): ?>
 	
 	function <?php echo $admin; ?>setInactive($id = null) {
 		if (!$id) {
@@ -167,7 +171,7 @@
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData["<?php echo $currentModelName; ?>"]["active"]=false;
+		$oldData["<?php echo $currentModelName; ?>"]['is_active']=false;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));
@@ -183,6 +187,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
+<?php endif; ?>
+<?php if($modelObj->activable && $admin): ?>
 	
 	function <?php echo $admin; ?>setActive($id = null) {
 		if (!$id) {
@@ -194,7 +200,7 @@
 <?php endif; ?>
 		}
 		$oldData=$this-><?php echo $currentModelName; ?>->read(null,$id);
-		$oldData["<?php echo $currentModelName; ?>"]["active"]=true;
+		$oldData["<?php echo $currentModelName; ?>"]['is_active']=true;
 		if ($this-><?php echo $currentModelName; ?>->save($oldData)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> archived', true));
@@ -210,28 +216,8 @@
 <?php endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
-	function <?php echo $admin; ?>uploadfy_add() {
-	<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id"; ?>
-		if($_POST["name"]&&$_POST["folder"]){
-			if(isset($_POST['parent_id'])){
-				$picture['<?php echo $currentModelName; ?>']['<?php echo $parent_id; ?>']=$_POST["parent_id"];
-				$picture['<?php echo $currentModelName; ?>']['path']=$_POST["name"];
-				$this-><?php echo $currentModelName; ?>->create();
-				$this-><?php echo $currentModelName; ?>->save($picture);
-				echo $this-><?php echo $currentModelName; ?>->id;
-			}else{
-				
-				echo false;
-			}
-			
-		}else{
-			echo false;
-		}
-		
-		Configure::write("debug",0);
-		$this->autoRender=false;
-		exit(0);
-	}
+<?php endif;?>
+<?php if($modelObj->sortable && $admin): ?>
 	
 	function <?php echo $admin; ?>reOrder(){
     	foreach($this->data["Item"] as $id=>$position){
@@ -243,3 +229,4 @@
 		$this->autoRender = false;
 		exit();
 	}
+<?php endif;?>
