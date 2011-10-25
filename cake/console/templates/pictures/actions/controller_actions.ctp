@@ -143,10 +143,12 @@
 			$this->flash(sprintf(__('Invalid <?php echo strtolower($singularHumanName); ?>', true)), array('action' => 'index'));
 <?php endif; ?>
 		}
+		$toDelete=$this-><?php  echo $currentModelName; ?>->read(null,$id);
 		if ($this-><?php echo $currentModelName; ?>->delete($id)) {
 <?php if ($wannaUseSession): ?>
 			$this->Session->setFlash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true));
-			$this->redirect(array('action'=>'index'));
+			<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id";?>
+			$this->redirect(array('action'=>'view',$toDelete['<?php  echo $currentModelName; ?>']['<?php echo $parent_id; ?>']));
 <?php else: ?>
 			$this->flash(__('<?php echo ucfirst(strtolower($singularHumanName)); ?> deleted', true), array('action' => 'index'));
 <?php endif; ?>
@@ -228,5 +230,50 @@
 		Configure::write('debug', 0);
 		$this->autoRender = false;
 		exit();
+	}
+<?php endif;?>
+<?php if($modelObj->isPicture && $admin):?>
+	
+	function <?php echo $admin; ?>uploadfy_add() {
+	<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id"; ?>
+		if($_POST["name"]&&$_POST["folder"]){
+			if(isset($_POST['parent_id'])){
+				$picture['<?php echo $currentModelName; ?>']['<?php echo $parent_id; ?>']=$_POST["parent_id"];
+				$picture['<?php echo $currentModelName; ?>']['path']=$_POST["name"];
+				$this-><?php echo $currentModelName; ?>->create();
+				$this-><?php echo $currentModelName; ?>->save($picture);
+				echo $this-><?php echo $currentModelName; ?>->id;
+			}else{
+				
+				echo false;
+			}
+			
+		}else{function <?php echo $admin; ?>uploadfy_add() {
+	<?php $parent_id=strtolower(substr($currentModelName,0,strpos($currentModelName, 'Picture')))."_id"; ?>
+		if($_POST["name"]&&$_POST["folder"]){
+			if(isset($_POST['parent_id'])){
+				$picture['<?php echo $currentModelName; ?>']['<?php echo $parent_id; ?>']=$_POST["parent_id"];
+				$picture['<?php echo $currentModelName; ?>']['path']=$_POST["name"];
+				$this-><?php echo $currentModelName; ?>->create();
+				$this-><?php echo $currentModelName; ?>->save($picture);
+				echo $this-><?php echo $currentModelName; ?>->id;
+			}else{
+				
+				echo false;
+			}
+			
+		}else{
+			echo false;
+		}
+		
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
+	}
+			echo false;
+		}
+		Configure::write("debug",0);
+		$this->autoRender=false;
+		exit(0);
 	}
 <?php endif;?>
