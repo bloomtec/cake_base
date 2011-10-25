@@ -22,6 +22,11 @@ class SizesController extends AppController {
 	function getSizeIDs($subcategory_id) {
 		return $this->Size->find('list', array('fields'=>array('Size.id'), 'conditions'=>array('Size.subcategory_id'=>$subcategory_id)));
 	}
+	
+	function getASizeID($size_reference, $subcategory_id) {
+		$size = $this->Size->find('first', array('conditions'=>array('Size.subcategory_id'=>$subcategory_id, 'Size.size_reference_id'=>$size_reference)));
+		return $size['Size']['id'];
+	}
 
 	function index() {
 		$this -> Size -> recursive = 0;

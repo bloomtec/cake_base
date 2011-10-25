@@ -36,18 +36,18 @@ class BrandsController extends AppController {
 			 * Buscar en Inventories con el valor de la talla que llega (size_id) y retornar los product_id
 			 * Luego, hacer una condicion tipo "Product.id"=>$product_ids
 			 **/
-			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$this->params['named']['talla']);
+			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$this->params['named']['talla'].'/'.$this->params['named']['subcategoria']);
 			$conditions['Product.id']=$product_ids;
 		}
-	$order=array();
-	if((isset($this->params['named']['orden'])) && (!empty($this->params['named']['orden']))) {
-		if($this->params['named']['orden']=='nuevo'){
-			$order='Product.created desc';
+		$order=array();
+		if((isset($this->params['named']['orden'])) && (!empty($this->params['named']['orden']))) {
+			if($this->params['named']['orden']=='nuevo'){
+				$order='Product.created desc';
+			}
+			if($this->params['named']['orden']=='preferido'){
+				$order='Product.num_visits desc';
+			}
 		}
-		if($this->params['named']['orden']=='preferido'){
-			$order='Product.num_visits desc';
-		}
-	}
 		$this->paginate=array(
 			"Product" => array(
 				'limit' => 35,
