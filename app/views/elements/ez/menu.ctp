@@ -9,6 +9,7 @@
 		<li><a href="">CONTENIDO</a>
 			<ul>
 				<li><a href="/admin/pages">PAGINAS</a></li>
+				<li><a href="/admin/galleryPictures/view/1">GALERIA</a></li>
 				<!--<li><a href="/admin/news">NOTICIAS</a></li>-->
 			</ul>
 		</li>
