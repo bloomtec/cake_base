@@ -10,7 +10,6 @@
 		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
-		<th><?php echo $this->Paginator->sort('backgroundscol');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -31,11 +30,9 @@
 		<td><?php echo $background['Background']['is_active']; ?>&nbsp;</td>
 		<td><?php echo $background['Background']['created']; ?>&nbsp;</td>
 		<td><?php echo $background['Background']['updated']; ?>&nbsp;</td>
-		<td><?php echo $background['Background']['backgroundscol']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $background['Background']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $background['Background']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Gallery', true), array('controller' => 'background_pictures','action'=>'view', $background['Background']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $background['Background']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $background['Background']['id'])); ?>
 			<?php if(isset($background['Background']['active'])&& $background['Background']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $background['Background']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $background['Background']['id']));

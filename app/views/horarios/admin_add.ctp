@@ -1,11 +1,12 @@
 	
-<div class="backgrounds form2">
-<?php echo $this->Form->create('Background');?>
+<div class="horarios form2">
+<?php echo $this->Form->create('Horario');?>
 	<fieldset>
-		<legend><?php __('Add Background'); ?></legend>
+		<legend><?php __('Admin Add Horario'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
+		echo $this->Form->input('color_code');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 		echo $this->Form->input('is_active');
 	?>
@@ -20,7 +21,7 @@
 					 <?php echo $this->Html->image('preview.png');?>
 			</div>
 		</div>
-		<div id="single-upload" controller="backgrounds">
+		<div id="single-upload" controller="horarios">
 		</div>			
 </div>
 

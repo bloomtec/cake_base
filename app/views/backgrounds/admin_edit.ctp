@@ -9,7 +9,6 @@
 		echo $this->Form->input('description');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 		echo $this->Form->input('is_active');
-		echo $this->Form->input('backgroundscol');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

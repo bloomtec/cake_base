@@ -9,7 +9,6 @@
 		echo $this->Form->input('description');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 		echo $this->Form->input('is_active');
-		echo $this->Form->input('backgroundscol');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
@@ -19,7 +18,7 @@
 		<h2>Image</h2>
 		<div class="preview">
 			<div class="wrapper">
-					<?php echo $this->Html->image('uploads/400x400/'.$this->data['Background']['backgroundscol']);?>			</div>
+					<?php echo $this->Html->image('uploads/400x400/'.$this->data['Background']['updated']);?>			</div>
 		</div>
 		<div id="single-upload" controller="backgrounds">
 		</div>			
