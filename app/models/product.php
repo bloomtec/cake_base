@@ -76,20 +76,6 @@ class Product extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		),
-		'Socket' => array(
-			'className' => 'Socket',
-			'foreignKey' => 'socket_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Slot' => array(
-			'className' => 'Slot',
-			'foreignKey' => 'slot_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
 		)
 	);
 
@@ -139,6 +125,21 @@ class Product extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		),
+		'Socket' => array(
+			'className' => 'Socket',
+			'joinTable' => 'products_sockets',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'socket_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
 		'Tag' => array(
 			'className' => 'Tag',
 			'joinTable' => 'products_tags',
@@ -157,10 +158,9 @@ class Product extends AppModel {
 	);
 
 	function beforeSave(){
-		if(isset($this->data['Product']['name'])){
+		if(isset($this->data['Product']['slug'])){
 			$this->data['Product']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Product']['name']));
 		}
 		return true;	
 	}
-
 }

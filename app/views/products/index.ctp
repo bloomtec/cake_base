@@ -5,8 +5,6 @@
 	<tr  >
 		<th><?php echo $this->Paginator->sort('product_type_id');?></th>
 		<th><?php echo $this->Paginator->sort('architecture_id');?></th>
-		<th><?php echo $this->Paginator->sort('socket_id');?></th>
-		<th><?php echo $this->Paginator->sort('slot_id');?></th>
 		<th><?php echo $this->Paginator->sort('is_video_included');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('description');?></th>
@@ -36,12 +34,6 @@
 		</td>
 		<td>
 			<?php echo $this->Html->link($product['Architecture']['name'], array('controller' => 'architectures', 'action' => 'view', $product['Architecture']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($product['Socket']['name'], array('controller' => 'sockets', 'action' => 'view', $product['Socket']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($product['Slot']['name'], array('controller' => 'slots', 'action' => 'view', $product['Slot']['id'])); ?>
 		</td>
 		<td><?php echo $product['Product']['is_video_included']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
