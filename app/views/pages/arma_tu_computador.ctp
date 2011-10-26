@@ -14,6 +14,10 @@
 			<li>Disco duro Secundario</li>
 			<li>Unidad óptica Principal</li>
 			<li>Unidad óptica Secundaria</li>
+			<li>Tarjetas adicionales</li>
+			<li>Torre</li>
+			<li>Monitor</li>
+			<li>Otros periféricos</li>
 		</ul>
 
 		<!-- scrollable items -->
@@ -40,6 +44,27 @@
 					<div class="pagar">
 						<a href="#"></a>
 					</div>
+				</div>
+				<div class="galeria_productos">
+					<a class="anterior active"></a>
+					<ul>
+						<li>
+							<img src="/img/procesador.png" />
+							<p>
+								Lorem ipsum 
+								dolor sit amet
+							</p>
+						</li>
+						<li>
+							<img src="/img/procesador.png" />
+							<p>
+								Lorem ipsum 
+								dolor sit amet
+							</p>
+						</li>
+					</ul>
+					<a class="siguiente"></a>
+
 				</div>
 			</div>
 
