@@ -28,13 +28,13 @@
 </div>
 
 <div class="images">
-		<h2>Image</h2>
-		<div class="preview">
-			<div class="wrapper">
-					 <?php echo $this->Html->image('preview.png');?>
-			</div>
+	<h2>Image</h2>
+	<div class="preview">
+		<div class="wrapper">
+				 <?php echo $this->Html->image('preview.png');?>
 		</div>
-		<div id="single-upload" controller="products">
-		</div>			
+	</div>
+	<div id="single-upload" controller="products">
+	</div>			
 </div>
 
