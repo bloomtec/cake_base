@@ -2,6 +2,12 @@
 class Product extends AppModel {
 	var $name = 'Product';
 	var $displayField = 'name';
+ 	var $imagesFields = array('image');
+	var $isPicture=false;
+	var $sluggable=true;
+	var $sortable=false;
+	var $activable=true;
+
 	var $validate = array(
 		'product_type_id' => array(
 			'numeric' => array(
@@ -33,6 +39,26 @@ class Product extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'is_gamers' => array(
+			'boolean' => array(
+				'rule' => array('boolean'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'is_active' => array(
+			'boolean' => array(
+				'rule' => array('boolean'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
@@ -47,20 +73,6 @@ class Product extends AppModel {
 		'Architecture' => array(
 			'className' => 'Architecture',
 			'foreignKey' => 'architecture_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Socket' => array(
-			'className' => 'Socket',
-			'foreignKey' => 'socket_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Slot' => array(
-			'className' => 'Slot',
-			'foreignKey' => 'slot_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -84,7 +96,7 @@ class Product extends AppModel {
 		'ProductPicture' => array(
 			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
-			'dependent' => true,
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -96,4 +108,59 @@ class Product extends AppModel {
 		)
 	);
 
+
+	var $hasAndBelongsToMany = array(
+		'Slot' => array(
+			'className' => 'Slot',
+			'joinTable' => 'products_slots',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'slot_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'Socket' => array(
+			'className' => 'Socket',
+			'joinTable' => 'products_sockets',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'socket_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'Tag' => array(
+			'className' => 'Tag',
+			'joinTable' => 'products_tags',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'tag_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
+	function beforeSave(){
+		if(isset($this->data['Product']['slug'])){
+			$this->data['Product']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Product']['name']));
+		}
+		return true;	
+	}
 }

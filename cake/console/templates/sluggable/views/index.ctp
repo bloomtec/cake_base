@@ -17,22 +17,48 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
+<?php
+$sortable=false;
+$activable=false;
+$sluggable=false;
+if(in_array('sort', $fields)) $sortable=true;
+if(in_array('is_Active', $fields)) $activable=true;
+if(in_array('slug', $fields)) $sluggable=true;
+
+if($sortable){
+echo "<?php echo \$this->Html->script('sortable');?>";
+}
+?>
+
 <div class="<?php echo $pluralVar;?> index">
 	<h2><?php echo "<?php __('{$pluralHumanName}');?>";?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-	<?php  foreach ($fields as $field):?>
-		<?php if($field=="active"){?>
+	<table cellpadding="0" cellspacing="0" <?php if($sortable){ echo 'id="sortable" controller="'.$pluralVar.'"'; }?>>
+	<tr <?php if($sortable) echo 'class="ui-state-disabled"' ?> >
+<?php if($sortable): ?>
+		<th ><?php echo "<?php echo \$this->Paginator->sort('sort');?>";?></th>
+<?php endif;?>
+<?php  foreach ($fields as $field):?>
+<?php if($field=="is_active"){?>
 		<th><?php echo "<?php echo \$this->Paginator->sort('Status','{$field}');?>";?></th>
-		<?php }else{?>	
-			<?php if($field!="id"&& $field!="slug"){?>
+<?php }else{?>
+<?php if($field!="id" && $field!="slug" && $field!="sort"){?>
 		<th><?php echo "<?php echo \$this->Paginator->sort('{$field}');?>";?></th>
-			<?php } ?>
-		<?php }?>
-	<?php endforeach;?>
+<?php } ?>
+<?php }?>
+<?php endforeach;?>
 		<th class="actions"><?php echo "<?php __('Actions');?>";?></th>
 	</tr>
 	<?php
+	if($sortable){
+	echo "<?php
+	\$i = 0;
+	foreach (\${$pluralVar} as \${$singularVar}):
+		\$class = ' class=\" ui-state-default \"';
+		if (\$i++ % 2 == 0) {
+			\$class = ' class=\"altrow ui-state-default \"';
+		}
+	?>\n";		
+	}else{
 	echo "<?php
 	\$i = 0;
 	foreach (\${$pluralVar} as \${$singularVar}):
@@ -41,11 +67,13 @@
 			\$class = ' class=\"altrow\"';
 		}
 	?>\n";
-	echo "\t<tr<?php echo \$class;?>>\n";
+	}
+	echo "\t<tr<?php echo \$class;?> id='<?php echo \${$singularVar}['{$modelClass}']['id'] ?>'>\n";
+	if($sortable){ 
+		echo "\t\t<td class='sort'>\n\t\t\t<?php echo \${$singularVar}['{$modelClass}']['sort'] ?>\n\t\t</td>\n";
+	}
 		foreach ($fields as $field) {
 			$isKey = false;
-			$isActiveField=false;
-			$isImage=false;
 			$picturesController=false;
 			$asoc=false;
 			$aliases=false;
@@ -71,7 +99,6 @@
 			}
 			if($field=="active"){
 				// active case
-				$isActiveField=true;
 				echo "<?php if(\${$singularVar}['{$modelClass}']['{$field}']){ ?>\n";
 					echo "\t\t<td><?php echo 'Active'; ?>&nbsp;</td>\n";
 				echo "<?php }else{ ?>\n";
@@ -81,17 +108,17 @@
 			}
 			if(strpos($field,"image")===0){
 				// Image Case
-				$isImage=true;
 				echo "\t\t<td><?php echo \$this->Html->image('uploads/100x100/'.\${$singularVar}['{$modelClass}']['{$field}']); ?>&nbsp;</td>\n";			
 			}
-			if ($isKey !== true && $isActiveField!== true && $isImage!==true && $field!="id" && $field!="slug") {
+			if ($isKey !== true && !in_array($field, array('id', 'slug', 'active','sort','image'))) {
 				echo "\t\t<td><?php echo \${$singularVar}['{$modelClass}']['{$field}']; ?>&nbsp;</td>\n";
 			}
 		}
 
 		echo "\t\t<td class=\"actions\">\n";
 		
-		echo "\t\t\t<?php echo \$this->Html->link(__('View', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
+		if($sluggable) echo "\t\t\t<?php echo \$this->Html->link(__('View', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
+		if(!$sluggable) echo "\t\t\t<?php echo \$this->Html->link(__('View', true), array('action' => 'view', \${$singularVar}['{$modelClass}']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";
 		echo "\t\t\t<?php echo \$this->Html->link(__('Edit', true), array('action' => 'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>\n";
 		if($picturesController){
 			echo "\t\t\t<?php echo \$this->Html->link(__('Gallery', true), array('controller' => '$picturesController','action'=>'view', \${$singularVar}['{$modelClass}']['{$primaryKey}']),array('class'=>'view icon','title'=>__('View',true))); ?>\n";	

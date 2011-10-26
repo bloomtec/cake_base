@@ -18,7 +18,7 @@
  * @subpackage    cake.console.libs.templates.objects
  * @since         CakePHP(tm) v 1.3
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- */
+ **/
 
 echo "<?php\n"; ?>
 class <?php echo $name ?> extends <?php echo $plugin; ?>AppModel {
@@ -36,7 +36,28 @@ if ($primaryKey !== 'id'): ?>
 if ($displayField): ?>
 	var $displayField = '<?php echo $displayField; ?>';
 <?php endif;
+if ($sortable): ?>
+	var $order = '<?php echo $name.'.sort asc'; ?>';
+<?php endif;
+if (!$isPicture&&$imagesFields): 
+	$string='';
+	if($imagesFields) foreach($imagesFields as $field){ $string.="'".$field."',";}
+	?>
+ 	var $imagesFields = array(<?php echo substr($string,0,-1); ?>);
+<?php endif;
+if ($wysiwygFields):
+	$string='';
+	if($wysiwygFields) foreach($wysiwygFields as $field){ $string.="'".$field."',";}
+	?>
+	var $wysiwygFields = array(<?php echo substr($string,0,-1); ?>);
+	
+<?php endif; ?>
+	var $isPicture=<?php echo ($isPicture)?'true':'false';?>;
+	var $sluggable=<?php echo ($sluggable)?'true':'false';?>;
+	var $sortable=<?php echo ($sortable)?'true':'false';?>;
+	var $activable=<?php echo ($activable)?'true':'false';?>;
 
+<?php
 if (!empty($validate)):
 	echo "\tvar \$validate = array(\n";
 	foreach ($validate as $field => $validations):
@@ -136,13 +157,15 @@ if (!empty($associations['hasAndBelongsToMany'])):
 		echo $out;
 	endforeach;
 	echo "\n\t);\n\n";
-endif;
+endif; 
+//debug(get_defined_vars());
 ?>
-	
-	function afterSave($created){
-		if($created){
-			$this->data['<?php echo $name; ?>']['sort']=10000;
-			$this->save($this->data);
+	function beforeSave(){
+<?php if($sluggable):?>
+		if(isset($this->data['<?php echo $name; ?>']['slug'])){
+			$this->data['<?php echo $name; ?>']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['<?php echo $name; ?>']['name']));
 		}
+<?php endif;?>
+		return true;	
 	}
 }

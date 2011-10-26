@@ -7,7 +7,10 @@
  */
 ?>
 <?php if(strpos($action,"admin")===0){?>
-<?php echo "<?php echo \$this->Html->css('pictures'); ?>\n"; ?>
+<?php 
+	echo "<?php echo \$this->Html->css('pictures'); ?>\n"; 
+	echo "<?php echo \$this->Html->script('sortable');?>";
+?>
 <div class="gallery_view">
 	<div class="pictures">
 	<h2><?php echo "<?php if(isset(\$parentName)) echo \$this->Html->link(\$parentName,array('controller'=>'".$associations['belongsTo'][substr($modelClass,0,strpos($modelClass, 'Picture'))]['controller']."','action'=>'view', \$parent_id)) ?>" ?> </h2>

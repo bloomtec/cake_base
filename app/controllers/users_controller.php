@@ -5,13 +5,14 @@ class UsersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
+		if (isset($this -> params["prefix"]) && $this -> params["prefix"] == "admin") {
 			$this -> Auth -> logoutRedirect = '/admin';
-		}else{
+		} else {
 			$this -> Auth -> logoutRedirect = '/';
 		}
 		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword');
 	}
+
 	function register() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario		$this->layout='callback';
@@ -50,7 +51,7 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-	
+
 	function login() {
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
@@ -63,11 +64,11 @@ class UsersController extends AppController {
 			}
 		}
 	}
-	
+
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-		
+
 	function profile() {
 
 	}
@@ -94,30 +95,31 @@ class UsersController extends AppController {
 		$roles = $this -> User -> Role -> find('list');
 		$this -> set(compact('roles'));
 	}
-	function changePassword($id=null){
+
+	function changePassword($id = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'profile'));
 		}
-		if(!empty($this->data)){
-			$user=$this->User->findById($id);
-			if($user['User']['password']==$this->Auth->password($this->data['User']['old_password'])){
-				$user['User']['password']=$this->Auth->password($this->data['User']['new_password']);
-				if($this->data['User']['new_password']==$this->data['User']['confirm_password']&&$this->User->save($user)){					
+		if (!empty($this -> data)) {
+			$user = $this -> User -> findById($id);
+			if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
+				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
+				if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
 					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
-					$this -> redirect($this->referer());
-				}else{
+					$this -> redirect($this -> referer());
+				} else {
 					$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
-					$this -> redirect($this->referer());
+					$this -> redirect($this -> referer());
 				}
-				
-			}else{
+
+			} else {
 				$this -> Session -> setFlash(__('Su password anterior no es valido', true));
-				$this -> redirect($this->referer());
+				$this -> redirect($this -> referer());
 			}
 		}
 	}
-	
+
 	function rememberPassword() {
 		if (!empty($this -> data)) {
 			$this -> User -> recursive = 0;
@@ -156,6 +158,7 @@ class UsersController extends AppController {
 		}
 		return $cad;
 	}
+
 	function ajaxLogin() {
 		if ($this -> Auth -> login($this -> data)) {
 			$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
@@ -168,7 +171,7 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-	
+
 	function admin_login() {
 		$this -> layout = "ez/login";
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
@@ -182,7 +185,7 @@ class UsersController extends AppController {
 			}
 		}
 	}
-	
+
 	function admin_index() {
 		$this -> User -> recursive = 0;
 		$this -> set('users', $this -> paginate());

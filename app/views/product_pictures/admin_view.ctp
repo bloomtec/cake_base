@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('pictures'); ?>
-<div class="gallery_view">
+<?php echo $this->Html->script('sortable');?><div class="gallery_view">
 	<div class="pictures">
 	<h2><?php if(isset($parentName)) echo $this->Html->link($parentName,array('controller'=>'products','action'=>'view', $parent_id)) ?> </h2>
 		<ul id='sortable' controller="productPictures">

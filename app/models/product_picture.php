@@ -2,6 +2,12 @@
 class ProductPicture extends AppModel {
 	var $name = 'ProductPicture';
 	var $displayField = 'name';
+	var $order = 'ProductPicture.sort asc';
+	var $isPicture=true;
+	var $sluggable=false;
+	var $sortable=true;
+	var $activable=false;
+
 	var $validate = array(
 		'product_id' => array(
 			'numeric' => array(
@@ -45,11 +51,7 @@ class ProductPicture extends AppModel {
 			'order' => ''
 		)
 	);
-	
-	function afterSave($created){
-		if($created){
-			$this->data['ProductPicture']['sort']=10000;
-			$this->save($this->data);
-		}
+	function beforeSave(){
+		return true;	
 	}
 }
