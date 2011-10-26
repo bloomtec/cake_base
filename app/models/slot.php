@@ -1,6 +1,6 @@
 <?php
-class Role extends AppModel {
-	var $name = 'Role';
+class Slot extends AppModel {
+	var $name = 'Slot';
 	var $displayField = 'name';
 	var $isPicture=false;
 	var $sluggable=false;
@@ -22,9 +22,9 @@ class Role extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'role_id',
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'slot_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -34,6 +34,25 @@ class Role extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
+		)
+	);
+
+
+	var $hasAndBelongsToMany = array(
+		'Product' => array(
+			'className' => 'Product',
+			'joinTable' => 'products_slots',
+			'foreignKey' => 'slot_id',
+			'associationForeignKey' => 'product_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 

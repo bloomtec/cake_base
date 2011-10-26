@@ -24,34 +24,39 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
-	function home(){
-		$this->layout="default";
+
+	function home() {
+		$this -> layout = "default";
 	}
-	function categoria(){
-		$this->layout="categoria";
+
+	function categoria() {
+		$this -> layout = "categoria";
 	}
+
 	function admin_ez() {
 
 	}
-	function admin_layouts(){
+
+	function admin_layouts() {
 		App::import("Folder");
 		$folder = new Folder(LAYOUTS);
-		$layoutsCtp=$folder->read();
+		$layoutsCtp = $folder -> read();
 		$layouts;
-		foreach($layoutsCtp[1] as $layout){
-				$layout=substr($layout,0, -4);
-				$layouts[$layout]=$layout;
+		foreach ($layoutsCtp[1] as $layout) {
+			$layout = substr($layout, 0, -4);
+			$layouts[$layout] = $layout;
 		}
 		return $layouts;
 	}
-	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="ez/file_browser";
-	    App::import("Folder");
-	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
-	    $this->set("folder",$folder->read());
-	    $this->set("folderPath",DS."wysiwyg");
- 	}
-	
+
+	function admin_wysiwyg() {//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+		$this -> layout = "ez/file_browser";
+		App::import("Folder");
+		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
+		$this -> set("folder", $folder -> read());
+		$this -> set("folderPath", DS . "wysiwyg");
+	}
+
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());

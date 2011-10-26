@@ -2,6 +2,12 @@
 class Product extends AppModel {
 	var $name = 'Product';
 	var $displayField = 'name';
+ 	var $imagesFields = array('image');
+	var $isPicture=false;
+	var $sluggable=true;
+	var $sortable=false;
+	var $activable=true;
+
 	var $validate = array(
 		'product_type_id' => array(
 			'numeric' => array(
@@ -26,6 +32,26 @@ class Product extends AppModel {
 		'slug' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'is_gamers' => array(
+			'boolean' => array(
+				'rule' => array('boolean'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'is_active' => array(
+			'boolean' => array(
+				'rule' => array('boolean'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -84,7 +110,7 @@ class Product extends AppModel {
 		'ProductPicture' => array(
 			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
-			'dependent' => true,
+			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -95,5 +121,46 @@ class Product extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+
+
+	var $hasAndBelongsToMany = array(
+		'Slot' => array(
+			'className' => 'Slot',
+			'joinTable' => 'products_slots',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'slot_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'Tag' => array(
+			'className' => 'Tag',
+			'joinTable' => 'products_tags',
+			'foreignKey' => 'product_id',
+			'associationForeignKey' => 'tag_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
+	function beforeSave(){
+		if(isset($this->data['Product']['name'])){
+			$this->data['Product']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Product']['name']));
+		}
+		return true;	
+	}
 
 }

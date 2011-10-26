@@ -66,6 +66,26 @@
 			<?php echo $product['Product']['keywords']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Recommendations'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $product['Product']['recommendations']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Gamers'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $product['Product']['is_gamers']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Active'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $product['Product']['is_active']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Times Visited'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $product['Product']['times_visited']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $product['Product']['created']; ?>
@@ -167,6 +187,96 @@
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Product Picture', true), array('controller' => 'product_pictures', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Slots');?></h3>
+	<?php if (!empty($product['Slot'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('Description'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($product['Slot'] as $slot):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $slot['id'];?></td>
+			<td><?php echo $slot['name'];?></td>
+			<td><?php echo $slot['description'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'slots', 'action' => 'view', $slot['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'slots', 'action' => 'edit', $slot['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'slots', 'action' => 'delete', $slot['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $slot['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Slot', true), array('controller' => 'slots', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Tags');?></h3>
+	<?php if (!empty($product['Tag'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th><?php __('In Gamers'); ?></th>
+		<th><?php __('Sort'); ?></th>
+		<th><?php __('Sort In Gamers'); ?></th>
+		<th><?php __('Description'); ?></th>
+		<th><?php __('Slug'); ?></th>
+		<th><?php __('Keywords'); ?></th>
+		<th><?php __('Created'); ?></th>
+		<th><?php __('Updated'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($product['Tag'] as $tag):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $tag['id'];?></td>
+			<td><?php echo $tag['name'];?></td>
+			<td><?php echo $tag['in_gamers'];?></td>
+			<td><?php echo $tag['sort'];?></td>
+			<td><?php echo $tag['sort_in_gamers'];?></td>
+			<td><?php echo $tag['description'];?></td>
+			<td><?php echo $tag['slug'];?></td>
+			<td><?php echo $tag['keywords'];?></td>
+			<td><?php echo $tag['created'];?></td>
+			<td><?php echo $tag['updated'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'tags', 'action' => 'view', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'tags', 'action' => 'edit', $tag['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'tags', 'action' => 'delete', $tag['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $tag['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Tag', true), array('controller' => 'tags', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

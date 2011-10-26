@@ -1,6 +1,6 @@
 <?php
-class Role extends AppModel {
-	var $name = 'Role';
+class Architecture extends AppModel {
+	var $name = 'Architecture';
 	var $displayField = 'name';
 	var $isPicture=false;
 	var $sluggable=false;
@@ -22,9 +22,22 @@ class Role extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'role_id',
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'architecture_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Socket' => array(
+			'className' => 'Socket',
+			'foreignKey' => 'architecture_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

@@ -1,6 +1,6 @@
 <?php
-class Role extends AppModel {
-	var $name = 'Role';
+class ProductType extends AppModel {
+	var $name = 'ProductType';
 	var $displayField = 'name';
 	var $isPicture=false;
 	var $sluggable=false;
@@ -22,9 +22,9 @@ class Role extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $hasMany = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'role_id',
+		'Product' => array(
+			'className' => 'Product',
+			'foreignKey' => 'product_type_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

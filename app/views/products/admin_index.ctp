@@ -1,37 +1,19 @@
+
 <div class="products index">
 	<h2><?php __('Products');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-				
-									
-					<th><?php echo $this->Paginator->sort('product_type_id');?></th>
-									
-					<th><?php echo $this->Paginator->sort('architecture_id');?></th>
-									
-					<th><?php echo $this->Paginator->sort('socket_id');?></th>
-									
-					<th><?php echo $this->Paginator->sort('slot_id');?></th>
-									
-					<th><?php echo $this->Paginator->sort('is_video_included');?></th>
-									
-					<th><?php echo $this->Paginator->sort('name');?></th>
-									
-					<th><?php echo $this->Paginator->sort('description');?></th>
-									
-					<th><?php echo $this->Paginator->sort('ref');?></th>
-									
-					<th><?php echo $this->Paginator->sort('price');?></th>
-									
-					<th><?php echo $this->Paginator->sort('image');?></th>
-									
-					<th><?php echo $this->Paginator->sort('slug');?></th>
-									
-					<th><?php echo $this->Paginator->sort('keywords');?></th>
-									
-					<th><?php echo $this->Paginator->sort('created');?></th>
-									
-					<th><?php echo $this->Paginator->sort('updated');?></th>
-								<th class="actions"><?php __('Actions');?></th>
+	<table cellpadding="0" cellspacing="0" >
+	<tr  >
+		<th><?php echo $this->Paginator->sort('product_type_id');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('ref');?></th>
+		<th><?php echo $this->Paginator->sort('price');?></th>
+		<th><?php echo $this->Paginator->sort('image');?></th>
+		<th><?php echo $this->Paginator->sort('is_gamers');?></th>
+		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
+		<th><?php echo $this->Paginator->sort('times_visited');?></th>
+		<th><?php echo $this->Paginator->sort('created');?></th>
+		<th><?php echo $this->Paginator->sort('updated');?></th>
+		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -41,31 +23,19 @@
 			$class = ' class="altrow"';
 		}
 	?>
-	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $this->Html->link($product['ProductType']['name'], array('controller' => 'product_types', 'action' => 'view', $product['ProductType']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($product['Architecture']['name'], array('controller' => 'architectures', 'action' => 'view', $product['Architecture']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($product['Socket']['name'], array('controller' => 'sockets', 'action' => 'view', $product['Socket']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $this->Html->link($product['Slot']['name'], array('controller' => 'slots', 'action' => 'view', $product['Slot']['id'])); ?>
-		</td>
-		<td><?php echo $product['Product']['is_video_included']; ?>&nbsp;</td>
+	<tr<?php echo $class;?> id='<?php echo $product['Product']['id'] ?>'>
+		<td><?php echo $product['ProductType']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['description']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['price']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
-		<td><?php echo $product['Product']['slug']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['keywords']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['is_gamers']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['is_active']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['times_visited']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['created']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['updated']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $product['Product']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
 			<?php echo $this->Html->link(__('Gallery', true), array('controller' => 'product_pictures','action'=>'view', $product['Product']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $product['Product']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $product['Product']['id'])); ?>
