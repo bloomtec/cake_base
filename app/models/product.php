@@ -158,9 +158,9 @@ class Product extends AppModel {
 	);
 
 	function beforeSave(){
-		if(isset($this->data['Product']['slug'])){
+		if($this->sluggable) {
 			$this->data['Product']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Product']['name']));
 		}
-		return true;	
+		return true;
 	}
 }

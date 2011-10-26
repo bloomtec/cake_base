@@ -5,7 +5,7 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('getSocketsByArchitecture');
 	}
 	
 	function index() {
@@ -36,6 +36,26 @@ class ProductsController extends AppController {
 	}
 	
 	function admin_formByType($type_id = null) {
+		$this->layout="ajax";
+		$productTypes = $this->Product->ProductType->find('list');
+		$architectures = $this->Product->Architecture->find('list');
+		$slots = $this->Product->Slot->find('list');
+		//$sockets = $this->Product->Socket->find('list');
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>13)));
+		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags', 'type_id'));
+	}
+	
+	function getSocketsByArchitecture($architecture_id = null) {
+		$this->layout="ajax";
+		if($architecture_id) {
+			echo json_encode($this->Product->Socket->find('list', array('conditions'=>array('Socket.architecture_id'=>$architecture_id))));
+		} else {
+			echo null;
+		}
+		exit(0);
+	}
+	
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Product->create();
 			if ($this->Product->save($this->data)) {
@@ -45,15 +65,6 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 			}
 		}
-		$productTypes = $this->Product->ProductType->find('list');
-		$architectures = $this->Product->Architecture->find('list');
-		$slots = $this->Product->Slot->find('list');
-		$sockets = $this->Product->Socket->find('list');
-		$tags = $this->Product->Tag->find('list');
-		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags'));
-	}
-	
-	function admin_add() {
 		$productTypes = $this->Product->ProductType->find('list');
 		$this->set(compact('productTypes'));
 	}
