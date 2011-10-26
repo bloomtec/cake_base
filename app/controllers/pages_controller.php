@@ -32,7 +32,11 @@ class PagesController extends AppController {
 	function categoria() {
 		$this -> layout = "categoria";
 	}
-
+	
+	function armaTuComputador(){
+		$this->layout="personaliza";
+	}
+	
 	function admin_ez() {
 
 	}

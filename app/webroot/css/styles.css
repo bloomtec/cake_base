@@ -490,3 +490,124 @@ span.linea_footer {
 	color:#FFFFFF;
 	font-style:italic;
 }
+#personaliza #content{
+	width: 100%;
+}
+#wizard {
+	overflow:hidden;
+	position:relative;
+}
+
+/* scrollable items */
+#wizard .items {
+	width:20000em;
+	clear:both;
+	/*position:absolute;*/
+}
+
+/* single scrollable item called ".page" in this setup */
+#wizard .page {
+	padding:20px 30px;
+	width:885px;
+	float:left;
+	border-bottom:1px solid #cbcaca;
+	border-left:1px solid #cbcaca;
+	border-right:1px solid #cbcaca;
+}
+#wizard #status{
+	background-color: #ababab;
+	height: 60px;
+	
+}
+#wizard li{
+	display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 15px 15px;
+    cursor: pointer;
+    border-right: 1px solid #cbcaca;
+    color: #fff;
+    margin-top: 8px;
+
+}
+#wizard li.active{
+	background-color: #fff;
+	border-top:1px solid #cbcaca;
+	border-left:1px solid #cbcaca;
+	border-right:1px solid #cbcaca;
+	color: #424242;
+	padding: 24px 15px;
+	margin-top: 0;
+}
+/* validation error message bar. positioned on the top edge */
+#drawer {
+	overflow:visible;
+	position:fixed;
+	left:0;
+	top:0;
+}
+.info_wrapper{
+	float: right;
+	width: 290px;
+	margin-right: 50px;
+	margin-top: 30px;
+}
+.info_wrapper h1{
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 12px;
+}
+.info_wrapper p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.info_wrapper label{
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12px;
+	color: #ff7800;
+	display: block;
+	margin-top: 16px;
+}
+.info_wrapper select{
+	width: 135px;
+	margin-bottom: 31px;
+	margin-top: 7px;
+}
+.siguiente_paso, .pagar{
+	float: left;
+	width: auto;
+}
+.siguiente_paso{
+	margin-left: 45px;
+}
+.siguiente_paso a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 12px;
+	color: #ff7800;
+	background-image:url(/img/flecha_siguiente_paso.png);
+	padding-right: 27px;
+	background-repeat: no-repeat;
+	background-position: top right; 
+	display: block;
+	width: 112px;
+	padding: 5px;
+	text-decoration: none;
+	
+}
+.pagar{
+	margin-left: 12px;
+
+}
+.pagar a{
+	display: block;
+	background-image: url(/img/btn_pagar.png);
+	width: 94px;
+	height: 40px;
+}
