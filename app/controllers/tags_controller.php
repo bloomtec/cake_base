@@ -32,6 +32,7 @@ class TagsController extends AppController {
 			$this->Session->setFlash(__('Invalid tag', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		$this->Tag->recursive=2;
 		$this->set('tag', $this->Tag->findBySlug($slug));
 	}
 	
