@@ -55,10 +55,12 @@
 	<body>
 		<div id="container">
 			<div id="header">
+				<?php echo $this -> element('languages') ?>
+				<div style='clear:both;'></div>
 				<h1 class="logo_interna"></h1>
 				<?php echo $this -> element("ez/menu");?>
-				<div style='clear:both;'></div>
-				<?php echo $this -> element('languages') ?>
+				
+				
 			</div>
 			<div id="content">
 				<?php echo $this -> Session -> flash();?>
