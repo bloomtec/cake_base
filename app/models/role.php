@@ -2,6 +2,11 @@
 class Role extends AppModel {
 	var $name = 'Role';
 	var $displayField = 'name';
+	var $isPicture=false;
+	var $sluggable=false;
+	var $sortable=false;
+	var $activable=false;
+
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -32,4 +37,7 @@ class Role extends AppModel {
 		)
 	);
 
+	function beforeSave(){
+		return true;	
+	}
 }

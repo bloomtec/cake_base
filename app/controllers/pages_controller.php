@@ -20,44 +20,60 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this -> layout = "construccion";
+		$this -> layout = "default";
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
 
+	function home() {
+		$this -> layout = "default";
+	}
+
+	function categoria() {
+		$this -> layout = "categoria";
+	}
+	
+	function armaTuComputador(){
+		$this->layout="personaliza";
+	}
+	
 	function admin_ez() {
 
 	}
-	function admin_layouts(){
+
+	function admin_layouts() {
 		App::import("Folder");
 		$folder = new Folder(LAYOUTS);
-		$layoutsCtp=$folder->read();
+		$layoutsCtp = $folder -> read();
 		$layouts;
-		foreach($layoutsCtp[1] as $layout){
-				$layout=substr($layout,0, -4);
-				$layouts[$layout]=$layout;
+		foreach ($layoutsCtp[1] as $layout) {
+			$layout = substr($layout, 0, -4);
+			$layouts[$layout] = $layout;
 		}
 		return $layouts;
 	}
-	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="ez/file_browser";
-	    App::import("Folder");
-	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
-	    $this->set("folder",$folder->read());
-	    $this->set("folderPath",DS."wysiwyg");
- 	}
-	
+
+	function admin_wysiwyg() {//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+		$this -> layout = "ez/file_browser";
+		App::import("Folder");
+		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
+		$this -> set("folder", $folder -> read());
+		$this -> set("folderPath", DS . "wysiwyg");
+	}
+
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}
 
-	function view($id = null) {
-		if (!$id) {
+	function view($slug = null) {
+		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> set('page', $this -> Page -> read(null, $id));
+		$page=$this -> Page -> findBySlug($slug);
+		$this->layout=$page['Page']['layout'];
+		$this -> set('page', $page);
 	}
 
 	function add() {

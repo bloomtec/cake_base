@@ -2,33 +2,40 @@
 class Page extends AppModel {
 	var $name = 'Page';
 	var $displayField = 'name';
+	var $wysiwygFields = array('wysiwyg_content');
+	
+	var $isPicture = false;
+	var $sluggable = true;
+	var $sortable = false;
+	var $activable = false;
+
+	
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
-				'rule' => array(
-					'notempty'
-				),
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'isUnique' => array(
-				'rule' => array(
-					'isUnique'
-				),
-				'message' => 'The name you entered is already created',
+		),
+		'slug' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		
 	);
 	function beforeSave(){
-		$this->data['Page']['slug']=strtolower(str_ireplace(" ", "-", $this->data['Page']['name']));
-		return true;
+		if($this->sluggable){
+			$this->data['Page']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Page']['name']));
+		}
+		return true;	
 	}
 }

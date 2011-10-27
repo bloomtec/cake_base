@@ -9,7 +9,8 @@ class AppController extends Controller {
 				'password' => 'password'
 			)
 		),
-		'Email'
+		'Email',
+		'Language', 
 	);
 	
 	function beforeFilter() {
