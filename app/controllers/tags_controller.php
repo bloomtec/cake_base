@@ -5,7 +5,7 @@ class TagsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('filtrofiltro','view','index');
 	}
 	
 	function index() {
@@ -24,6 +24,9 @@ class TagsController extends AppController {
 		$this->set('products',$this->paginate('Product'));
 	}
 	
+	function filtro(){
+		$this->layout='ajax';
+	}
 	
 	function admin_index() {
 		$this->Tag->recursive = 0;
