@@ -82,10 +82,10 @@ class UsersController extends AppController {
 			if (!empty($this -> data['User']['pass']))
 				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
 			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 				$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
 		if (empty($this -> data)) {

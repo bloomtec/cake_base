@@ -16,8 +16,8 @@
 		<li><a href="">AMARILLO2</a>
 			<ul>
 				<li><a href="/admin/backgrounds"><?php __('Backgrounds') ?></a></li>
-				<li><a href="/admin/horarios"><?php __('Houar Timer') ?></a></li>
-				<li><a href="/admin/minuteros"><?php __('Minute Timer') ?></a></li>
+				<li><a href="/admin/horarios"><?php __('Hour Hands') ?></a></li>
+				<li><a href="/admin/minuteros"><?php __('Minute Hands') ?></a></li>
 			</ul>
 		</li>
 		<li><a href="/admin/users"><?php __('USERS') ?> </a>

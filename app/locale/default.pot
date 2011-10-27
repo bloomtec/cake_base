@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2011-10-26 12:08-0500\n"
+"POT-Creation-Date: 2011-10-26 21:47-0500\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -14,14 +14,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: /app_controller.php:70
+#: /app_controller.php:71
 #: /controllers/comments_controller.php:28;45;130;147
 msgid "The comment has been saved"
 msgstr ""
 
-#: /app_controller.php:73
+#: /app_controller.php:74
 #: /controllers/comments_controller.php:31;48;133;150
 msgid "The comment could not be saved. Please, try again."
+msgstr ""
+
+#: /config/bootstrap.php:52
+msgid "English"
+msgstr ""
+
+#: /config/bootstrap.php:53
+msgid "Spanish"
 msgstr ""
 
 #: /controllers/backgrounds_controller.php:18;33;53
@@ -461,6 +469,7 @@ msgstr ""
 
 #: /views/backgrounds/admin_index.ctp:3
 #: /views/backgrounds/index.ctp:3
+#: /views/elements/ez/menu.ctp:18
 msgid "Backgrounds"
 msgstr ""
 
@@ -484,7 +493,7 @@ msgstr ""
 #: /views/menus/admin_view.ctp:27;51
 #: /views/minuteros/admin_index.ctp:14
 #: /views/minuteros/index.ctp:14
-#: /views/pages/admin_index.ctp:15
+#: /views/pages/admin_index.ctp:11
 #: /views/pages/index.ctp:21
 msgid "Actions"
 msgstr ""
@@ -504,7 +513,7 @@ msgstr ""
 #: /views/menus/admin_view.ctp:72
 #: /views/minuteros/admin_index.ctp:36;36
 #: /views/minuteros/index.ctp:36;36
-#: /views/pages/admin_index.ctp:38;38
+#: /views/pages/admin_index.ctp:34;34
 #: /views/pages/index.ctp:45;45
 msgid "View"
 msgstr ""
@@ -524,7 +533,7 @@ msgstr ""
 #: /views/menus/admin_view.ctp:73
 #: /views/minuteros/admin_index.ctp:37;37
 #: /views/minuteros/index.ctp:37;37
-#: /views/pages/admin_index.ctp:39;39
+#: /views/pages/admin_index.ctp:35;35
 #: /views/pages/index.ctp:46;46
 msgid "Edit"
 msgstr ""
@@ -549,7 +558,7 @@ msgstr ""
 #: /views/menus/admin_view.ctp:74
 #: /views/minuteros/admin_index.ctp:38;38
 #: /views/minuteros/index.ctp:38;38
-#: /views/pages/admin_index.ctp:40;40
+#: /views/pages/admin_index.ctp:36;36
 #: /views/pages/index.ctp:47;47
 msgid "Delete"
 msgstr ""
@@ -575,7 +584,7 @@ msgstr ""
 #: /views/menus/admin_view.ctp:30;74
 #: /views/minuteros/admin_index.ctp:38
 #: /views/minuteros/index.ctp:38
-#: /views/pages/admin_index.ctp:40
+#: /views/pages/admin_index.ctp:36
 #: /views/pages/index.ctp:47
 msgid "Are you sure you want to delete # %s?"
 msgstr ""
@@ -590,7 +599,6 @@ msgstr ""
 #: /views/horarios/index.ctp:40;43
 #: /views/minuteros/admin_index.ctp:40;43
 #: /views/minuteros/index.ctp:40;43
-#: /views/pages/admin_index.ctp:42;45
 #: /views/pages/index.ctp:49;52
 msgid " "
 msgstr ""
@@ -605,7 +613,7 @@ msgstr ""
 #: /views/horarios/index.ctp:40
 #: /views/minuteros/admin_index.ctp:40
 #: /views/minuteros/index.ctp:40
-#: /views/pages/admin_index.ctp:42
+#: /views/pages/admin_index.ctp:38;38
 #: /views/pages/index.ctp:49
 msgid "Set Inactive"
 msgstr ""
@@ -620,7 +628,7 @@ msgstr ""
 #: /views/horarios/index.ctp:40
 #: /views/minuteros/admin_index.ctp:40
 #: /views/minuteros/index.ctp:40
-#: /views/pages/admin_index.ctp:42
+#: /views/pages/admin_index.ctp:38
 #: /views/pages/index.ctp:49
 msgid "Are you sure you want to set inactive # %s?"
 msgstr ""
@@ -635,7 +643,7 @@ msgstr ""
 #: /views/horarios/index.ctp:43
 #: /views/minuteros/admin_index.ctp:43
 #: /views/minuteros/index.ctp:43
-#: /views/pages/admin_index.ctp:45
+#: /views/pages/admin_index.ctp:41;41
 #: /views/pages/index.ctp:52
 msgid "Set Active"
 msgstr ""
@@ -650,7 +658,7 @@ msgstr ""
 #: /views/horarios/index.ctp:43
 #: /views/minuteros/admin_index.ctp:43
 #: /views/minuteros/index.ctp:43
-#: /views/pages/admin_index.ctp:45
+#: /views/pages/admin_index.ctp:41
 #: /views/pages/index.ctp:52
 msgid "Are you sure you want to set active # %s?"
 msgstr ""
@@ -667,7 +675,7 @@ msgstr ""
 #: /views/menus/admin_index.ctp:35
 #: /views/minuteros/admin_index.ctp:52
 #: /views/minuteros/index.ctp:52
-#: /views/pages/admin_index.ctp:53
+#: /views/pages/admin_index.ctp:49
 #: /views/pages/index.ctp:60
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
 msgstr ""
@@ -684,7 +692,7 @@ msgstr ""
 #: /views/menus/admin_index.ctp:40
 #: /views/minuteros/admin_index.ctp:57
 #: /views/minuteros/index.ctp:57
-#: /views/pages/admin_index.ctp:58
+#: /views/pages/admin_index.ctp:54
 #: /views/pages/index.ctp:65
 msgid "previous"
 msgstr ""
@@ -701,7 +709,7 @@ msgstr ""
 #: /views/menus/admin_index.ctp:43
 #: /views/minuteros/admin_index.ctp:60
 #: /views/minuteros/index.ctp:60
-#: /views/pages/admin_index.ctp:61
+#: /views/pages/admin_index.ctp:57
 #: /views/pages/index.ctp:68
 msgid "next"
 msgstr ""
@@ -716,7 +724,7 @@ msgstr ""
 #: /views/horarios/index.ctp:64
 #: /views/minuteros/admin_index.ctp:64
 #: /views/minuteros/index.ctp:64
-#: /views/pages/admin_index.ctp:65
+#: /views/pages/admin_index.ctp:61
 #: /views/pages/index.ctp:72
 msgid "Add"
 msgstr ""
@@ -898,6 +906,52 @@ msgstr ""
 msgid "Edit Comment"
 msgstr ""
 
+#: /views/elements/ez/menu.ctp:2
+msgid "HOME"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:9
+msgid "CONTENT"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:11
+#: /views/pages/admin_index.ctp:2
+#: /views/pages/index.ctp:2
+msgid "Pages"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:12
+#: /views/galleries/admin_index.ctp:30
+#: /views/galleries/admin_view.ctp:2
+#: /views/galleries/index.ctp:30
+#: /views/galleries/view.ctp:2
+msgid "Gallery"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:19
+msgid "Hour Hands"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:20
+msgid "Minute Hands"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:23
+msgid "USERS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:25
+msgid "List Users"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:26
+msgid "Add User"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:29
+msgid "LOG OUT"
+msgstr ""
+
 #: /views/galleries/add.ctp:4
 msgid "Add Gallery"
 msgstr ""
@@ -913,13 +967,6 @@ msgstr ""
 #: /views/galleries/admin_index.ctp:3
 #: /views/galleries/index.ctp:3
 msgid "Galleries"
-msgstr ""
-
-#: /views/galleries/admin_index.ctp:30
-#: /views/galleries/admin_view.ctp:2
-#: /views/galleries/index.ctp:30
-#: /views/galleries/view.ctp:2
-msgid "Gallery"
 msgstr ""
 
 #: /views/galleries/admin_view.ctp:19
@@ -1019,7 +1066,7 @@ msgstr ""
 msgid "Web site:"
 msgstr ""
 
-#: /views/layouts/ez/ez.ctp:67
+#: /views/layouts/ez/ez.ctp:71
 #: /views/layouts/ez/login.ctp:56
 msgid "Bloom Web Company"
 msgstr ""
@@ -1183,11 +1230,6 @@ msgstr ""
 
 #: /views/pages/admin_edit.ctp:4
 msgid "Admin Edit Page"
-msgstr ""
-
-#: /views/pages/admin_index.ctp:2
-#: /views/pages/index.ctp:2
-msgid "Pages"
 msgstr ""
 
 #: /views/pages/admin_view.ctp:2

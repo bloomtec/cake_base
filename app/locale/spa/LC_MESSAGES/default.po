@@ -3,27 +3,35 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Amarillo2\n"
-"POT-Creation-Date: 2011-10-26 12:08-0500\n"
-"PO-Revision-Date: 2011-10-26 15:45-0500\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-10-26 21:47-0500\n"
+"PO-Revision-Date: 2011-10-26 22:43-0500\n"
 "Last-Translator: Ricardo Pandales <ricardopandales@gmail.com>\n"
-"Language-Team: bloom\n"
+"Language-Team: BLOOM WEB COMPANY\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1 );\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: Colombia\n"
 
-#: /app_controller.php:70
+#: /app_controller.php:71
 #: /controllers/comments_controller.php:28;45;130;147
 msgid "The comment has been saved"
 msgstr "El comentario ha sido guardado"
 
-#: /app_controller.php:73
+#: /app_controller.php:74
 #: /controllers/comments_controller.php:31;48;133;150
 msgid "The comment could not be saved. Please, try again."
-msgstr "No se pudo guardar el comentario, Por favor, Intente de nuevo"
+msgstr "No se pudo guardar el comentario. Por favor, intenta de nuevo."
+
+#: /config/bootstrap.php:52
+msgid "English"
+msgstr "Ingles"
+
+#: /config/bootstrap.php:53
+msgid "Spanish"
+msgstr "Español"
 
 #: /controllers/backgrounds_controller.php:18;33;53
 msgid "Invalid background"
@@ -31,27 +39,27 @@ msgstr "Fondo no valido"
 
 #: /controllers/backgrounds_controller.php:43;58
 msgid "The background has been saved"
-msgstr "El Fondo ha sido guardado"
+msgstr "El fondo ha sido guardado"
 
 #: /controllers/backgrounds_controller.php:46;61
 msgid "The background could not be saved. Please, try again."
-msgstr "No se pudo guardr el fondo, Por favor, Intente de nuevo"
+msgstr "No se pudo guardar el fondo. Por favor, intenta de nuevo."
 
 #: /controllers/backgrounds_controller.php:72;86;102
 msgid "Invalid id for background"
-msgstr "Fondo no valido"
+msgstr "Fondo no valido."
 
 #: /controllers/backgrounds_controller.php:76
 msgid "Background deleted"
-msgstr "Fondo no borrado"
+msgstr "Fondo borrado"
 
 #: /controllers/backgrounds_controller.php:79
 msgid "Background was not deleted"
-msgstr "El fondo no fue guardado"
+msgstr "El fondo no fue borrado"
 
 #: /controllers/backgrounds_controller.php:92;108
 msgid "Background archived"
-msgstr "Fondo Archivado"
+msgstr "Fondo archivado"
 
 #: /controllers/backgrounds_controller.php:95;111
 msgid "Background was not archived"
@@ -67,235 +75,235 @@ msgstr "Comentario no valido"
 
 #: /controllers/comments_controller.php:64;166
 msgid "Comment deleted"
-msgstr "Comentario borrao"
+msgstr "Comentario borrado"
 
 #: /controllers/comments_controller.php:67;169
 msgid "Comment was not deleted"
-msgstr ""
+msgstr "El comentario no fue borrado"
 
 #: /controllers/comments_controller.php:79;94;181;196
 msgid "Comment archived"
-msgstr ""
+msgstr "Comentario Archivado"
 
 #: /controllers/comments_controller.php:82;97;184;199
 msgid "Comment was not archived"
-msgstr ""
+msgstr "El comentario no fue archivado"
 
 #: /controllers/galleries_controller.php:18;32;52
 msgid "Invalid gallery"
-msgstr ""
+msgstr "Galeria no valida"
 
 #: /controllers/galleries_controller.php:42;57
 msgid "The gallery has been saved"
-msgstr ""
+msgstr "La galeria ha sido guardada"
 
 #: /controllers/galleries_controller.php:45;60
 msgid "The gallery could not be saved. Please, try again."
-msgstr ""
+msgstr "No se pudo guardar la Galeria. Por favor, intenta de nuevo."
 
 #: /controllers/galleries_controller.php:70
 msgid "Invalid id for gallery"
-msgstr ""
+msgstr "Galeria no valida"
 
 #: /controllers/galleries_controller.php:74
 msgid "Gallery deleted"
-msgstr ""
+msgstr "Galeria borrada"
 
 #: /controllers/galleries_controller.php:77
 msgid "Gallery was not deleted"
-msgstr ""
+msgstr "La galeria no fue borrada"
 
 #: /controllers/gallery_pictures_controller.php:18;40;70
 msgid "Invalid gallery picture"
-msgstr ""
+msgstr "Foto de galeria no valida"
 
 #: /controllers/gallery_pictures_controller.php:58;75
 msgid "The gallery picture has been saved"
-msgstr ""
+msgstr "La foto ha sido guardada"
 
 #: /controllers/gallery_pictures_controller.php:61;78
 msgid "The gallery picture could not be saved. Please, try again."
-msgstr ""
+msgstr "La foto no se pudo guardar, Por favor, intenta de nuevo"
 
 #: /controllers/gallery_pictures_controller.php:90
 msgid "Invalid id for gallery picture"
-msgstr ""
+msgstr "Foto no valida"
 
 #: /controllers/gallery_pictures_controller.php:95
 msgid "Gallery picture deleted"
-msgstr ""
+msgstr "Foto de galeria borrada"
 
 #: /controllers/gallery_pictures_controller.php:98
 msgid "Gallery picture was not deleted"
-msgstr ""
+msgstr "La foto de la galeria no fue borrada"
 
 #: /controllers/horarios_controller.php:18;32;52
 msgid "Invalid horario"
-msgstr ""
+msgstr "Horario no valido"
 
 #: /controllers/horarios_controller.php:42;57
 msgid "The horario has been saved"
-msgstr ""
+msgstr "El horario ha sido guardado"
 
 #: /controllers/horarios_controller.php:45;60
 msgid "The horario could not be saved. Please, try again."
-msgstr ""
+msgstr "No se pudo guardar el horario. Por favor, intenta de nuevo."
 
 #: /controllers/horarios_controller.php:70;84;99
 msgid "Invalid id for horario"
-msgstr ""
+msgstr "Horario no valido"
 
 #: /controllers/horarios_controller.php:74
 msgid "Horario deleted"
-msgstr ""
+msgstr "Horario borrado"
 
 #: /controllers/horarios_controller.php:77
 msgid "Horario was not deleted"
-msgstr ""
+msgstr "El horario no fue borrado"
 
 #: /controllers/horarios_controller.php:90;105
 msgid "Horario archived"
-msgstr ""
+msgstr "Horario archivado"
 
 #: /controllers/horarios_controller.php:93;108
 msgid "Horario was not archived"
-msgstr ""
+msgstr "El horario no fue archivado"
 
 #: /controllers/menu_items_controller.php:110;139
 msgid "Invalid menu item"
-msgstr ""
+msgstr "Iten de menu no valido"
 
 #: /controllers/menu_items_controller.php:120;144
 msgid "The menu item has been saved"
-msgstr ""
+msgstr "El item del menu ha sido guardado"
 
 #: /controllers/menu_items_controller.php:123;147
 msgid "The menu item could not be saved. Please, try again."
-msgstr ""
+msgstr "No se pudo guardar el item del menu. Por favor, intenta de nuevo"
 
 #: /controllers/menu_items_controller.php:166;179;194
 msgid "Invalid id for menu item"
-msgstr ""
+msgstr "Item del menu no valido"
 
 #: /controllers/menu_items_controller.php:170
 msgid "Menu item deleted"
-msgstr ""
+msgstr "Iten borrado"
 
 #: /controllers/menu_items_controller.php:173
 msgid "Menu item was not deleted"
-msgstr ""
+msgstr "No se pudo borrar el item del menu"
 
 #: /controllers/menu_items_controller.php:185;200
 msgid "Menu item archived"
-msgstr ""
+msgstr "Item del menu archivado"
 
 #: /controllers/menu_items_controller.php:188;203
 msgid "Menu item was not archived"
-msgstr ""
+msgstr "No se pudo archivar el iten del menu"
 
 #: /controllers/menus_controller.php:35;55
 msgid "Invalid menu"
-msgstr ""
+msgstr "Menu no valido"
 
 #: /controllers/menus_controller.php:45;60
 msgid "The menu has been saved"
-msgstr ""
+msgstr "El menu ha sido guardado"
 
 #: /controllers/menus_controller.php:48;63
 msgid "The menu could not be saved. Please, try again."
-msgstr ""
+msgstr "No se pudo guardar el menu. Por favor, intenta de nuevo"
 
 #: /controllers/menus_controller.php:73;86;101
 msgid "Invalid id for menu"
-msgstr ""
+msgstr "Menu no valido"
 
 #: /controllers/menus_controller.php:77
 msgid "Menu deleted"
-msgstr ""
+msgstr "Menu borrado"
 
 #: /controllers/menus_controller.php:80
 msgid "Menu was not deleted"
-msgstr ""
+msgstr "El menu no se pudo borrar"
 
 #: /controllers/menus_controller.php:92;107
 msgid "Menu archived"
-msgstr ""
+msgstr "Menu archivado"
 
 #: /controllers/menus_controller.php:95;110
 msgid "Menu was not archived"
-msgstr ""
+msgstr "No se pudo archivar el menu"
 
 #: /controllers/minuteros_controller.php:18;32;52
 msgid "Invalid minutero"
-msgstr ""
+msgstr "Minutero no valido"
 
 #: /controllers/minuteros_controller.php:42;57
 msgid "The minutero has been saved"
-msgstr ""
+msgstr "El minutero ha sido guardado"
 
 #: /controllers/minuteros_controller.php:45;60
 msgid "The minutero could not be saved. Please, try again."
-msgstr ""
+msgstr "No se pudo guardar el minutero. Por favor, intenta de nuevo."
 
 #: /controllers/minuteros_controller.php:70;84;99
 msgid "Invalid id for minutero"
-msgstr ""
+msgstr "Minutero no valido"
 
 #: /controllers/minuteros_controller.php:74
 msgid "Minutero deleted"
-msgstr ""
+msgstr "Minutero borrado"
 
 #: /controllers/minuteros_controller.php:77
 msgid "Minutero was not deleted"
-msgstr ""
+msgstr "No se pudo cerrar el minutero"
 
 #: /controllers/minuteros_controller.php:90;105
 msgid "Minutero archived"
-msgstr ""
+msgstr "Minutero archivado"
 
 #: /controllers/minuteros_controller.php:93;108
 msgid "Minutero was not archived"
-msgstr ""
+msgstr "No se pudo archivar el minutero"
 
 #: /controllers/pages_controller.php:65;85;151;171
 msgid "Invalid page"
-msgstr ""
+msgstr "Página no valida"
 
 #: /controllers/pages_controller.php:75;90;161;176
 msgid "The page has been saved"
-msgstr ""
+msgstr "La página ha sido guardada"
 
 #: /controllers/pages_controller.php:78;93;164;179
 msgid "The page could not be saved. Please, try again."
-msgstr ""
+msgstr "La página no se pudo guardar. Por favor, intenta de nuevo"
 
 #: /controllers/pages_controller.php:103;116;131;189;202;217
 msgid "Invalid id for page"
-msgstr ""
+msgstr "Página no valida"
 
 #: /controllers/pages_controller.php:107;193
 msgid "Page deleted"
-msgstr ""
+msgstr "Página borrada"
 
 #: /controllers/pages_controller.php:110;196
 msgid "Page was not deleted"
-msgstr ""
+msgstr "No se pudo borrar la página"
 
 #: /controllers/pages_controller.php:122;137;208;223
 msgid "Page archived"
-msgstr ""
+msgstr "Página archivada"
 
 #: /controllers/pages_controller.php:125;140;211;226
 msgid "Page was not archived"
-msgstr ""
+msgstr "No se pudo archivar la página"
 
 #: /controllers/users_controller.php:21;210;230
 msgid "The user could not be saved. Please, try again."
-msgstr ""
+msgstr "El usuario no se pudo guardar. Por favor, intenta de nuevo."
 
 #: /controllers/users_controller.php:77
 msgid "Usuario no valid"
-msgstr ""
+msgstr "Usuario no valido"
 
 #: /controllers/users_controller.php:85
 msgid "Tus datos se han actualizado"
@@ -307,7 +315,7 @@ msgstr ""
 
 #: /controllers/users_controller.php:99;197;219
 msgid "Invalid user"
-msgstr ""
+msgstr "Usuario no valido"
 
 #: /controllers/users_controller.php:107
 msgid "Se ha actualizado tu password"
@@ -323,19 +331,19 @@ msgstr ""
 
 #: /controllers/users_controller.php:207;227
 msgid "The user has been saved"
-msgstr ""
+msgstr "El usuario se ha guardado"
 
 #: /controllers/users_controller.php:242
 msgid "Invalid id for user"
-msgstr ""
+msgstr "Usuario no valido"
 
 #: /controllers/users_controller.php:246
 msgid "User deleted"
-msgstr ""
+msgstr "Usuario borrado"
 
 #: /controllers/users_controller.php:249
 msgid "User was not deleted"
-msgstr ""
+msgstr "No se pudo borrar el usuario"
 
 #: /plugins/acl_extras/vendors/shells/acl_extras.php:87
 msgid "Available ACO sync commands:"
@@ -415,7 +423,7 @@ msgstr ""
 
 #: /views/backgrounds/add.ctp:5
 msgid "Add Background"
-msgstr ""
+msgstr "Añadir Fondo"
 
 #: /views/backgrounds/add.ctp:13
 #: /views/backgrounds/admin_add.ctp:13
@@ -454,14 +462,15 @@ msgstr "Enviar"
 
 #: /views/backgrounds/admin_add.ctp:5
 msgid "Admin Add Background"
-msgstr ""
+msgstr "Añadir Fondo"
 
 #: /views/backgrounds/admin_edit.ctp:5
 msgid "Admin Edit Background"
-msgstr ""
+msgstr "Modificar Fondo"
 
 #: /views/backgrounds/admin_index.ctp:3
 #: /views/backgrounds/index.ctp:3
+#: /views/elements/ez/menu.ctp:18
 msgid "Backgrounds"
 msgstr "Fondos"
 
@@ -485,7 +494,7 @@ msgstr "Fondos"
 #: /views/menus/admin_view.ctp:27;51
 #: /views/minuteros/admin_index.ctp:14
 #: /views/minuteros/index.ctp:14
-#: /views/pages/admin_index.ctp:15
+#: /views/pages/admin_index.ctp:11
 #: /views/pages/index.ctp:21
 msgid "Actions"
 msgstr "Acciones"
@@ -505,7 +514,7 @@ msgstr "Acciones"
 #: /views/menus/admin_view.ctp:72
 #: /views/minuteros/admin_index.ctp:36;36
 #: /views/minuteros/index.ctp:36;36
-#: /views/pages/admin_index.ctp:38;38
+#: /views/pages/admin_index.ctp:34;34
 #: /views/pages/index.ctp:45;45
 msgid "View"
 msgstr "Ver"
@@ -525,7 +534,7 @@ msgstr "Ver"
 #: /views/menus/admin_view.ctp:73
 #: /views/minuteros/admin_index.ctp:37;37
 #: /views/minuteros/index.ctp:37;37
-#: /views/pages/admin_index.ctp:39;39
+#: /views/pages/admin_index.ctp:35;35
 #: /views/pages/index.ctp:46;46
 msgid "Edit"
 msgstr "Modificar"
@@ -550,7 +559,7 @@ msgstr "Modificar"
 #: /views/menus/admin_view.ctp:74
 #: /views/minuteros/admin_index.ctp:38;38
 #: /views/minuteros/index.ctp:38;38
-#: /views/pages/admin_index.ctp:40;40
+#: /views/pages/admin_index.ctp:36;36
 #: /views/pages/index.ctp:47;47
 msgid "Delete"
 msgstr "Borrar"
@@ -576,10 +585,10 @@ msgstr "Borrar"
 #: /views/menus/admin_view.ctp:30;74
 #: /views/minuteros/admin_index.ctp:38
 #: /views/minuteros/index.ctp:38
-#: /views/pages/admin_index.ctp:40
+#: /views/pages/admin_index.ctp:36
 #: /views/pages/index.ctp:47
 msgid "Are you sure you want to delete # %s?"
-msgstr ""
+msgstr "Esta seguro que uiere  borrar #%s?"
 
 #: /views/backgrounds/admin_index.ctp:38;41
 #: /views/backgrounds/index.ctp:38;41
@@ -591,7 +600,6 @@ msgstr ""
 #: /views/horarios/index.ctp:40;43
 #: /views/minuteros/admin_index.ctp:40;43
 #: /views/minuteros/index.ctp:40;43
-#: /views/pages/admin_index.ctp:42;45
 #: /views/pages/index.ctp:49;52
 msgid " "
 msgstr ""
@@ -606,10 +614,10 @@ msgstr ""
 #: /views/horarios/index.ctp:40
 #: /views/minuteros/admin_index.ctp:40
 #: /views/minuteros/index.ctp:40
-#: /views/pages/admin_index.ctp:42
+#: /views/pages/admin_index.ctp:38;38
 #: /views/pages/index.ctp:49
 msgid "Set Inactive"
-msgstr ""
+msgstr "Desactivar"
 
 #: /views/backgrounds/admin_index.ctp:38
 #: /views/backgrounds/index.ctp:38
@@ -621,10 +629,10 @@ msgstr ""
 #: /views/horarios/index.ctp:40
 #: /views/minuteros/admin_index.ctp:40
 #: /views/minuteros/index.ctp:40
-#: /views/pages/admin_index.ctp:42
+#: /views/pages/admin_index.ctp:38
 #: /views/pages/index.ctp:49
 msgid "Are you sure you want to set inactive # %s?"
-msgstr ""
+msgstr "Esta seguro que quiere desactivar # %s?"
 
 #: /views/backgrounds/admin_index.ctp:41
 #: /views/backgrounds/index.ctp:41
@@ -636,10 +644,10 @@ msgstr ""
 #: /views/horarios/index.ctp:43
 #: /views/minuteros/admin_index.ctp:43
 #: /views/minuteros/index.ctp:43
-#: /views/pages/admin_index.ctp:45
+#: /views/pages/admin_index.ctp:41;41
 #: /views/pages/index.ctp:52
 msgid "Set Active"
-msgstr ""
+msgstr "Activar"
 
 #: /views/backgrounds/admin_index.ctp:41
 #: /views/backgrounds/index.ctp:41
@@ -651,10 +659,10 @@ msgstr ""
 #: /views/horarios/index.ctp:43
 #: /views/minuteros/admin_index.ctp:43
 #: /views/minuteros/index.ctp:43
-#: /views/pages/admin_index.ctp:45
+#: /views/pages/admin_index.ctp:41
 #: /views/pages/index.ctp:52
 msgid "Are you sure you want to set active # %s?"
-msgstr ""
+msgstr "Esta seguro que quiere activar # %s?"
 
 #: /views/backgrounds/admin_index.ctp:50
 #: /views/backgrounds/index.ctp:50
@@ -668,10 +676,10 @@ msgstr ""
 #: /views/menus/admin_index.ctp:35
 #: /views/minuteros/admin_index.ctp:52
 #: /views/minuteros/index.ctp:52
-#: /views/pages/admin_index.ctp:53
+#: /views/pages/admin_index.ctp:49
 #: /views/pages/index.ctp:60
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
-msgstr ""
+msgstr "Página %page% de %pages%, mostrando %current% registros de %count% totales"
 
 #: /views/backgrounds/admin_index.ctp:55
 #: /views/backgrounds/index.ctp:55
@@ -685,10 +693,10 @@ msgstr ""
 #: /views/menus/admin_index.ctp:40
 #: /views/minuteros/admin_index.ctp:57
 #: /views/minuteros/index.ctp:57
-#: /views/pages/admin_index.ctp:58
+#: /views/pages/admin_index.ctp:54
 #: /views/pages/index.ctp:65
 msgid "previous"
-msgstr ""
+msgstr "anterior"
 
 #: /views/backgrounds/admin_index.ctp:58
 #: /views/backgrounds/index.ctp:58
@@ -702,10 +710,10 @@ msgstr ""
 #: /views/menus/admin_index.ctp:43
 #: /views/minuteros/admin_index.ctp:60
 #: /views/minuteros/index.ctp:60
-#: /views/pages/admin_index.ctp:61
+#: /views/pages/admin_index.ctp:57
 #: /views/pages/index.ctp:68
 msgid "next"
-msgstr ""
+msgstr "siguiente"
 
 #: /views/backgrounds/admin_index.ctp:62
 #: /views/backgrounds/index.ctp:62
@@ -717,15 +725,15 @@ msgstr ""
 #: /views/horarios/index.ctp:64
 #: /views/minuteros/admin_index.ctp:64
 #: /views/minuteros/index.ctp:64
-#: /views/pages/admin_index.ctp:65
+#: /views/pages/admin_index.ctp:61
 #: /views/pages/index.ctp:72
 msgid "Add"
-msgstr ""
+msgstr "Añadir"
 
 #: /views/backgrounds/admin_view.ctp:2
 #: /views/backgrounds/view.ctp:2
 msgid "Background"
-msgstr ""
+msgstr "Fondo"
 
 #: /views/backgrounds/admin_view.ctp:4
 #: /views/backgrounds/view.ctp:4
@@ -757,7 +765,7 @@ msgstr ""
 #: /views/pages/admin_view.ctp:9
 #: /views/pages/view.ctp:9
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: /views/backgrounds/admin_view.ctp:14
 #: /views/backgrounds/view.ctp:14
@@ -770,7 +778,7 @@ msgstr ""
 #: /views/pages/admin_view.ctp:14
 #: /views/pages/view.ctp:14
 msgid "Description"
-msgstr ""
+msgstr "Descripción"
 
 #: /views/backgrounds/admin_view.ctp:19
 #: /views/backgrounds/view.ctp:19
@@ -779,7 +787,7 @@ msgstr ""
 #: /views/minuteros/admin_view.ctp:24
 #: /views/minuteros/view.ctp:24
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
 #: /views/backgrounds/admin_view.ctp:24
 #: /views/backgrounds/view.ctp:24
@@ -788,7 +796,7 @@ msgstr ""
 #: /views/minuteros/admin_view.ctp:29
 #: /views/minuteros/view.ctp:29
 msgid "Is Active"
-msgstr ""
+msgstr "Activo"
 
 #: /views/backgrounds/admin_view.ctp:29
 #: /views/backgrounds/view.ctp:29
@@ -799,7 +807,7 @@ msgstr ""
 #: /views/minuteros/admin_view.ctp:34
 #: /views/minuteros/view.ctp:34
 msgid "Sort"
-msgstr ""
+msgstr "Orden"
 
 #: /views/backgrounds/admin_view.ctp:34
 #: /views/backgrounds/view.ctp:34
@@ -816,7 +824,7 @@ msgstr ""
 #: /views/pages/admin_view.ctp:47
 #: /views/pages/view.ctp:47
 msgid "Created"
-msgstr ""
+msgstr "Creado"
 
 #: /views/backgrounds/admin_view.ctp:39
 #: /views/backgrounds/view.ctp:39
@@ -833,124 +841,163 @@ msgstr ""
 #: /views/pages/admin_view.ctp:52
 #: /views/pages/view.ctp:52
 msgid "Updated"
-msgstr ""
+msgstr "Modificado"
 
 #: /views/backgrounds/edit.ctp:5
 msgid "Edit Background"
-msgstr ""
+msgstr "Modificar Fondo"
 
 #: /views/comments/add.ctp:4
 msgid "Add Comment"
-msgstr ""
+msgstr "Añadir Comentario"
 
 #: /views/comments/admin_add.ctp:4
 msgid "Admin Add Comment"
-msgstr ""
+msgstr "Añadir Comentario"
 
 #: /views/comments/admin_edit.ctp:4
 msgid "Admin Edit Comment"
-msgstr ""
+msgstr "Modificar Comentario"
 
 #: /views/comments/admin_index.ctp:2
 #: /views/comments/index.ctp:2
 msgid "Comments"
-msgstr ""
+msgstr "Comentarios"
 
 #: /views/comments/admin_view.ctp:2;14
 #: /views/comments/view.ctp:2;14
 msgid "Comment"
-msgstr ""
+msgstr "Comentario"
 
 #: /views/comments/admin_view.ctp:9
 #: /views/comments/view.ctp:9
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #: /views/comments/admin_view.ctp:19
 #: /views/comments/view.ctp:19
 msgid "Model"
-msgstr ""
+msgstr "Modelo"
 
 #: /views/comments/admin_view.ctp:24
 #: /views/comments/view.ctp:24
 msgid "Foreign Key"
-msgstr ""
+msgstr "Llave foranea"
 
 #: /views/comments/admin_view.ctp:30;32;36
 #: /views/comments/view.ctp:30;32;36
 #: /views/pages/admin_view.ctp:25;27;31
 #: /views/pages/view.ctp:25;27;31
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #: /views/comments/admin_view.ctp:38
 #: /views/comments/view.ctp:38
 #: /views/pages/admin_view.ctp:33
 #: /views/pages/view.ctp:33
 msgid "Inactive"
-msgstr ""
+msgstr "Inactivo"
 
 #: /views/comments/admin_view.ctp:42
 #: /views/comments/view.ctp:42
 msgid "Alias"
-msgstr ""
+msgstr "Alias"
 
 #: /views/comments/edit.ctp:4
 msgid "Edit Comment"
-msgstr ""
+msgstr "Modificar Comentario"
 
-#: /views/galleries/add.ctp:4
-msgid "Add Gallery"
-msgstr ""
+#: /views/elements/ez/menu.ctp:2
+msgid "HOME"
+msgstr "INICIO"
 
-#: /views/galleries/admin_add.ctp:4
-msgid "Admin Add Gallery"
-msgstr ""
+#: /views/elements/ez/menu.ctp:9
+msgid "CONTENT"
+msgstr "CONTENIDO"
 
-#: /views/galleries/admin_edit.ctp:4
-msgid "Admin Edit Gallery"
-msgstr ""
+#: /views/elements/ez/menu.ctp:11
+#: /views/pages/admin_index.ctp:2
+#: /views/pages/index.ctp:2
+msgid "Pages"
+msgstr "Páginas"
 
-#: /views/galleries/admin_index.ctp:3
-#: /views/galleries/index.ctp:3
-msgid "Galleries"
-msgstr ""
-
+#: /views/elements/ez/menu.ctp:12
 #: /views/galleries/admin_index.ctp:30
 #: /views/galleries/admin_view.ctp:2
 #: /views/galleries/index.ctp:30
 #: /views/galleries/view.ctp:2
 msgid "Gallery"
-msgstr ""
+msgstr "Galeria"
+
+#: /views/elements/ez/menu.ctp:19
+msgid "Hour Hands"
+msgstr "Horarios"
+
+#: /views/elements/ez/menu.ctp:20
+msgid "Minute Hands"
+msgstr "Minuteros"
+
+#: /views/elements/ez/menu.ctp:23
+msgid "USERS"
+msgstr "USUARIOS"
+
+#: /views/elements/ez/menu.ctp:25
+msgid "List Users"
+msgstr "Ver Usuarios"
+
+#: /views/elements/ez/menu.ctp:26
+msgid "Add User"
+msgstr "Añadir Usuario"
+
+#: /views/elements/ez/menu.ctp:29
+msgid "LOG OUT"
+msgstr "Salir"
+
+#: /views/galleries/add.ctp:4
+msgid "Add Gallery"
+msgstr "Añadir Galeria"
+
+#: /views/galleries/admin_add.ctp:4
+msgid "Admin Add Gallery"
+msgstr "Añadir Galeria"
+
+#: /views/galleries/admin_edit.ctp:4
+msgid "Admin Edit Gallery"
+msgstr "Modificar Galeria"
+
+#: /views/galleries/admin_index.ctp:3
+#: /views/galleries/index.ctp:3
+msgid "Galleries"
+msgstr "Galerias"
 
 #: /views/galleries/admin_view.ctp:19
 #: /views/galleries/view.ctp:19
 #: /views/pages/admin_view.ctp:42
 #: /views/pages/view.ctp:42
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 #: /views/galleries/admin_view.ctp:24
 #: /views/galleries/view.ctp:24
 #: /views/pages/admin_view.ctp:19
 #: /views/pages/view.ctp:19
 msgid "Keywords"
-msgstr ""
+msgstr "Palabras Claves"
 
 #: /views/galleries/admin_view.ctp:44
 #: /views/galleries/view.ctp:44
 msgid "Related Gallery Pictures"
-msgstr ""
+msgstr "Fotos Relacionadas"
 
 #: /views/galleries/admin_view.ctp:49
 #: /views/galleries/view.ctp:49
 msgid "Gallery Id"
-msgstr ""
+msgstr "Id de galeria"
 
 #: /views/galleries/admin_view.ctp:51
 #: /views/galleries/view.ctp:51
 msgid "Path"
-msgstr ""
+msgstr "ruta"
 
 #: /views/galleries/admin_view.ctp:52
 #: /views/galleries/view.ctp:52
@@ -960,67 +1007,67 @@ msgstr ""
 #: /views/galleries/admin_view.ctp:87
 #: /views/galleries/view.ctp:87
 msgid "New Gallery Picture"
-msgstr ""
+msgstr "Nueva foto"
 
 #: /views/galleries/edit.ctp:4
 msgid "Edit Gallery"
-msgstr ""
+msgstr "Modificar Galeria"
 
 #: /views/gallery_pictures/add.ctp:4
 msgid "Add Gallery Picture"
-msgstr ""
+msgstr "Añadir Galeria"
 
 #: /views/gallery_pictures/admin_add.ctp:4
 msgid "Admin Add Gallery Picture"
-msgstr ""
+msgstr "Añadir Foto"
 
 #: /views/gallery_pictures/admin_edit.ctp:4
 msgid "Admin Edit Gallery Picture"
-msgstr ""
+msgstr "Modificar Foto"
 
 #: /views/gallery_pictures/edit.ctp:4
 msgid "Edit Gallery Picture"
-msgstr ""
+msgstr "Modificar Foto"
 
 #: /views/horarios/add.ctp:5
 msgid "Add Horario"
-msgstr ""
+msgstr "Añadir Horario"
 
 #: /views/horarios/admin_add.ctp:5
 msgid "Admin Add Horario"
-msgstr ""
+msgstr "Añadir Horario"
 
 #: /views/horarios/admin_edit.ctp:5
 msgid "Admin Edit Horario"
-msgstr ""
+msgstr "Modificar Horario"
 
 #: /views/horarios/admin_index.ctp:3
 #: /views/horarios/index.ctp:3
 msgid "Horarios"
-msgstr ""
+msgstr "Horarios"
 
 #: /views/horarios/admin_view.ctp:2
 #: /views/horarios/view.ctp:2
 msgid "Horario"
-msgstr ""
+msgstr "Horario"
 
 #: /views/horarios/admin_view.ctp:19
 #: /views/horarios/view.ctp:19
 #: /views/minuteros/admin_view.ctp:19
 #: /views/minuteros/view.ctp:19
 msgid "Color Code"
-msgstr ""
+msgstr "Código del color"
 
 #: /views/horarios/edit.ctp:5
 msgid "Edit Horario"
-msgstr ""
+msgstr "Modificar Horario"
 
 #: /views/layouts/aplicacion.ctp:24
 #: /views/layouts/construccion.ctp:25
 msgid "Web site:"
 msgstr ""
 
-#: /views/layouts/ez/ez.ctp:67
+#: /views/layouts/ez/ez.ctp:71
 #: /views/layouts/ez/login.ctp:56
 msgid "Bloom Web Company"
 msgstr ""
@@ -1035,7 +1082,7 @@ msgstr ""
 
 #: /views/menu_items/admin_add.ctp:4
 msgid "Admin Add Menu Item"
-msgstr ""
+msgstr "Añadir Item del Menú"
 
 #: /views/menu_items/admin_add.ctp:18
 #: /views/menu_items/admin_edit.ctp:20
@@ -1045,7 +1092,7 @@ msgstr ""
 #: /views/menus/admin_index.ctp:50
 #: /views/menus/admin_view.ctp:33
 msgid "List Menu Items"
-msgstr ""
+msgstr "Ver Items del Menú"
 
 #: /views/menu_items/admin_add.ctp:19
 #: /views/menu_items/admin_edit.ctp:21
@@ -1055,7 +1102,7 @@ msgstr ""
 #: /views/menus/admin_edit.ctp:17
 #: /views/menus/admin_view.ctp:31
 msgid "List Menus"
-msgstr ""
+msgstr "Ver Items del Menú"
 
 #: /views/menu_items/admin_add.ctp:20
 #: /views/menu_items/admin_edit.ctp:22
@@ -1064,7 +1111,7 @@ msgstr ""
 #: /views/menus/admin_index.ctp:49
 #: /views/menus/admin_view.ctp:32
 msgid "New Menu"
-msgstr ""
+msgstr "Añadir Menú"
 
 #: /views/menu_items/admin_edit.ctp:4
 msgid "Editar Menu Item"
@@ -1072,7 +1119,7 @@ msgstr ""
 
 #: /views/menu_items/admin_index.ctp:2
 msgid "Menu Items"
-msgstr ""
+msgstr "Items del Menú"
 
 #: /views/menu_items/admin_index.ctp:55
 #: /views/menu_items/admin_view.ctp:57
@@ -1081,16 +1128,16 @@ msgstr ""
 #: /views/menus/admin_index.ctp:51
 #: /views/menus/admin_view.ctp:34;83
 msgid "New Menu Item"
-msgstr ""
+msgstr "Nuevo Items del Menú"
 
 #: /views/menu_items/admin_view.ctp:2
 msgid "Menu Item"
-msgstr ""
+msgstr "Items del Menú"
 
 #: /views/menu_items/admin_view.ctp:9
 #: /views/menus/admin_view.ctp:2
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #: /views/menu_items/admin_view.ctp:14
 #: /views/menus/admin_view.ctp:44
@@ -1114,51 +1161,51 @@ msgstr ""
 
 #: /views/menu_items/admin_view.ctp:54
 msgid "Edit Menu Item"
-msgstr ""
+msgstr "Modificar Items del Menú"
 
 #: /views/menu_items/admin_view.ctp:55
 msgid "Delete Menu Item"
-msgstr ""
+msgstr "Borrar Items del Menú"
 
 #: /views/menus/admin_add.ctp:4
 msgid "Admin Add Menu"
-msgstr ""
+msgstr "Añadir  Menú"
 
 #: /views/menus/admin_edit.ctp:4
 msgid "Admin Edit Menu"
-msgstr ""
+msgstr "Modificar  Menú"
 
 #: /views/menus/admin_index.ctp:2
 msgid "Menus"
-msgstr ""
+msgstr "Menús"
 
 #: /views/menus/admin_view.ctp:29
 msgid "Edit Menu"
-msgstr ""
+msgstr "Modificar  Menú"
 
 #: /views/menus/admin_view.ctp:30
 msgid "Delete Menu"
-msgstr ""
+msgstr "Borrar  Menú"
 
 #: /views/menus/admin_view.ctp:38
 msgid "Related Menu Items"
-msgstr ""
+msgstr "Items relacionado del menú"
 
 #: /views/menus/admin_view.ctp:43
 msgid "Menu Id"
-msgstr ""
+msgstr "Menú"
 
 #: /views/minuteros/add.ctp:5
 msgid "Add Minutero"
-msgstr ""
+msgstr "Añadir Minutero"
 
 #: /views/minuteros/admin_add.ctp:5
 msgid "Admin Add Minutero"
-msgstr ""
+msgstr "Añadir Minutero"
 
 #: /views/minuteros/admin_edit.ctp:5
 msgid "Admin Edit Minutero"
-msgstr ""
+msgstr "Modificar Minutero"
 
 #: /views/minuteros/admin_index.ctp:3
 #: /views/minuteros/index.ctp:3
@@ -1172,47 +1219,42 @@ msgstr ""
 
 #: /views/minuteros/edit.ctp:5
 msgid "Edit Minutero"
-msgstr ""
+msgstr "Modificar Minutero"
 
 #: /views/pages/add.ctp:4
 msgid "Add Page"
-msgstr ""
+msgstr "Añadir Página"
 
 #: /views/pages/admin_add.ctp:4
 msgid "Admin Add Page"
-msgstr ""
+msgstr "Añadir Página"
 
 #: /views/pages/admin_edit.ctp:4
 msgid "Admin Edit Page"
-msgstr ""
-
-#: /views/pages/admin_index.ctp:2
-#: /views/pages/index.ctp:2
-msgid "Pages"
-msgstr ""
+msgstr "Modifcar Página"
 
 #: /views/pages/admin_view.ctp:2
 #: /views/pages/view.ctp:2
 msgid "Page"
-msgstr ""
+msgstr "Página"
 
 #: /views/pages/admin_view.ctp:37
 #: /views/pages/view.ctp:37
 msgid "Wysiwyg Content"
-msgstr ""
+msgstr "Contenido Wysiwyg"
 
 #: /views/pages/edit.ctp:4
 msgid "Edit Page"
-msgstr ""
+msgstr "Modificar Página"
 
 #: /views/users/admin_login.ctp:10
 #: /views/users/login.ctp:10
 msgid "Login"
-msgstr ""
+msgstr "Ingresar"
 
 #: /views/users/register.ctp:5;14
 msgid "Register"
-msgstr ""
+msgstr "Registro"
 
 #: /webroot/test.php:88
 msgid "Debug setting does not allow access to this url."
