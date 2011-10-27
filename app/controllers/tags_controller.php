@@ -5,7 +5,7 @@ class TagsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('productsFilter');
+		$this->Auth->allow('filtro','view','index','productsFilter');
 	}
 	
 	function index() {
@@ -24,6 +24,10 @@ class TagsController extends AppController {
 		$this->set('products',$this->paginate('Product'));
 	}
 	
+	function filtro(){
+		$this->layout='ajax';
+	}
+
 	function productsFilter() {
 		$conditions = array();
 		$limit = 10;

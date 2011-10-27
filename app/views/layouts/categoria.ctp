@@ -20,62 +20,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php __('Web site:'); ?>
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
-		echo $this->Html->css('reset.css');
-		echo $this->Html->css('ie.css');
-		echo $this->Html->css('styles.css');
-		echo $this->Html->script('jquery');
-		echo $this->Html->script('front');
-
+	<?php echo $this -> Html -> charset();?>
+		<title><?php
+		$model = $this -> params['models'][0];
+		$singularVar = strtolower($model);
+		if (isset(${$singularVar}[$model]['name'])) {
+			echo ${$singularVar}[$model]['name'];
+		} else {
+			echo $title_for_layout;
+		}
+			?></title>
+		<?php
+		if (isset(${$singularVar}[$model]['keywords']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
+		if (isset(${$singularVar}[$model]['description']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
+		echo $this -> Html -> meta('icon');
+		echo $this -> Html -> css('reset.css');
+		echo $this -> Html -> css('ie.css');
+		echo $this -> Html -> css('styles.css');
+		echo $this -> Html -> script('jquery');
+		echo $this->Html->script('bjs');
+		echo $this -> Html -> script('front');
 		echo $scripts_for_layout;
-	?>
+		?>
 </head>
 <body id="categoria">
 	
 	<?php echo $this->element("header");?> 		
     <div id="container">
     	<div id="second_nav">
-	    	<div id="producto_destacado" class="border_radius">
-	    		<h1>Computador portátil hp Core i5 
-				pantalla de 20”
-				</h1>
-				<img src="/img/producto_destacado.jpg" />
-				<div class="info_destacado">
-					<p>
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat 
-					</p>
-					<a href=""><img src="/img/facebook.png" /></a>
-					<a href=""><img src="/img/twitter.png" /></a>
-					<a href=""><img src="/img/btn_agregar.png"/></a>
-					<?php echo $this->element("estrellas_categoria");?> 
-				</div>
+	    	<div id="producto_destacado" class="border_radius" rel=''>
+	    		
         	</div>
-        	 <div id="listado_fltro" class="border_radius">
-        	 	<h1>Buscar por:</h1>
-        	 	<ul>
-        	 		<h2>Nuestras marcas</h2>
-        	 		<li><a href="">Acer</a></li>
-        	 		<li><a href="">Apple</a></li>
-        	 		<li><a href="">Compaq</a></li>
-        	 		<li><a href="">Dell</a></li>
-        	 		<li><a href="">Hp</a></li>
-        	 		<li><a href="">Lenovo</a></li>
-        	 	</ul>
-        		<ul>
-        	 		<h2>Nuestras marcas</h2>
-        	 		<li><a href="">Acer</a></li>
-        	 		<li><a href="">Apple</a></li>
-        	 		<li><a href="">Compaq</a></li>
-        	 		<li><a href="">Dell</a></li>
-        	 		<li><a href="">Hp</a></li>
-        	 		<li><a href="">Lenovo</a></li>
-        	 	</ul>
+        	 <div id="listado_fltro" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
+        	 	
         	</div>
     	</div>
     	<div id="main_content">

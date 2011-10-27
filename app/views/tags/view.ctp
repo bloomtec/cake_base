@@ -1,22 +1,22 @@
 <div class="ordenar">
 	<label>Ordenar por:</label>
 	<select class='orden'>
-		<option val='puntuacion'>Puntuación</option>
-		<option val='precio-asc'>Precio de menor a mayor</option>
-		<option val='precio-desc'>Precio de mayor a menor</option>
+		<option value = 'puntuacion'>Puntuación</option>
+		<option value = 'precio-asc'>Precio de menor a mayor</option>
+		<option value = 'precio-desc'>Precio de mayor a menor</option>
 	</select>
 	<label>Ver:</label>
-	<select class='num-productos'>
-		<option val = '12'>12 por página</option>
-		<option val = '24'>24 por página</option>
+	<select class='limite'>
+		<option value = '12'>12 por página</option>
+		<option value = '24'>24 por página</option>
 	</select>
 </div>
 <?php echo $this->element("listado_producto",array('products' => $products));?>
 <div class="ordenar">
 	<label>Ver:</label>
-	<select class='num-productos'>
-		<option val = '12'>12 por página</option>
-		<option val = '24'>24 por página</option>
+	<select class='limite'>
+		<option value = '12'>12 por página</option>
+		<option value = '24'>24 por página</option>
 	</select>
 	<div class="paging">
 		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
