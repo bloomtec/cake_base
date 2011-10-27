@@ -5,7 +5,6 @@
 	<?php
 		echo $this->Form->input('name');
 		echo $this->Form->input('in_gamers');
-		echo $this->Form->input('sort_in_gamers');
 		echo $this->Form->input('description');
 		echo $this->Form->input('keywords');
 		echo $this->Form->input('Product');

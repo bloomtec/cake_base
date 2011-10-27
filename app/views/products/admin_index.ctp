@@ -4,10 +4,15 @@
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('product_type_id');?></th>
+		<th><?php echo $this->Paginator->sort('architecture_id');?></th>
+		<th><?php echo $this->Paginator->sort('is_video_included');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('description');?></th>
 		<th><?php echo $this->Paginator->sort('ref');?></th>
 		<th><?php echo $this->Paginator->sort('price');?></th>
 		<th><?php echo $this->Paginator->sort('image');?></th>
+		<th><?php echo $this->Paginator->sort('keywords');?></th>
+		<th><?php echo $this->Paginator->sort('recommendations');?></th>
 		<th><?php echo $this->Paginator->sort('is_gamers');?></th>
 		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
 		<th><?php echo $this->Paginator->sort('times_visited');?></th>
@@ -24,11 +29,20 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $product['Product']['id'] ?>'>
-		<td><?php echo $product['ProductType']['name']; ?>&nbsp;</td>
+		<td>
+			<?php echo $this->Html->link($product['ProductType']['name'], array('controller' => 'product_types', 'action' => 'view', $product['ProductType']['id'])); ?>
+		</td>
+		<td>
+			<?php echo $this->Html->link($product['Architecture']['name'], array('controller' => 'architectures', 'action' => 'view', $product['Architecture']['id'])); ?>
+		</td>
+		<td><?php echo $product['Product']['is_video_included']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['description']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['price']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
+		<td><?php echo $product['Product']['keywords']; ?>&nbsp;</td>
+		<td><?php echo $product['Product']['recommendations']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['is_gamers']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['is_active']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['times_visited']; ?>&nbsp;</td>

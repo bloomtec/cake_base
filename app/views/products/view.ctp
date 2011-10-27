@@ -16,16 +16,6 @@
 			<?php echo $this->Html->link($product['Architecture']['name'], array('controller' => 'architectures', 'action' => 'view', $product['Architecture']['id'])); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Socket'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($product['Socket']['name'], array('controller' => 'sockets', 'action' => 'view', $product['Socket']['id'])); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Slot'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($product['Slot']['name'], array('controller' => 'slots', 'action' => 'view', $product['Slot']['id'])); ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Video Included'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $product['Product']['is_video_included']; ?>
@@ -197,7 +187,6 @@
 	<tr>
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
-		<th><?php __('Description'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -211,7 +200,6 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $slot['id'];?></td>
 			<td><?php echo $slot['name'];?></td>
-			<td><?php echo $slot['description'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'slots', 'action' => 'view', $slot['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'slots', 'action' => 'edit', $slot['id'])); ?>
@@ -225,6 +213,44 @@
 	<div class="actions">
 		<ul>
 			<li><?php echo $this->Html->link(__('New Slot', true), array('controller' => 'slots', 'action' => 'add'));?> </li>
+		</ul>
+	</div>
+</div>
+<div class="related">
+	<h3><?php __('Related Sockets');?></h3>
+	<?php if (!empty($product['Socket'])):?>
+	<table cellpadding = "0" cellspacing = "0">
+	<tr>
+		<th><?php __('Id'); ?></th>
+		<th><?php __('Architecture Id'); ?></th>
+		<th><?php __('Name'); ?></th>
+		<th class="actions"><?php __('Actions');?></th>
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($product['Socket'] as $socket):
+			$class = null;
+			if ($i++ % 2 == 0) {
+				$class = ' class="altrow"';
+			}
+		?>
+		<tr<?php echo $class;?>>
+			<td><?php echo $socket['id'];?></td>
+			<td><?php echo $socket['architecture_id'];?></td>
+			<td><?php echo $socket['name'];?></td>
+			<td class="actions">
+				<?php echo $this->Html->link(__('View', true), array('controller' => 'sockets', 'action' => 'view', $socket['id'])); ?>
+				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'sockets', 'action' => 'edit', $socket['id'])); ?>
+				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'sockets', 'action' => 'delete', $socket['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $socket['id'])); ?>
+			</td>
+		</tr>
+	<?php endforeach; ?>
+	</table>
+<?php endif; ?>
+
+	<div class="actions">
+		<ul>
+			<li><?php echo $this->Html->link(__('New Socket', true), array('controller' => 'sockets', 'action' => 'add'));?> </li>
 		</ul>
 	</div>
 </div>

@@ -2,11 +2,19 @@
 	<li>
 		<a href="">INICIO</a>
 	</li>
-	<li class="flecha">
+	<li>
 		<a href="/admin/products/">PRODUCTOS</a>
 		<ul>
 			<li>
 				<a href="/admin/products/add">AGREGAR</a>
+			</li>
+		</ul>
+	</li>
+	<li>
+		<a href="/admin/tags/">TAGS</a>
+		<ul>
+			<li>
+				<a href="/admin/tags/add">AGREGAR</a>
 			</li>
 		</ul>
 	</li>

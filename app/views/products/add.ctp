@@ -2,9 +2,8 @@
 <div class="products form2">
 <?php echo $this->Form->create('Product');?>
 	<fieldset>
-		<legend><?php __('Admin Edit Product'); ?></legend>
+		<legend><?php __('Add Product'); ?></legend>
 	<?php
-		echo $this->Form->input('id');
 		echo $this->Form->input('product_type_id');
 		echo $this->Form->input('architecture_id');
 		echo $this->Form->input('is_video_included');
