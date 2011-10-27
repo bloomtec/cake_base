@@ -2,10 +2,11 @@
 class Slot extends AppModel {
 	var $name = 'Slot';
 	var $displayField = 'name';
-	var $isPicture=false;
-	var $sluggable=false;
-	var $sortable=false;
-	var $activable=false;
+	var $order = 'Slot.sort asc';
+	var $isPicture = false;
+	var $sluggable = false;
+	var $sortable = true;
+	var $activable = false;
 
 	var $validate = array(
 		'name' => array(
@@ -20,23 +21,6 @@ class Slot extends AppModel {
 		),
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
-
-	var $hasMany = array(
-		'Product' => array(
-			'className' => 'Product',
-			'foreignKey' => 'slot_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		)
-	);
-
 
 	var $hasAndBelongsToMany = array(
 		'Product' => array(
