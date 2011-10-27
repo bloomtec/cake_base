@@ -3,10 +3,10 @@ class Tag extends AppModel {
 	var $name = 'Tag';
 	var $displayField = 'name';
 	var $order = 'Tag.sort asc';
-	var $isPicture=false;
-	var $sluggable=true;
-	var $sortable=true;
-	var $activable=false;
+	var $isPicture = false;
+	var $sluggable = true;
+	var $sortable = true;
+	var $activable = false;
 
 	var $validate = array(
 		'name' => array(
@@ -42,6 +42,23 @@ class Tag extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+	var $hasMany = array(
+		'TagSlider' => array(
+			'className' => 'TagSlider',
+			'foreignKey' => 'tag_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
+
 	var $hasAndBelongsToMany = array(
 		'Product' => array(
 			'className' => 'Product',
@@ -61,7 +78,7 @@ class Tag extends AppModel {
 	);
 
 	function beforeSave(){
-		if(isset($this->data['Tag']['slug'])){
+		if($this->sluggable){
 			$this->data['Tag']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Tag']['name']));
 		}
 		return true;	

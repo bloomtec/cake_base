@@ -7,9 +7,8 @@ class Page extends AppModel {
 	var $isPicture = false;
 	var $sluggable = true;
 	var $sortable = false;
-	var $activable = false;
+	var $activable = true;
 
-	
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(
@@ -32,6 +31,24 @@ class Page extends AppModel {
 			),
 		),
 	);
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+
+	var $hasMany = array(
+		'PageSlider' => array(
+			'className' => 'PageSlider',
+			'foreignKey' => 'page_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+
 	function beforeSave(){
 		if($this->sluggable){
 			$this->data['Page']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Page']['name']));
