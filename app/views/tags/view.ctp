@@ -1,31 +1,29 @@
 <div class="ordenar">
 	<label>Ordenar por:</label>
-	<select>
-		<option>Puntuación</option>
-		<option>Precio</option>
+	<select class='orden'>
+		<option val='puntuacion'>Puntuación</option>
+		<option val='precio-asc'>Precio de menor a mayor</option>
+		<option val='precio-desc'>Precio de mayor a menor</option>
 	</select>
 	<label>Ver:</label>
-	<select>
-		<option>12 por página</option>
-		<option>24 por página</option>
+	<select class='num-productos'>
+		<option val = '12'>12 por página</option>
+		<option val = '24'>24 por página</option>
 	</select>
 </div>
-<?php echo $this->element("listado_producto",array('products' => $tag['Product']));?>
+<?php echo $this->element("listado_producto",array('products' => $products));?>
 <div class="ordenar">
 	<label>Ver:</label>
-	<select>
-		<option>12 por página</option>
-		<option>24 por página</option>
+	<select class='num-productos'>
+		<option val = '12'>12 por página</option>
+		<option val = '24'>24 por página</option>
 	</select>
-	<ul>
-		<li><a href=""><</a></li>
-		<li><a href="">1</a></li>
-		<li><a href="">2</a></li>
-		<li><a href="">3</a></li>
-		<li><a href="">4</a></li>
-		<li><a href="">5</a></li>
-		<li><a href="">></a></li>
-	</ul>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+	 | 	<?php echo $this->Paginator->numbers();?>
+ |
+		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div>
 </div> 
 <div class="info_categoria primero">
 	<h1> Somos distribuidores autorizados</h1>
