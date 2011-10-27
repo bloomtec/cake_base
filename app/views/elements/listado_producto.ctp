@@ -1,4 +1,4 @@
-<?php if($product){?>
+<?php if(isset($product)&&!empty($product)){?>
 <?php foreach($products as $product): ?>
 <div class="producto">
 	<h1><?php echo $product['name']?></h1>
