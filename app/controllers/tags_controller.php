@@ -24,6 +24,62 @@ class TagsController extends AppController {
 		$this->set('products',$this->paginate('Product'));
 	}
 	
+	function productsFilter() {
+		$conditions = array();
+		$limit = 10;
+		// Revisar que llegue algun tipo de filtrado
+		if(isset($this->params['named']) && !empty($this->params['named'])) {
+			// Revisar si se pone limite al paginado
+			if(isset($this->params['named']['limite']) && !empty($this->params['named']['limite'])) {
+				$limit = $this->params['named']['limite'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por arquitectura
+			if(isset($this->params['named']['architecture']) && !empty($this->params['named']['architecture'])) {
+				$conditions['Product.architecture_id'] = $this->params['named']['architecture']; 
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por tipo de producto
+			if(isset($this->params['named']['type']) && !empty($this->params['named']['type'])) {
+				$conditions['Product.product_type_id'] = $this->params['named']['type'];
+				// Si es busqueda de tarjeta madre revisar si se quiere con o sin video
+				if(($this->params['named']['type'] == 2) && isset($this->params['named']['video_included']) && !empty($this->params['named']['video_included'])) {
+					$conditions['Product.is_video_included'] = $this->params['named']['video_included'];
+				} else {
+					//TODO:Nada por el momento
+				}
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por nombre de producto
+			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
+				$conditions['Product.name'] = $this->params['named']['name'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por nombre de producto
+			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
+				$conditions['Product.name'] = $this->params['named']['name'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por "is_gamers"
+			if(isset($this->params['named']['gamers']) && !empty($this->params['named']['gamers'])) {
+				$conditions['Product.is_gamers'] = $this->params['named']['is_gamers'];
+			} else {
+				//TODO:Nada por el momento
+			}
+		} else {
+			//TODO:Nada por el momento
+		}
+		$this->paginate = array(
+			$limit,
+			$conditions
+		);
+		return $this->paginate('Product');
+	}	
 	
 	function admin_index() {
 		$this->Tag->recursive = 0;

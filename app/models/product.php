@@ -202,10 +202,16 @@ class Product extends AppModel {
 		)
 	);
 
-	function beforeSave(){
+	function beforeSave() {
 		if($this->sluggable){
 			$this->data['Product']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Product']['name']));
 		}
 		return true;	
 	}
+	
+	function beforeDelete() {
+		debug($id);
+		return false;
+	}
+	
 }
