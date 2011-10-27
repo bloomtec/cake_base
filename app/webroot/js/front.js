@@ -8,5 +8,11 @@ $(function(){
 	if(divFiltro.length > 0){
 		divFiltro.load('/tags/filtro/'+divFiltro.attr('rel'));
 	}
+	
+	//CARGA EL PRODUCTO PROMOCIONADO
+	var divPromocionado=$("#producto_destacado");
+	if(divPromocionado.length > 0){
+		divPromocionado.load('/products/featuredProduct/'+divPromocionado.attr('rel'));
+	}
 });
 

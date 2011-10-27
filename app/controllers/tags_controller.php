@@ -24,7 +24,7 @@ class TagsController extends AppController {
 		$this->set('products',$this->paginate('Product'));
 	}
 	
-	function filtro(){
+	function filtro($tag_id){
 		$this->layout='ajax';
 		$conditions = array();
 		$limit = 16;

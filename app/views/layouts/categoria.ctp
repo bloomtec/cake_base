@@ -50,7 +50,7 @@
 	<?php echo $this->element("header");?> 		
     <div id="container">
     	<div id="second_nav">
-	    	<div id="producto_destacado" class="border_radius" rel=''>
+	    	<div id="producto_destacado" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
 	    		
         	</div>
         	 <div id="listado_fltro" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
