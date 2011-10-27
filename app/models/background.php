@@ -4,10 +4,13 @@ class Background extends AppModel {
 	var $displayField = 'name';
 	var $order = 'Background.sort asc';
  	var $imagesFields = array('image');
-	var $isPicture=false;
-	var $sluggable=false;
-	var $sortable=true;
-	var $activable=true;
+	var $isPicture = false;
+	var $sluggable = false;
+	var $sortable = true;
+	var $activable = true;
+	var $actsAs = array(
+		'Translate' => array('name','description')
+	);
 
 	var $validate = array(
 		'name' => array(
@@ -36,4 +39,5 @@ class Background extends AppModel {
 	function beforeSave(){
 		return true;	
 	}
+	
 }

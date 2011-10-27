@@ -57,6 +57,8 @@
 			<div id="header">
 				<h1 class="logo_interna"></h1>
 				<?php echo $this -> element("ez/menu");?>
+				<div style='clear:both;'></div>
+				<?php echo $this -> element('languages') ?>
 			</div>
 			<div id="content">
 				<?php echo $this -> Session -> flash();?>

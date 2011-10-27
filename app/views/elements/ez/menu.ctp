@@ -1,30 +1,30 @@
 <ul id="main_menu">
-		<li><a href="">INICIO</a></li>
+		<li><a href=""><?php __('HOME') ?></a></li>
 		<!--<li class="flecha"><a href="">MENÚS</a>
 			<ul>
 				<li><a href="">AGREGAR</a></li>
 				<li><a href="">ADMINISTRAR</a></li>
 			</ul>
 		</li>-->
-		<li><a href="">CONTENIDO</a>
+		<li><a href=""><?php __('CONTENT') ?></a>
 			<ul>
-				<li><a href="/admin/pages">PAGINAS</a></li>
-				<li><a href="/admin/galleryPictures/view/1">GALERIA</a></li>
+				<li><a href="/admin/pages"><?php __('Pages') ?></a></li>
+				<li><a href="/admin/galleryPictures/view/1"><?php __('Gallery') ?></a></li>
 				<!--<li><a href="/admin/news">NOTICIAS</a></li>-->
 			</ul>
 		</li>
-		<li><a href="">TU AMARILLO2</a>
+		<li><a href="">AMARILLO2</a>
 			<ul>
-				<li><a href="/admin/backgrounds">Fondos</a></li>
-				<li><a href="/admin/horarios">Horarios</a></li>
-				<li><a href="/admin/minuteros">Minuteros</a></li>
+				<li><a href="/admin/backgrounds"><?php __('Backgrounds') ?></a></li>
+				<li><a href="/admin/horarios"><?php __('Houar Timer') ?></a></li>
+				<li><a href="/admin/minuteros"><?php __('Minute Timer') ?></a></li>
 			</ul>
 		</li>
-		<li><a href="/admin/users">USUARIOS</a>
+		<li><a href="/admin/users"><?php __('USERS') ?> </a>
 			<ul>
-				<li><a href="/admin/users">VER USUARIOS</a></li>
-				<li><a href="/admin/users">CREAR USUARIO</a></li>
+				<li><a href="/admin/users"><?php __('List Users') ?></a></li>
+				<li><a href="/admin/users"><?php __('Add User')?></a></li>
 			</ul>
 		</li>
-		<li class="final"><a class="ultimo" href="/admin/users/logout">SALIR</a></li>		
+		<li class="final"><a class="ultimo" href="/admin/users/logout"><?php __('LOG OUT')?></a></li>		
 </ul>

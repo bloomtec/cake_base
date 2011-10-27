@@ -1,0 +1,1219 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2011-10-26 12:08-0500\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /app_controller.php:70
+#: /controllers/comments_controller.php:28;45;130;147
+msgid "The comment has been saved"
+msgstr ""
+
+#: /app_controller.php:73
+#: /controllers/comments_controller.php:31;48;133;150
+msgid "The comment could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:18;33;53
+msgid "Invalid background"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:43;58
+msgid "The background has been saved"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:46;61
+msgid "The background could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:72;86;102
+msgid "Invalid id for background"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:76
+msgid "Background deleted"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:79
+msgid "Background was not deleted"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:92;108
+msgid "Background archived"
+msgstr ""
+
+#: /controllers/backgrounds_controller.php:95;111
+msgid "Background was not archived"
+msgstr ""
+
+#: /controllers/comments_controller.php:18;40;120;142
+msgid "Invalid comment"
+msgstr ""
+
+#: /controllers/comments_controller.php:60;73;88;162;175;190
+msgid "Invalid id for comment"
+msgstr ""
+
+#: /controllers/comments_controller.php:64;166
+msgid "Comment deleted"
+msgstr ""
+
+#: /controllers/comments_controller.php:67;169
+msgid "Comment was not deleted"
+msgstr ""
+
+#: /controllers/comments_controller.php:79;94;181;196
+msgid "Comment archived"
+msgstr ""
+
+#: /controllers/comments_controller.php:82;97;184;199
+msgid "Comment was not archived"
+msgstr ""
+
+#: /controllers/galleries_controller.php:18;32;52
+msgid "Invalid gallery"
+msgstr ""
+
+#: /controllers/galleries_controller.php:42;57
+msgid "The gallery has been saved"
+msgstr ""
+
+#: /controllers/galleries_controller.php:45;60
+msgid "The gallery could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/galleries_controller.php:70
+msgid "Invalid id for gallery"
+msgstr ""
+
+#: /controllers/galleries_controller.php:74
+msgid "Gallery deleted"
+msgstr ""
+
+#: /controllers/galleries_controller.php:77
+msgid "Gallery was not deleted"
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:18;40;70
+msgid "Invalid gallery picture"
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:58;75
+msgid "The gallery picture has been saved"
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:61;78
+msgid "The gallery picture could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:90
+msgid "Invalid id for gallery picture"
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:95
+msgid "Gallery picture deleted"
+msgstr ""
+
+#: /controllers/gallery_pictures_controller.php:98
+msgid "Gallery picture was not deleted"
+msgstr ""
+
+#: /controllers/horarios_controller.php:18;32;52
+msgid "Invalid horario"
+msgstr ""
+
+#: /controllers/horarios_controller.php:42;57
+msgid "The horario has been saved"
+msgstr ""
+
+#: /controllers/horarios_controller.php:45;60
+msgid "The horario could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/horarios_controller.php:70;84;99
+msgid "Invalid id for horario"
+msgstr ""
+
+#: /controllers/horarios_controller.php:74
+msgid "Horario deleted"
+msgstr ""
+
+#: /controllers/horarios_controller.php:77
+msgid "Horario was not deleted"
+msgstr ""
+
+#: /controllers/horarios_controller.php:90;105
+msgid "Horario archived"
+msgstr ""
+
+#: /controllers/horarios_controller.php:93;108
+msgid "Horario was not archived"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:110;139
+msgid "Invalid menu item"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:120;144
+msgid "The menu item has been saved"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:123;147
+msgid "The menu item could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/menu_items_controller.php:166;179;194
+msgid "Invalid id for menu item"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:170
+msgid "Menu item deleted"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:173
+msgid "Menu item was not deleted"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:185;200
+msgid "Menu item archived"
+msgstr ""
+
+#: /controllers/menu_items_controller.php:188;203
+msgid "Menu item was not archived"
+msgstr ""
+
+#: /controllers/menus_controller.php:35;55
+msgid "Invalid menu"
+msgstr ""
+
+#: /controllers/menus_controller.php:45;60
+msgid "The menu has been saved"
+msgstr ""
+
+#: /controllers/menus_controller.php:48;63
+msgid "The menu could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/menus_controller.php:73;86;101
+msgid "Invalid id for menu"
+msgstr ""
+
+#: /controllers/menus_controller.php:77
+msgid "Menu deleted"
+msgstr ""
+
+#: /controllers/menus_controller.php:80
+msgid "Menu was not deleted"
+msgstr ""
+
+#: /controllers/menus_controller.php:92;107
+msgid "Menu archived"
+msgstr ""
+
+#: /controllers/menus_controller.php:95;110
+msgid "Menu was not archived"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:18;32;52
+msgid "Invalid minutero"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:42;57
+msgid "The minutero has been saved"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:45;60
+msgid "The minutero could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/minuteros_controller.php:70;84;99
+msgid "Invalid id for minutero"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:74
+msgid "Minutero deleted"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:77
+msgid "Minutero was not deleted"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:90;105
+msgid "Minutero archived"
+msgstr ""
+
+#: /controllers/minuteros_controller.php:93;108
+msgid "Minutero was not archived"
+msgstr ""
+
+#: /controllers/pages_controller.php:65;85;151;171
+msgid "Invalid page"
+msgstr ""
+
+#: /controllers/pages_controller.php:75;90;161;176
+msgid "The page has been saved"
+msgstr ""
+
+#: /controllers/pages_controller.php:78;93;164;179
+msgid "The page could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/pages_controller.php:103;116;131;189;202;217
+msgid "Invalid id for page"
+msgstr ""
+
+#: /controllers/pages_controller.php:107;193
+msgid "Page deleted"
+msgstr ""
+
+#: /controllers/pages_controller.php:110;196
+msgid "Page was not deleted"
+msgstr ""
+
+#: /controllers/pages_controller.php:122;137;208;223
+msgid "Page archived"
+msgstr ""
+
+#: /controllers/pages_controller.php:125;140;211;226
+msgid "Page was not archived"
+msgstr ""
+
+#: /controllers/users_controller.php:21;210;230
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/users_controller.php:77
+msgid "Usuario no valid"
+msgstr ""
+
+#: /controllers/users_controller.php:85
+msgid "Tus datos se han actualizado"
+msgstr ""
+
+#: /controllers/users_controller.php:88
+msgid "No se pudo guardar el usuario. Por favor, intenta de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:99;197;219
+msgid "Invalid user"
+msgstr ""
+
+#: /controllers/users_controller.php:107
+msgid "Se ha actualizado tu password"
+msgstr ""
+
+#: /controllers/users_controller.php:110
+msgid "No coincide la confirmacion del password"
+msgstr ""
+
+#: /controllers/users_controller.php:115
+msgid "Su password anterior no es valido"
+msgstr ""
+
+#: /controllers/users_controller.php:207;227
+msgid "The user has been saved"
+msgstr ""
+
+#: /controllers/users_controller.php:242
+msgid "Invalid id for user"
+msgstr ""
+
+#: /controllers/users_controller.php:246
+msgid "User deleted"
+msgstr ""
+
+#: /controllers/users_controller.php:249
+msgid "User was not deleted"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:87
+msgid "Available ACO sync commands:"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:93
+msgid "For help, run the 'help' command.  For help on a specific command, run 'help <command>'"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:124
+msgid "Aco Update Complete"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:167
+msgid "Deleted %s and all children"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:208
+msgid "Created Aco node: %s"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:244
+msgid "Deleted Aco node %s"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:259
+msgid "Usage: cake acl_extras <command>"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:261
+msgid "Commands:"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:265
+msgid "Add new ACOs for new controllers and actions"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:266
+msgid "Create new ACO's for controllers and their actions. Does not remove any nodes from ACO table"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:270
+msgid "Creates new ACO's for missing controllers and actions. Removes orphaned entries in the ACO table."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:273
+msgid "Verify the tree structure of either your Aco or Aro Trees"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:276
+msgid "Recover a corrupted Tree"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:279
+msgid "Displays this help message, or a message on a specific command."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:290
+msgid "Command '%s' not found"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:302;322
+msgid "Missing Type"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:308
+msgid "Tree is valid and strong"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:328
+msgid "Tree has been recovered, or tree did not need recovery."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:330
+msgid "Tree recovery failed."
+msgstr ""
+
+#: /views/backgrounds/add.ctp:5
+msgid "Add Background"
+msgstr ""
+
+#: /views/backgrounds/add.ctp:13
+#: /views/backgrounds/admin_add.ctp:13
+#: /views/backgrounds/admin_edit.ctp:14
+#: /views/backgrounds/edit.ctp:14
+#: /views/comments/add.ctp:14
+#: /views/comments/admin_add.ctp:14
+#: /views/comments/admin_edit.ctp:15
+#: /views/comments/edit.ctp:15
+#: /views/galleries/add.ctp:11
+#: /views/galleries/admin_add.ctp:11
+#: /views/galleries/admin_edit.ctp:12
+#: /views/galleries/edit.ctp:12
+#: /views/gallery_pictures/add.ctp:12
+#: /views/gallery_pictures/admin_add.ctp:12
+#: /views/gallery_pictures/admin_edit.ctp:13
+#: /views/gallery_pictures/edit.ctp:13
+#: /views/horarios/add.ctp:14
+#: /views/horarios/admin_add.ctp:14
+#: /views/horarios/admin_edit.ctp:15
+#: /views/horarios/edit.ctp:15
+#: /views/menu_items/admin_add.ctp:12
+#: /views/menu_items/admin_edit.ctp:13
+#: /views/menus/admin_add.ctp:9
+#: /views/menus/admin_edit.ctp:10
+#: /views/minuteros/add.ctp:14
+#: /views/minuteros/admin_add.ctp:14
+#: /views/minuteros/admin_edit.ctp:15
+#: /views/minuteros/edit.ctp:15
+#: /views/pages/add.ctp:14
+#: /views/pages/admin_add.ctp:15
+#: /views/pages/admin_edit.ctp:16
+#: /views/pages/edit.ctp:15
+msgid "Submit"
+msgstr ""
+
+#: /views/backgrounds/admin_add.ctp:5
+msgid "Admin Add Background"
+msgstr ""
+
+#: /views/backgrounds/admin_edit.ctp:5
+msgid "Admin Edit Background"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:3
+#: /views/backgrounds/index.ctp:3
+msgid "Backgrounds"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:13
+#: /views/backgrounds/index.ctp:13
+#: /views/comments/admin_index.ctp:21
+#: /views/comments/index.ctp:21
+#: /views/galleries/admin_index.ctp:11
+#: /views/galleries/admin_view.ctp:56
+#: /views/galleries/index.ctp:11
+#: /views/galleries/view.ctp:56
+#: /views/horarios/admin_index.ctp:14
+#: /views/horarios/index.ctp:14
+#: /views/menu_items/admin_add.ctp:15
+#: /views/menu_items/admin_edit.ctp:16
+#: /views/menu_items/admin_index.ctp:11;53
+#: /views/menu_items/admin_view.ctp:52
+#: /views/menus/admin_add.ctp:12
+#: /views/menus/admin_edit.ctp:13
+#: /views/menus/admin_index.ctp:9;47
+#: /views/menus/admin_view.ctp:27;51
+#: /views/minuteros/admin_index.ctp:14
+#: /views/minuteros/index.ctp:14
+#: /views/pages/admin_index.ctp:15
+#: /views/pages/index.ctp:21
+msgid "Actions"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:34;34
+#: /views/backgrounds/index.ctp:34;34
+#: /views/comments/admin_index.ctp:47;47
+#: /views/comments/index.ctp:47;47
+#: /views/galleries/admin_index.ctp:28;28;30
+#: /views/galleries/admin_view.ctp:76
+#: /views/galleries/index.ctp:28;28;30
+#: /views/galleries/view.ctp:76
+#: /views/horarios/admin_index.ctp:36;36
+#: /views/horarios/index.ctp:36;36
+#: /views/menu_items/admin_index.ctp:31
+#: /views/menus/admin_index.ctp:25
+#: /views/menus/admin_view.ctp:72
+#: /views/minuteros/admin_index.ctp:36;36
+#: /views/minuteros/index.ctp:36;36
+#: /views/pages/admin_index.ctp:38;38
+#: /views/pages/index.ctp:45;45
+msgid "View"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:35;35
+#: /views/backgrounds/index.ctp:35;35
+#: /views/comments/admin_index.ctp:48;48
+#: /views/comments/index.ctp:48;48
+#: /views/galleries/admin_index.ctp:29;29
+#: /views/galleries/admin_view.ctp:77
+#: /views/galleries/index.ctp:29;29
+#: /views/galleries/view.ctp:77
+#: /views/horarios/admin_index.ctp:37;37
+#: /views/horarios/index.ctp:37;37
+#: /views/menu_items/admin_index.ctp:32
+#: /views/menus/admin_index.ctp:26
+#: /views/menus/admin_view.ctp:73
+#: /views/minuteros/admin_index.ctp:37;37
+#: /views/minuteros/index.ctp:37;37
+#: /views/pages/admin_index.ctp:39;39
+#: /views/pages/index.ctp:46;46
+msgid "Edit"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:36;36
+#: /views/backgrounds/index.ctp:36;36
+#: /views/comments/admin_index.ctp:49;49
+#: /views/comments/index.ctp:49;49
+#: /views/galleries/admin_index.ctp:31;31
+#: /views/galleries/admin_view.ctp:78
+#: /views/galleries/index.ctp:31;31
+#: /views/galleries/view.ctp:78
+#: /views/gallery_pictures/admin_index.ctp:10
+#: /views/gallery_pictures/admin_view.ctp:12
+#: /views/gallery_pictures/index.ctp:10
+#: /views/horarios/admin_index.ctp:38;38
+#: /views/horarios/index.ctp:38;38
+#: /views/menu_items/admin_edit.ctp:19
+#: /views/menu_items/admin_index.ctp:33
+#: /views/menus/admin_edit.ctp:16
+#: /views/menus/admin_index.ctp:27
+#: /views/menus/admin_view.ctp:74
+#: /views/minuteros/admin_index.ctp:38;38
+#: /views/minuteros/index.ctp:38;38
+#: /views/pages/admin_index.ctp:40;40
+#: /views/pages/index.ctp:47;47
+msgid "Delete"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:36
+#: /views/backgrounds/index.ctp:36
+#: /views/comments/admin_index.ctp:49
+#: /views/comments/index.ctp:49
+#: /views/galleries/admin_index.ctp:31
+#: /views/galleries/admin_view.ctp:78
+#: /views/galleries/index.ctp:31
+#: /views/galleries/view.ctp:78
+#: /views/gallery_pictures/admin_index.ctp:10
+#: /views/gallery_pictures/admin_view.ctp:12
+#: /views/gallery_pictures/index.ctp:10
+#: /views/horarios/admin_index.ctp:38
+#: /views/horarios/index.ctp:38
+#: /views/menu_items/admin_edit.ctp:19
+#: /views/menu_items/admin_index.ctp:33
+#: /views/menu_items/admin_view.ctp:55
+#: /views/menus/admin_edit.ctp:16
+#: /views/menus/admin_index.ctp:27
+#: /views/menus/admin_view.ctp:30;74
+#: /views/minuteros/admin_index.ctp:38
+#: /views/minuteros/index.ctp:38
+#: /views/pages/admin_index.ctp:40
+#: /views/pages/index.ctp:47
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:38;41
+#: /views/backgrounds/index.ctp:38;41
+#: /views/comments/admin_index.ctp:51;54
+#: /views/comments/index.ctp:51;54
+#: /views/galleries/admin_index.ctp:33;36
+#: /views/galleries/index.ctp:33;36
+#: /views/horarios/admin_index.ctp:40;43
+#: /views/horarios/index.ctp:40;43
+#: /views/minuteros/admin_index.ctp:40;43
+#: /views/minuteros/index.ctp:40;43
+#: /views/pages/admin_index.ctp:42;45
+#: /views/pages/index.ctp:49;52
+msgid " "
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:38
+#: /views/backgrounds/index.ctp:38
+#: /views/comments/admin_index.ctp:51
+#: /views/comments/index.ctp:51
+#: /views/galleries/admin_index.ctp:33
+#: /views/galleries/index.ctp:33
+#: /views/horarios/admin_index.ctp:40
+#: /views/horarios/index.ctp:40
+#: /views/minuteros/admin_index.ctp:40
+#: /views/minuteros/index.ctp:40
+#: /views/pages/admin_index.ctp:42
+#: /views/pages/index.ctp:49
+msgid "Set Inactive"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:38
+#: /views/backgrounds/index.ctp:38
+#: /views/comments/admin_index.ctp:51
+#: /views/comments/index.ctp:51
+#: /views/galleries/admin_index.ctp:33
+#: /views/galleries/index.ctp:33
+#: /views/horarios/admin_index.ctp:40
+#: /views/horarios/index.ctp:40
+#: /views/minuteros/admin_index.ctp:40
+#: /views/minuteros/index.ctp:40
+#: /views/pages/admin_index.ctp:42
+#: /views/pages/index.ctp:49
+msgid "Are you sure you want to set inactive # %s?"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:41
+#: /views/backgrounds/index.ctp:41
+#: /views/comments/admin_index.ctp:54
+#: /views/comments/index.ctp:54
+#: /views/galleries/admin_index.ctp:36
+#: /views/galleries/index.ctp:36
+#: /views/horarios/admin_index.ctp:43
+#: /views/horarios/index.ctp:43
+#: /views/minuteros/admin_index.ctp:43
+#: /views/minuteros/index.ctp:43
+#: /views/pages/admin_index.ctp:45
+#: /views/pages/index.ctp:52
+msgid "Set Active"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:41
+#: /views/backgrounds/index.ctp:41
+#: /views/comments/admin_index.ctp:54
+#: /views/comments/index.ctp:54
+#: /views/galleries/admin_index.ctp:36
+#: /views/galleries/index.ctp:36
+#: /views/horarios/admin_index.ctp:43
+#: /views/horarios/index.ctp:43
+#: /views/minuteros/admin_index.ctp:43
+#: /views/minuteros/index.ctp:43
+#: /views/pages/admin_index.ctp:45
+#: /views/pages/index.ctp:52
+msgid "Are you sure you want to set active # %s?"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:50
+#: /views/backgrounds/index.ctp:50
+#: /views/comments/admin_index.ctp:63
+#: /views/comments/index.ctp:63
+#: /views/galleries/admin_index.ctp:45
+#: /views/galleries/index.ctp:45
+#: /views/horarios/admin_index.ctp:52
+#: /views/horarios/index.ctp:52
+#: /views/menu_items/admin_index.ctp:41
+#: /views/menus/admin_index.ctp:35
+#: /views/minuteros/admin_index.ctp:52
+#: /views/minuteros/index.ctp:52
+#: /views/pages/admin_index.ctp:53
+#: /views/pages/index.ctp:60
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:55
+#: /views/backgrounds/index.ctp:55
+#: /views/comments/admin_index.ctp:68
+#: /views/comments/index.ctp:68
+#: /views/galleries/admin_index.ctp:50
+#: /views/galleries/index.ctp:50
+#: /views/horarios/admin_index.ctp:57
+#: /views/horarios/index.ctp:57
+#: /views/menu_items/admin_index.ctp:46
+#: /views/menus/admin_index.ctp:40
+#: /views/minuteros/admin_index.ctp:57
+#: /views/minuteros/index.ctp:57
+#: /views/pages/admin_index.ctp:58
+#: /views/pages/index.ctp:65
+msgid "previous"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:58
+#: /views/backgrounds/index.ctp:58
+#: /views/comments/admin_index.ctp:71
+#: /views/comments/index.ctp:71
+#: /views/galleries/admin_index.ctp:53
+#: /views/galleries/index.ctp:53
+#: /views/horarios/admin_index.ctp:60
+#: /views/horarios/index.ctp:60
+#: /views/menu_items/admin_index.ctp:49
+#: /views/menus/admin_index.ctp:43
+#: /views/minuteros/admin_index.ctp:60
+#: /views/minuteros/index.ctp:60
+#: /views/pages/admin_index.ctp:61
+#: /views/pages/index.ctp:68
+msgid "next"
+msgstr ""
+
+#: /views/backgrounds/admin_index.ctp:62
+#: /views/backgrounds/index.ctp:62
+#: /views/comments/admin_index.ctp:75
+#: /views/comments/index.ctp:75
+#: /views/galleries/admin_index.ctp:57
+#: /views/galleries/index.ctp:57
+#: /views/horarios/admin_index.ctp:64
+#: /views/horarios/index.ctp:64
+#: /views/minuteros/admin_index.ctp:64
+#: /views/minuteros/index.ctp:64
+#: /views/pages/admin_index.ctp:65
+#: /views/pages/index.ctp:72
+msgid "Add"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:2
+#: /views/backgrounds/view.ctp:2
+msgid "Background"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:4
+#: /views/backgrounds/view.ctp:4
+#: /views/comments/admin_view.ctp:4
+#: /views/comments/view.ctp:4
+#: /views/galleries/admin_view.ctp:4;48
+#: /views/galleries/view.ctp:4;48
+#: /views/horarios/admin_view.ctp:4
+#: /views/horarios/view.ctp:4
+#: /views/menu_items/admin_view.ctp:4
+#: /views/menus/admin_view.ctp:4;42
+#: /views/minuteros/admin_view.ctp:4
+#: /views/minuteros/view.ctp:4
+#: /views/pages/admin_view.ctp:4
+#: /views/pages/view.ctp:4
+msgid "Id"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:9
+#: /views/backgrounds/view.ctp:9
+#: /views/galleries/admin_view.ctp:9;50
+#: /views/galleries/view.ctp:9;50
+#: /views/horarios/admin_view.ctp:9
+#: /views/horarios/view.ctp:9
+#: /views/menu_items/admin_view.ctp:29
+#: /views/menus/admin_view.ctp:9;47
+#: /views/minuteros/admin_view.ctp:9
+#: /views/minuteros/view.ctp:9
+#: /views/pages/admin_view.ctp:9
+#: /views/pages/view.ctp:9
+msgid "Name"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:14
+#: /views/backgrounds/view.ctp:14
+#: /views/galleries/admin_view.ctp:14
+#: /views/galleries/view.ctp:14
+#: /views/horarios/admin_view.ctp:14
+#: /views/horarios/view.ctp:14
+#: /views/minuteros/admin_view.ctp:14
+#: /views/minuteros/view.ctp:14
+#: /views/pages/admin_view.ctp:14
+#: /views/pages/view.ctp:14
+msgid "Description"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:19
+#: /views/backgrounds/view.ctp:19
+#: /views/horarios/admin_view.ctp:24
+#: /views/horarios/view.ctp:24
+#: /views/minuteros/admin_view.ctp:24
+#: /views/minuteros/view.ctp:24
+msgid "Image"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:24
+#: /views/backgrounds/view.ctp:24
+#: /views/horarios/admin_view.ctp:29
+#: /views/horarios/view.ctp:29
+#: /views/minuteros/admin_view.ctp:29
+#: /views/minuteros/view.ctp:29
+msgid "Is Active"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:29
+#: /views/backgrounds/view.ctp:29
+#: /views/galleries/admin_view.ctp:53
+#: /views/galleries/view.ctp:53
+#: /views/horarios/admin_view.ctp:34
+#: /views/horarios/view.ctp:34
+#: /views/minuteros/admin_view.ctp:34
+#: /views/minuteros/view.ctp:34
+msgid "Sort"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:34
+#: /views/backgrounds/view.ctp:34
+#: /views/comments/admin_view.ctp:47
+#: /views/comments/view.ctp:47
+#: /views/galleries/admin_view.ctp:29;54
+#: /views/galleries/view.ctp:29;54
+#: /views/horarios/admin_view.ctp:39
+#: /views/horarios/view.ctp:39
+#: /views/menu_items/admin_view.ctp:39
+#: /views/menus/admin_view.ctp:14;49
+#: /views/minuteros/admin_view.ctp:39
+#: /views/minuteros/view.ctp:39
+#: /views/pages/admin_view.ctp:47
+#: /views/pages/view.ctp:47
+msgid "Created"
+msgstr ""
+
+#: /views/backgrounds/admin_view.ctp:39
+#: /views/backgrounds/view.ctp:39
+#: /views/comments/admin_view.ctp:52
+#: /views/comments/view.ctp:52
+#: /views/galleries/admin_view.ctp:34;55
+#: /views/galleries/view.ctp:34;55
+#: /views/horarios/admin_view.ctp:44
+#: /views/horarios/view.ctp:44
+#: /views/menu_items/admin_view.ctp:44
+#: /views/menus/admin_view.ctp:19;50
+#: /views/minuteros/admin_view.ctp:44
+#: /views/minuteros/view.ctp:44
+#: /views/pages/admin_view.ctp:52
+#: /views/pages/view.ctp:52
+msgid "Updated"
+msgstr ""
+
+#: /views/backgrounds/edit.ctp:5
+msgid "Edit Background"
+msgstr ""
+
+#: /views/comments/add.ctp:4
+msgid "Add Comment"
+msgstr ""
+
+#: /views/comments/admin_add.ctp:4
+msgid "Admin Add Comment"
+msgstr ""
+
+#: /views/comments/admin_edit.ctp:4
+msgid "Admin Edit Comment"
+msgstr ""
+
+#: /views/comments/admin_index.ctp:2
+#: /views/comments/index.ctp:2
+msgid "Comments"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:2;14
+#: /views/comments/view.ctp:2;14
+msgid "Comment"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:9
+#: /views/comments/view.ctp:9
+msgid "Users"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:19
+#: /views/comments/view.ctp:19
+msgid "Model"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:24
+#: /views/comments/view.ctp:24
+msgid "Foreign Key"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:30;32;36
+#: /views/comments/view.ctp:30;32;36
+#: /views/pages/admin_view.ctp:25;27;31
+#: /views/pages/view.ctp:25;27;31
+msgid "Active"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:38
+#: /views/comments/view.ctp:38
+#: /views/pages/admin_view.ctp:33
+#: /views/pages/view.ctp:33
+msgid "Inactive"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:42
+#: /views/comments/view.ctp:42
+msgid "Alias"
+msgstr ""
+
+#: /views/comments/edit.ctp:4
+msgid "Edit Comment"
+msgstr ""
+
+#: /views/galleries/add.ctp:4
+msgid "Add Gallery"
+msgstr ""
+
+#: /views/galleries/admin_add.ctp:4
+msgid "Admin Add Gallery"
+msgstr ""
+
+#: /views/galleries/admin_edit.ctp:4
+msgid "Admin Edit Gallery"
+msgstr ""
+
+#: /views/galleries/admin_index.ctp:3
+#: /views/galleries/index.ctp:3
+msgid "Galleries"
+msgstr ""
+
+#: /views/galleries/admin_index.ctp:30
+#: /views/galleries/admin_view.ctp:2
+#: /views/galleries/index.ctp:30
+#: /views/galleries/view.ctp:2
+msgid "Gallery"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:19
+#: /views/galleries/view.ctp:19
+#: /views/pages/admin_view.ctp:42
+#: /views/pages/view.ctp:42
+msgid "Slug"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:24
+#: /views/galleries/view.ctp:24
+#: /views/pages/admin_view.ctp:19
+#: /views/pages/view.ctp:19
+msgid "Keywords"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:44
+#: /views/galleries/view.ctp:44
+msgid "Related Gallery Pictures"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:49
+#: /views/galleries/view.ctp:49
+msgid "Gallery Id"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:51
+#: /views/galleries/view.ctp:51
+msgid "Path"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:52
+#: /views/galleries/view.ctp:52
+msgid "Alt"
+msgstr ""
+
+#: /views/galleries/admin_view.ctp:87
+#: /views/galleries/view.ctp:87
+msgid "New Gallery Picture"
+msgstr ""
+
+#: /views/galleries/edit.ctp:4
+msgid "Edit Gallery"
+msgstr ""
+
+#: /views/gallery_pictures/add.ctp:4
+msgid "Add Gallery Picture"
+msgstr ""
+
+#: /views/gallery_pictures/admin_add.ctp:4
+msgid "Admin Add Gallery Picture"
+msgstr ""
+
+#: /views/gallery_pictures/admin_edit.ctp:4
+msgid "Admin Edit Gallery Picture"
+msgstr ""
+
+#: /views/gallery_pictures/edit.ctp:4
+msgid "Edit Gallery Picture"
+msgstr ""
+
+#: /views/horarios/add.ctp:5
+msgid "Add Horario"
+msgstr ""
+
+#: /views/horarios/admin_add.ctp:5
+msgid "Admin Add Horario"
+msgstr ""
+
+#: /views/horarios/admin_edit.ctp:5
+msgid "Admin Edit Horario"
+msgstr ""
+
+#: /views/horarios/admin_index.ctp:3
+#: /views/horarios/index.ctp:3
+msgid "Horarios"
+msgstr ""
+
+#: /views/horarios/admin_view.ctp:2
+#: /views/horarios/view.ctp:2
+msgid "Horario"
+msgstr ""
+
+#: /views/horarios/admin_view.ctp:19
+#: /views/horarios/view.ctp:19
+#: /views/minuteros/admin_view.ctp:19
+#: /views/minuteros/view.ctp:19
+msgid "Color Code"
+msgstr ""
+
+#: /views/horarios/edit.ctp:5
+msgid "Edit Horario"
+msgstr ""
+
+#: /views/layouts/aplicacion.ctp:24
+#: /views/layouts/construccion.ctp:25
+msgid "Web site:"
+msgstr ""
+
+#: /views/layouts/ez/ez.ctp:67
+#: /views/layouts/ez/login.ctp:56
+msgid "Bloom Web Company"
+msgstr ""
+
+#: /views/layouts/ez/file_browser.ctp:25
+msgid "Priceshoes Virtual"
+msgstr ""
+
+#: /views/layouts/ez/login.ctp:25
+msgid "EZ CMS:"
+msgstr ""
+
+#: /views/menu_items/admin_add.ctp:4
+msgid "Admin Add Menu Item"
+msgstr ""
+
+#: /views/menu_items/admin_add.ctp:18
+#: /views/menu_items/admin_edit.ctp:20
+#: /views/menu_items/admin_view.ctp:56
+#: /views/menus/admin_add.ctp:16
+#: /views/menus/admin_edit.ctp:18
+#: /views/menus/admin_index.ctp:50
+#: /views/menus/admin_view.ctp:33
+msgid "List Menu Items"
+msgstr ""
+
+#: /views/menu_items/admin_add.ctp:19
+#: /views/menu_items/admin_edit.ctp:21
+#: /views/menu_items/admin_index.ctp:56
+#: /views/menu_items/admin_view.ctp:58
+#: /views/menus/admin_add.ctp:15
+#: /views/menus/admin_edit.ctp:17
+#: /views/menus/admin_view.ctp:31
+msgid "List Menus"
+msgstr ""
+
+#: /views/menu_items/admin_add.ctp:20
+#: /views/menu_items/admin_edit.ctp:22
+#: /views/menu_items/admin_index.ctp:57
+#: /views/menu_items/admin_view.ctp:59
+#: /views/menus/admin_index.ctp:49
+#: /views/menus/admin_view.ctp:32
+msgid "New Menu"
+msgstr ""
+
+#: /views/menu_items/admin_edit.ctp:4
+msgid "Editar Menu Item"
+msgstr ""
+
+#: /views/menu_items/admin_index.ctp:2
+msgid "Menu Items"
+msgstr ""
+
+#: /views/menu_items/admin_index.ctp:55
+#: /views/menu_items/admin_view.ctp:57
+#: /views/menus/admin_add.ctp:17
+#: /views/menus/admin_edit.ctp:19
+#: /views/menus/admin_index.ctp:51
+#: /views/menus/admin_view.ctp:34;83
+msgid "New Menu Item"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:2
+msgid "Menu Item"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:9
+#: /views/menus/admin_view.ctp:2
+msgid "Menu"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:14
+#: /views/menus/admin_view.ctp:44
+msgid "Parent Id"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:19
+#: /views/menus/admin_view.ctp:45
+msgid "Lft"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:24
+#: /views/menus/admin_view.ctp:46
+msgid "Rght"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:34
+#: /views/menus/admin_view.ctp:48
+msgid "Link"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:54
+msgid "Edit Menu Item"
+msgstr ""
+
+#: /views/menu_items/admin_view.ctp:55
+msgid "Delete Menu Item"
+msgstr ""
+
+#: /views/menus/admin_add.ctp:4
+msgid "Admin Add Menu"
+msgstr ""
+
+#: /views/menus/admin_edit.ctp:4
+msgid "Admin Edit Menu"
+msgstr ""
+
+#: /views/menus/admin_index.ctp:2
+msgid "Menus"
+msgstr ""
+
+#: /views/menus/admin_view.ctp:29
+msgid "Edit Menu"
+msgstr ""
+
+#: /views/menus/admin_view.ctp:30
+msgid "Delete Menu"
+msgstr ""
+
+#: /views/menus/admin_view.ctp:38
+msgid "Related Menu Items"
+msgstr ""
+
+#: /views/menus/admin_view.ctp:43
+msgid "Menu Id"
+msgstr ""
+
+#: /views/minuteros/add.ctp:5
+msgid "Add Minutero"
+msgstr ""
+
+#: /views/minuteros/admin_add.ctp:5
+msgid "Admin Add Minutero"
+msgstr ""
+
+#: /views/minuteros/admin_edit.ctp:5
+msgid "Admin Edit Minutero"
+msgstr ""
+
+#: /views/minuteros/admin_index.ctp:3
+#: /views/minuteros/index.ctp:3
+msgid "Minuteros"
+msgstr ""
+
+#: /views/minuteros/admin_view.ctp:2
+#: /views/minuteros/view.ctp:2
+msgid "Minutero"
+msgstr ""
+
+#: /views/minuteros/edit.ctp:5
+msgid "Edit Minutero"
+msgstr ""
+
+#: /views/pages/add.ctp:4
+msgid "Add Page"
+msgstr ""
+
+#: /views/pages/admin_add.ctp:4
+msgid "Admin Add Page"
+msgstr ""
+
+#: /views/pages/admin_edit.ctp:4
+msgid "Admin Edit Page"
+msgstr ""
+
+#: /views/pages/admin_index.ctp:2
+#: /views/pages/index.ctp:2
+msgid "Pages"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:2
+#: /views/pages/view.ctp:2
+msgid "Page"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:37
+#: /views/pages/view.ctp:37
+msgid "Wysiwyg Content"
+msgstr ""
+
+#: /views/pages/edit.ctp:4
+msgid "Edit Page"
+msgstr ""
+
+#: /views/users/admin_login.ctp:10
+#: /views/users/login.ctp:10
+msgid "Login"
+msgstr ""
+
+#: /views/users/register.ctp:5;14
+msgid "Register"
+msgstr ""
+
+#: /webroot/test.php:88
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
