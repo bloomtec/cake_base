@@ -116,7 +116,6 @@ class ProductsController extends AppController {
 		if (!empty($this->data)) {
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			$this->Product->create();
-			debug($this->data);
 			if ($this->Product->save($this->data)) {
 				$this->Session->setFlash(__('The product has been saved', true));
 				$this->redirect(array('action' => 'index'));
