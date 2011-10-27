@@ -30,7 +30,7 @@
 				<a href="#"><img src="/img/twitter_footer.png" /></a>
 			</li>
 			<li>
-				<a href="#"><img src="/img/youtube.png" /></a>
+				<a href="#"><img src="/img/youtube.png" /></a>"
 			</li>
 		</ul>
 		<h3>Excelenter.com.co  2011 Copyright        Todos los derechos reservados - Diseño y desarrollo por <a href=""><img src="/img/logo_bloom.png" /></a></h3>
