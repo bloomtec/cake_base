@@ -93,7 +93,26 @@ class TagsController extends AppController {
 		$architectures = $this->Tag->Product->Architecture->find('list');
 		$slots = $this->Tag->Product->Slot->find('list');
 		$sockets = $this->Tag->Product->Socket->find('list');
-		$brands = $this->Tag->Product->Brand->find('list');
+		// Filtrar las marcas acorde el tag
+		$brands_ids = $this->Tag->Product->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Product.product_type_id'=>$tag_id
+				),
+				'fields'=>array(
+					'Product.brand_id'
+				)
+			)
+		);
+		$brands = $this->Tag->Product->Brand->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Brand.id'=>$brands_ids
+				)
+			)
+		);
 		$this->set(compact('architectures', 'sockets', 'slots', 'brands', 'tag_id'));
 	}
 	
