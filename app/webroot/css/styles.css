@@ -286,3 +286,17 @@ input.submit{
 	margin:-5px 0;
 	color:yellow;
 }
+#galeria_wrraper{
+	padding:55px 55px 23px;
+
+}
+#galeria_wrraper img{
+	width: 250px;
+	height: 113px;
+	background-color: #d7d7d7;
+	float: left;
+	margin-bottom: 45px;
+}
+#galeria_wrraper .medio{
+	margin: 0 50px;
+}

@@ -77,9 +77,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'bloomweb',
-		'password' => 'rr40r900343',
-		'database' => 'bloomweb_amarillo2',
+		'login' => 'root',
+		'password' => '',
+		'database' => 'bloomweb_ez',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

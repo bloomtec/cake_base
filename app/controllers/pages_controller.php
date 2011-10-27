@@ -33,6 +33,9 @@ class PagesController extends AppController {
 	function aplicacion(){
 		$this->layout="aplicacion";
 	}
+	function galeria(){
+		$this->layout="default";
+	}
 	function admin_ez() {
 
 	}
