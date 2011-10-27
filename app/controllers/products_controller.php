@@ -21,19 +21,19 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		$featured_products_ids_with_tag_id = $this->Product->Tag->find(
+		$featured_products_ids_with_tag_id = $this->Product->ProductsTag->find(
 			'list',
 			array(
 				'fields' => array(
-					'Tag.product_id'
+					'ProductsTag.product_id'
 				),
 				'conditions' => array(
-					'Tag.product_id' => $featured_products_ids,
-					'Tag.tag_id' => $tag_id
+					'ProductsTag.product_id' => $featured_products_ids,
+					'ProductsTag.tag_id' => $tag_id
 				)
 			)
 		);
-		return $this->Product->find(
+		$product = $this->Product->find(
 			'first',
 			array(
 				'conditions' => array(
@@ -44,6 +44,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
+		$this->set('product');
 	}
 	
 	function index() {
