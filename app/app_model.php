@@ -32,4 +32,22 @@
  * @subpackage    cake.cake.libs.model
  */
 class AppModel extends Model {
+	
+	function afterSave($created){
+		if(isset($this->actsAs)){
+			if($created){
+				$languages = Configure::read('Config.languages'); 
+				$currentLanguage=$this->locale;
+				foreach($languages as $key => $lang){
+					if($key == $currentLanguage) continue; 
+						$this->locale=$key;
+						$this->data['Background']['locale']=$key;
+						$this->data['Background']['id']=$this->id;
+						$this->save($this->data); 
+				}
+				$this->locale=$currentLanguage;	
+			}
+		}
+		return true;
+	}
 }
