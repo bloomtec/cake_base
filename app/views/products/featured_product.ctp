@@ -1,5 +1,5 @@
 <?php if(isset($product) && !empty($product)){ ?>
-<h1><?php debug($product); echo $product['Product']['name'];?></h1>
+<h1><?php echo $product['Product']['name'];?></h1>
 <img src="/img/uploads/<?php echo $product['Product']['image']; ?>" />
 <div class="info_destacado">
 	<p>
