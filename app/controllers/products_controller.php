@@ -44,7 +44,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		$this->set('product');
+		$this->set('product', $product);
 	}
 	
 	function index() {
@@ -143,6 +143,7 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Product deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		//debug($this->Product->invalidFields());
 		$this->Session->setFlash(__('Product was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}

@@ -3,7 +3,8 @@
 	<fieldset>
 		<legend><?php __('Admin Add Product'); ?></legend>
 	<?php
-		echo $this->Form->input('product_type_id', array("empty"=>"Seleccione..."));
+		echo $this -> Form -> input('product_type_id', array("empty"=>"Seleccione..."));
+		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		e('<div id="ProductProductTypeInfo"></div>');
 	?>
 	</fieldset>
