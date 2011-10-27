@@ -75,8 +75,10 @@ class TagsController extends AppController {
 			//TODO:Nada por el momento
 		}
 		$this->paginate = array(
-			$limit,
-			$conditions
+			"Product" => array(
+				$limit,
+				$conditions
+			)
 		);
 		return $this->paginate('Product');
 	}	
