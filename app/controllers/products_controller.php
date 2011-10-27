@@ -98,14 +98,14 @@ class ProductsController extends AppController {
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product', true));
-			//$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->Product->delete($id)) {
 			$this->Session->setFlash(__('Product deleted', true));
-			//$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'index'));
 		}
 		$this->Session->setFlash(__('Product was not deleted', true));
-		//$this->redirect(array('action' => 'index'));
+		$this->redirect(array('action' => 'index'));
 	}
 	
 	
