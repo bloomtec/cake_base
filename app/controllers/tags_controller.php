@@ -5,7 +5,7 @@ class TagsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('productsFilter');
 	}
 	
 	function index() {

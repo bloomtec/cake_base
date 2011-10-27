@@ -5,7 +5,7 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getSocketsByArchitecture', 'productsFilter');
+		$this->Auth->allow('getSocketsByArchitecture');
 	}
 	
 	function index() {
