@@ -21,11 +21,7 @@ class TagsController extends AppController {
 		}
 		$this->Tag->recursive=-1;
 		$this->set('tag', $this->Tag->findBySlug($slug));
-		$this->set('products',$this->paginate('Product'));
-	}
-	
-	function filtro($tag_id){
-		$this->layout='ajax';
+		
 		$conditions = array();
 		$limit = 16;
 		// Revisar que llegue algun tipo de filtrado
@@ -75,13 +71,21 @@ class TagsController extends AppController {
 		} else {
 			//TODO:Nada por el momento
 		}
+		
+		/**
 		$this->paginate = array(
 			"Product" => array(
 				$limit,
 				$conditions
 			)
 		);
-		return $this->paginate("Product");
+		$products = $this->paginate("Product");
+		 **/
+		$this->set('products', $this->paginate('Product'));
+	}
+	
+	function filtro($tag_id){
+		$this->layout='ajax';
 	}
 	
 	function admin_index() {
