@@ -26,7 +26,7 @@ class TagsController extends AppController {
 		$limit = 16;
 		/**
 		 * Lo que puede llegar es:
-		 * limite, orden, 
+		 * limite, orden
 		 */
 		// Revisar que llegue algun tipo de filtrado
 		if(isset($this->params['named']) && !empty($this->params['named'])) {
