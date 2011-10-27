@@ -48,6 +48,7 @@
 		echo $this -> Html -> Script("upload");
 		echo $this -> Html -> Script("ckeditor/ckeditor");
 		echo $this -> Html -> Script("fileBrowser");
+		echo $this -> Html -> Script("admin");
 
 		echo $scripts_for_layout;
 		?>

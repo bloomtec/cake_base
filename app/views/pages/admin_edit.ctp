@@ -9,7 +9,7 @@
 		echo $this->Form->input('layout',array('options'=>$layouts));
 		echo $this->Form->input('description');
 		echo $this->Form->input('keywords');
-		echo $this->Form->input('active');
+		echo $this->Form->input('is_active');
 		echo $this->Form->input('wysiwyg_content',array('label'=>false));
 	?>
 	</fieldset>
