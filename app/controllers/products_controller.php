@@ -97,8 +97,9 @@ class ProductsController extends AppController {
 		$architectures = $this->Product->Architecture->find('list');
 		$slots = $this->Product->Slot->find('list');
 		//$sockets = $this->Product->Socket->find('list');
+		$brands = $this->Product->Brand->find('list');
 		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>13)));
-		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags', 'type_id'));
+		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags', 'brands', 'type_id'));
 	}
 	
 	function getSocketsByArchitecture($architecture_id = null) {
@@ -113,11 +114,14 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
+			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			$this->Product->create();
+			debug($this->data);
 			if ($this->Product->save($this->data)) {
 				$this->Session->setFlash(__('The product has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
+				debug($this->Product->invalidFields());
 				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 			}
 		}

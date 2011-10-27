@@ -9,6 +9,7 @@ if ($type_id == 2) {
 if (($type_id >= 2 && $type_id <= 6) || $type_id == 10 || $type_id == 13) {
 	echo $this -> Form -> input('Slot.Slot');
 }
+echo $this -> Form -> input('Product.brand_id');
 echo $this -> Form -> input('Product.name');
 echo $this -> Form -> input('Product.description');
 echo $this -> Form -> input('Product.ref');
