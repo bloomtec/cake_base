@@ -5,7 +5,45 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getSocketsByArchitecture');
+		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct');
+	}
+	
+	function featuredProduct($tag_id) {
+		$this->layout="ajax";
+		$featured_products_ids = $this->Product->find(
+			'list',
+			array(
+				'fields' => array(
+					'Product.id'
+				),
+				'conditions' => array(
+					'Product.is_featured' => 1
+				)
+			)
+		);
+		$featured_products_ids_with_tag_id = $this->Product->Tag->find(
+			'list',
+			array(
+				'fields' => array(
+					'Tag.product_id'
+				),
+				'conditions' => array(
+					'Tag.product_id' => $featured_products_ids,
+					'Tag.tag_id' => $tag_id
+				)
+			)
+		);
+		return $this->Product->find(
+			'first',
+			array(
+				'conditions' => array(
+					'Product.id'=>$featured_products_ids_with_tag_id
+				),
+				'order'=>array(
+					'rand()'
+				)
+			)
+		);
 	}
 	
 	function index() {

@@ -26,11 +26,8 @@ class TagsController extends AppController {
 	
 	function filtro(){
 		$this->layout='ajax';
-	}
-
-	function productsFilter() {
 		$conditions = array();
-		$limit = 10;
+		$limit = 16;
 		// Revisar que llegue algun tipo de filtrado
 		if(isset($this->params['named']) && !empty($this->params['named'])) {
 			// Revisar si se pone limite al paginado
@@ -84,8 +81,8 @@ class TagsController extends AppController {
 				$conditions
 			)
 		);
-		return $this->paginate('Product');
-	}	
+		return $this->paginate("Product");
+	}
 	
 	function admin_index() {
 		$this->Tag->recursive = 0;
