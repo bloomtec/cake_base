@@ -7,16 +7,16 @@
 				<h1>Nuestra Empresa</h1>
 			</li>
 			<li>
-				<a href="#">¿Quienes somos?</a>
+				<a href="/quienes-somos">¿Quienes somos?</a>
 			</li>
 			<li>
-				<a href="#">Servicios</a>
+				<a href="/servicios">Servicios</a>
 			</li>
 			<li>
-				<a href="#">Procesos de pago</a>
+				<a href="/proceso-de-pago">Proceso de pago</a>
 			</li>
 			<li>
-				<a href="#">Políticas de Garantía</a>
+				<a href="politicas-de-garantia">Políticas de Garantía</a>
 			</li>
 		</ul>
 		<ul id="social">

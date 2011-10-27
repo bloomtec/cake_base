@@ -66,12 +66,14 @@ class PagesController extends AppController {
 		$this -> set('pages', $this -> paginate());
 	}
 
-	function view($id = null) {
-		if (!$id) {
+	function view($slug = null) {
+		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> set('page', $this -> Page -> read(null, $id));
+		$page=$this -> Page -> findBySlug($slug);
+		$this->layout=$page['Page']['layout'];
+		$this -> set('page', $page);
 	}
 
 	function add() {

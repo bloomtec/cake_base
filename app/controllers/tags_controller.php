@@ -14,6 +14,7 @@ class TagsController extends AppController {
 	}
 
 	function view($slug = null) {
+		$this->layout='categoria';
 		if (!$slug) {
 			$this->Session->setFlash(__('Invalid tag', true));
 			$this->redirect(array('action' => 'index'));

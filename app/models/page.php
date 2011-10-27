@@ -8,9 +8,7 @@ class Page extends AppModel {
 	var $sluggable = true;
 	var $sortable = false;
 	var $activable = false;
-	var $actsAs = array(
-		'Translate' => array('name','description')
-	);
+
 	
 	var $validate = array(
 		'name' => array(

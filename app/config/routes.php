@@ -26,7 +26,18 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
+	//PAGINAS
+	Router::connect('/', array('controller' => 'pages', 'action' => 'view', 'inicio'));
+	Router::connect('/empresa', array('controller' => 'pages', 'action' => 'view', 'empresa'));
+	Router::connect('/contacto', array('controller' => 'pages', 'action' => 'view', 'contacto'));
+	Router::connect('/servicios', array('controller' => 'pages', 'action' => 'view', 'servicios'));
+	Router::connect('/proceso-de-pago', array('controller' => 'pages', 'action' => 'view', 'proceso-de-pago'));
+	Router::connect('/politicas-de-garantia', array('controller' => 'pages', 'action' => 'view', 'politicas-de-garantia'));
+	Router::connect('/quienes-somos', array('controller' => 'pages', 'action' => 'view', 'quienes-somos'));
+	Router::connect('/preguntas-frecuentes', array('controller' => 'faqs', 'action' => 'index'));
+	
+	//CATEGORIAS
+	Router::connect('/categorias/*', array('controller' => 'tags', 'action' => 'view'));
 	Router::connect('/admin', array('controller' => 'users', 'action' => 'login', "admin" => true));
 /**
  * ...and connect the rest of 'Pages' controller's urls.

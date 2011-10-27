@@ -7,71 +7,81 @@
 		</form>
 		<ul id="main_menu">
 			<li>
-				<a href="">INICIO</a>
+				<a href="/">INICIO</a>
 			</li>
 			<li>
-				<a href="">PRODUCTOS</a>
+				<a href="#">PRODUCTOS</a>
 				<div class="desplegable">
+					
 					<ul class="izq">
 						<li>
-							<a href="">Computadores de mesa</a>
+							<a href="/categorias/procesadores">Procesadores</a>
 						</li>
 						<li>
-							<a href="">Computadores portátiles</a>
+							<a href="/categorias/tarjetas-madre">Tarjeras madre</a>
 						</li>
 						<li>
-							<a href="">Dispositivos usb</a>
+							<a href="/categorias/mamorias">Memorias</a>
 						</li>
 						<li>
-							<a href="">Cables</a>
+							<a href="/categorias/discos-duros">Discos duros</a>
 						</li>
 						<li>
-							<a href="">Periféricos</a>
+							<a href="/categorias/tarjetas-de-video">Tarjetas de video</a>
 						</li>
 						<li>
-							<a href="">Software</a>
+							<a href="/categorias/tarjetas-de-sonido">Tarjetas de sonido</a>
 						</li>
 						<li>
-							<a href="">Accesorios gamers</a>
+							<a href="/categorias/torres">Torres</a>
 						</li>
 						<li>
-							<a href="">Camaras web y digitales</a>
+							<a href="/categorias/monitores">Monitores</a>
+						</li>
+						<li>
+							<a href="/categorias/otras-tarjetas">Otras Tarjetas</a>
+						</li>
+						<li>
+							<a href="/categorias/software">Software</a>
 						</li>
 					</ul>
 					<ul class="der">
 						<li>
-							<a href="">Computadores de mesa</a>
+							<a href="/categorias/gamers">Gamers</a>
 						</li>
 						<li>
-							<a href="">Computadores portátiles</a>
+							<a href="/categorias/computadores-de-escritorio">Computadores de escritorio</a>
 						</li>
 						<li>
-							<a href="">Dispositivos usb</a>
+							<a href="/categorias/computadores-portatiles">Computadores portátiles</a>
 						</li>
 						<li>
-							<a href="">Cables</a>
+							<a href="/categorias/accesorios">Accesorios</a>
 						</li>
 						<li>
-							<a href="">Periféricos</a>
+							<a href="/categorias/impresoras">Impresoras</a>
 						</li>
 						<li>
-							<a href="">Software</a>
+							<a href="/categorias/dispositivos-usb">Dispositivos usb</a>
 						</li>
 						<li>
-							<a href="">Accesorios gamers</a>
+							<a href="/categorias/cables">Cables</a>
 						</li>
 						<li>
-							<a href="">Camaras web y digitales</a>
+							<a href="/categorias/periféricos">Periféricos</a>
+						</li>						
+						<li>
+							<a href="/categorias/camaras-web-y-digitales">Camaras web y digitales</a>
 						</li>
 					</ul>
 					<div style="clear: both"></div>
 				</div>
 			</li>
 			<li>
-				<a href="">EMPRESAS</a>
+				<a href="/empresa">EMPRESA</a>
 			</li>
 			<li class="ultimo">
-				<a href="">CONTÁCTENOS</a>
+				<a href="/contacto">CONTÁCTENOS</a>
 			</li>
 			<div style="clear: both"></div>
 		</ul>
