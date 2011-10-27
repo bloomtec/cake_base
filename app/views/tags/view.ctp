@@ -10,7 +10,7 @@
 		<option>24 por página</option>
 	</select>
 </div>
-<?php echo $this->element("listado_producto");?>
+<?php echo $this->element("listado_producto",array('products' => $tag['Product']));?>
 <div class="ordenar">
 	<label>Ver:</label>
 	<select>
