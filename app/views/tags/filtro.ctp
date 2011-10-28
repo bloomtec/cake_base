@@ -1,7 +1,9 @@
 <form id="FormFiltro" accept-charset="utf-8" method="post" controller="tags" action="<?php echo $tag['Tag']['slug']; ?>">
 	<h1>Buscar por:</h1>
 	<ul>
-		<?php if(isset($brands) && !empty($brands)) : ?>			
+		<h2>Nombre</h2>
+		<input type="text" id="Name" name="data[name]" />
+		<?php if(isset($brands) && !empty($brands)) : ?>		
 		<h2>Nuestras marcas</h2>
 		<select id="BrandId" name="data[brand_id]">
 			<option value="">Seleccione...</option>
@@ -30,13 +32,20 @@
 		<?php endif; ?>
 		<?php if(isset($tag_id) && !empty($tag_id) && $tag_id == 2) : ?>			
 		<h2>Video Integrado</h2>
-		<select id="filtro-sockets">
+		<select id="IsVideoIncluded" name="data[is_video_included]">
 			<option value="">Seleccione...</option>
-			<option value="1">Sí</option>
-			<option value="0">No</option>
+			<option value="si">Sí</option>
+			<option value="no">No</option>
+		</select>
+		<h2>Para Jugadores</h2>
+		<select id="IsGamers" name="data[is_gamers]">
+			<option value="">Seleccione...</option>
+			<option value="si">Sí</option>
+			<option value="no">No</option>
 		</select>
 		<?php endif; ?>
 		<input type="hidden" value="<?php echo $tag_id; ?>" id="TagId" name="data[tag_id]" />
 	</ul>
+	<br />
 	<input type="submit" value="Buscar" />
 </form>

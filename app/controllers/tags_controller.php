@@ -49,16 +49,24 @@ class TagsController extends AppController {
 				$conditions['Product.id'] = $products_with_socket_id; 
 			}
 			// Revisar si se filtra por nombre de producto
-			if(isset($this->data['named']['name']) && !empty($this->data['named']['name'])) {
-				$conditions['Product.name'] = $this->data['named']['name'];
-			}
-			// Revisar si se filtra por nombre de producto
-			if(isset($this->data['named']['name']) && !empty($this->data['named']['name'])) {
-				$conditions['Product.name'] = $this->data['named']['name'];
+			if(isset($this->data['name']) && !empty($this->data['name'])) {
+				$conditions['Product.name LIKE'] = "%".$this->data['name']."%";
 			}
 			// Revisar si se filtra por "is_gamers"
-			if(isset($this->data['named']['gamers']) && !empty($this->data['named']['gamers'])) {
-				$conditions['Product.is_gamers'] = $this->data['named']['is_gamers'];
+			if(isset($this->data['is_gamers']) && !empty($this->data['is_gamers'])) {
+				if($this->data['is_gamers'] == "si") {
+					$conditions['Product.is_gamers'] = TRUE;
+				} else {
+					$conditions['Product.is_gamers'] = FALSE;
+				}
+			}
+			// Revisar si se filtra por "is_video_included"
+			if(isset($this->data['is_video_included']) && !empty($this->data['is_video_included'])) {
+				if($this->data['is_video_included'] == "si") {
+					$conditions['Product.is_video_included'] = TRUE;
+				} else {
+					$conditions['Product.is_video_included'] = FALSE;
+				}
 			}
 		}
 		// Obtener del tag el tipo de producto
