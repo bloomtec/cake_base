@@ -273,13 +273,13 @@ $(function() {
 	$('.quitar a').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
-		console.log(itemId);
+		//console.log(itemId);
 		bloomCart.remove(itemId);
 	});
 	$('.quitar-todos a').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
-		console.log(itemId);
+		//console.log(itemId);
 		bloomCart.removeAll(itemId);
 	});
 	

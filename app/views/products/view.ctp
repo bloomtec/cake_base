@@ -117,7 +117,7 @@
 			</div>
 			<div style="clear: both"></div>
 			<div class='add-cart-confirm tahoma'>
-				Produccto agregaro pagar
+				Produccto agregado pagar
 			</div>
 		</div>	
 		<span class="puntos"></span>

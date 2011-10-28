@@ -875,7 +875,7 @@ ul li a.twitter {
 	margin-top: 18px;
 	margin-bottom: 5px;
 }
-#pages #estaticas_info .formulario_contacto input[type=text]{
+#pages #estaticas_info .formulario_contacto input[type=text], .formulario_contacto input[type=email]{
 	background-color: #888888;
 	border:1px solid #D2D4D4;
 	width: 363px;
