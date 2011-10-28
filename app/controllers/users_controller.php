@@ -3,8 +3,6 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	
-	
-
 	function beforeFilter() {
 		parent::beforeFilter();
 		if (isset($this -> params["prefix"]) && $this -> params["prefix"] == "admin") {
@@ -74,6 +72,7 @@ class UsersController extends AppController {
 
 	function profile() {
 		$this->layout="personaliza";
+
 	}
 
 	function edit($id) {

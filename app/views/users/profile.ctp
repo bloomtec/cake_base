@@ -1,8 +1,8 @@
 <div class="users">
 	<ul>
-		<li><a href="#">Mis datos</a></li>
-		<li><a href="#">Completar o modificar mis datos</a></li>
-		<li class="ultimo"><a href="#">Pedidos</a></li>
+		<li><a href="/users/profile">Mis datos</a></li>
+		<li><a href="/users/edit/<?php echo $session->read('Auth.User.id'); ?>">Completar o modificar mis datos</a></li>
+		<li class="ultimo"><a href="/orders/<?php echo $session->read('Auth.User.id'); ?>">Pedidos</a></li>
 		<div style="clear: both"></div>
 	</ul>
 	<div class="datos_perfil primero">

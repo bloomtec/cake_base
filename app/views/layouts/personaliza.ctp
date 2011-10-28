@@ -21,18 +21,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php __('Web site:'); ?>
-		<?php echo $title_for_layout; ?>
+	<title><?php
+		$model = $this -> params['models'][0];
+		$singularVar = strtolower($model);
+		if (isset(${$singularVar}[$model]['name'])) {
+			echo ${$singularVar}[$model]['name'];
+		} else {
+			echo $title_for_layout;
+		}
+			?>
 	</title>
 	<?php
-		echo $this->Html->meta('icon');
-		echo $this->Html->css('reset.css');
-		echo $this->Html->css('ie.css');
-		echo $this->Html->css('styles.css');
-		echo $this->Html->css('users.css');
-		echo $this->Html->script('jquery');
-		echo $this->Html->script('front');
+		echo $this -> Html -> meta('icon');
+		echo $this -> Html -> css('reset.css');
+		echo $this -> Html -> css('ie.css');
+		echo $this -> Html -> css('styles.css');
+		echo $this -> Html -> css('users.css');
+		echo $this -> Html -> script('jquery');
+		echo $this -> Html -> script('jquery.tools.min');
+		echo $this -> Html -> script('bjs');
+		echo $this -> Html -> script('front');
 
 		echo $scripts_for_layout;
 	?>
