@@ -192,7 +192,7 @@ input.submit{
 	padding-top: 12px;
 	margin-bottom: 17px;
 }
-#login h2{
+#login label{
 	width: 76px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 15px;
@@ -678,6 +678,29 @@ span.linea_footer {
 	font-size: 11px;
 	margin-top: 3px;
 }
+/*usuarios*/
 .confirmacion-remember{
 	display:none;
+}
+.error {
+	/* supply height to ensure consistent positioning for every browser */
+	height:15px;
+	background-color:#FFFE36;
+	border:1px solid #E1E16D;
+	font-size:11px;
+	color:#000;
+	padding:3px 10px;
+	margin-left:-2px;
+
+
+	/* CSS3 spicing for mozilla and webkit */
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-topleft:0;
+	-webkit-border-bottom-left-radius:0;
+	-webkit-border-top-left-radius:0;
+
+	-moz-box-shadow:0 0 6px #ddd;
+	-webkit-box-shadow:0 0 6px #ddd;
 }

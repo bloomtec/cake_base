@@ -20,26 +20,12 @@ $(function(){
 	
 	
 	//CARRITO
-	
-	
-	//Recordar contraseña
-	$("#rememberForm").live('submit',function(e){
-		e.preventDefault();
-		var fields=$(this).serialize();
-		BJS.post('/users/rememberPassword',fields,function(response){
-			if(response){
-				$('.confirmacion-remember').show();
-			}else{
-				$('.confirmacion-remember').html('no se pudo realizar tu solicitud verifica tu email').show();
-			}
-		})
-	});
-	
+		
 	
 	//VALIDACION DE FORMULARIOS
 	$.tools.validator.fn("[data-equals]", "el campo no es igual", function(input) {
 		var name = input.attr("data-equals"),
-		 field = this.getInputs().filter("[name=" + name + "]");
+		 field = this.getInputs().filter("[name='" + name + "']");
 		return input.val() == field.val() ? true : [name]; 
 	});
 	
@@ -53,7 +39,9 @@ $(function(){
 		'[required]'	: 'campo obligatorio',
 		'[data-equals]' : 'verifique este campo'
 	});
+	$('#UserLoginForm').validator({lang:'es'});
 	
-	$('form').validator({lang:'es'});
+	
+	
 });
 
