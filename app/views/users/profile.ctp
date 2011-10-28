@@ -11,13 +11,13 @@
 	</div>
 	<div class="datos_perfil">
 		<h1>Datos Personales</h1>
-		<label>Nombre y apellido:</label>
+		<h2>Nombre y apellido:</h2>
 		<span>Ricardo Pandales</span>
-		<label>Teléfono:</label>
+		<h2>Teléfono:</h2>
 		<span>433 33 33</span>
-		<label>Ciudad:</label>
+		<h2>Ciudad:</h2>
 		<span>Cali, Valle del Cauca</span>
-		<label>Acerca de mi:</label>
+		<h2>Acerca de mi:</h2>
 		<p>
 			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 		</p>
