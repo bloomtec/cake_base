@@ -20,15 +20,15 @@ $(function() {
 			dataType : "json",
 			data : null,
 			success : function(data) {
-				var list = $("#ProductSocket");
+				var list = $("#SocketSocket");
 				if(data != null) {
 					list.html('');
 					$.each(data, function(key, value){
-						list.append('<option val="' + key + '">' + value + '</option>');
+						list.append('<option value="' + key + '">' + value + '</option>');
 					});
 				} else {
-					list.html('<option>Seleccione...</option>');
-				}				
+					list.html('');
+				}
 			}
 		});
 	});
