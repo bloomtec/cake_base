@@ -44,6 +44,8 @@
 		echo $this -> Html -> script('front');
 		echo $scripts_for_layout;
 		?>
+		<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+	
 </head>
 <body id="categoria">
 	
@@ -53,6 +55,7 @@
 	    	<div id="producto_destacado" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
 	    		
         	</div>
+        	
         	 <div id="listado_fltro" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
         	 	
         	</div>

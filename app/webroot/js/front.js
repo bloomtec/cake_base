@@ -1,6 +1,9 @@
 $(function(){
-	$('.limite , .orden').change(function(){
+	$('.limite ').change(function(){
 			console.log(BJS.setParam('limite',$(this).find('option:selected').val()));
+	});
+	$('.orden').change(function(){
+			console.log(BJS.setParam('orden',$(this).find('option:selected').val()));
 	});
 	
 	//CARGA EL LISTADO DE FILTROS
@@ -14,5 +17,9 @@ $(function(){
 	if(divPromocionado.length > 0){
 		divPromocionado.load('/products/featuredProduct/'+divPromocionado.attr('rel'));
 	}
+	
+	
+	//CARRITO
+	
 });
 

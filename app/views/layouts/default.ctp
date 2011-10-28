@@ -50,17 +50,15 @@
 
 		<div id="container">
 			<div id="second_nav">
-				<div id="zona_gamers" class="border_radius">
-					<a href="#"><img src="/img/zona_gamers.jpg" class="border_radius" /></a>
-				</div>
+				<?php echo $this->element('promo-gamers');?>
 				<div id="login" class="border_radius">
 					<h1>Área de clientes</h1>
 					<form name="login">
-						<h2>Usuario:</h2>
-						<input type="text" class="input"/>
+						<h2>email:</h2>
+						<input type="email" class="input" name='data[User][email]' />
 						<h2>Password:</h2>
-						<input type="text" class="input"/>
-						<h3><a href="#">¿Olvido su contraseña?</a></h3>
+						<input type="password" class="input"/>
+						<h3><a href="/users/rememberPassword">¿Olvido su contraseña?</a></h3>
 						<input type="submit" class="submit" value="Ingresar" />
 						<input type="submit" class="submit primero" value="Registrese" />
 					</form>

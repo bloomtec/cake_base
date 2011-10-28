@@ -160,6 +160,9 @@ input.submit{
 	behavior: url(/PIE/PIE.htc);
 	
 }
+.border_radius .border_radius,  #producto_destacado.border_radius #zona_gamers a img{
+	margin-top:0;
+}
 #zona_gamers , #producto_destacado{
 	width:300px;
 	height:220px;
