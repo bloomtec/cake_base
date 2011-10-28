@@ -24,6 +24,13 @@
 		<?php endforeach; ?>
 	</select>
 	<?php endif; ?>
+	<?php if(isset($tag_id) && !empty($tag_id) && $tag_id == 2) : ?>			
+	<h2>Video Integrado</h2>
+	<select id="filtro-sockets">
+		<option id="1">Sí</option>
+		<option id="0">No</option>
+	</select>
+	<?php endif; ?>
 	<!-- SEGUN LO QUE VI NO ME GUSTA ESTE FILTRO ¬¬
 	<?php if(isset($slots) && !empty($slots)) : ?>			
 	<h2>Puertos</h2>
