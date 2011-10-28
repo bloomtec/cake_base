@@ -4,11 +4,11 @@
 	<span class="puntos"></span>
 	<div class="formulario_contacto twCenMt">
 		<h2 class="titulos_rosado">NOMBRE</h2>
-		<input type="text" name='name' required='required' />
+		<input type="text" name='data[name]' required='required' />
 		<h2 class="titulos_rosado">CORREO ELECTRONICO</h2>
-		<input type="email"  name='email' required='required' />
+		<input type="email"  name='data[email]' required='required' />
 		<h2 class="titulos_rosado">COMENTARIO</h2>
-		<textarea class="comentario" name='comentario'></textarea>
+		<textarea class="comentario" name='data[comentario]'></textarea>
 		<input type="submit" value="Enviar" class="twCenMt" />
 		<div style='clear:both'></div>
 		<div class='confirm-message' style='visibility: hidden'> tu mensaje ha sido enviado</div>

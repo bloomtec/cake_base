@@ -68,7 +68,8 @@ $cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
 		Configure::write('debug',0);
 		$this->autoRender=false;
 		exit(0);	
-		}else{
+		
+}else{
 		
 		}
 		
