@@ -20,5 +20,4 @@ echo $this -> Form -> input('Product.is_gamers');
 echo $this -> Form -> input('Product.is_active');
 echo $this -> Form -> input('Product.is_featured');
 echo $this -> Form -> input('Tag.Tag');
-echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 ?>

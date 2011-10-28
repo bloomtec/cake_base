@@ -1,9 +1,9 @@
 <?php if(isset($product) && !empty($product)){ ?>
-<h1><?php $product['Product']['name'];?></h1>
-<img src="/img/uploads/<?php $product['Product']['image'];?>" />
+<h1><?php echo $product['Product']['name'];?></h1>
+<img src="/img/uploads/<?php echo $product['Product']['image']; ?>" />
 <div class="info_destacado">
 	<p>
-		<?php $product['Product']['description'];?>
+		<?php echo $product['Product']['description'];?>
 	</p>
 	<a href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/".$product["Product"]["slug"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>		
 	
@@ -12,6 +12,5 @@
 	<?php echo $this -> element("estrellas_categoria",array('product'=>$product));?>
 </div>
 <?php }else{ ?>
-
 	<?php echo $this->element('promo-gamers');?>
 <?php } ?>
