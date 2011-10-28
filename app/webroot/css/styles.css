@@ -1,5 +1,8 @@
 body{
 	background-color: #000;
+	background-image: url(/img/fondo_pagina2.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
 }
 a{
 	color: #f0f0f0;
@@ -35,7 +38,9 @@ p{
 	float: left;
 	background-image: url(/img/trama_menu.png);
 	height: 47px;
+	position: relative;
 }
+
 #main_nav li.primero{
 	padding-left: 30px;
 }
@@ -55,6 +60,39 @@ p{
 #main_nav a:hover{
 	background-image: url(/img/trama_menu_active.png);
 }
+#main_nav ul{
+	background-color: #282828;
+	width: 225px;
+	position: absolute;
+	top: 45px;
+	left: 0;
+	display: none;
+	padding-top: 10px;
+	padding-bottom: 10px;
+
+}
+#main_nav li:hover ul{
+	display: block;
+}
+#main_nav  ul li{
+	display: block;
+	width: 100%;
+	float: none;
+	background: none;
+}
+#main_nav ul li a{
+	font-size: 14px;
+	padding: 17px 20px;
+}
+#main_nav ul li:hover{
+	background-color: #de5604;
+}
+#main_nav li:hover a{
+	background-image: url(/img/trama_menu_active.png);
+}
+#main_nav li:hover ul li a{
+	background-image: none;
+}
 .destacado{
 	width: 528px;
 	height: 530px;
@@ -68,6 +106,7 @@ p{
 	background-image: url(/img/destacado_trama.png);
 	background-position: bottom left;
 	background-repeat: no-repeat;
+	border:1px solid #6c8f9d;
 }
 .producto_destacado.segundo{
 	margin:0 9px;
@@ -94,4 +133,69 @@ p{
 	width: 138px;
 	height: 23px;
 	margin-top: 13px;
+}
+#content{
+	width: 860px;
+	border:1px solid #6c8f9d;
+	padding:30px 40px;
+	background-color: #fff;
+	margin-left: 10px;
+	margin-top: 20px;	
+}
+.contenido{
+	float: left;
+}
+.contenido h1{
+	font-family: corbel,sans-serif;
+	font-size: 13px;
+	margin-top: 18px;
+	margin-bottom: 10px;
+}
+.contenido h1 a{
+	color: #000;
+}
+.contenido.primero{
+	width: 320px;
+	margin-bottom: 30px;
+	min-height: 260px;
+}
+.contenido.primero img, .contenido.segundo img{
+	border: 1px solid #8e8e8e;
+	height: 134px;
+	width: 100%;
+}
+.contenido.segundo{
+	width: 500px;
+	margin-left: 40px;
+	margin-bottom: 30px;
+	min-height: 260px;
+	
+}
+.contenido.tercero{
+	width: 260px;
+	margin-bottom: 30px;
+	
+}
+.contenido.tercero img{
+	width: 100%;
+	height: 135px;
+	border: 1px solid #8e8e8e;
+	
+}
+.contenido.tercero.medio{
+	margin: 0 37px;
+}
+#footer{
+	margin: 30px auto;
+	text-align: center;
+}
+#footer a{
+	font-size: 12px;
+	font-weight: bold;
+
+}
+#footer img{
+	width: 46px;
+	height: 12px;
+	margin-left: 3px;
 }

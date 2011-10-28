@@ -52,7 +52,15 @@
 		<div id="header">
 			<ul id="main_nav">
 				<li class="primero"><a href="">INICIO</a></li>
-				<li><a href="">PRODUCTOS</a></li>
+				<li><a href="">PRODUCTOS</a>
+					<ul>
+						<li><a href="#">TARJETAS DE VIDEO</a></li>
+						<li><a href="#">TARJETAS DE VIDEO</a></li>
+						<li><a href="#">TARJETAS DE VIDEO</a></li>
+						<li><a href="#">TARJETAS DE VIDEO</a></li>
+						<li><a href="#">TARJETAS DE VIDEO</a></li>
+					</ul>
+				</li>
 				<li class="ultimo"><a href="">NOVEDADES</a></li>
 				<div style="clear: both"></div>
 			</ul>
@@ -96,7 +104,7 @@
 		</div>
 		<div id="footer">
 			<?php echo $this->Html->link(
-					"developed by:".$this->Html->image('bloom_negro.png', array('alt'=> __('Bloom Web Company'), 'border' => '0')),
+					"Excelenter.com.co  2011 Copyright Todos los derechos reservados - Diseño y desarrollo por".$this->Html->image('bloom_blanco.png', array('alt'=> __(''), 'border' => '0')),
 					'http://www.bloomweb.co/',
 					array('target' => '_blank', 'escape' => false)
 				);
