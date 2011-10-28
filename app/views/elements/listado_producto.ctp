@@ -4,7 +4,7 @@
 ?>
 <div class="producto">
 	<h1><?php echo $product['Product']['name']; ?></h1>
-	<a href="/productos/<?php echo $product['Product']['slug']; ?>"><img src="/img/uploads/<?php echo $product['Product']['image']; ?>" class="foto_producto" /></a>
+	<a href="/productos/<?php echo $product['Product']['slug']; ?>"><img src="/img/uploads/100x100/<?php echo $product['Product']['image']; ?>" class="foto_producto" /></a>
 	<h2>Precio: <?php echo $product['Product']['price']; ?></h2>
 	<a href=""><img src="/img/facebook.png" /></a>
 	<a href=""><img src="/img/twitter.png" /></a>
