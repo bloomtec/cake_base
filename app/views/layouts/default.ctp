@@ -38,7 +38,7 @@
 		echo $this->Html->meta('icon');
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
-		echo $this->Html->css('style.css');
+		echo $this->Html->css('styles.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
@@ -46,9 +46,46 @@
 	?>
 </head>
 <body>
+	<div id="trama_menu"></div>
 	<div id="container">
+		
 		<div id="header">
-			<h1><?php echo $this->Html->link(__('CakePHP: the rapid development php framework', true), 'http://cakephp.org'); ?></h1>
+			<ul id="main_nav">
+				<li class="primero"><a href="">INICIO</a></li>
+				<li><a href="">PRODUCTOS</a></li>
+				<li class="ultimo"><a href="">NOVEDADES</a></li>
+				<div style="clear: both"></div>
+			</ul>
+			<div class="destacado">
+				<div class="producto_destacado">
+					<a href=""><img src="/img/juego.jpg" /></a>
+					<p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+					</p>
+					<span class="precio">$120.000</span>
+					<a class="comprar" href="#"></a>
+					
+				</div>
+				<div class="producto_destacado segundo">
+					<a href=""><img src="/img/juego.jpg" /></a>
+					<p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+					</p>
+					<span class="precio">$120.000</span>
+					<a class="comprar" href="#"></a>
+					
+				</div>
+				<div class="producto_destacado">
+					<a href=""><img src="/img/juego.jpg" /></a>
+					<p>
+						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+					</p>
+					<span class="precio">$120.000</span>
+					<a class="comprar" href="#"></a>
+					
+				</div>
+				
+			</div>
 		</div>
 		<div id="content">
 
