@@ -15,18 +15,17 @@ class UsersController extends AppController {
 
 	function register() {
 		if (!empty($this -> data)) {
-			// Validar el nombre de usuario		$this->layout='callback';
-			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
-			$user['User']['role_id'] = 2;
-			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			$this -> User -> create();
+			$this -> data['User']['role_id']=2;
+			if ($this -> User -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> redirect(array('action' => 'index'));
 			} else {
-
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
-
 		}
 	}
-
+	
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
@@ -119,7 +118,9 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
+	function recordarPassword(){
+		
+	}
 	function rememberPassword() {
 		if (!empty($this -> data)) {
 			$this -> User -> recursive = 0;

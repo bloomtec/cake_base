@@ -678,3 +678,6 @@ span.linea_footer {
 	font-size: 11px;
 	margin-top: 3px;
 }
+.confirmacion-remember{
+	display:none;
+}

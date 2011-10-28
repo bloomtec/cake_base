@@ -40,6 +40,7 @@
 		echo $this -> Html -> css('ie.css');
 		echo $this -> Html -> css('styles.css');
 		echo $this -> Html -> script('jquery');
+		echo $this -> Html -> script('jquery.tools.min');
 		echo $this->Html->script('bjs');
 		echo $this -> Html -> script('front');
 		echo $scripts_for_layout;
@@ -53,14 +54,14 @@
 				<?php echo $this->element('promo-gamers');?>
 				<div id="login" class="border_radius">
 					<h1>Área de clientes</h1>
-					<form name="login">
+					<?php e($form->create('User',array('action'=>'login')))?>
 						<h2>email:</h2>
 						<input type="email" class="input" name='data[User][email]' />
 						<h2>Password:</h2>
 						<input type="password" class="input"/>
-						<h3><a href="/users/rememberPassword">¿Olvido su contraseña?</a></h3>
+						<h3><a href="/users/recordarPassword">¿Olvido su contraseña?</a></h3>
 						<input type="submit" class="submit" value="Ingresar" />
-						<input type="submit" class="submit primero" value="Registrese" />
+						<a class="submit primero" href='/users/register'> Registrese </a>
 					</form>
 				</div>
 				<div id="respaldados" class="border_radius">
