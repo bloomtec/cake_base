@@ -24,7 +24,7 @@
 	var fields=$(this).serialize();
 	if(!e.isDefaultPrevented()){
 		jQuery.ajax({
-			url : '/pages/enviarDuda',
+			url : '/pages/contacto',
 			type : "POST",
 			cache : false,
 	
