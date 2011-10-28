@@ -41,7 +41,7 @@
 		echo $this -> Html -> css('styles.css');
 		echo $this -> Html -> script('jquery');
 		echo $this -> Html -> script('jquery.tools.min');
-		echo $this->Html->script('bjs');
+		echo $this -> Html -> script('bjs');
 		echo $this -> Html -> script('front');
 		echo $scripts_for_layout;
 		?>
@@ -53,16 +53,7 @@
 			<div id="second_nav">
 				<?php echo $this->element('promo-gamers');?>
 				<div id="login" class="border_radius">
-					<h1>Área de clientes</h1>
-					<?php e($form->create('User',array('action'=>'login')))?>
-						<h2>email:</h2>
-						<input type="email" class="input" name='data[User][email]' />
-						<h2>Password:</h2>
-						<input type="password" class="input"/>
-						<h3><a href="/users/recordarPassword">¿Olvido su contraseña?</a></h3>
-						<input type="submit" class="submit" value="Ingresar" />
-						<a class="submit primero" href='/users/register'> Registrese </a>
-					</form>
+					<?php echo $this->element('box-login'); ?>
 				</div>
 				<div id="respaldados" class="border_radius">
 					<h1>Respaldados por</h1>
