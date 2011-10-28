@@ -14,6 +14,7 @@ class TagsController extends AppController {
 	}
 
 	function view($slug = null) {
+		$this->params['named']['panda']='ricardo';
 		$this->layout='categoria';
 		$conditions = array();
 		$limit = 16;

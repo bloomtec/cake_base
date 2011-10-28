@@ -1,9 +1,9 @@
 $(function(){
 	$('.limite ').change(function(){
-			console.log(BJS.setParam('limite',$(this).find('option:selected').val()));
+			document.location.href = BJS.setParam('limite',$(this).find('option:selected').val());
 	});
 	$('.orden').change(function(){
-			console.log(BJS.setParam('orden',$(this).find('option:selected').val()));
+			document.location.href = BJS.setParam('orden',$(this).find('option:selected').val());
 	});
 	
 	//CARGA EL LISTADO DE FILTROS

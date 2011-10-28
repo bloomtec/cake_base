@@ -2,21 +2,21 @@
 	<label>Ordenar por:</label>
 	<select class='orden'>
 		<option value = 'puntuacion'>Puntuación</option>
-		<option value = 'precio-asc'>Precio de menor a mayor</option>
-		<option value = 'precio-desc'>Precio de mayor a menor</option>
+		<option value = 'precio-asc' <?php if(isset($this->params['named']['orden']) && $this->params['named']['orden'] == 'precio-asc') echo 'selected="selected"'?>>Precio de menor a mayor</option>
+		<option value = 'precio-desc' <?php if(isset($this->params['named']['orden']) && $this->params['named']['orden'] == 'precio-desc') echo 'selected="selected"'?>>Precio de mayor a menor</option>
 	</select>
 	<label>Ver:</label>
 	<select class='limite'>
-		<option value = '12'>12 por página</option>
-		<option value = '24'>24 por página</option>
+		<option value = '12' <?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 12) echo 'selected="selected"' ?>>12 por página</option>
+		<option value = '24'<?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 24) echo 'selected="selected"' ?>>24 por página</option>
 	</select>
 </div>
 <?php echo $this->element("listado_producto",array('products' => $products));?>
 <div class="ordenar">
 	<label>Ver:</label>
 	<select class='limite'>
-		<option value = '12'>12 por página</option>
-		<option value = '24'>24 por página</option>
+		<option value = '12' <?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 12) echo 'selected="selected"' ?>>12 por página</option>
+		<option value = '24'<?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 24) echo 'selected="selected"' ?>>24 por página</option>
 	</select>
 	<div class="paging">
 		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
