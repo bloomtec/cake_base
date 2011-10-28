@@ -2,6 +2,8 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
+	
+	
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -71,7 +73,7 @@ class UsersController extends AppController {
 	}
 
 	function profile() {
-
+		$this->layout="personaliza";
 	}
 
 	function edit($id) {
@@ -255,5 +257,6 @@ class UsersController extends AppController {
 		$this -> Session -> setFlash(__('User was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+
 
 }

@@ -1,0 +1,165 @@
+.users{
+	width: 880px;
+	margin: 0 auto;
+
+}
+.users p, .users label, .users span, .users a, .users h1, .users h2, .users h3{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #424242;
+	
+}
+.users ul{
+	border-bottom: 1px solid #CBCACA;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 90%;
+}
+.users li{
+	float: left;
+	margin-right: 20px;
+}
+.users li a, .datos_perfil h1{
+	text-decoration: none;
+	color: #424242;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+}
+.users li.ultimo a{
+	border: none;
+}
+.users li a{
+	border-right: 1px solid #CBCACA;
+    padding-right: 18px;
+}
+.datos_perfil{
+	float: left;
+	width: 270px;
+	margin-top: 30px;
+	margin-left: 35px;
+	margin-bottom: 60px;
+	
+}
+.datos_perfil a{
+	font-size: 11px;
+	color: #ff7800;
+	text-decoration: none;
+	float: right;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.datos_perfil .carrito{
+	background-image: url("/img/flecha_siguiente_paso.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    color: #FF7800;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    width: 112px;
+    float: none;
+    margin: 0;
+}
+.datos_perfil.primero{
+	width: 200px;
+}
+.datos_perfil h1{
+	margin-top: 13px;
+	margin-bottom: 18px;
+}
+.users label{
+	display: block;
+    float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 108px;
+    font-weight: bold;
+}
+.users span{
+	float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.users .datos_perfil p{
+	clear: both;
+	font-size: 11px;
+}
+.comprados{
+	width: 90%;
+	margin: 0 auto;
+}
+.comprados h3{
+	border-bottom: 1px solid #bcbcbc;
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+.users .producto{
+	margin: 0;
+	margin-bottom: 20px;
+	margin-left: 26px;
+}
+.users .producto.primero{
+	margin-left: 0;
+}
+.register legend{
+	border-bottom: 1px solid #BCBCBC;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 90%;
+    margin-bottom: 15px;
+    color: #424242;
+}
+.register label, .correo{
+  	color: #424242;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    width: 130px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+.register input, #UserEmail{
+	margin-bottom: 5px;
+	font-family: Arial,Helvetica,sans-serif;
+	padding-left: 3px;
+	width: 250px;
+	border: 1px solid #BCBCBC;
+	height: 20px;
+}
+.register input[type=submit], #rememberForm input[type=submit]{
+	background-image: url("/img/submit_registro.png");
+	border:none;
+	background-color: transparent;
+	width: 99px;
+	height: 37px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style:italic;
+	font-weight: bold;
+	cursor: pointer;
+	margin-left: 290px;
+	margin-top: 8px;
+}
+.correo{
+	width: auto;
+	margin-right: 10px;
+}
+#rememberForm input[type=submit]{
+	margin-left: 381px;
+}
+#rememberForm p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-bottom: 15px;
+}

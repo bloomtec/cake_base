@@ -36,7 +36,7 @@ class PagesController extends AppController {
 	function armaTuComputador(){
 		$this->layout="personaliza";
 	}
-	
+
 	function admin_ez() {
 
 	}

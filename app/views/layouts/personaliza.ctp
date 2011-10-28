@@ -30,6 +30,7 @@
 		echo $this->Html->css('reset.css');
 		echo $this->Html->css('ie.css');
 		echo $this->Html->css('styles.css');
+		echo $this->Html->css('users.css');
 		echo $this->Html->script('jquery');
 		echo $this->Html->script('front');
 
@@ -40,10 +41,7 @@
 	
 	<?php echo $this->element("header");?> 		
     <div id="container">
-    	
-    	<div id="main_content">
-    		
-    		</div>
+	
         	<div id="content" class="border_radius">
         		
         	<?php echo $content_for_layout; ?>
