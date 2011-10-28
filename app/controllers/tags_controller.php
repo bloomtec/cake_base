@@ -24,6 +24,10 @@ class TagsController extends AppController {
 		
 		$conditions = array();
 		$limit = 16;
+		/**
+		 * Lo que puede llegar es:
+		 * limite, orden, 
+		 */
 		// Revisar que llegue algun tipo de filtrado
 		if(isset($this->params['named']) && !empty($this->params['named'])) {
 			// Revisar si se pone limite al paginado
@@ -85,7 +89,31 @@ class TagsController extends AppController {
 	}
 	
 	function filtro($tag_id){
-		$this->layout='ajax';
+		$this->layout='ajax';		
+		$architectures = $this->Tag->Product->Architecture->find('list');
+		$slots = $this->Tag->Product->Slot->find('list');
+		$sockets = $this->Tag->Product->Socket->find('list');
+		// Filtrar las marcas acorde el tag
+		$brands_ids = $this->Tag->Product->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Product.product_type_id'=>$tag_id
+				),
+				'fields'=>array(
+					'Product.brand_id'
+				)
+			)
+		);
+		$brands = $this->Tag->Product->Brand->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Brand.id'=>$brands_ids
+				)
+			)
+		);
+		$this->set(compact('architectures', 'sockets', 'slots', 'brands', 'tag_id'));
 	}
 	
 	function admin_index() {
