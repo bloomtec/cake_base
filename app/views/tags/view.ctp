@@ -1,31 +1,29 @@
 <div class="ordenar">
 	<label>Ordenar por:</label>
-	<select>
-		<option>Puntuación</option>
-		<option>Precio</option>
+	<select class='orden'>
+		<option value = 'puntuacion'>Puntuación</option>
+		<option value = 'precio-asc' <?php if(isset($this->params['named']['orden']) && $this->params['named']['orden'] == 'precio-asc') echo 'selected="selected"'?>>Precio de menor a mayor</option>
+		<option value = 'precio-desc' <?php if(isset($this->params['named']['orden']) && $this->params['named']['orden'] == 'precio-desc') echo 'selected="selected"'?>>Precio de mayor a menor</option>
 	</select>
 	<label>Ver:</label>
-	<select>
-		<option>12 por página</option>
-		<option>24 por página</option>
+	<select class='limite'>
+		<option value = '12' <?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 12) echo 'selected="selected"' ?>>12 por página</option>
+		<option value = '24'<?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 24) echo 'selected="selected"' ?>>24 por página</option>
 	</select>
 </div>
-<?php echo $this->element("listado_producto",array('products' => $tag['Product']));?>
+<?php echo $this->element("listado_producto",array('products' => $products));?>
 <div class="ordenar">
 	<label>Ver:</label>
-	<select>
-		<option>12 por página</option>
-		<option>24 por página</option>
+	<select class='limite'>
+		<option value = '12' <?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 12) echo 'selected="selected"' ?>>12 por página</option>
+		<option value = '24'<?php if(isset($this->params['named']['limite']) && $this->params['named']['limite'] == 24) echo 'selected="selected"' ?>>24 por página</option>
 	</select>
-	<ul>
-		<li><a href=""><</a></li>
-		<li><a href="">1</a></li>
-		<li><a href="">2</a></li>
-		<li><a href="">3</a></li>
-		<li><a href="">4</a></li>
-		<li><a href="">5</a></li>
-		<li><a href="">></a></li>
-	</ul>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+	 | 	<?php echo $this->Paginator->numbers();?>
+ |
+		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div>
 </div> 
 <div class="info_categoria primero">
 	<h1> Somos distribuidores autorizados</h1>

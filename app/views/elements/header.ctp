@@ -21,7 +21,7 @@
 							<a href="/categorias/tarjetas-madre">Tarjeras madre</a>
 						</li>
 						<li>
-							<a href="/categorias/mamorias">Memorias</a>
+							<a href="/categorias/memorias">Memorias</a>
 						</li>
 						<li>
 							<a href="/categorias/discos-duros">Discos duros</a>

@@ -5,7 +5,46 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getSocketsByArchitecture', 'productsFilter');
+		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct');
+	}
+	
+	function featuredProduct($tag_id) {
+		$this->layout="ajax";
+		$featured_products_ids = $this->Product->find(
+			'list',
+			array(
+				'fields' => array(
+					'Product.id'
+				),
+				'conditions' => array(
+					'Product.is_featured' => 1
+				)
+			)
+		);
+		$featured_products_ids_with_tag_id = $this->Product->ProductsTag->find(
+			'list',
+			array(
+				'fields' => array(
+					'ProductsTag.product_id'
+				),
+				'conditions' => array(
+					'ProductsTag.product_id' => $featured_products_ids,
+					'ProductsTag.tag_id' => $tag_id
+				)
+			)
+		);
+		$product = $this->Product->find(
+			'first',
+			array(
+				'conditions' => array(
+					'Product.id'=>$featured_products_ids_with_tag_id
+				),
+				'order'=>array(
+					'rand()'
+				)
+			)
+		);
+		$this->set('product', $product);
 	}
 	
 	function index() {
@@ -19,63 +58,6 @@ class ProductsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('product', $this->Product->findBySlug($slug));
-	}
-	
-	function productsFilter() {
-		$conditions = array();
-		$limit = 10;
-		// Revisar que llegue algun tipo de filtrado
-		if(isset($this->params['named']) && !empty($this->params['named'])) {
-			// Revisar si se pone limite al paginado
-			if(isset($this->params['named']['limit']) && !empty($this->params['named']['limit'])) {
-				$limit = $this->params['named']['limit'];
-			} else {
-				//TODO:Nada por el momento
-			}
-			// Revisar si se filtra por arquitectura
-			if(isset($this->params['named']['architecture']) && !empty($this->params['named']['architecture'])) {
-				$conditions['Product.architecture_id'] = $this->params['named']['architecture']; 
-			} else {
-				//TODO:Nada por el momento
-			}
-			// Revisar si se filtra por tipo de producto
-			if(isset($this->params['named']['type']) && !empty($this->params['named']['type'])) {
-				$conditions['Product.product_type_id'] = $this->params['named']['type'];
-				// Si es busqueda de tarjeta madre revisar si se quiere con o sin video
-				if(($this->params['named']['type'] == 2) && isset($this->params['named']['video_included']) && !empty($this->params['named']['video_included'])) {
-					$conditions['Product.is_video_included'] = $this->params['named']['video_included'];
-				} else {
-					//TODO:Nada por el momento
-				}
-			} else {
-				//TODO:Nada por el momento
-			}
-			// Revisar si se filtra por nombre de producto
-			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
-				$conditions['Product.name'] = $this->params['named']['name'];
-			} else {
-				//TODO:Nada por el momento
-			}
-			// Revisar si se filtra por nombre de producto
-			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
-				$conditions['Product.name'] = $this->params['named']['name'];
-			} else {
-				//TODO:Nada por el momento
-			}
-			// Revisar si se filtra por "is_gamers"
-			if(isset($this->params['named']['gamers']) && !empty($this->params['named']['gamers'])) {
-				$conditions['Product.is_gamers'] = $this->params['named']['is_gamers'];
-			} else {
-				//TODO:Nada por el momento
-			}
-		} else {
-			//TODO:Nada por el momento
-		}
-		$this->paginate = array(
-			$limit,
-			$conditions
-		);
-		return $this->paginate('Product');
 	}
 	
 	function admin_index() {
@@ -161,6 +143,7 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Product deleted', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		//debug($this->Product->invalidFields());
 		$this->Session->setFlash(__('Product was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}

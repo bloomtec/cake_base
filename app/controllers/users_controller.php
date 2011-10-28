@@ -9,31 +9,32 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/admin';
 		} else {
 			$this -> Auth -> logoutRedirect = '/';
+			$this -> Auth -> loginRedirect = '/users/profile';
 		}
 		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword');
 	}
 
 	function register() {
 		if (!empty($this -> data)) {
-			// Validar el nombre de usuario		$this->layout='callback';
-			$tempUser = $this -> User -> findByUsername($this -> data['User']['username']);
-			$user['User']['role_id'] = 2;
-			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			$this -> User -> create();
+			$this -> data['User']['role_id']=2;
+			if ($this -> User -> save($this -> data)) {
+				$this -> Session -> setFlash(__('Registro Exitoso', true));
+				$this->Auth->login($this->data);
+				$this -> redirect(array('action' => 'profile'));
 			} else {
-
+				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
-
 		}
 	}
-
+	
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
 			$user['User']['role_id'] = 2;
 			$this -> User -> create();
 			$this -> User -> set($this -> data);
-			if ($this -> User -> saveAll($this -> data)) {
+			if ($this -> User -> save($this -> data)) {
 				$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
@@ -119,7 +120,9 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
+	function recordarPassword(){
+		
+	}
 	function rememberPassword() {
 		if (!empty($this -> data)) {
 			$this -> User -> recursive = 0;

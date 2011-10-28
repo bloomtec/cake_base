@@ -40,6 +40,8 @@
 		echo $this -> Html -> css('ie.css');
 		echo $this -> Html -> css('styles.css');
 		echo $this -> Html -> script('jquery');
+		echo $this -> Html -> script('jquery.tools.min');
+		echo $this -> Html -> script('bjs');
 		echo $this -> Html -> script('front');
 		echo $scripts_for_layout;
 		?>
@@ -49,20 +51,9 @@
 
 		<div id="container">
 			<div id="second_nav">
-				<div id="zona_gamers" class="border_radius">
-					<a href="#"><img src="/img/zona_gamers.jpg" class="border_radius" /></a>
-				</div>
+				<?php echo $this->element('promo-gamers');?>
 				<div id="login" class="border_radius">
-					<h1>Área de clientes</h1>
-					<form name="login">
-						<h2>Usuario:</h2>
-						<input type="text" class="input"/>
-						<h2>Password:</h2>
-						<input type="text" class="input"/>
-						<h3><a href="#">¿Olvido su contraseña?</a></h3>
-						<input type="submit" class="submit" value="Ingresar" />
-						<input type="submit" class="submit primero" value="Registrese" />
-					</form>
+					<?php echo $this->element('box-login'); ?>
 				</div>
 				<div id="respaldados" class="border_radius">
 					<h1>Respaldados por</h1>

@@ -5,7 +5,7 @@ class TagsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('filtro','view','index','productsFilter');
 	}
 	
 	function index() {
@@ -14,14 +14,118 @@ class TagsController extends AppController {
 	}
 
 	function view($slug = null) {
+		$this->params['named']['panda']='ricardo';
 		$this->layout='categoria';
 		if (!$slug) {
 			$this->Session->setFlash(__('Invalid tag', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('tag', $this->Tag->findBySlug($slug));
+		$this->Tag->recursive=-1;
+		$tag = $this->Tag->findBySlug($slug);
+		$this->set('tag', $tag);
+		
+		$conditions = array();
+		$limit = 16;
+		/**
+		 * Lo que puede llegar es:
+		 * limite, orden
+		 */
+		// Obtener del tag el tipo de producto
+		$conditions['Product.product_type_id']=$tag['Tag']['id'];
+		// Revisar que llegue algun tipo de filtrado
+		if(isset($this->params['named']) && !empty($this->params['named'])) {
+			// Revisar si se pone limite al paginado
+			if(isset($this->params['named']['limite']) && !empty($this->params['named']['limite'])) {
+				$limit = $this->params['named']['limite'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por arquitectura
+			if(isset($this->params['named']['architecture']) && !empty($this->params['named']['architecture'])) {
+				$conditions['Product.architecture_id'] = $this->params['named']['architecture']; 
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por tipo de producto
+			if(isset($this->params['named']['type']) && !empty($this->params['named']['type'])) {
+				$conditions['Product.product_type_id'] = $this->params['named']['type'];
+				// Si es busqueda de tarjeta madre revisar si se quiere con o sin video
+				if(($this->params['named']['type'] == 2) && isset($this->params['named']['video_included']) && !empty($this->params['named']['video_included'])) {
+					$conditions['Product.is_video_included'] = $this->params['named']['video_included'];
+				} else {
+					//TODO:Nada por el momento
+				}
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por nombre de producto
+			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
+				$conditions['Product.name'] = $this->params['named']['name'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por nombre de producto
+			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
+				$conditions['Product.name'] = $this->params['named']['name'];
+			} else {
+				//TODO:Nada por el momento
+			}
+			// Revisar si se filtra por "is_gamers"
+			if(isset($this->params['named']['gamers']) && !empty($this->params['named']['gamers'])) {
+				$conditions['Product.is_gamers'] = $this->params['named']['is_gamers'];
+			} else {
+				//TODO:Nada por el momento
+			}
+		} else {
+			//TODO:Nada por el momento
+		}
+		$this->paginate = array(
+			"Product" => array(
+				'limit' => $limit,
+				'conditions' => $conditions
+			)			
+		);
+		$products = $this->paginate('Product');
+		$this->set('products', $products);
 	}
 	
+	function filtro($tag_id){
+		$this->layout='ajax';
+		// Filtrar las marcas acorde el tag
+		$brands_ids = $this->Tag->Product->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Product.product_type_id'=>$tag_id
+				),
+				'fields'=>array(
+					'Product.brand_id'
+				)
+			)
+		);
+		$brands = $this->Tag->Product->Brand->find(
+			'list',
+			array(
+				'conditions' => array(
+					'Brand.id'=>$brands_ids
+				)
+			)
+		);
+		// Recoger la demás info acorde el tag
+		if ($tag_id == 1 || $tag_id == 2) {
+			$architectures = $this->Tag->Product->Architecture->find('list');
+			$sockets = $this->Tag->Product->Socket->find('list');
+			$this->set(compact('architectures', 'sockets'));
+		}
+		if ($tag_id == 2) {
+			//TODO:Como manejar filtro por video incluido?
+		}
+		/*if (($tag_id >= 2 && $tag_id <= 6) || $tag_id == 10 || $tag_id == 13) {
+			$slots = $this->Tag->Product->Slot->find('list');
+			$this->set(compact('slots'));
+		}*/
+		$this->set(compact('brands', 'tag_id'));
+	}
 	
 	function admin_index() {
 		$this->Tag->recursive = 0;

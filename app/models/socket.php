@@ -2,10 +2,11 @@
 class Socket extends AppModel {
 	var $name = 'Socket';
 	var $displayField = 'name';
-	var $isPicture=false;
-	var $sluggable=false;
-	var $sortable=false;
-	var $activable=false;
+	var $order = 'Socket.sort asc';
+	var $isPicture = false;
+	var $sluggable = false;
+	var $sortable = true;
+	var $activable = false;
 
 	var $validate = array(
 		'architecture_id' => array(
@@ -41,19 +42,21 @@ class Socket extends AppModel {
 		)
 	);
 
-	var $hasMany = array(
+	var $hasAndBelongsToMany = array(
 		'Product' => array(
 			'className' => 'Product',
+			'joinTable' => 'products_sockets',
 			'foreignKey' => 'socket_id',
-			'dependent' => false,
+			'associationForeignKey' => 'product_id',
+			'unique' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
 			'limit' => '',
 			'offset' => '',
-			'exclusive' => '',
 			'finderQuery' => '',
-			'counterQuery' => ''
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);
 
