@@ -24,6 +24,16 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
+	function view($slug = null) {
+		if (!$slug) {
+			$this -> Session -> setFlash(__('Invalid page', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$page = $this -> Page -> findBySlug($slug);
+		$slides = $this->Page -> PageSlider -> find('all', array('conditions' => array('page_id' => $page['Page']['id'])));
+		$this -> layout=$page['Page']['layout'];
+		$this -> set(compact('page','slides'));
+	}
 
 	function home() {
 		$this -> layout = "default";
@@ -82,94 +92,6 @@ class PagesController extends AppController {
 		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
 		$this -> set("folder", $folder -> read());
 		$this -> set("folderPath", DS . "wysiwyg");
-	}
-
-	function index() {
-		$this -> Page -> recursive = 0;
-		$this -> set('pages', $this -> paginate());
-	}
-
-	function view($slug = null) {
-		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid page', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$page=$this -> Page -> findBySlug($slug);
-		$this->layout=$page['Page']['layout'];
-		$this -> set('page', $page);
-	}
-
-	function add() {
-		if (!empty($this -> data)) {
-			$this -> Page -> create();
-			if ($this -> Page -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
-			}
-		}
-	}
-
-	function edit($id = null) {
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid page', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if (!empty($this -> data)) {
-			if ($this -> Page -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The page has been saved', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				$this -> Session -> setFlash(__('The page could not be saved. Please, try again.', true));
-			}
-		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> Page -> read(null, $id);
-		}
-	}
-
-	function delete($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for page', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		if ($this -> Page -> delete($id)) {
-			$this -> Session -> setFlash(__('Page deleted', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Page was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setInactive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for page', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Page -> read(null, $id);
-		$oldData["Page"]["active"] = false;
-		if ($this -> Page -> save($oldData)) {
-			$this -> Session -> setFlash(__('Page archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Page was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setActive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for page', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Page -> read(null, $id);
-		$oldData["Page"]["active"] = true;
-		if ($this -> Page -> save($oldData)) {
-			$this -> Session -> setFlash(__('Page archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Page was not archived', true));
-		$this -> redirect(array('action' => 'index'));
 	}
 
 	function admin_index() {

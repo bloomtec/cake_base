@@ -20,6 +20,7 @@ class TagsController extends AppController {
 		$limit = 16;
 		$this->Tag->recursive=-1;
 		$tag = $this->Tag->findBySlug($slug);
+		$slides=$this->Tag->TagSlider->find('all',array('conditions'=>array('tag_id'=>$tag['Tag']['id'])));
 		if(isset($this->data) && !empty($this->data)) {
 			debug($this->data);
 			/**
@@ -82,7 +83,7 @@ class TagsController extends AppController {
 			)			
 		);
 		$products = $this->paginate('Product');
-		$this->set(compact('products', 'tag'));
+		$this->set(compact('products', 'tag','slides'));
 	}
 	
 	function filtro($tag_id = null){

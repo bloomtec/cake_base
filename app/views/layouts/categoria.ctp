@@ -64,10 +64,11 @@
         	</div>
     	</div>
     	<div id="main_content">
-    		<div id="slide" class="border_radius">
+    	
     			
+    		<?php echo $this->element('slider',array('slides'=>$slides,'model'=>'TagSlider'));?>
     			
-    		</div>
+    	
         	<div id="content" class="border_radius">
         	<?php echo $content_for_layout; ?>
         	</div>

@@ -8,8 +8,8 @@
 		<?php } ?>
 		</ul>
 		<a class="logo_header" href="/">Excelenter</a>
-		<form name="buscador">
-			<input type="text" class="input_buscar" placeholder="Buscar..."/>
+		<?php echo $form->create('Product',array('controller'=>'products','action'=>'searchResults'))?>
+			<input type="text" class="input_buscar" placeholder="Buscar..." name='data[query]'/>
 			<input type="submit" class="submit" value="" />
 		</form>
 		<ul id="main_menu">

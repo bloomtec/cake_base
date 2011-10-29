@@ -67,7 +67,7 @@
 				<div style="clear: both"></div>
 			</div>
 			<div id="main_content">
-				<div id="slide" class="border_radius"></div>
+				<?php if(isset($slides)) echo $this->element('slider',array('slides'=>$slides,'model'=>'PageSlider'));?>
 				<div id="content" class="border_radius">
 					<?php echo $content_for_layout;?>
 				</div>

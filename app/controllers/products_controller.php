@@ -5,9 +5,12 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct');
+		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
 	}
-	
+	function searchResults(){
+		$q=$this->data['query'];
+		$this->set('products',$this->paginate());
+	}
 	function featuredProduct($tag_id) {
 		$this->layout="ajax";
 		$featured_products_ids = $this->Product->find(
