@@ -1,5 +1,5 @@
 .users{
-	width: 880px;
+	width: 90%;
 	margin: 0 auto;
 
 }
@@ -13,11 +13,12 @@
     margin: 0 auto;
     padding-bottom: 10px;
     padding-top: 10px;
-    width: 90%;
+    width: 100%;
+    margin-bottom:30px;
 }
 .users li{
 	float: left;
-	margin-right: 20px;
+	margin-right: 10px;
 }
 .users li a, .datos_perfil h1{
 	text-decoration: none;
@@ -36,10 +37,7 @@
 .datos_perfil{
 	float: left;
 	width: 270px;
-	margin-top: 30px;
-	margin-left: 35px;
-	margin-bottom: 60px;
-	
+	margin-bottom: 30px;
 }
 .datos_perfil a{
 	font-size: 11px;
@@ -49,7 +47,7 @@
 	margin-top: 10px;
 	font-weight: bold;
 }
-.datos_perfil .carrito{
+.users .carrito{
 	background-image: url("/img/flecha_siguiente_paso.png");
     background-position: right top;
     background-repeat: no-repeat;
@@ -80,6 +78,7 @@
     text-align: left;
     width: 108px;
     font-weight: bold;
+    clear:left;
 }
 .users span{
 	float: left;
@@ -92,8 +91,7 @@
 	font-size: 11px;
 }
 .comprados{
-	width: 90%;
-	margin: 0 auto;
+	width: 100%;
 }
 .comprados h3{
 	border-bottom: 1px solid #bcbcbc;
@@ -162,4 +160,37 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	margin-bottom: 15px;
+}
+
+div.form2{/*Form whith image*/
+	float:left;
+	width:60%;
+}
+div.images{
+	float:right;
+	width:35%;
+
+}
+div.images .preview{
+
+}
+div.images .preview  img{
+	max-width:100%;
+}
+.nav-usuario{
+	position:absolute;
+	right: 75px;
+	top:5px;
+}
+.nav-usuario li{
+	display:inline;
+}
+.nav-usuario a.mi-cuenta{
+	
+	color:white;
+	text-decoration: none;
+	font-size:12px;
+}
+a.mi-cuenta:hover{
+	color:#ff7800;
 }

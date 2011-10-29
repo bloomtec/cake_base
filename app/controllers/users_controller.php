@@ -37,7 +37,6 @@ class UsersController extends AppController {
 			if ($this -> User -> save($this -> data)) {
 				$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
-				$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
 				echo true;
 			} else {
 				$errors = array();
@@ -71,11 +70,14 @@ class UsersController extends AppController {
 	}
 
 	function profile() {
-		$this->layout="personaliza";
-
+		$this->layout="profile";
+		$this->set('user',$this->User->read(null, $this -> Auth -> user('id')));
 	}
-
+	function orders(){
+		$this->layout="profile";
+	}
 	function edit($id) {
+		$this->layout="profile";
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Usuario no valid', true));
 			$this -> redirect(array('action' => 'index'));
@@ -99,6 +101,7 @@ class UsersController extends AppController {
 	}
 
 	function changePassword($id = null) {
+		$this->layout="profile";
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'profile'));

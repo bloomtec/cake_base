@@ -1,6 +1,13 @@
 <div id="header">
 	<div class="wrapper">
-		<a class="logo_header" href="#">Excelenter</a>
+		<ul class='nav-usuario'>
+		<?php if($session->read('Auth.User.id')){ ?>
+			<li><a class='mi-cuenta' href='/users/profile'>Mi cuenta</a></li>
+		<?php }else{?>
+			<li><a class='mi-cuenta login' href='/users/login'>Ingresar</a></li> <li> / <a class='mi-cuenta login' href='/users/register'>Registrarse</a> </li> 
+		<?php } ?>
+		</ul>
+		<a class="logo_header" href="/">Excelenter</a>
 		<form name="buscador">
 			<input type="text" class="input_buscar" placeholder="Buscar..."/>
 			<input type="submit" class="submit" value="" />
