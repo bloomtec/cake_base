@@ -161,11 +161,19 @@ $(function(){
 		e.preventDefault();
 		bloomCart.add(this);
 	});
+	
+	$('.item-quantity').live('change',function(){
+		var value=$(this).val();
+		var itemId=$(this).parents('.shop-cart-item').attr('rel');
+		bloomCart.updateItem(itemId,'quantity',value);
+	});
+	
 	$('.remove-from-cart').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		bloomCart.remove(itemId);
 	});
+	
 	$('.remove-all').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
