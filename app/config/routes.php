@@ -38,6 +38,10 @@
 	
 	//CATEGORIAS
 	Router::connect('/categorias/*', array('controller' => 'tags', 'action' => 'view'));
+	//PRODUCTOS
+	Router::connect('/productos/*', array('controller' => 'products', 'action' => 'view'));
+	
+	//ADMIN
 	Router::connect('/admin', array('controller' => 'users', 'action' => 'login', "admin" => true));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
