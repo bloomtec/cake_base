@@ -29,8 +29,31 @@ class PagesController extends AppController {
 		$this -> layout = "default";
 	}
 
-	function categoria() {
-		$this -> layout = "categoria";
+	function contacto() {
+		$this -> layout = 'default';
+		if (!empty($this -> data)) {
+			$email = $this -> data['email'];
+			$userName = $this -> data['name'];
+			$comentario = $this -> data['comentario'];
+			$asunto = "Comentario enviado desde la página web";
+			$mensaje = "de: " . $userName . " / " . $email . " <br />" . $comentario;
+			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			// Cabeceras adicionales
+			$cabeceras .= 'From: ' . $userName . ' <' . $email . '>' . "\r\n";
+			//debug($mensaje);
+			if (mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)) {
+				echo true;
+			} else {
+				echo false;
+			}
+			Configure::write('debug', 0);
+			$this -> autoRender = false;
+			exit(0);
+
+		} else {
+
+		}
+
 	}
 	
 	function armaTuComputador(){

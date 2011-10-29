@@ -29,7 +29,7 @@
 	//PAGINAS
 	Router::connect('/', array('controller' => 'pages', 'action' => 'view', 'inicio'));
 	Router::connect('/empresa', array('controller' => 'pages', 'action' => 'view', 'empresa'));
-	Router::connect('/contacto', array('controller' => 'pages', 'action' => 'view', 'contacto'));
+	Router::connect('/contacto', array('controller' => 'pages', 'action' => 'contacto'));
 	Router::connect('/servicios', array('controller' => 'pages', 'action' => 'view', 'servicios'));
 	Router::connect('/proceso-de-pago', array('controller' => 'pages', 'action' => 'view', 'proceso-de-pago'));
 	Router::connect('/politicas-de-garantia', array('controller' => 'pages', 'action' => 'view', 'politicas-de-garantia'));
