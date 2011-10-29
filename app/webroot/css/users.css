@@ -177,20 +177,3 @@ div.images .preview{
 div.images .preview  img{
 	max-width:100%;
 }
-.nav-usuario{
-	position:absolute;
-	right: 75px;
-	top:5px;
-}
-.nav-usuario li{
-	display:inline;
-}
-.nav-usuario a.mi-cuenta{
-	
-	color:white;
-	text-decoration: none;
-	font-size:12px;
-}
-a.mi-cuenta:hover{
-	color:#ff7800;
-}

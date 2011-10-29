@@ -709,3 +709,20 @@ span.linea_footer {
 	-moz-box-shadow:0 0 6px #ddd;
 	-webkit-box-shadow:0 0 6px #ddd;
 }
+.nav-usuario{
+	position:absolute;
+	right: 75px;
+	top:5px;
+}
+.nav-usuario li{
+	display:inline;
+}
+.nav-usuario a, .nav-usuario a:active, .nav-usuario a:visited{
+	
+	color:white;
+	text-decoration: none;
+	font-size:12px;
+}
+.nav-usuario a:hover{
+	color:#ff7800;
+}
