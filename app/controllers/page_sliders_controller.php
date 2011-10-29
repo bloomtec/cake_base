@@ -8,23 +8,9 @@ class PageSlidersController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
-	function index() {
+	function admin_index($pageId = null) {
 		$this->PageSlider->recursive = 0;
-		$this->set('pageSliders', $this->paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid page slider', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('pageSlider', $this->PageSlider->read(null, $id));	
-	}
-	
-	
-	function admin_index() {
-		$this->PageSlider->recursive = 0;
-		$this->set('pageSliders', $this->paginate());
+		$this->set('pageSliders', $this->paginate(array('page_id'=>$pageId)));
 	}
 
 	function admin_view($id = null) {
@@ -40,9 +26,10 @@ class PageSlidersController extends AppController {
 			$this->PageSlider->create();
 			if ($this->PageSlider->save($this->data)) {
 				$this->Session->setFlash(__('The page slider has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index',$this->data['PageSlider']['page_id']));
 			} else {
 				$this->Session->setFlash(__('The page slider could not be saved. Please, try again.', true));
+				$this->params['pass'][0]=$this->data['PageSlider']['page_id'];
 			}
 		}
 		$pages = $this->PageSlider->Page->find('list');
@@ -57,9 +44,10 @@ class PageSlidersController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->PageSlider->save($this->data)) {
 				$this->Session->setFlash(__('The page slider has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index',$this->data['PageSlider']['page_id']));
 			} else {
 				$this->Session->setFlash(__('The page slider could not be saved. Please, try again.', true));
+				$this->params['pass'][0]=$this->data['PageSlider']['page_id'];
 			}
 		}
 		if (empty($this->data)) {
@@ -74,9 +62,10 @@ class PageSlidersController extends AppController {
 			$this->Session->setFlash(__('Invalid id for page slider', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		$oldPage=$this-> PageSlider -> read(null,$id);
 		if ($this->PageSlider->delete($id)) {
 			$this->Session->setFlash(__('Page slider deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'index',$oldPage['PageSlider']['id']));
 		}
 		$this->Session->setFlash(__('Page slider was not deleted', true));
 		$this->redirect(array('action' => 'index'));

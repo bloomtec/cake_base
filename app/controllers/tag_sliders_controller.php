@@ -7,24 +7,10 @@ class TagSlidersController extends AppController {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
-	
-	function index() {
-		$this->TagSlider->recursive = 0;
-		$this->set('tagSliders', $this->paginate());
-	}
 
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid tag slider', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('tagSlider', $this->TagSlider->read(null, $id));	
-	}
-	
-	
-	function admin_index() {
+	function admin_index($tagId = null) {
 		$this->TagSlider->recursive = 0;
-		$this->set('tagSliders', $this->paginate());
+		$this->set('tagSliders', $this->paginate(array('TagSlider.tag_id'=>$tagId)));
 	}
 
 	function admin_view($id = null) {
@@ -40,9 +26,10 @@ class TagSlidersController extends AppController {
 			$this->TagSlider->create();
 			if ($this->TagSlider->save($this->data)) {
 				$this->Session->setFlash(__('The tag slider has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index',$this->data['TagSlider']['tag_id']));
 			} else {
 				$this->Session->setFlash(__('The tag slider could not be saved. Please, try again.', true));
+				$this->params['pass'][0]=$this->data['TagSlider']['tag_id'];
 			}
 		}
 		$tags = $this->TagSlider->Tag->find('list');
@@ -57,9 +44,10 @@ class TagSlidersController extends AppController {
 		if (!empty($this->data)) {
 			if ($this->TagSlider->save($this->data)) {
 				$this->Session->setFlash(__('The tag slider has been saved', true));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'index',$this->data['TagSlider']['tag_id']));
 			} else {
 				$this->Session->setFlash(__('The tag slider could not be saved. Please, try again.', true));
+				$this->params['pass'][0]=$this->data['TagSlider']['tag_id'];
 			}
 		}
 		if (empty($this->data)) {
@@ -74,9 +62,10 @@ class TagSlidersController extends AppController {
 			$this->Session->setFlash(__('Invalid id for tag slider', true));
 			$this->redirect(array('action'=>'index'));
 		}
+		$oldTag=$this-> TagSlider -> read(null,$id);
 		if ($this->TagSlider->delete($id)) {
 			$this->Session->setFlash(__('Tag slider deleted', true));
-			$this->redirect(array('action'=>'index'));
+			$this->redirect(array('action'=>'index',$oldTag['TagSlider']['tag_id']));
 		}
 		$this->Session->setFlash(__('Tag slider was not deleted', true));
 		$this->redirect(array('action' => 'index'));

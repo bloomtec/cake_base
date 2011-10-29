@@ -11,9 +11,9 @@ class PageSlider extends AppModel {
 	var $activable = false;
 
 	var $validate = array(
-		'page_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,

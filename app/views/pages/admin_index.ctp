@@ -34,6 +34,7 @@
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $page['Page']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $page['Page']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $page['Page']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $page['Page']['id'])); ?>
+			<?php echo $this->Html->link(__('Sliders', true), array('controller'=>'pageSliders', 'action' => 'index', $page['Page']['id']),array('class'=>'slider icon','title'=>__('Slider',true))); ?>
 			<?php if(isset($page['Page']['is_active'])&& $page['Page']['is_active']){
 			 echo $this->Html->link(__('Set Inactive', true), array('action' => 'setInactive', $page['Page']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $page['Page']['id']));
 }?>
