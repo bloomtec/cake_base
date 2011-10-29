@@ -66,7 +66,7 @@
     	<div id="main_content">
     	
     			
-    		<?php echo $this->element('slider',array('slides'=>$slides,'model'=>'TagSlider'));?>
+    		<?php if(isset($slides) && !empty($slides)) echo $this->element('slider',array('slides'=>$slides,'model'=>'TagSlider'));?>
     			
     	
         	<div id="content" class="border_radius">

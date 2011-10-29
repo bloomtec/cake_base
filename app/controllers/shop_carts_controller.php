@@ -63,7 +63,7 @@ class ShopCartsController extends AppController {
 			/**
 			 * buscar el carrito con el userAgent
 			 */
-			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.user_agent"=>$user_agent)));
+			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.identifier"=>$user_agent)));
 		}
 		return $shopping_cart;
 	}
@@ -181,7 +181,7 @@ class ShopCartsController extends AppController {
 	}
 	
 	function viewCart() {
-		$this->layout='carrito';
+		$this->layout='cart';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 		$this->Session->write('referer',$this->referer());

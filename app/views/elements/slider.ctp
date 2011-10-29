@@ -6,7 +6,6 @@
 	position:relative;
 }
 .slides {
-	background:#fff url(/img/global/gradient/h300.png) repeat-x;
 	border:1px solid #ccc;
 	position:relative;	
 	height:220px;
@@ -71,7 +70,6 @@
 .forward, .backward {
 	float:left;
 	margin-top:140px;
-	background:#fff url(/tools/img/scrollable/arrow/hori_large.png) no-repeat;
 	display:block;
 	width:30px;
 	height:30px;
@@ -94,8 +92,8 @@
 .disabled {
 	visibility:hidden !important;		
 }
-
 </style>
+
 <div id='slide' class='border_radius'>
 <div  class='slides border_radius'>
 
@@ -123,6 +121,6 @@ $(function(){
 	rotate: true
 
 // use the slideshow plugin. It accepts its own configuration
-}).slideshow();
+	}).slideshow();
 });
 </script>

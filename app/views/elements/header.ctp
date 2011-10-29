@@ -3,8 +3,10 @@
 		<ul class='nav-usuario'>
 		<?php if($session->read('Auth.User.id')){ ?>
 			<li><a class='mi-cuenta' href='/users/profile'>Mi cuenta</a></li>
+			<li> / <a class='mi-cuenta' href='/shopCarts/viewCart'>Mi carrito</a></li>
 		<?php }else{?>
-			<li><a class='mi-cuenta login' href='/users/login'>Ingresar</a></li> <li> / <a class='mi-cuenta login' href='/users/register'>Registrarse</a> </li> 
+			<li><a class='mi-cuenta login' href='/users/login'>Ingresar</a></li>
+			<li> / <a class='mi-cuenta' href='/shopCarts/viewCart'>Mi carrito</a></li>
 		<?php } ?>
 		</ul>
 		<a class="logo_header" href="/">Excelenter</a>
