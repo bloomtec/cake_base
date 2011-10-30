@@ -43,6 +43,10 @@
 	
 	//ADMIN
 	Router::connect('/admin', array('controller' => 'users', 'action' => 'login', "admin" => true));
+	
+	//BCART
+	Router::connect('/bcart/view', array('controller' => 'shopCarts', 'action' => 'viewCart','plugin'=>'bcart'));
+	
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
