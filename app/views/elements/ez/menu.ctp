@@ -8,6 +8,9 @@
 			<li>
 				<a href="/admin/products/add">AGREGAR</a>
 			</li>
+			<li>
+				<a href="/admin/inventories/">INVENTARIO GENERAL</a>
+			</li>
 		</ul>
 	</li>
 	<li>

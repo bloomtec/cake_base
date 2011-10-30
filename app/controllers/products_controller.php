@@ -138,11 +138,18 @@ class ProductsController extends AppController {
 				$data = $this->validateRecommendations($this -> data['Product']['recommendations'], $this -> data['Product']['ref']);
 				$recommendations = true;
 			}
-			
 			if(!$recommendations || $data) {
 				$this->Product->create();
 				if ($this->Product->save($this->data)) {
-					$this->Session->setFlash(__('The product has been saved', true));
+					// Crear el inventario en 0
+					$this->Product->Inventory->create();
+					$this->Product->Inventory->set('product_id', $this->Product->id);
+					$this->Product->Inventory->set('quantity', 0);
+					if($this->Product->Inventory->save()) {
+						$this->Session->setFlash(__('The product has been saved', true));
+					} else {
+						$this->Session->setFlash(__('The product has been saved without an inventory', true));
+					}
 					$this->redirect(array('action' => 'index'));
 				} else {
 					//debug($this->Product->invalidFields());
