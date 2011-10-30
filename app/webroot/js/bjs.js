@@ -72,7 +72,7 @@ $(function(){
 	bCart = {};
 
 	bCart.add = function(botonAdd) { //shop-cart-item-yes-gift
-		var rel = $(botonAdd).parents('.shop-cart-item').attr('rel'); // Product:1;
+		var rel = $(botonAdd).attr('rel'); // Model:foreignKey:isGift;
 		rel = rel.split(":");
 		//sizeId = $('.ids-tallas option:selected').attr('id');
 		BJS.JSONP('/shopCarts/addToCart', {
@@ -83,9 +83,7 @@ $(function(){
 		}, function(cart) {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
-				bCart.resumeRefresh();
 				$('.add-cart-confirm').html('Producto agregado <a class="go-to-cart" href="/shopCarts/viewCart" >ir a pagar</a>').show();
-				refreshCufon();
 				setTimeout(function(){
 					$('.add-cart-confirm').css({visibility:'hidden'});
 				},3000);
@@ -156,27 +154,27 @@ $(function(){
 			}
 		});
 	}
-
+	bCart.resumeRefresh();
 	$('.add-to-cart').live('click',function(e){
 		e.preventDefault();
-		bloomCart.add(this);
+		bCart.add(this);
 	});
 	
 	$('.item-quantity').live('change',function(){
 		var value=$(this).val();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
-		bloomCart.updateItem(itemId,'quantity',value);
+		bCart.updateItem(itemId,'quantity',value);
 	});
 	
 	$('.remove-from-cart').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
-		bloomCart.remove(itemId);
+		bCart.remove(itemId);
 	});
 	
 	$('.remove-all').live('click',function(e){
 		e.preventDefault();
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
-		bloomCart.removeAll(itemId);
+		bCart.removeAll(itemId);
 	});
 });
