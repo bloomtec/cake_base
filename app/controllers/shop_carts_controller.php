@@ -7,7 +7,7 @@ class ShopCartsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow(
 			'addToCart', 'removeFromCart', 'removeAllFromCart', 'checkoutCart', 'viewCart', 'getCart',
-			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon'
+			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon','getItem'
 		);
 	}
 	
@@ -181,10 +181,21 @@ class ShopCartsController extends AppController {
 		exit(0);
 	}
 	
+	function getItem($Model,$foreign_key = null) {
+		$this -> loadModel($Model);
+		$this -> $Model -> recursive =-1;
+		$item = $this -> $Model ->read(null, $foreign_key);
+		/*$this -> $Model -> Inventory -> recursive=-1;
+		$inventory = $this -> $Model -> Inventory->find('first', array('conditions'=>array('Inventory.'.strtolower($Model).'_id'=>$foreign_key)));
+		$data = array();*/
+		$data[$Model] = $item[$Model];
+		//$data['Inventory'] = $inventory['Inventory'];
+		return $data;
+	}
 	function viewCart() {
-		$this->layout='cart';
+		$this -> layout = 'bcart/bcart';
 		$shopping_cart = $this->getCart();
-		$this -> set('shopping_cart', $shopping_cart);
+		$this -> set('shopping_cart', $shopping_cart);	
 		$this->Session->write('referer',$this->referer());
 	}
 

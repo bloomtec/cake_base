@@ -83,7 +83,8 @@ $(function(){
 		}, function(cart) {
 			if (cart) {
 				// Escribe mensaje de confirmacion con link al checkout
-				$('.add-cart-confirm').html('Producto agregado <a class="go-to-cart" href="/shopCarts/viewCart" >ir a pagar</a>').show();
+				 $(botonAdd).siblings('.add-cart-confirm').html('Producto agregado <a class="go-to-cart" href="/shopCarts/viewCart" >ir a pagar</a>').show();
+				bCart.refresh();
 				setTimeout(function(){
 					$('.add-cart-confirm').css({visibility:'hidden'});
 				},3000);
@@ -148,7 +149,6 @@ $(function(){
 			if(data){
 				$('.shop-cart-list-container').html(data);
 				bCart.resumeRefresh();
-				refreshCufon();	
 			}else{
 						
 			}
