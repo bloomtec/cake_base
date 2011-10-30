@@ -7,10 +7,30 @@ class ProductsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
 	}
+	
 	function searchResults(){
 		$q=$this->data['query'];
-		$this->set('products',$this->paginate());
+		$brand_ids = $this->Product->Brand->find(
+			'list',
+			array(
+				'fields'=>array('Brand.id'),
+				'conditions'=>array('Brand.name LIKE' => "%$q%"),
+				'recursive'				
+			)
+		);		
+		$this->paginate = array(
+			'conditions' => array(
+				"OR" => array(
+					'Product.name LIKE' => "%$q%",
+					'Product.description LIKE' => "$q",
+					'Product.brand_id'=>$brand_ids
+				)
+			)
+		);
+		$products = $this->paginate();
+		$this->set('products', $products);
 	}
+	
 	function featuredProduct($tag_id) {
 		$this->layout="ajax";
 		$featured_products_ids = $this->Product->find(
