@@ -8,6 +8,17 @@ class ProductsController extends AppController {
 		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
 	}
 	
+	function getProduct($product_id = null, $size_id = null) {
+		$this->Product->recursive=-1;
+		$product = $this->Product->read(null, $product_id);
+		$this->Product->Inventory->recursive=-1;
+		$inventory = $this->Product->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id, 'Inventory.size_id'=>$size_id)));
+		$data = array();
+		$data['Product']=$product['Product'];
+		$data['Inventory']=$inventory['Inventory'];
+		return $data;
+	}
+	
 	function searchResults(){
 		$q=$this->data['query'];
 		$brand_ids = $this->Product->Brand->find(
@@ -103,9 +114,7 @@ class ProductsController extends AppController {
 		$architectures = $this->Product->Architecture->find('list');
 		$slots = $this->Product->Slot->find('list');
 		//$sockets = $this->Product->Socket->find('list');
-		$brands = $this->Product->Brand->find('list');
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>13)));
-		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags', 'brands', 'type_id'));
+		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'type_id'));
 	}
 	
 	function getSocketsByArchitecture($architecture_id = null) {
@@ -136,15 +145,17 @@ class ProductsController extends AppController {
 					$this->Session->setFlash(__('The product has been saved', true));
 					$this->redirect(array('action' => 'index'));
 				} else {
-					debug($this->Product->invalidFields());
+					//debug($this->Product->invalidFields());
 					$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 				}
 			} else {
-				$this->Session->setFlash(__('The recommendations entered are not valid. Check for repeated values and that the ref is not the same as the product being added. Please, try again.', true));
+				$this->Session->setFlash(__('The recommendations entered are not valid. Check that the ref exists, that there are no repeated values and that the ref is not the same as the product being added. Please, try again.', true));
 			}
 		}
 		$productTypes = $this->Product->ProductType->find('list');
-		$this->set(compact('productTypes'));
+		$brands = $this->Product->Brand->find('list');
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>13)));
+		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
 	
 	function validateRecommendations($data = null, $ref = null) {
@@ -163,7 +174,7 @@ class ProductsController extends AppController {
 			if (empty($recommendations[$key])) {
 				unset($recommendations[$key]);
 			} else {
-				$product = $this -> Product -> findByClasification($prod_classification);
+				$product = $this -> Product -> findByRef($prod_classification);
 				if (empty($product)) {
 					$valid_recommendations = false;
 				}
