@@ -47,6 +47,7 @@ class ShopCartsController extends AppController {
 		exit(0);
 	}
 	
+	
 	/**
 	 * Encontrar el carrito
 	 */
