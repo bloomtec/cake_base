@@ -7,10 +7,21 @@ class ProductsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
 	}
+	
 	function searchResults(){
 		$q=$this->data['query'];
-		$this->set('products',$this->paginate());
+		$this->paginate = array(
+			'conditions' => array(
+				"OR" => array(
+					'Product.name LIKE' => "%$q%",
+					'Product.description LIKE' => "$q"
+				)
+			)
+		);
+		$products = $this->paginate();
+		$this->set('products', $products);
 	}
+	
 	function featuredProduct($tag_id) {
 		$this->layout="ajax";
 		$featured_products_ids = $this->Product->find(
