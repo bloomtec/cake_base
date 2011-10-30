@@ -23,6 +23,7 @@ class ProductsController extends AppController {
 				"OR" => array(
 					'Product.name LIKE' => "%$q%",
 					'Product.description LIKE' => "$q",
+					'Product.ref LIKE' => "$q",
 					'Product.brand_id'=>$brand_ids
 				)
 			)
@@ -119,18 +120,85 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
+			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
-			$this->Product->create();
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			// Revisar las recomendaciones
+			$data = null;
+			$recommendations = false;
+			if(!empty($this -> data['Product']['recommendations'])) {
+				$data = $this->validateRecommendations($this -> data['Product']['recommendations'], $this -> data['Product']['ref']);
+				$recommendations = true;
+			}
+			
+			if(!$recommendations || $data) {
+				$this->Product->create();
+				if ($this->Product->save($this->data)) {
+					$this->Session->setFlash(__('The product has been saved', true));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					debug($this->Product->invalidFields());
+					$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				}
 			} else {
-				debug($this->Product->invalidFields());
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The recommendations entered are not valid. Check for repeated values and that the ref is not the same as the product being added. Please, try again.', true));
 			}
 		}
 		$productTypes = $this->Product->ProductType->find('list');
 		$this->set(compact('productTypes'));
+	}
+	
+	function validateRecommendations($data = null, $ref = null) {
+		$this->autorender=false;
+		$valid_recommendations = true;
+		/**
+		 * Contenedor de recomencdaciones
+		 */
+		$recommendations = split(",", $data);
+		/*
+		 * Hacer trim a los valores y validar
+		 */
+		foreach ($recommendations as $key => $recommendation) {
+			$recommendations[$key] = trim($recommendation);
+			$prod_classification = $recommendations[$key];
+			if (empty($recommendations[$key])) {
+				unset($recommendations[$key]);
+			} else {
+				$product = $this -> Product -> findByClasification($prod_classification);
+				if (empty($product)) {
+					$valid_recommendations = false;
+				}
+			}
+		}
+		$data = "";
+		foreach ($recommendations as $key => $val) {
+			$data = $data . $val . ",";
+		}
+		$data = substr($data, 0, strlen($data) - 1);
+		/**
+		 * Revisar datos dobles
+		 */
+		foreach ($recommendations as $key1 => $recommendation1) {
+			foreach ($recommendations as $key2 => $recommendation2) {
+				if ($key1 != $key2) {
+					if ($recommendation1 == $recommendation2) {
+						$valid_recommendations = false;
+					}
+				}
+			}
+		}
+		/**
+		 * Revisar si es el mismo producto el que se recomienda
+		 */
+		foreach ($recommendations as $key => $recommendation) {
+			if ($recommendation == $ref) {
+				$valid_recommendations = false;
+			}
+		}
+		if (!$valid_recommendations) {
+			return null;
+		} else {
+			return $data;
+		}
 	}
 	
 	function admin_edit($id = null) {
