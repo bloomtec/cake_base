@@ -10,11 +10,20 @@ class ProductsController extends AppController {
 	
 	function searchResults(){
 		$q=$this->data['query'];
+		$brand_ids = $this->Product->Brand->find(
+			'list',
+			array(
+				'fields'=>array('Brand.id'),
+				'conditions'=>array('Brand.name LIKE' => "%$q%"),
+				'recursive'				
+			)
+		);		
 		$this->paginate = array(
 			'conditions' => array(
 				"OR" => array(
 					'Product.name LIKE' => "%$q%",
-					'Product.description LIKE' => "$q"
+					'Product.description LIKE' => "$q",
+					'Product.brand_id'=>$brand_ids
 				)
 			)
 		);
