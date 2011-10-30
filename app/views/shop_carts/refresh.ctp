@@ -1,8 +1,9 @@
+<?php //echo $this -> element("menu-shop-cart");?>
+<div class="shop-cart-list-container">
 <table id="shop-cart-list" class="tahoma">
 	<thead>
 		<tr>
-			<th align="left">Descripcion de la Prenda</th>
-			<th align="left">Talla</th>
+			<th align="left">Articulo</th>
 			<th align="left">Valor Unidad</th>
 			<th align="left">Cantidad</th>
 			<th align="left">Total</th>
@@ -17,52 +18,42 @@
 			} else {
 				$subtotal=0;
 				foreach($shopping_cart['ShopCartItem'] as $shoppin_cart_item) :
-				$model_name = $shoppin_cart_item['model_name'];
-				$foreign_key =  $shoppin_cart_item['foreign_key'];
-				$item = $this->requestAction("/$model_name"."s/getProduct/$foreign_key/".$shoppin_cart_item['size_id']);
-				$subtotal+=$item[$model_name]["price"]*$shoppin_cart_item['quantity'];
-		?>
-			<tr class="shop-cart-item" rel="<?=$shoppin_cart_item["id"]?>">
+					$model_name = $shoppin_cart_item['model_name'];
+					$foreign_key =  $shoppin_cart_item['foreign_key'];
+					$item = $this->requestAction("/shopCarts/getItem/".$shoppin_cart_item['model_name']."/$foreign_key/");
+					$subtotal += $item[$model_name]["price"]*$shoppin_cart_item['quantity'];
+			?>
+			<tr class="shop-cart-item" rel="<?php echo $shoppin_cart_item["id"]?>">
 				<td class="descripcion">
-				<div class="img_carrito">
-					<img src="<?php echo"/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
-				</div>
-				<div class='info-item'>
-				<h1 class="titulos_rosado"><?php echo $item["$model_name"]["name"]?></h1>
-				<h2 class="titulos_gris"><?php echo $item["$model_name"]["clasification"]?></h2>
-				<form class="marcar_regalo">
-					<?php if($shoppin_cart_item['is_gift']){?>
-					<input class='gift-control' type="checkbox" checked="checked"/>
-					<?php }else{?>
-					<input class='gift-control' type="checkbox" />
-					<?php } ?>
-					<label>MARCAR COMO REGALO</label> <!-- revisar esto del marcado -->
-				</form>
-				</div>
-				<div style="clear: both"></div></td>
-				<td class="talla"><!-- celda con la talla -->
-					<h1><?php echo $this->requestAction("/size_references/getSize/" .$shoppin_cart_item["size_id"])?></h1>					
+					<div class="img_carrito">
+						<img src="<?php echo "/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
+					</div>
+					<div class='info-item'>
+						<h1><?php echo $item["$model_name"]["name"]?></h1>
+						<h2><?php echo $item["$model_name"]["ref"]?></h2>
+					</div>
 				</td>
-				<td class="talla"><!-- celda con el precio -->
+
+				<td class="price"> <!-- celda con el precio -->
 					<h1>$ <?php echo number_format($item["$model_name"]["price"], 0, ' ', '.'); ?></h1>
 				</td>
-				<td class="talla"><!-- celda con el select para modificar la cantidad -->
+				<td class="quantity">
 					<?php 
 						$cantidades=array();
 						for($i=1; $i <= $item['Inventory']['quantity']; $i++ ){
 							$cantidades[$i]=$i;
 						}
-					?>
-					<?php echo $form->input('cantidad',array('class'=>'item-quantity','options'=>$cantidades,"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));?>
-					</td>
-				<td class="talla">
-					<h1 class="price">$<?php echo number_format($shoppin_cart_item['quantity']* $item["$model_name"]["price"], 0, ' ', '.');?></h1><!-- celda con el total -->
+						echo $form->input('cantidad',array('class'=>'item-quantity','options'=>$cantidades,"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));
+					 ?>
+				</td>
+				<td class="price">
+					<h1 >$<?php echo number_format($shoppin_cart_item['quantity']* $item["$model_name"]["price"], 0, ' ', '.');?></h1>
 				</td>
 				<td>
-					<h1 class="quitar"><a href="#">QUITAR</a></h1>
+					<h1 class="remove-from-cart"><a href="#">QUITAR</a></h1>
 				</td>
 			</tr>
-		<?php
+			<?php
 				endforeach;
 			}
 		?>
@@ -70,7 +61,7 @@
 </table>
 
 <div id="cupon" class="twCenMt">
-	<h1 class='quitar-todos'><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
+	<h1 class='remove-all'><a class="titulos_gris" href="#">QUITAR TODOS</a></h1>
 	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<form id="set-coupon">
 		<?php if(!$shopping_cart['ShopCart']['coupon_id']) : ?>
@@ -79,7 +70,7 @@
 		<input type="submit" value="APLICAR" />
 		<?php endif; ?>
 		<?php if($shopping_cart['ShopCart']['coupon_id']) : ?>
-			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?=(100 * $shopping_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
+			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?php echo (100 * $shopping_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
 		<?php endif; ?>
 	</form>
 	<?php $coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_discount'])) $coupon_value = $shopping_cart['ShopCart']['coupon_discount']; ?>
