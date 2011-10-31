@@ -8,81 +8,72 @@ class ProductsPollsController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
-	function index() {
-		$this->ProductsPoll->recursive = 0;
-		$this->set('productsPolls', $this->paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid products poll', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('productsPoll', $this->ProductsPoll->read(null, $id));	
-	}
-	
-	
-	function admin_index() {
-		$this->ProductsPoll->recursive = 0;
-		$this->set('productsPolls', $this->paginate());
-	}
-
-	function admin_view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid products poll', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('productsPoll', $this->ProductsPoll->read(null, $id));	
-	}
-	
-	function admin_add() {
-		if (!empty($this->data)) {
+	function userPoll($product_id = null, $votacion = null) {
+		$this->layout="ajax";
+		if($product_id && $votacion) {
+			if(
+				$poll = $this->ProductsPoll->find(
+					'first',
+					array(
+						'recursive'=>-1,
+						'conditions'=>array(
+							'ProductsPoll.user_id'=>$this->Session->read('Auth.User.id'),
+							'ProductsPoll.product_id'=>$product_id
+						)
+					)
+				)
+			) {
+				$this->ProductsPoll->delete($poll['ProductsPoll']['id']);
+			}
 			$this->ProductsPoll->create();
-			if ($this->ProductsPoll->save($this->data)) {
-				$this->Session->setFlash(__('The products poll has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			$this->ProductsPoll->set('user_id', $this->Session->read("Auth.User.id"));
+			$this->ProductsPoll->set('product_id', $product_id);
+			$this->ProductsPoll->set('vote', $votacion);
+			if ($this->ProductsPoll->save()) {
+				$product_polls = $this->ProductsPoll->find(
+					'list',
+					array(
+						'conditions'=>array(
+							'ProductsPoll.product_id'=>$product_id
+						),
+						'fields'=>array('ProductsPoll.vote')
+					)
+				);
+				$total = 0.0;
+				foreach($product_polls as $poll) {
+					$total = $total + $poll['vote'];
+				}
+				$result = $total / count($product_polls);
+				echo "$result";
 			} else {
-				$this->Session->setFlash(__('The products poll could not be saved. Please, try again.', true));
+				echo false;
 			}
 		}
-		$users = $this->ProductsPoll->User->find('list');
-		$products = $this->ProductsPoll->Product->find('list');
-		$this->set(compact('users', 'products'));
+		exit(0);
 	}
 	
-	function admin_edit($id = null) {
-		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid products poll', true));
-			$this->redirect(array('action' => 'index'));
-		}
-		if (!empty($this->data)) {
-			if ($this->ProductsPoll->save($this->data)) {
-				$this->Session->setFlash(__('The products poll has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The products poll could not be saved. Please, try again.', true));
+	function getProductPoll($product_id = null) {
+		$this->layout="ajax";
+		$product_polls = $this->ProductsPoll->find(
+			'list',
+			array(
+				'conditions'=>array(
+					'ProductsPoll.product_id'=>$product_id
+				),
+				'fields'=>array('ProductsPoll.vote')
+			)
+		);
+		$total = 0.0;
+		if(!empty($product_polls)) {
+			foreach($product_polls as $poll) {
+				$total = $total + $poll['vote'];
 			}
-		}
-		if (empty($this->data)) {
-			$this->data = $this->ProductsPoll->read(null, $id);
-		}
-		$users = $this->ProductsPoll->User->find('list');
-		$products = $this->ProductsPoll->Product->find('list');
-		$this->set(compact('users', 'products'));
+			$result = $total / count($product_polls);
+			echo "$result";
+		} else {
+			echo "0";
+		}		
+		exit(0);
 	}
-	
-	function admin_delete($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for products poll', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		if ($this->ProductsPoll->delete($id)) {
-			$this->Session->setFlash(__('Products poll deleted', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->Session->setFlash(__('Products poll was not deleted', true));
-		$this->redirect(array('action' => 'index'));
-	}
-	
 
 }
