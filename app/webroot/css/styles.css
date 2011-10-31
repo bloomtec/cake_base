@@ -188,12 +188,14 @@ input.submit{
 	margin-bottom: 17px;
 }
 #login label{
-	width: 76px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 15px;
 	float: left;
-	margin-left: 34px;
-	padding-top: 3px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 34px;
+    padding-top: 3px;
+    width: 76px;
 }
 #login h3{
 	width: 246px;
@@ -396,11 +398,13 @@ input.submit{
 	margin-top: 12px;
 }
 #listado_fltro ul h2{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 13px;
-	color: #ff7800;
-	margin-left: 15px;
-	margin-bottom: 6px;
+	color: #FF7800;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    margin-bottom: 12px;
+    margin-left: 15px;
+    padding-top: 6px;
 }
 #listado_fltro ul a{
 	text-decoration: none;
@@ -411,10 +415,49 @@ input.submit{
 #listado_fltro ul li{
 	list-style: circle;
 	margin-left: 40px;
+	
 }
-
-
-
+#listado_fltro select,#listado_fltro input {
+	float: right;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    height: 20px;
+    margin-bottom: 13px;
+	
+}
+#listado_fltro input[type=submit]{
+	background-color: transparent;
+    background-image: url("/img/submit_registro.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #262525;
+    float: right;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    height: 37px;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 99px;
+    border: none;
+    margin-left: 50px;
+}
+#listado_fltro input[type=text]{
+	height: 18px;
+}
+.paging{
+	font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    height: 28px;
+    line-height: 30px;
+    width: 319px;
+    float: left;
+}
 /*FOOTER */
 
 
@@ -711,16 +754,28 @@ span.linea_footer {
 .nav-usuario{
 	position:absolute;
 	right: 75px;
-	top:5px;
+	top:0px;
+	width: 130px;
+	height: 23px;
+	background-color: #fff;
+	right: 33px;
+	-webkit-border-bottom-right-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
 }
 .nav-usuario li{
 	display:inline;
 }
 .nav-usuario a, .nav-usuario a:active, .nav-usuario a:visited{
 	
-	color:white;
+	color:#262525;
 	text-decoration: none;
 	font-size:12px;
+	font-weight: bold;
+	font-style: italic;
 }
 .nav-usuario a:hover{
 	color:#ff7800;

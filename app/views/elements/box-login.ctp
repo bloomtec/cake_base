@@ -1,7 +1,7 @@
 <h1>Área de clientes</h1>
 <?php e($form->create('User',array('action'=>'login')))
 ?>
-<label for='email'>email:</label>
+<label for='email'>E-mail:</label>
 <input type="email" class="input" id='email' name='data[User][email]' required="required" />
 <label for='password'>Password:</label>
 <input type="password" id='password' class="input" name='data[User][password]' required="required" />

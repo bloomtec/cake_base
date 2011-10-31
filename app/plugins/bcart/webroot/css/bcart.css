@@ -1,3 +1,49 @@
+h1,h2,h3,p,label,input,section,table, th, a{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
+.shop-cart-list-container table{
+	width: 100%;
+}
+.shop-cart-list-container th, .shop-cart-item td{
+	padding-left: 50px;
+	text-align: left;
+	vertical-align: middle;
+	color: #424242;
+}
+.shop-cart-list-container th input{
+	width: 40px;
+	text-align: center;
+}
+.shop-cart-list-container h1{
+	font-size: 14px;
+	font-weight: bold;
+	width: 100%;
+	text-align: left;
+	margin-bottom: 23px;
+}
+.shop-cart-item h1{
+	margin-bottom: 6px;
+}
+.shop-cart-list-container tbody h2{
+	font-size: 11px;
+    font-weight: normal;
+    margin-bottom: 14px;
+    text-align: left;
+}
+.shop-cart-list-container thead {
+	border: 1px solid #bdbdbd;
+	background-image: url(/img/trama_tabla.png);
+	line-height: 26px;
+
+}
+.shop-cart-item td, .shop-cart-item h1{
+	text-align: left;
+	margin-top: 8px;
+}
 .add-cart-confirm{
 	font-size:10px;
 	display:none;
@@ -5,23 +51,33 @@
 .add-to-cart{
 	
 }
-.remove-from-cart{
-	
+.remove-from-cart a{
+	color: #424242;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
 }
 .remove-all{
 	
 }
-
+#cantidad{
+	width: 50px;
+	text-align: center;
+	border: 1px solid #858585;
+}
 /*view-cart*/
 .shop-cart-list-container{
 	
 }
 .shop-cart-item{
-	
+	border-bottom: 1px solid #bcbcbc;
+	padding-bottom: 25px;
 }
 .price{
 	
 }
 .total{
 	
+}
+.descripcion img{
+	padding-top: 15px;
 }

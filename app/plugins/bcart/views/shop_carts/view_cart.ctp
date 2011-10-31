@@ -1,5 +1,6 @@
 <?php //echo $this -> element("menu-shop-cart");?>
 <div class="shop-cart-list-container">
+<h1>Mi Carrito</h1>
 <table id="shop-cart-list" class="tahoma">
 	<thead>
 		<tr>
