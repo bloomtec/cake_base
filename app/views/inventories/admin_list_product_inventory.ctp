@@ -1,13 +1,11 @@
 <div class="inventory index">
 	<?php $pid = $product['Product']['id']; ?>
-	<!-- INFORMACIÓN BÁSICA DEL PRODUCTO -->
-	<h2><?php __("Product :: ".$product['Product']['name'] . " :: " . $product['Product']['ref']);?></h2>
-	<!-- FIN INFORMACIÓN BÁSICA DEL PRODUCTO -->
-	
-	<!-- INFORMACIÓN DEL INVENTARIO DEL PRODUCTO -->
-	<h2><?php __('Inventory');?></h2>
+	<div class="info" style="margin-left: 22%; margin-right: 22%;">
+		<h2><?php __("Product :: ".$product['Product']['name'] . " :: " . $product['Product']['ref']);?></h2>
+		<h2><?php __('Inventory');?></h2>
+	</div>	
 	<div id="updateInventoryForm">
-		<?php e($this->Form->create('Inventory', array('action'=>'/listProductInventory/'. $pid))); ?>
+		<?php e($this->Form->create('Inventory', array("style"=>"width: 50%; margin-left: auto; margin-right: auto;", 'id'=>'UpdateInventory', 'action'=>"listProductInventory/$pid"))); ?>
 		<table cellpadding="0" cellspacing="0">
 			<tr>
 				<th><?php echo $this -> Paginator -> sort('quantity');?></th>
@@ -22,20 +20,21 @@
 				}
 			?>
 			<tr<?php echo $class;?>>
-				<td><?php echo $data['Inventory']['quantity'];?>&nbsp;</td>
-				<td><?php e($this->Form->input("$pid", array('label'=>false, 'value'=>0))); ?></td>
+				<td style="text-align: center;"><?php echo $data['Inventory']['quantity'];?>&nbsp;</td>
+				<td><?php e($this->Form->input("$pid", array('label'=>false, 'value'=>0, 'style'=>'text-align: center;'))); ?></td>
 			</tr>
 			<tr>
-				<?php e($this->Form->input('comment', array('value'=>''))); ?>
+				<?php //e($this->Form->input('comment', array('value'=>''))); ?>
+				<div class="input text">
+					<label for="InventoryComment">Comment</label>
+					<textarea id="InventoryComment" value="" name="data[Inventory][comment]" ></textarea>
+				</div>
 			</tr>
 			<?php endforeach;?>
 		</table>
-		<?php e($this->Form->end('Actualizar Inventario')); ?>
-		<p>
-			<?php echo $this -> Paginator -> counter(array('format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true))); ?>
-		</p>
-		<div class="paging">
-			<?php echo $this -> Paginator -> prev('<< ' . __('previous', true), array(), null, array('class' => 'disabled'));?> | <?php echo $this -> Paginator -> numbers();?> | <?php echo $this -> Paginator -> next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php //e($this->Form->end('Actualizar Inventario')); ?>
+		<div class="submit">
+			<input type="submit" value="Actualizar Inventario" style="width: 220px;">
 		</div>
 		<div class="actions">
 			<ul>

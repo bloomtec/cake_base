@@ -87,6 +87,8 @@ class InventoriesController extends AppController {
 				/**
 				 * Actualizar Inventario
 				 */
+				debug($this->data);
+				/*
 				foreach($this->data['Inventory'] as $product_id=>$value) {
 					// Encontrar el inventario
 					$inventory = $this->Inventory->find(
@@ -122,7 +124,7 @@ class InventoriesController extends AppController {
 							$this -> Session -> setFlash(__("The new quantity can't be less than 0. Please, try again.", true));
 						}
 					}
-				}
+				}*/
 			}
 			$this -> paginate = array('recursive' => 0, 'limit' => 20, 'conditions' => array('Inventory.product_id' => $product_id));
 			$inventory = $this -> paginate('Inventory');
