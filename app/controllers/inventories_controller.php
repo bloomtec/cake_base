@@ -114,7 +114,6 @@ class InventoriesController extends AppController {
 								$this -> Inventory -> InventoryMovement -> set('comment', $this->data['Inventory']['comment']);
 								$this -> Inventory -> InventoryMovement -> save();
 								$this -> Session -> setFlash(__('The inventory has been updated.', true));
-								
 							} else {
 								$this -> Session -> setFlash(__("There was an error updating the inventory. Please, try again", true));
 							}
