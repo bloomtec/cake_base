@@ -797,3 +797,11 @@ span.linea_footer {
 	font-weight: bold;
 	margin-top: 7px;
 }
+#right-tab .mi-cuenta.perfil, #right-tab .mi-cuenta.login{
+	font-size: 10px;
+    margin-right: 29px;
+    margin-top: 12px;
+}
+#right-tab .mi-cuenta.login{
+	margin-right: 0;
+}
