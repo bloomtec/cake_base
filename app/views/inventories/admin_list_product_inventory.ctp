@@ -1,8 +1,9 @@
 <div class="inventory index">
 	<?php $pid = $product['Product']['id']; ?>
 	<div class="info" style="margin-left: 22%; margin-right: 22%;">
-		<h2><?php __("Product :: ".$product['Product']['name'] . " :: " . $product['Product']['ref']);?></h2>
 		<h2><?php __('Inventory');?></h2>
+		<h2><?php __("Product :: ".$product['Product']['name']);?></h2>
+		<h2><?php __("Ref :: ".$product['Product']['ref']);?></h2>
 	</div>	
 	<div id="updateInventoryForm">
 		<?php e($this->Form->create('Inventory', array("style"=>"width: 50%; margin-left: auto; margin-right: auto;", 'id'=>'UpdateInventory', 'action'=>"listProductInventory/$pid"))); ?>
