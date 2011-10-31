@@ -96,36 +96,31 @@ class InventoriesController extends AppController {
 							'conditions'=>array('Inventory.product_id' => $product_id)
 						)
 					);
-					// Revisar si se ingreso o no un comentario
-					if(isset($this->data['Inventory']['comment']) && !empty($this->data['Inventory']['comment'])) {
-						// Revisar si se encontro el inventario
-						if(!empty($inventory)) {
-							$old_value = (int) $inventory['Inventory']['quantity'];
-							$change = (int) $value;
-							// Hacer la suma con la nueva cantidad y validar que no sea menor a 0 el resultado
-							if(($new_value = $old_value + $change) >= 0) {
-								$inventory['Inventory']['quantity']=$new_value;
-								// Si se salva el inventario crear el seguimiento
-								if($this->Inventory->save($inventory)){
-									$this -> Inventory -> InventoryMovement -> create();
-									$this -> Inventory -> InventoryMovement -> set('user_id', $this -> Session -> read('Auth.User.id'));
-									$this -> Inventory -> InventoryMovement -> set('inventory_id', $inventory['Inventory']['id']);
-									$this -> Inventory -> InventoryMovement -> set('old_quantity', $old_value);
-									$this -> Inventory -> InventoryMovement -> set('new_quantity', $new_value);
-									$this -> Inventory -> InventoryMovement -> set('user_id', $this->Session->read('Auth.User.id'));
-									$this -> Inventory -> InventoryMovement -> set('comment', $this->data['Inventory']['comment']);
-									$this -> Inventory -> InventoryMovement -> save();
-									$this -> Session -> setFlash(__('The inventory has been updated.', true));
-									
-								} else {
-									$this -> Session -> setFlash(__("There was an error updating the inventory. Please, try again", true));
-								}
+					// Revisar si se encontro el inventario
+					if(!empty($inventory)) {
+						$old_value = (int) $inventory['Inventory']['quantity'];
+						$change = (int) $value;
+						// Hacer la suma con la nueva cantidad y validar que no sea menor a 0 el resultado
+						if(($new_value = $old_value + $change) >= 0) {
+							$inventory['Inventory']['quantity']=$new_value;
+							// Si se salva el inventario crear el seguimiento
+							if($this->Inventory->save($inventory)){
+								$this -> Inventory -> InventoryMovement -> create();
+								$this -> Inventory -> InventoryMovement -> set('user_id', $this -> Session -> read('Auth.User.id'));
+								$this -> Inventory -> InventoryMovement -> set('inventory_id', $inventory['Inventory']['id']);
+								$this -> Inventory -> InventoryMovement -> set('old_quantity', $old_value);
+								$this -> Inventory -> InventoryMovement -> set('new_quantity', $new_value);
+								$this -> Inventory -> InventoryMovement -> set('user_id', $this->Session->read('Auth.User.id'));
+								$this -> Inventory -> InventoryMovement -> set('comment', $this->data['Inventory']['comment']);
+								$this -> Inventory -> InventoryMovement -> save();
+								$this -> Session -> setFlash(__('The inventory has been updated.', true));
+								
 							} else {
-								$this -> Session -> setFlash(__("The new quantity can't be less than 0. Please, try again.", true));
+								$this -> Session -> setFlash(__("There was an error updating the inventory. Please, try again", true));
 							}
+						} else {
+							$this -> Session -> setFlash(__("The new quantity can't be less than 0. Please, try again.", true));
 						}
-					} else {
-						$this -> Session -> setFlash(__('A comment must be provided.', true));
 					}
 				}
 			}
