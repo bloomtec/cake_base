@@ -164,11 +164,12 @@
 
 }
 .login .submit.primero{
-	float: right;
+	float: left;
 	padding-top: 12px;
 	margin-top: 0;
 	margin-right: 20px;
 	height: 26px;
+	margin-left: 170px;
 }
 .correo{
 	width: auto;
