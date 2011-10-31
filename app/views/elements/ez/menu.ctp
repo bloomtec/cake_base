@@ -1,6 +1,6 @@
 <ul id="main_menu">
 	<li>
-		<a href="">INICIO</a>
+		<a href="/admin/pages/ez">INICIO</a>
 	</li>
 	<li>
 		<a href="/admin/products/">PRODUCTOS</a>
@@ -22,22 +22,27 @@
 		</ul>
 	</li>
 	<li>
-		<a href="">CONTENIDO</a>
+		<a href="/admin/pages/">CONTENIDO</a>
 		<ul>
 			<li>
-				<a href="/admin/pages">PAGINAS</a>
+				<a href="/admin/pages/">PAGINAS</a>
 			</li>
-			<li>
+		<!--	<li>
 				<a href="/admin/news">NOTICIAS</a>
-			</li>
+			</li> -->
 		</ul>
 	</li>
 	<li>
-		<a href="">USUARIOS</a>
+		<a href="/admin/users/">USUARIOS</a>
+		<ul>
+			<li>
+				<a href="/admin/users/add">AGREGAR</a>
+			</li>
+		</ul>
 	</li>
-	<li>
+<!--	<li>
 		<a href="">MULTIMEDIA</a>
-	</li>
+</li> -->
 	<li class="final">
 		<a class="ultimo" href="/admin/users/logout">SALIR</a>
 	</li>
