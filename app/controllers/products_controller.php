@@ -43,6 +43,11 @@ class ProductsController extends AppController {
 		$this->set('products', $products);
 	}
 	
+	function findRecommendedProducts($product_id) {
+		$recommended_product_ids = $this -> Product -> Recommendation -> find('list', array('fields' => array('Recommendation.recommended_product_id'), 'conditions' => array('Recommendation.product_id' => $product_id), 'limit' => 5, 'order' => 'rand()'));
+		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_visible'=>1)));
+	}
+	
 	function featuredProduct($tag_id) {
 		$this->layout="ajax";
 		$featured_products_ids = $this->Product->find(
@@ -138,7 +143,7 @@ class ProductsController extends AppController {
 				$data = $this->validateRecommendations($this -> data['Product']['recommendations'], $this -> data['Product']['ref']);
 				$recommendations = true;
 			}
-			if(!$recommendations || $data) {
+			if(!$recommendations || !empty($data)) {
 				$this->Product->create();
 				if ($this->Product->save($this->data)) {
 					// Crear el inventario en 0
@@ -146,6 +151,17 @@ class ProductsController extends AppController {
 					$this->Product->Inventory->set('product_id', $this->Product->id);
 					$this->Product->Inventory->set('quantity', 0);
 					if($this->Product->Inventory->save()) {
+						/**
+						 * Añadir las recomendaciones
+						 */
+						$data = split(",", $data);
+						foreach ($data as $ref) {
+							$recommended_product = $this -> Product -> findByRef($ref);
+							$this -> Product -> Recommendation -> create();
+							$this -> Product -> Recommendation -> set('product_id', $this -> Product -> id);
+							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
+							$this -> Product -> Recommendation -> save();
+						}
 						$this->Session->setFlash(__('The product has been saved', true));
 					} else {
 						$this->Session->setFlash(__('The product has been saved without an inventory', true));
