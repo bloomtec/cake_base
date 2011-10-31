@@ -1,5 +1,6 @@
 <div id="header">
 	<div id='right-tab'>
+		<a><img src="/img/carrito.png" /></a>
 		<?php echo $this -> element('resume-cart',array('plugin'=>'bcart'));?>
 		<ul class='nav-usuario'>
 		<?php if($session->read('Auth.User.id')){ ?>
