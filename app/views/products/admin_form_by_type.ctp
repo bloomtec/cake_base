@@ -1,7 +1,7 @@
 <?php
 if ($type_id == 1 || $type_id == 2) {
-	echo $this -> Form -> input('Product.architecture_id', array('empty' => 'Seleccione...'));
-	echo $this -> Form -> input('Socket.Socket');
+	echo $this -> Form -> input('Product.architecture_id', array('empty' => 'Seleccione...', 'div'=>'input select required'));
+	echo $this -> Form -> input('Socket.Socket', array('div'=>'input select required'));
 }
 if ($type_id == 2) {
 	echo $this -> Form -> input('Product.is_video_included');
