@@ -752,19 +752,7 @@ span.linea_footer {
 	-webkit-box-shadow:0 0 6px #ddd;
 }
 .nav-usuario{
-	position:absolute;
-	right: 75px;
-	top:0px;
-	width: 130px;
-	height: 23px;
-	background-color: #fff;
-	right: 33px;
-	-webkit-border-bottom-right-radius: 4px;
-	-webkit-border-bottom-left-radius: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	
 }
 .nav-usuario li{
 	display:inline;
@@ -773,10 +761,47 @@ span.linea_footer {
 	
 	color:#262525;
 	text-decoration: none;
-	font-size:12px;
-	font-weight: bold;
-	font-style: italic;
+	font-size:10px;
+
 }
 .nav-usuario a:hover{
 	color:#ff7800;
+}
+#right-tab{
+	position: fixed;
+	top: 50%;
+	right: 0;
+	background-color: #ff7800;
+	width: 103px;
+	height: 97px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	background-image: url(/img/trama_mi_cuenta.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+	z-index: 999;
+}
+#right-tab a{
+	text-align: center;
+	display: block;
+	margin-top: 15px;
+}
+#right-tab .mi-cuenta{
+	color: #202020;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 7px;
+}
+#right-tab .mi-cuenta.perfil, #right-tab .mi-cuenta.login{
+	font-size: 10px;
+    margin-right: 29px;
+    margin-top: 12px;
+}
+#right-tab .mi-cuenta.login{
+	margin-right: 0;
 }

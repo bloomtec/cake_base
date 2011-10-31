@@ -16,8 +16,11 @@
 		</div>
 		<?php
 		echo $this -> Session -> flash('auth');
-		echo $this -> Form -> end(__('Ingresar', true));
 		?>
 		<a class="submit primero" href='/users/register'> Registrese </a>
+		<?php
+		echo $this -> Form -> end(__('Ingresar', true));
+		?>
+		
 	</fieldset>
 </div>
