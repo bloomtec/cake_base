@@ -5,7 +5,11 @@ class ProductsController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
+		$this->Auth->allow(
+			'getCasings', 'getPowerSupplies', 'getOpticalDrives', 'getHardDrives', 'getMemories',
+			'isVideoIncluded', 'getMotherBoards', 'getProcessors','getSocketsByArchitecture',
+			'featuredProduct','searchResults'
+		);
 	}
 	
 	function getProduct($product_id = null, $size_id = null) {
@@ -175,9 +179,9 @@ class ProductsController extends AppController {
 				$this->Session->setFlash(__('The recommendations entered are not valid. Check that the ref exists, that there are no repeated values and that the ref is not the same as the product being added. Please, try again.', true));
 			}
 		}
-		$productTypes = $this->Product->ProductType->find('list');
-		$brands = $this->Product->Brand->find('list');
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>13)));
+		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
+		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
 		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
 	
@@ -302,6 +306,111 @@ class ProductsController extends AppController {
 		}
 		$this->Session->setFlash(__('Product was not archived', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	// Métodos aplicación ARMA TU PC
+	//	
+	
+	/**
+	 * $architecture_id : ID de la arquitectura seleccionada
+	 */
+	function getProcessors($architecture_id = null) {
+		$this->layout="ajax";
+		$processors = $this->Product->find(
+			'all',
+			array(
+				'recursive'=>-1,
+				'conditions'=>array(
+					'Product.architecture_id'=>$architecture_id,
+					'Product.product_type_id'=>1
+				)
+			)
+		);
+		echo json_encode($processors);
+		exit(0);
+	}
+	
+	/**
+	 * $product_id : ID del producto (procesador) seleccionado.
+	 * De ahí procesar la arquitectura y el tipo de socket
+	 */
+	function getMotherBoards($product_id = null) {
+		$this->layout="ajax";
+		$processor = $this->Product->find('first', array('recursive'=>1, 'conditions'=>array('Product.id'=>$product_id)));
+		$architecture_id = $processor['Socket'][0]['architecture_id'];
+		$socket_id = $processor['Socket'][0]['ProductsSocket']['socket_id'];
+		$product_ids = $this->Product->ProductsSocket->find(
+			'list',
+			array(
+				'conditions'=>array(
+					'ProductsSocket.socket_id' => $socket_id
+				),
+				'fields'=>array(
+					'ProductsSocket.product_id'
+				)
+			)
+		);
+		$motherboards = $this->Product->find(
+			'all',
+			array(
+				'recursive'=>-1,
+				'conditions'=>array(
+					'Product.architecture_id'=>$architecture_id,
+					'Product.product_type_id'=>2,
+					'Product.id'=>$product_ids
+				)
+			)
+		);
+		echo json_encode($motherboards);
+		exit(0);
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar si tiene video o no
+	 */
+	function isVideoIncluded($product_id = null) {
+		
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar las memorias disponibles compatibles
+	 */
+	function getMemories($product_id = null) {
+		
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar los discos duros disponibles compatibles
+	 */
+	function getHardDrives($product_id = null) {
+		
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar las unidades opticas disponibles compatibles
+	 */
+	function getOpticalDrives($product_id = null) {
+		
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta de video) seleccionada.
+	 * De ahí procesar las fuentes disponibles compatibles
+	 */
+	function getPowerSupplies($product_id = null) {
+		
+	}
+	
+	/**
+	 * $product_id : ID del producto (tarjeta de video) seleccionada.
+	 * De ahí procesar las cajas disponibles compatibles
+	 */
+	function getCasings($product_id = null) {
+		
 	}
 
 }
