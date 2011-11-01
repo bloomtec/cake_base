@@ -13,7 +13,7 @@
 	<div class='add-cart-confirm' >
 		producto agregado ir a pagar
 	</div>
-	<?php echo $this -> element("estrellas_categoria",array('product'=>$product));?>
+	<?php echo $this -> element("poll-in",array('product' => $product , 'active' => false ));?>
 </div>
 <?php endforeach; ?>
 <?php }else{?>

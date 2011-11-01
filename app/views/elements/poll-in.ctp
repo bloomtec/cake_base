@@ -2,8 +2,10 @@
 	.start{
 		width:17px;
 		height:17px;
-		cursor:pointer;
 		float:left;
+	}
+	.active{
+		cursor:pointer;
 	}
 	.start-0{
 		background: url(/img/estrella_inact.png);
@@ -28,17 +30,17 @@
 	}
 	
 </style>
-<?php if($session -> read('Auth.User.id')){?>
-<div class='vote' rel='<?php echo $product['Product']['id']; ?>'>
-	<div class='start active' rel='0'> </div>
-	<div class='start active' rel='1'> </div>
-	<div class='start active' rel='2'> </div>
-	<div class='start active' rel='3'> </div>
-	<div class='start active' rel='4'> </div>
+<?php if( $session -> read('Auth.User.id') && $active ){?>
+<div class='vote active' rel='<?php echo $product['Product']['id']; ?>'>
+	<div class='start' rel='0'> </div>
+	<div class='start' rel='1'> </div>
+	<div class='start' rel='2'> </div>
+	<div class='start' rel='3'> </div>
+	<div class='start' rel='4'> </div>
 	<div style='clear:both;'></div>
 </div>
 <?php }else{ ?>
-	<div class='vote' rel='<?php echo $product['Product']['id']; ?>'>
+<div class='vote' rel='<?php echo $product['Product']['id']; ?>'>
 	<div class='start' rel='0'> </div>
 	<div class='start' rel='1'> </div>
 	<div class='start' rel='2'> </div>
@@ -72,7 +74,7 @@
 		BJS.post('/productsPolls/getProductPoll/'+$('.vote').attr('rel'),{},function(data){
 			initVote(data);
 		});
-		$('.start').mouseenter(function(){
+		$('.active .start').mouseenter(function(){
 			var $that=$(this);
 			var thatRel=$that.attr('rel');
 			$.each(estrellas,function(i,val){
@@ -88,13 +90,13 @@
 			$(this).prevAll().removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-5');
 			estrellas[$(this).attr('rel')]['actual-class']='start-5'; */
 		});
-		$('.vote').mouseout(function(){
+		$('.active .vote').mouseout(function(){
 			$.each(estrellas,function(i,val){
 				val['element'].removeClass('start-0 start-1 start-2 start-3 start-4').addClass(val['first-class']);
 				val['actual-class'] = val['first-class'];
 			});
 		});
-		$('.start.active').click(function(){
+		$('.active .start').click(function(){
 			BJS.post('/productsPolls/userPoll/'+$('.vote').attr('rel') + '/' + (parseInt($(this).attr('rel')) + 1),{},function(data){
 			if(data){ 
 				initVote(data)
