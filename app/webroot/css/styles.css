@@ -848,13 +848,10 @@ ul li a.twitter {
 	margin-bottom: 95px;
 }
 #pages #estaticas_info {
-	bottom: 179px;
     float: right;
-    max-height: 553px;
     margin-right: 40px;
     margin-top: 20px;
     overflow-y: auto;
-    position: absolute;
     right: 15px;
     width: 465px;
 }
@@ -914,6 +911,7 @@ ul li a.twitter {
 	margin-left: 23px;
 	margin-bottom: 20px;
 	min-height: 60px;
+	float:right;
 }
 #pages .social_estaticas .titulos_rosado{
 	font-size: 15px;
