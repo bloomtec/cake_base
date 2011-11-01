@@ -31,12 +31,15 @@
 	}
 	
 </style>
+<?php debug($product);?>
+<div class='vote'>
 <div class='start start-0' rel='0'> </div>
 <div class='start start-0' rel='1'> </div>
 <div class='start start-0' rel='2'> </div>
 <div class='start start-0' rel='3'> </div>
 <div class='start start-0' rel='4'> </div>
-
+<div style='clear:both;'></div>
+</div>
 <script>
 	$(function(){
 		var estrellas= {
@@ -53,11 +56,24 @@
 				if(thatRel >= val['element'].attr('rel')){
 					val['element'].removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-5');
 					val['actual-class'] = 'start-5';
+				}else{
+					val['element'].removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-0');
+					val['actual-class'] = 'start-0';
 				}
-			})
+			});
 			/* $(this).removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-5');
 			$(this).prevAll().removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-5');
 			estrellas[$(this).attr('rel')]['actual-class']='start-5'; */
+		});
+		$('.vote').mouseout(function(){
+			$.each(estrellas,function(i,val){
+				console.log(val);
+				val['element'].removeClass('start-0 start-1 start-2 start-3 start-4 start-5').addClass(val['first-class']);
+				val['actual-class'] = val['first-class'];
+			});
+		});
+		$('.start').click(function(){
+			
 		});
 	})
 </script>
