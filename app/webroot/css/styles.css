@@ -850,7 +850,7 @@ ul li a.twitter {
 #pages #estaticas_info {
 	bottom: 179px;
     float: right;
-    height: 553px;
+    max-height: 553px;
     margin-right: 40px;
     margin-top: 20px;
     overflow-y: auto;
