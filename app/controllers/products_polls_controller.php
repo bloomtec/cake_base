@@ -23,9 +23,11 @@ class ProductsPollsController extends AppController {
 					)
 				)
 			) {
-				$this->ProductsPoll->delete($poll['ProductsPoll']['id']);
+				$this->ProductsPoll->read(null,$poll['ProductsPoll']['id']);
+			}else{
+				$this->ProductsPoll->create();
 			}
-			$this->ProductsPoll->create();
+			
 			$this->ProductsPoll->set('user_id', $this->Session->read("Auth.User.id"));
 			$this->ProductsPoll->set('product_id', $product_id);
 			$this->ProductsPoll->set('vote', $votacion);
