@@ -911,7 +911,7 @@ ul li a.twitter {
 	margin-left: 23px;
 	margin-bottom: 20px;
 	min-height: 60px;
-	float:right;
+	clear:right;
 }
 #pages .social_estaticas .titulos_rosado{
 	font-size: 15px;
