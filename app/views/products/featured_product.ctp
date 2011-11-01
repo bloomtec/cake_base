@@ -9,7 +9,7 @@
 	
 	<a onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode("http://".$_SERVER["SERVER_NAME"]."/products/view/".$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="twitter" target="_blank"><img src="/img/twitter.png" /></a>
 	<a href="#" class='add-to-cart'><img src="/img/btn_agregar.png"/></a>
-	<?php echo $this -> element("estrellas_categoria",array('product'=>$product));?>
+	<?php echo $this -> element("poll-in",array('product' => $product , 'active' => false ));?>
 </div>
 <?php }else{ ?>
 	<?php echo $this->element('promo-gamers');?>

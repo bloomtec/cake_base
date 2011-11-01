@@ -788,8 +788,15 @@ span.linea_footer {
 }
 #right-tab a{
 	text-align: center;
-	display: block;
+
 	margin-top: 15px;
+}
+#right-tab .nav-usuario{
+	clear: both;
+	position: absolute;
+	bottom: 3px;
+	text-align: center;
+	width:100%;
 }
 #right-tab .mi-cuenta{
 	color: #202020;
@@ -800,9 +807,13 @@ span.linea_footer {
 }
 #right-tab .mi-cuenta.perfil, #right-tab .mi-cuenta.login{
 	font-size: 10px;
-    margin-right: 29px;
     margin-top: 12px;
 }
 #right-tab .mi-cuenta.login{
 	margin-right: 0;
+}
+#right-tab .wrapper{
+	position:relative;
+	width:100%;
+	height: 100%;
 }

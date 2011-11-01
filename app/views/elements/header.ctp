@@ -1,15 +1,19 @@
 <div id="header">
 	<div id='right-tab'>
+		<div class='wrapper'
 		<a><img src="/img/carrito.png" /></a>
 		<?php echo $this -> element('resume-cart',array('plugin'=>'bcart'));?>
+		<br >
+		 <a class='go-cart' href='/bcart/view'> ir al carrito</a>
 		<ul class='nav-usuario'>
 		<?php if($session->read('Auth.User.id')){ ?>
 			<li><a class='mi-cuenta perfil' href='/users/profile'>Mi cuenta</a></li>
-			
+			<li>/ <a class='mi-cuenta perfil' href='/users/logout'>Salir</a></li>			
 		<?php }else{?>
 			<li><a class='mi-cuenta login' href='/users/login'>Ingresar</a></li>
 		<?php } ?>
 		</ul>
+		</div>
 	</div>
 	<div class="wrapper">
 		
