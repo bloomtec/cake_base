@@ -7,6 +7,9 @@ class ProductsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow('getSocketsByArchitecture', 'featuredProduct','searchResults');
 	}
+	function armaTuComputador(){
+		$this->layout="personaliza";
+	}
 	
 	function getProduct($product_id = null, $size_id = null) {
 		$this->Product->recursive=-1;

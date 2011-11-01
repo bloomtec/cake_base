@@ -31,7 +31,7 @@ a.logo_header {
 	background-color: #202020;
     padding: 6px;
     position: absolute;
-    right: 33px;
+    right: 0;
     top: 89px;
     -moz-border-rdius:4px;
 	-webkit-border-radius:4px;
@@ -45,11 +45,11 @@ a.logo_header {
 #main_menu{
 	position: absolute;
 	top: 50px;
-	right: 75px;
+	right: 0;
 }
 #main_menu li{
 	float: left;
-	margin-right: 35px;
+	margin-right: 25px;
 }
 #main_menu li.ultimo{
 	margin: 0;

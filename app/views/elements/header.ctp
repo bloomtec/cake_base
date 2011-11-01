@@ -16,7 +16,6 @@
 		</div>
 	</div>
 	<div class="wrapper">
-		
 		<a class="logo_header" href="/">Excelenter</a>
 		<?php echo $form->create('Product',array('controller'=>'products','action'=>'searchResults'))?>
 			<input type="text" class="input_buscar" placeholder="Buscar..." name='data[query]'/>
@@ -95,10 +94,13 @@
 				</div>
 			</li>
 			<li>
+				<a href="/mi-pc">ARMA TU PC</a>
+			</li>
+			<li>
 				<a href="/empresa">EMPRESA</a>
 			</li>
 			<li class="ultimo">
-				<a href="/contacto">CONTÁCTENOS</a>
+				<a href="/contacto">CONTÁCTO</a>
 			</li>
 			<div style="clear: both"></div>
 		</ul>
