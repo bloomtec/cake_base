@@ -151,9 +151,9 @@ input.submit{
 	
 	background-color:#fff;
 	margin-top:12px;
-	-moz-box-shadow: 4px 7px 6px #141414;
-	-webkit-box-shadow: 4px 7px 6px #141414;
-	box-shadow: 4px 7px 6px #141414;
+	-moz-box-shadow: 3px 5px 3px #141414;
+	-webkit-box-shadow: 3px 5px 3px #141414;
+	box-shadow: 3px 5px 3px #141414;
 	-moz-border-rdius:1em;
 	-webkit-border-radius:1em;
 	border-radius:1em;
@@ -784,6 +784,7 @@ span.linea_footer {
 	background-position: bottom left;
 	background-repeat: repeat-x;
 	z-index: 999;
+	margin-top: -48px;
 }
 #right-tab a{
 	text-align: center;
