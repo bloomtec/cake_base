@@ -789,7 +789,6 @@ span.linea_footer {
 #right-tab a{
 	text-align: center;
 
-	margin-top: 15px;
 }
 #right-tab .nav-usuario{
 	clear: both;
@@ -816,4 +815,28 @@ span.linea_footer {
 	position:relative;
 	width:100%;
 	height: 100%;
+}
+#right-tab .wrapper img{
+	left: 32px;
+    position: absolute;
+    top: 13px;
+	
+}
+.go-cart{
+	color: #202020;
+    font-size: 12px;
+    font-weight: bold;
+    left: 22px;
+    position: absolute;
+    top: 53px;
+}
+.go-cart.numero .cart-num-items{
+	color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+    left: 26px;
+    position: absolute;
+    text-align: center;
+    top: -36px;
+    width: 12px;
 }
