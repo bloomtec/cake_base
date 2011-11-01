@@ -37,20 +37,13 @@ if (empty($shop_cart['ShopCartItem'])) {
 
 ?>
 <?php e($this -> Form -> create('Order',array('novalidate'=>'novalidate')));?>
-<p class="costo_envio tahoma">
-	Recuerda que puedes recibir tu pedido en cualquier parte de Colombia, el tiempo aproximado de entrega es de 3 a 5 días después de haber realizado el
-	pago.  También puedes enviar un regalo a cualquier parte de Colombia, pero si tienes varios productos como regalo, todos serán enviados a una única
-	dirección. El costo del envió se asume contra entrega; envíos a la ciudad de Cali, o pedidos con un valor de pago igual o superior a $120.000, no tienen
-	costo.
+<h1 class="datos_envio">Datos de envio</h1>
+<p class="envio">
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+
+Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
 </p>
-<div class="datos_envio form_envio">
-	<h1 class="tahoma">Datos de envio</h1>
-</div>
-<div id="der" class="datos_envio form_envio">
-	<h1 class="der tahoma"><?php if($foundGift) {echo "Datos de envio para el regalo";} else {echo "No agregó ítems como regalo";} ?></h1>
-</div>
-<div class="form_envio tahoma">
-	<div class="form">
+<div class="form">
 		<?php //e($this -> Form -> input('Envio.full_name', array("required" => "required",'label' => 'Datos Usuario', 'value' => $nombre . " " . $appelido)));?>
 		
 		<?php e($this -> Form -> input('Envio.name', array('label' => 'Nombre', 'value' => $nombre, "required" => "required")));?>
@@ -71,16 +64,15 @@ if (empty($shop_cart['ShopCartItem'])) {
 		<?php e($this -> Form -> input('Envio.mobile', array('label' => 'Celular', 'value' => $celular,'required'=>'required')));?>
 		<div style="clear: both"></div>
 		<?php e($this -> Form -> checkbox('Envio.authorize', array('label' => false)));?>
-		<label for="EnvioAuthorize" class="azul"> Autorizo a Colors Tennis  que me envíe información por correo electrónico</label>
+		<label for="EnvioAuthorize" class="terminos"> Autorizo a Excelenter  que me envíe información por correo electrónico</label>
 		<div style="clear: both"></div>
 		<?php e($this -> Form -> checkbox('Envio.conditions', array('label' => false,"required" => "required")));?>
-		<label for="EnvioConditions" class="azul"> Acepto terminos y condiciones de la compra.</label>
+		<label for="EnvioConditions" class="terminos"> Acepto terminos y condiciones de la compra.</label>
 		<div style="clear: both"></div>
-	</div>
+
 	<div style="clear: both"></div>
 </div>
-<div class="form_envio der tahoma">
-	<div class="form">
+<div class="form">
 		<?php if($foundGift): ?>
 		<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido',"required" => "required")));?>
@@ -102,13 +94,12 @@ if (empty($shop_cart['ShopCartItem'])) {
 		<?php //e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico')));?>
 		<?php //endif;?>
 		
-	</div>
 	<div style="clear: both"></div>
 </div>
 <div style="clear: both"></div>
 
 <div id="cupon" class="twCenMt">
-	<h1 class="titulos_rosado">SUBTOTAL <span class="subtotal">$<?php
+	<h1 class="total">SUBTOTAL <span class="subtotal">$<?php
 	if (isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');
 	} else {echo number_format(0, 0, ' ', '.');
 	}
@@ -123,16 +114,16 @@ if (empty($shop_cart['ShopCartItem'])) {
 		if (isset($shop_cart['ShopCart']['coupon_discount']))
 			$coupon_value = $shop_cart['ShopCart']['coupon_discount'];
 	?>
-	<h1 class="titulos_rosado">TOTAL <span class="total">$<?php
+	<h1 class="total">TOTAL <span class="total">$<?php
 	if (isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');
 	} else {echo number_format(0, 0, ' ', '.');
 	}
 		?></span></h1>
 	<div id="btn_cupon">
-		<div class="agregar_regalo verde twCenMt">
+		<div class="continuar">
 			<h1><a class="envio-form" href="#">Continuar</a></h1>
 		</div>
-		<div class="agregar_regalo twCenMt">
+		<div class="seguir">
 			<h1><a class="seguir-comprando" href="<?php echo $session->read('referer');?>">Seguir Comprando</a></h1>
 		</div>
 		<div style="clear: both"></div>

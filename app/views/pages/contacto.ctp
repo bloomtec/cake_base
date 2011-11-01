@@ -1,22 +1,26 @@
 <div id="estaticas_info">
 	<form class="tahoma" action="/pages/contacto" id='contacto'>
-	<h1 class="titulos_rosado twCenMt">CONTACTO</h1>
-	<span class="puntos"></span>
-	<div class="formulario_contacto twCenMt">
-		<h2 class="titulos_rosado">NOMBRE</h2>
-		<input type="text" name='data[name]' required='required' />
-		<h2 class="titulos_rosado">CORREO ELECTRONICO</h2>
-		<input type="email"  name='data[email]' required='required' />
-		<h2 class="titulos_rosado">COMENTARIO</h2>
-		<textarea class="comentario" name='data[comentario]'></textarea>
-		<input type="submit" value="Enviar" class="twCenMt" />
+	<h1>Cntacto</h1>
+	<div class="formulario_contacto">
+		<div class="input text">
+			<label>Nombre</label>
+			<input type="text" name='data[name]' required='required' />
+		</div>
+		<div class="input text">
+			<label>E-mail</label>
+			<input type="email"  name='data[email]' required='required' />
+		</div>
+		<div class="input text">
+			<label>Comentario</label>
+			<textarea class="comentario" name='data[comentario]'></textarea>
+		</div>
+		<input type="submit" value="Enviar" class="submit"/>
 		<div style='clear:both'></div>
 		<div class='confirm-message' style='visibility: hidden'> tu mensaje ha sido enviado</div>
 	</form>
 	</div>
 	
 </div>
-<div id="foto_estaticas"><img src="/img/foto_estaticas.jpg" /></div>
 <script type="text/javascript">
 
 	$('#contacto').validator({lang:'es'}).submit(function(e){

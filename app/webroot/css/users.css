@@ -3,7 +3,7 @@
 	margin: 0 auto;
 
 }
-.users p, .users label, .users span, .users a, .users h1, .users h2, .users h3{
+.users p, .users label, .users span, .users a, .users h1, .users h2, .users h3,{
 	font-family: Arial, Helvetica, sans-serif;
 	color: #424242;
 	
@@ -106,7 +106,7 @@
 .users .producto.primero{
 	margin-left: 0;
 }
-.register legend, .login legend{
+.register legend, .login legend, #contacto h1{
 	border-bottom: 1px solid #BCBCBC;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 14px;
@@ -116,7 +116,7 @@
     margin-bottom: 15px;
     color: #424242;
 }
-.register label, .correo, .login label{
+.register label, .correo, .login label, #contacto label{
   	color: #424242;
     display: block;
     float: left;
@@ -127,7 +127,7 @@
     font-weight: bold;
     padding-top: 5px;
 }
-.register input, #UserEmail, .login input{
+.register input, #UserEmail, .login input, #contacto input, #contacto textarea{
 	margin-bottom: 5px;
 	font-family: Arial,Helvetica,sans-serif;
 	padding-left: 3px;
@@ -135,7 +135,14 @@
 	border: 1px solid #BCBCBC;
 	height: 20px;
 }
-.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit]{
+#contacto textarea{
+	height: 60px;
+	max-width: 250px;
+	min-width: 250px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit{
 	background-image: url("/img/submit_registro.png");
 	border:none;
 	background-color: transparent;

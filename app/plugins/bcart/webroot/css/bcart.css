@@ -23,6 +23,7 @@ a{
 	width: 100%;
 	text-align: left;
 	margin-bottom: 23px;
+	color: #424242;
 }
 .shop-cart-item h1{
 	margin-bottom: 6px;
@@ -135,4 +136,43 @@ a{
 	color: #ff7800;
 	margin-top: 11px;
 	margin-right: 11px;
+}
+.datos_envio{
+	border-bottom: 1px solid #BCBCBC;
+    color: #424242;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    text-align: left;
+    width: 100%;
+}
+.envio{
+	margin-bottom: 15px;
+}
+.form label{
+	color: #424242;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    width: 130px;
+}
+.form input{
+	border: 1px solid #BCBCBC;
+    font-family: Arial,Helvetica,sans-serif;
+    height: 20px;
+    margin-bottom: 5px;
+    padding-left: 3px;
+    width: 250px;
+}
+.form #EnvioAuthorize, .form #EnvioConditions{
+	width: auto;
+	border:none;
+}
+.form .terminos{
+	width: 285px;
 }
