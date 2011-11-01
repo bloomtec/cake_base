@@ -848,13 +848,15 @@ ul li a.twitter {
 	margin-bottom: 95px;
 }
 #pages #estaticas_info {
-	float: right;
-	margin-top: 20px;
-	width: 460px;
-	margin-right: 40px;
-	position: absolute;
+	bottom: 179px;
+    float: right;
+    height: 553px;
+    margin-right: 40px;
+    margin-top: 20px;
+    overflow-y: auto;
+    position: absolute;
     right: 15px;
-    bottom: 179px;
+    width: 465px;
 }
 #pages #estaticas_info p{
 	color: #7E7E7D;

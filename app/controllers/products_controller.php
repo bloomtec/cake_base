@@ -61,7 +61,7 @@ class ProductsController extends AppController {
 	}
 	
 	function getComments($product_id = null) {
-		return $this -> Product -> Comment -> find('all', array('recursive' => 1, 'conditions' => array('Comment.product_id' => $product_id, 'Comment.is_visible' => TRUE)));
+		return $this -> Product -> Comment -> find('all', array('recursive' => 2, 'conditions' => array('Comment.product_id' => $product_id, 'Comment.is_visible' => TRUE)));
 	}
 	
 	function getClasification($product_id) {
