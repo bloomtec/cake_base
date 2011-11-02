@@ -408,7 +408,22 @@ class ProductsController extends AppController {
 	 * De ahí procesar los discos duros disponibles compatibles
 	 */
 	function getHardDrives($product_id = null) {
-		
+		$this->layout="ajax";
+		$motherboard = $this->Product->findById($product_id);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>4)));
+		$compatible_drives = array();
+		foreach($drives as $drive) {
+			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_drives[] = $drive['Product']['id'];
+			}
+		}
+		$compatible_drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		echo json_encode($compatible_drives);
+		exit(0);
 	}
 	
 	/**
@@ -416,7 +431,22 @@ class ProductsController extends AppController {
 	 * De ahí procesar las unidades opticas disponibles compatibles
 	 */
 	function getOpticalDrives($product_id = null) {
-		
+		$this->layout="ajax";
+		$motherboard = $this->Product->findById($product_id);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>14)));
+		$compatible_drives = array();
+		foreach($drives as $drive) {
+			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_drives[] = $drive['Product']['id'];
+			}
+		}
+		$compatible_drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		echo json_encode($compatible_drives);
+		exit(0);
 	}
 	
 	/**
