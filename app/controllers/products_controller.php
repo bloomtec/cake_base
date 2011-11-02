@@ -454,7 +454,20 @@ class ProductsController extends AppController {
 	 * De ahí procesar las fuentes disponibles compatibles
 	 */
 	function getPowerSupplies($product_id = null) {
-		
+		$this->layout="ajax";
+		$video_card = $this->Product->findById($product_id);
+		$required = $video_card['Product']['required_power'];
+		$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
+		$compatible_psus = array();
+		foreach ($supplies as $supply) {
+			$output = $supply['Product']['power_output'];
+			if(($output - $required) >= 450) {
+				$compatible_psus[] = $supply['Product']['id'];
+			}
+		}
+		$compatible_psus = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
+		echo json_encode($compatible_psus);
+		exit(0);
 	}
 	
 	/**
@@ -463,7 +476,15 @@ class ProductsController extends AppController {
 	 * Si no se incluye retornar todas.
 	 */
 	function getCasings($product_id = null) {
-		
+		$this->layout="ajax";
+		$casings = array();
+		if($product_id) {
+			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
+		} else {
+			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
+		}
+		echo json_encode($casings);
+		exit(0);
 	}
 
 }
