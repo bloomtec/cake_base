@@ -455,18 +455,22 @@ class ProductsController extends AppController {
 	 */
 	function getPowerSupplies($product_id = null) {
 		$this->layout="ajax";
-		$video_card = $this->Product->findById($product_id);
-		$required = $video_card['Product']['required_power'];
-		$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
-		$compatible_psus = array();
-		foreach ($supplies as $supply) {
-			$output = $supply['Product']['power_output'];
-			if(($output - $required) >= 450) {
-				$compatible_psus[] = $supply['Product']['id'];
+		$supplies = array();
+		if($product_id) {
+			$video_card = $this->Product->findById($product_id);
+			$required = $video_card['Product']['required_power'];
+			$compatible_psus = array();
+			foreach ($supplies as $supply) {
+				$output = $supply['Product']['power_output'];
+				if(($output - $required) >= 450) {
+					$compatible_psus[] = $supply['Product']['id'];
+				}
 			}
+			$supplies = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
+		} else {
+			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
-		$compatible_psus = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
-		echo json_encode($compatible_psus);
+		echo json_encode($supplies);
 		exit(0);
 	}
 	
