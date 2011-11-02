@@ -108,6 +108,22 @@ class ProductsController extends AppController {
 	}
 	
 	function admin_index() {
+		if(!empty($this->data)) {
+			//debug($this->data);
+			$conditions = array();
+			if(!empty($this->data['Product']['product_type_id'])){
+				$conditions['Product.product_type_id']=$this->data['Product']['product_type_id'];
+			}
+			if(!empty($this->data['Product']['palabra_clave'])){
+				$conditions['Product.name LIKE']="%".$this->data['Product']['palabra_clave']."%";
+				$conditions['Product.ref LIKE']="%".$this->data['Product']['palabra_clave']."%";
+			}
+			$this->paginate=array(
+				'conditions'=>$conditions
+			);
+		}
+		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
+		$this->set(compact('productTypes'));
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
 	}
@@ -457,7 +473,24 @@ class ProductsController extends AppController {
 	 * De ahí procesar las fuentes disponibles compatibles
 	 */
 	function getPowerSupplies($product_id = null) {
-		
+		$this->layout="ajax";
+		$supplies = array();
+		if($product_id) {
+			$video_card = $this->Product->findById($product_id);
+			$required = $video_card['Product']['required_power'];
+			$compatible_psus = array();
+			foreach ($supplies as $supply) {
+				$output = $supply['Product']['power_output'];
+				if(($output - $required) >= 450) {
+					$compatible_psus[] = $supply['Product']['id'];
+				}
+			}
+			$supplies = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
+		} else {
+			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
+		}
+		echo json_encode($supplies);
+		exit(0);
 	}
 	
 	/**
@@ -466,7 +499,15 @@ class ProductsController extends AppController {
 	 * Si no se incluye retornar todas.
 	 */
 	function getCasings($product_id = null) {
-		
+		$this->layout="ajax";
+		$casings = array();
+		if($product_id) {
+			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
+		} else {
+			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
+		}
+		echo json_encode($casings);
+		exit(0);
 	}
 
 }

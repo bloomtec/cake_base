@@ -35,11 +35,12 @@
  */
 	Configure::write('debug', 1);
 	Configure::write('key', "Bl00MWebGr0up");
-/*
-TAMAÑO DE IMAGENES PERSONALIZADAS
-*/
-Configure::write('custom_width', 25);
-Configure::write('custom_height', 25);
+	
+/**
+ * TAMAÑO DE IMAGENES PERSONALIZADAS
+ */
+	Configure::write('custom_width', 25);
+	Configure::write('custom_height', 25);
 
 /**
  * CakePHP Log Level:
@@ -170,13 +171,13 @@ Configure::write('custom_height', 25);
  * characters."
  * @link http://php.net/session_name
  */
-	Configure::write('Session.cookie', 'cake_base');
+	Configure::write('Session.cookie', 'excelenter');
 
 /**
  * Session time out time (in seconds).
  * Actual value depends on 'Security.level' setting.
  */
-	Configure::write('Session.timeout', '120');
+	Configure::write('Session.timeout', '360');
 
 /**
  * If set to false, sessions are not automatically started.
@@ -202,7 +203,7 @@ Configure::write('custom_height', 25);
  * CakePHP session IDs are also regenerated between requests if
  * 'Security.level' is set to 'high'.
  */
-	Configure::write('Security.level', 'medium');
+	Configure::write('Security.level', 'high');
 
 /**
  * A random string used in security hashing methods.

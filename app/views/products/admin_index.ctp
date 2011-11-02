@@ -1,6 +1,15 @@
-
 <div class="products index">
-	<h2><?php __('Products');?></h2>
+	<div class="form-filtrar">
+		<?php e($this->Form->create('Product')); ?>
+		<table class="table-filtrar" cellpadding="0" cellspacing="0" >
+			<tr>
+				<td class="td-label"><label for="ProductProductTypeId">Tipo De Producto</label></td><td><?php e($this->Form->input('product_type_id', array('empty'=>'Seleccione...', 'label'=>false))); ?></td>
+				<td class="td-label"><label for="ProductPalabraClave">Palabra Clave</label></td><td><?php e($this->Form->input('palabra_clave', array('label'=>false))); ?></td>
+				<td class="td-submit"><?php e($this->Form->end('Filtrar')); ?></td>
+			</tr>
+		</table>
+	</div>
+	<h2 class="h2-filtrar"><?php __('Products');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('product_type_id');?></th>
@@ -27,10 +36,10 @@
 		</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['price']; ?>&nbsp;</td>
+		<td>$<?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$product['Product']['image']); ?>&nbsp;</td>
-		<td><?php echo $product['Product']['is_gamers']; ?>&nbsp;</td>
-		<td><?php echo $product['Product']['is_active']; ?>&nbsp;</td>
+		<td><?php if($product['Product']['is_gamers']){echo "Sí";}else{echo "No";} ?>&nbsp;</td>
+		<td><?php if($product['Product']['is_active']){echo "Sí";}else{echo "No";} ?>&nbsp;</td>
 		<td><?php echo $product['Product']['times_visited']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>

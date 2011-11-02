@@ -13,7 +13,11 @@ if (($type_id >= 2 && $type_id <= 6) || $type_id == 10 || $type_id == 14 || $typ
 		echo $this -> Form -> input('Product.required_power');
 	}
 }
-if ($type_id == 13) {
+if ($type_id == 7) {
 	echo $this -> Form -> input('Product.is_power_supply_included', array('div'=>'input select required'));
+	echo $this -> Form -> input('Product.is_big_casing', array('div'=>'input select required'));
+}
+if ($type_id == 13) {
+	echo $this -> Form -> input('Product.power_output', array('div'=>'input select required'));
 }
 ?>
