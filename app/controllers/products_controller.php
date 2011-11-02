@@ -373,9 +373,9 @@ class ProductsController extends AppController {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		if($motherboard['Product']['is_video_included']) {
-			echo true;
+			echo "true";
 		} else {
-			echo false;
+			echo "false";
 		}
 		exit(0);
 	}
@@ -385,7 +385,22 @@ class ProductsController extends AppController {
 	 * De ahí procesar las memorias disponibles compatibles
 	 */
 	function getMemories($product_id = null) {
-		
+		$this->layout="ajax";
+		$motherboard = $this->Product->findById($product_id);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$memories = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>3)));
+		$compatible_memories = array();
+		foreach($memories as $memory) {
+			if(in_array($memory['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_memories[] = $memory['Product']['id'];
+			}
+		}
+		$compatible_memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
+		echo json_encode($compatible_memories);
+		exit(0);
 	}
 	
 	/**
