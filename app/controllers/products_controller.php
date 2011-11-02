@@ -370,7 +370,14 @@ class ProductsController extends AppController {
 	 * De ahí procesar si tiene video o no
 	 */
 	function isVideoIncluded($product_id = null) {
-		
+		$this->layout="ajax";
+		$motherboard = $this->Product->findById($product_id);
+		if($motherboard['Product']['is_video_included']) {
+			echo true;
+		} else {
+			echo false;
+		}
+		exit(0);
 	}
 	
 	/**
@@ -406,8 +413,9 @@ class ProductsController extends AppController {
 	}
 	
 	/**
-	 * $product_id : ID del producto (tarjeta de video) seleccionada.
+	 * Si se incluye $product_id : ID del producto (tarjeta de video) seleccionada.
 	 * De ahí procesar las cajas disponibles compatibles
+	 * Si no se incluye retornar todas.
 	 */
 	function getCasings($product_id = null) {
 		
