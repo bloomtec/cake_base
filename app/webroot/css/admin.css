@@ -1,5 +1,21 @@
 a.volver{
 	float:right;
 	margin-right: 5px;
-	
+}
+div.form-filtrar {
+	float: right;
+	width: 85%;
+}
+td.td-label {
+	width: 125px;
+}
+td.td-label label {
+	margin-top: 13px;
+	text-align: right;
+}
+td.td-submit div.submit input {
+	margin-top: -10px;
+}
+h2.h2-filtrar {
+	margin-top: 11px;
 }

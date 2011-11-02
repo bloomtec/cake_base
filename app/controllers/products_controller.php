@@ -105,6 +105,22 @@ class ProductsController extends AppController {
 	}
 	
 	function admin_index() {
+		if(!empty($this->data)) {
+			//debug($this->data);
+			$conditions = array();
+			if(!empty($this->data['Product']['product_type_id'])){
+				$conditions['Product.product_type_id']=$this->data['Product']['product_type_id'];
+			}
+			if(!empty($this->data['Product']['palabra_clave'])){
+				$conditions['Product.name LIKE']="%".$this->data['Product']['palabra_clave']."%";
+				$conditions['Product.ref LIKE']="%".$this->data['Product']['palabra_clave']."%";
+			}
+			$this->paginate=array(
+				'conditions'=>$conditions
+			);
+		}
+		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
+		$this->set(compact('productTypes'));
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
 	}

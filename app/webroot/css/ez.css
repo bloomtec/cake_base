@@ -73,8 +73,8 @@ ul, li {
 
 /** Layout **/
 #container {
-	width: 1024px;
 	margin:0 auto;
+	width: 95%;
 }
 
 #header{
