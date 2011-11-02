@@ -11,6 +11,9 @@
 			<li>
 				<a href="/admin/inventories/">INVENTARIO GENERAL</a>
 			</li>
+			<li>
+				<a href="/admin/brands/">ADMINISTRAR MARCAS</a>
+			</li>
 		</ul>
 	</li>
 	<li>
