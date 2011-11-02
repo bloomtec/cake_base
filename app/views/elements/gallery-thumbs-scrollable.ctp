@@ -11,7 +11,6 @@
 			<div class="prev_gallery"><a><img src="" /></a></div>
 -->
 <?php echo $this->Html->css('gallery-thumbs-scrollable'); ?>
-<?php debug($pictures);?>
 <ul id="image_wrap" class="images">
 	<!-- Initially the image is a simple 1x1 pixel transparent GIF -->
 	<?php foreach($pictures as $picture): ?>
@@ -33,7 +32,6 @@
 </div>
 <script type="text/javascript">
 $(".slidetabs").tabs(".images > li", {
-
 	// enable "cross-fading" effect
 	effect: 'fade',
 	fadeOutSpeed: "slow",
