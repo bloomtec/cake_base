@@ -97,19 +97,12 @@
 	float:left;
 }
 .tabs.items a{
-	width: auto;
-	margin-right: 30px;
 	font-weight: bold;
 	color: #424242;
 	text-align: center;
-	position: relative;
-	padding-top: 60px;
+	margin-right: 10px;
 }
-.tabs.items a img {
-	left: 17%;
-    position: absolute;
-    top: 0;
-}
+
 .prev{
 	float: left;
 	cursor: pointer;
@@ -118,7 +111,8 @@
 	display: block;
 	width: 21px;
 	height: 20px;
-	background-image:url(/img/atras_act.png); 
+	background-image:url(/img/atras_act.png);
+	margin-left: 15px; 
 }
 .prev.disabled{
 	background-image:url(/img/atras_inact.png); 
@@ -136,5 +130,143 @@
 .next.disabled{
 	background-image:url(/img/adelante_inact.png); 
 }	
+.panes{
+	float: left;
+    min-height: 400px;
+    padding: 15px;
+    width: 590px;
+}
+.panes h1{
+	margin-bottom: 15px;
+}
+.panes p{
+	font-size:11px;
+	width: 480px;
+	margin-bottom: 15px;
+	float: left;
+}
+.panes label{
+	color: #FF7800;
+    display: block;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.panes .siguiente_paso{
+	color: #FF7800;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-image:url(/img/flecha_siguiente_paso.png);
+	padding-right: 27px;
+	background-repeat: no-repeat;
+	background-position: top right; 
+	display: block;
+	width: 112px;
+	padding: 5px;
+	text-decoration: none;
+	float:left;
+}
+.panes select{
+	width: 135px;
+}
+.panes span{
+	font-weight: bold;
+}
+.panes .descripcion{
+	width: 422px;
+	margin-top: 8px;
+	margin-left: 8px;
+}
+.panes input{
+	float: left;
+	margin-top: 10px;
+	clear:both;
+	
+}
+.img_wrapper{
+	width: 100%;
+	text-align: center;
+	height: 67px;
+}
+.resumen{
+	float: right;
+    height: 514px;
+    width: 256px;
+    background-color: #e9e9e9;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    background-image: url(/img/trama_resumen.png);
+	background-position: top left;
+	background-repeat: repeat-y;
+
+}
+.resumen h1{
+	margin-top: 15px;
+	margin-bottom:10px;
+	margin-left: 13px;
+}
 .aplicacion{
-	height: 600px;
+	border: 1px solid #c4c4c4;
+	background-image: url(/img/trama_aplicacion.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+.precio{
+	width: 100%;
+	height: 170px;
+	background-color:#fff;
+	text-align: center;
+}
+.precio img{
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+.precio h2{
+	font-size:13px;
+	font-weight: bold;
+	color:#ff7800;
+}
+.resumen_menu ul{
+	width: 100%;
+	text-align: center;
+	background-color: #d1d1d1;
+	height: 25px;
+	padding-top: 7px;
+}
+.resumen_menu ul li{
+	display:inline;
+	margin-top: 8px;
+}
+.resumen_menu ul li a{
+	color:#000;
+	font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 15px;
+    
+}
+.resumen_menu ul li a:hover{
+	color:#ff7800;
+}
+.resumen_productos{
+	height: 265px;
+    margin-left: 15px;
+    overflow: auto;
+    width: 91%;
+} 
+.resumen_productos h2{
+	color:#ff7800;
+	font-size: 11px;
+	margin-top: 3px;
+}
+.resumen_productos h1{
+	margin-left:0;
+	margin-bottom:0;
+	margin-top: 10px;
+	color:#000;
+}
+.seleccionar{
+	width: 220px;
+	float:left;
+}

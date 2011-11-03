@@ -458,6 +458,87 @@ input.submit{
     width: 319px;
     float: left;
 }
+.detalle_producto{
+	float: left;
+	margin-top: 20px;
+	text-align: center;
+}
+.detalle_producto.galeria{
+	border:0;
+}
+.galeria{
+	width: 300px;
+	border:1px solid #d1d1d1;
+
+}
+.galeria img{
+	margin-top:10px;
+	margin-bottom: 10px;
+}
+.galeria .miniaturas{
+	float: left;
+	margin-bottom: 0;
+	padding: 8px;
+	border-right:1px solid #d1d1d1;
+	border-top:1px solid #d1d1d1;
+	cursor: pointer;
+}
+.galeria .miniaturas.active{
+	border-top:none;
+	border-right:1px solid #d1d1d1;
+	cursor: default;
+}
+.nuestro_precio, .comprar{
+	float: left;
+	width: 150px;
+	margin-top: 30px;
+}
+.nuestro_precio h2{
+	font-size:16px;
+}
+.nuestro_precio h1{
+	font-size:25px;
+	color:#ff7800;
+	margin-top:5px;
+}
+.nuestro_precio h3{
+	font-size:12px;
+	font-style: italic;
+	font-weight: normal;
+	margin-top:5px;
+}
+.comprar .comprar{
+	margin-top: 0;
+	background-color: transparent;
+    background-image: url("/img/submit_registro.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: #262525;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    height: 37px;
+    text-align: center;
+    text-decoration: none;
+    width: 99px;
+    height: 26px;
+    padding-top: 12px;
+    margin-left: 25px;
+    margin-right: 20px;
+}
+.estrellas{
+	text-align: center;
+	height: 17px;
+	
+}
+.estrellas img{
+	margin-top: 6px;
+}
+.detalle_producto .compartir{
+	float: left;
+	margin-top: 10px;
+}
 /*FOOTER */
 
 
@@ -507,11 +588,11 @@ span.linea_footer {
 	margin-right:10px;
 }
 #footer li h1 {
-	font-family:Arial, Helvetica, sans-serif;
-	color:#FFFFFF;
-	font-size:16px;
-	font-weight:bold;
-	margin-bottom:20px;
+	color: #FFFFFF;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 #footer li.facebook a{
 	background-image: url(/img/facebook.png);
@@ -535,7 +616,7 @@ span.linea_footer {
 	text-indent:-9999px;
 }
 #footer li{
-	margin-bottom:10px;
+	margin-bottom:7px;
 }
 #footer h3 img{
 	margin-left: 3px;
@@ -544,7 +625,7 @@ span.linea_footer {
 	color:#FFFFFF;
 	text-decoration:none;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size:16px;
+	font-size:13px;
 }
 #footer h3 {
 	font-family:Arial, Helvetica, sans-serif;
@@ -554,6 +635,13 @@ span.linea_footer {
 	left:146px;
 	color:#FFFFFF;
 	font-style:italic;
+}
+#footer .telefonos{
+	color: #FFFFFF;
+    font-size: 13px;
+    left: 241px;
+    position: absolute;
+    top: 190px;
 }
 #personaliza #content{
 	width: 880px;
@@ -651,63 +739,7 @@ span.linea_footer {
 	margin-bottom: 31px;
 	margin-top: 7px;
 }
-.siguiente_paso, .pagar{
-	float: left;
-	width: auto;
-}
-.siguiente_paso{
-	margin-left: 45px;
-}
-.siguiente_paso a{
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic;
-	font-weight: bold;
-	font-size: 12px;
-	color: #ff7800;
-	background-image:url(/img/flecha_siguiente_paso.png);
-	padding-right: 27px;
-	background-repeat: no-repeat;
-	background-position: top right; 
-	display: block;
-	width: 112px;
-	padding: 5px;
-	text-decoration: none;
-	
-}
-.pagar{
-	margin-left: 12px;
 
-}
-.pagar a{
-	display: block;
-	background-image: url(/img/btn_pagar.png);
-	width: 94px;
-	height: 40px;
-}
-.galeria_productos{
-	width: 847px;
-	height:95px;
-	
-}
-.galeria_productos .anterior{
-	background-image: url("/img/anterior_inactive.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: block;
-    height: 100%;
-    width: 35px;
-    float: left;
-}
-.galeria_productos .siguiente{
-	background-image: url("/img/siguiente_inactive.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    display: block;
-    height: 100%;
-    width: 35px;
-    float: right;
-
-}
 #wizard .page .galeria_productos li{
 	width: 66px;
 	height: 100%;

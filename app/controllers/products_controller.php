@@ -97,6 +97,7 @@ class ProductsController extends AppController {
 	function index() {
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
+		$this->layout="personaliza";
 	}
 
 	function view($slug = null) {

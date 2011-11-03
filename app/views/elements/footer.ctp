@@ -33,6 +33,7 @@
 				<a href="#"><img src="/img/youtube.png" /></a>"
 			</li>
 		</ul>
+		<h1 class="telefonos">Teléfonos: 2 - 660 50 79  2 - 667 7116, cali </h1>
 		<h3>Excelenter.com.co  2011 Copyright        Todos los derechos reservados - Diseño y desarrollo por <a href=""><img src="/img/logo_bloom.png" /></a></h3>
 	</div>
 </div>

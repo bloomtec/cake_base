@@ -38,7 +38,6 @@ class PagesController extends AppController {
 	function home() {
 		$this -> layout = "default";
 	}
-
 	function contacto() {
 		$this -> layout = 'default';
 		if (!empty($this -> data)) {
