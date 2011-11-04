@@ -14,7 +14,7 @@ body {
 	height:100%;
 	margin:0 auto;
 	position:relative;
-	width:940px;
+	width:1024px;
 }
 a.logo_header {
 	background-image:url(/img/logo_header.png);
@@ -139,11 +139,11 @@ input.submit{
 	float: left;
 }
 #main_content{
-	width: 600px;
+	width: 700px;
 	float: right;
 }
 #container {
-	width:940px;
+	width:1024px;
 	margin:0 auto;
 }
 
@@ -239,7 +239,7 @@ input.submit{
     padding-top: 12px;
 }
 #content {
-	width:540px;
+	width:640px;
 	margin-bottom:12px;
 	padding: 30px;
 }
@@ -308,7 +308,7 @@ input.submit{
 	cursor: pointer;
 }
 .ordenar{
-	width: 532px;
+	width: 640px;
 	height: 30px;
 	background-color: #d8d5d5;
 	text-align: right;
@@ -347,7 +347,15 @@ input.submit{
 	width: 147px;
 	text-align: center;
 	float: left;
-	margin: 8px 15px;
+	margin: 8px 6px;
+}
+.vote{
+	width: 88px;
+	margin-left: 30px;
+}
+.info_destacado .vote{
+	width: 88px;
+	margin-left: 13px;
 }
 .producto h1{
 	width: 100%;
@@ -364,7 +372,7 @@ input.submit{
 }
 .info_categoria{
 	padding: 12px;
-	width: 245px;
+	width: 293px;
 	float: left;
 	padding-top:0;
 	margin-top: 12px;
@@ -455,7 +463,7 @@ input.submit{
     font-weight: bold;
     height: 28px;
     line-height: 30px;
-    width: 319px;
+    width: 366px;
     float: left;
 }
 .detalle_producto{
@@ -768,7 +776,7 @@ span.linea_footer {
     top: 190px;
 }
 #personaliza #content{
-	width: 880px;
+	width: 964px;
 }
 #wizard {
 	overflow:hidden;

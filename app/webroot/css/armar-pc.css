@@ -83,7 +83,7 @@
 .scrollable {
 	position:relative;
 	overflow:hidden;
-	width: 530px;
+	width: 580px;
 	height:90px;
 	float: left;
 }
@@ -132,9 +132,9 @@
 }	
 .panes{
 	float: left;
-    min-height: 400px;
-    padding: 15px;
-    width: 590px;
+    min-height: 390px;
+    padding: 20px;
+    width: 654px;
 }
 .panes h1{
 	margin-bottom: 15px;
@@ -166,6 +166,7 @@
 	padding: 5px;
 	text-decoration: none;
 	float:left;
+	margin-top:-5px;
 }
 .panes select{
 	width: 135px;
@@ -175,7 +176,7 @@
 }
 .panes .descripcion{
 	width: 422px;
-	margin-top: 8px;
+	margin-top: 10px;
 	margin-left: 8px;
 }
 .panes input{
