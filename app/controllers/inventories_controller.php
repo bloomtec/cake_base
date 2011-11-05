@@ -3,8 +3,7 @@ class InventoriesController extends AppController {
 
 	var $name = 'Inventories';
 
-	function listProductIDs($size_id, $subcategory_id) {
-		$size_id = $this->requestAction("/sizes/getASizeID/$size_id/$subcategory_id");
+	function listProductIDs($size_id) {
 		return $this -> Inventory -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.quantity >' => 0, 'Inventory.size_id' => $size_id)));
 	}
 	
