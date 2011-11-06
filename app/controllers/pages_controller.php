@@ -24,99 +24,132 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
-	function enviarDuda(){
-		if(!empty($this->data)){
-			$email=$this->data['email'];
-			$userName=$this->data['name'];
-			$subscribir=$this->data['subscribe'];
-			$comentario=$this->data['comentario'];
-			$asunto="Duda enviada desde la página web";
-			$mensaje="de: ".$userName." / ".$email." <br />".$comentario;
+
+	function enviarDuda() {
+		if (!empty($this -> data)) {
+			$email = $this -> data['email'];
+			$userName = $this -> data['name'];
+			$subscribir = $this -> data['subscribe'];
+			$comentario = $this -> data['comentario'];
+			$asunto = "Duda enviada desde la página web";
+			$mensaje = "de: " . $userName . " / " . $email . " <br />" . $comentario;
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-// Cabeceras adicionales
-$cabeceras .= 'From: '.$userName.' <'.$email.'>' . "\r\n";
-//debug($mensaje);
-			if(mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)){
+			// Cabeceras adicionales
+			$cabeceras .= 'From: ' . $userName . ' <' . $email . '>' . "\r\n";
+			//debug($mensaje);
+			if (mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)) {
 				echo true;
-			}else{
-				echo false;	
+			} else {
+				echo false;
 			}
-		}else{
+		} else {
 			echo false;
 		}
-		Configure::write('debug',0);
-		$this->autoRender=false;
-		exit(0);	
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
+		exit(0);
 	}
-	function contacto(){
-		$this->layout='pages';
+
+	function contacto() {
+		$this -> layout = 'pages';
+		if (!empty($this -> data)) {
+			$email = $this -> data['email'];
+			$userName = $this -> data['name'];
+			$comentario = $this -> data['comentario'];
+			$asunto = "Comentario enviado desde la página web";
+			$mensaje = "de: " . $userName . " / " . $email . " <br />" . $comentario;
+			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+			// Cabeceras adicionales
+			$cabeceras .= 'From: ' . $userName . ' <' . $email . '>' . "\r\n";
+			//debug($mensaje);
+			if (mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)) {
+				echo true;
+			} else {
+				echo false;
+			}
+			Configure::write('debug', 0);
+			$this -> autoRender = false;
+			exit(0);
+
+		} else {
+
+		}
+
 	}
-	function seguimientoPedidos(){
-		$this->layout='overlay';
-		$this->set('titulo','CONOCE EL ESTADO DE TU PEDIDO');
+
+	function seguimientoPedidos() {
+		$this -> layout = 'overlay';
+		$this -> set('titulo', 'CONOCE EL ESTADO DE TU PEDIDO');
 	}
-	function notificacionDisponibilidad($productId){
+
+	function notificacionDisponibilidad($productId) {
 		$this -> loadModel('Product');
-		$this->layout='overlay';
-		$this->set('titulo','NOTIFICARME CUANDO ESTÉ DISPONIBLE');
-		$this->set('product',$this->Product->read(null,$productId));
+		$this -> layout = 'overlay';
+		$this -> set('titulo', 'NOTIFICARME CUANDO ESTÉ DISPONIBLE');
+		$this -> set('product', $this -> Product -> read(null, $productId));
 	}
-	function enviarDisponibilidad(){
-		if(!empty($this->data)){
-			$email=$this->data['email'];
+
+	function enviarDisponibilidad() {
+		if (!empty($this -> data)) {
+			$email = $this -> data['email'];
 			//$userName=$this->data['name'];
-			$subscribir=$this->data['subscribe'];
-			$asunto="Solicitud disponibilidad ".$this->data['brand']." / ".$this->data['clasification'];
-			$mensaje="de: ".$email." <br />".$asunto."<br /> Talla: ".$this->data['talla'];
+			$subscribir = $this -> data['subscribe'];
+			$asunto = "Solicitud disponibilidad " . $this -> data['brand'] . " / " . $this -> data['clasification'];
+			$mensaje = "de: " . $email . " <br />" . $asunto . "<br /> Talla: " . $this -> data['talla'];
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-// Cabeceras adicionales
-$cabeceras .= 'From:  <'.$email.'>' . "\r\n";
-//debug($mensaje);
-			if(mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)){
+			// Cabeceras adicionales
+			$cabeceras .= 'From:  <' . $email . '>' . "\r\n";
+			//debug($mensaje);
+			if (mail("ricardopandales@gmail.com,colors_tennis1@hotmail.com", $asunto, $mensaje, $cabeceras)) {
 				echo true;
-			}else{
-				echo false;	
+			} else {
+				echo false;
 			}
-		}else{
+		} else {
 			echo false;
 		}
-		Configure::write('debug',0);
-		$this->autoRender=false;
-		exit(0);	
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
+		exit(0);
 	}
-	function dudasCompra(){
-		$this->layout='overlay';
-		$this->set('titulo','¿TIENES ALGUNA DUDA DE TU COMPRA?');
+
+	function dudasCompra() {
+		$this -> layout = 'overlay';
+		$this -> set('titulo', '¿TIENES ALGUNA DUDA DE TU COMPRA?');
 	}
+
 	function admin_ez() {
 
 	}
-	function admin_layouts(){
-		$layouts=array('home'=>'home','pages'=>'pages');		
+
+	function admin_layouts() {
+		$layouts = array('home' => 'home', 'pages' => 'pages');
 		return $layouts;
 	}
-	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="file_browser";
-	    App::import("Folder");
-	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
-	    $this->set("folder",$folder->read());
-	    $this->set("folderPath",DS."wysiwyg");
- 	}
+
+	function admin_wysiwyg() {//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+		$this -> layout = "file_browser";
+		App::import("Folder");
+		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
+		$this -> set("folder", $folder -> read());
+		$this -> set("folderPath", DS . "wysiwyg");
+	}
+
 	function index() {
-		$this->layout="ez.ctp";
+		$this -> layout = "ez.ctp";
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}
 
 	function view($slug = null) {
-		
+
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid page', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$page=$this -> Page -> findBySlug($slug);
+		$page = $this -> Page -> findBySlug($slug);
 		$this -> set('page', $page);
-		$this->layout=$page['Page']['layout'];
+		$this -> layout = $page['Page']['layout'];
 	}
 
 	function add() {
