@@ -39,7 +39,7 @@
 				<div class="linea_comment">
 					<ul>
 						<?php $user_email = split("@", $comment['User']['email']); ?>
-						<li class="titulos_rosado twCenMt"><?=$user_email[0]?></li>
+						<li class="titulos_rosado twCenMt"><?php echo ($comment['User']['UserField']['name']); ?></li>
 						<li class="azul twCenMt"><?=$comment['Comment']['created']?></li>
 					</ul>
 					<p><?=$comment['Comment']['comment']?></p>
@@ -117,7 +117,7 @@
 			</div>
 			<div style="clear: both"></div>
 			<div class='add-cart-confirm tahoma'>
-				Produccto agregaro pagar
+				Produccto agregado pagar
 			</div>
 		</div>	
 		<span class="puntos"></span>

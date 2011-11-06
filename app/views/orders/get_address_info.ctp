@@ -55,9 +55,9 @@ if (empty($shop_cart['ShopCartItem'])) {
 		
 		<?php e($this -> Form -> input('Envio.name', array('label' => 'Nombre', 'value' => $nombre, "required" => "required")));?>
 		<?php e($this -> Form -> input('Envio.surname', array('label' => 'Apellido', 'value' => $appelido, "required" => "required")));?>
-		<?php e($this -> Form -> hidden('Envio.country', array('label' => 'País', 'value' => $pais, "required" => "required")));?>
-		<?php e($this -> Form -> hidden('Envio.state', array('label' => 'Departamento', 'value' => $departamento, "required" => "required")));?>
-		<?php e($this -> Form -> hidden('Envio.city', array('label' => 'Ciudad', 'value' => $ciudad, "required" => "required")));?>
+		<?php e($this -> Form -> hidden('Envio.country', array('label' => 'País', 'value' => $pais)));?>
+		<?php e($this -> Form -> hidden('Envio.state', array('label' => 'Departamento', 'value' => $departamento)));?>
+		<?php e($this -> Form -> hidden('Envio.city', array('label' => 'Ciudad', 'value' => $ciudad)));?>
 		<?php e($this -> Form -> input('Envio.result', array('label' => 'Ciudad', 'id' => 'resultGeo')));?>
 		<?php e($this -> Form -> input('Envio.address', array('label' => 'Dirección', 'value' => $direccion, "required" => "required")));?>
 		
@@ -84,9 +84,9 @@ if (empty($shop_cart['ShopCartItem'])) {
 		<?php if($foundGift): ?>
 		<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido',"required" => "required")));?>
-		<?php e($this -> Form -> input('Gift.country', array('label' => 'País',"required" => "required")));?>
-		<?php e($this -> Form -> input('Gift.state', array('label' => 'Departamento',"required" => "required")));?>
-		<?php e($this -> Form -> input('Gift.city', array('label' => 'Ciudad',"required" => "required")));?>
+		<?php e($this -> Form -> hidden('Gift.country', array('label' => 'País')));?>
+		<?php e($this -> Form -> hidden('Gift.state', array('label' => 'Departamento')));?>
+		<?php e($this -> Form -> hidden('Gift.city', array('label' => 'Ciudad')));?>
 		<?php e($this -> Form -> input('Gift.result', array('label' => 'Ciudad', 'id' => 'resultGeoGift')));?>
 		<?php e($this -> Form -> input('Gift.address', array('label' => 'Dirección',"required" => "required")));?>
 		<?php e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico',"required" => "required")));?>
@@ -153,7 +153,42 @@ if (isset($subtotal)) {
 </form>
 <script>
 	$(function(){
-		$("#OrderGetAddressInfoForm").validator({lang:'es'});
+		var ordenValida=false;
+		$("#OrderGetAddressInfoForm").validator({lang:'es'}).submit(function(e){
+			var form=$(this);
+			if(!e.isDefaultPrevented()&&!ordenValida){
+				var check= $('#resultGeo').val().split(',')
+				var gif=$('#resultGeoGift');
+				if(gif.length > 0){// SI HAY REGALO
+					var check2= gif.val().split(',');
+				//	console.log(check2.length);
+					if(check2.length != 3){
+						form.data("validator").invalidate({'data[Gift][result]':'seleccione una ciudad de la lista'});
+						if(check.length != 3){
+							form.data("validator").invalidate({'data[Envio][result]':'seleccione una ciudad de la lista'});	
+						}
+						e.preventDefault();
+					}else{
+				//		console.log('gift valido');
+						if(check.length == 3){
+							ordenValida = true;
+							form.submit();
+						}else{
+							form.data("validator").invalidate({'data[Envio][result]':'seleccione una ciudad de la lista'});
+							e.preventDefault();
+						}
+					}
+				}else{// SINO HAY REGALo
+					if(check.length == 3){
+						ordenValida=true;
+						form.submit();
+					}else{
+						form.data("validator").invalidate({'data[Envio][result]':'seleccione una ciudad de la lista'});
+						e.preventDefault();
+					}	
+				}
+			}
+		});
 	});
 	
 		
@@ -173,7 +208,8 @@ $(function() {
 						featureClass: "P",
 						style: "full",
 						maxRows: 12,
-						name_startsWith: request.term
+						name_startsWith: request.term ,
+						country: 'CO'
 					},
 					success: function( data ) {
 						response( $.map( data.geonames, function( item ) {
@@ -188,7 +224,7 @@ $(function() {
 					}
 				});
 			},
-			minLength: 2,
+			minLength: 1,
 			select: function( event, ui ) {
 				logEnvio( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
 			},
@@ -216,7 +252,8 @@ $(function() {
 						featureClass: "P",
 						style: "full",
 						maxRows: 12,
-						name_startsWith: request.term
+						name_startsWith: request.term,
+						country: 'CO'
 					},
 					success: function( data ) {
 						response( $.map( data.geonames, function( item ) {
@@ -231,7 +268,7 @@ $(function() {
 					}
 				});
 			},
-			minLength: 2,
+			minLength: 1,
 			select: function( event, ui ) {
 				logGift( ui.item.city ? ui.item.city: this.value, ui.item.city ? ui.item.state: '', ui.item.country ? ui.item.country:'');
 			},
