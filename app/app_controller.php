@@ -22,6 +22,10 @@ class AppController extends Controller {
 		} else {
 			$this->Auth->allow($this->action);
 		}
+		$this -> Auth -> userScope = array('User.is_active' => true);
+		$this->Auth->authError = "Datos no validos por favor intenta de nuevo.";
+		$this->Auth->loginError = "Datos no validos por favor intenta de nuevo.";
+		
 	}
 	
 	function getList(){	

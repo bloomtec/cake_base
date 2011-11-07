@@ -14,13 +14,14 @@
 			<label for='password'>Password:</label>
 			<input type="password" id='password' class="input" name='data[User][password]' required="required" />
 		</div>
-		<?php
-		echo $this -> Session -> flash('auth');
-		?>
+		
 		<a class="submit primero" href='/users/register'> Registrese </a>
 		<?php
 		echo $this -> Form -> end(__('Ingresar', true));
 		?>
 		
 	</fieldset>
+	<?php
+		echo $this -> Session -> flash('auth');
+		?>
 </div>

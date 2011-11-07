@@ -30,6 +30,25 @@ $(document).ready(function() {
 						});
 					}
 			});
+			
+			$('#uploadList').uploadify({
+				'uploader' : '/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'folder' : '/app/webroot/files/uploads',
+				'auto' : true,
+				'cancelImg' : '/img/cancel.png',
+				'onComplete' : function(a, b, c, d) {
+					var data={'data':
+						{'PriceList':
+							{'path':d}
+						}
+					};
+					$.post("/admin/priceLists/add", data, function(data){
+						location.href = '/admin/priceLists';
+					});							
+				}
+			});
+			
 			$('#pictures-uploader').uploadify({
 				'uploader' :'/swf/uploadify.swf',
 				'script' : '/uploadify.php',
@@ -46,7 +65,6 @@ $(document).ready(function() {
 					$('#status-message').text(data.filesSelected+ ' files have been added to the queue.');
 				},
 				'onComplete' : function(a, b, c, d) {
-					console.log("completo");
 					var file = d.split("/");
 					var nombre = file[(file.length - 1)];
 					var parentId=$('#pictures-uploader').attr("rel");
@@ -70,7 +88,6 @@ $(document).ready(function() {
 				'onAllComplete' : function(event, data) {
 					$('#status-message').text(data.filesUploaded+ ' files uploaded, '+ data.errors+ ' errors.');
 					$( "#sortable" ).sortable('refresh');
-					console.log();
 				}
 			});
 

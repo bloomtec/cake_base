@@ -30,9 +30,9 @@
 			<li>
 				<a href="/admin/pages/">PAGINAS</a>
 			</li>
-		<!--	<li>
-				<a href="/admin/news">NOTICIAS</a>
-			</li> -->
+			<li>
+				<a href="/admin/priceLists">LISTAS DE PRECIOS</a>
+			</li> 
 		</ul>
 	</li>
 	<li>

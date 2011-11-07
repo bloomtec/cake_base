@@ -11,7 +11,7 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword');
+		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera');
 	}
 
 	function register() {
@@ -24,6 +24,20 @@ class UsersController extends AppController {
 				$this -> redirect(array('action' => 'profile'));
 			} else {
 				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
+	}
+	function registerProvider() {
+		if (!empty($this -> data)) {
+			$this -> User -> create();
+			$this -> data['User']['role_id']=3;
+			$this -> data['User']['is_active']=false;
+			if ($this -> User -> save($this -> data)) {
+				$this -> Session -> setFlash(__('Registro Exitoso', true));
+				$this->Auth->login($this->data);
+				$this -> redirect(array('action' => 'profile'));
+			} else {
+				$this -> Session -> setFlash(__('No se pudo completar el registro. Por favor, intenta de nuevo.', true));
 			}
 		}
 	}
@@ -50,6 +64,35 @@ class UsersController extends AppController {
 		$this -> autoRender = false;
 		Configure::write('debug', 0);
 		exit(0);
+	}
+
+	function ajaxRegisterProvider() {
+		if (!empty($this -> data)) {
+			// Validar el nombre de usuario
+			$this -> data['User']['role_id'] = 3;
+			$this -> data['User']['is_active']=false;
+			$this -> User -> create();
+			$this -> User -> set($this -> data);
+			if ($this -> User -> save($this -> data)) {
+				
+				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+				echo true;
+			} else {
+				$errors = array();
+				foreach ($this->User->invalidFields() as $name => $value) {
+					$errors["data[User][" . $name . "]"] = $value;
+				}
+
+				echo json_encode($errors);
+			}
+		}
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		exit(0);
+	}
+	
+	function enEspera(){
+		
 	}
 
 	function login() {

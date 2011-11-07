@@ -7,6 +7,9 @@
 				<h1>Nuestra Empresa</h1>
 			</li>
 			<li>
+				<a href="/users/registerProvider">Registro de Proveedores</a>
+			</li>
+			<li>
 				<a href="/quienes-somos">¿Quienes somos?</a>
 			</li>
 			<li>
@@ -33,7 +36,7 @@
 				<a href="#"><img src="/img/youtube.png" /></a>"
 			</li>
 		</ul>
-		<h1 class="telefonos">Teléfonos: 2 - 660 50 79  2 - 667 7116, cali </h1>
-		<h3>Excelenter.com.co  2011 Copyright        Todos los derechos reservados - Diseño y desarrollo por <a href=""><img src="/img/logo_bloom.png" /></a></h3>
+		<h1 class="telefonos">Teléfonos:  660 50 79  667 7116, Cali - Valle del cauca </h1>
+		<h3>excelenter.com.co  2011 Copyright        Todos los derechos reservados - Diseño y desarrollo por <a href=""><img src="/img/logo_bloom.png" /></a></h3>
 	</div>
 </div>
