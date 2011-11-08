@@ -26,6 +26,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
+		$countries =  $this -> User -> Address -> find('list');
 	}
 	function registerProvider() {
 		if (!empty($this -> data)) {
