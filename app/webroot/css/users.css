@@ -1,0 +1,208 @@
+.users{
+	width: 90%;
+	margin: 0 auto;
+
+}
+.users p, .users label, .users span, .users a, .users h1, .users h2, .users h3,{
+	font-family: Arial, Helvetica, sans-serif;
+	color: #424242;
+	
+}
+.users ul{
+	border-bottom: 1px solid #CBCACA;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    width: 100%;
+    margin-bottom:30px;
+}
+.users li{
+	float: left;
+	margin-right: 10px;
+}
+.users li a, .datos_perfil h1{
+	text-decoration: none;
+	color: #424242;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+}
+.users li.ultimo a{
+	border: none;
+}
+.users li a{
+	border-right: 1px solid #CBCACA;
+    padding-right: 18px;
+}
+.datos_perfil{
+	float: left;
+	width: 270px;
+	margin-bottom: 30px;
+}
+.datos_perfil a{
+	font-size: 11px;
+	color: #ff7800;
+	text-decoration: none;
+	float: right;
+	margin-top: 10px;
+	font-weight: bold;
+}
+.users .carrito{
+	background-image: url("/img/flecha_siguiente_paso.png");
+    background-position: right top;
+    background-repeat: no-repeat;
+    color: #FF7800;
+    display: block;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+    padding: 5px;
+    text-decoration: none;
+    width: 112px;
+    float: none;
+    margin: 0;
+}
+.datos_perfil.primero{
+	width: 200px;
+}
+.datos_perfil h1{
+	margin-top: 13px;
+	margin-bottom: 18px;
+}
+.users h2{
+	display: block;
+    float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    text-align: left;
+    width: 108px;
+    font-weight: bold;
+    clear:left;
+}
+.users span{
+	float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}
+.users .datos_perfil p{
+	clear: both;
+	font-size: 11px;
+}
+.comprados{
+	width: 100%;
+}
+.comprados h3{
+	border-bottom: 1px solid #bcbcbc;
+	font-size: 12px;
+	padding-bottom: 10px;
+}
+.users .producto{
+	margin: 0;
+	margin-bottom: 20px;
+	margin-left: 26px;
+}
+.users .producto.primero{
+	margin-left: 0;
+}
+.register legend, .login legend, #contacto h1{
+	border-bottom: 1px solid #BCBCBC;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    width: 90%;
+    margin-bottom: 15px;
+    color: #424242;
+}
+.register label, .correo, .login label, #contacto label{
+  	color: #424242;
+    display: block;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    width: 130px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+.register input, #UserEmail, .login input, #contacto input, #contacto textarea{
+	margin-bottom: 5px;
+	font-family: Arial,Helvetica,sans-serif;
+	padding-left: 3px;
+	width: 250px;
+	border: 1px solid #BCBCBC;
+	height: 20px;
+}
+#contacto textarea{
+	height: 60px;
+	max-width: 250px;
+	min-width: 250px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit{
+	background-image: url("/img/submit_registro.png");
+	border:none;
+	background-color: transparent;
+	width: 99px;
+	height: 37px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style:italic;
+	font-weight: bold;
+	cursor: pointer;
+	margin-left: 290px;
+	margin-top: 8px;
+}
+
+.login  .submit input{
+	margin-left: 0px;
+	margin-top: 0;
+	margin-right: 151px;
+}
+.login .submit{
+	height: 26px;
+	float: left;
+	width: 100px;
+	margin-right: 150px;
+	height: 36px;
+
+}
+.login .submit.primero{
+	float: left;
+	padding-top: 12px;
+	margin-top: 0;
+	margin-right: 20px;
+	height: 26px;
+	margin-left: 170px;
+}
+.correo{
+	width: auto;
+	margin-right: 10px;
+}
+#rememberForm input[type=submit]{
+	margin-left: 381px;
+}
+#rememberForm p{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin-bottom: 15px;
+}
+
+div.form2{/*Form whith image*/
+	float:left;
+	width:60%;
+}
+div.images{
+	float:right;
+	width:35%;
+
+}
+div.images .preview{
+
+}
+div.images .preview  img{
+	max-width:100%;
+}

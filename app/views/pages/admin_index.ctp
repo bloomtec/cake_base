@@ -1,18 +1,14 @@
 <div class="pages index">
 	<h2><?php __('Pages');?></h2>
 	<table cellpadding="0" cellspacing="0">
-	<tr>
-				
-									
-							<th><?php echo $this->Paginator->sort('name');?></th>
-									
-							<th><?php echo $this->Paginator->sort('description');?></th>
-									
-							<th><?php echo $this->Paginator->sort('keywords');?></th>
-							<th><?php echo $this->Paginator->sort('Status','active');?></th>									
-							<th><?php echo $this->Paginator->sort('created');?></th>									
-							<th><?php echo $this->Paginator->sort('updated');?></th>
-								<th class="actions"><?php __('Actions');?></th>
+	<tr>				
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('description');?></th>
+		<th><?php echo $this->Paginator->sort('keywords');?></th>
+		<th><?php echo $this->Paginator->sort('Status','active');?></th>									
+		<th><?php echo $this->Paginator->sort('created');?></th>									
+		<th><?php echo $this->Paginator->sort('updated');?></th>
+		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -39,10 +35,10 @@
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $page['Page']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $page['Page']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $page['Page']['id'])); ?>
 			<?php if(isset($page['Page']['active'])&& $page['Page']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $page['Page']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $page['Page']['id']));
+			 echo $this->Html->link(__('Set Inactive', true), array('action' => 'setInactive', $page['Page']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $page['Page']['id']));
 }?>
 			<?php if(isset($page['Page']['active'])&& !$page['Page']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $page['Page']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $page['Page']['id'])); 
+			 echo $this->Html->link(__('Set Active', true), array('action' => 'setActive', $page['Page']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $page['Page']['id'])); 
 }?>
 	</tr>
 <?php endforeach; ?>

@@ -48,7 +48,6 @@
 		echo $this -> Html -> Script("upload");
 		echo $this -> Html -> Script("ckeditor/ckeditor");
 		echo $this -> Html -> Script("fileBrowser");
-		echo $this -> Html -> Script("styles");
 
 		echo $scripts_for_layout;
 		?>
@@ -56,8 +55,12 @@
 	<body>
 		<div id="container">
 			<div id="header">
+				<?php echo $this -> element('languages') ?>
+				<div style='clear:both;'></div>
 				<h1 class="logo_interna"></h1>
 				<?php echo $this -> element("ez/menu");?>
+				
+				
 			</div>
 			<div id="content">
 				<?php echo $this -> Session -> flash();?>

@@ -52,10 +52,10 @@ if ($wysiwygFields):
 	var $wysiwygFields = array(<?php echo substr($string,0,-1); ?>);
 	
 <?php endif; ?>
-	var $isPicture=<?php echo ($isPicture)?'true':'false';?>;
-	var $sluggable=<?php echo ($sluggable)?'true':'false';?>;
-	var $sortable=<?php echo ($sortable)?'true':'false';?>;
-	var $activable=<?php echo ($activable)?'true':'false';?>;
+	var $isPicture = <?php echo ($isPicture)?'true':'false';?>;
+	var $sluggable = <?php echo ($sluggable)?'true':'false';?>;
+	var $sortable = <?php echo ($sortable)?'true':'false';?>;
+	var $activable = <?php echo ($activable)?'true':'false';?>;
 
 <?php
 if (!empty($validate)):
@@ -162,8 +162,8 @@ endif;
 ?>
 	function beforeSave(){
 <?php if($sluggable):?>
-		if(isset($this->data['<?php echo $name; ?>']['slug'])){
-			$this->data['<?php echo $name; ?>']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['<?php echo $name; ?>']['name']));
+		if($this->sluggable){
+			$this->data['<?php echo $name; ?>']['slug'] = Inflector::slug($this->data['<?php echo $name; ?>']['name']);
 		}
 <?php endif;?>
 		return true;	

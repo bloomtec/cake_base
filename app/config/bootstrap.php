@@ -48,3 +48,7 @@
  * Inflector::rules('plural', array('rules' => array(), 'irregular' => array(), 'uninflected' => array()));
  *
  */
+Configure::write('Config.languages', array(
+	'eng' => __('English', true), 
+	'spa' => __('Spanish', true)
+));

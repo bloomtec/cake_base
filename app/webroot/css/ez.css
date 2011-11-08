@@ -91,7 +91,6 @@ ul, li {
 	width: 110px;
 	height:87px;
 	background-color: transparent;
-	margin-top: 20px;
 	float:left;
 }
 #header h2 a.salir{
@@ -131,7 +130,7 @@ ul, li {
 	-moz-box-shadow: 2px 3px 2px #202020;
 	-webkit-box-shadow: 2px 3px 2px #202020;
 	box-shadow: 2px 3px 2px #202020;
-	margin-top:50px;
+	margin-top:30px;
 }
 #main_menu li  {
 	list-style: none;
@@ -763,4 +762,13 @@ div.code-coverage-results span.result-good {
 	color:red;
 	font-size: 10px;
 	float:right;
+}
+#header .languages{
+	float:right;
+	margin-right: 12px;
+	margin-top:10px;
+	color:white;
+}
+#header .languages a{
+	color:white;
 }
