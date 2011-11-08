@@ -25,14 +25,14 @@ class PagesController extends AppController {
 		$this -> render(implode('/', $path));
 	}
 
-	function enviarDuda() {
+	function enviarDuda($clasification) {
 		if (!empty($this -> data)) {
 			$email = $this -> data['email'];
 			$userName = $this -> data['name'];
-			$subscribir = $this -> data['subscribe'];
+			$subscribir = $this -> data['subscribe'] ? 'si':'no';
 			$comentario = $this -> data['comentario'];
-			$asunto = "Duda enviada desde la página web";
-			$mensaje = "de: " . $userName . " / " . $email . " <br />" . $comentario;
+			$asunto = "Duda enviada desde la página web ";
+			$mensaje = "de: " . $userName . " / " . $email . " <br />" ."Producto: $clasification <br /> Subscrito al newsletter?: $subscribir <br />".$comentario;
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			// Cabeceras adicionales
 			$cabeceras .= 'From: ' . $userName . ' <' . $email . '>' . "\r\n";
