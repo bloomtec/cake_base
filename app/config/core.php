@@ -91,7 +91,7 @@ Configure::write('custom_height', 25);
  *
  * [Note Routing.admin is deprecated in 1.3.  Use Routing.prefixes instead]
  */
-	Configure::write('Routing.prefixes', array('admin'));
+	Configure::write('Routing.prefixes', array('admin', 'manager'));
 
 /**
  * Turn off all caching application-wide.
