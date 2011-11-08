@@ -123,4 +123,25 @@ class Deal extends AppModel {
 		}
 		return true;	
 	}
+	
+	function getDeals($city_id = null, $zone_id = null, $cuisine_id = null) {
+		if($city_id || $zone_id || $cuisine_id) {
+			// Si hay definido un tipo de gastronomía, recoger las promos correspondientes a esa gastronomía.
+			$deals = array();
+			if($cuisine_id) {$deals = $this->CuisineDeal->find('list',array('conditions'=>array('CuisineDeal.cuisine_id'=>$cuisine_id),'fields'=>array('CuisineDeal.deal_id')));}
+			
+		} else {
+			return array();
+		}
+		$restaurants = $this->Restaurant->find('list', array('fields'=>array('Restaurant.id'), 'conditions'=>array('Restaurant.zone_id'=>$zone_id)));
+	}
+	
+	function subtractQuantity($deal_id = null, $quantity = null) {
+		
+	}
+	
+	function getQuantity($deal_id = null) {
+		
+	}
+	
 }
