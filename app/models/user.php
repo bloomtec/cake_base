@@ -100,4 +100,13 @@ class User extends AppModel {
 	function beforeSave(){
 		return true;	
 	}
+	
+	function addPoints($points = null) {
+		
+	}
+	
+	function redeemPoints($deal_id = null) {
+		
+	}
+	
 }

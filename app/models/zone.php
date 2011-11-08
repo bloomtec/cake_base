@@ -61,4 +61,9 @@ class Zone extends AppModel {
 	function beforeSave(){
 		return true;	
 	}
+	
+	function getZones($city_id = null) {
+		
+	}
+	
 }
