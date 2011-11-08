@@ -163,7 +163,7 @@ endif;
 	function beforeSave(){
 <?php if($sluggable):?>
 		if($this->sluggable){
-			$this->data['<?php echo $name; ?>']['slug'] = Inflector::slug($this->data['<?php echo $name; ?>']['name']);
+			$this->data['<?php echo $name; ?>']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['<?php echo $name; ?>']['name']));
 		}
 <?php endif;?>
 		return true;	
