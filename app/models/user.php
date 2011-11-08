@@ -69,8 +69,8 @@ class User extends AppModel {
 	);
 
 	var $hasMany = array(
-		'Adress' => array(
-			'className' => 'Adress',
+		'Address' => array(
+			'className' => 'Address',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',
