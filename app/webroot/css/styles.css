@@ -548,9 +548,9 @@ input.submit{
 	margin-top: 10px;
 }
 .detalle_producto.descripcion{
-	width: 340px;
+	width: 435px;
 	text-align: left;
-	margin-left: 20px;
+	margin-left: 27px;
 }
 .detalle_producto.descripcion h1{
 	margin-bottom: 16px;
@@ -607,6 +607,7 @@ input.submit{
 	border-right: 1px dotted #555555;
 	float: left;
 	margin-top: 50px;
+	padding-right: 30px
 }
 .comentar h1, .otros_comentarios h1{
 	margin-bottom: 17px;
@@ -665,7 +666,7 @@ input.submit{
 	margin-bottom: 4px;
 }
 .comentario{
-	width: 300px;
+	width: 365px;
 	float: left;
 }
 .comentario_usuario{

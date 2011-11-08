@@ -92,7 +92,7 @@ class UsersController extends AppController {
 	}
 	
 	function enEspera(){
-		
+		$this -> layout = "personaliza";
 	}
 
 	function login() {

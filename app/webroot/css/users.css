@@ -206,3 +206,25 @@ div.images .preview{
 div.images .preview  img{
 	max-width:100%;
 }
+.confirmacion_proveedores{
+	background-image: url(/img/confirmacion-proveedores.png);
+	width: 954px;
+	height: 151px;
+}
+.confirmacion_proveedores p{
+	font-size: 13px;
+	width: 536px;
+	float:right;
+	margin-top: 50px;
+	margin-right: 36px;
+}
+.volver_confirmacion{
+	text-align: center;
+}
+.volver_confirmacion .siguiente_paso{
+	float: none;
+	width: 195px;
+	margin-top: 36px;
+	display: inline-block;
+	margin-bottom: 200px;
+}

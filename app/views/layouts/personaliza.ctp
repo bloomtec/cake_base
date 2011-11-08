@@ -36,6 +36,7 @@
 		echo $this -> Html -> css('reset.css');
 		echo $this -> Html -> css('ie.css');
 		echo $this -> Html -> css('styles.css');
+		echo $this -> Html -> css('users.css');
 		echo $this -> Html -> css('armar-pc.css');
 		echo $this -> Html -> css('/bcart/css/bcart.css');
 		echo $this -> Html -> script('jquery');		
