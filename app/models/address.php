@@ -38,16 +38,6 @@ class Address extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'state_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'city_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
@@ -76,13 +66,6 @@ class Address extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'State' => array(
-			'className' => 'State',
-			'foreignKey' => 'state_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'City' => array(
 			'className' => 'City',
 			'foreignKey' => 'city_id',
@@ -96,7 +79,7 @@ class Address extends AppModel {
 		'Order' => array(
 			'className' => 'Order',
 			'foreignKey' => 'address_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

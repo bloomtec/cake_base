@@ -86,7 +86,7 @@ class Deal extends AppModel {
 		'Order' => array(
 			'className' => 'Order',
 			'foreignKey' => 'deal_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

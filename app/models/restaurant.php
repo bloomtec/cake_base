@@ -46,7 +46,7 @@ class Restaurant extends AppModel {
 		'Deal' => array(
 			'className' => 'Deal',
 			'foreignKey' => 'restaurant_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
