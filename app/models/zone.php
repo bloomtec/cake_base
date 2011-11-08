@@ -63,7 +63,7 @@ class Zone extends AppModel {
 	}
 	
 	function getZones($city_id = null) {
-		
+		return $this->find('list', array('conditions'=>array('Zone.city_id'=>$city_id), 'fields'=>array('Zone.id')));
 	}
 	
 }

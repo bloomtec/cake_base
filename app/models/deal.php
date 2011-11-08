@@ -124,24 +124,57 @@ class Deal extends AppModel {
 		return true;	
 	}
 	
+	/**
+	 * Retornar las promos de una ciudad especifica
+	 */
 	function getDeals($city_id = null, $zone_id = null, $cuisine_id = null) {
 		if($city_id || $zone_id || $cuisine_id) {
 			// Si hay definido un tipo de gastronomía, recoger las promos correspondientes a esa gastronomía.
-			$deals = array();
+			$deals=array();
 			if($cuisine_id) {$deals = $this->CuisineDeal->find('list',array('conditions'=>array('CuisineDeal.cuisine_id'=>$cuisine_id),'fields'=>array('CuisineDeal.deal_id')));}
-			
+			// Obtener las zonas de la ciudad
+			$zones = array();
+			if(!$zone_id) {
+				$zones = $this->Restaurant->Zone->getZones($city_id);
+			} else {
+				$zones = $this->Restaurant->Zone->find('list', array('conditions'=>array('Zone.id'=>$zone_id), 'fields'=>array('Zone.id')));
+			}
+			// Obtener los restaurantes de la zona
+			$restaurants = $this->Restaurant->find('list', array('fields'=>array('Restaurant.id'), 'conditions'=>array('Restaurant.zone_id'=>$zones)));
+			// Obtener las promos
+			$deals = $this->find('all', array('conditions'=>array('Deal.restaurant_id'=>$restaurants, 'Deal.id'=>$deals)));
+			return $deals;
 		} else {
 			return array();
 		}
-		$restaurants = $this->Restaurant->find('list', array('fields'=>array('Restaurant.id'), 'conditions'=>array('Restaurant.zone_id'=>$zone_id)));
 	}
 	
-	function subtractQuantity($deal_id = null, $quantity = null) {
-		
+	function subtractAmount($deal_id = null, $amount = null) {
+		if($deal_id && $amount) {
+			$deal = $this->read(null, $deal_id);
+			if(!empty($deal)) {
+				$deal['Deal']['amount'] = $deal['Deal']['amount'] - $amount;
+				if($deal['Deal']['amount'] >= 0) {
+					$this->save($deal);
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 	
-	function getQuantity($deal_id = null) {
-		
+	function getAmount($deal_id = null) {
+		$deal = $this->read(null, $deal_id);
+		if(!empty($deal)) {
+			return $deal['Deal']['amount'];
+		} else {
+			return -1;
+		}		
 	}
 	
 }
