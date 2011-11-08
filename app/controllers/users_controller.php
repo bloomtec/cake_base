@@ -26,7 +26,10 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
-		$countries =  $this -> User -> Address -> find('list');
+		$countries =  $this -> User -> Address -> Country -> find('list');
+		//$conditions['country_id']=empty($countries) ? null : key($countries);
+		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
+		$this -> set(compact('countries','cities'));
 	}
 	function registerProvider() {
 		if (!empty($this -> data)) {
@@ -48,8 +51,7 @@ class UsersController extends AppController {
 			// Validar el nombre de usuario
 			$user['User']['role_id'] = 2;
 			$this -> User -> create();
-			$this -> User -> set($this -> data);
-			if ($this -> User -> save($this -> data)) {
+			if ($this -> User -> saveAll($this -> data)) {
 				$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;

@@ -8,6 +8,13 @@ class CountriesController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
+	function getCities($id){
+		echo json_encode($this -> Country -> City -> find('list',array('conditions'=>array('country_id' => $id))));
+		Configure::write('debug',0);
+		$this -> autoRender = false;
+		exit(0);
+	}
+	
 	function index() {
 		$this->Country->recursive = 0;
 		$this->set('countries', $this->paginate());
