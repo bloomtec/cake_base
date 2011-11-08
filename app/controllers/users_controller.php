@@ -51,8 +51,7 @@ class UsersController extends AppController {
 			// Validar el nombre de usuario
 			$user['User']['role_id'] = 2;
 			$this -> User -> create();
-			$this -> User -> set($this -> data);
-			if ($this -> User -> save($this -> data)) {
+			if ($this -> User -> saveAll($this -> data)) {
 				$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
