@@ -72,7 +72,7 @@ class User extends AppModel {
 		'Address' => array(
 			'className' => 'Address',
 			'foreignKey' => 'user_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -85,7 +85,7 @@ class User extends AppModel {
 		'Order' => array(
 			'className' => 'Order',
 			'foreignKey' => 'user_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',

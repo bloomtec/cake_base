@@ -46,7 +46,7 @@ class Zone extends AppModel {
 		'Restaurant' => array(
 			'className' => 'Restaurant',
 			'foreignKey' => 'zone_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
