@@ -16,7 +16,7 @@
 			<?php
 				echo $this -> Form -> input('password', array('type' => 'password','required' => 'required'));
 				echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]'));
-				echo $this -> Form -> input('phone',array('required' => 'required' , 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines') ));
+				echo $this -> Form -> input('phone',array('required' => 'required' , 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines',true) ));
 			?>
 		</div>
 		<div class='left'>
@@ -34,8 +34,10 @@
 </div>
 <script type='text/javascript'> 
 $(function(){
-	$('').change(function(){
-		
+
+	if($('#AddressCountryId').val()) BJS.updateSelect($('#AddressCityId'),'/countries/getCities/'+$('#AddressCountryId').val());
+	$('#AddressCountryId').change(function(){
+		BJS.updateSelect($('#AddressCityId'),'/countries/getCities/'+$(this).val());
 	});
 	$('#UserAjaxRegisterForm').validator({lang:'es'}).submit(function(e){
 	var form=$(this);

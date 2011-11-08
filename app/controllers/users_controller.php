@@ -26,11 +26,10 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
-		$countries =  $this -> User -> Address -> Contry -> find('list');
-		debug(key($countries));
+		$countries =  $this -> User -> Address -> Country -> find('list');
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
-		
-		$cities =  $this -> User -> Address -> State -> find('list',array());
+		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
+		$this -> set(compact('countries','cities'));
 	}
 	function registerProvider() {
 		if (!empty($this -> data)) {

@@ -68,4 +68,12 @@ $(function(){
 			return params + param + ":" + value;
 		}
 	}
+	BJS.updateSelect = function($select, $address){
+		$select.html('');
+		BJS.JSON($address,{},function(options){
+			$.each(options,function(i,val){
+				$select.append('<option value="'+i+'">'+val+'</option>');
+			});
+		});	
+	}
 });
