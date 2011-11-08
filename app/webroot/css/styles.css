@@ -854,6 +854,7 @@ ul li a.twitter {
     overflow-y: auto;
     right: 15px;
     width: 465px;
+    min-height: 500px;
 }
 #pages #estaticas_info p{
 	color: #7E7E7D;
