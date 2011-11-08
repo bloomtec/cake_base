@@ -25,7 +25,6 @@
 			</legend>
 			<?php
 				echo $this -> Form -> input('Address.country_id', array('required' => 'required'));
-				echo $this -> Form -> input('Address.state_id', array('required' => 'required'));
 				echo $this -> Form -> input('Address.city_id', array('required' => 'required'));
 				
 			?>
@@ -35,6 +34,9 @@
 </div>
 <script type='text/javascript'> 
 $(function(){
+	$('').change(function(){
+		
+	});
 	$('#UserAjaxRegisterForm').validator({lang:'es'}).submit(function(e){
 	var form=$(this);
 	var fields=$(this).serialize();
