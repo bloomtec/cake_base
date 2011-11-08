@@ -17,7 +17,7 @@ class UsersController extends AppController {
 	function register() {
 		if (!empty($this -> data)) {
 			$this -> User -> create();
-			$this -> data['User']['role_id']=2;
+			$this -> data['User']['role_id']=3;
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('Registro Exitoso', true));
 				$this->Auth->login($this->data);

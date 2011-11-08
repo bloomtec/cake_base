@@ -1,23 +1,37 @@
 <div class="register form">
 	<?php echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'ajaxRegister','novalidate'=>'novalidate'));?>
 	<fieldset class="centrar">
-		<legend>
-			<?php __('Registro');?>
-		</legend>
-		<div class="input text">
-			<label for="UserEmail">Email</label>
-			<input id='UserEmail' type='email' name='data[User][email]' required = 'required' />
+		<div class='right'>
+			<legend>
+				<?php __('Register');?>
+			</legend>
+			<div class="input text">
+				<label for="UserEmail">Email</label>
+				<input id='UserEmail' type='email' name='data[User][email]' required = 'required' />
+			</div>
+			<div class="input text">
+				<label for="UserConfirmEmail">Confirmar Email</label>
+				<input id='UserConfirmEmail' type='email' name='data[User][confirm_email]' data-equals='data[User][email]' required = 'required' />
+			</div>
+			<?php
+				echo $this -> Form -> input('password', array('type' => 'password','required' => 'required'));
+				echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]'));
+				echo $this -> Form -> input('phone',array('required' => 'required' , 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines') ));
+			?>
 		</div>
-		<div class="input text">
-			<label for="UserConfirmEmail">Confirmar Email</label>
-			<input id='UserConfirmEmail' type='email' name='data[User][confirm_email]' data-equals='data[User][email]' required = 'required' />
+		<div class='left'>
+			<legend>
+				<?php __('Address');?>
+			</legend>
+			<?php
+				echo $this -> Form -> input('Address.country_id', array('required' => 'required'));
+				echo $this -> Form -> input('Address.state_id', array('required' => 'required'));
+				echo $this -> Form -> input('Address.city_id', array('required' => 'required'));
+				
+			?>
 		</div>
-		<?php
-			echo $this -> Form -> input('password', array('type' => 'password','required' => 'required'));
-			echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]'));
-		?>
 	</fieldset>
-	<?php echo $this -> Form -> end(__('Registrarse', true));?>
+	<?php echo $this -> Form -> end(__('Register', true));?>
 </div>
 <script type='text/javascript'> 
 $(function(){
