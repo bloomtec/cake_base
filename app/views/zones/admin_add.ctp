@@ -1,9 +1,9 @@
-	
 <div class="zones form2">
 <?php echo $this->Form->create('Zone');?>
 	<fieldset>
 		<legend><?php __('Admin Add Zone'); ?></legend>
 	<?php
+		echo $this->Form->input('country_id',array('options' => $countries));
 		echo $this->Form->input('city_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
@@ -25,4 +25,19 @@
 		<div id="single-upload" controller="zones">
 		</div>			
 </div>
-
+<script type='text/javascript'>
+	$(function(){
+		var $country = $('#ZoneCountryId');
+		var $city = $('#ZoneCityId');
+		updateCountry();
+		$country.change(function(){
+			updateCountry();
+		});
+				
+		function updateCountry(){
+			BJS.updateSelect($city, '/countries/getCities/'+$country.val());
+		}
+		
+		
+	});
+</script>

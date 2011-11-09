@@ -41,6 +41,7 @@
 		echo $this -> Html -> css('superfish');
 		echo $this -> Html -> css('uploadify');
 		echo $this -> Html -> Script("jquery");
+		echo $this -> Html -> Script("bjs");
 		echo $this -> Html -> Script('jquery-ui-1.8.16.custom.min');
 		echo $this -> Html -> Script("menu");
 		echo $this -> Html -> Script("swfobject");

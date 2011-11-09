@@ -8,6 +8,12 @@ class CitiesController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
+	function getZones($id){
+		echo json_encode($this -> City -> Zone -> find('list',array('conditions'=>array('city_id' => $id))));
+		Configure::write('debug',0);
+		$this -> autoRender = false;
+		exit(0);
+	}
 	function index() {
 		$this->City->recursive = 0;
 		$this->set('cities', $this->paginate());

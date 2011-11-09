@@ -38,6 +38,7 @@ class RestaurantsController extends AppController {
 	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Restaurant->create();
+			$this->data['Restaurant']['manager_id'] = $this->Auth->user('id');
 			if ($this->Restaurant->save($this->data)) {
 				$this->Session->setFlash(__('The restaurant has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -45,8 +46,10 @@ class RestaurantsController extends AppController {
 				$this->Session->setFlash(__('The restaurant could not be saved. Please, try again.', true));
 			}
 		}
-		$zones = $this->Restaurant->Zone->find('list');
-		$this->set(compact('zones'));
+		//$zones = $this->Restaurant->Zone->find('list');
+		//$cities = $this->Restaurant->Zone->City->find('list');
+		$countries =  $this->Restaurant->Zone->City->Country->find('list');
+		$this->set(compact('countries'));
 	}
 	
 	function admin_edit($id = null) {
@@ -65,8 +68,11 @@ class RestaurantsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Restaurant->read(null, $id);
 		}
-		$zones = $this->Restaurant->Zone->find('list');
-		$this->set(compact('zones'));
+		$city = $this->Restaurant->Zone->City->read(null,$this->data['Zone']['city_id']);
+		$cities = $this->Restaurant->Zone->City->find('list',array('conditions'=>array('country_id'=>$city['Country']['id'])));
+ 		$zones = $this->Restaurant->Zone->find('list',array('conditions'=>array('city_id'=>$city['City']['id'])));
+		$countries =  $this->Restaurant->Zone->City->Country->find('list');
+		$this->set(compact('zones','cities','countries','city'));
 	}
 	
 	function admin_delete($id = null) {

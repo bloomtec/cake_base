@@ -5,6 +5,8 @@
 		<legend><?php __('Admin Edit Restaurant'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
+		echo $this->Form->input('country_id',array('options' => $countries, 'selected'=>$city['City']['country_id']));
+		echo $this->Form->input('city_id',array('options' => $cities, 'selected'=>$city['City']['id']));
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
@@ -24,4 +26,27 @@
 		<div id="single-upload" controller="restaurants">
 		</div>			
 </div>
-
+<script type="text/javascript">
+	$(function(){
+		var $country = $('#RestaurantCountryId');
+		var $city = $('#RestaurantCityId');
+		var $zone = $('#RestaurantZoneId');
+		$country.change(function(){
+			updateCountry();
+		});
+		$city.change(function(){
+			updateCity();
+		});
+		
+		function updateCountry(){
+			BJS.updateSelect($city, '/countries/getCities/'+$country.val(),function(){
+				BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+			});
+		}
+		
+		function updateCity(){
+			BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+		}
+		
+	});
+</script>

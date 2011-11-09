@@ -68,12 +68,28 @@ $(function(){
 			return params + param + ":" + value;
 		}
 	}
-	BJS.updateSelect = function($select, $address){
+	BJS.updateSelect = function($select, $address, $callback){
 		$select.html('');
+		firstArguments = arguments;
 		BJS.JSON($address,{},function(options){
+			var count=0;
+			var objectSize= BJS.objectSize(options);
 			$.each(options,function(i,val){
 				$select.append('<option value="'+i+'">'+val+'</option>');
+				count += 1;
+				if(firstArguments.length == 3 && count ==  objectSize){
+					$callback();
+				}
+				
 			});
 		});	
 	}
+	BJS.objectSize = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 });

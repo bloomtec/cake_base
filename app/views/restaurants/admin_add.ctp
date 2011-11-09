@@ -4,6 +4,8 @@
 	<fieldset>
 		<legend><?php __('Admin Add Restaurant'); ?></legend>
 	<?php
+		echo $this->Form->input('country_id',array('options' => $countries));
+		echo $this->Form->input('city_id');
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
@@ -23,4 +25,27 @@
 		<div id="single-upload" controller="restaurants">
 		</div>			
 </div>
-
+<script type='text/javascript'>
+	$(function(){
+		var $country = $('#RestaurantCountryId');
+		var $city = $('#RestaurantCityId');
+		var $zone = $('#RestaurantZoneId');
+		updateCountry();
+		$country.change(function(){
+			updateCountry();
+		});
+		$city.change(function(){
+			updateCity();
+		});
+		
+		function updateCountry(){
+			BJS.updateSelect($city, '/countries/getCities/'+$country.val(),function(){
+				BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+			});
+		}
+		function updateCity(){
+			BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+		}
+		
+	});
+</script>

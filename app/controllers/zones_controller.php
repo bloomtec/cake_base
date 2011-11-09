@@ -45,8 +45,8 @@ class ZonesController extends AppController {
 				$this->Session->setFlash(__('The zone could not be saved. Please, try again.', true));
 			}
 		}
-		$cities = $this->Zone->City->find('list');
-		$this->set(compact('cities'));
+		$countries =  $this->Zone->City->Country->find('list');
+		$this->set(compact('countries'));
 	}
 	
 	function admin_edit($id = null) {
@@ -65,8 +65,9 @@ class ZonesController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Zone->read(null, $id);
 		}
-		$cities = $this->Zone->City->find('list');
-		$this->set(compact('cities'));
+		$countries =  $this->Zone->City->Country->find('list');
+		$cities = $this->Zone->City->find('list',array('conditions'=>array('country_id'=>$this->data['City']['country_id'])));
+		$this->set(compact('countries','cities'));
 	}
 	
 	function admin_delete($id = null) {
