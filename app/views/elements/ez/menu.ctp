@@ -1,13 +1,15 @@
 <ul id="main_menu">
 	<li>
-		<a href="">INICIO</a>
+		<a href=""><?php __('HOME'); ?></a>
 	</li>
+
 	
 	<li>
 		<a href=""><?php __('CONTENT')?></a>
 		<ul>
 			<li>
 				<?php echo $html->link(__('PAGES',true),array('controller'=>'pages'));?>
+
 			</li>
 		</ul>
 	</li>
@@ -40,6 +42,7 @@
 	<?php endif; ?>
 
 	<li class="final">
-		<?php echo $html->link(__('LOG OUT',true),array('controller'=>'users','action'=>'logout'));?>
+		<?php echo $html->link(__('EXIT',true),array('controller'=>'users','action'=>'logout'));?>
+
 	</li>
 </ul>
