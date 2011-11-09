@@ -39,6 +39,13 @@ class Restaurant extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Manager' => array(
+			'className' => 'User',
+			'foreignKey' => 'manager_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
