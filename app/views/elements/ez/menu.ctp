@@ -26,8 +26,10 @@
 			<li><?php echo $html->link(__('ADD COUNTRY',true),array('controller'=>'countries','action' => 'add'));?></li>
 			<li><?php echo $html->link(__('CITIES',true),array('controller'=>'cities'));?></li>
 			<li><?php echo $html->link(__('ADD CITY',true),array('controller'=>'cities','action' => 'add'));?></li>
-			<li><?php echo $html->link(__('RESTAURANTS',true),array('controller'=>'restaurants'));?></li>
 			<?php endif; ?>
+			<li><?php echo $html->link(__('ZONES',true),array('controller'=>'zones'));?></li>
+			<li><?php echo $html->link(__('ADD ZONE',true),array('controller'=>'zones','action' => 'add'));?></li>
+			<li><?php echo $html->link(__('RESTAURANTS',true),array('controller'=>'restaurants'));?></li>
 			<li><?php echo $html->link(__('ADD RESTAURANT',true),array('controller'=>'restaurants','action' => 'add'));?></li>
 		</ul>	
 	</li>
