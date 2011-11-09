@@ -265,16 +265,18 @@ class UsersController extends AppController {
 
 	function admin_add() {
 		if (!empty($this -> data)) {
+			$this->data['User']['password'] = $this->Auth->password($this->data['User']['pass']);
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('The user could not be saved. If the user is not an admin check that you have selected a city. Please, try again.', true));
 			}
 		}
 		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
+		$cities = $this -> User -> City -> find('list');
+		$this -> set(compact('roles', 'cities'));
 	}
 
 	function admin_edit($id = null) {
@@ -284,20 +286,24 @@ class UsersController extends AppController {
 		}
 
 		if (!empty($this -> data)) {
-			if (!empty($this -> data['User']['pass']))
-				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			if(!empty($this->data['User']['new_pass'])) {
+				$this->data['User']['password'] = $this->Auth->password($this->data['User']['new_pass']);
+			}
+			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('The user could not be saved. If the user is not an admin check that you have selected a city. Please, try again.', true));
 			}
 		}
+		
 		if (empty($this -> data)) {
 			$this -> data = $this -> User -> read(null, $id);
 		}
 		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
+		$cities = $this -> User -> City -> find('list');
+		$this -> set(compact('roles', 'cities'));
 	}
 
 	function admin_delete($id = null) {
@@ -312,6 +318,35 @@ class UsersController extends AppController {
 		$this -> Session -> setFlash(__('User was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+	
+	function admin_setInactive($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$oldData = $this -> User -> read(null, $id);
+		$oldData["User"]["active"] = false;
+		if ($this -> User -> save($oldData)) {
+			$this -> Session -> setFlash(__('User set to inactive', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> Session -> setFlash(__('User was not set to inactive', true));
+		$this -> redirect(array('action' => 'index'));
+	}
 
+	function admin_setActive($id = null) {
+		if (!$id) {
+			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$oldData = $this -> User -> read(null, $id);
+		$oldData["User"]["active"] = true;
+		if ($this -> User -> save($oldData)) {
+			$this -> Session -> setFlash(__('User set to active', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> Session -> setFlash(__('User was not set to active', true));
+		$this -> redirect(array('action' => 'index'));
+	}
 
 }

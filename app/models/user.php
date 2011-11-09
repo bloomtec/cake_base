@@ -11,7 +11,7 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'enter an email',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -26,12 +26,12 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'password' => array(
+		'pass' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'enter a password',
 				//'allowEmpty' => false,
-				//'required' => false,
+				//'required' => true,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -119,7 +119,16 @@ class User extends AppModel {
 	);
 
 	function beforeSave(){
-		return true;	
+		if($this->data['User']['role_id'] != 1) {
+			if(!empty($this->data['User']['city_id'])) {
+				return true;
+			} else {
+				//$this->Session->setFlash(__('You must select a city for this type of user'));
+				return false;
+			}
+		} else {
+			return true;
+		}
 	}
 	
 	function addPoints($points = null) {
