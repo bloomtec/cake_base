@@ -3,19 +3,14 @@
 	<h2><?php __('Users');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
-		<th><?php echo $this->Paginator->sort('role_id');?></th>
 		<th><?php echo $this->Paginator->sort('email');?></th>
-		<th><?php echo $this->Paginator->sort('password');?></th>
-		<th><?php echo $this->Paginator->sort('image');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('last_name');?></th>
-		<th><?php echo $this->Paginator->sort('gender');?></th>
+		<th><?php echo $this->Paginator->sort('password');?></th>
+		<th><?php echo $this->Paginator->sort('role_id');?></th>
+		<th><?php echo $this->Paginator->sort('active');?></th>
+		<th><?php echo $this->Paginator->sort('city_id');?></th>
 		<th><?php echo $this->Paginator->sort('phone');?></th>
-		<th><?php echo $this->Paginator->sort('country');?></th>
-		<th><?php echo $this->Paginator->sort('state');?></th>
-		<th><?php echo $this->Paginator->sort('city');?></th>
-		<th><?php echo $this->Paginator->sort('address');?></th>
-		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -29,21 +24,22 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $user['User']['id'] ?>'>
+		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['last_name']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
 		</td>
-		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
-		<td><?php echo $this->Html->image('uploads/100x100/'.$user['User']['image']); ?>&nbsp;</td>
-		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['last_name']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['gender']; ?>&nbsp;</td>
+<?php if($user['User']['active']){ ?>
+		<td><?php echo 'Active'; ?>&nbsp;</td>
+<?php }else{ ?>
+		<td><?php echo 'Inactive'; ?>&nbsp;</td>
+<?php }
+ ?>		<td>
+			<?php echo $this->Html->link($user['City']['name'], array('controller' => 'cities', 'action' => 'view', $user['City']['id'])); ?>
+		</td>
 		<td><?php echo $user['User']['phone']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['country']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['state']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['city']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['address']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['is_active']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['updated']; ?>&nbsp;</td>
 		<td class="actions">

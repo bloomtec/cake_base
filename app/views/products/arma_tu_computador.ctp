@@ -1,5 +1,5 @@
 <!-- the form -->
-<form action="#" class="aplicacion">
+<?php $form->create('PC',array('action'=>'armaTuPC'));?>
 
 	
 	<div class="panes">
@@ -10,28 +10,13 @@
 			</p>
 			<div class="seleccionar">
 				<label>Elije la marca de tu procesador</label>
-				<select>
-					<option>Amd</option>
-					<option>Intel</option>
-				</select>
+				<?php echo $form->input('architecture_id',array('id'=>'architecture','options'=>$arquitectures,'label'=>'Arquitectura'));?>
 			</div>
 			<a href="#" class="siguiente_paso">Siguiente paso</a>
 			<div style="clear: both;margin-bottom: 10px"></div>
-			<input type="radio" />			
-			<p class="descripcion">
-				<span>amd opteron 64:</span> Procesador de 6 nucleos, 3.33GHz, 12MB Cache
-				Precio: $ 500.000
-			</p>
-			<input type="radio" />			
-			<p class="descripcion">
-				<span>amd opteron 64:</span> Procesador de 6 nucleos, 3.33GHz, 12MB Cache
-				Precio: $ 500.000
-			</p>
-			<input type="radio" />			
-			<p class="descripcion">
-				<span>amd opteron 64:</span> Procesador de 6 nucleos, 3.33GHz, 12MB Cache
-				Precio: $ 500.000
-			</p>
+			<div class='radios processors'>
+				
+			</div>
 			
 			
 			
@@ -111,9 +96,15 @@
 
 <script type="text/javascript">
 $(function() {
+	var pc = {};
+	
 	// setup ul.tabs to work as tabs for each div directly under div.panes
 	$("ul.tabs").tabs("div.panes > div");
 	$(".scrollable").scrollable();
+	
+	$('#architecture').change(function(){
+		$('.radios.processors').load('/products/getProcessors/'+$(this).val());
+	});
 });
 	
 	

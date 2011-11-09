@@ -3,12 +3,12 @@
 	<h2><?php __('Users');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
-		<th><?php echo $this->Paginator->sort('role_id');?></th>
 		<th><?php echo $this->Paginator->sort('email');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('last_name');?></th>
-		<th><?php echo $this->Paginator->sort('gender');?></th>
-		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
+		<th><?php echo $this->Paginator->sort('role_id');?></th>
+		<th><?php echo $this->Paginator->sort('active');?></th>
+		<th><?php echo $this->Paginator->sort('city_id');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -22,12 +22,18 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $user['User']['id'] ?>'>
-		<td><?php echo $user['Role']['name']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['last_name']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['gender']; ?>&nbsp;</td>
-		<td><?php echo $user['User']['is_active']; ?>&nbsp;</td>
+		<td><?php echo $user['Role']['name']; ?>&nbsp;</td>
+		<?php if($user['User']['active']){ ?>
+		<td><?php echo 'Active'; ?>&nbsp;</td>
+		<?php }else{ ?>
+		<td><?php echo 'Inactive'; ?>&nbsp;</td>
+		<?php } ?>
+		<td>
+			<?php echo $this->Html->link($user['City']['name'], array('controller' => 'cities', 'action' => 'view', $user['City']['id'])); ?>
+		</td>
 		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['updated']; ?>&nbsp;</td>
 		<td class="actions">
@@ -35,10 +41,10 @@
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $user['User']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $user['User']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
 			<?php if(isset($user['User']['active'])&& $user['User']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $user['User']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $user['User']['id']));
+			 echo $this->Html->link(__('Set Inactive', true), array('action' => 'setInactive', $user['User']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $user['User']['id']));
 }?>
 			<?php if(isset($user['User']['active'])&& !$user['User']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $user['User']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $user['User']['id'])); 
+			 echo $this->Html->link(__('Set Active', true), array('action' => 'setActive', $user['User']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $user['User']['id'])); 
 }?>
 		</td>
 	</tr>

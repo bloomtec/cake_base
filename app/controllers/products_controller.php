@@ -13,6 +13,8 @@ class ProductsController extends AppController {
 	}
 	function armaTuComputador(){
 		$this->layout="personaliza";
+		$arquitectures = $this->Product->Architecture->find('list');
+		$this->set(compact('arquitectures'));
 	}
 	
 	function getProduct($product_id = null, $size_id = null) {
@@ -337,7 +339,7 @@ class ProductsController extends AppController {
 	function getProcessors($architecture_id = null) {
 		$this->layout="ajax";
 		$processors = $this->Product->find(
-			'all',
+			'list',
 			array(
 				'recursive'=>-1,
 				'conditions'=>array(
@@ -346,8 +348,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		echo json_encode($processors);
-		exit(0);
+		$this -> set(compact('processors'));
 	}
 	
 	/**
