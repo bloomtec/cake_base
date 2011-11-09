@@ -5,8 +5,13 @@ class UsersController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		if (isset($this -> params["prefix"]) && $this -> params["prefix"] == "admin") {
-			$this -> Auth -> logoutRedirect = '/admin';
+		if (isset($this -> params["prefix"])) {
+			$prefix = $this -> params["prefix"];
+			if($prefix == "admin") {
+				$this -> Auth -> logoutRedirect = '/admin';
+			} else {
+				$this -> Auth -> logoutRedirect = '/manager';
+			}
 		} else {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
@@ -245,6 +250,20 @@ class UsersController extends AppController {
 			}
 		}
 	}
+	
+	function manager_login() {
+		$this -> layout = "ez/login";
+		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
+			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			if (!empty($user) && $this -> Auth -> login($user)) {
+				if ($this -> Auth -> autoRedirect) {
+					$this -> redirect($this -> Auth -> redirect());
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
 
 	function admin_index() {
 		$this -> User -> recursive = 0;
@@ -252,6 +271,10 @@ class UsersController extends AppController {
 	}
 
 	function admin_logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
+	
+	function manager_logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
 

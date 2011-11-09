@@ -2,6 +2,7 @@
 class PagesController extends AppController {
 
 	var $name = 'Pages';
+	
 	function display() {
 		$path = func_get_args();
 
@@ -24,28 +25,6 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
-
-	function admin_ez() {
-
-	}
-	function admin_layouts(){
-		App::import("Folder");
-		$folder = new Folder(LAYOUTS);
-		$layoutsCtp=$folder->read();
-		$layouts;
-		foreach($layoutsCtp[1] as $layout){
-				$layout=substr($layout,0, -4);
-				$layouts[$layout]=$layout;
-		}
-		return $layouts;
-	}
-	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="ez/file_browser";
-	    App::import("Folder");
-	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
-	    $this->set("folder",$folder->read());
-	    $this->set("folderPath",DS."wysiwyg");
- 	}
 	
 	function index() {
 		$this -> Page -> recursive = 0;
@@ -132,6 +111,27 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('Page was not archived', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+	
+	function manager_ez() {}
+	
+	function manager_index() {
+		$this -> Page -> recursive = 0;
+		$this -> set('pages', $this -> paginate());
+	}
+	
+	function admin_ez() {}
+	
+	function admin_layouts(){
+		App::import("Folder");
+		$folder = new Folder(LAYOUTS);
+		$layoutsCtp=$folder->read();
+		$layouts;
+		foreach($layoutsCtp[1] as $layout){
+				$layout=substr($layout,0, -4);
+				$layouts[$layout]=$layout;
+		}
+		return $layouts;
+	}
 
 	function admin_index() {
 		$this -> Page -> recursive = 0;
@@ -188,6 +188,14 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('Page was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+	
+	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+	    $this->layout="ez/file_browser";
+	    App::import("Folder");
+	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
+	    $this->set("folder",$folder->read());
+	    $this->set("folderPath",DS."wysiwyg");
+ 	}
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
