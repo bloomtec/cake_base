@@ -1,39 +1,39 @@
 <ul id="main_menu">
 	<li>
-		<a href=""><?php __('HOME'); ?></a>
+		<a href="">INICIO</a>
 	</li>
 	<li class="flecha">
-		<a href=""><?php __('MENUS'); ?></a>
+		<a href="">MENÚS</a>
 		<ul>
 			<li>
-				<a href=""><?php __('ADD'); ?></a>
+				<a href="">AGREGAR</a>
 			</li>
 			<li>
-				<a href=""><?php __('MANAGE'); ?></a>
+				<a href="">ADMINISTRAR</a>
 			</li>
 		</ul>
 	</li>
 	<li>
-		<a href=""><?php __('CONTENT'); ?></a>
+		<a href="">CONTENIDO</a>
 		<ul>
 			<li>
-				<a href="/admin/pages"><?php __('PAGES'); ?></a>
+				<a href="/admin/pages">PAGINAS</a>
 			</li>
 			<li>
-				<a href="/admin/news"><?php __('NEWS'); ?></a>
+				<a href="/admin/news">NOTICIAS</a>
 			</li>
 		</ul>
 	</li>
 	<li>
-		<a href="/admin/deals"><?php __('DEALS'); ?></a>
+		<a href="/admin/deals">PROMOCIONES</a>
 	</li>
 	<li>
-		<a href="/admin/users"><?php __('USERS'); ?></a>
+		<a href="/admin/users">USUARIOS</a>
 	</li>
 	<li>
-		<a href=""><?php __('MULTIMEDIA'); ?></a>
+		<a href="">MULTIMEDIA</a>
 	</li>
 	<li class="final">
-		<a class="ultimo" href="/admin/users/logout"><?php __('EXIT'); ?></a>
+		<a class="ultimo" href="/admin/users/logout">SALIR</a>
 	</li>
 </ul>
