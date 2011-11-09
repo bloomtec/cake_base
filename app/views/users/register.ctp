@@ -26,6 +26,7 @@
 			<?php
 				echo $this -> Form -> input('Address.country_id', array('required' => 'required'));
 				echo $this -> Form -> input('Address.city_id', array('required' => 'required'));
+				echo $this -> Form -> input('Address.address', array('required' => 'required'));
 				
 			?>
 		</div>

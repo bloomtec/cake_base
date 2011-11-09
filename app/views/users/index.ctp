@@ -4,6 +4,8 @@
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('email');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
+		<th><?php echo $this->Paginator->sort('last_name');?></th>
 		<th><?php echo $this->Paginator->sort('password');?></th>
 		<th><?php echo $this->Paginator->sort('role_id');?></th>
 		<th><?php echo $this->Paginator->sort('active');?></th>
@@ -23,6 +25,8 @@
 	?>
 	<tr<?php echo $class;?> id='<?php echo $user['User']['id'] ?>'>
 		<td><?php echo $user['User']['email']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
+		<td><?php echo $user['User']['last_name']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['password']; ?>&nbsp;</td>
 		<td>
 			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>

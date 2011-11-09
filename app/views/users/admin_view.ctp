@@ -11,6 +11,16 @@
 			<?php echo $user['User']['email']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $user['User']['name']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Last Name'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $user['User']['last_name']; ?>
+			&nbsp;
+		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Password'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $user['User']['password']; ?>
@@ -66,10 +76,9 @@
 		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('User Id'); ?></th>
-		<th><?php __('Adress'); ?></th>
+		<th><?php __('Address Id'); ?></th>
 		<th><?php __('Zip'); ?></th>
 		<th><?php __('Country Id'); ?></th>
-		<th><?php __('State Id'); ?></th>
 		<th><?php __('City Id'); ?></th>
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
@@ -87,10 +96,9 @@
 			<td><?php echo $address['id'];?></td>
 			<td><?php echo $address['name'];?></td>
 			<td><?php echo $address['user_id'];?></td>
-			<td><?php echo $address['adress'];?></td>
+			<td><?php echo $address['address_id'];?></td>
 			<td><?php echo $address['zip'];?></td>
 			<td><?php echo $address['country_id'];?></td>
-			<td><?php echo $address['state_id'];?></td>
 			<td><?php echo $address['city_id'];?></td>
 			<td><?php echo $address['created'];?></td>
 			<td><?php echo $address['updated'];?></td>

@@ -49,9 +49,12 @@ class UsersController extends AppController {
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
-			$user['User']['role_id'] = 2;
+			$this -> data['User']['role_id'] = 3;
 			$this -> User -> create();
-			if ($this -> User -> saveAll($this -> data)) {
+			if ($this -> User -> save($this -> data)) {
+				$this -> data['Address']['user_id'] = $this -> User -> id;
+				$address['Address'] = $this -> data['Address'];
+				$this -> User -> Address -> save($address);
 				$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
@@ -143,6 +146,10 @@ class UsersController extends AppController {
 			$this -> data = $this -> User -> read(null, $id);
 		}
 		$roles = $this -> User -> Role -> find('list');
+		$countries =  $this -> User -> Address -> Country -> find('list');
+		//$conditions['country_id']=empty($countries) ? null : key($countries);
+		$cities =  $this -> User -> Address -> City -> find('list');
+		$this -> set(compact('countries','cities'));
 		$this -> set(compact('roles'));
 	}
 
@@ -153,7 +160,7 @@ class UsersController extends AppController {
 			$this -> redirect(array('action' => 'profile'));
 		}
 		if (!empty($this -> data)) {
-			$user = $this -> User -> findById($id);
+			$user = $this -> User -> findById($this -> data['User']['id']);
 			if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
 				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
 				if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
