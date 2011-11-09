@@ -8,11 +8,10 @@
 		echo $this->Form->input('last_name');
 		echo $this->Form->input('password');
 		echo $this->Form->input('role_id');
-		echo $this->Form->input('active');
+		echo $this->Form->input('active', array('checked'=>true));
 		echo $this->Form->input('city_id');
 		echo $this->Form->input('phone');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
-

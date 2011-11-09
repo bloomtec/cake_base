@@ -274,7 +274,8 @@ class UsersController extends AppController {
 			}
 		}
 		$roles = $this -> User -> Role -> find('list');
-		$this -> set(compact('roles'));
+		$cities = $this -> User -> City -> find('list');
+		$this -> set(compact('roles', 'cities'));
 	}
 
 	function admin_edit($id = null) {

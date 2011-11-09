@@ -21,8 +21,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title>
-		<?php
+		<title><?php
 		$model = $this -> params['models'][0];
 		$singularVar = strtolower($model);
 		if (isset(${$singularVar}[$model]['name'])) {
@@ -30,11 +29,12 @@
 		} else {
 			echo $title_for_layout;
 		}
-			?>
-		</title>
+			?></title>
 		<?php
-		if (isset(${$singularVar}[$model]['keywords'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
-		if (isset(${$singularVar}[$model]['description'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
+		if (isset(${$singularVar}[$model]['keywords']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
+		if (isset(${$singularVar}[$model]['description']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
 		echo $this -> Html -> meta('icon');
 		echo $this -> Html -> css('ez');
 		echo $this -> Html -> css('admin');
@@ -42,6 +42,8 @@
 		echo $this -> Html -> css('uploadify');
 		echo $this -> Html -> Script("jquery");
 		echo $this -> Html -> Script('jquery-ui-1.8.16.custom.min');
+		echo $this -> Html -> script('bjs');
+		echo $this -> Html -> script('admin');
 		echo $this -> Html -> Script("menu");
 		echo $this -> Html -> Script("swfobject");
 		echo $this -> Html -> Script("jquery.uploadify.v2.1.4.min");
@@ -55,12 +57,11 @@
 	<body>
 		<div id="container">
 			<div id="header">
-				<?php echo $this -> element('languages') ?>
+				<?php echo $this -> element('languages')
+				?>
 				<div style='clear:both;'></div>
 				<h1 class="logo_interna"></h1>
 				<?php echo $this -> element("ez/menu");?>
-				
-				
 			</div>
 			<div id="content">
 				<?php echo $this -> Session -> flash();?>
