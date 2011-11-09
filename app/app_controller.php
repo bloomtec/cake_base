@@ -21,7 +21,6 @@ class AppController extends Controller {
 		if (isset($this -> params["prefix"])) {
 			$this -> layout = "ez/ez";
 			$prefix = $this -> params["prefix"];
-			$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
 			$this -> Auth -> loginRedirect = array("controller" => "pages", "action" => "ez", "$prefix" => true);
 			$this -> Auth -> deny($this -> action);
 		} else {
