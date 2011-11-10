@@ -22,18 +22,18 @@
 		<a href='#'> <?php __('SETTINGS') ?></a>
 		<ul>
 			<?php if($session -> read('Auth.User.role_id') == 1): ?>
-			<li><?php echo $html->link(__('COUNTRIES',true),array('controller'=>'countries'));?></li>
+			<li><?php echo $html->link(__('COUNTRIES',true),array('controller'=>'countries', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD COUNTRY',true),array('controller'=>'countries','action' => 'add'));?></li>
-			<li><?php echo $html->link(__('CITIES',true),array('controller'=>'cities'));?></li>
+			<li><?php echo $html->link(__('CITIES',true),array('controller'=>'cities', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD CITY',true),array('controller'=>'cities','action' => 'add'));?></li>
 			<li><?php echo $html->link(__('CUISINES',true),array('controller'=>'cuisines','action' => 'index'));?></li>
 			<li><?php echo $html->link(__('ADD CUISINE',true),array('controller'=>'cuisines','action' => 'add'));?></li>
 			<?php endif; ?>
-			<li><?php echo $html->link(__('ZONES',true),array('controller'=>'zones'));?></li>
+			<li><?php echo $html->link(__('ZONES',true),array('controller'=>'zones', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD ZONE',true),array('controller'=>'zones','action' => 'add'));?></li>
-			<li><?php echo $html->link(__('RESTAURANTS',true),array('controller'=>'restaurants'));?></li>
+			<li><?php echo $html->link(__('RESTAURANTS',true),array('controller'=>'restaurants', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD RESTAURANT',true),array('controller'=>'restaurants','action' => 'add'));?></li>
-		</ul>	
+		</ul>
 	</li>
 	
 	<?php if($session -> read('Auth.User.role_id') == 1): ?>

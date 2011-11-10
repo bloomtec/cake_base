@@ -7,6 +7,16 @@ class DealsController extends AppController {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+	
+	private function getRestaurants() {
+		return $this->Deal->Restaurant->find(
+			'list',
+			array(
+				'fields'=>array('Restaurant.id'),
+				'conditions'=>array('Restaurant.manager_id'=>$this->Session->read('Auth.User.id'))
+			)
+		);
+	}
 
 	function index() {
 		$this -> Deal -> recursive = 0;
@@ -88,7 +98,7 @@ class DealsController extends AppController {
 		$this -> Deal -> recursive = 0;
 		$this -> paginate = array(
 			'conditions' => array(
-				
+				'Deal.restaurant_id'=>$this->getRestaurants()
 			)
 		);
 		$this -> set('deals', $this -> paginate());

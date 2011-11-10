@@ -4,8 +4,6 @@
 	<fieldset>
 		<legend><?php __('Admin Add Restaurant'); ?></legend>
 	<?php
-		echo $this->Form->input('country_id',array('options' => $countries));
-		echo $this->Form->input('city_id');
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
