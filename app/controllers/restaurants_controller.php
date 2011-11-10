@@ -7,6 +7,16 @@ class RestaurantsController extends AppController {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+	
+	private function isManager($restaurant_id = null) {
+		if($restaurant_id) {
+			$restaurant = $this->Restaurant->read(null, $restaurant_id);
+			return ($this->Session->read('Auth.User.id') == $restaurant['Restaurant']['manager_id']);
+		} else {
+			return false;
+		
+		}
+	}
 
 	function index() {
 		$this -> Restaurant -> recursive = 0;
@@ -89,11 +99,16 @@ class RestaurantsController extends AppController {
 
 	function manager_index() {
 		$this -> Restaurant -> recursive = 0;
+		$this->paginate = array(
+			'conditions'=>array(
+				'Restaurant.manager_id'=>$this->Session->read('Auth.User.id')
+			)
+		);
 		$this -> set('restaurants', $this -> paginate());
 	}
 
 	function manager_view($id = null) {
-		if (!$id) {
+		if (!$id || !$this->isManager($id)) {
 			$this -> Session -> setFlash(__('Invalid restaurant', true));
 			$this -> redirect(array('action' => 'index'));
 		}
@@ -118,11 +133,11 @@ class RestaurantsController extends AppController {
 	}
 
 	function manager_edit($id = null) {
-		if (!$id && empty($this -> data)) {
+		if ((!$id && empty($this -> data)) || !$this->isManager($id)) {
 			$this -> Session -> setFlash(__('Invalid restaurant', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		if (!empty($this -> data)) {
+		if (!empty($this -> data) && $this->isManager($this->data['Restaurant']['id'])) {
 			if ($this -> Restaurant -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
@@ -141,7 +156,7 @@ class RestaurantsController extends AppController {
 	}
 
 	function manager_delete($id = null) {
-		if (!$id) {
+		if (!$id || !$this->isManager($id)) {
 			$this -> Session -> setFlash(__('Invalid id for restaurant', true));
 			$this -> redirect(array('action' => 'index'));
 		}
