@@ -85,6 +85,11 @@ class DealsController extends AppController {
 
 	function manager_index() {
 		$this -> Deal -> recursive = 0;
+		$this -> paginate = array(
+			'conditions' => array(
+				
+			)
+		);
 		$this -> set('deals', $this -> paginate());
 	}
 

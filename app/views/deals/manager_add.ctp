@@ -11,7 +11,6 @@
 		echo $this->Form->input('amount');
 		echo $this->Form->input('price');
 		echo $this->Form->input('max_buys');
-		echo $this->Form->input('visits');
 		echo $this->Form->input('Cuisine');
 	?>
 	</fieldset>
