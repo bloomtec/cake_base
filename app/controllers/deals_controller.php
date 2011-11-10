@@ -17,6 +17,7 @@ class DealsController extends AppController {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid deal', true));
 			$this -> redirect(array('action' => 'index'));
+			$this -> layout = "default";
 		}
 		$this -> set('deal', $this -> Deal -> findBySlug($slug));
 	}
