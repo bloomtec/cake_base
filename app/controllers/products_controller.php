@@ -382,8 +382,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		echo json_encode($motherboards);
-		exit(0);
+		$this -> set(compact('motherboards'));
 	}
 	
 	/**
@@ -419,9 +418,8 @@ class ProductsController extends AppController {
 				$compatible_memories[] = $memory['Product']['id'];
 			}
 		}
-		$compatible_memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		echo json_encode($compatible_memories);
-		exit(0);
+		$memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
+		$this -> set(compact('memories'));
 	}
 	
 	/**
@@ -442,9 +440,8 @@ class ProductsController extends AppController {
 				$compatible_drives[] = $drive['Product']['id'];
 			}
 		}
-		$compatible_drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		echo json_encode($compatible_drives);
-		exit(0);
+		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		$this -> set(compact('drives'));
 	}
 	
 	/**
@@ -465,9 +462,8 @@ class ProductsController extends AppController {
 				$compatible_drives[] = $drive['Product']['id'];
 			}
 		}
-		$compatible_drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		echo json_encode($compatible_drives);
-		exit(0);
+		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		$this -> set(compact('drives'));
 	}
 	
 	/**
@@ -491,8 +487,7 @@ class ProductsController extends AppController {
 		} else {
 			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
-		echo json_encode($supplies);
-		exit(0);
+		$this -> set(compact('supplies'));
 	}
 	
 	/**
@@ -508,8 +503,7 @@ class ProductsController extends AppController {
 		} else {
 			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
 		}
-		echo json_encode($casings);
-		exit(0);
+		$this -> set(compact('casings'));
 	}
 
 }
