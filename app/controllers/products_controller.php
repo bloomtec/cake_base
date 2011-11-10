@@ -372,7 +372,7 @@ class ProductsController extends AppController {
 			)
 		);
 		$motherboards = $this->Product->find(
-			'all',
+			'list',
 			array(
 				'recursive'=>-1,
 				'conditions'=>array(
