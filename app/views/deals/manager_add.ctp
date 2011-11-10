@@ -7,6 +7,7 @@
 		echo $this->Form->input('restaurant_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
+		echo $this->Form->input('conditions');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 		echo $this->Form->input('amount');
 		echo $this->Form->input('price');

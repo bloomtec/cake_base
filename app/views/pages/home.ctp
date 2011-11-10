@@ -2,4 +2,3 @@
 				
 </div>
 <?php echo $this->element('product_list'); ?>
-

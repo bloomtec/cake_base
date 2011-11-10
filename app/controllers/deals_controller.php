@@ -5,7 +5,11 @@ class DealsController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('getDeals');
+	}
+	
+	function getDeals() {
+		return $this->Deal->find('all');
 	}
 	
 	private function getRestaurants() {

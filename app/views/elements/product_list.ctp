@@ -1,22 +1,19 @@
-<div class="lista_producto">
-	<a href=""><img src="/img/producto.jpg" /></a>
-	<h1><a href="#">
-			Deliciosa Lasagna para 2 personas + 
-			dos gaseosas + pan frances.
+<div class="lista_producto"><!-- deals -->
+	<a href="/deals/view/<?php echo $deal['Deal']['id']; ?>"><img src="/img/uploads/<?php echo $deal['Deal']['image']; ?>" /></a>
+	<h1>
+		<a href="#"><!-- descripcion -->
+			<?php echo $deal['Deal']['description']; ?>
 		</a>
 	</h1>
-	<h2 class="precio">
-		HOY: $18.000
-	</h2>
+	<h2 class="precio"> HOY: $<?php echo $deal['Deal']['price']; ?> </h2><!-- price -->
 	<label>Comprar con:</label>
 	<select>
 		<option>Tarjeta de crédito</option>
 		<option>Efectivo</option>
 	</select>
 	<p>
-		Promoción valida solo por internet  -  Horarios de atención:
-		Lunes a Donmingo 12:00 M - 10:00 PM
+		<?php echo $deal['Deal']['conditions']; ?>
 	</p>
-	<img class="logo_negocio" src="/img/logo_negocio.png"/>
-	<h3>Quedan 100 promociones</h3>
+	<img class="logo_negocio" src="/img/uploads/<?php $deal['Restaurant']['image']; ?>"/>
+	<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
 </div>
