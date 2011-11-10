@@ -106,7 +106,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again.', true));
 			}
 		}
-		$restaurants = $this -> Deal -> Restaurant -> find('list');
+		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions'=>array('Restaurant.manager_id'=>$this->Session->read('Auth.User.id'))));
 		$cuisines = $this -> Deal -> Cuisine -> find('list');
 		$this -> set(compact('restaurants', 'cuisines'));
 	}
