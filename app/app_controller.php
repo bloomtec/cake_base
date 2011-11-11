@@ -44,6 +44,7 @@ class AppController extends Controller {
 	);
 	
 	function beforeFilter() {
+		//$this->Session->delete('carrito');
 		if(isset($this->params["prefix"]) && $this->params["prefix"] == "admin"){
 			$this->layout="bloom";
 			$this->Auth->loginRedirect =array("controller"=>"pages","action"=>"ez","admin"=>true);
