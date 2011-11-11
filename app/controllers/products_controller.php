@@ -372,7 +372,7 @@ class ProductsController extends AppController {
 			)
 		);
 		$motherboards = $this->Product->find(
-			'all',
+			'list',
 			array(
 				'recursive'=>-1,
 				'conditions'=>array(
@@ -393,18 +393,39 @@ class ProductsController extends AppController {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		if($motherboard['Product']['is_video_included']) {
-			echo "true";
+			echo true;
 		} else {
-			echo "false";
+			echo false;
 		}
 		exit(0);
+	}
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar las memorias disponibles compatibles
+	 */
+	function getVideoCards($product_id = null , $selectedId = 0 ) {
+		$this->layout="ajax";
+		$motherboard = $this->Product->findById($product_id);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$videoCard = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>5)));
+		$compatible_cards = array();
+		foreach($videoCard as $card) {
+			if(in_array($card['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_cards[] = $card['Product']['id'];
+			}
+		}
+		$videoCards = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
+		$this -> set(compact('videoCards','selectedId'));
 	}
 	
 	/**
 	 * $product_id : ID del producto (tarjeta madre) seleccionada.
 	 * De ahí procesar las memorias disponibles compatibles
 	 */
-	function getMemories($product_id = null) {
+	function getMemories($product_id = null ,  $selectedId = 0) {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
@@ -419,14 +440,14 @@ class ProductsController extends AppController {
 			}
 		}
 		$memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		$this -> set(compact('memories'));
+		$this -> set(compact('memories','selectedId'));
 	}
 	
 	/**
 	 * $product_id : ID del producto (tarjeta madre) seleccionada.
 	 * De ahí procesar los discos duros disponibles compatibles
 	 */
-	function getHardDrives($product_id = null) {
+	function getHardDrives($product_id = null,  $selectedId = 0) {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
@@ -441,14 +462,14 @@ class ProductsController extends AppController {
 			}
 		}
 		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set(compact('drives'));
+		$this -> set(compact('drives' , 'selectedId'));
 	}
 	
 	/**
 	 * $product_id : ID del producto (tarjeta madre) seleccionada.
 	 * De ahí procesar las unidades opticas disponibles compatibles
 	 */
-	function getOpticalDrives($product_id = null) {
+	function getOpticalDrives($product_id = null,  $selectedId = 0) {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
@@ -463,14 +484,14 @@ class ProductsController extends AppController {
 			}
 		}
 		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set(compact('drives'));
+		$this -> set(compact('drives' ,'selectedId'));
 	}
 	
 	/**
 	 * $product_id : ID del producto (tarjeta de video) seleccionada.
 	 * De ahí procesar las fuentes disponibles compatibles
 	 */
-	function getPowerSupplies($product_id = null) {
+	function getPowerSupplies($product_id = null,  $selectedId = 0) {
 		$this->layout="ajax";
 		$supplies = array();
 		if($product_id) {
@@ -487,7 +508,7 @@ class ProductsController extends AppController {
 		} else {
 			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
-		$this -> set(compact('supplies'));
+		$this -> set(compact('supplies','selectedId'));
 	}
 	
 	/**
@@ -495,7 +516,7 @@ class ProductsController extends AppController {
 	 * De ahí procesar las cajas disponibles compatibles
 	 * Si no se incluye retornar todas.
 	 */
-	function getCasings($product_id = null) {
+	function getCasings($product_id = null,  $selectedId = 0) {
 		$this->layout="ajax";
 		$casings = array();
 		if($product_id) {
@@ -503,7 +524,7 @@ class ProductsController extends AppController {
 		} else {
 			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
 		}
-		$this -> set(compact('casings'));
+		$this -> set(compact('casings','selectedId'));
 	}
 
 }
