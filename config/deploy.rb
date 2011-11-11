@@ -7,7 +7,7 @@ set :cakephp_core_path, "cake"
 default_run_options[:pty] = true # Para pedir la contraseña de la llave publica de github via consola, sino sale error de llave publica.
 
 # DEPLOYMENT DIRECTORY STRUCTURE
-set :deploy_to, "/home/colostennis/colorstennis.com"
+set :deploy_to, "/home/colorstennis/colorstennis.com"
 
 # ROLES
 role :app, "colorstennis.com"
