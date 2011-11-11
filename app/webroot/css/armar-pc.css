@@ -17,8 +17,6 @@
 	background: url(/img/global/tabs.png) no-repeat -652px 0;
 	font-size:11px;
 	display:block;
-	height: 30px;  
-	line-height:30px;
 	width: 111px;
 	text-align:center;	
 	text-decoration:none;siguiente 
@@ -84,7 +82,7 @@
 	position:relative;
 	overflow:hidden;
 	width: 580px;
-	height:90px;
+	height:100px;
 	float: left;
 }
 .scrollable .items {
@@ -94,14 +92,20 @@
 }
 
 .items div {
-	float:left;
+
 }
 .tabs.items a{
 	font-weight: bold;
 	color: #424242;
 	text-align: center;
 	margin-right: 10px;
+	height: 100px;
+	padding:5px;
 }
+.tabs.items a.current{
+	background: gray;
+}
+
 
 .prev{
 	float: left;
@@ -135,6 +139,7 @@
     min-height: 390px;
     padding: 20px;
     width: 654px;
+    padding-bottom:10px;
 }
 .panes h1{
 	margin-bottom: 15px;
@@ -152,22 +157,7 @@
     font-weight: bold;
     margin-bottom: 10px;
 }
-.siguiente_paso{
-	color: #FF7800;
-    font-style: italic;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background-image:url(/img/flecha_siguiente_paso.png);
-	padding-right: 27px;
-	background-repeat: no-repeat;
-	background-position: top right; 
-	display: block;
-	width: 112px;
-	padding: 5px;
-	text-decoration: none;
-	float:left;
-	margin-top:-5px;
-}
+
 .panes select{
 	width: 135px;
 }
@@ -271,3 +261,43 @@
 	width: 220px;
 	float:left;
 }
+.panes .content{
+	height: 373px;
+}
+.panes .browse{
+	height:20px;
+	clear:both;
+}
+.siguiente_paso{
+	color: #FF7800;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-image:url(/img/flecha_siguiente_paso.png);
+	padding-right: 27px;
+	background-repeat: no-repeat;
+	background-position: top right; 
+	display: block;
+	width: 112px;
+	padding: 5px;
+	text-decoration: none;
+	float:right;
+	margin-top:-5px;
+}
+.paso_anterior{
+	color: #FF7800;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-image:url(/img/flecha_siguiente_paso.png);
+	background-repeat: no-repeat;
+	background-position: top left; 
+	display: block;
+	width: 112px;
+	padding: 5px;
+	padding-left: 27px;
+	text-decoration: none;
+	float:left;
+	margin-top:-5px;
+}
+
