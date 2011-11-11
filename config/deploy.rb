@@ -28,9 +28,9 @@ namespace :deploy do
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cp /home/colostennis/colorstennis.com/current/. /home/colostennis/colorstennis.com/ -R"
-    run "chmod 777 /home/colostennis/colorstennis.com/app/tmp/ -R"
-    run "chmod 777 /home/colostennis/colorstennis.com/app/webroot/img/uploads/ -R"
-    run "chmod 777 /home/colostennis/colorstennis.com/app/webroot/files/uploads/ -R"
+    run "cp /home/colorstennis/colorstennis.com/current/. /home/colostennis/colorstennis.com/ -R"
+    run "chmod 777 /home/colorstennis/colorstennis.com/app/tmp/ -R"
+    run "chmod 777 /home/colorstennis/colorstennis.com/app/webroot/img/uploads/ -R"
+    run "chmod 777 /home/colorstennis/colorstennis.com/app/webroot/files/uploads/ -R"
   end
 end
