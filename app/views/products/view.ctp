@@ -39,7 +39,7 @@
 				<div class="linea_comment">
 					<ul>
 						<?php $user_email = split("@", $comment['User']['email']); ?>
-						<li class="titulos_rosado twCenMt"><?=$user_email[0]?></li>
+						<li class="titulos_rosado twCenMt"><?php echo ($comment['User']['UserField']['name']); ?></li>
 						<li class="azul twCenMt"><?=$comment['Comment']['created']?></li>
 					</ul>
 					<p><?=$comment['Comment']['comment']?></p>
@@ -131,7 +131,7 @@
 		<span class="puntos"></span>
 		</div>
 		<div class="dudas">
-		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/dudasCompra">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
+		<h1 class="titulos_rosado"><a class="titulos_rosado" rel="#overlay" href="/pages/dudasCompra/<?php echo $product['Product']['clasification']?>">TIENES ALGUNA DUDA? PREGUNTANOS POR CORREO</a></h1>
 		<span class="puntos"></span>
 		</div>
 		<h2 class="titulos_rosado">COMPARTE ESTE PRODUCTO</h2>

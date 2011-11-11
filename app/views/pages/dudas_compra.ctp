@@ -11,7 +11,7 @@ para que sigas con la compra.
 	<textarea required='required' class="comentario" name='data[comentario]'> </textarea>
 	<div style="clear: both"></div>
 	<div class="newsletter_wrapper">
-
+		<?php echo $form->hidden('clasification',array('name'=>'data[clasification]','value'=>$clasification)); ?>
 		<?php echo $form->checkbox('subscribe',array('label'=>'false','name'=>'data[subscribe]','div'=>false))?>
 		<label class="subtitulos_blanco tahoma">Suscribirme al NewsLetter de Colors Tennis</label>
 		<div style="clear: both"></div>
