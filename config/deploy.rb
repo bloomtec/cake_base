@@ -15,7 +15,7 @@ role :web, "colorstennis.com"
 role :db, "colorstennis.com", :primary => true
 
 # DREAMHOST INFORMATION
-set :user, "colostennis"
+set :user, "colorstennis"
 
 # VERSION TRACKER INFORMATION
 set :scm, :git
