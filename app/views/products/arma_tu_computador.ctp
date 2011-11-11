@@ -41,7 +41,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione: </label>
-				<div class='radios rams'>
+				<div class='radios ram-cards'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				
@@ -61,7 +61,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione:</label>
-				<div class='radios discos-duros'>
+				<div class='radios hard-drives'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				
@@ -101,7 +101,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione: </label>
-				<div class='radios torres'>
+				<div class='radios case'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				
@@ -121,7 +121,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione:</label>
-				<div class='radios cases'>
+				<div class='radios supplys'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				
@@ -274,16 +274,16 @@
 		<div class="scrollable">   
 			<ul class='tabs items'>
 				<li><a href="#" id='processor'><div class="img_wrapper"><img src="/img/procesador.png" /></div>Procesador y tarjeta madre</a></li>
-				<li><a href="#" id='tarjeta-ram'><div class="img_wrapper"><img src="/img/ram.png" /></div>Memoria Ram</a></li>
-				<li><a href="#" id='hard-disc'><div class="img_wrapper"><img src="/img/disco_duro.png" /></div>Discos duros</a></li>
-				<li><a href="#" id='tarjeta-video'><div class="img_wrapper"><img src="/img/tarjeta_video.png" /></div>Tarjeta de video</a></li>
-				<li><a href="#" id='torre'><div class="img_wrapper"><img src="/img/torre.png" /></div>Torre</a></li>
-				<li><a href="#" id='fuente'><div class="img_wrapper"><img src="/img/fuente.png" /></div>Fuente</a></li>
-				<li><a href="#" id='unidad-optica'><div class="img_wrapper"><img src="/img/cd.png" /></div>Unidades ópticas</a></li>
+				<li><a href="#" id='ram'><div class="img_wrapper"><img src="/img/ram.png" /></div>Memoria Ram</a></li>
+				<li><a href="#" id='hard-drive'><div class="img_wrapper"><img src="/img/disco_duro.png" /></div>Discos duros</a></li>
+				<li><a href="#" id='video-card'><div class="img_wrapper"><img src="/img/tarjeta_video.png" /></div>Tarjeta de video</a></li>
+				<li><a href="#" id='case'><div class="img_wrapper"><img src="/img/torre.png" /></div>Torre</a></li>
+				<li><a href="#" id='supply'><div class="img_wrapper"><img src="/img/fuente.png" /></div>Fuente</a></li>
+				<li><a href="#" id='optical-drive'><div class="img_wrapper"><img src="/img/cd.png" /></div>Unidades ópticas</a></li>
 				<li><a href="#" id='monitor'><div class="img_wrapper"><img src="/img/monitor.png" /></div>Monitor</a></li>
 				<li><a href="#" id='mouse'><div class="img_wrapper"><img src="/img/mouse.png" /></div>Periféricos</a></li>
-				<li><a href="#" id='tarjetas-adicionales'><div class="img_wrapper"><img src="/img/tarjeta_adicional.png" /></div>Tarjetas adicionles</a></li>
-				<li><a href="#" id='accesorios'><div class="img_wrapper"><img src="/img/audifonos.png" /></div>Accesorios</a></li>
+				<li><a href="#" id='other-cards'><div class="img_wrapper"><img src="/img/tarjeta_adicional.png" /></div>Tarjetas adicionles</a></li>
+				<li><a href="#" id='accesoriess'><div class="img_wrapper"><img src="/img/audifonos.png" /></div>Accesorios</a></li>
 			</ul>
 		</div>
 		<a class="next browse right"></a>

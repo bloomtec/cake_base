@@ -526,5 +526,9 @@ class ProductsController extends AppController {
 		}
 		$this -> set(compact('casings','selectedId'));
 	}
+	
+	function getOtherCards(){
+		
+	}
 
 }
