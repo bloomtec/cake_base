@@ -9,7 +9,7 @@
 	
 }
 .users ul{
-	border-bottom: 1px solid #CBCACA;
+	border-bottom: 1px solid #000;
     margin: 0 auto;
     padding-bottom: 10px;
     padding-top: 10px;
@@ -22,7 +22,6 @@
 }
 .users li a, .datos_perfil h1{
 	text-decoration: none;
-	color: #424242;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 14px;
@@ -31,7 +30,6 @@
 	border: none;
 }
 .users li a{
-	border-right: 1px solid #CBCACA;
     padding-right: 18px;
 }
 .datos_perfil{
@@ -51,15 +49,11 @@
 	background-image: url("/img/flecha_siguiente_paso.png");
     background-position: right top;
     background-repeat: no-repeat;
-    color: #FF7800;
     display: block;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
-    font-style: italic;
     font-weight: bold;
-    padding: 5px;
     text-decoration: none;
-    width: 112px;
     float: none;
     margin: 0;
 }
@@ -69,6 +63,7 @@
 .datos_perfil h1{
 	margin-top: 13px;
 	margin-bottom: 18px;
+	text-align: left;
 }
 .users h2{
 	display: block;
@@ -205,4 +200,7 @@ div.images .preview{
 }
 div.images .preview  img{
 	max-width:100%;
+}
+.comprados h1{
+	text-align: left;
 }

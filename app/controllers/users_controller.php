@@ -92,7 +92,7 @@ class UsersController extends AppController {
 	}
 	
 	function enEspera(){
-		
+		$this -> layout = "personaliza";
 	}
 
 	function login() {
@@ -104,8 +104,10 @@ class UsersController extends AppController {
 				}
 			} else {
 				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+				
 			}
 		}
+		$this->layout="profile";
 	}
 
 	function logout() {
@@ -168,7 +170,7 @@ class UsersController extends AppController {
 		}
 	}
 	function recordarPassword(){
-		
+		$this->layout="profile";
 	}
 	function rememberPassword() {
 		if (!empty($this -> data)) {
@@ -193,7 +195,7 @@ class UsersController extends AppController {
 			} else {
 				echo false;
 			}
-
+			
 		}
 		Configure::write('debug', 0);
 		$this -> autoRender = false;

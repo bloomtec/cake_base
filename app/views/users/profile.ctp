@@ -1,3 +1,5 @@
+<?php echo $this -> element("user_menu");?>
+
 	<!-- <div class="datos_perfil primero">
 		<img src="/img/foto_perfil.png" />
 		<a href="#">Cambiar imagen</a>
