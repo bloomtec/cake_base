@@ -26,6 +26,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
+		$this -> layout = "users";
 	}
 	function registerProvider() {
 		if (!empty($this -> data)) {
@@ -92,7 +93,7 @@ class UsersController extends AppController {
 	}
 	
 	function enEspera(){
-		$this -> layout = "personaliza";
+		$this -> layout = "users";
 	}
 
 	function login() {
@@ -107,7 +108,7 @@ class UsersController extends AppController {
 				
 			}
 		}
-		$this->layout="profile";
+		$this->layout="users";
 	}
 
 	function logout() {
@@ -115,14 +116,14 @@ class UsersController extends AppController {
 	}
 
 	function profile() {
-		$this->layout="profile";
+		$this->layout="users";
 		$this->set('user',$this->User->read(null, $this -> Auth -> user('id')));
 	}
 	function orders(){
-		$this->layout="profile";
+		$this->layout="users";
 	}
 	function edit($id) {
-		$this->layout="profile";
+		$this->layout="users";
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Usuario no valid', true));
 			$this -> redirect(array('action' => 'index'));
@@ -146,7 +147,7 @@ class UsersController extends AppController {
 	}
 
 	function changePassword($id = null) {
-		$this->layout="profile";
+		$this->layout="users";
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'profile'));
@@ -170,7 +171,7 @@ class UsersController extends AppController {
 		}
 	}
 	function recordarPassword(){
-		$this->layout="profile";
+		$this->layout="users";
 	}
 	function rememberPassword() {
 		if (!empty($this -> data)) {
