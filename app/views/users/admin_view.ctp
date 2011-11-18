@@ -1,11 +1,6 @@
 <div class="users view">
 <h2><?php  __('User');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Email'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $user['User']['email']; ?>
@@ -21,14 +16,9 @@
 			<?php echo $user['User']['last_name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Password'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $user['User']['password']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Role'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->link($user['Role']['name'], array('controller' => 'roles', 'action' => 'view', $user['Role']['id'])); ?>
+			<?php echo $user['Role']['name']; ?>
 			&nbsp;
 		</dd>
 <?php if($user['User']['active']){ ?>
@@ -73,7 +63,6 @@
 	<?php if (!empty($user['Address'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('User Id'); ?></th>
 		<th><?php __('Address Id'); ?></th>
@@ -93,7 +82,6 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $address['id'];?></td>
 			<td><?php echo $address['name'];?></td>
 			<td><?php echo $address['user_id'];?></td>
 			<td><?php echo $address['address_id'];?></td>

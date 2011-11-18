@@ -1,11 +1,6 @@
 <div class="countries view">
 <h2><?php  __('Country');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $country['Country']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $country['Country']['name']; ?>
@@ -28,7 +23,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Present'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $country['Country']['is_present']; ?>
+			<?php if($country['Country']['is_present']){echo __('Yes', true);}else{echo __('No', true);} ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
@@ -55,7 +50,6 @@
 	<?php if (!empty($country['Address'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('User Id'); ?></th>
 		<th><?php __('Adress'); ?></th>
@@ -75,7 +69,6 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $address['id'];?></td>
 			<td><?php echo $address['name'];?></td>
 			<td><?php echo $address['user_id'];?></td>
 			<td><?php echo $address['adress'];?></td>
@@ -105,8 +98,6 @@
 	<?php if (!empty($country['City'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Country Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Image'); ?></th>
@@ -125,12 +116,10 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $city['id'];?></td>
-			<td><?php echo $city['country_id'];?></td>
 			<td><?php echo $city['name'];?></td>
 			<td><?php echo $city['description'];?></td>
-			<td><?php echo $city['image'];?></td>
-			<td><?php echo $city['is_present'];?></td>
+			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$city['image']); ?></td>
+			<td><?php if($city['is_present']){echo __('Yes', true);}else{echo __('No', true);} ?></td>
 			<td><?php echo $city['code'];?></td>
 			<td><?php echo $city['created'];?></td>
 			<td><?php echo $city['updated'];?></td>
