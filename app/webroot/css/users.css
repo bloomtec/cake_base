@@ -1,35 +1,7 @@
 .users{
 	width: 90%;
-	margin: 0 auto;
+}
 
-}
-input{
-	border:1px solid #81939f;
-
-}
-input:focus{
-	background-color:#e8f6ff;
-	border:1px solid #647c8c;
-	transition: all 1s;
-	-moz-transition: all 1s; 
-	-webkit-transition: all 1s;
-	-o-transition: all 1s;
-}
-.users .volver_profile, .users .confirmar{
-	background-color: #CCD5DF;
-    border: 0 none;
-    border-radius: 6px 6px 6px 6px;
-    color: #323232;
-    font-weight: bold;
-    margin-bottom: 6px;
-    padding: 6px;
-    margin-top: 10px;
-
-}
-.users .volver_profile{
-	margin-left: 5px;
-    margin-right: 86px;
-}
 .users p, .users label, .users span, .users a, .users h1, .users h2, .users h3,.users legend{
 	font-family: Arial, Helvetica, sans-serif;
 	color: #424242;
@@ -43,9 +15,7 @@ input:focus{
     width: 100%;
     margin-bottom:30px;
 }
-.users input{
-	padding-left: 10px;
-}
+
 .users li{
 	float: left;
 	margin-right: 10px;
@@ -146,45 +116,7 @@ input:focus{
     margin-bottom: 15px;
     color: #424242;
 }
-.users legend{
-	text-align: left;
-}
-.users .input.text label, .users .input.password label{
-	display: block;
-    float: left;
-    margin-top: 8px;
-    text-align: left;
-    width: 190px;
-}
-.users .input.text input, .users .input.password input{
-	float: left;
-	width: 250px;
-}
-.users .submit input{
-	float: right;
-    margin-right: 67px;
-    margin-top: 10px;
-    padding-left: 6px;
-}
-.register label, .correo, .login label, #contacto label{
-  	color: #424242;
-    display: block;
-    float: left;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
-    width: 130px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    padding-top: 5px;
-}
-.register input, #UserEmail, .login input, #contacto input, #contacto textarea{
-	margin-bottom: 5px;
-	font-family: Arial,Helvetica,sans-serif;
-	padding-left: 10px;
-	width: 250px;
-	border: 1px solid #BCBCBC;
-	height: 20px;
-}
+
 #contacto textarea{
 	height: 60px;
 	max-width: 250px;
@@ -192,53 +124,22 @@ input:focus{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit{
-	background-image: url("/img/submit_registro.png");
-	border:none;
-	background-color: transparent;
-	width: 99px;
-	height: 37px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-style:italic;
-	font-weight: bold;
-	cursor: pointer;
-	margin-left: 290px;
-	margin-top: 8px;
-}
 
-.login  .submit input{
-	margin-left: 0px;
-	margin-top: 0;
-	margin-right: 151px;
-}
-.login .submit{
-	height: 26px;
-	float: left;
-	width: 100px;
-	margin-right: 150px;
-	height: 36px;
-
-}
 .login .submit.primero{
 	float: left;
-	padding-top: 12px;
-	margin-top: 0;
-	margin-right: 20px;
-	height: 26px;
-	margin-left: 170px;
+
 }
 .correo{
 	width: auto;
 	margin-right: 10px;
+	margin-top: 8px;
 }
-#rememberForm input[type=submit]{
-	margin-left: 381px;
-}
+
 #rememberForm p{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin-bottom: 15px;
+	font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    margin-bottom: 30px;
+    text-align: left;
 }
 
 div.form2{/*Form whith image*/
@@ -258,4 +159,22 @@ div.images .preview  img{
 }
 .comprados h1{
 	text-align: left;
+}
+#rememberForm{
+	width: 500px;
+}
+.confirmacion-remember{
+	color: red;
+    float: right;
+    font-size: 11px;
+    font-weight: bold;
+    margin-right: 22px;
+    margin-top: 20px;
+    visibility: hidden;
+}
+fieldset .boton{
+	float: right;
+	margin-right: 20px;
+	min-height: 14px;
+    padding: 9px 14px;
 }

@@ -1,4 +1,5 @@
-<?php e($this->Form->create('User', array('controller'=>'users', 'action'=>'rememberPassword','id'=>'rememberForm'))); ?>
+<div class="login form2 users">
+	<?php e($this->Form->create('User', array('controller'=>'users', 'action'=>'rememberPassword','id'=>'rememberForm'))); ?>
 		<p>
 			Escribe la dirección de correo electronico con la que te registraste y recibiras en tu correo una clave para ingresar a tu cuenta.
 		</p>
@@ -6,12 +7,13 @@
 		<input type="email" id="UserEmail" name="data[User][email]"  required="required" />
 		<div style="clear: both"></div>
 		<!--<a class="azul ingresar" href="#">Ingresar</a>-->
-		<input type="submit" class='twCenMt' value="Solicitar" />
-		<div style="clear: both"></div>
+		<?php echo $this->Form->submit(__("change",true)) ?>
 		<div class='confirmacion-remember'>
 			Se ha enviado un nuevo password a tu correo electronico
 		</div>
-<?php e($form->end()) ?>
+		<div style="clear: both"></div>
+	<?php e($form->end()) ?>
+</div>
 <script type="text/javascript">
 	$('#rememberForm').validator({lang:'es'}).submit(function(e){
 		var form=$(this);

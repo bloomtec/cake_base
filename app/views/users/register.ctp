@@ -16,8 +16,9 @@
 			echo $this -> Form -> input('password', array('type' => 'password','required' => 'required'));
 			echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]'));
 		?>
+		<?php echo $this -> Form -> end(__('Registrarse', true));?>
 	</fieldset>
-	<?php echo $this -> Form -> end(__('Registrarse', true));?>
+	
 </div>
 <script type='text/javascript'> 
 $(function(){

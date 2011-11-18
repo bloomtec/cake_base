@@ -17,8 +17,9 @@
 		echo $this->Form->input('city');
 		echo $this->Form->input('address');
 	?>
+	<?php echo $this->Form->end(__('Send', true));?>
 	</fieldset>
-<?php echo $this->Form->end(__('Enviar', true));?>
+
 </div>
 <!--
 <div class="images">

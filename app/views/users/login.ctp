@@ -1,27 +1,29 @@
-<div class="login form">
+<div class="login form2 users">
 	<?php
 	echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'login'));
 	?>
-	<fieldset class="centrar">
+	<fieldset>
 		<legend>
 			<?php __('Ingresar');?>
 		</legend>
 		<div class="input text">
 			<label for='email'>E-mail:</label>
-			<input type="email" class="input" id='email' name='data[User][email]' required="required" />
+			<input type="email"  id='email' name='data[User][email]' required="required" />
 		</div>
 		<div class="input text">
 			<label for='password'>Password:</label>
-			<input type="password" id='password' class="input" name='data[User][password]' required="required" />
+			<input type="password" id='password'  name='data[User][password]' required="required" />
 		</div>
-		
-		<a class="submit primero" href='/users/register'> Registrese </a>
+		<div style="clear: both"></div>
 		<?php
-		echo $this -> Form -> end(__('Ingresar', true));
+		echo $this -> Form -> end(__('Login', true));
 		?>
+		<a class="boton" href='/users/register'> Registrese </a>
 		
 	</fieldset>
 	<?php
 		echo $this -> Session -> flash('auth');
 		?>
+		
 </div>
+<div style="clear: both"></div>

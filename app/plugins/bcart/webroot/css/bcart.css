@@ -150,25 +150,6 @@ a{
 .envio{
 	margin-bottom: 15px;
 }
-.form label{
-	color: #424242;
-    display: block;
-    float: left;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 5px;
-    padding-top: 5px;
-    width: 130px;
-}
-.form input{
-	border: 1px solid #BCBCBC;
-    font-family: Arial,Helvetica,sans-serif;
-    height: 20px;
-    margin-bottom: 5px;
-    padding-left: 3px;
-    width: 250px;
-}
 .form #EnvioAuthorize, .form #EnvioConditions{
 	width: auto;
 	border:none;
