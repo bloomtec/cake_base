@@ -2,7 +2,7 @@
 <div class="users form2">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
-		<legend><?php __('Edit User'); ?></legend>
+		<legend><?php __('Completar o modificar mis datos'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->hidden('role_id',array('value'=>2));
@@ -16,10 +16,9 @@
 		echo $this->Form->input('state');
 		echo $this->Form->input('city');
 		echo $this->Form->input('address');
-		echo $this->Form->input('is_active');
 	?>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<?php echo $this->Form->end(__('Enviar', true));?>
 </div>
 <!--
 <div class="images">
