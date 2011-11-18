@@ -1,11 +1,6 @@
 <div class="cities view">
 <h2><?php  __('City');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $city['City']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Country'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($city['Country']['name'], array('controller' => 'countries', 'action' => 'view', $city['Country']['id'])); ?>
@@ -28,7 +23,7 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Present'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $city['City']['is_present']; ?>
+			<?php if($city['City']['is_present']){echo __('Yes', true);}else{echo __('No', true);}; ?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
@@ -65,7 +60,6 @@
 	<?php if (!empty($city['Address'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('User Id'); ?></th>
 		<th><?php __('Address'); ?></th>
@@ -85,7 +79,6 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $address['id'];?></td>
 			<td><?php echo $address['name'];?></td>
 			<td><?php echo $address['user_id'];?></td>
 			<td><?php echo $address['address'];?></td>
@@ -115,17 +108,12 @@
 	<?php if (!empty($city['User'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Email'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Last Name'); ?></th>
-		<th><?php __('Password'); ?></th>
-		<th><?php __('Role Id'); ?></th>
+		<th><?php __('Email'); ?></th>
+		<th><?php __('Role'); ?></th>
 		<th><?php __('Active'); ?></th>
-		<th><?php __('City Id'); ?></th>
 		<th><?php __('Phone'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -137,17 +125,12 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $user['id'];?></td>
-			<td><?php echo $user['email'];?></td>
 			<td><?php echo $user['name'];?></td>
 			<td><?php echo $user['last_name'];?></td>
-			<td><?php echo $user['password'];?></td>
-			<td><?php echo $user['role_id'];?></td>
-			<td><?php echo $user['active'];?></td>
-			<td><?php echo $user['city_id'];?></td>
+			<td><?php echo $user['email'];?></td>
+			<td><?php echo $user['Role']['name'];?></td>
+			<td><?php if($user['active']) {echo __('Yes', true);}else{echo __('No', true);};?></td>
 			<td><?php echo $user['phone'];?></td>
-			<td><?php echo $user['created'];?></td>
-			<td><?php echo $user['updated'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'users', 'action' => 'view', $user['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'users', 'action' => 'edit', $user['id'])); ?>
@@ -169,13 +152,9 @@
 	<?php if (!empty($city['Zone'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('City Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Image'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -187,13 +166,9 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $zone['id'];?></td>
-			<td><?php echo $zone['city_id'];?></td>
 			<td><?php echo $zone['name'];?></td>
 			<td><?php echo $zone['description'];?></td>
-			<td><?php echo $zone['image'];?></td>
-			<td><?php echo $zone['created'];?></td>
-			<td><?php echo $zone['updated'];?></td>
+			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$zone['image']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'zones', 'action' => 'view', $zone['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'zones', 'action' => 'edit', $zone['id'])); ?>

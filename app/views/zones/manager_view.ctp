@@ -1,11 +1,6 @@
 <div class="zones view">
 <h2><?php  __('Zone');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $zone['Zone']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('City'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->link($zone['City']['name'], array('controller' => 'cities', 'action' => 'view', $zone['City']['id'])); ?>
@@ -55,16 +50,12 @@
 	<?php if (!empty($zone['Restaurant'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Manager Id'); ?></th>
-		<th><?php __('Zone Id'); ?></th>
+		<th><?php __('Manager'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Image'); ?></th>
 		<th><?php __('Lat'); ?></th>
 		<th><?php __('Long'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -76,16 +67,12 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $restaurant['id'];?></td>
-			<td><?php echo $restaurant['manager_id'];?></td>
-			<td><?php echo $restaurant['zone_id'];?></td>
+			<td><?php echo $restaurant['Manager']['name'] . ' ' . $restaurant['Manager']['last_name'];?></td>
 			<td><?php echo $restaurant['name'];?></td>
 			<td><?php echo $restaurant['description'];?></td>
-			<td><?php echo $restaurant['image'];?></td>
+			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$restaurant['image']); ?></td>
 			<td><?php echo $restaurant['lat'];?></td>
 			<td><?php echo $restaurant['long'];?></td>
-			<td><?php echo $restaurant['created'];?></td>
-			<td><?php echo $restaurant['updated'];?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'restaurants', 'action' => 'view', $restaurant['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'restaurants', 'action' => 'edit', $restaurant['id'])); ?>

@@ -38,7 +38,8 @@ class CitiesController extends AppController {
 			$this->Session->setFlash(__('Invalid city', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('city', $this->City->read(null, $id));	
+		$city = $this->City->find('first', array('recursive'=>2, 'conditions'=>array('City.id'=>$id)));
+		$this->set('city', $city);	
 	}
 	
 	function admin_add() {
@@ -88,5 +89,13 @@ class CitiesController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	
+	function manager_view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid city', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$city = $this->City->find('first', array('recursive'=>2, 'conditions'=>array('City.id'=>$id)));
+		$this->set('city', $city);	
+	}
 
 }
