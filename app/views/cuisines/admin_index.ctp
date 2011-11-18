@@ -21,7 +21,7 @@
 	<tr<?php echo $class;?> id='<?php echo $cuisine['Cuisine']['id'] ?>'>
 		<td><?php echo $cuisine['Cuisine']['name']; ?>&nbsp;</td>
 		<td><?php echo $cuisine['Cuisine']['description']; ?>&nbsp;</td>
-		<td><?php echo $this->Html->image('uploads/100x100/'.$cuisine['Cuisine']['image']); ?>&nbsp;</td>
+		<td><?php echo $this->Html->image('uploads/50x50/'.$cuisine['Cuisine']['image']); ?>&nbsp;</td>
 		<td><?php echo $cuisine['Cuisine']['created']; ?>&nbsp;</td>
 		<td><?php echo $cuisine['Cuisine']['updated']; ?>&nbsp;</td>
 		<td class="actions">

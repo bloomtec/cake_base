@@ -6,6 +6,7 @@
 		<th><?php echo $this->Paginator->sort('zone_id');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('description');?></th>
+		<th><?php echo $this->Paginator->sort('phone');?></th>
 		<th><?php echo $this->Paginator->sort('image');?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
@@ -23,6 +24,7 @@
 		</td>
 		<td><?php echo $restaurant['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $restaurant['Restaurant']['description']; ?>&nbsp;</td>
+		<td><?php echo $restaurant['Restaurant']['phone']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$restaurant['Restaurant']['image']); ?>&nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $restaurant['Restaurant']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>

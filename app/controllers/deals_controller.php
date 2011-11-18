@@ -5,21 +5,15 @@ class DealsController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('getDeals');
+		$this -> Auth -> allow('getDeals');
 	}
-	
+
 	function getDeals() {
-		return $this->Deal->find('all');
+		return $this -> Deal -> find('all');
 	}
-	
+
 	private function getRestaurants() {
-		return $this->Deal->Restaurant->find(
-			'list',
-			array(
-				'fields'=>array('Restaurant.id'),
-				'conditions'=>array('Restaurant.manager_id'=>$this->Session->read('Auth.User.id'))
-			)
-		);
+		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
 	}
 
 	function index() {
@@ -33,7 +27,10 @@ class DealsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 			$this -> layout = "default";
 		}
-		$this -> set('deal', $this -> Deal -> findBySlug($slug));
+		$deal = $this -> Deal -> find('first', array('recursive'=>2, array('conditions'=>array('Deal.slug'=>$slug))));
+		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($deal['Restaurant']['Zone']['city_id']);
+		$this -> set('deal', $deal);
+		$this -> set('city', $city);
 	}
 
 	function admin_index() {
@@ -100,11 +97,7 @@ class DealsController extends AppController {
 
 	function manager_index() {
 		$this -> Deal -> recursive = 0;
-		$this -> paginate = array(
-			'conditions' => array(
-				'Deal.restaurant_id'=>$this->getRestaurants()
-			)
-		);
+		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurants()));
 		$this -> set('deals', $this -> paginate());
 	}
 
@@ -126,7 +119,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again.', true));
 			}
 		}
-		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions'=>array('Restaurant.manager_id'=>$this->Session->read('Auth.User.id'))));
+		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
 		$cuisines = $this -> Deal -> Cuisine -> find('list');
 		$this -> set(compact('restaurants', 'cuisines'));
 	}

@@ -1,11 +1,6 @@
 <div class="cuisines view">
 <h2><?php  __('Cuisine');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $cuisine['Cuisine']['id']; ?>
-			&nbsp;
-		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $cuisine['Cuisine']['name']; ?>
@@ -45,7 +40,6 @@
 	<?php if (!empty($cuisine['Deal'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
 		<th><?php __('Restaurant Id'); ?></th>
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Description'); ?></th>
@@ -68,11 +62,10 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $deal['id'];?></td>
 			<td><?php echo $deal['restaurant_id'];?></td>
 			<td><?php echo $deal['name'];?></td>
 			<td><?php echo $deal['description'];?></td>
-			<td><?php echo $deal['image'];?></td>
+			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$deal['image']); ?></td>
 			<td><?php echo $deal['amount'];?></td>
 			<td><?php echo $deal['price'];?></td>
 			<td><?php echo $deal['max_buys'];?></td>

@@ -9,6 +9,9 @@
 		echo $this->Form->input('zone_id');
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
+		echo $this->Form->input('schedule');
+		echo $this->Form->input('phone');
+		echo $this->Form->input('address');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 	?>
 	</fieldset>

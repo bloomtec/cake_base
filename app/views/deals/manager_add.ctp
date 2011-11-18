@@ -11,8 +11,10 @@
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 		echo $this->Form->input('amount');
 		echo $this->Form->input('price');
+		echo $this->Form->input('normal_price');
 		echo $this->Form->input('max_buys');
-		echo $this->Form->input('Cuisine');
+		echo $this->Form->input('expires');
+		echo $this->Form->input('Cuisine', array('multiple'=>'checkbox'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
@@ -28,4 +30,3 @@
 		<div id="single-upload" controller="deals">
 		</div>			
 </div>
-
