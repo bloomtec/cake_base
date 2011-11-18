@@ -491,7 +491,7 @@ class ProductsController extends AppController {
 	 * $product_id : ID del producto (tarjeta de video) seleccionada.
 	 * De ahí procesar las fuentes disponibles compatibles
 	 */
-	function getPowerSupplies($product_id = null,  $selectedId = 0) {
+	function getPowerSupplies($product_id = null, $selectedId = 0) {
 		$this->layout="ajax";
 		$supplies = array();
 		if($product_id) {
