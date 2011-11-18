@@ -9,7 +9,7 @@ $(function(){
 	//CARGA EL LISTADO DE FILTROS
 	var divFiltro=$("#listado_fltro");
 	if(divFiltro.length > 0){
-		divFiltro.load('/tags/filtro/'+divFiltro.attr('rel'));
+		divFiltro.load('/tags/filtro/'+divFiltro.attr('rel'),{'url':document.URL});
 	}
 	
 	//CARGA EL PRODUCTO PROMOCIONADO

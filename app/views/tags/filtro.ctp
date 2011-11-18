@@ -1,4 +1,4 @@
-<form id="FormFiltro" accept-charset="utf-8" method="post" controller="tags" action="<?php echo $tag['Tag']['slug']; ?>">
+<form id="FormFiltro" accept-charset="utf-8" method="post" controller="tags" action="<?php echo $this->params['form']['url']; ?>">
 	<h1>Buscar por:</h1>
 	<ul>
 		<h2>Nombre</h2>
