@@ -9,9 +9,6 @@
 		<a href="/users/changePassword/<?php echo $session -> read('Auth.User.id');?>">Cambiar Contraseña</a>
 	</li>
 	<li>
-		<a href="/priceLists/download">Lista de precio</a>
-	</li>
-	<li>
 		<a href="/users/logout">Salir</a>
 	</li>
 	<li class="ultimo">
