@@ -527,7 +527,19 @@ class ProductsController extends AppController {
 		$this -> set(compact('casings','selectedId'));
 	}
 	
-	function getOtherCards(){
+	function getMonitors(){
+		
+	}
+
+	function getPeripherals(){
+		
+	}
+	
+	function getOtherCards($boardId){
+		
+	}
+	
+	function getAccesories(){
 		
 	}
 
