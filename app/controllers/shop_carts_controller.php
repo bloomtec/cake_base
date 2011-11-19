@@ -168,6 +168,7 @@ class ShopCartsController extends AppController {
 			$this->ShopCart->ShopCartItem->create();
 			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
 			if($cart=$this->ShopCart->ShopCartItem->save($this->data)) {
+				console.log($this->data);
 				 echo json_encode($cart);
 			} else {
 				echo false;
