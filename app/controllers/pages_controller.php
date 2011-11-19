@@ -27,12 +27,13 @@ class PagesController extends AppController {
 
 	function enviarDuda() {
 		if (!empty($this -> data)) {
+			$clasification = $this->data['clasification'];
 			$email = $this -> data['email'];
 			$userName = $this -> data['name'];
-			$subscribir = $this -> data['subscribe'];
+			$subscribir = $this -> data['subscribe'] ? 'si':'no';
 			$comentario = $this -> data['comentario'];
-			$asunto = "Duda enviada desde la página web";
-			$mensaje = "de: " . $userName . " / " . $email . " <br />" . $comentario;
+			$asunto = "Duda enviada desde la página web ";
+			$mensaje = "de: " . $userName . " / " . $email . " <br />" ."Producto: $clasification <br /> Subscrito al newsletter?: $subscribir <br />".$comentario;
 			$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 			// Cabeceras adicionales
 			$cabeceras .= 'From: ' . $userName . ' <' . $email . '>' . "\r\n";
@@ -113,9 +114,10 @@ class PagesController extends AppController {
 		exit(0);
 	}
 
-	function dudasCompra() {
+	function dudasCompra($clasification) {
 		$this -> layout = 'overlay';
 		$this -> set('titulo', '¿TIENES ALGUNA DUDA DE TU COMPRA?');
+		$this -> set(compact('clasification'));
 	}
 
 	function admin_ez() {

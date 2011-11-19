@@ -130,7 +130,7 @@ class ShopCartsController extends AppController {
 			if($user_id=$this->Session->read('Auth.User.id')) {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
-				$time=system('date +%s%N');
+				$time=microtime();
 				$this->ShopCart->set('user_agent', $time);
 				$this->Session->write('carrito', $time);
 			}

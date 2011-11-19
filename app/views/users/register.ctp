@@ -16,7 +16,7 @@
 		echo $this->Form->input('surname');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('address');
-		echo $this->Form->input('birthday', array('type' => 'date'));
+		echo $this->Form->input('birthday', array('type' => 'date', 'minYear' => '1925'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
