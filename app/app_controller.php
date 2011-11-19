@@ -29,7 +29,7 @@ class AppController extends Controller {
 	}
 
 	function getList() {
-		return $this -> $this -> modelNames[0] -> find("list");
+		return $this -> {$this -> modelNames[0]} -> find("list");
 	}
 
 	function configEmail() {

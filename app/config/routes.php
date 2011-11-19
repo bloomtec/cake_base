@@ -26,9 +26,12 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.ctp)...
  */
-Router::connect('/', array('controller' => 'deals', 'action' => 'index'));
+App::import('Lib', 'DealRoute');
+ 
 Router::connect('/admin', array('controller' => 'users', 'action' => 'login', "admin" => true));
 Router::connect('/manager', array('controller' => 'users', 'action' => 'login', "manager" => true));
+Router::connect('/', array('controller' => 'deals', 'action' => 'index'));
+Router::connect('/:slug::value/*', array('controller' => 'deals', 'action' => 'index'),array('routeClass' => 'DealRoute'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

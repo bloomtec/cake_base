@@ -15,4 +15,8 @@ $(function(){
 		'[required]'	: 'campo obligatorio',
 		'[data-equals]' : 'verifique este campo'
 	});
+	
+	$('.filtros select').change(function(){
+		document.location = BJS.setParam($(this).attr('rel'),$(this).val());
+	});
 });

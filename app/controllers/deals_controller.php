@@ -19,6 +19,11 @@ class DealsController extends AppController {
 	function index() {
 		$this -> Deal -> recursive = 0;
 		$this -> set('deals', $this -> paginate());
+		$cities = $this->requestAction('/cities/getList');
+		$zones = $this->requestAction('/zones/getList');
+		$cuisines = $this->requestAction('/cuisines/getList');
+		$prices = array('ASC' => __('lowest to highest',true),'DESC'=>__('highest to lowest',true));
+		$this -> set (compact('cities','zones','cuisines','prices'));
 	}
 
 	function view($slug = null) {
