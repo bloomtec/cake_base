@@ -160,6 +160,7 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
+			debug($this->data);
 			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			// Revisar las recomendaciones

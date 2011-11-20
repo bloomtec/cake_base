@@ -31,9 +31,7 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $product['Product']['id'] ?>'>
-		<td>
-			<?php echo $this->Html->link($product['ProductType']['name'], array('controller' => 'product_types', 'action' => 'view', $product['ProductType']['id'])); ?>
-		</td>
+		<td><?php echo $product['ProductType']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['name']; ?>&nbsp;</td>
 		<td><?php echo $product['Product']['ref']; ?>&nbsp;</td>
 		<td>$<?php echo number_format($product['Product']["price"], 0, ' ', '.'); ?>&nbsp;</td>

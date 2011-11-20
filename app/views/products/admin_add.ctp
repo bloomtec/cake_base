@@ -18,8 +18,8 @@
 		echo $this -> Form -> input('is_gamers');
 		echo $this -> Form -> input('is_active');
 		echo $this -> Form -> input('is_featured');
-		//echo $this -> Form -> input('Tag', array('multiple'=>'checkbox'));
-		echo $this -> Form -> input('Tag', array('type'=>'radio'));
+		echo $this -> Form -> input('Tag', array('multiple'=>'checkbox'));
+		//echo $this -> Form -> input('Tag', array('type'=>'radio'));
 		?>
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Submit', true));?>

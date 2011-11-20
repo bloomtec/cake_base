@@ -30,10 +30,10 @@ $(function() {
 				if(data != null) {
 					$("#sockets").html('');
 					$("#sockets").append('<fieldset id="socket-list"><legend>Socket</legend>');
-					$("#sockets").append('<input id="SocketSocket" type="hidden" value="" name="data[Socket][Socket]">');
+					$("#socket-list").append('<input id="SocketSocket_" type="hidden" value="" name="data[Socket][Socket]">');
 					$.each(data, function(key, value){
-						$("#socket-list").append('<input id="SlotSlot' + key + '" type="radio" value="' + key + '" name="data[Slot][Slot][]">');
-						$("#socket-list").append('<label for="SlotSlot' + key + '">' + value + '</label>');
+						$("#socket-list").append('<input id="SocketSocket' + key + '" type="radio" value="' + key + '" name="data[Socket][Socket][]">');
+						$("#socket-list").append('<label for="SocketSocket' + key + '">' + value + '</label>');
 					});
 					$("#sockets").append('</fieldset>');
 				} else {
