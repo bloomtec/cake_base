@@ -176,7 +176,7 @@ Configure::write('custom_height', 250);
  * Session time out time (in seconds).
  * Actual value depends on 'Security.level' setting.
  */
-	Configure::write('Session.timeout', '120');
+	Configure::write('Session.timeout', '864');
 
 /**
  * If set to false, sessions are not automatically started.
