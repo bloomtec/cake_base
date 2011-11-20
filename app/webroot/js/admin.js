@@ -1,3 +1,10 @@
+$(document).ready(function () {
+	var selected = $("#ProductProductTypeId option:selected").val();
+	if(selected.length > 0) {
+		$("#ProductProductTypeInfo").load("/admin/products/formByType/" + selected);
+	}
+});
+
 $(function() {
 	/**
 	 * Cargar el contenido adecuado para cuando se
@@ -20,14 +27,17 @@ $(function() {
 			dataType : "json",
 			data : null,
 			success : function(data) {
-				var list = $("#SocketSocket");
 				if(data != null) {
-					list.html('');
+					$("#sockets").html('');
+					$("#sockets").append('<fieldset id="socket-list"><legend>Socket</legend>');
+					$("#sockets").append('<input id="SocketSocket" type="hidden" value="" name="data[Socket][Socket]">');
 					$.each(data, function(key, value){
-						list.append('<option value="' + key + '">' + value + '</option>');
+						$("#socket-list").append('<input id="SlotSlot' + key + '" type="radio" value="' + key + '" name="data[Slot][Slot][]">');
+						$("#socket-list").append('<label for="SlotSlot' + key + '">' + value + '</label>');
 					});
+					$("#sockets").append('</fieldset>');
 				} else {
-					list.html('');
+					$("#sockets").html('');
 				}
 			}
 		});
