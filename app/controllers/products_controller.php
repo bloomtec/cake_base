@@ -529,19 +529,20 @@ class ProductsController extends AppController {
 	}
 	
 	function getMonitors($selecteds = 0){
-		$this -> set(compact('selectedId'));
+		
+		$this -> set(compact('selecteds'));
 	}
 
 	function getPeripherals($selecteds = 0){
-		$this -> set(compact('selectedId'));
+		$this -> set(compact('selecteds'));
 	}
 	
 	function getOtherCards($boardId, $selecteds = 0){
-		$this -> set(compact('boardId','selectedId'));
+		$this -> set(compact('boardId','selecteds'));
 	}
 	
 	function getAccesories($selecteds = 0){
-		$this -> set(compact('selectedId'));
+		$this -> set(compact('selecteds'));
 	}
 
 }

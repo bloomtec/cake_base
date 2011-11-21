@@ -139,7 +139,7 @@ class Product extends AppModel {
 		'Inventory' => array(
 			'className' => 'Inventory',
 			'foreignKey' => 'product_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
@@ -152,7 +152,7 @@ class Product extends AppModel {
 		'ProductPicture' => array(
 			'className' => 'ProductPicture',
 			'foreignKey' => 'product_id',
-			'dependent' => false,
+			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
 			'order' => '',
