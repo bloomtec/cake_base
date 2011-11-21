@@ -160,7 +160,6 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
-			debug($this->data);
 			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			// Revisar las recomendaciones
@@ -278,12 +277,10 @@ class ProductsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Product->read(null, $id);
 		}
-		$productTypes = $this->Product->ProductType->find('list');
-		$architectures = $this->Product->Architecture->find('list');
-		$slots = $this->Product->Slot->find('list');
-		$sockets = $this->Product->Socket->find('list');
-		$tags = $this->Product->Tag->find('list');
-		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'tags'));
+		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
+		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
+		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
 	
 	function admin_delete($id = null) {
@@ -530,19 +527,19 @@ class ProductsController extends AppController {
 	
 	function getMonitors($selecteds = 0){
 		
-		$this -> set(compact('selecteds'));
+		$this -> set(compact('monitors', 'selecteds'));
 	}
 
 	function getPeripherals($selecteds = 0){
-		$this -> set(compact('selecteds'));
+		$this -> set(compact('peripherals', 'selecteds'));
 	}
 	
 	function getOtherCards($boardId, $selecteds = 0){
-		$this -> set(compact('boardId','selecteds'));
+		$this -> set(compact('otherCards', 'boardId','selecteds'));
 	}
 	
 	function getAccesories($selecteds = 0){
-		$this -> set(compact('selecteds'));
+		$this -> set(compact('accesories', 'selecteds'));
 	}
 
 }
