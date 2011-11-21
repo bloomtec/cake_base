@@ -1,6 +1,6 @@
 $(document).ready(function () {
 	var selected = $("#ProductProductTypeId option:selected").val();
-	if(selected.length > 0) {
+	if(typeof(selected) != "undefined" && selected !=null && selected.length > 0) {
 		$("#ProductProductTypeInfo").load("/admin/products/formByType/" + selected);
 	}
 });
