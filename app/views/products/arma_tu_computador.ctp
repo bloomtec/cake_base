@@ -274,7 +274,7 @@
 		<div class="scrollable">   
 			<ul class='tabs items'>
 				<li><a href="#" id='processor'><div class="img_wrapper"><img src="/img/procesador.png" /></div>Procesadores y tarjetas madre</a></li>
-				<li><a href="#" id='ram'><div class="img_wrapper"><img src="/img/ram.png" /></div>Memorias Ram</a></li>
+				<li><a href="#" id='ram-cards'><div class="img_wrapper"><img src="/img/ram.png" /></div>Memorias Ram</a></li>
 				<li><a href="#" id='hard-drive'><div class="img_wrapper"><img src="/img/disco_duro.png" /></div>Discos duros</a></li>
 				<li><a href="#" id='video-card'><div class="img_wrapper"><img src="/img/tarjeta_video.png" /></div>Tarjetas de video</a></li>
 				<li><a href="#" id='case'><div class="img_wrapper"><img src="/img/torre.png" /></div>Torres</a></li>

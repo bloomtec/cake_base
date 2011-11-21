@@ -58,15 +58,13 @@
     	<div id="second_nav">
 	    	<div id="producto_destacado" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
 	    		
+		
         	</div>
-        	
         	 <div id="listado_fltro" class="border_radius" rel='<?php echo $tag['Tag']['id'] ?>'>
         	 	
         	</div>
     	</div>
     	<div id="main_content">
-    	
-    			
     		<?php if(isset($slides) && !empty($slides)) echo $this->element('slider',array('slides'=>$slides,'model'=>'TagSlider'));?>
     			
     	

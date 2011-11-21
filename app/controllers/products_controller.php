@@ -160,6 +160,7 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
+			debug($this->data);
 			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			// Revisar las recomendaciones
@@ -355,7 +356,7 @@ class ProductsController extends AppController {
 	 * $product_id : ID del producto (procesador) seleccionado.
 	 * De ahí procesar la arquitectura y el tipo de socket
 	 */
-	function getMotherBoards($product_id = null) {
+	function getMotherBoards($product_id = null, $selectedId = 0) {
 		$this->layout="ajax";
 		$processor = $this->Product->find('first', array('recursive'=>1, 'conditions'=>array('Product.id'=>$product_id)));
 		$architecture_id = $processor['Socket'][0]['architecture_id'];
@@ -382,7 +383,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		$this -> set(compact('motherboards'));
+		$this -> set(compact('motherboards','selectedId'));
 	}
 	
 	/**
@@ -527,20 +528,20 @@ class ProductsController extends AppController {
 		$this -> set(compact('casings','selectedId'));
 	}
 	
-	function getMonitors(){
-		
+	function getMonitors($selecteds = 0){
+		$this -> set(compact('selectedId'));
 	}
 
-	function getPeripherals(){
-		
+	function getPeripherals($selecteds = 0){
+		$this -> set(compact('selectedId'));
 	}
 	
-	function getOtherCards($boardId){
-		
+	function getOtherCards($boardId, $selecteds = 0){
+		$this -> set(compact('boardId','selectedId'));
 	}
 	
-	function getAccesories(){
-		
+	function getAccesories($selecteds = 0){
+		$this -> set(compact('selectedId'));
 	}
 
 }

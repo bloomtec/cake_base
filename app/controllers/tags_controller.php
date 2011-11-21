@@ -14,33 +14,35 @@ class TagsController extends AppController {
 	}
 
 	function view($slug = null) {
-		$this->params['named']['panda']='ricardo';
 		$this->layout='categoria';
+		//$this->params['named']['brand_id']='ricardo';
+		if( isset($this->data) && is_array($this->data)) $this->params['named'] = array_merge($this->params['named'],$this->data);
 		$conditions = array();
-		$limit = 16;
+		$limit = isset($this->params['named']['limite'])? $this->params['named']['limite'] : 16;
 		$this->Tag->recursive=-1;
 		$tag = $this->Tag->findBySlug($slug);
 		$slides=$this->Tag->TagSlider->find('all',array('conditions'=>array('tag_id'=>$tag['Tag']['id'])));
-		if(isset($this->data) && !empty($this->data)) {
-			debug($this->data);
+		if(isset($this->params['named']) && !empty($this->params['named'])) {
+	
 			/**
 			 * Proceder con el filtrado
 			 */
 			// Filtro marca
-			if(isset($this->data['brand_id']) && !empty($this->data['brand_id'])) {
-				$conditions['Product.brand_id'] = $this->data['brand_id'];
+			if(isset($this->params['named']['brand_id']) && !empty($this->params['named']['brand_id'])) {
+				$conditions['Product.brand_id'] = $this->params['named']['brand_id'];
+				
 			}
 			// Revisar si se filtra por arquitectura
-			if(isset($this->data['architecture_id']) && !empty($this->data['architecture_id'])) {
-				$conditions['Product.architecture_id'] = $this->data['architecture_id']; 
+			if(isset($this->params['named']['architecture_id']) && !empty($this->params['named']['architecture_id'])) {
+				$conditions['Product.architecture_id'] = $this->params['named']['architecture_id']; 
 			}
 			// Revisar si se filtra por socket
-			if(isset($this->data['socket_id']) && !empty($this->data['socket_id'])) {
+			if(isset($this->params['named']['socket_id']) && !empty($this->params['named']['socket_id'])) {
 				$products_with_socket_id = $this->Tag->Product->ProductsSocket->find(
 					'list',
 					array(
 						'conditions' => array(
-							'ProductsSocket.socket_id'=>$this->data['socket_id']
+							'ProductsSocket.socket_id'=>$this->params['named']['socket_id']
 						),
 						'fields'=>array(
 							'ProductsSocket.product_id'
@@ -50,20 +52,20 @@ class TagsController extends AppController {
 				$conditions['Product.id'] = $products_with_socket_id; 
 			}
 			// Revisar si se filtra por nombre de producto
-			if(isset($this->data['name']) && !empty($this->data['name'])) {
-				$conditions['Product.name LIKE'] = "%".$this->data['name']."%";
+			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
+				$conditions['Product.name LIKE'] = "%".$this->params['named']['name']."%";
 			}
 			// Revisar si se filtra por "is_gamers"
-			if(isset($this->data['is_gamers']) && !empty($this->data['is_gamers'])) {
-				if($this->data['is_gamers'] == "si") {
+			if(isset($this->params['named']['is_gamers']) && !empty($this->params['named']['is_gamers'])) {
+				if($this->params['named']['is_gamers'] == "si") {
 					$conditions['Product.is_gamers'] = TRUE;
 				} else {
 					$conditions['Product.is_gamers'] = FALSE;
 				}
 			}
 			// Revisar si se filtra por "is_video_included"
-			if(isset($this->data['is_video_included']) && !empty($this->data['is_video_included'])) {
-				if($this->data['is_video_included'] == "si") {
+			if(isset($this->params['named']['is_video_included']) && !empty($this->params['named']['is_video_included'])) {
+				if($this->params['named']['is_video_included'] == "si") {
 					$conditions['Product.is_video_included'] = TRUE;
 				} else {
 					$conditions['Product.is_video_included'] = FALSE;
@@ -82,11 +84,13 @@ class TagsController extends AppController {
 				'conditions' => $conditions
 			)			
 		);
+
+		$this->Session->write('conditions',$conditions);
 		$products = $this->paginate('Product');
 		$this->set(compact('products', 'tag','slides'));
 	}
 	
-	function filtro($tag_id = null){
+	function filtro($tag_id = null , $url = null){
 		$this->layout='ajax';
 		// Filtrar las marcas acorde el tag
 		$brands_ids = $this->Tag->Product->find(
@@ -118,7 +122,7 @@ class TagsController extends AppController {
 			//TODO:Como manejar filtro por video incluido?
 		}
 		$tag = $this->Tag->findById($tag_id);
-		$this->set(compact('brands', 'tag_id', 'tag'));
+		$this->set(compact('brands', 'tag_id', 'tag', 'url'));
 	}
 	
 	function admin_index() {

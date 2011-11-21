@@ -1,3 +1,4 @@
 <?php 
-	echo $form->radio('drive_id',$drives,array('legend'=>false,'value'=>key($processors)));
+	if(!$selectedId) $selectedId = null;  
+	echo $form->radio('drive_id',$drives,array('legend'=>false,'value'=>$selectedId));
 ?>
