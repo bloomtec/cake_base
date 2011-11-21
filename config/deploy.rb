@@ -25,12 +25,30 @@ set :branch, "clickneat"
 
 # TASKS
 namespace :deploy do
+  
   task :start do ; end
+  
   task :stop do ; end
+  
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "cp /home/embalao/clickneat.bloomweb.co/current/. /home/embalao/clickneat.bloomweb.co/ -R"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/tmp/ -R"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/img/uploads/ -R"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/files/uploads/ -R"
   end
+  
+end
+
+namespace :extras do
+  
+  task :start do ; end
+  
+  task :stop do ; end
+  
+  task :restart, :roles => :app, :except => { :no_release => true } do ; end
+  
+  task :download_uploads do
+    run "scp -r embalao@bloomweb.co:/home/embalao/clickneat.bloomweb.co/app/webroot/img/uploads /var/www/clickneat/app/webroot/img/uploads";
+  end
+  
 end
