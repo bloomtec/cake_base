@@ -4,10 +4,14 @@ set :export, :remote_cache
 set :keep_releases, 5
 set :cakephp_app_path, "app"
 set :cakephp_core_path, "cake"
-default_run_options[:pty] = true # Para pedir la contraseña de la llave publica de github via consola, sino sale error de llave publica.
+#default_run_options[:pty] = true # Para pedir la contraseña de la llave publica de github via consola, sino sale error de llave publica.
 
 # DEPLOYMENT DIRECTORY STRUCTURE
 set :deploy_to, "/home/embalao/clickneat.bloomweb.co"
+
+# USER & PASSWORD
+set :user, 'embalao'
+set :password, 'Cobr@Verde'
 
 # ROLES
 role :app, "clickneat.bloomweb.co"
