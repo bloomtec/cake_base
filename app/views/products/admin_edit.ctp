@@ -34,3 +34,4 @@
 	</div>
 	<div id="single-upload" controller="products"></div>
 </div>
+<div id="product-id" rel="<?php echo $this->data['Product']['id']; ?>"></div>

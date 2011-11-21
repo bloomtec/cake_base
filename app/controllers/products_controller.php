@@ -139,13 +139,15 @@ class ProductsController extends AppController {
 		$this->set('product', $this->Product->findBySlug($slug));
 	}
 	
-	function admin_formByType($type_id = null) {
+	function admin_formByType($type_id = null, $id = null) {
 		$this->layout="ajax";
+		if (empty($this->data) && $id) {
+			$this->data = $this->Product->read(null, $id);
+		}
 		$productTypes = $this->Product->ProductType->find('list');
 		$architectures = $this->Product->Architecture->find('list');
 		$slots = $this->Product->Slot->find('list');
-		//$sockets = $this->Product->Socket->find('list');
-		$this->set(compact('productTypes', 'architectures', 'slots', 'sockets', 'type_id'));
+		$this->set(compact('productTypes', 'architectures', 'slots', 'type_id'));
 	}
 	
 	function getSocketsByArchitecture($architecture_id = null) {

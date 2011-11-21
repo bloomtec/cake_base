@@ -1,8 +1,10 @@
 <?php
+	//debug($this->data);
 	if ($type_id == 1 || $type_id == 2) :
 		echo $this -> Form -> input('Product.architecture_id', array('empty' => 'Seleccione...', 'div'=>'class=input select required'));
 		//echo $this -> Form -> input('Socket.Socket', array('multiple'=>'checkbox', 'div'=>'input select required'));
 ?>
+		<div id="sock_id" rel="<?php echo $this->data['Socket'][0]['id']; ?>"></div>
 		<div id="sockets" class="input radio">
 		</div>
 <?php
