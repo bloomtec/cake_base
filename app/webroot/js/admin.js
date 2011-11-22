@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	var selected = $("#ProductProductTypeId option:selected").val();
 	if(typeof(selected) != "undefined" && selected !=null && selected.length > 0) {
-		console.log(selected);
 		var prod_id = $("#product-id").attr('rel');
 		$("#ProductProductTypeInfo").load("/admin/products/formByType/" + selected + "/" + prod_id,function(){
 			if(selected == 1 || selected == 2) {

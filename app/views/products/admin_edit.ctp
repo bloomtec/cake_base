@@ -2,7 +2,7 @@
 	<?php echo $this -> Form -> create('Product');?>
 	<fieldset>
 		<legend>
-			<?php __('Admin Add Product');?>
+			<?php __('Admin Edit Product');?>
 		</legend>
 		<?php
 		echo $this -> Form -> input('id');
