@@ -1,45 +1,48 @@
+var pc = {};
 $(function() {
-	function checkBoardProcessor(callback,error){
-		var proccesorId = $(".processors input:checked").length > 0 ? $(".processors input:checked").attr('value') : 0;
-		var boardId = $(".boards input:checked").length > 0 ? $(".processors input:checked").attr('value') : 0;
-		var thisArguments = arguments.length;
-		if(proccesorId && boardId){//selecciono el procesador cargar datos de tarjetas de video
-			$('.pc-error').html('').hide();	
-			callback();
-			
+	pc.checkItem = function(item , errorMessage, callback){
+		//'processors','board-cards','ram-cards','hard-drive','video-card','case','supply','optical-drive','monitor','peripherals','other-cards','accesories',
+		if(errorMessage==null || typeof(errorMessage) == 'undefined'){
+			switch(item){
+				case '.board-cards':
+					errorMessage = '<p>Debe Seleccionar una Tarjeta Madre</p>';
+				break;
+				case '.ram-cards':
+					errorMessage = '<p>Debe Seleccionar una Tarjeta de Memoria</p>';
+				break; 
+				default:
+					errorMessage = '<p>Faltan Items por seleccionar</p>';
+				break; 
+			}
+		}
+		
+		var itemId = $(item+" input:checked").length > 0 ? $(item+" input:checked").attr('value') : 0;
+		if(itemId){//selecciono el procesador cargar datos de tarjetas de video
+			$('.pc-error').html('').hide();
+			if(arguments.length >= 3){
+				callback();	
+			}	
 		}else{// no selecciono el procesador
-			$('.pc-error').html('Debes seleccionar un procesador y una tarjeta').show();
-			if(thisArguments == 2) error(); 
+			$('.pc-error').html(errorMessage).show();
 			return false;
 		}	
-	}
-	
-	var pc = {};
-	$("input[name='data[processor_id]']").live('click',function(){
-		
-	});
-	
+	}	
 	pc.processorFunctionality = function(fromTab,toTab){
-		if((fromTab.length)){ // si viene de otro tab
-		return checkBoardProcessor(
-			function(){
-				
-			}
-		);
-		}else {
-			return true;
-		}
+		return true;
 	}
 	
 	pc.ramFuncionality = function(fromTab,toTab){
-		return checkBoardProcessor(
-			function(){
-				
-			}
-		);
+		return pc.checkItem('.board-cards');
 	}
 	
 	pc.hardDriveFunctionality = function(fromTab,toTab){
+		return pc.checkItem('.board-cards',null,function(){
+			pc.checkItem('.ram-cards');
+		});
+		
+	}
+	
+	pc.videoCardFunctionality = function(fromTab,toTab){
 		var videoCardSelectedId = ($('.radios.video-cards :checked').length) > 0 ? $('.radios.video-cards :checked').val() : 0 ;
 		var isRequerided=false;
 		if(videoCardSelectedId){
@@ -47,14 +50,6 @@ $(function() {
 				
 			});
 		}
-	}
-	
-	pc.videoCardFunctionality = function(fromTab,toTab){
-		checkBoardProcessor(
-			function(){
-				
-			}
-		);
 	}
 	
 	pc.caseFunctionality = function(fromTab,toTab){
@@ -85,65 +80,9 @@ $(function() {
 	
 	}
 	
-	// setup ul.tabs to work as tabs for each div directly under div.panes
-	$("ul.tabs").tabs("div.panes > div",function(e,index){
-		var toTab= this.getTabs().eq(index);
-		var fromTab = this.getCurrentTab();
-		switch(toTab.attr('id')){
-			case 'processor':
-				pc.processorFunctionality(fromTab,toTab);
-			break;
-			
-			case 'ram-cards':
-				return pc.ramFuncionality(fromTab,toTab);
-			break;
-			
-			case 'hard-drive':
-				return pc.hardDriveFunctionality(fromTab,toTab);
-			break;
-						
-			case 'video-card':
-				return pc.tarjetaVideoFunctionality(fromTab,toTab);
-			break;
-			case 'case':
-				return pc.videoCardFunctionality(fromTab,toTab);
-			break;
-			case 'supply':
-				return pc.supplyFunctionality(fromTab,toTab);
-			break;
-			case 'optical-drive':
-				return pc.opticalDriveFunctionality(fromTab,toTab);
-			break;
-			case 'monitor':
-				return pc.monitorFunctionality(fromTab,toTab);
-			break;
-			case 'peripherals':
-				return pc.mouseFunctionality(fromTab,toTab);
-			break;
-			case 'other-cards':
-				return pc.otherCardFunctionality(fromTab,toTab);
-			break;
-			case 'accesories':
-				return pc.accesoriesFunctionality(fromTab,toTab);
-			break;
-		}
-	});
-// INIT
-	$(".scrollable").scrollable();
-	var tabsApi = $("ul.tabs").data("tabs");
-	$('.siguiente_paso').click(function(){
-		tabsApi.next();
-	});
-	$('.paso_anterior').click(function(){
-		tabsApi.prev();
-	});
-	$('.browse a').click(function(e){
-		e.preventDefault();
-	});
-	$('.radios input').live('click',function(){
-		$('.pc-error').html('').hide();	
-	});
 
+// INIT
+	
 	getProcessors($('#architecture').val()); // CARGA INFO POR DEFECTO
 
 // IN TAB Procesadores y boards	
@@ -153,12 +92,13 @@ $(function() {
 	
 	$('.radios.processors input').live('click',function(){
 		var $proccessors = $(this);
+	
 		getMotherBoard($proccessors.val());
 	});
 	
-	$('.radios.boards input').live('click',function(){
-		var $rams = $(this);
-		getRamCards($rams.val());
+	$('.radios.board-cards input').live('click',function(){
+		var $boards = $(this);
+		boardCallBack($boards.val());
 	});
 	
 // IN TAB Memorias RAM
@@ -190,26 +130,33 @@ $(function() {
 
 // IN TAB accesorios
 	
-	
+
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
 		$('.radios.processors').load('/products/getProcessors/'+$architectureId,function(){
-			if($('.radios.processors :checked').val()) getMotherBoard($('.radios.processors :checked').val());	
+			if($('.radios.processors :checked').val()){ 
+				getMotherBoard($('.radios.processors :checked').val());
+			}else{
+				$('.radios.board-cards').html('<span class="no-items">No hay tarjetas disponibles</span>');
+			}	
 		});
 	}
 	function getMotherBoard($processorId){
-		$('.radios.boards').load('/products/getMotherBoards/'+$processorId,function(){
-			var ramCardsSelectedId = ($('.radios.ram-card :checked').length > 0) ? $('.radios.ram-card :checked').val() : 0 ;
-			var hardDriveSelectedId = ($('.radios.hard-drives :checked').length > 0) ? $('.radios.hard-drives :checked').val() : 0 ;
-			var videoCardSelectedId = ($('.radios.video-cards :checked').length > 0) ? $('.radios.video-cards :checked').val() : 0 ;
-			var opticalDriveSelectedId = ($('.radios.optical-drives :checked').length > 0) ? $('.radios.optical-drives :checked').val() : 0 ;
-			var board=$('.radios.boards :checked');
+		$('.radios.board-cards').load('/products/getMotherBoards/'+$processorId,function(){
+			var board=$('.radios.board-cards :checked');
 			var boardId = board.lenth > 0 ? board.val() : 0;
-			if(boardId) getRamCards(boardId, ramCardsSelectedId);
-			if(boardId) getHardDrives(boardId  , hardDriveSelectedId);
-			if(boardId) getVideoCards(boardId , videoCardSelectedId);
-			if(boardId) getOpticalDrives(boardId, opticalDriveSelectedId );
+			boardCallBack(boardId)
 		});
+	}
+	function boardCallBack(boardId){
+		var ramCardsSelectedId = ($('.radios.ram-card :checked').length > 0) ? $('.radios.ram-card :checked').val() : 0 ;
+		var hardDriveSelectedId = ($('.radios.hard-drives :checked').length > 0) ? $('.radios.hard-drives :checked').val() : 0 ;
+		var videoCardSelectedId = ($('.radios.video-cards :checked').length > 0) ? $('.radios.video-cards :checked').val() : 0 ;
+		var opticalDriveSelectedId = ($('.radios.optical-drives :checked').length > 0) ? $('.radios.optical-drives :checked').val() : 0 ;
+		if(boardId) getRamCards(boardId, ramCardsSelectedId);
+		if(boardId) getHardDrives(boardId  , hardDriveSelectedId);
+		if(boardId) getVideoCards(boardId , videoCardSelectedId);
+		if(boardId) getOpticalDrives(boardId, opticalDriveSelectedId );
 	}
 	function getRamCards(boardId,oldRamCardId){
 		if(arguments.length <= 1){

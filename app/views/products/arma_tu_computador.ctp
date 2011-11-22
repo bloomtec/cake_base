@@ -1,5 +1,6 @@
 <?php 
 	echo $html -> script('pc.js');
+	echo $html -> script('tab-pc.js');
 ?>
 <div class='pc-error' style='display:none; position:fixed; top:0; height:100px; background: orange; color: white; width:100%; left:0;'></div>
 <?php $form->create('PC',array('action'=>'armaTuPC'));?>
@@ -23,7 +24,7 @@
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				<h2>Seleccione su tarjeta madre</h2>
-				<div class='radios boards'>
+				<div class='radios board-cards'>
 					<!-- Espacio donde se llenan los radios de las boards-->
 				</div>
 			</div>

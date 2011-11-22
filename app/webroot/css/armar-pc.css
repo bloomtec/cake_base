@@ -155,7 +155,8 @@
     display: block;
     font-style: italic;
     font-weight: bold;
-    margin-bottom: 10px;
+    padding-top:4px;
+    margin-bottom: 5px;
 }
 
 .panes select{
@@ -171,7 +172,6 @@
 }
 .panes input{
 	float: left;
-	margin-top: 10px;
 	clear:both;
 	
 }

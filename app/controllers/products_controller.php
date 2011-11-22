@@ -439,7 +439,7 @@ class ProductsController extends AppController {
 				$compatible_memories[] = $memory['Product']['id'];
 			}
 		}
-		$memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
+		$memories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
 		$this -> set(compact('memories','selectedId'));
 	}
 	
@@ -461,7 +461,7 @@ class ProductsController extends AppController {
 				$compatible_drives[] = $drive['Product']['id'];
 			}
 		}
-		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
 		$this -> set(compact('drives' , 'selectedId'));
 	}
 	
@@ -483,7 +483,7 @@ class ProductsController extends AppController {
 				$compatible_drives[] = $drive['Product']['id'];
 			}
 		}
-		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
+		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
 		$this -> set(compact('drives' ,'selectedId'));
 	}
 	
@@ -504,9 +504,9 @@ class ProductsController extends AppController {
 					$compatible_psus[] = $supply['Product']['id'];
 				}
 			}
-			$supplies = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
+			$supplies = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
 		} else {
-			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
+			$supplies = $this->Product->find('list', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
 		$this -> set(compact('supplies','selectedId'));
 	}
@@ -520,9 +520,9 @@ class ProductsController extends AppController {
 		$this->layout="ajax";
 		$casings = array();
 		if($product_id) {
-			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
+			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
 		} else {
-			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
+			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
 		}
 		$this -> set(compact('casings','selectedId'));
 	}
