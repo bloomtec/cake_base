@@ -7,8 +7,8 @@
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('last_name');?></th>
 		<th><?php echo $this->Paginator->sort('role_id');?></th>
-		<th><?php echo $this->Paginator->sort('active');?></th>
-		<th><?php echo $this->Paginator->sort('city_id');?></th>
+		<th><?php echo $this->Paginator->sort('is_active');?></th>
+		<th><?php echo $this->Paginator->sort('city');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
 		<th class="actions"><?php __('Actions');?></th>
@@ -26,14 +26,12 @@
 		<td><?php echo $user['User']['name']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['last_name']; ?>&nbsp;</td>
 		<td><?php echo $user['Role']['name']; ?>&nbsp;</td>
-		<?php if($user['User']['active']){ ?>
+		<?php if($user['User']['is_active']){ ?>
 		<td><?php echo 'Active'; ?>&nbsp;</td>
 		<?php }else{ ?>
 		<td><?php echo 'Inactive'; ?>&nbsp;</td>
 		<?php } ?>
-		<td>
-			<?php echo $this->Html->link($user['City']['name'], array('controller' => 'cities', 'action' => 'view', $user['City']['id'])); ?>
-		</td>
+		<td><?php echo $user['User']['city']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['created']; ?>&nbsp;</td>
 		<td><?php echo $user['User']['updated']; ?>&nbsp;</td>
 		<td class="actions">
