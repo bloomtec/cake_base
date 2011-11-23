@@ -286,7 +286,7 @@ class ProductsController extends AppController {
 		}
 		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
 		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>16)));
 		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
 	
