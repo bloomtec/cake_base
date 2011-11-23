@@ -7,7 +7,9 @@ class Deal extends AppModel {
 	var $sluggable = true;
 	var $sortable = false;
 	var $activable = false;
-
+	var $actsAs = array(
+		'Translate' => array('name','description','conditions')
+	);
 	var $validate = array(
 		'restaurant_id' => array(
 			'numeric' => array(

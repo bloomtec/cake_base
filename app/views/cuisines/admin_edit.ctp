@@ -8,7 +8,7 @@
 		echo $this->Form->input('name');
 		echo $this->Form->input('description');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
-		echo $this->Form->input('Deal');
+		//echo $this->Form->input('Deal');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
