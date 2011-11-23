@@ -143,6 +143,8 @@ class ProductsController extends AppController {
 	
 	function admin_formByType($type_id = null, $id = null) {
 		$this->layout="ajax";
+		$this -> data = $this ->Session->read('tmp_data');
+		$this->Session->delete('tmp_data');
 		if (empty($this->data) && $id) {
 			$this->data = $this->Product->read(null, $id);
 		}
@@ -164,6 +166,7 @@ class ProductsController extends AppController {
 	
 	function admin_add() {
 		if (!empty($this->data)) {
+			$this->Session->write('tmp_data', $this->data);
 			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			// Revisar las recomendaciones
@@ -207,7 +210,7 @@ class ProductsController extends AppController {
 		}
 		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
 		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>16)));
 		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
 	
