@@ -16,7 +16,11 @@ $(function(){
 		'[data-equals]' : 'verifique este campo'
 	});
 	
-	$('.filtros select').change(function(){
+	$('.filtros select[id!="city_id"]').change(function(){
 		document.location = BJS.setParam($(this).attr('rel'),$(this).val());
+	});
+	$('.filtros select[id="city_id"]').change(function(){
+		var urlWithCity = BJS.setParam($(this).attr('rel'),$(this).val());
+		document.location = BJS.removeParam('zone',urlWithCity);
 	});
 });

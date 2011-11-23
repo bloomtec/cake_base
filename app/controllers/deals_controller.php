@@ -18,28 +18,32 @@ class DealsController extends AppController {
 
 	function index() {
 		$this -> Deal -> recursive = 0;
-		if(isset($this->params['named']) && !empty($this->params['named'])) {
-			$city = $price = $zone = $cuisine = null;
-			if(isset($this->params['named']['city']) && !empty($this->params['named']['city'])) {
-				$city = $this->params['named']['city'];
-			}
-			if(isset($this->params['named']['zone']) && !empty($this->params['named']['zone'])) {
-				$zone = $this->params['named']['zone'];
-			}
-			if(isset($this->params['named']['cuisine']) && !empty($this->params['named']['cuisine'])) {
-				$cuisine = $this->params['named']['cuisine'];
-			}
-			if(isset($this->params['named']['price']) && !empty($this->params['named']['price'])) {
-				$price = $this->params['named']['price'];
-			}
-			$this -> paginate = $this->Deal->filter($city, $zone, $cuisine, $price);
+		$cities = $this -> requestAction('/cities/getList');
+
+		$city = $price = $zone = $cuisine = null;
+		if (isset($this -> params['named']['city']) && !empty($this -> params['named']['city'])) {
+			$city = $this -> params['named']['city'];
+		} else {
+			$city = key($cities);
 		}
+
+		if (isset($this -> params['named']['zone']) && !empty($this -> params['named']['zone'])) {
+			$zone = $this -> params['named']['zone'];
+		}
+		if (isset($this -> params['named']['cuisine']) && !empty($this -> params['named']['cuisine'])) {
+			$cuisine = $this -> params['named']['cuisine'];
+		}
+		if (isset($this -> params['named']['price']) && !empty($this -> params['named']['price'])) {
+			$price = $this -> params['named']['price'];
+		}
+		$this -> paginate = $this -> Deal -> filter($city, $zone, $cuisine, $price);
+
 		$this -> set('deals', $this -> paginate());
-		$cities = $this->requestAction('/cities/getList');
-		$zones = $this->requestAction('/zones/getList');
-		$cuisines = $this->requestAction('/cuisines/getList');
-		$prices = array('ASC' => __('lowest to highest',true),'DESC'=>__('highest to lowest',true));
-		$this -> set (compact('cities','zones','cuisines','prices'));
+
+		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
+		$cuisines = $this -> requestAction('/cuisines/getList');
+		$prices = array('ASC' => __('lowest to highest', true), 'DESC' => __('highest to lowest', true));
+		$this -> set(compact('cities', 'zones', 'cuisines', 'prices'));
 	}
 
 	function view($slug = null) {
@@ -48,7 +52,7 @@ class DealsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 			$this -> layout = "default";
 		}
-		$deal = $this -> Deal -> find('first', array('recursive'=>2, array('conditions'=>array('Deal.slug'=>$slug))));
+		$deal = $this -> Deal -> find('first', array('recursive' => 2, array('conditions' => array('Deal.slug' => $slug))));
 		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($deal['Restaurant']['Zone']['city_id']);
 		$this -> set('deal', $deal);
 		$this -> set('city', $city);
