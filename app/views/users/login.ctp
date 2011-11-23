@@ -45,7 +45,7 @@
 		<?php echo $this->Form->input('UserField.sex',array('options'=>array('Hombre','Mujer'),'div'=>false,'label'=>false));?>
 		<br /><br />
 		<label>FECHA DE NACIMIENTO</label>
-		<?php echo $this->Form->input('UserField.birthday',array('div'=>false,'label'=>false));?>
+		<?php echo $this->Form->input('UserField.birthday',array('div'=>false,'label'=>false, 'minYear' => '1925'));?>
 		<br /><br />
 	
 		
