@@ -2,7 +2,7 @@
 <div class="users index">
 	<h2><?php __('Users');?></h2>
 	<table cellpadding="0" cellspacing="0" >
-	<tr  >
+	<tr>
 		<th><?php echo $this->Paginator->sort('email');?></th>
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('last_name');?></th>

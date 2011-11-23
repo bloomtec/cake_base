@@ -52,20 +52,44 @@ class ShopCartsController extends BcartAppController {
 	 * Encontrar el carrito
 	 */
 	function getCart() {
+		// Datos con los que podría existir el carrito
 		$user_id = $this->Session->read('Auth.User.id');
 		$user_agent = $this->Session->read('carrito');
+		
+		// Verificar si existe un carro con estos datos
 		$shopping_cart = null;
 		if($user_id) {
-			/**
-			 * buscar el carrito con el id de usuario
-			 */
+			// Está registrado el usuario
 			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
 		} else {
-			/**
-			 * buscar el carrito con el userAgent
-			 */
-			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array("ShopCart.identifier"=>$user_agent)));
+			// No esta registrado el usuario
+			if($user_agent) {
+				// Hay "user_agent"
+				$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_agent'=>$user_agent)));
+			} else {
+				// No hay "user_agent", no se puede buscar un carrito
+			}
 		}
+		
+		// Verificar si se encontró o no un carrito
+		if(empty($shopping_cart)) {
+			// Crear un carrito porque no lo hay
+			$this->ShopCart->create();
+			if($user_id) {
+				$this->ShopCart->set('user_id', $user_id);
+			} else {
+				$time=(float) (vsprintf('%d.%06d', gettimeofday()));
+				$this->ShopCart->set('user_agent', $time);
+			}
+			if($this->ShopCart->save()){
+				// Se creo el carrito, guardar la info
+				$this->Session->write('carrito', $time);
+			}
+		}
+
+		// Limpiar carros viejos
+		$this->ShopCart->cleanCarts();
+
 		return $shopping_cart;
 	}
 	
@@ -76,38 +100,34 @@ class ShopCartsController extends BcartAppController {
 		$this->autoRender=false;
 		$this->layout="ajax";
 		$this->loadModel('Product');
+		$this->loadModel('Subcategory');
+		$this->loadModel('Size');
 		$shopping_cart = $this->getCart();
-		$cart_id = -1;
+		$cart_id = $shopping_cart['ShopCart']['id'];
+		$size_reference_id = $this->data['ShopCartItem']['size_id'];
 		$this->Product->recursive=0;
 		$product = $this->Product->read(null, $this->data['ShopCartItem']['foreign_key']);
+		$size = $this->Size->find(
+			'first',
+			array(
+				'recursive'=>-1,
+				'conditions'=>array(
+					'Size.subcategory_id'=>$product['Subcategory']['id'],
+					'Size.size_reference_id'=>$size_reference_id
+				)
+			)
+		);
+		$this->data['ShopCartItem']['size_id'] = $size['Size']['id'];
 		
-		if(empty($shopping_cart)) {
-			// Crear un carrito porque no lo hay
-			$this->ShopCart->create();
-			if($user_id=$this->Session->read('Auth.User.id')) {
-				$this->ShopCart->set('user_id', $user_id);
-			} else {
-				$time=system('date +%s%N');
-				$this->ShopCart->set('identifier', $time);
-				$this->Session->write('carrito', $time);
-			}
-			if($this->ShopCart->save()){
-				// Se creo el carrito, guardar la info
-				$cart_id=$this->ShopCart->id;
-			} else {
-				// No se creo el carrito, retornar algo
-				echo false;
-			}
-		} else {
-			$cart_id=$shopping_cart['ShopCart']['id'];
-		}
 		// Verificar si el ítem ya esta dentro del carrito
 		$cart_item = $this->ShopCart->ShopCartItem->find(
 			'first',
 			array(
 				'conditions'=>array(
 					'ShopCartItem.shop_cart_id'=>$cart_id,
-					'ShopCartItem.foreign_key'=>$this->data['ShopCartItem']['foreign_key']
+					'ShopCartItem.foreign_key'=>$this->data['ShopCartItem']['foreign_key'],
+					'ShopCartItem.is_gift'=>$this->data['ShopCartItem']['is_gift'],
+					'ShopCartItem.size_id'=>$this->data['ShopCartItem']['size_id']
 				)
 			)
 		);
@@ -123,7 +143,7 @@ class ShopCartsController extends BcartAppController {
 			$this->ShopCart->ShopCartItem->create();
 			$this->data['ShopCartItem']['shop_cart_id'] = $cart_id;
 			if($cart=$this->ShopCart->ShopCartItem->save($this->data)) {
-				 echo json_encode($cart);
+				echo json_encode($cart);
 			} else {
 				echo false;
 			}
