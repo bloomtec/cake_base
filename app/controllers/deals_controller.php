@@ -18,6 +18,22 @@ class DealsController extends AppController {
 
 	function index() {
 		$this -> Deal -> recursive = 0;
+		if(isset($this->params['named']) && !empty($this->params['named'])) {
+			$city = $price = $zone = $cuisine = null;
+			if(isset($this->params['named']['city']) && !empty($this->params['named']['city'])) {
+				$city = $this->params['named']['city'];
+			}
+			if(isset($this->params['named']['zone']) && !empty($this->params['named']['zone'])) {
+				$zone = $this->params['named']['zone'];
+			}
+			if(isset($this->params['named']['cuisine']) && !empty($this->params['named']['cuisine'])) {
+				$cuisine = $this->params['named']['cuisine'];
+			}
+			if(isset($this->params['named']['price']) && !empty($this->params['named']['price'])) {
+				$price = $this->params['named']['price'];
+			}
+			$this -> paginate = $this->Deal->filter($city, $zone, $cuisine, $price);
+		}
 		$this -> set('deals', $this -> paginate());
 		$cities = $this->requestAction('/cities/getList');
 		$zones = $this->requestAction('/zones/getList');

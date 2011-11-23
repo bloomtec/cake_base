@@ -177,4 +177,30 @@ class Deal extends AppModel {
 		}		
 	}
 	
+	function filter($city = null, $zone = null, $cuisine = null, $price) {
+		$conditions = array();
+		$zones = $deals = null;
+		if($city) {
+			$zones = $this->Restaurant->Zone->find('list', array('conditions'=>array('Zone.city_id'=>$city), 'fields'=>array('Zone.id')));
+		} else {
+			$zones = $this->requestAction('/zones/getList');
+		}
+		if($zone) {
+			$zones = $zone;
+		}
+		if($cuisine) {
+			$deals = $this->CuisinesDeal->find('list', array('conditions'=>array('CuisinesDeal.cuisine_id'=>$cuisine), 'fields'=>array('CuisinesDeal.deal_id')));
+		} else {
+			$deals = $this->requestAction('/deals/getList');
+		}
+		$restaurants = $this->Restaurant->find('list', array('conditions'=>array('Restaurant.zone_id'=>$zones), 'fields'=>array('Restaurant.id')));
+		$other_deals = $this ->find('list', array('conditions'=>array('Deal.restaurant_id'=>$restaurants), 'fields'=>array('Deal.id')));
+		$deals = array_merge($deals, $other_deals);
+		$conditions['conditions'] = array('Deal.id'=>$deals);
+		if($price) {
+			$conditions['order']=array('Deal.price'=>$price);
+		}
+		return $conditions;
+	}
+	
 }
