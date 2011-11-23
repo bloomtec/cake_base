@@ -8,9 +8,11 @@ class ProductsController extends AppController {
 		$this->Auth->allow(
 			'getCasings', 'getPowerSupplies', 'getOpticalDrives', 'getHardDrives', 'getMemories',
 			'isVideoIncluded', 'getMotherBoards', 'getProcessors','getSocketsByArchitecture',
-			'featuredProduct','searchResults'
+			'featuredProduct','searchResults', 'getMonitors', 'getPeripherals', 'getOtherCards',
+			'getAccesories', 'getOthers'
 		);
 	}
+	
 	function armaTuComputador(){
 		$this->layout="personaliza";
 		$arquitectures = $this->Product->Architecture->find('list');
@@ -527,21 +529,29 @@ class ProductsController extends AppController {
 		$this -> set(compact('casings','selectedId'));
 	}
 	
-	function getMonitors($selecteds = 0){
-		
-		$this -> set(compact('monitors', 'selecteds'));
+	function getMonitors($selected = 0){
+		$monitors = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 9)));
+		$this -> set(compact('monitors', 'selected'));
 	}
 
-	function getPeripherals($selecteds = 0){
-		$this -> set(compact('peripherals', 'selecteds'));
+	function getPeripherals($selected = 0){
+		$peripherals = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 15)));
+		$this -> set(compact('peripherals', 'selected'));
 	}
 	
-	function getOtherCards($boardId, $selecteds = 0){
-		$this -> set(compact('otherCards', 'boardId','selecteds'));
+	function getOtherCards($boardId, $selected = 0){
+		$otherCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 10)));
+		$this -> set(compact('otherCards', 'boardId','selected'));
 	}
 	
-	function getAccesories($selecteds = 0){
-		$this -> set(compact('accesories', 'selecteds'));
+	function getAccesories($selected = 0){
+		$accesories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 11)));
+		$this -> set(compact('accesories', 'selected'));
+	}
+
+	function getOthers($selected = 0){
+		$others = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 16)));
+		$this -> set(compact('others', 'selected'));
 	}
 
 }
