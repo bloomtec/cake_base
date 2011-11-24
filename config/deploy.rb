@@ -36,7 +36,7 @@ namespace :deploy do
   
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "cp /home/embalao/clickneat.bloomweb.co/current/. /home/embalao/clickneat.bloomweb.co/ -R"
-    run "cp /home/embalao/clickneat.bloomweb.co/app/config/database.srvr /home/embalao/clickneat.bloomweb.co/app/config/database.php"
+    run "cp /home/embalao/clickneat.bloomweb.co/app/config/database.php.srvr /home/embalao/clickneat.bloomweb.co/app/config/database.php"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/tmp/ -R"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/img/uploads/ -R"
     run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/files/uploads/ -R"
