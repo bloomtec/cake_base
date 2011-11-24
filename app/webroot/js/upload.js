@@ -30,6 +30,29 @@ $(document).ready(function() {
 						});
 					}
 			});
+			
+			$('#single-upload-2').uploadify({
+				'uploader' : '/swf/uploadify.swf',
+				'script' : '/uploadify.php',
+				'folder' : '/app/webroot/img/uploads',
+				'auto' : true,
+				'cancelImg' : '/img/cancel.png',
+				'onComplete' : function(a, b, c, d) {
+					var oldImage=$("#single-field-2").val();
+					$.post("/images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+						
+					});							
+					$(".preview").html('<img  src="' + d + '" />');
+					var file = d.split("/");
+					var nombre = file[(file.length - 1)];
+					var name = c.name;
+					$("#single-field-2").val(nombre);
+						$.post("/images/resizeImage", {name:nombre,folder:'uploads'}, function(data){
+					
+						});
+					}
+			});
+			
 			$('#pictures-uploader').uploadify({
 				'uploader' :'/swf/uploadify.swf',
 				'script' : '/uploadify.php',
