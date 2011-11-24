@@ -422,7 +422,7 @@ class ProductsController extends AppController {
 				$compatible_cards[] = $card['Product']['id'];
 			}
 		}
-		$videoCards = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
+		$videoCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
 		$this -> set(compact('videoCards','selectedId'));
 	}
 	
