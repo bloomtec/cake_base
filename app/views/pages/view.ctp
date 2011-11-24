@@ -21,7 +21,7 @@
 			<?php echo $page['Page']['keywords']; ?>
 			&nbsp;
 		</dd>
-<?php if($page['Page']['active']){ ?>
+<?php if($page['Page']['is_active']){ ?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Active'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo __('Active',true); ?>
