@@ -19,7 +19,7 @@ $(function(){
 			break;
 						
 			case 'video-card':
-				return pc.tarjetaVideoFunctionality(fromTab,toTab);
+				return pc.videoCardFunctionality(fromTab,toTab);
 			break;
 			case 'case':
 				return pc.videoCardFunctionality(fromTab,toTab);

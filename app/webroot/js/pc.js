@@ -1,7 +1,7 @@
 var pc = {};
 $(function() {
 	pc.checkItem = function(item , errorMessage, callback){
-		//'processors','board-cards','ram-cards','hard-drive','video-card','case','supply','optical-drive','monitor','peripherals','other-cards','accesories',
+		//'processors','board-cards','ram-cards','hard-drives','video-cards','cases','supplies','optical-drives','monitors','peripherals','other-cards','accesories',
 		if(errorMessage==null || typeof(errorMessage) == 'undefined'){
 			switch(item){
 				case '.board-cards':
@@ -43,17 +43,27 @@ $(function() {
 	}
 	
 	pc.videoCardFunctionality = function(fromTab,toTab){
-		var videoCardSelectedId = ($('.radios.video-cards :checked').length) > 0 ? $('.radios.video-cards :checked').val() : 0 ;
-		var isRequerided=false;
-		if(videoCardSelectedId){
-			isRequerided = BJS.get('/products/isVideo',null,function(data){
-				
-			});
-		}
+		return pc.checkItem('.board-cards',null,function(){
+				pc.checkItem('.hard-drives');
+		});
 	}
 	
 	pc.caseFunctionality = function(fromTab,toTab){
-	
+		var isRequerided=false;
+		if(videoCardSelectedId){
+			isRequerided = BJS.get('/products/isVideo/'+pc.board_id,null,function(data){
+				
+			});
+		}
+		if(!isRequerided){
+			return pc.checkItem('.board-cards',null,function(){
+				pc.checkItem('.hard-drives');
+			});
+		}else{
+			return pc.checkItem('.board-cards',null,function(){
+				pc.checkItem('.video-cards','La tarjeta madre que incluyo no tiene video, debe seleccionar una tarjeta de video.');
+			});
+		}
 	}
 	
 	pc.supplyFunctionality = function(fromTab,toTab){
@@ -92,13 +102,16 @@ $(function() {
 	
 	$('.radios.processors input').live('click',function(){
 		var $proccessors = $(this);
-	
-		getMotherBoard($proccessors.val());
+		var val=$proccessors.val();
+		pc.proccessor_id=val;
+		getMotherBoard(val);
 	});
 	
 	$('.radios.board-cards input').live('click',function(){
 		var $boards = $(this);
-		boardCallBack($boards.val());
+		var val=$boards.val();
+		pc.board_id=val;
+		boardCallBack(val);
 	});
 	
 // IN TAB Memorias RAM
