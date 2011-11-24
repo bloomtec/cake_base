@@ -42,9 +42,9 @@ $(function(){
 			success : callback
 		});
 	}
-	BJS.setParam = function(param, value) {
+	BJS.setParam = function(param, value,withUrl) {
 		/* añande o modifica un parametro de la forma param:value */
-		var url = document.URL;
+		var url = (typeof(withUrl) == 'undefined' || typeof(withUrl) == null )? document.URL : withUrl;
 		var params = url.substring(url.indexOf("/", 0));
 		if (params.substring(0, 2) == "//") {
 			params = params.substring(params.indexOf("/", 2));
@@ -65,8 +65,29 @@ $(function(){
 			var urlAfterValue = params.substring(indexValue + newValue.length);
 			return urlTillValue + value + urlAfterValue;
 		} else {
-			return params + param + ":" + value;
+			return params + param + ":" + value+'/';
 		}
+	}
+	BJS.removeParam = function(param, withUrl) {
+		/* añande o modifica un parametro de la forma param:value */
+		var url = (typeof(withUrl) == 'undefined' || typeof(withUrl) == null )? document.URL : withUrl;
+		var params = url.substring(url.indexOf("/", 0));
+		if (params.substring(0, 2) == "//") {
+			params = params.substring(params.indexOf("/", 2));
+		}
+		
+		var initParamInString = params.indexOf(param,0);
+		if(initParamInString < 0){
+			return params;
+		}
+		var endParamInString = params.indexOf('/',initParamInString);
+		if( endParamInString < 0){
+			cosole.log('al final');
+			endParamInString = params.length;
+		}
+		var paramsWithouParam = params.substring(0,initParamInString)+params.substring(endParamInString + 1);
+	
+		return paramsWithouParam;
 	}
 	BJS.updateSelect = function($select, $address, $callback){
 		$select.html('');

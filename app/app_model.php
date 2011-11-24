@@ -41,8 +41,8 @@ class AppModel extends Model {
 				foreach($languages as $key => $lang){
 					if($key == $currentLanguage) continue; 
 						$this->locale=$key;
-						$this->data['Background']['locale']=$key;
-						$this->data['Background']['id']=$this->id;
+						$this->data[$this->name]['locale']=$key;
+						$this->data[$this->name]['id']=$this->id;
 						$this->save($this->data); 
 				}
 				$this->locale=$currentLanguage;	

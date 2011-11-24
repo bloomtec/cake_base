@@ -17,9 +17,7 @@ $(document).ready(function() {
 				'cancelImg' : '/img/cancel.png',
 				'onComplete' : function(a, b, c, d) {
 					var oldImage=$("#single-field").val();
-					$.post("/images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
-						
-					});							
+					//$.post("/images/deleteImage", {name:oldImage}, function(data){});							
 					$(".preview").html('<img  src="' + d + '" />');
 					var file = d.split("/");
 					var nombre = file[(file.length - 1)];

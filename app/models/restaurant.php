@@ -7,6 +7,9 @@ class Restaurant extends AppModel {
 	var $sluggable = false;
 	var $sortable = false;
 	var $activable = false;
+	var $actsAs = array(
+		'Translate' => array('name','description','address','schedule')
+	);
 
 	var $validate = array(
 		'zone_id' => array(
