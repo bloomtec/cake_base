@@ -397,11 +397,7 @@ class ProductsController extends AppController {
 	function isVideoIncluded($product_id = null) {
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
-		if($motherboard['Product']['is_video_included']) {
-			echo true;
-		} else {
-			echo false;
-		}
+		echo  (bool) $motherboard['Product']['is_video_included'];
 		exit(0);
 	}
 	/**

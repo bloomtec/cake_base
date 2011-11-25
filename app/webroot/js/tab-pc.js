@@ -22,7 +22,7 @@ $(function(){
 				return pc.videoCardFunctionality(fromTab,toTab);
 			break;
 			case 'case':
-				return pc.videoCardFunctionality(fromTab,toTab);
+				return pc.caseFunctionality(fromTab,toTab);
 			break;
 			case 'supply':
 				return pc.supplyFunctionality(fromTab,toTab);

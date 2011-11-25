@@ -44,28 +44,26 @@ $(function() {
 	}
 	
 	pc.videoCardFunctionality = function(fromTab,toTab){
-		return check = pc.checkItem('.board-cards',null,function(){
-				pc.checkItem('.hard-drives');
-		});
+		return pc.checkItem('.board-cards',null,pc.checkItem('.hard-drives'));
 	
 	}
 	
 	pc.caseFunctionality = function(fromTab,toTab){
-		var isRequerided=false;
-		if(videoCardSelectedId){
-			isRequerided = BJS.get('/products/isVideo/'+pc.board_id,null,function(data){
-				
-			});
-		}
-		if(!isRequerided){
-			return pc.checkItem('.board-cards',null,function(){
-				pc.checkItem('.hard-drives');
-			});
-		}else{
-			return pc.checkItem('.board-cards',null,function(){
-				pc.checkItem('.video-cards','La tarjeta madre que incluyo no tiene video, debe seleccionar una tarjeta de video.');
-			});
-		}
+		var isIncluded=false;
+		var $return=false;
+		BJS.getS('/products/isVideoIncluded/'+pc.board_id,null,function(data){
+				isIncluded=data;
+				if(isIncluded){
+					$return = pc.checkItem('.board-cards',null,pc.checkItem('.hard-drives'));
+				}else{
+					$return  = pc.checkItem('.board-cards',null,
+								pc.checkItem('.hard-drives',null,
+									pc.checkItem('.video-cards','La tarjeta madre que incluyo no tiene video, debe seleccionar una tarjeta de video.')
+								)
+							); 
+			}
+		});
+		return $return;
 	}
 	
 	pc.supplyFunctionality = function(fromTab,toTab){
