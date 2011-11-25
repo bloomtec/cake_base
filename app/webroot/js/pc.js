@@ -104,12 +104,14 @@ $(function() {
 		var $proccessors = $(this);
 		var val=$proccessors.val();
 		pc.proccessor_id=val;
+		BJS.get('/products/myPCAddItem/Proccessor/'+val);
 		getMotherBoard(val);
 	});
 	
 	$('.radios.board-cards input').live('click',function(){
 		var $boards = $(this);
 		var val=$boards.val();
+		BJS.get('/products/myPCAddItem/Motherboard/'+val);
 		pc.board_id=val;
 		boardCallBack(val);
 	});
