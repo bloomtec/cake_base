@@ -1,7 +1,7 @@
 <div class='quantityHide'>
 <?php 
 	$selecteds = array(); // los seleccionados en a variable pc
-	echo $form->radio('Memory.id',$memories,array('legend'=>false,'value'=>$selectedId));
+	echo $form->radio('memory_id',$memories,array('legend'=>false,'value'=>$selectedId));
 	echo $form -> input('Memory.quantity', array('value'=>1,'div'=>'quantity' , 'label' => 'cantidad'))	
 ?>
 </div>

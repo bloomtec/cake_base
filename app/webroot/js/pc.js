@@ -117,7 +117,15 @@ $(function() {
 	});
 	
 // IN TAB Memorias RAM
+	$('.radios.ram-cards input').live('click',function(){
+		//MemoryQuantity
+		//
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Memory/'+val+"/"+$('#MemoryQuantity').val());
+		pc.board_id=val;
 	
+	});
 	
 // IN TAB Discos duros	
 	
