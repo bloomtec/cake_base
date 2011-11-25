@@ -180,16 +180,6 @@ class ProductsController extends AppController {
 		$this->set(compact('productTypes', 'architectures', 'slots', 'type_id'));
 	}
 	
-	function getSocketsByArchitecture($architecture_id = null) {
-		$this->layout="ajax";
-		if($architecture_id) {
-			echo json_encode($this->Product->Socket->find('list', array('conditions'=>array('Socket.architecture_id'=>$architecture_id))));
-		} else {
-			echo null;
-		}
-		exit(0);
-	}
-	
 	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Session->write('tmp_data', $this->data);
@@ -205,14 +195,22 @@ class ProductsController extends AppController {
 			if(!$recommendations || !empty($data)) {
 				$this->Product->create();
 				if ($this->Product->save($this->data)) {
+					// Asignar los slots
+					foreach($this->data['slots'] as $slot_id=>$data) {
+						if($data['checked']) {
+							$this->Product->ProductsSlot->create();
+							$this->Product->ProductsSlot->set('product_id', $this->Product->id);
+							$this->Product->ProductsSlot->set('slot_id', $slot_id);
+							$this->Product->ProductsSlot->set('quantity', $data['quantity']);
+							$this->Product->ProductsSlot->save();
+						}
+					}
 					// Crear el inventario en 0
 					$this->Product->Inventory->create();
 					$this->Product->Inventory->set('product_id', $this->Product->id);
 					$this->Product->Inventory->set('quantity', 0);
 					if($this->Product->Inventory->save()) {
-						/**
-						 * Añadir las recomendaciones
-						 */
+						// Añadir las recomendaciones
 						$data = split(",", $data);
 						foreach ($data as $ref) {
 							$recommended_product = $this -> Product -> findByRef($ref);
@@ -221,7 +219,7 @@ class ProductsController extends AppController {
 							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
 							$this -> Product -> Recommendation -> save();
 						}
-						$this->Session->setFlash(__('The product has been saved', true));
+					$this->Session->setFlash(__('The product has been saved', true));
 					} else {
 						$this->Session->setFlash(__('The product has been saved without an inventory', true));
 					}
@@ -300,11 +298,53 @@ class ProductsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			// Revisar las recomendaciones
+			$data = null;
+			$recommendations = false;
+			if(!empty($this -> data['Product']['recommendations'])) {
+				$data = $this->validateRecommendations($this -> data['Product']['recommendations'], $this -> data['Product']['ref']);
+				$recommendations = true;
+			}
+			if(!$recommendations || !empty($data)) {
+				if ($this->Product->save($this->data)) {
+					// Eliminar slots para reasignarlos
+					$slots = $this->Product->ProductsSlot->find('all', array('conditions'=>array('ProductsSlot.product_id'=>$this->data['Product']['id'])));
+					foreach($slots as $slot) {
+						$this->Product->ProductsSlot->delete($slot['ProductsSlot']['id']);
+					}
+					// Asignar los slots
+					foreach($this->data['slots'] as $slot_id=>$data) {
+						if($data['checked']) {
+							$this->Product->ProductsSlot->create();
+							$this->Product->ProductsSlot->set('product_id', $this->data['Product']['id']);
+							$this->Product->ProductsSlot->set('slot_id', $slot_id);
+							$this->Product->ProductsSlot->set('quantity', $data['quantity']);
+							$this->Product->ProductsSlot->save();
+						}
+					}
+					// Eliminar recomendaciones para reasignarlar
+					$recomendados = $this -> Product -> Recommendation -> find('all', array('conditions'=>array('Recommendation.product_id'=>$this->data['Product']['id'])));
+					if(!empty($recomendados)) {
+						foreach($recomendados as $recomendado) {
+							$this -> Product -> Recommendation -> delete($recomendado['Recommendation']['id']);
+						}
+						// Añadir las recomendaciones
+						$data = split(",", $data);
+						foreach ($data as $ref) {
+							$recommended_product = $this -> Product -> findByRef($ref);
+							$this -> Product -> Recommendation -> create();
+							$this -> Product -> Recommendation -> set('product_id', $this->data['Product']['id']);
+							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
+							$this -> Product -> Recommendation -> save();
+						}
+					}
+					$this->Session->setFlash(__('The product has been saved', true));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				}
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The recommendations don\'t seem valid. Check them and try again', true));
 			}
 		}
 		if (empty($this->data)) {
@@ -359,6 +399,16 @@ class ProductsController extends AppController {
 		}
 		$this->Session->setFlash(__('Product was not archived', true));
 		$this->redirect(array('action' => 'index'));
+	}
+	
+	function getSocketsByArchitecture($architecture_id = null) {
+		$this->layout="ajax";
+		if($architecture_id) {
+			echo json_encode($this->Product->Socket->find('list', array('conditions'=>array('Socket.architecture_id'=>$architecture_id))));
+		} else {
+			echo null;
+		}
+		exit(0);
 	}
 	
 	// Métodos aplicación ARMA TU PC
