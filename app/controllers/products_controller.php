@@ -3,17 +3,43 @@ class ProductsController extends AppController {
 
 	var $name = 'Products';
 	
+	private $myPC = array(
+		'processor' => array(), // [id]=>name
+		'motherboard' => array(), // [id]=>name
+		'memory' => array(), // []=>[id]=>name
+		'hd' => array(), // []=>[id]=>name
+		'video' => array(), // [id]=>name
+		'casing' => array(), // [id]=>name
+		'supply' => array(), // [id]=>name
+		'monitor' => array(), // [id]=>name
+		'peripherals' => array(), // []=>[id]=>name
+		'cards' => array(), // []=>[id]=>name
+		'accesories' => array() // []=>[id]=>name
+	);
+	
 	function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(
 			'getCasings', 'getPowerSupplies', 'getOpticalDrives', 'getHardDrives', 'getMemories',
 			'isVideoIncluded', 'getMotherBoards', 'getProcessors','getSocketsByArchitecture',
 			'featuredProduct','searchResults', 'getMonitors', 'getPeripherals', 'getOtherCards',
-			'getAccesories', 'getOthers'
+			'getAccesories', 'getOthers', 'getMyPC', 'setMyPC'
 		);
 	}
 	
-	function armaTuComputador(){
+	function getMyPC() {
+		return $this->Session->read('myPC'); 
+	}
+	
+	function setMyPC() {
+		$myPC = $this->params['form']['myPC'];
+		$this->Session->write('myPC', $myPC);
+	}
+	
+	function armaTuComputador() {
+		if(!$this->getMyPC()) {
+			$this->Session->write('myPC', $this->myPC);
+		}
 		$this->layout="personaliza";
 		$arquitectures = $this->Product->Architecture->find('list');
 		$this->set(compact('arquitectures'));
@@ -528,27 +554,27 @@ class ProductsController extends AppController {
 		$this -> set(compact('casings','selectedId'));
 	}
 	
-	function getMonitors($selected = 0){
+	function getMonitors($selected = 0) {
 		$monitors = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 9)));
 		$this -> set(compact('monitors', 'selected'));
 	}
 
-	function getPeripherals($selected = 0){
+	function getPeripherals($selected = 0) {
 		$peripherals = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 15)));
 		$this -> set(compact('peripherals', 'selected'));
 	}
 	
-	function getOtherCards($boardId, $selected = 0){
+	function getOtherCards($boardId, $selected = 0) {
 		$otherCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 10)));
 		$this -> set(compact('otherCards', 'boardId','selected'));
 	}
 	
-	function getAccesories($selected = 0){
+	function getAccesories($selected = 0) {
 		$accesories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 11)));
 		$this -> set(compact('accesories', 'selected'));
 	}
 
-	function getOthers($selected = 0){
+	function getOthers($selected = 0) {
 		$others = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 16)));
 		$this -> set(compact('others', 'selected'));
 	}
