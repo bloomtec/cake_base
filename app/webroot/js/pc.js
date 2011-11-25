@@ -18,9 +18,12 @@ $(function() {
 		
 		var itemId = $(item+" input:checked").length > 0 ? $(item+" input:checked").attr('value') : 0;
 		if(itemId){//selecciono el procesador cargar datos de tarjetas de video
-			$('.pc-error').html('').hide();
+			
 			if(arguments.length >= 3){
-				callback();	
+				return	callback;	
+			}else{
+				$('.pc-error').html('').hide();
+				return true;
 			}	
 		}else{// no selecciono el procesador
 			$('.pc-error').html(errorMessage).show();
@@ -36,16 +39,15 @@ $(function() {
 	}
 	
 	pc.hardDriveFunctionality = function(fromTab,toTab){
-		return pc.checkItem('.board-cards',null,function(){
-			pc.checkItem('.ram-cards');
-		});
+		return pc.checkItem('.board-cards',null,pc.checkItem('.ram-cards'));
 		
 	}
 	
 	pc.videoCardFunctionality = function(fromTab,toTab){
-		return pc.checkItem('.board-cards',null,function(){
+		return check = pc.checkItem('.board-cards',null,function(){
 				pc.checkItem('.hard-drives');
 		});
+	
 	}
 	
 	pc.caseFunctionality = function(fromTab,toTab){
