@@ -4,17 +4,17 @@ class ProductsController extends AppController {
 	var $name = 'Products';
 	
 	private $myPC = array(
-		'processor' => array(), // [id]=>name
-		'motherboard' => array(), // [id]=>name
-		'memory' => array(), // []=>[id]=>name
-		'hd' => array(), // []=>[id]=>name
-		'video' => array(), // [id]=>name
-		'casing' => array(), // [id]=>name
-		'supply' => array(), // [id]=>name
-		'monitor' => array(), // [id]=>name
-		'peripherals' => array(), // []=>[id]=>name
-		'cards' => array(), // []=>[id]=>name
-		'accesories' => array() // []=>[id]=>name
+		'Processor' => array(),
+		'Motherboard' => array(),
+		'Memory' => array(),
+		'HardDrive' => array(),
+		'VideoCard' => array(),
+		'Casing' => array(),
+		'PowerSupply' => array(),
+		'Monitor' => array(),
+		'Peripherals' => array(),
+		'Cards' => array(),
+		'Accesories' => array()
 	);
 	
 	function beforeFilter() {
@@ -28,18 +28,36 @@ class ProductsController extends AppController {
 	}
 	
 	function getMyPC() {
-		return $this->Session->read('myPC'); 
-	}
-	
-	function setMyPC() {
-		$myPC = $this->params['form']['myPC'];
-		$this->Session->write('myPC', $myPC);
-	}
-	
-	function armaTuComputador() {
 		if(!$this->getMyPC()) {
 			$this->Session->write('myPC', $this->myPC);
 		}
+		return $this->Session->read('myPC'); 
+	}
+	
+	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
+		
+		switch($product_type) {
+			case 'Accesories':
+			case 'Peripherals':
+			case 'HardDrive':
+			case 'Monitor':
+				$this->Session->write("myPC.$product_type.$product_id", $this->Product->read(null, $product_id));
+				$this->Session->write("myPC.$product_type.$product_id.quantity", $quantity);
+				break;
+			case 'VideoCard':
+				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
+				$this->Session->write("myPC.$product_type.quantity", $quantity);
+				break;
+			default:
+				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
+				break;
+		}
+	}
+
+	function myPCRemoveItem($product_type, $product_id) {
+	}
+	
+	function armaTuComputador() {
 		$this->layout="personaliza";
 		$arquitectures = $this->Product->Architecture->find('list');
 		$this->set(compact('arquitectures'));
@@ -507,7 +525,7 @@ class ProductsController extends AppController {
 		$motherboard_slots = array();
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
-		}		
+		}
 		$memories = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>3)));
 		$compatible_memories = array();
 		foreach($memories as $memory) {
@@ -516,7 +534,7 @@ class ProductsController extends AppController {
 			}
 		}
 		$memories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		$this -> set(compact('memories','selectedId'));
+		$this -> set(compact('motherboard', 'memories','selectedId'));
 	}
 	
 	/**
