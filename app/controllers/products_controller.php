@@ -35,6 +35,7 @@ class ProductsController extends AppController {
 	}
 	
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
+		$this->layout="ajax";
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
@@ -51,9 +52,12 @@ class ProductsController extends AppController {
 				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
 				break;
 		}
+		exit(0);
 	}
 
 	function myPCRemoveItem($product_type, $product_id) {
+		$this->layout="ajax";
+		exit(0);
 	}
 	
 	function armaTuComputador() {
@@ -497,6 +501,7 @@ class ProductsController extends AppController {
 	 * De ahí procesar las memorias disponibles compatibles
 	 */
 	function getVideoCards($product_id = null , $selectedId = 0 ) {
+		debug($this->Session->read('myPC'));
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
@@ -519,6 +524,8 @@ class ProductsController extends AppController {
 	 * De ahí procesar las memorias disponibles compatibles
 	 */
 	function getMemories($product_id = null ,  $selectedId = 0) {
+		$pc = $this->Session->read('myPC');
+		debug($pc);
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
