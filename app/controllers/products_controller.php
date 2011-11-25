@@ -35,7 +35,7 @@ class ProductsController extends AppController {
 	}
 	
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
-		//Set::combine($slot,'Slot.{n}.id', 'Slot.{n}')
+		$this->layout="ajax";
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
@@ -52,9 +52,12 @@ class ProductsController extends AppController {
 				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
 				break;
 		}
+		exit(0);
 	}
 
 	function myPCRemoveItem($product_type, $product_id) {
+		$this->layout="ajax";
+		exit(0);
 	}
 	
 	function armaTuComputador() {
