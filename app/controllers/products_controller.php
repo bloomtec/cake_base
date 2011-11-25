@@ -369,8 +369,7 @@ class ProductsController extends AppController {
 		$this->Session->setFlash(__('Product was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	
+		
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product', true));
