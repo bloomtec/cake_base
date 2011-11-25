@@ -35,7 +35,6 @@ class ProductsController extends AppController {
 	}
 	
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
-		
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
