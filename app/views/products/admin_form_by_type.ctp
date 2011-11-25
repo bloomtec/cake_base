@@ -15,7 +15,29 @@
 	}
 	
 	if (($type_id >= 2 && $type_id <= 6) || $type_id == 10 || $type_id == 14 || $type_id == 15) {
-		echo $this -> Form -> input('Slot.Slot', array('multiple'=>'checkbox', 'div'=>'input select required'));
+		//echo $this -> Form -> input('Slot.Slot', array('multiple'=>'checkbox', 'div'=>'input select required'));
+		$i = 0;
+	?>
+		<table>
+			<tr>
+				<th>Slot</th>
+				<th>Cantidad</th>
+			</tr>
+		<?php foreach($slots as $slot){ ?>
+			<tr>
+				<td>
+					<?php echo $this -> Form -> checkbox('Slot.Slot.'.$i.'.checked', array('id' => 'check'.$i)); ?>
+					<label for='check<?php echo $i ?>'> <?php echo $slot ?> </label>
+				</td>
+				<td>
+					<?php echo $this -> Form -> text ('Slot.Slot.'.$i.'.quantity',array('class'=>'quantity'));
+					$i += 1; ?>
+			</td>
+			</tr>
+		<?php } ?>
+		</table>
+		<?php
+		
 		if ($type_id == 5) {
 			echo $this -> Form -> input('Product.is_big_casing_required', array('div'=>'input select required'));
 			echo $this -> Form -> input('Product.required_power');
