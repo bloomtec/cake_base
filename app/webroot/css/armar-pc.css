@@ -301,3 +301,13 @@
 	margin-top:-5px;
 }
 
+
+.quantity input{
+	width: 25px;
+}
+.pc-items label{
+	float:left;
+}
+.pc-items td{
+	margin-left:5px;
+}
