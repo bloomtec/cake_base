@@ -458,6 +458,7 @@ class ProductsController extends AppController {
 	 */
 	function getMotherBoards($product_id = null, $selectedId = 0) {
 		$this->layout="ajax";
+		//$datos=Set::combine($slots,'Slot.{n}.id',Slot.{n});
 		$processor = $this->Product->find('first', array('recursive'=>1, 'conditions'=>array('Product.id'=>$product_id)));
 		$architecture_id = $processor['Socket'][0]['architecture_id'];
 		$socket_id = $processor['Socket'][0]['ProductsSocket']['socket_id'];
