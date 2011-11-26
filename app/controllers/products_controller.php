@@ -28,10 +28,16 @@ class ProductsController extends AppController {
 	}
 	
 	function getMyPC() {
-		if(!$this->getMyPC()) {
+		$this->autoRender=false;
+		$myPC = $this->Session->read('myPC', $this->myPC);
+		if(empty($myPC)) {
 			$this->Session->write('myPC', $this->myPC);
 		}
-		return $this->Session->read('myPC'); 
+		return $this->Session->read('myPC');
+	}
+	
+	function setMyPC($myPC = null) {
+		$this->Session->write('myPC', $myPC);
 	}
 	
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
@@ -57,6 +63,9 @@ class ProductsController extends AppController {
 
 	function myPCRemoveItem($product_type, $product_id) {
 		$this->layout="ajax";
+		$myPC = $this->getMyPC();
+		unset($myPC["$product_type"]["$product_id"]);
+		$this->setMyPC($myPC);
 		exit(0);
 	}
 	
