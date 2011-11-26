@@ -40,7 +40,7 @@ class ProductsController extends AppController {
 		$this->Session->write('myPC', $myPC);
 	}
 	
-	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
+	function myPCAddItem($product_type = null, $product_id = null, $position = null) {
 		$this->layout="ajax";
 		$product = $this->Product->read(null, $product_id);
 		$product['Slot'] = Set::combine($product['Slot'], '{n}.id', '{n}');
@@ -49,12 +49,10 @@ class ProductsController extends AppController {
 			case 'Peripherals':
 			case 'HardDrive':
 			case 'Monitor':
-				$this->Session->write("myPC.$product_type.$product_id", $product);
-				$this->Session->write("myPC.$product_type.$product_id.quantity", $quantity);
+				$this->Session->write("myPC.$product_type.$product_id.$position", $product);
 				break;
 			case 'VideoCard':
-				$this->Session->write("myPC.$product_type", $product);
-				$this->Session->write("myPC.$product_type.quantity", $quantity);
+				$this->Session->write("myPC.$product_type.$position", $product);
 				break;
 			default:
 				$this->Session->write("myPC.$product_type", $product);
