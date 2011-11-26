@@ -458,7 +458,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		$this -> set('items','processors');
+		$this -> set('items',$processors);
 	}
 	
 	/**
@@ -493,7 +493,7 @@ class ProductsController extends AppController {
 				)
 			)
 		);
-		$this -> set('items','motherboards');
+		$this -> set('items',$motherboards);
 	}
 	
 	/**
@@ -525,7 +525,7 @@ class ProductsController extends AppController {
 			}
 		}
 		$videoCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
-		$this -> set('items','videoCards');
+		$this -> set('items',$videoCards);
 	}
 	
 	/**
@@ -549,7 +549,7 @@ class ProductsController extends AppController {
 			}
 		}
 		$memories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		$this -> set ('items','memories');
+		$this -> set ('items',$memories);
 	}
 	
 	/**
@@ -571,7 +571,7 @@ class ProductsController extends AppController {
 			}
 		}
 		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set ('items','drives');
+		$this -> set ('items',$drives);
 	}
 	
 	/**
@@ -593,7 +593,7 @@ class ProductsController extends AppController {
 			}
 		}
 		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set ('items','drives');
+		$this -> set ('items',$drives);
 	}
 	
 	/**
@@ -617,7 +617,7 @@ class ProductsController extends AppController {
 		} else {
 			$supplies = $this->Product->find('list', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
-		$this -> set ('items','supplies');
+		$this -> set ('items',$supplies);
 	}
 	
 	/**
@@ -643,7 +643,7 @@ class ProductsController extends AppController {
 
 	function getPeripherals() {
 		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 15)));
-		$this -> set(compact('items', 'selected'));
+		$this -> set(compact('items'));
 	}
 	
 	function getOtherCards($boardId) {
