@@ -128,7 +128,15 @@ $(function() {
 	});
 	
 // IN TAB Discos duros	
+	$('.radios.hard-drives input').live('click',function(){
+		//MemoryQuantity
+		//
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/HardDrive/'+val+"/"+$('#MemoryQuantity').val());
+		pc.board_id=val;
 	
+	});
 	
 // IN TAB Tarjestas de Video
 
