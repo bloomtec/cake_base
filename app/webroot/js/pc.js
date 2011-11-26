@@ -118,24 +118,17 @@ $(function() {
 	
 // IN TAB Memorias RAM
 	$('.radios.ram-cards input').live('click',function(){
-		//MemoryQuantity
-		//
 		var $item = $(this);
 		var val=$item.val();
-		BJS.get('/products/myPCAddItem/Memory/'+val+"/"+$('#MemoryQuantity').val());
-		pc.board_id=val;
-	
+		BJS.get('/products/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
 	});
 	
 // IN TAB Discos duros	
 	$('.radios.hard-drives input').live('click',function(){
-		//MemoryQuantity
-		//
 		var $item = $(this);
 		var val=$item.val();
-		BJS.get('/products/myPCAddItem/HardDrive/'+val+"/"+$('#MemoryQuantity').val());
-		pc.board_id=val;
-	
+		console.log($item.parent());
+		BJS.get('/products/myPCAddItem/HardDrive/'+val+"/"+$item.parent().attr('rel'));	
 	});
 	
 // IN TAB Tarjestas de Video
