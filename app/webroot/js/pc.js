@@ -127,33 +127,64 @@ $(function() {
 	$('.radios.hard-drives input').live('click',function(){
 		var $item = $(this);
 		var val=$item.val();
-		console.log($item.parent());
 		BJS.get('/products/myPCAddItem/HardDrive/'+val+"/"+$item.parent().attr('rel'));	
 	});
 	
 // IN TAB Tarjestas de Video
-
+	$('.radios.video-cards input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/VideoCard/'+val+"/"+$item.parent().attr('rel'));	
+	});
 
 // IN TAB Torres
-
+	$('.radios.cases input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Casing/'+val);	
+	});
 	
-// IN TAB Memorias Fuentes
-
+// IN TAB  Fuentes
+	$('.radios.supplies input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/PowerSupply/'+val);	
+	});
 
 // IN TAB Unidades Opticas
-
+	$('.radios.optical-drives input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/PowerSupply/'+val+"/"+$item.parent().attr('rel'));	
+	});
 
 // IN TAB Monitores
-
+	$('.radios.monitors input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Monitor/'+val+"/"+$item.parent().attr('rel'));	
+	});
 
 // IN TAB Perifericos
-
+	$('.radios.peripherals input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Peripherals/'+val+"/"+$item.parent().attr('rel'));	
+	});
 
 // IN TAB otras tarjetas
-
+	$('.radios.other-cards input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Cards/'+val+"/"+$item.parent().attr('rel'));	
+	});
 
 // IN TAB accesorios
-	
+	$('.radios.accesories input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		BJS.get('/products/myPCAddItem/Accesories/'+val+"/"+$item.parent().attr('rel'));	
+	});	
 
 // FUNCIONES BASE	
 	function getProcessors($architectureId){

@@ -102,7 +102,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione: </label>
-				<div class='radios case'>
+				<div class='radios cases'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				
@@ -122,7 +122,7 @@
 				
 				<div style="clear: both;margin-bottom: 10px"></div>
 				<label>Seleccione:</label>
-				<div class='radios supplys'>
+				<div class='radios supplies'>
 					<!--Espacio donde se  llenan los radios de los procesadores-->	
 				</div>
 				

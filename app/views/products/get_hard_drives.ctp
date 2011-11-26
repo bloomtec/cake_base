@@ -1,9 +1,11 @@
 <?php 
-	if(!$selectedId) $selectedId = null;
-	if(!$selectedId2) $selectedId2 = null;
-	echo 'Primer Disco Duro (obligatorio):'; 
-	echo $form->radio('drive_id',$drives,array('legend'=>false,'value'=>$selectedId));
-	
-	echo "Segundo Disco Duro (opcional):";
-	echo $form->radio('drive_id2',$drives,array('legend'=>false,'value'=>$selectedId2));
+	$selectedId=$selectedId1 = null; // los seleccionados en a variable pc
 ?>
+<div rel='1'>
+	<h3>Primer Disco Duro (obligatorio)::</h3>
+	<?php echo $form->radio('drive_id',$memories,array('legend'=>false,'value'=>$selectedId)); ?>	
+</div>	
+<div rel='2'>
+	<h3>Segundo Disco Duro (opcional):</h3>
+	<?php echo $form->radio('drive_id2',$memories,array('legend'=>false,'value'=>$selectedId2)); ?>
+</div>
