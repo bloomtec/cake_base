@@ -49,9 +49,8 @@ class ProductsController extends AppController {
 			case 'Peripherals':
 			case 'HardDrive':
 			case 'Monitor':
-				$this->Session->write("myPC.$product_type.$product_id.$position", $product);
-				break;
 			case 'VideoCard':
+			case 'Memory':
 				$this->Session->write("myPC.$product_type.$position", $product);
 				break;
 			default:
@@ -61,11 +60,11 @@ class ProductsController extends AppController {
 		exit(0);
 	}
 
-	function myPCRemoveItem($product_type, $product_id) {
+	function myPCRemoveItem($product_type, $position) {
 		$this->layout="ajax";
 		$myPC = $this->getMyPC();
-		if(isset($myPC["$product_type"]["$product_id"]))
-			unset($myPC["$product_type"]["$product_id"]);
+		if(isset($myPC["$product_type"]["$position"]))
+			unset($myPC["$product_type"]["$position"]);
 		$this->setMyPC($myPC);
 		exit(0);
 	}
