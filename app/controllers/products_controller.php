@@ -42,8 +42,12 @@ class ProductsController extends AppController {
 	
 	function myPCAddItem($product_type = null, $product_id = null, $position = null) {
 		$this->layout="ajax";
+		// Containable con : product, slots, sockets y arquitectura
+		$this->Product->Behaviors->attach('Containable');
+		$this->Product->contain(array('Slot', 'Socket', 'Architecture'));
 		$product = $this->Product->read(null, $product_id);
 		$product['Slot'] = Set::combine($product['Slot'], '{n}.id', '{n}');
+		debug($product);
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
