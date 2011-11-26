@@ -2,7 +2,7 @@
 	$selectedId=$selectedId1 = null; // los seleccionados en a variable pc
 ?>
 <div rel='1'>
-	<h3>Primer Disco Duro (obligatorio)::</h3>
+	<h3>Disco Duro:</h3>
 	<?php echo $form->radio('drive_id',$items,array('legend'=>false,'value'=>$selectedId)); ?>	
 </div>	
 <div rel='2'>
