@@ -42,20 +42,22 @@ class ProductsController extends AppController {
 	
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
 		$this->layout="ajax";
+		$product = $this->Product->read(null, $product_id);
+		$product = Set::combine($product, 'Product.Slot.{n}', 'Product.Slot.{n}');
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
 			case 'HardDrive':
 			case 'Monitor':
-				$this->Session->write("myPC.$product_type.$product_id", $this->Product->read(null, $product_id));
+				$this->Session->write("myPC.$product_type.$product_id", $product);
 				$this->Session->write("myPC.$product_type.$product_id.quantity", $quantity);
 				break;
 			case 'VideoCard':
-				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
+				$this->Session->write("myPC.$product_type", $product);
 				$this->Session->write("myPC.$product_type.quantity", $quantity);
 				break;
 			default:
-				$this->Session->write("myPC.$product_type", $this->Product->read(null, $product_id));
+				$this->Session->write("myPC.$product_type", $product);
 				break;
 		}
 		exit(0);
@@ -64,7 +66,8 @@ class ProductsController extends AppController {
 	function myPCRemoveItem($product_type, $product_id) {
 		$this->layout="ajax";
 		$myPC = $this->getMyPC();
-		unset($myPC["$product_type"]["$product_id"]);
+		if(isset($myPC["$product_type"]["$product_id"]))
+			unset($myPC["$product_type"]["$product_id"]);
 		$this->setMyPC($myPC);
 		exit(0);
 	}
