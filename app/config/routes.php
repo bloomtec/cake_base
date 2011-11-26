@@ -48,7 +48,7 @@
 	Router::connect('/bcart/view', array('controller' => 'shopCarts', 'action' => 'viewCart','plugin'=>'bcart'));
 	
 	//ARMA TU PC
-	Router::connect('/mi-pc', array('controller' => 'products', 'action' => 'armaTuComputador'));
+	Router::connect('/mi-pc', array('controller' => 'makePc', 'action' => 'armaTuComputador'));
 	
 /**
  * ...and connect the rest of 'Pages' controller's urls.
