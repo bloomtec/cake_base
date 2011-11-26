@@ -1,3 +1,3 @@
 <?php 
-	echo $form->radio('processor_id',$processors,array('legend'=>false,'value'=>key($processors)));
+	echo $form->radio('processor_id',$items,array('legend'=>false,'value'=>key($items)));
 ?>
