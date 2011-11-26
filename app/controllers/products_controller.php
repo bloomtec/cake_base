@@ -43,7 +43,9 @@ class ProductsController extends AppController {
 	function myPCAddItem($product_type = null, $product_id = null, $quantity = null) {
 		$this->layout="ajax";
 		$product = $this->Product->read(null, $product_id);
-		$product = Set::combine($product, 'Product.Slot.{n}', 'Product.Slot.{n}');
+		debug($product);
+		$product['Slot'] = Set::combine($product['Slot'], '{n}.id', '{n}');
+		debug($product);
 		switch($product_type) {
 			case 'Accesories':
 			case 'Peripherals':
