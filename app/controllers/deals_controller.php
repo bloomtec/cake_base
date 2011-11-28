@@ -15,6 +15,12 @@ class DealsController extends AppController {
 	private function getRestaurants() {
 		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
 	}
+	
+	private function getALargeImage() {
+		$this->recursive=-1;
+		$deal = $this->Deal->find('first', array('order'=>'rand()', 'conditions'=>array('Deal.image_large <>'=>null)));
+		return $deal['Deal']['image_large']; 
+	}
 
 	function index() {
 		$this -> Deal -> recursive = 0;
@@ -40,6 +46,7 @@ class DealsController extends AppController {
 
 		$this -> set('deals', $this -> paginate());
 
+		$this->set('large_image', $this->getALargeImage());
 		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 		$cuisines = $this -> requestAction('/cuisines/getList');
 		$prices = array('ASC' => __('lowest to highest', true), 'DESC' => __('highest to lowest', true));

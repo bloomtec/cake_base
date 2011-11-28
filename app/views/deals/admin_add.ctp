@@ -9,7 +9,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('conditions');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
-		echo $this->Form->hidden('image',array('id' => 'single-field-2'));
+		echo $this->Form->hidden('image_large',array('id' => 'single-field-2'));
 		echo $this->Form->input('amount');
 		echo $this->Form->input('price');
 		echo $this->Form->input('normal_price');
@@ -34,7 +34,7 @@
 
 <div class="images">
 	<h2><?php __('Large Image'); ?></h2>
-	<div class="preview">
+	<div class="preview-2">
 		<div class="wrapper">
 				 <?php echo $this->Html->image('preview.png');?>
 		</div>

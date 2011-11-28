@@ -40,7 +40,7 @@ $(document).ready(function() {
 					$.post("/images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
 						
 					});							
-					$(".preview").html('<img  src="' + d + '" />');
+					$(".preview-2").html('<img  src="' + d + '" />');
 					var file = d.split("/");
 					var nombre = file[(file.length - 1)];
 					var name = c.name;
