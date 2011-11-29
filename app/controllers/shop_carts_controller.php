@@ -7,7 +7,7 @@ class ShopCartsController extends AppController {
 		parent::beforeFilter();
 		$this->Auth->allow(
 			'addToCart', 'removeFromCart', 'removeAllFromCart', 'checkoutCart', 'viewCart', 'getCart',
-			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon'
+			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon', 'loginTransition'
 		);
 	}
 	
@@ -18,6 +18,44 @@ class ShopCartsController extends AppController {
 	 * El carrito debe de poder ser accedido por cualquiera.
 	 * ---------------------------------------------------------------------------------------------
 	 */
+	
+	function loginTransition($user_id = null) {
+		$this->autoRender=false;
+		if($user_id) {
+			$shopCart = $this->getCart(); // Leer el carrito de la sesion
+			if(!empty($shopCart['ShopCartItem'])) {
+				$user_shopCart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id')));
+				if(!empty($user_shopCart)) {
+					// Luego de encontrar el carrito del usuario
+					$cantidad = count($shopCart['ShopCartItem']);
+					for($i=0;$i<$cantidad;$i+=1) {
+						$this -> ShopCart -> ShopCartItem -> recursive = -1;
+						$this -> ShopCart -> ShopCartItem -> read(null, $shopCart['ShopCartItem'][$i]['id']);
+						$this -> ShopCart -> ShopCartItem -> saveField('shop_cart_id', $user_shopCart['ShopCart']['id']);
+					}
+					$this->loginTransitionClearCart($shopCart['ShopCart']['id']);
+				} else {
+					// No se encontró carrito del usuario
+				}
+			}
+		}
+	}
+	
+	private function loginTransitionClearCart($shop_cart_id = null) {
+		$this->autoRender=false;
+		$shopping_cart = null;
+		if($shop_cart_id) {
+			$shopping_cart = $this->ShopCart->read(null, $shop_cart_id);
+		} else {
+			$shopping_cart = $this->getCart();
+		}
+		if(empty($shopping_cart)) {
+			// No hay carrito; hacer algo?
+		} else {
+			// Hay carrito, borrar el ítem acorde su id
+			$this->ShopCart->ShopCartItem->deleteAll(array('shop_cart_id'=>$shopping_cart['ShopCart']['id']));
+		}
+	}
 	
 	function getResume() {
 		$this->autoRender=false;
@@ -46,6 +84,7 @@ class ShopCartsController extends AppController {
 		}
 		exit(0);
 	}
+	
 	function setCoupon($coupon_serial = null) {
 		$this->autoRender=false;
 		$this->layout="ajax";
@@ -77,6 +116,7 @@ class ShopCartsController extends AppController {
 		}		
 		exit(0);
 	}
+
 	/**
 	 * Encontrar el carrito
 	 */

@@ -23,6 +23,7 @@ class UsersController extends AppController {
 		$this -> layout = ("overlay2");
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+			$this->requestAction('/shop_carts/loginTransition/'.$user['User']['id']);
 			if (!empty($user) && $this -> Auth -> login($user)) {
 				if ($this -> Auth -> autoRedirect) {
 					$this -> redirect($this -> Auth -> redirect());
@@ -33,6 +34,7 @@ class UsersController extends AppController {
 		}
 		$this -> set('titulo', 'LOGIN / REGÍSTRATE');
 	}
+	
 	function changePassword($id=null){
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid user', true));
@@ -138,15 +140,19 @@ class UsersController extends AppController {
 	}
 
 	function ajaxLogin() {
-		if ($this -> Auth -> login($this -> data)) {
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['email'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
+		if(!empty($user)) {
+			$this->requestAction('/shop_carts/loginTransition/'.$user['User']['id']);
+		}
+		if (!empty($user) && $this -> Auth -> login($user)) {
 			$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 			$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
 			echo true;
 		} else {
 			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
 		}
-		$this -> autoRender = false;
-		Configure::write('debug', 0);
 		exit(0);
 	}
 
