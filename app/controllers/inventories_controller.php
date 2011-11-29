@@ -3,8 +3,12 @@ class InventoriesController extends AppController {
 
 	var $name = 'Inventories';
 
-	function listProductIDs($size_id) {
-		return $this -> Inventory -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.quantity >' => 0, 'Inventory.size_id' => $size_id)));
+	function listProductIDs($brand_id = null, $size_id = null) {
+		$this -> loadModel('Subcategory');
+		$subcategories = $this->Subcategory->find('list', array('fields'=>array('Subcategory.id'), 'conditions'=>array('Subcategory.brand_id')));
+		$this -> loadModel('Size'); 
+		$sizes = $this -> Size -> find('list', array('fields'=>array('Size.id'), 'conditions'=>array('Size.subcategory_id'=>$subcategories, 'Size.size_reference_id'=>$size_id)));
+		return $this -> Inventory -> find('list', array('fields' => array('Inventory.product_id'), 'conditions' => array('Inventory.quantity >' => 0, 'Inventory.size_id' => $sizes)));
 	}
 	
 	function listSizeIDs($product_id) {

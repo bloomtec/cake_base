@@ -36,7 +36,7 @@ class BrandsController extends AppController {
 			 * Buscar en Inventories con el valor de la talla que llega (size_id) y retornar los product_id
 			 * Luego, hacer una condicion tipo "Product.id"=>$product_ids
 			 **/
-			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$this->params['named']['talla']);
+			$product_ids = $this->requestAction('/inventories/listProductIDs/'.$id.'/'.$this->params['named']['talla']);
 			$conditions['Product.id']=$product_ids;
 		}
 	$order=array();
