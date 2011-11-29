@@ -7,7 +7,9 @@ class Country extends AppModel {
 	var $sluggable = false;
 	var $sortable = false;
 	var $activable = false;
-
+	var $actsAs = array(
+		'Translate' => array('name','description')
+	);
 	var $validate = array(
 		'name' => array(
 			'notempty' => array(

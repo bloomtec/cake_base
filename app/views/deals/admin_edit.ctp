@@ -10,6 +10,7 @@
 		echo $this->Form->input('description');
 		echo $this->Form->input('conditions');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
+		echo $this->Form->hidden('image_large',array('id' => 'single-field-2'));
 		echo $this->Form->input('amount');
 		echo $this->Form->input('price');
 		echo $this->Form->input('normal_price');
@@ -22,12 +23,23 @@
 </div>
 
 <div class="images">
-		<h2>Image</h2>
-		<div class="preview">
-			<div class="wrapper">
-					 <?php echo $this->Html->image('preview.png');?>
-			</div>
+	<h2><?php __('Image'); ?></h2>
+	<div class="preview">
+		<div class="wrapper">
+				 <?php echo $this->Html->image('preview.png');?>
 		</div>
-		<div id="single-upload" controller="deals">
-		</div>			
+	</div>
+	<div id="single-upload" controller="deals">
+	</div>
+</div>
+
+<div class="images">
+	<h2><?php __('Large Image'); ?></h2>
+	<div class="preview-2">
+		<div class="wrapper">
+				 <?php echo $this->Html->image('preview.png');?>
+		</div>
+	</div>
+	<div id="single-upload-2" controller="deals">
+	</div>
 </div>
