@@ -104,7 +104,7 @@ $(function() {
 		var $item = $(this);
 		var val=$item.val();
 		var parent= $item.parent()
-		console.log($item.rel());
+		console.log($item.attr('rel'));
 		/*BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
 		if(($item.parent().parent().is('.exclusivo'))){
 			var sibling = $item.parent().siblings();
