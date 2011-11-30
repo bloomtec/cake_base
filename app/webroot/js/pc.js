@@ -101,15 +101,10 @@ $(function() {
 	});
 	
 	$('.radios.processors input').live('click',function(){
-<<<<<<< HEAD
-		var $proccessors = $(this);
-		var val=$proccessors.val();
-		pc.proccessor_id=val;
-=======
+
 		var $processors = $(this);
 		var val=$processors.val();
 		pc.processor_id=val;
->>>>>>> 7914b8ea179b265657716c7bab57c70798cd0aad
 		BJS.get('/makePc/myPCAddItem/Processor/'+val);
 		getMotherBoard(val);
 	});
