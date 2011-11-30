@@ -29,7 +29,6 @@ class MakePcController extends AppController {
 	}
 	
 	function getMyPC() {
-		$this->autoRender=false;
 		$myPC = $this->Session->read('myPC', $this->myPC);
 		if(empty($myPC)) {
 			$this->Session->write('myPC', $this->myPC);
@@ -93,6 +92,12 @@ class MakePcController extends AppController {
 			)
 		);
 		$this -> set('items',$processors);
+		
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Processor']['Product']['id']) && !empty($myPC['Processor']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['Processor']['Product']['id']);
+		}
+		
 	}
 	
 	/**
@@ -116,6 +121,7 @@ class MakePcController extends AppController {
 				)
 			)
 		);
+		
 		$motherboards = $this->Product->find(
 			'list',
 			array(
@@ -127,7 +133,13 @@ class MakePcController extends AppController {
 				)
 			)
 		);
-		$this -> set('items',$motherboards);
+		$this -> set('items', $motherboards);
+		
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Motherboard']['Product']['id']) && !empty($myPC['Motherboard']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['Motherboard']['Product']['id']);
+		}
+		
 	}
 	
 	/**
@@ -140,6 +152,7 @@ class MakePcController extends AppController {
 		echo  (bool) $motherboard['Product']['is_video_included'];
 		exit(0);
 	}
+	
 	/**
 	 * $product_id : ID del producto (tarjeta madre) seleccionada.
 	 * De ahí procesar las memorias disponibles compatibles
@@ -182,7 +195,15 @@ class MakePcController extends AppController {
 			}
 		}
 		$memories = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		$this -> set ('items',$memories);
+		$this -> set ('items', $memories);
+		
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Memory'][1]['Product']['id']) && !empty($myPC['Memory'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['Memory'][1]['Product']['id']);
+		}
+		if(isset($myPC['Memory'][2]['Product']['id']) && !empty($myPC['Memory'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['Memory'][2]['Product']['id']);
+		}
 	}
 	
 	/**
@@ -266,7 +287,11 @@ class MakePcController extends AppController {
 		} else {
 			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
 		}
-		$this -> set('items','casings');
+		$this -> set('items', $casings);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Casing']['Product']['id']) && !empty($myPC['Casing']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['Casing']['Product']['id']);
+		}
 	}
 	
 	function getMonitors() {
@@ -282,6 +307,44 @@ class MakePcController extends AppController {
 	function getOtherCards($boardId) {
 		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 10)));
 		$this -> set(compact('items', 'boardId'));
+	}
+	
+	function getMice() {
+		$this->layout="ajax";
+		$myPC = $this->getMyPC();
+		$motherboard = $this->Product->findById($myPC['Motherboard']['Product']['id']);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$mice = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>17)));
+		$compatible_mice = array();
+		foreach($mice as $mouse) {
+			if(in_array($mouse['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_mice[] = $mouse['Product']['id'];
+			}
+		}
+		$mice = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_mice)));
+		$this -> set('items',$mice);
+	}
+	
+	function getKeyboards() {
+		$this->layout="ajax";
+		$myPC = $this->getMyPC();
+		$motherboard = $this->Product->findById($myPC['Motherboard']['Product']['id']);
+		$motherboard_slots = array();
+		foreach($motherboard['Slot'] as $slot) {
+			$motherboard_slots[] = $slot['id'];
+		}		
+		$keyboards = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>18)));
+		$compatible_keyboards = array();
+		foreach($keyboards as $keyboard) {
+			if(in_array($keyboard['Slot'][0]['id'], $motherboard_slots)) {
+				$compatible_keyboards[] = $keyboard['Product']['id'];
+			}
+		}
+		$keyboards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_keyboards)));
+		$this -> set('items',$keyboards);
 	}
 
 }
