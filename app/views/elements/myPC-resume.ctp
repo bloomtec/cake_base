@@ -17,6 +17,7 @@
 			</li>
 		</ul>
 	</div>
+	<?php $myPC=$this->requestAction('/make_pc/getMyPC'); ?>
 	<div class="resumen_productos">
 		<h1>Procesador</h1>
 		<h2><?php if(!empty($myPC['Processor'])) { echo $myPC['Processor']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
