@@ -168,7 +168,6 @@ class MakePcController extends AppController {
 	 */
 	function getMemories($product_id = null ) {
 		$pc = $this->Session->read('myPC');
-		debug($pc);
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
 		$motherboard_slots = array();
@@ -284,6 +283,5 @@ class MakePcController extends AppController {
 		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 10)));
 		$this -> set(compact('items', 'boardId'));
 	}
-	
 
 }

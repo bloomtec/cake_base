@@ -2,7 +2,10 @@
 	<h1>Resumen de la compra</h1>
 	<div class="precio">
 		<img src="/img/computador.jpg"/>
-		<h2>Precio total:1.500.000</h2>
+		<?php
+			$total = 0;
+		?>
+		<h2>Precio total: $<?php echo $total; ?></h2>
 	</div>
 	<div class="resumen_menu">
 		<ul>
@@ -17,30 +20,28 @@
 			</li>
 		</ul>
 	</div>
+	<?php $myPC = $this->Session->read('myPC'); ?>
 	<div class="resumen_productos">
-		<a href="/"><h1>Procesador</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Tarjeta madre</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Tarjeta de video</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Memoria RAM</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Discos duros</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Monitor</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Torre</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Fuente</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Unidades óptcas</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Periféricos</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Tarjetas adicionales</h1></a>
-		<a href="/"><h2>algo</h2></a>
-		<a href="/"><h1>Accesorios</h1></a>
-		<a href="/"><h2>algo</h2></a>
+		<h1>Procesador</h1>
+		<h2><?php if(!empty($myPC['Processor'])) { echo $myPC['Processor']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Tarjeta madre</h1>
+		<h2><?php if(!empty($myPC['Motherboard'])) { echo $myPC['Motherboard']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Tarjeta de video</h1>
+		<h2><?php if(!empty($myPC['VideoCard'])) { echo $myPC['VideoCard']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Memoria RAM</h1>
+		<h2><?php if(!empty($myPC['Memory'])) { echo $myPC['Memory'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Discos duros</h1>
+		<h2><?php if(!empty($myPC['HardDrive'])) { echo $myPC['HardDrive'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Monitor</h1>
+		<h2><?php if(!empty($myPC['Monitor'])) { echo $myPC['Monitor'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Torre</h1>
+		<h2><?php if(!empty($myPC['Casing'])) { echo $myPC['Casing'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Fuente</h1>
+		<h2><?php if(!empty($myPC['PowerSupply'])) { echo $myPC['PowerSupply'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Unidades óptcas</h1>
+		<h2><?php if(!empty($myPC['OpticalDrive'])) { echo $myPC['OpticalDrive'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
+		<h1>Periféricos</h1>
+		<h2><?php if(!empty($myPC['Peripherals'])) { echo $myPC['Peripherals'][1]['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
 	</div>
 </div>
+<?php //debug($myPC); ?>
