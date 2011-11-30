@@ -66,10 +66,7 @@ $(function() {
 		return $return;
 	}
 	
-	pc.supplyFunctionality = function(fromTab,toTab){
-	
-	}
-	
+
 	pc.opticalDriveFunctionality = function(fromTab,toTab){
 	
 	}
@@ -99,107 +96,34 @@ $(function() {
 	$('#architecture').change(function(){
 		getProcessors($(this).val());
 	});
-	
+	var $item = val= position = sibling =null;
 	$('.radios input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		var parent= $item.parent()
-		console.log($item.attr('rel'));
-		/*BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
-		if(($item.parent().parent().is('.exclusivo'))){
-			var sibling = $item.parent().siblings();
+		$item = $(this);
+		val=$item.val();
+		position = $item.attr('rel')? $item.attr('rel') :0;
+		rel=$item.parent().attr('rel');
+		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position);	
+		if(($item.parent().is('.exclusivo'))){
+			sibling = $item.siblings('input[rel!="'+position+'"]');
+			console.log(sibling);
 			//var toRemove = sibling.find('input:checked').val(); 
-			 sibling.find('input:checked').val(); 
-		}*/
-	});
+			 sibling.removeAttr('checked'); 
+		}
 	
-/*	$('.radios.processors input').live('click',function(){
-
-		var $processors = $(this);
-		var val=$processors.val();
-		pc.processor_id=val;
-		BJS.get('/makePc/myPCAddItem/Processor/'+val);
-		getMotherBoard(val);
-	});
-	
-	$('.radios.board-cards input').live('click',function(){
-		var $boards = $(this);
-		var val=$boards.val();
-		BJS.get('/makePc/myPCAddItem/Motherboard/'+val);
-		pc.board_id=val;
-		boardCallBack(val);
-	});
-	
-// IN TAB Memorias RAM
-	$('.radios input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		var parent= $item.parent()
-		
-		BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
-		if(($item.parent().parent().is('.exclusivo'))){
-			var sibling = $item.parent().siblings();
-			//var toRemove = sibling.find('input:checked').val(); 
-			 sibling.find('input:checked').val(); 
+		switch(rel){
+			case "Processor":
+				pc.processor_id=val;
+				getMotherBoard(val);
+			break;
+			case "Motherboard":
+				
+				pc.board_id=val;
+				boardCallBack(val);
+			break;
 		}
 	});
 	
-// IN TAB Discos duros	
-	$('.radios.hard-drives input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/HardDrive/'+val+"/"+$item.parent().attr('rel'));	
-	});
-	
-// IN TAB Tarjestas de Video
-	$('.radios.video-cards input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/VideoCard/'+val+"/"+$item.parent().attr('rel'));	
-	});
 
-// IN TAB Torres y fuentes
-	$('.radios.cases input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/Casing/'+val);	
-	});
-	
-	$('.radios.supplies input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/PowerSupply/'+val);	
-	});
-
-// IN TAB Unidades Opticas
-	$('.radios.optical-drives input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/PowerSupply/'+val+"/"+$item.parent().attr('rel'));	
-	});
-
-// IN TAB Monitores
-	$('.radios.monitors input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/Monitor/'+val+"/"+$item.parent().attr('rel'));	
-	});
-
-// IN TAB Perifericos
-	$('.radios.peripherals input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/Peripherals/'+val+"/"+$item.parent().attr('rel'));	
-	});
-
-// IN TAB otras tarjetas
-	$('.radios.other-cards input').live('click',function(){
-		var $item = $(this);
-		var val=$item.val();
-		BJS.get('/makePc/myPCAddItem/Cards/'+val+"/"+$item.parent().attr('rel'));	
-	});
-
-*/
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
 		$('.radios.processors').load('/makePc/getProcessors/'+$architectureId,function(){
@@ -227,82 +151,52 @@ $(function() {
 		if(boardId) getVideoCards(boardId , videoCardSelectedId);
 		if(boardId) getOpticalDrives(boardId, opticalDriveSelectedId );
 	}
-	function getRamCards(boardId,oldRamCardId){
-		if(arguments.length <= 1){
-			oldRamCardId=0;
-		}
-		$('.radios.ram-cards').load('/makePc/getMemories/'+boardId+"/"+oldRamCardId, function(){//traer torres compatibles
+	function getRamCards(boardId){
+		$('.radios.ram-cards').load('/makePc/getMemories/'+boardId, function(){//traer torres compatibles
 			// lo que dependa de la memoria ram
 		});
 	}
-	function getHardDrives(boardId,oldHardDriveId){
-		if(arguments.length <= 1){
-			oldHardDriveId=0;
-		}
-		$('.radios.hard-drives').load('/makePc/getHardDrives/'+boardId+"/"+oldHardDriveId, function(){//traer torres compatibles
+	function getHardDrives(boardId){
+		$('.radios.hard-drives').load('/makePc/getHardDrives/'+boardId, function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		});
 	}
-	function getVideoCards(boardId,oldVideoCardId){
-		if(arguments.length <= 1){
-			oldVideoCardId = 0;
-		}
-		$('.radios.video-cards').load('/makePc/getVideoCards/'+boardId+"/"+oldVideoCardId, function(){//traer torres compatibles
+	function getVideoCards(boardId){
+		$('.radios.video-cards').load('/makePc/getVideoCards/'+boardId, function(){//traer torres compatibles
 			// lo que dependa de video cards
 			var caseSelectedId = ($('.radios.cases :checked').length) > 0 ? $('.radios.video-cards :checked').val() : 0 ;
 			var videoSelectedCardId = $('.radios.video-cards :checked').val();
 			getCases(videoSelectedCardId,caseSelectedId);
 		});
 	}
-	function getCases($videoCardId, $oldCaseId){
-		if(arguments.length <= 1){
-			$oldCaseId = 0;
-		}
-		$('.radios.cases').load('/makePc/getCasings/'+$videoCardId+'/'+$oldCaseId,function(){
-			// lo que dependa de la caja
-			var supplySelectedId = ($('.radios.supplys :checked').length) > 0 ? $('.radios.supplys :checked').val() : 0 ;
-			var caseSelectedId = $('.radios.cases :checked').val();
-			getSupply($videoCardId, caseSelectedId, supplySelectedId);
+	function getCases($videoCardId){
+		$('.radios.cases').load('/makePc/getCasings/'+$videoCardId,function(){
+			getSupply($videoCardId, caseSelectedId);
 		});
 	}
-	function getSupply($videoCardId, $caseId , $oldSupplyId){
-		if(arguments.length < 3){
-			$oldSupplyId = 0;
-		}
-		$('.radios.supplys').load('/makePc/getPowerSupplies/'+$videoCardId+'/'+$caseId+'/'+$oldSupplyId,function(){
+	function getSupply($videoCardId, $caseId ){
+		$('.radios.supplys').load('/makePc/getPowerSupplies/'+$videoCardId+'/'+$caseId,function(){
 			//lo que dependa de la fuente
 		});
 	}
-	function getOpticalDrives(boardId,oldOpticalDriveId){
-		if(arguments.length < 2){
-			oldOpticalDriveId = 0;
-		}
-		$('.radios.optical-drives').load('/makePc/getOpticalDrives/'+boardId+"/"+oldOpticalDriveId, function(){//traer torres compatibles
+	function getOpticalDrives(boardId){
+		$('.radios.optical-drives').load('/makePc/getOpticalDrives/'+boardId, function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		});
 	}
 	
-	function getMonitors(oldMonitorId){
-		if(arguments.length < 1){
-			oldMonitorId=0;
-		}
+	function getMonitors(){
 		$('.radios.monitors').load('/makePc/getMonitors', function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		})
 	}
 	
-	function getPeripherals(peripheralsSelected){
-		if(arguments.length < 1){
-			peripheralsSelected=0;
-		}
+	function getKeyBoards(){
 		$('.radios.peripherals').load('/makePc/getPeripherals', function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		})	
 	}
-	function getOtherCards(boardId, otherCardsSeleccted){
-		if(arguments.length < 2){
-			otherCardsSeleccted=0;
-		}
+	function getOtherCards(boardId){
 		$('.radios.other-cards').load('/makePc/getOtherCards/'+boardId, function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		});
