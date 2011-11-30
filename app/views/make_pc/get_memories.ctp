@@ -7,13 +7,9 @@
 		$selectedId2 = $selected_id_2;
 	}
 ?>
-<div class="exclusivo">
-	<div rel='1'>
-		<h3>Memoria:</h3>
-		<?php echo $form -> radio('memory_id1', $items, array('legend'=>false,'value'=>$selectedId1)); ?>	
-	</div>
-	<div rel='2'>
-		<h3>Segunda Memoria (opcional):</h3>
-		<?php echo $form -> radio('memory_id2', $items, array('legend'=>false,'value'=>$selectedId2)); ?>
-	</div>
+<div class="exclusivo">	
+	<h3>Memoria:</h3>
+	<?php echo $form -> radio('memory_id1', $items, array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
+	<h3>Segunda Memoria (opcional):</h3>
+	<?php echo $form -> radio('memory_id2', $items, array('legend'=>false,'value'=>$selectedId2, 'rel'=>'2')); ?>	
 </div>

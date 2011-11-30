@@ -49,10 +49,10 @@ class MakePcController extends AppController {
 		$product = $this->Product->read(null, $product_id);
 		$product['Slot'] = Set::combine($product['Slot'], '{n}.id', '{n}');
 		switch($product_type) {
-			case 'Accesories':
-			case 'Peripherals':
 			case 'HardDrive':
 			case 'Monitor':
+				// TODO
+				break;
 			case 'VideoCard':
 			case 'Memory':
 				$this->Session->write("myPC.$product_type.$position", $product);
@@ -108,6 +108,7 @@ class MakePcController extends AppController {
 	 */
 	function getMotherBoards($product_id = null) {
 		$this->layout="ajax";
+		$myPC = $this->getMyPC();
 		//$datos=Set::combine($slots,'Slot.{n}.id',Slot.{n});
 		$processor = $this->Product->find('first', array('recursive'=>1, 'conditions'=>array('Product.id'=>$product_id)));
 		$architecture_id = $processor['Socket'][0]['architecture_id'];
@@ -137,7 +138,6 @@ class MakePcController extends AppController {
 		);
 		$this -> set('items', $motherboards);
 		
-		$myPC = $this->getMyPC();
 		if(isset($myPC['Motherboard']['Product']['id']) && !empty($myPC['Motherboard']['Product']['id'])) {
 			$this -> set('selected_id', $myPC['Motherboard']['Product']['id']);
 		}
@@ -165,7 +165,7 @@ class MakePcController extends AppController {
 		$motherboard_slots = array();
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
-		}		
+		}
 		$videoCard = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>5)));
 		$compatible_cards = array();
 		foreach($videoCard as $card) {
@@ -327,11 +327,6 @@ class MakePcController extends AppController {
 		if(isset($myPC['Monitor'][2]['Product']['id']) && !empty($myPC['Monitor'][2]['Product']['id'])) {
 			$this -> set('selected_id_2', $myPC['Monitor'][2]['Product']['id']);
 		}
-	}
-
-	function getPeripherals() {
-		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 15)));
-		$this -> set(compact('items'));
 	}
 	
 	function getOtherCards($boardId) {
