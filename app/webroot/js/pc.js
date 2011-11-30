@@ -100,7 +100,20 @@ $(function() {
 		getProcessors($(this).val());
 	});
 	
-	$('.radios.processors input').live('click',function(){
+	$('.radios input').live('click',function(){
+		var $item = $(this);
+		var val=$item.val();
+		var parent= $item.parent()
+		console.log($item.rel());
+		/*BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
+		if(($item.parent().parent().is('.exclusivo'))){
+			var sibling = $item.parent().siblings();
+			//var toRemove = sibling.find('input:checked').val(); 
+			 sibling.find('input:checked').val(); 
+		}*/
+	});
+	
+/*	$('.radios.processors input').live('click',function(){
 
 		var $processors = $(this);
 		var val=$processors.val();
@@ -118,14 +131,16 @@ $(function() {
 	});
 	
 // IN TAB Memorias RAM
-	$('.radios.ram-cards input').live('click',function(){
+	$('.radios input').live('click',function(){
 		var $item = $(this);
 		var val=$item.val();
+		var parent= $item.parent()
 		
 		BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
 		if(($item.parent().parent().is('.exclusivo'))){
-			var toRemove = $item.parent().siblings().find('input :checked').val(); 
-			console.log(toRemove);
+			var sibling = $item.parent().siblings();
+			//var toRemove = sibling.find('input:checked').val(); 
+			 sibling.find('input:checked').val(); 
 		}
 	});
 	
@@ -184,7 +199,7 @@ $(function() {
 		BJS.get('/makePc/myPCAddItem/Cards/'+val+"/"+$item.parent().attr('rel'));	
 	});
 
-
+*/
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
 		$('.radios.processors').load('/makePc/getProcessors/'+$architectureId,function(){
