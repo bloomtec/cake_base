@@ -121,7 +121,12 @@ $(function() {
 	$('.radios.ram-cards input').live('click',function(){
 		var $item = $(this);
 		var val=$item.val();
+		
 		BJS.get('/makePc/myPCAddItem/Memory/'+val+"/"+$item.parent().attr('rel'));	
+		if(($item.parent().parent().is('.exclusivo'))){
+			var toRemove = $item.parent().siblings().find('input :checked').val(); 
+			console.log(toRemove);
+		}
 	});
 	
 // IN TAB Discos duros	
@@ -138,14 +143,13 @@ $(function() {
 		BJS.get('/makePc/myPCAddItem/VideoCard/'+val+"/"+$item.parent().attr('rel'));	
 	});
 
-// IN TAB Torres
+// IN TAB Torres y fuentes
 	$('.radios.cases input').live('click',function(){
 		var $item = $(this);
 		var val=$item.val();
 		BJS.get('/makePc/myPCAddItem/Casing/'+val);	
 	});
 	
-// IN TAB  Fuentes
 	$('.radios.supplies input').live('click',function(){
 		var $item = $(this);
 		var val=$item.val();
