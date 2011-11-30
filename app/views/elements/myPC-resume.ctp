@@ -3,9 +3,23 @@
 	<div class="precio">
 		<img src="/img/computador.jpg"/>
 		<?php
+			$myPC = $this->Session->read('myPC');
 			$total = 0;
+			foreach($myPC as $categoria) {
+				if(!empty($categoria)) {
+					if(isset($categoria['1'])) {
+						$total += $categoria['1']['Product']['price'];
+					} else {
+						if(isset($categoria['2'])) {
+							$total += $categoria['2']['Product']['price'];
+						} else {
+							$total += $categoria['Product']['price'];
+						}
+					}
+				}
+			}
 		?>
-		<h2>Precio total: $<?php echo $total; ?></h2>
+		<h2>Precio total: $<?php echo number_format($total, 0, ' ', '.'); ?></h2>
 	</div>
 	<div class="resumen_menu">
 		<ul>
@@ -20,7 +34,6 @@
 			</li>
 		</ul>
 	</div>
-	<?php $myPC = $this->Session->read('myPC'); ?>
 	<div class="resumen_productos">
 		<h1>Procesador</h1>
 		<h2><?php if(!empty($myPC['Processor'])) { echo $myPC['Processor']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
