@@ -15,7 +15,9 @@ class MakePcController extends AppController {
 		'Monitor' => array(),
 		'Peripherals' => array(),
 		'Cards' => array(),
-		'Accesories' => array()
+		'Accesories' => array(),
+		'Mouse' => array(),
+		'Keyboard' => array()
 	);
 	
 	function beforeFilter() {
@@ -173,6 +175,13 @@ class MakePcController extends AppController {
 		}
 		$videoCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
 		$this -> set('items',$videoCards);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['VideCard'][1]['Product']['id']) && !empty($myPC['VideCard'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['HardDrive'][1]['Product']['id']);
+		}
+		if(isset($myPC['VideCard'][2]['Product']['id']) && !empty($myPC['VideCard'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['VideCard'][2]['Product']['id']);
+		}
 	}
 	
 	/**
@@ -225,7 +234,14 @@ class MakePcController extends AppController {
 			}
 		}
 		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set ('items',$drives);
+		$this -> set ('items', $drives);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['HardDrive'][1]['Product']['id']) && !empty($myPC['HardDrive'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['HardDrive'][1]['Product']['id']);
+		}
+		if(isset($myPC['HardDrive'][2]['Product']['id']) && !empty($myPC['HardDrive'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['HardDrive'][2]['Product']['id']);
+		}
 	}
 	
 	/**
@@ -248,6 +264,13 @@ class MakePcController extends AppController {
 		}
 		$drives = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
 		$this -> set ('items',$drives);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['OpticalDrive'][1]['Product']['id']) && !empty($myPC['OpticalDrive'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['OpticalDrive'][1]['Product']['id']);
+		}
+		if(isset($myPC['OpticalDrive'][2]['Product']['id']) && !empty($myPC['OpticalDrive'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['OpticalDrive'][2]['Product']['id']);
+		}
 	}
 	
 	/**
@@ -297,6 +320,13 @@ class MakePcController extends AppController {
 	function getMonitors() {
 		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 9)));
 		$this -> set(compact('items'));
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Monitor'][1]['Product']['id']) && !empty($myPC['Monitor'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['Monitor'][1]['Product']['id']);
+		}
+		if(isset($myPC['Monitor'][2]['Product']['id']) && !empty($myPC['Monitor'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['Monitor'][2]['Product']['id']);
+		}
 	}
 
 	function getPeripherals() {
@@ -326,6 +356,10 @@ class MakePcController extends AppController {
 		}
 		$mice = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_mice)));
 		$this -> set('items',$mice);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Mouse']['Product']['id']) && !empty($myPC['Mouse']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['Mouse']['Product']['id']);
+		}
 	}
 	
 	function getKeyboards() {
@@ -345,6 +379,10 @@ class MakePcController extends AppController {
 		}
 		$keyboards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_keyboards)));
 		$this -> set('items',$keyboards);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['Keyboard']['Product']['id']) && !empty($myPC['Keyboard']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['Keyboard']['Product']['id']);
+		}
 	}
 
 }
