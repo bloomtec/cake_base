@@ -48,6 +48,7 @@ class MakePcController extends AppController {
 		$this->Product->contain(array('Slot', 'Socket', 'Architecture'));
 		$product = $this->Product->read(null, $product_id);
 		$product['Slot'] = Set::combine($product['Slot'], '{n}.id', '{n}');
+		$myPC = $this->getMyPC();
 		switch($product_type) {
 			case 'HardDrive':
 			case 'Monitor':
@@ -55,12 +56,23 @@ class MakePcController extends AppController {
 				break;
 			case 'VideoCard':
 			case 'Memory':
-				$this->Session->write("myPC.$product_type.$position", $product);
+				if($position == 1) {
+					$myPC["$product_type"]["$position"] = $product;
+					if(isset($myPC["$product_type"][2])) {
+						unset($myPC["$product_type"][2]);
+					}
+				} else {
+					$myPC["$product_type"]["$position"] = $product;
+					if(isset($myPC["$product_type"][1])) {
+						unset($myPC["$product_type"][1]);
+					}
+				}
 				break;
 			default:
-				$this->Session->write("myPC.$product_type", $product);
+				$myPC["$product_type"] = $product;
 				break;
 		}
+		$this->setMyPC($myPC);
 		exit(0);
 	}
 

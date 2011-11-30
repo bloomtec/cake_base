@@ -4,7 +4,7 @@
 		$selectedId = $selected_id;
 	}
 ?>
-<div rel='1'>
+<div class="sencillo">
 	<h3>Teclado:</h3>
 	<?php echo $form->radio('keyboard_id',$items,array('legend'=>false,'value'=>$selectedId)); ?>	
 </div>	
