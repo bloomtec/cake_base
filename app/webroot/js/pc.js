@@ -20,7 +20,7 @@ $(function() {
 		if(itemId){//selecciono el procesador cargar datos de tarjetas de video
 			
 			if(arguments.length >= 3){
-				return	callback;	
+			return	callback;	
 			}else{
 				$('.pc-error').html('').hide();
 				return true;
