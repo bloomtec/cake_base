@@ -75,6 +75,40 @@ class MakePcController extends AppController {
 		$this->setMyPC($myPC);
 		exit(0);
 	}
+	
+	function getMyPCTotal() {
+		$myPC = $this->getMyPC();
+		$total = 0;
+		foreach($myPC as $categoria=>$producto) {
+			switch($categoria) {
+				case 'HardDrive':
+				case 'Monitor':
+					if(isset($producto['1']['Product'])) {
+						$total += $producto['1']['Product']['price'];
+					}
+					if(isset($producto['2']['Product'])) {
+						$total += $producto['2']['Product']['price'];
+					}
+					break;
+				case 'VideoCard':
+				case 'Memory':
+					if(isset($producto['1']['Product'])) {
+						$total += $producto['1']['Product']['price'];
+					} else {
+						if(isset($producto['2']['Product'])) {
+							$total += $producto['2']['Product']['price'] * 2;
+						}
+					}
+					break;
+				default:
+					if(isset($producto['Product']['price'])) {
+						$total += $producto['Product']['price'];
+					}
+					break;
+			}
+		}
+		return $total;
+	}
 
 	function myPCRemoveItem($product_type, $position) {
 		$this->layout="ajax";
@@ -391,5 +425,4 @@ class MakePcController extends AppController {
 			$this -> set('selected_id', $myPC['Keyboard']['Product']['id']);
 		}
 	}
-
 }

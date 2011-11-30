@@ -2,24 +2,7 @@
 	<h1>Resumen de la compra</h1>
 	<div class="precio">
 		<img src="/img/computador.jpg"/>
-		<?php
-			$myPC = $this->Session->read('myPC');
-			$total = 0;
-			foreach($myPC as $categoria) {
-				if(!empty($categoria)) {
-					if(isset($categoria['1'])) {
-						$total += $categoria['1']['Product']['price'];
-					} else {
-						if(isset($categoria['2'])) {
-							$total += $categoria['2']['Product']['price'];
-						} else {
-							$total += $categoria['Product']['price'];
-						}
-					}
-				}
-			}
-		?>
-		<h2>Precio total: $<?php echo number_format($total, 0, ' ', '.'); ?></h2>
+		<h2>Precio total: $<?php echo number_format($this->requestAction('/make_pc/getMyPCTotal'), 0, ' ', '.'); ?></h2>
 	</div>
 	<div class="resumen_menu">
 		<ul>
