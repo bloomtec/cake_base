@@ -8,7 +8,7 @@
 	}
 ?>
 
-<div class="exclusivo" rel="Monitor">	
+<div class="inclusivo ocpional" rel="Monitor">
 	<h3>Monitor</h3>
 	<?php echo $form->radio('monitor_id1',$items,array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
 	<h3>Segundo Monitor (opcional):</h3>

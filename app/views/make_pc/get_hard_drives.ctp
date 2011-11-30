@@ -7,7 +7,7 @@
 		$selectedId2 = $selected_id_2;
 	}
 ?>
-<div class="exclusivo" rel="HardDrive">
+<div class="inclusivo opcional" rel="HardDrive">
 	<h3>Disco Duro:</h3>
 	<?php echo $form->radio('drive_id1',$items,array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
 	<h3>Segundo Disco Duro (opcional):</h3>

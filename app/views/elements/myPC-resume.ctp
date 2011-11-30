@@ -2,10 +2,7 @@
 	<h1>Resumen de la compra</h1>
 	<div class="precio">
 		<img src="/img/computador.jpg"/>
-		<?php
-			$total = 0;
-		?>
-		<h2>Precio total: $<?php echo $total; ?></h2>
+		<h2>Precio total: $<?php echo number_format($this->requestAction('/make_pc/getMyPCTotal'), 0, ' ', '.'); ?></h2>
 	</div>
 	<div class="resumen_menu">
 		<ul>
@@ -20,7 +17,7 @@
 			</li>
 		</ul>
 	</div>
-	<?php $myPC = $this->Session->read('myPC'); ?>
+	<?php $myPC=$this->requestAction('/make_pc/getMyPC'); ?>
 	<div class="resumen_productos">
 		<h1>Procesador</h1>
 		<h2><?php if(!empty($myPC['Processor'])) { echo $myPC['Processor']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>

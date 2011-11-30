@@ -171,7 +171,7 @@ $(function() {
 	}
 	function getCases($videoCardId){
 		$('.radios.cases').load('/makePc/getCasings/'+$videoCardId,function(){
-			getSupply($videoCardId, caseSelectedId);
+			getSupply($videoCardId);
 		});
 	}
 	function getSupply($videoCardId, $caseId ){
