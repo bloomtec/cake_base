@@ -7,13 +7,9 @@
 		$selectedId2 = $selected_id_2;
 	}
 ?>
-<div class="exclusivo">
-	<div rel='1'>
-		<h3>Monitor</h3>
-		<?php echo $form->radio('monitor_id1',$items,array('legend'=>false,'value'=>$selectedId1)); ?>	
-	</div>	
-	<div rel='2'>
-		<h3>Segundo Monitor (opcional):</h3>
-		<?php echo $form->radio('monitor_id2',$items,array('legend'=>false,'value'=>$selectedId2)); ?>
-	</div>
+<div class="exclusivo" rel="Monitor">	
+	<h3>Monitor</h3>
+	<?php echo $form->radio('monitor_id1',$items,array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
+	<h3>Segundo Monitor (opcional):</h3>
+	<?php echo $form->radio('monitor_id2',$items,array('legend'=>false,'value'=>$selectedId2, 'rel'=>'2')); ?>	
 </div>
