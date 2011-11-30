@@ -104,7 +104,7 @@ $(function() {
 		var $proccessors = $(this);
 		var val=$proccessors.val();
 		pc.proccessor_id=val;
-		BJS.get('/makePc/myPCAddItem/Proccessor/'+val);
+		BJS.get('/makePc/myPCAddItem/Processor/'+val);
 		getMotherBoard(val);
 	});
 	

@@ -13,6 +13,9 @@
 	margin:0 !important;
 	list-style-image:none !important; 
 }
+.tabs div{
+	float:left;
+}
 .tabs a { 
 	background: url(/img/global/tabs.png) no-repeat -652px 0;
 	font-size:11px;
@@ -81,7 +84,7 @@
 .scrollable {
 	position:relative;
 	overflow:hidden;
-	width: 580px;
+	width: 610px;
 	height:100px;
 	float: left;
 }

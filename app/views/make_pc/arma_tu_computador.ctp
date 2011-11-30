@@ -19,7 +19,7 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<h2>Seleccione su procesador</h2>
 			<div class='radios processors'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 			<h2>Seleccione su tarjeta madre</h2>
 			<div class='radios board-cards'>
@@ -39,7 +39,7 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<label>Seleccione: </label>
 			<div class='radios ram-cards'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
@@ -56,7 +56,7 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<label>Seleccione:</label>
 			<div class='radios hard-drives'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
@@ -73,7 +73,7 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<label>Seleccione: </label>
 			<div class='radios video-cards'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
@@ -88,33 +88,22 @@ echo $html -> script('tab-pc.js');
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
 			<div style="clear: both;margin-bottom: 10px"></div>
-			<label>Seleccione: </label>
+			<label>Seleccione su torre: </label>
 			<div class='radios cases'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
-		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
-	</div>
-	<div>
-		<div class='content'>
-			<h1>Fuentes</h1>
-			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
-			<label>Seleccione:</label>
+			<label>Seleccione su fuente:</label>
 			<div class='radios supplies'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
 			<a href="#" class="paso_anterior"> Atras </a>
 			<a href="#" class="siguiente_paso"> Siguiente paso </a>
+			<a class="next browse scroll right"></a>
 		</div>
 	</div>
+	<!-- OPCIONALES-->
 	<div>
 		<div class='content'>
 			<h1>Unidades Opticas</h1>
@@ -124,10 +113,11 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<label>Seleccione:</label>
 			<div class='radios optical-drives'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
+			<a class="prev browse scroll left"></a>
 			<a href="#" class="paso_anterior"> Atras </a>
 			<a href="#" class="siguiente_paso"> Siguiente paso </a>
 		</div>
@@ -141,7 +131,7 @@ echo $html -> script('tab-pc.js');
 			<div style="clear: both;margin-bottom: 10px"></div>
 			<label>Seleccione:</label>
 			<div class='radios monitors'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+				
 			</div>
 		</div>
 		<div class='browse'>
@@ -156,10 +146,15 @@ echo $html -> script('tab-pc.js');
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
 			<div style="clear: both;margin-bottom: 10px"></div>
-			<label>Seleccione:</label>
-			<div class='radios peripherals'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+			
+			<div class='radios key-boards'>
+				
 			</div>
+			
+			<div class='radios mice'>
+				
+			</div>
+			
 		</div>
 		<div class='browse'>
 			<a href="#" class="paso_anterior"> Atras </a>
@@ -173,10 +168,14 @@ echo $html -> script('tab-pc.js');
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
 			<div style="clear: both;margin-bottom: 10px"></div>
-			<label>Seleccione:</label>
-			<div class='radios other-cards'>
-				<!--Espacio donde se  llenan los radios de los procesadores-->
+			
+			<div class='radios sound-cards'>
+				
 			</div>
+			<div class='radios tv-cards'>
+				
+			</div>
+			
 		</div>
 		<div class='browse'>
 			<a href="#" class="paso_anterior"> Atras </a>
@@ -189,58 +188,58 @@ echo $html -> script('tab-pc.js');
 <a class="prev browse left"></a>
 <div class="scrollable">
 	<ul class='tabs items'>
-		<li>
-			<a href="#processor" id='processor'>
-			<div class="img_wrapper"><img src="/img/procesador.png" />
-			</div>Procesadores y tarjetas madre</a>
-		</li>
-		<li>
-			<a href="#ram-cards" id='ram-cards'>
-			<div class="img_wrapper"><img src="/img/ram.png" />
-			</div>Memorias Ram</a>
-		</li>
-		<li>
-			<a href="#hard-drive" id='hard-drive'>
-			<div class="img_wrapper"><img src="/img/disco_duro.png" />
-			</div>Discos duros</a>
-		</li>
-		<li>
-			<a href="#video-card" id='video-card'>
-			<div class="img_wrapper"><img src="/img/tarjeta_video.png" />
-			</div>Tarjetas de video</a>
-		</li>
-		<li>
-			<a href="#case" id='case'>
-			<div class="img_wrapper"><img src="/img/torre.png" />
-			</div>Torres</a>
-		</li>
-		<li>
-			<a href="#supply" id='supply'>
-			<div class="img_wrapper"><img src="/img/fuente.png" />
-			</div>Fuentes</a>
-		</li>
-		<li>
-			<a href="#optical-drive" id='optical-drive'>
-			<div class="img_wrapper"><img src="/img/cd.png" />
-			</div>Unidades ópticas</a>
-		</li>
-		<li>
-			<a href="#monitor" id='monitor'>
-			<div class="img_wrapper"><img src="/img/monitor.png" />
-			</div>Monitores</a>
-		</li>
-		<li>
-			<a href="#peripherals" id='peripherals'>
-			<div class="img_wrapper"><img src="/img/mouse.png" />
-			</div>Periféricos</a>
-		</li>
-		<li>
-			<a href="#other-cards" id='other-cards'>
-			<div class="img_wrapper"><img src="/img/tarjeta_adicional.png" />
-			</div>Tarjetas adicionles</a>
-		</li>
+		<div>
+			<li>
+				<a href="#processor" id='processor'>
+				<div class="img_wrapper"><img src="/img/procesador.png" />
+				</div>Procesadores y tarjetas madre</a>
+			</li>
+			<li>
+				<a href="#ram-cards" id='ram-cards'>
+				<div class="img_wrapper"><img src="/img/ram.png" />
+				</div>Memorias Ram</a>
+			</li>
+			<li>
+				<a href="#hard-drive" id='hard-drive'>
+				<div class="img_wrapper"><img src="/img/disco_duro.png" />
+				</div>Discos duros</a>
+			</li>
+			<li>
+				<a href="#video-card" id='video-card'>
+				<div class="img_wrapper"><img src="/img/tarjeta_video.png" />
+				</div>Tarjetas de video</a>
+			</li>
+			<li>
+				<a href="#case" id='case'>
+				<div class="img_wrapper"><img src="/img/torre.png" />
+				</div>Torres</a>
+			</li>
+		</div>
+		<!-- OPCIONALES-->
+		<div>
+			<li>
+				<a href="#optical-drive" id='optical-drive'>
+				<div class="img_wrapper"><img src="/img/cd.png" />
+				</div>Unidades ópticas</a>
+			</li>
+			<li>
+				<a href="#monitor" id='monitor'>
+				<div class="img_wrapper"><img src="/img/monitor.png" />
+				</div>Monitores</a>
+			</li>
+			<li>
+				<a href="#peripherals" id='peripherals'>
+				<div class="img_wrapper"><img src="/img/mouse.png" />
+				</div>Teclado y Mouse</a>
+			</li>
+			<li>
+				<a href="#other-cards" id='other-cards'>
+				<div class="img_wrapper"><img src="/img/tarjeta_adicional.png" />
+				</div>Tarjetas adicionles</a>
+			</li>
+		</div>
 	</ul>
 </div>
-<a class="next browse right"></a>
+
 <div style="clear: both"></div>
 </form>
