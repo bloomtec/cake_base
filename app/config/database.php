@@ -83,5 +83,11 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+	
+	var $csvFile = array(
+		'datasource' => 'datasources.CsvSource',
+		'path' => '/var/www/excelenter/documentacion/csv/',
+		'readonly' => true
+	);
 
 }
