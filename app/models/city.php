@@ -7,7 +7,9 @@ class City extends AppModel {
 	var $sluggable = false;
 	var $sortable = false;
 	var $activable = false;
-
+	var $actsAs = array(
+		'Translate' => array('name','description')
+	);
 	var $validate = array(
 		'country_id' => array(
 			'numeric' => array(
