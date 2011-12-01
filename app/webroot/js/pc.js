@@ -96,25 +96,34 @@ $(function() {
 	$('#architecture').change(function(){
 		getProcessors($(this).val());
 	});
-	var $item = val= position = sibling =null;
-	
-	$('.radios').on('click','input',function(e){
-		var toggled = $(this).data('toggled');
-		console.log(toggled);
+	var $item = val= position = sibling = removeChecked= null;
+	$('.radios').on('mousedown','label',function(){
+		$("#"+$(this).attr('for')).mousedown();
+	});
+	$(document).on('click','.radios input',function(){
+		if(removeChecked){
+			$(this).removeAttr('checked');
+		}
+	});
+	$(document).on('mousedown','.radios input',function(){
+		removeChecked=false;
 		$item = $(this);
-		var wasChecked = $item.attr('checked');
+		var checked =$ (this).is(":checked");
+		val=$item.val();
 		position = $item.attr('rel')? $item.attr('rel') :0;
 		rel=$item.parents().attr('rel');
-		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,function(){
+		if($item.parent().is('.opcional') && checked){
+			removeChecked = true;
+		}else{
+			BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,function(){
 			//REFRESH PC
-		});	
+			});	
+		}
 		if(($item.parent().is('.exclusivo'))){
 			sibling = $item.siblings('input[rel!="'+position+'"]');
 			 sibling.removeAttr('checked'); 
 		}
-		if(($item.parent().is('.opcional'))){
-			
-		}
+	
 	
 		switch(rel){
 			case "Processor":
@@ -129,7 +138,6 @@ $(function() {
 		}
 	});
 	
-
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
 		$('.radios.processors').load('/makePc/getProcessors/'+$architectureId,function(){
@@ -137,8 +145,7 @@ $(function() {
 				getMotherBoard($('.radios.processors :checked').val());
 			}else{
 				$('.radios.board-cards').html('<span class="no-items">No hay tarjetas disponibles</span>');
-			}
-			$(':checked').data('checked',true);	
+			}	
 		});
 	}
 	function getMotherBoard($processorId){
@@ -166,7 +173,6 @@ $(function() {
 	function getHardDrives(boardId){
 		$('.radios.hard-drives').load('/makePc/getHardDrives/'+boardId, function(){//traer torres compatibles
 			//lo que dependa de hardDrives
-			
 		});
 	}
 	function getVideoCards(boardId){
