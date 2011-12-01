@@ -97,17 +97,23 @@ $(function() {
 		getProcessors($(this).val());
 	});
 	var $item = val= position = sibling =null;
-	$('.radios input').live('click',function(){
+	
+	$('.radios').on('click','input',function(e){
+		var toggled = $(this).data('toggled');
+		console.log(toggled);
 		$item = $(this);
-		val=$item.val();
+		var wasChecked = $item.attr('checked');
 		position = $item.attr('rel')? $item.attr('rel') :0;
-		rel=$item.parent().attr('rel');
-		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position);	
+		rel=$item.parents().attr('rel');
+		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,function(){
+			//REFRESH PC
+		});	
 		if(($item.parent().is('.exclusivo'))){
 			sibling = $item.siblings('input[rel!="'+position+'"]');
-			console.log(sibling);
-			//var toRemove = sibling.find('input:checked').val(); 
 			 sibling.removeAttr('checked'); 
+		}
+		if(($item.parent().is('.opcional'))){
+			
 		}
 	
 		switch(rel){
@@ -131,7 +137,8 @@ $(function() {
 				getMotherBoard($('.radios.processors :checked').val());
 			}else{
 				$('.radios.board-cards').html('<span class="no-items">No hay tarjetas disponibles</span>');
-			}	
+			}
+			$(':checked').data('checked',true);	
 		});
 	}
 	function getMotherBoard($processorId){
@@ -159,6 +166,7 @@ $(function() {
 	function getHardDrives(boardId){
 		$('.radios.hard-drives').load('/makePc/getHardDrives/'+boardId, function(){//traer torres compatibles
 			//lo que dependa de hardDrives
+			
 		});
 	}
 	function getVideoCards(boardId){

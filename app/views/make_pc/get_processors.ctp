@@ -4,6 +4,6 @@
 		$selectedId = $selected_id;
 	}
 ?>
-<div class="sencillo" rel="Processor">
+<div class="sencillo opcional" rel="Processor">
 	<?php echo $form->radio('processor_id',$items,array('legend'=>false, 'value' => $selectedId)); ?>
 </div>
