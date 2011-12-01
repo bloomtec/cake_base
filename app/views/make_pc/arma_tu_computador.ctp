@@ -16,7 +16,7 @@ echo $html -> script('tab-pc.js');
 				<label>Elije la marca de tu procesador</label>
 				<?php echo $form -> input('architecture_id', array('id' => 'architecture', 'options' => $arquitectures, 'label' => 'Arquitectura'));?>
 			</div>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<h2>Seleccione su procesador</h2>
 			<div class='radios processors'>
 				
@@ -36,7 +36,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione: </label>
 			<div class='radios ram-cards'>
 				
@@ -53,7 +53,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione:</label>
 			<div class='radios hard-drives'>
 				
@@ -70,7 +70,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione: </label>
 			<div class='radios video-cards'>
 				
@@ -87,7 +87,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione su torre: </label>
 			<div class='radios cases'>
 				
@@ -110,7 +110,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione:</label>
 			<div class='radios optical-drives'>
 				
@@ -128,7 +128,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			<label>Seleccione:</label>
 			<div class='radios monitors'>
 				
@@ -145,7 +145,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			
 			<div class='radios key-boards'>
 				
@@ -167,7 +167,7 @@ echo $html -> script('tab-pc.js');
 			<p>
 				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 			</p>
-			<div style="clear: both;margin-bottom: 10px"></div>
+			<div style="clear: both;"></div>
 			
 			<div class='radios sound-cards'>
 				

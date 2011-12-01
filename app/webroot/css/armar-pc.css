@@ -147,6 +147,10 @@
 .panes h1{
 	margin-bottom: 15px;
 }
+.panes h2{
+	margin-bottom: 6px;
+    margin-top: 14px;
+}
 .panes p{
 	font-size:11px;
 	width: 480px;
@@ -199,6 +203,28 @@
 	margin-top: 15px;
 	margin-bottom:10px;
 	margin-left: 13px;
+	margin-bottom: 15px;
+}
+.categoria-producto, .nombre-total{
+	color: #FF7800;
+    font-size: 11px;
+    font-weight: bold;
+    padding-left: 12px;
+}
+.nombre-total{
+	font-size: 14px;
+	text-transform: uppercase;
+	padding-top: 10px;
+}
+.nombre-producto{
+    font-size: 11px;
+    padding-bottom: 7px;
+    padding-left: 12px;
+}
+.precio-total{
+	font-size: 14px;
+	font-weight: bold;
+	padding-left: 12px;
 }
 .aplicacion{
 	border: 1px solid #c4c4c4;
@@ -259,6 +285,26 @@
 	margin-bottom:0;
 	margin-top: 10px;
 	color:#000;
+}
+.imprimir-pagar-producto{
+	background-color: #FF7800;
+    float: right;
+    height: 24px;
+    margin-top: 20px;
+    width: 156px;
+}
+.imprimir-pagar-producto a{
+	color: #FFFFFF;
+    float: left;
+    font-weight: bold;
+    padding: 6px 15px;
+}
+.imprimir-pagar-producto .pagar{
+	padding-left: 22px;
+	padding-right: 22px;
+}
+.imprimir-pagar-producto a:hover{
+	background-color: #d86703;
 }
 .seleccionar{
 	width: 220px;

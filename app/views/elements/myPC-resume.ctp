@@ -42,11 +42,13 @@
 				<td class="nombre-total">Total</td>
 				<td class="precio-total">$<?php echo number_format($this->requestAction('/make_pc/getMyPCTotal'), 0, ' ', '.'); ?></td>
 			</tr>
-			<tr class="imprimir-pagar-producto">
-				<td class="imprimir">Imprimir</td>
-				<td class="pagar">Pagar</td>
-			</tr>
+			
 		</table>
+		<div class="imprimir-pagar-producto">
+			<div style="clear: both"></div>
+				<a href="">Imprimir</a>
+				<a href="" class="pagar">Pagar</a>
+		</div>
 		<!--
 		<h1>Procesador</h1>
 		<h2><?php if(!empty($myPC['Processor'])) { echo $myPC['Processor']['Product']['name']; } else { echo 'No hay selección'; } ?></h2>
