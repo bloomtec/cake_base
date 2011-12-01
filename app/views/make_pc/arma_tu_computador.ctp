@@ -185,7 +185,14 @@ echo $html -> script('tab-pc.js');
 </div>
 <?php echo $this->element('myPC-resume')
 ?>
-<a class="prev browse left"></a>
+
+
+<div class='browse'>
+	<a href="#" class="paso_anterior"> Atras </a>
+	<a href="#" class="siguiente_paso"> Siguiente paso </a>
+	<a href="#" class='pagar'> Pagar </a>
+</div>
+
 <div class="scrollable">
 	<ul class='tabs items'>
 		<div>
