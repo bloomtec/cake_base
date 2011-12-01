@@ -6,8 +6,7 @@
 	<h1><a href="/productos/<?php echo $product['Product']['slug']; ?>"><?php echo $product['Product']['name']; ?></a></h1>
 	<a href="/productos/<?php echo $product['Product']['slug']; ?>"><img src="/img/uploads/100x100/<?php echo $product['Product']['image']; ?>" class="foto_producto" /></a>
 	<h2>Precio: $<?php echo number_format($product['Product']['price'], 0, ",", "."); ?></h2>
-	<a href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/".$product["Product"]["slug"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>		
-	
+	<a href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/".$product["Product"]["slug"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>
 	<a onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode("http://".$_SERVER["SERVER_NAME"]."/products/view/".$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="twitter" target="_blank"><img src="/img/twitter.png" /></a>
 	<a href="/shopCarts/add-to-cart/Product:<?php echo $product['Product']['id']; ?>:0" rel='Product:<?php echo $product['Product']['id']; ?>:0' class='add-to-cart'><img src="/img/btn_agregar.png"/></a>
 	<div class='add-cart-confirm' >

@@ -10,6 +10,16 @@ $(function(){
 			success : callback
 		});
 	}
+	BJS.getS = function(url, params, callback) {
+		jQuery.ajax({
+			url : url,
+			type : "GET",
+			cache : false,
+			data : params,
+			async : false,
+			success : callback
+		});
+	}
 
 	BJS.post = function(url, params, callback) {
 		jQuery.ajax({

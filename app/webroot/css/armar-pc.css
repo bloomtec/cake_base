@@ -13,6 +13,9 @@
 	margin:0 !important;
 	list-style-image:none !important; 
 }
+.tabs div{
+	float:left;
+}
 .tabs a { 
 	background: url(/img/global/tabs.png) no-repeat -652px 0;
 	font-size:11px;
@@ -81,7 +84,7 @@
 .scrollable {
 	position:relative;
 	overflow:hidden;
-	width: 580px;
+	width: 610px;
 	height:100px;
 	float: left;
 }
@@ -155,7 +158,8 @@
     display: block;
     font-style: italic;
     font-weight: bold;
-    margin-bottom: 10px;
+    padding-top:4px;
+    margin-bottom: 5px;
 }
 
 .panes select{
@@ -171,7 +175,6 @@
 }
 .panes input{
 	float: left;
-	margin-top: 10px;
 	clear:both;
 	
 }
@@ -301,3 +304,13 @@
 	margin-top:-5px;
 }
 
+
+.quantity input{
+	width: 25px;
+}
+.pc-items label{
+	float:left;
+}
+.pc-items td{
+	margin-left:5px;
+}

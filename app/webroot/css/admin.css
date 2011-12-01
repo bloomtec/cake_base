@@ -19,3 +19,7 @@ td.td-submit div.submit input {
 h2.h2-filtrar {
 	margin-top: 11px;
 }
+.quantity{
+	width:250px;
+	float:left;
+}
