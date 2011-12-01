@@ -15,12 +15,13 @@
 			<input type="password" id='password' class="input" name='data[User][password]' required="required" />
 		</div>
 		
-		<a class="submit primero" href='/users/register'> Registrese </a>
+	</fieldset>
+	<div class="btn_wrraper">			
 		<?php
 		echo $this -> Form -> end(__('Ingresar', true));
 		?>
-		
-	</fieldset>
+		<a class="submit primero" href='/users/register'> Registrese </a>
+	</div>
 	<?php
 		echo $this -> Session -> flash('auth');
 		?>
