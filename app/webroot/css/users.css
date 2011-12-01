@@ -165,7 +165,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit{
+.register input[type=submit], #rememberForm input[type=submit], #contacto .formulario_contacto .submit{
 	background-image: url("/img/submit_registro.png");
 	border:none;
 	background-color: transparent;
@@ -200,6 +200,58 @@
 	margin-right: 20px;
 	height: 26px;
 	margin-left: 170px;
+}
+.tooltip_login{
+	background-color: #323232;
+    border-radius: 5px 5px 5px 5px;
+    height: 130px;
+    position: absolute;
+    right: 310px;
+    top: 120px;
+    width: 280px;
+    border: 1px solid #868686;
+    -moz-box-shadow: 2px 2px 4px #6A6A6A;
+	-webkit-box-shadow: 2px 2px 4px #6A6A6A;
+	box-shadow: 2px 2px 4px #6A6A6A;
+}
+.tooltip_login label{
+	color: #FFFFFF;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 20px 8px 0 10px;
+    text-align: right;
+    width: 68px;
+}
+.tooltip_login .input_text{
+	float: left;
+	width: 180px;
+	margin-top: 15px;
+	margin-bottom: 0;
+	color:#323232;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	height: 18px;
+}
+.tooltip_login .btn_login{
+	background-image: url(/img/btn_login.png);
+	width: 79px;
+	height: 25px;
+	background-color: transparent;
+	border:none;
+	font-size: 12px;
+	font-weight: bold;
+	float: right;
+	margin-top: 7px;
+}
+.tooltip_login input.btn_login{
+	margin-right: 8px;
+}
+.tooltip_login a.btn_login{
+	background-repeat: no-repeat;
+    padding-left: 6px;
+    padding-top: 6px; 
 }
 .correo{
 	width: auto;
@@ -241,4 +293,7 @@ div.images .preview  img{
 }
 .menu_usuario li a{
 	font-size: 12px;
+}
+.centrar{
+	padding: 12px;
 }
