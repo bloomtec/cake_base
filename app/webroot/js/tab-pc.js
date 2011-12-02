@@ -46,11 +46,18 @@ $(function(){
 	});
 	// INICIO DE INTERFAZ GRAFICA	
 	$(".scrollable").scrollable();
+	var scrollApi = $(".scrollable").data('scrollable');
 	var tabsApi = $("ul.tabs").data("tabs");
 	$('.siguiente_paso').click(function(){
+		if(tabsApi.getIndex() == 4){
+			scrollApi.next();
+		}
 		tabsApi.next();
 	});
 	$('.paso_anterior').click(function(){
+		if(tabsApi.getIndex() == 5){
+			scrollApi.prev();
+		}
 		tabsApi.prev();
 	});
 	$('.browse a').click(function(e){

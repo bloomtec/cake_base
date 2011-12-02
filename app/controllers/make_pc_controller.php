@@ -73,9 +73,12 @@ class MakePcController extends AppController {
 				break;
 		}
 		$this->setMyPC($myPC);
+		echo true; // IMPORTANTE
 		exit(0);
 	}
-	
+	function resume(){
+		$this -> layout = 'ajax';
+	}
 	function getMyPCTotal() {
 		$myPC = $this->getMyPC();
 		$total = 0;
