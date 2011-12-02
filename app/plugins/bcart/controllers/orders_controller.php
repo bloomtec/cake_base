@@ -1,5 +1,5 @@
 <?php
-class OrdersController extends BcartAppController {
+class OrdersController extends AppController {
 
 	var $name = 'Orders';
 
@@ -141,8 +141,8 @@ class OrdersController extends BcartAppController {
 	 * Generar la orden como tal
 	 */
 	function mailingMethod() {
-		$this -> layout = "bcart";
-		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
+		$this -> layout = "carrito";
+		$shop_cart = $this -> requestAction('/shop_carts/getCart');
 
 		if ($shop_cart) {
 			/**
@@ -163,8 +163,7 @@ class OrdersController extends BcartAppController {
 						'first',
 						array(
 							'conditions' => array(
-								'Inventory.product_id'=>$shop_cart_item['ShopCartItem']['foreign_key'],
-								'Inventory.size_id'=>$shop_cart_item['ShopCartItem']['size_id']
+								'Inventory.product_id'=>$shop_cart_item['ShopCartItem']['foreign_key']
 							)
 						)
 					);
@@ -200,7 +199,7 @@ class OrdersController extends BcartAppController {
 					$this -> Order -> set('order_state_id', 1);
 	
 					// Description
-					$descripcion = "Pago de compra en www.colorstennis.com - Referencia $order_code";
+					$descripcion = "Pago de compra en www.excelenter.com - Referencia $order_code";
 	
 					// Valor
 					$valor = $shop_cart['ShopCart']['total'];
@@ -246,10 +245,9 @@ class OrdersController extends BcartAppController {
 							$this -> Order -> OrderItem -> set('order_id', $order_id);
 							$this -> Order -> OrderItem -> set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
 							$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
-							$this -> Order -> OrderItem -> set('size_id', $shop_cart_item['ShopCartItem']['size_id']);
 							$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
 							$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
-							$product = $this->requestAction('/bcart/shopCarts/getItem/'.$shop_cart_item['ShopCartItem']['foreign_key'].'/'.$shop_cart_item['ShopCartItem']['size_id']);
+							$product = $this->requestAction('/products/getProduct/'.$shop_cart_item['ShopCartItem']['foreign_key'].'/'.$shop_cart_item['ShopCartItem']['size_id']);
 							$this -> Order -> OrderItem -> set('price_item', $product['Product']['price']);
 							$this -> Order -> OrderItem -> set('price_total', ($product['Product']['price']*$shop_cart_item['ShopCartItem']['quantity']));
 							$this -> Order -> OrderItem -> save();
@@ -302,10 +300,10 @@ class OrdersController extends BcartAppController {
 	 * Obtener información de envío
 	 */
 	function getAddressInfo() {
-		$this -> layout = "bcart";
+		$this -> layout = "carrito";
 
 		// Obtener el carrito
-		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
+		$shop_cart = $this -> requestAction('/shop_carts/getCart');
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
 				/**
