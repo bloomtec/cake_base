@@ -2,7 +2,7 @@
 echo $html -> script('pc.js');
 echo $html -> script('tab-pc.js');
 ?>
-<div class='pc-error' style='display:none; position:fixed; top:0; height:100px; background: orange; color: white; width:100%; left:0;'></div>
+<div class='pc-error' style='display:none; position:fixed; top:0; left:0;'></div>
 <?php $form -> create('PC', array('action' => 'armaTuPC'));?>
 
 <div class="panes">
@@ -26,9 +26,6 @@ echo $html -> script('tab-pc.js');
 				<!-- Espacio donde se llenan los radios de las boards-->
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="siguiente_paso">Siguiente paso</a>
-		</div>
 	</div>
 	<div>
 		<div class='content'>
@@ -42,10 +39,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+		
 	</div>
 	<div>
 		<div class='content'>
@@ -59,10 +53,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+
 	</div>
 	<div>
 		<div class='content'>
@@ -76,10 +67,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+
 	</div>
 	<div>
 		<div class='content'>
@@ -97,11 +85,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-			<a class="next browse scroll right"></a>
-		</div>
+
 	</div>
 	<!-- OPCIONALES-->
 	<div>
@@ -116,11 +100,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a class="prev browse scroll left"></a>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+
 	</div>
 	<div>
 		<div class='content'>
@@ -134,10 +114,7 @@ echo $html -> script('tab-pc.js');
 				
 			</div>
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+
 	</div>
 	<div>
 		<div class='content'>
@@ -156,10 +133,7 @@ echo $html -> script('tab-pc.js');
 			</div>
 			
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-			<a href="#" class="siguiente_paso"> Siguiente paso </a>
-		</div>
+
 	</div>
 	<div>
 		<div class='content'>
@@ -177,9 +151,6 @@ echo $html -> script('tab-pc.js');
 			</div>
 			
 		</div>
-		<div class='browse'>
-			<a href="#" class="paso_anterior"> Atras </a>
-		</div>
 	</div>
 
 </div>
@@ -188,9 +159,22 @@ echo $html -> script('tab-pc.js');
 
 
 <div class='browse'>
-	<a href="#" class="paso_anterior"> Atras </a>
-	<a href="#" class="siguiente_paso"> Siguiente paso </a>
-	<a href="#" class='pagar'> Pagar </a>
+	<a href="#" class="paso_anterior">
+		<ul>
+			<li>Paso Anterior</li>
+		</ul>	
+	</a>
+	<a href="#" class="siguiente_paso">
+		<ul>
+			<li>Paso Siguiente</li>
+		</ul>
+	</a>
+	<a href="#" class='pagar'>
+		<ul>
+			<li>Pagar</li>
+		</ul>
+	</a>
+
 </div>
 
 <div class="scrollable">

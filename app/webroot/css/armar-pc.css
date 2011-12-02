@@ -85,7 +85,7 @@
 	position:relative;
 	overflow:hidden;
 	width: 610px;
-	height:100px;
+	height:115px;
 	float: left;
 }
 .scrollable .items {
@@ -106,7 +106,13 @@
 	padding:5px;
 }
 .tabs.items a.current{
-	background: gray;
+	background-image: url(/img/trama_aplicacion_item.png);
+	background-position:bottom left;
+	background-repeat: repeat-x;
+	border:1px solid #FF7800;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 
@@ -170,7 +176,9 @@
 	width: 135px;
 }
 .panes span{
-	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
 }
 .panes .descripcion{
 	width: 422px;
@@ -298,6 +306,9 @@
     float: left;
     font-weight: bold;
     padding: 6px 15px;
+    background-image: none;
+    width: auto;
+    height: auto;
 }
 .imprimir-pagar-producto .pagar{
 	padding-left: 22px;
@@ -317,40 +328,51 @@
 	height:20px;
 	clear:both;
 }
+.browse{
+	 float: left;
+    height: 55px;
+    margin-bottom: 15px;
+    margin-left: 305px;
+    width: 115px;
+}
 .siguiente_paso{
-	color: #FF7800;
-    font-style: italic;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background-image:url(/img/flecha_siguiente_paso.png);
-	padding-right: 27px;
-	background-repeat: no-repeat;
-	background-position: top right; 
+    background-image:url(/img/siguiente_act.png);
 	display: block;
-	width: 112px;
-	padding: 5px;
-	text-decoration: none;
-	float:right;
-	margin-top:-5px;
+	width: 37px;
+	height:36px;
+	float:left;
 }
 .paso_anterior{
-	color: #FF7800;
-    font-style: italic;
-    font-weight: bold;
-    margin-bottom: 10px;
-    background-image:url(/img/flecha_siguiente_paso.png);
-	background-repeat: no-repeat;
-	background-position: top left; 
+	background-image:url(/img/atras_des.png);
 	display: block;
-	width: 112px;
-	padding: 5px;
-	padding-left: 27px;
-	text-decoration: none;
+	width: 37px;
+	height:36px;
 	float:left;
-	margin-top:-5px;
 }
-
-
+.pagar{
+	background-image:url(/img/pagar_des.png);
+	display: block;
+	width: 37px;
+	height:36px;
+	float:left;
+}
+.browse a{
+	position: relative;
+}
+.browse a ul{
+	bottom: -15px;
+    display: none;
+    left: 0;
+    position: absolute;
+    width: 90px;
+    color: #000;
+}
+.browse a.siguiente_paso ul{
+	left:-25px;
+}
+.browse a:hover ul{
+	display: block;
+}
 .quantity input{
 	width: 25px;
 }
@@ -359,4 +381,21 @@
 }
 .pc-items td{
 	margin-left:5px;
+}
+.pc-error{
+	background-color: #FF7800;
+	background-color: #FF7800;
+    height: 30px;
+    width: 100%;
+    -moz-box-shadow: 0px 1px 4px #222222;
+	-webkit-box-shadow: 0px 1px 4px #222222;
+	box-shadow: 0px 1px 4px #222222;
+}
+.pc-error p{
+	font-size: 13px;
+    font-weight: bold;
+    margin-top: 8px;
+    text-align: center;
+    width: 100%;
+    color: #FFFFFF;
 }
