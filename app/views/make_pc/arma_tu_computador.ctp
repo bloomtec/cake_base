@@ -159,22 +159,24 @@ echo $html -> script('tab-pc.js');
 </div>
 
 <div class='browse'>
-	<a href="#" class="paso_anterior">
-		<ul>
-			<li>Paso Anterior</li>
-		</ul>	
-	</a>
-	<a href="#" class="siguiente_paso">
-		<ul>
-			<li>Paso Siguiente</li>
-		</ul>
-	</a>
-	<a href="#" class='pagar'>
-		<ul>
-			<li>Pagar</li>
-		</ul>
-	</a>
-
+	<div class="wrapper_browse">
+		<a href="#" class="paso_anterior">
+			<ul>
+				<li>Paso Anterior</li>
+			</ul>	
+		</a>
+		<a href="#" class="siguiente_paso">
+			<ul>
+				<li>Paso Siguiente</li>
+			</ul>
+		</a>
+		<a href="#" class='pagar'>
+			<ul>
+				<li>Pagar</li>
+			</ul>
+		</a>
+		<div style="clear: both"></div>
+	</div>
 </div>
 
 <div class="scrollable">
