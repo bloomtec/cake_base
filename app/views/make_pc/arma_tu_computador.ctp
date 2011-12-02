@@ -154,9 +154,9 @@ echo $html -> script('tab-pc.js');
 	</div>
 
 </div>
-<?php echo $this->element('myPC-resume')
-?>
-
+<div id="resumen">
+	
+</div>
 
 <div class='browse'>
 	<a href="#" class="paso_anterior">

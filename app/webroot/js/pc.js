@@ -91,7 +91,7 @@ $(function() {
 // INIT
 	
 	getProcessors($('#architecture').val()); // CARGA INFO POR DEFECTO
-
+	$('#resumen').load('/makePc/resume');
 // IN TAB Procesadores y boards	
 	$('#architecture').change(function(){
 		getProcessors($(this).val());
@@ -114,9 +114,12 @@ $(function() {
 		rel=$item.parents().attr('rel');
 		if($item.parent().is('.opcional') && checked){
 			removeChecked = true;
+			BJS.get('/makePc/myPCAddItem/'+rel+'/0/'+position,{},function(data){
+				
+			});	
 		}else{
-			BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,function(){
-			//REFRESH PC
+			BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,{},function(data){
+				$('#resumen').load('/makePc/resume');
 			});	
 		}
 		if(($item.parent().is('.exclusivo'))){
@@ -135,14 +138,20 @@ $(function() {
 				pc.board_id=val;
 				boardCallBack(val);
 			break;
+			case "VideoCard":
+			pc.video_card_id = val;
+			getCases(val);
+			break;
 		}
 	});
 	
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
 		$('.radios.processors').load('/makePc/getProcessors/'+$architectureId,function(){
-			if($('.radios.processors :checked').val()){ 
-				getMotherBoard($('.radios.processors :checked').val());
+			processor_id=$('.radios.processors :checked').val();
+			if(processor_id){ 
+				pc.processor_id=processor_id;
+				getMotherBoard(processor_id);
 			}else{
 				$('.radios.board-cards').html('<span class="no-items">No hay tarjetas disponibles</span>');
 			}	
@@ -151,19 +160,18 @@ $(function() {
 	function getMotherBoard($processorId){
 		$('.radios.board-cards').load('/makePc/getMotherBoards/'+$processorId,function(){
 			var board=$('.radios.board-cards :checked');
-			var boardId = board.lenth > 0 ? board.val() : 0;
+			var boardId = board.length > 0 ? board.val() : 0;
+			if(boardId){
+				pc.board_id=boardId;
+			}
 			boardCallBack(boardId)
 		});
 	}
 	function boardCallBack(boardId){
-		var ramCardsSelectedId = ($('.radios.ram-card :checked').length > 0) ? $('.radios.ram-card :checked').val() : 0 ;
-		var hardDriveSelectedId = ($('.radios.hard-drives :checked').length > 0) ? $('.radios.hard-drives :checked').val() : 0 ;
-		var videoCardSelectedId = ($('.radios.video-cards :checked').length > 0) ? $('.radios.video-cards :checked').val() : 0 ;
-		var opticalDriveSelectedId = ($('.radios.optical-drives :checked').length > 0) ? $('.radios.optical-drives :checked').val() : 0 ;
-		if(boardId) getRamCards(boardId, ramCardsSelectedId);
-		if(boardId) getHardDrives(boardId  , hardDriveSelectedId);
-		if(boardId) getVideoCards(boardId , videoCardSelectedId);
-		if(boardId) getOpticalDrives(boardId, opticalDriveSelectedId );
+		if(boardId) getRamCards(boardId);
+		if(boardId) getHardDrives(boardId );
+		if(boardId) getVideoCards(boardId);
+		if(boardId) getOpticalDrives(boardId);
 	}
 	function getRamCards(boardId){
 		$('.radios.ram-cards').load('/makePc/getMemories/'+boardId, function(){//traer torres compatibles
@@ -178,18 +186,36 @@ $(function() {
 	function getVideoCards(boardId){
 		$('.radios.video-cards').load('/makePc/getVideoCards/'+boardId, function(){//traer torres compatibles
 			// lo que dependa de video cards
-			var caseSelectedId = ($('.radios.cases :checked').length) > 0 ? $('.radios.video-cards :checked').val() : 0 ;
-			var videoSelectedCardId = $('.radios.video-cards :checked').val();
-			getCases(videoSelectedCardId,caseSelectedId);
+			var videoSelectedCardId = $('.radios.video-cards :checked');
+			var videoId = videoSelectedCardId.length > 0 ? videoSelectedCardId.val() : 0;
+			if(videoId){
+				pc.video_card_id=videoId;
+			}
+			getCases(videoId);
+			
 		});
 	}
+	function videoCardCallback(videoSelectedCardId){
+		var caseSelectedId = ($('.radios.cases :checked').length) > 0 ? $('.radios.video-cards :checked').val() : 0 ;
+		getCases(videoSelectedCardId,caseSelectedId);
+	}
+	
 	function getCases($videoCardId){
+		if(!$videoCardId){
+			$videoCardId=0;
+		}
 		$('.radios.cases').load('/makePc/getCasings/'+$videoCardId,function(){
-			getSupply($videoCardId);
+			getSupply($videoCardId,$('.radios.cases :checked').val());
 		});
 	}
 	function getSupply($videoCardId, $caseId ){
-		$('.radios.supplys').load('/makePc/getPowerSupplies/'+$videoCardId+'/'+$caseId,function(){
+		if(!$videoCardId){
+			$videoCardId=0;
+		}
+		if(!$caseId){
+			$caseId=0;
+		}
+		$('.radios.supplies').load('/makePc/getPowerSupplies/'+$videoCardId+'/'+$caseId,function(){
 			//lo que dependa de la fuente
 		});
 	}

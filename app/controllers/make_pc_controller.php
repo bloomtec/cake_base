@@ -13,7 +13,6 @@ class MakePcController extends AppController {
 		'Casing' => array(),
 		'PowerSupply' => array(),
 		'Monitor' => array(),
-		'Peripherals' => array(),
 		'Cards' => array(),
 		'Accesories' => array(),
 		'Mouse' => array(),
@@ -52,7 +51,11 @@ class MakePcController extends AppController {
 		switch($product_type) {
 			case 'HardDrive':
 			case 'Monitor':
-				// TODO
+				if(!$product_id) {
+					unset($myPC["$product_type"]["$position"]);
+				} else {
+					$myPC["$product_type"]["$position"] = $product;
+				}
 				break;
 			case 'VideoCard':
 			case 'Memory':
@@ -73,9 +76,12 @@ class MakePcController extends AppController {
 				break;
 		}
 		$this->setMyPC($myPC);
+		echo true; // IMPORTANTE
 		exit(0);
 	}
-	
+	function resume(){
+		$this -> layout = 'ajax';
+	}
 	function getMyPCTotal() {
 		$myPC = $this->getMyPC();
 		$total = 0;
@@ -222,11 +228,11 @@ class MakePcController extends AppController {
 		$videoCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
 		$this -> set('items',$videoCards);
 		$myPC = $this->getMyPC();
-		if(isset($myPC['VideCard'][1]['Product']['id']) && !empty($myPC['VideCard'][1]['Product']['id'])) {
-			$this -> set('selected_id_1', $myPC['HardDrive'][1]['Product']['id']);
+		if(isset($myPC['VideoCard'][1]['Product']['id']) && !empty($myPC['VideoCard'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['VideoCard'][1]['Product']['id']);
 		}
-		if(isset($myPC['VideCard'][2]['Product']['id']) && !empty($myPC['VideCard'][2]['Product']['id'])) {
-			$this -> set('selected_id_2', $myPC['VideCard'][2]['Product']['id']);
+		if(isset($myPC['VideoCard'][2]['Product']['id']) && !empty($myPC['VideoCard'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['VideoCard'][2]['Product']['id']);
 		}
 	}
 	
@@ -341,6 +347,10 @@ class MakePcController extends AppController {
 			$supplies = $this->Product->find('list', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
 		$this -> set ('items',$supplies);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['PowerSupply']['Product']['id']) && !empty($myPC['PowerSupply']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['PowerSupply']['Product']['id']);
+		}
 	}
 	
 	/**

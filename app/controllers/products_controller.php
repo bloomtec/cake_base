@@ -93,7 +93,9 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('product', $this->Product->findBySlug($slug));
+		$product = $this->Product->findBySlug($slug);
+		$this->set('product', $product);
+		$this -> requestAction('/visited_products/sync/'.$product['Product']['id']);
 	}
 
 	function admin_index() {
