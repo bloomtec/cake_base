@@ -341,6 +341,10 @@ class MakePcController extends AppController {
 			$supplies = $this->Product->find('list', array('conditions'=>array('Product.product_type_id'=>13)));
 		}
 		$this -> set ('items',$supplies);
+		$myPC = $this->getMyPC();
+		if(isset($myPC['PowerSupply']['Product']['id']) && !empty($myPC['PowerSupply']['Product']['id'])) {
+			$this -> set('selected_id', $myPC['PowerSupply']['Product']['id']);
+		}
 	}
 	
 	/**
