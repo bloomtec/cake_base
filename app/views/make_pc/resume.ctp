@@ -50,7 +50,7 @@
 			<td class="categoria-producto"><?php echo __('Disco Duro', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['HardDrive'])) {
-				if (isset($myPC['HardDrive']['1']['Product']['name']) && isset($myPC['HardDrive']['1']['Product']['name'])) {
+				if (isset($myPC['HardDrive']['1']['Product']['name']) && isset($myPC['HardDrive']['2']['Product']['name'])) {
 					echo $myPC['HardDrive']['1']['Product']['name'] . '<br />' . $myPC['HardDrive']['2']['Product']['name'];
 				} else {
 					if (isset($myPC['HardDrive']['1']['Product']['name']))
@@ -112,7 +112,7 @@
 			<td class="categoria-producto"><?php echo __('Monitor', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Monitor'])) {
-				if (isset($myPC['Monitor']['1']['Product']['name']) && isset($myPC['Monitor']['1']['Product']['name'])) {
+				if (isset($myPC['Monitor']['1']['Product']['name']) && isset($myPC['Monitor']['2']['Product']['name'])) {
 					echo $myPC['Monitor']['1']['Product']['name'] . '<br />' . $myPC['Monitor']['2']['Product']['name'];
 				} else {
 					if (isset($myPC['Monitor']['1']['Product']['name']))
