@@ -112,12 +112,14 @@
 			<td class="categoria-producto"><?php echo __('Monitor', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Monitor'])) {
-				if (isset($myPC['Monitor']['1']['Product']['name']))
-					echo $myPC['Monitor']['1']['Product']['name'];
-				if (isset($myPC['Monitor']['2']['Product']['name']))
-					echo $myPC['Monitor']['2']['Product']['name'] . ' x 2';
-				if (isset($myPC['Monitor']['Product']['name']))
-					echo $myPC['Monitor']['Product']['name'];
+				if (isset($myPC['Monitor']['1']['Product']['name']) && isset($myPC['Monitor']['1']['Product']['name'])) {
+					echo $myPC['Monitor']['1']['Product']['name'] . '<br />' . $myPC['Monitor']['2']['Product']['name'];
+				} else {
+					if (isset($myPC['Monitor']['1']['Product']['name']))
+						echo $myPC['Monitor']['1']['Product']['name'];
+					if (isset($myPC['Monitor']['2']['Product']['name']))
+						echo $myPC['Monitor']['2']['Product']['name'];
+				}
 			} else {
 				echo 'No se ha seleccionado un producto.';
 			}
