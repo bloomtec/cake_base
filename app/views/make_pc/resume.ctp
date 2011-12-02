@@ -10,7 +10,7 @@
 				if (isset($producto['1']['Product']['name']))
 					echo $producto['1']['Product']['name'];
 				if (isset($producto['2']['Product']['name']))
-					echo $producto['2']['Product']['name'];
+					echo $producto['2']['Product']['name'] . 'x 2';
 				if (isset($producto['Product']['name']))
 					echo $producto['Product']['name'];
 			} else {
