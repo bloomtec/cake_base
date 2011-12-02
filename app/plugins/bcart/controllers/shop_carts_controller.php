@@ -123,7 +123,7 @@ class ShopCartsController extends BcartAppController {
 	function getCart() {
 		// Datos con los que podría existir el carrito
 		$user_id = $this->Session->read('Auth.User.id');
-		$user_agent = $this->Session->read('carrito');
+		$identifier = $this->Session->read('carrito');
 		
 		// Verificar si existe un carro con estos datos
 		$shopping_cart = null;
@@ -132,9 +132,9 @@ class ShopCartsController extends BcartAppController {
 			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
 		} else {
 			// No esta registrado el usuario
-			if($user_agent) {
+			if($identifier) {
 				// Hay "user_agent"
-				$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_agent'=>$user_agent)));
+				$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.identifier'=>$identifier)));
 			} else {
 				// No hay "user_agent", no se puede buscar un carrito
 			}
@@ -148,7 +148,7 @@ class ShopCartsController extends BcartAppController {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
 				$time=(float) (vsprintf('%d.%06d', gettimeofday()));
-				$this->ShopCart->set('user_agent', $time);
+				$this->ShopCart->set('identifier', $time);
 			}
 			if($this->ShopCart->save()){
 				// Se creo el carrito, guardar la info
