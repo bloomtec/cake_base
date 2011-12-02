@@ -51,7 +51,11 @@ class MakePcController extends AppController {
 		switch($product_type) {
 			case 'HardDrive':
 			case 'Monitor':
-				$myPC["$product_type"]["$position"] = $product;
+				if(!$product_id) {
+					unset($myPC["$product_type"]["$position"]);
+				} else {
+					$myPC["$product_type"]["$position"] = $product;
+				}
 				break;
 			case 'VideoCard':
 			case 'Memory':
