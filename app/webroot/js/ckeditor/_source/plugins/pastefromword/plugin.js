@@ -4,8 +4,6 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 */
 (function()
 {
-	function forceHtmlMode( evt ) { evt.data.mode = 'html'; }
-
 	CKEDITOR.plugins.add( 'pastefromword',
 	{
 		init : function( editor )
@@ -14,11 +12,9 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 			// Flag indicate this command is actually been asked instead of a generic
 			// pasting.
 			var forceFromWord = 0;
-			var resetFromWord = function( evt )
+			var resetFromWord = function()
 				{
-					evt && evt.removeListener();
-					editor.removeListener( 'beforePaste', forceHtmlMode );
-					forceFromWord && setTimeout( function() { forceFromWord = 0; }, 0 );
+					setTimeout( function() { forceFromWord = 0; }, 0 );
 				};
 
 			// Features bring by this command beside the normal process:
@@ -30,25 +26,17 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 				canUndo : false,
 				exec : function()
 				{
-					// Ensure the received data format is HTML and apply content filtering. (#6718)
 					forceFromWord = 1;
-					editor.on( 'beforePaste', forceHtmlMode );
-
-					if ( editor.execCommand( 'paste', 'html' ) === false )
+					if ( editor.execCommand( 'paste' ) === false )
 					{
-						editor.on( 'dialogShow', function ( evt )
-						{
-							evt.removeListener();
-							evt.data.on( 'cancel', resetFromWord );
-						});
-
-						editor.on( 'dialogHide', function( evt )
-						{
-							evt.data.removeListener( 'cancel', resetFromWord );
-						} );
+						editor.on( 'dialogHide', function ( evt )
+							{
+								evt.removeListener();
+								resetFromWord();
+							});
 					}
-
-					editor.on( 'afterPaste', resetFromWord );
+					else
+						resetFromWord();
 				}
 			});
 
