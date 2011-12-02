@@ -2,7 +2,7 @@
 <div class="resumen-productos">
 	<table class="tabla-resumen-productos">
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Processor', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Procesador', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Processor'])) {
 				if (isset($myPC['Processor']['1']['Product']['name']))
@@ -17,7 +17,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Motherboard', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Tarjeta Madre', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Motherboard'])) {
 				if (isset($myPC['Motherboard']['1']['Product']['name']))
@@ -32,7 +32,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Memory', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Memoria', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Memory'])) {
 				if (isset($myPC['Memory']['1']['Product']['name']))
@@ -47,7 +47,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Hard Drive', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Disco Duro', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['HardDrive'])) {
 				if (isset($myPC['HardDrive']['1']['Product']['name']))
@@ -62,7 +62,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Video Card', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Tarjeta De Video', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['VideoCard'])) {
 				if (isset($myPC['VideoCard']['1']['Product']['name']))
@@ -77,7 +77,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Casing', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Torre', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Casing'])) {
 				if (isset($myPC['Casing']['1']['Product']['name']))
@@ -92,7 +92,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Power Supply', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Fuente De Poder', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['PowerSupply'])) {
 				if (isset($myPC['PowerSupply']['1']['Product']['name']))
@@ -122,7 +122,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Cards', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Tarjetas Adicionales', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Cards'])) {
 				if (isset($myPC['Cards']['1']['Product']['name']))
@@ -137,7 +137,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Accesories', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Accesorios', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Accesories'])) {
 				if (isset($myPC['Accesories']['1']['Product']['name']))
@@ -152,7 +152,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Mouse', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Raton', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Mouse'])) {
 				if (isset($myPC['Mouse']['1']['Product']['name']))
@@ -167,7 +167,7 @@
 			?></td>
 		</tr>
 		<tr class="info-producto">
-			<td class="categoria-producto"><?php echo __('Keyboard', true); ?></td>
+			<td class="categoria-producto"><?php echo __('Teclado', true); ?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Keyboard'])) {
 				if (isset($myPC['Keyboard']['1']['Product']['name']))
