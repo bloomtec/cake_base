@@ -52,7 +52,7 @@ class MakePcController extends AppController {
 		switch($product_type) {
 			case 'HardDrive':
 			case 'Monitor':
-				// TODO
+				$myPC["$product_type"]["$position"] = $product;
 				break;
 			case 'VideoCard':
 			case 'Memory':
@@ -222,11 +222,11 @@ class MakePcController extends AppController {
 		$videoCards = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
 		$this -> set('items',$videoCards);
 		$myPC = $this->getMyPC();
-		if(isset($myPC['VideCard'][1]['Product']['id']) && !empty($myPC['VideCard'][1]['Product']['id'])) {
-			$this -> set('selected_id_1', $myPC['HardDrive'][1]['Product']['id']);
+		if(isset($myPC['VideoCard'][1]['Product']['id']) && !empty($myPC['VideoCard'][1]['Product']['id'])) {
+			$this -> set('selected_id_1', $myPC['VideoCard'][1]['Product']['id']);
 		}
-		if(isset($myPC['VideCard'][2]['Product']['id']) && !empty($myPC['VideCard'][2]['Product']['id'])) {
-			$this -> set('selected_id_2', $myPC['VideCard'][2]['Product']['id']);
+		if(isset($myPC['VideoCard'][2]['Product']['id']) && !empty($myPC['VideoCard'][2]['Product']['id'])) {
+			$this -> set('selected_id_2', $myPC['VideoCard'][2]['Product']['id']);
 		}
 	}
 	
