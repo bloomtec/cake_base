@@ -21,7 +21,8 @@
 				foreach($shopping_cart['ShopCartItem'] as $shoppin_cart_item) :
 					$model_name = $shoppin_cart_item['model_name'];
 					$foreign_key =  $shoppin_cart_item['foreign_key'];
-					$item = $this->requestAction("/bcart/shopCarts/getItem/".$shoppin_cart_item['model_name']."/$foreign_key/");
+					$model = $shoppin_cart_item['model_name'];
+					$item = $this->requestAction("/$model" . "s/getProduct/$foreign_key/");
 					$subtotal += $item[$model_name]["price"]*$shoppin_cart_item['quantity'];
 			?>
 			<tr class="shop-cart-item" rel="<?php echo $shoppin_cart_item["id"]?>">
@@ -67,16 +68,17 @@
 <div id="cupon">
 	<h1 class='remove-all'><a href="#">QUITAR TODOS</a></h1>
 	<h1 class="total">SUBTOTAL <span class="subtotal">$<?php if(isset($subtotal)) {echo number_format($subtotal, 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
-	<!--<form id="set-coupon">
-		<?php if(!$shopping_cart['ShopCart']['coupon_id']) : ?>
-		<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>
-		<input id="get-serial" style="text-align: center; color: white;" type="text" />
-		<input type="submit" value="APLICAR" />
-		<?php endif; ?>
-		<?php if($shopping_cart['ShopCart']['coupon_id']) : ?>
-			<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal"><?php echo (100 * $shopping_cart['ShopCart']['coupon_discount'])."%"?></span></h1>
-		<?php endif; ?>
-	</form>-->
+	
+	<!--<form id="set-coupon">-->
+		<?php //if(!$shopping_cart['ShopCart']['coupon_id']) : ?>
+		<!--<label class="titulos_rosado">CUPÓN DE DESCUENTO</label>-->
+		<!--<input id="get-serial" style="text-align: center; color: white;" type="text" />-->
+		<!--<input type="submit" value="APLICAR" />-->
+		<?php //endif; ?>
+		<?php //if($shopping_cart['ShopCart']['coupon_id']) : ?>
+			<!--<h1 class="titulos_rosado">DESCUENTO APLICADO <span class="subtotal">--><?php //echo (100 * $shopping_cart['ShopCart']['coupon_discount'])."%"?><!--</span></h1>-->
+		<?php //endif; ?>
+	<!--</form>-->
 	<?php $coupon_value = 0; if(isset($shopping_cart['ShopCart']['coupon_discount'])) $coupon_value = $shopping_cart['ShopCart']['coupon_discount']; ?>
 	<h1 class="total">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">

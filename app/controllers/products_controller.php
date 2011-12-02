@@ -3,11 +3,11 @@ class ProductsController extends AppController {
 
 	var $name = 'Products';
 
-	function getProduct($product_id = null, $size_id = null) {
+	function getProduct($product_id = null) {
 		$this->Product->recursive=-1;
 		$product = $this->Product->read(null, $product_id);
 		$this->Product->Inventory->recursive=-1;
-		$inventory = $this->Product->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id, 'Inventory.size_id'=>$size_id)));
+		$inventory = $this->Product->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id)));
 		$data = array();
 		$data['Product']=$product['Product'];
 		$data['Inventory']=$inventory['Inventory'];

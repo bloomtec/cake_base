@@ -7,7 +7,7 @@ class ShopCartsController extends BcartAppController {
 		parent::beforeFilter();
 		$this->Auth->allow(
 			'addToCart', 'removeFromCart', 'removeAllFromCart', 'checkoutCart', 'viewCart', 'getCart',
-			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon','getItem'
+			'updateShopCartItem', 'getResume', 'refresh', 'setCoupon', 'loginTransition'
 		);
 	}
 	
@@ -18,6 +18,44 @@ class ShopCartsController extends BcartAppController {
 	 * El carrito debe de poder ser accedido por cualquiera.
 	 * ---------------------------------------------------------------------------------------------
 	 */
+	
+	function loginTransition($user_id = null) {
+		$this->autoRender=false;
+		if($user_id) {
+			$shopCart = $this->getCart(); // Leer el carrito de la sesion
+			if(!empty($shopCart['ShopCartItem'])) {
+				$user_shopCart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id')));
+				if(!empty($user_shopCart)) {
+					// Luego de encontrar el carrito del usuario
+					$cantidad = count($shopCart['ShopCartItem']);
+					for($i=0;$i<$cantidad;$i+=1) {
+						$this -> ShopCart -> ShopCartItem -> recursive = -1;
+						$this -> ShopCart -> ShopCartItem -> read(null, $shopCart['ShopCartItem'][$i]['id']);
+						$this -> ShopCart -> ShopCartItem -> saveField('shop_cart_id', $user_shopCart['ShopCart']['id']);
+					}
+					$this->loginTransitionClearCart($shopCart['ShopCart']['id']);
+				} else {
+					// No se encontró carrito del usuario
+				}
+			}
+		}
+	}
+	
+	private function loginTransitionClearCart($shop_cart_id = null) {
+		$this->autoRender=false;
+		$shopping_cart = null;
+		if($shop_cart_id) {
+			$shopping_cart = $this->ShopCart->read(null, $shop_cart_id);
+		} else {
+			$shopping_cart = $this->getCart();
+		}
+		if(empty($shopping_cart)) {
+			// No hay carrito; hacer algo?
+		} else {
+			// Hay carrito, borrar el ítem acorde su id
+			$this->ShopCart->ShopCartItem->deleteAll(array('shop_cart_id'=>$shopping_cart['ShopCart']['id']));
+		}
+	}
 	
 	function getResume() {
 		$this->autoRender=false;
@@ -47,14 +85,45 @@ class ShopCartsController extends BcartAppController {
 		exit(0);
 	}
 	
-	
+	function setCoupon($coupon_serial = null) {
+		$this->autoRender=false;
+		$this->layout="ajax";
+		// Verificar que el cupon existe
+		if($coupon_serial) {
+			if($coupon = $this->ShopCart->Coupon->findBySerial($coupon_serial)) {
+				// El cupon existe -> validar que no este en otro carrito
+				if(($this->ShopCart->findByCouponId($coupon['Coupon']['id'])) || ($this->ShopCart->User->Order->findByCouponId($coupon['Coupon']['id']))) {
+					// Ya esta el cupon en otro carrito
+					echo json_encode(array('result'=>false, 'message'=>'El cupon ya ha sido previamente asignado a otro carrito de compras'));
+				} else {
+					// El cupon no ha sido asignado en otro carrito
+					$batch = $this->ShopCart->Coupon->CouponBatch->read(null, $coupon['Coupon']['coupon_batch_id']);
+					$shop_cart = $this->getCart();
+					$shop_cart['ShopCart']['coupon_id']=$coupon['Coupon']['id'];
+					$shop_cart['ShopCart']['coupon_discount']=$batch['CouponBatch']['value'];
+					if($this->ShopCart->save($shop_cart)) {
+						echo json_encode(array('result'=>true, 'message'=>'Se aplicó el cupon', 'value'=>$batch['CouponBatch']['value']));
+					} else {
+						echo json_encode(array('result'=>false, 'message'=>'Ocurrió un error al aplicar el cupon'));
+					}
+				}
+			} else {
+				// El cupon no existe
+				echo json_encode(array('result'=>false, 'message'=>'El cupon ingresado no existe'));
+			}
+		} else {
+			echo json_encode(array('result'=>false, 'message'=>'No ha ingresado un serial de cupon'));
+		}	
+		exit(0);
+	}
+
 	/**
 	 * Encontrar el carrito
 	 */
 	function getCart() {
 		// Datos con los que podría existir el carrito
 		$user_id = $this->Session->read('Auth.User.id');
-		$user_agent = $this->Session->read('carrito');
+		$identifier = $this->Session->read('carrito');
 		
 		// Verificar si existe un carro con estos datos
 		$shopping_cart = null;
@@ -63,9 +132,9 @@ class ShopCartsController extends BcartAppController {
 			$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_id'=>$user_id)));
 		} else {
 			// No esta registrado el usuario
-			if($user_agent) {
+			if($identifier) {
 				// Hay "user_agent"
-				$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.user_agent'=>$user_agent)));
+				$shopping_cart = $this->ShopCart->find('first', array('conditions'=>array('ShopCart.identifier'=>$identifier)));
 			} else {
 				// No hay "user_agent", no se puede buscar un carrito
 			}
@@ -79,7 +148,7 @@ class ShopCartsController extends BcartAppController {
 				$this->ShopCart->set('user_id', $user_id);
 			} else {
 				$time=(float) (vsprintf('%d.%06d', gettimeofday()));
-				$this->ShopCart->set('user_agent', $time);
+				$this->ShopCart->set('identifier', $time);
 			}
 			if($this->ShopCart->save()){
 				// Se creo el carrito, guardar la info
@@ -100,24 +169,10 @@ class ShopCartsController extends BcartAppController {
 		$this->autoRender=false;
 		$this->layout="ajax";
 		$this->loadModel('Product');
-		$this->loadModel('Subcategory');
-		$this->loadModel('Size');
 		$shopping_cart = $this->getCart();
 		$cart_id = $shopping_cart['ShopCart']['id'];
-		$size_reference_id = $this->data['ShopCartItem']['size_id'];
 		$this->Product->recursive=0;
 		$product = $this->Product->read(null, $this->data['ShopCartItem']['foreign_key']);
-		$size = $this->Size->find(
-			'first',
-			array(
-				'recursive'=>-1,
-				'conditions'=>array(
-					'Size.subcategory_id'=>$product['Subcategory']['id'],
-					'Size.size_reference_id'=>$size_reference_id
-				)
-			)
-		);
-		$this->data['ShopCartItem']['size_id'] = $size['Size']['id'];
 		
 		// Verificar si el ítem ya esta dentro del carrito
 		$cart_item = $this->ShopCart->ShopCartItem->find(
@@ -126,8 +181,7 @@ class ShopCartsController extends BcartAppController {
 				'conditions'=>array(
 					'ShopCartItem.shop_cart_id'=>$cart_id,
 					'ShopCartItem.foreign_key'=>$this->data['ShopCartItem']['foreign_key'],
-					'ShopCartItem.is_gift'=>$this->data['ShopCartItem']['is_gift'],
-					'ShopCartItem.size_id'=>$this->data['ShopCartItem']['size_id']
+					'ShopCartItem.is_gift'=>$this->data['ShopCartItem']['is_gift']
 				)
 			)
 		);
@@ -201,21 +255,10 @@ class ShopCartsController extends BcartAppController {
 		exit(0);
 	}
 	
-	function getItem($Model,$foreign_key = null) {
-		$this -> loadModel($Model);
-		$this -> $Model -> recursive =-1;
-		$item = $this -> $Model ->read(null, $foreign_key);
-		$this -> $Model -> Inventory -> recursive=-1;
-		$inventory = $this -> $Model -> Inventory->find('first', array('conditions'=>array('Inventory.'.strtolower($Model).'_id'=>$foreign_key)));
-		$data = array();
-		$data[$Model] = $item[$Model];
-		$data['Inventory'] = $inventory['Inventory'];
-		return $data;
-	}
 	function viewCart() {
-		$this -> layout = 'bcart';
+		$this->layout='bcart';
 		$shopping_cart = $this->getCart();
-		$this -> set('shopping_cart', $shopping_cart);	
+		$this -> set('shopping_cart', $shopping_cart);
 		$this->Session->write('referer',$this->referer());
 	}
 
