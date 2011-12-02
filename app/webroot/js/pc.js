@@ -115,7 +115,7 @@ $(function() {
 		if($item.parent().is('.opcional') && checked){
 			removeChecked = true;
 			BJS.get('/makePc/myPCAddItem/'+rel+'/0/'+position,{},function(data){
-				
+					$('#resumen').load('/makePc/resume');
 			});	
 		}else{
 			BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,{},function(data){
