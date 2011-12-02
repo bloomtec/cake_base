@@ -309,16 +309,17 @@
     width: auto;
     height: auto;
 }
-.imprimir-pagar-producto img{
-	width: 70%;
-	height: 70%;
-}
+
 .imprimir-pagar-producto .pagar{
-	padding-left: 22px;
+	padding-left: 30px;
 	padding-right: 22px;
+	background-image: url(/img/carrito_resumen.png);
+	background-repeat: no-repeat;
+	background-position: center left;
+	font-size: 14px;
 }
 .imprimir-pagar-producto a:hover{
-	background-color: #d86703;
+	color: #FF7800;
 }
 .seleccionar{
 	width: 220px;
