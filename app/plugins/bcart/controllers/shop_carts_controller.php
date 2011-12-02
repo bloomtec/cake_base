@@ -256,7 +256,7 @@ class ShopCartsController extends BcartAppController {
 	}
 	
 	function viewCart() {
-		$this->layout='carrito';
+		$this->layout='bcart';
 		$shopping_cart = $this->getCart();
 		$this -> set('shopping_cart', $shopping_cart);
 		$this->Session->write('referer',$this->referer());
