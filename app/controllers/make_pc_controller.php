@@ -13,7 +13,6 @@ class MakePcController extends AppController {
 		'Casing' => array(),
 		'PowerSupply' => array(),
 		'Monitor' => array(),
-		'Peripherals' => array(),
 		'Cards' => array(),
 		'Accesories' => array(),
 		'Mouse' => array(),
