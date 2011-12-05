@@ -1,6 +1,5 @@
 h1,h2,h3,p,a,label,legend,input{
 	font-family: Arial, Helvetica, sans-serif;
-	font-stretch: narrower;
 	font-size:14px; 
 	color:#fff;
 }
@@ -74,7 +73,7 @@ body{
 	background-color: #fff;
 	clear: both;
 	margin: 0 auto;
-	padding-bottom:12px;
+	padding-bottom:25px;
 	-webkit-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -101,8 +100,8 @@ body{
 	margin-right: 5px;
 }
 .filtros select{
-	margin-right: 50px;
-	width: 100px;
+	margin-right: 40px;
+	width: auto;
 	border: none;
 }
 .filtros .input.select {
@@ -291,6 +290,20 @@ body{
 .deals-list{
 	margin-bottom: 15px;
 }
+#content h1{
+	margin-left: 27px;
+	color: #181818;
+	margin-top: 25px;
+}
+#content .info{
+	font-weight: normal;
+    margin-left: 27px;
+    padding-top: 12px;
+    text-align: left;
+    width: 990px;
+    color: #323232;
+    clear: both;
+}
 /*Footer*/
 
 #footer{
@@ -352,4 +365,82 @@ body{
     right: 0;
     width: 111px;
 
+}
+.ver_mas, #footer .ver_mas{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #fff;
+}
+.como_comprar{
+	float: left;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-top: 29px;
+    width: 250px;
+    padding: 10px 10px 20px;
+    -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 10px; 
+	background-color: #eeeeee;
+	position: relative;
+	
+	
+	
+}
+.como_comprar img, .img_contacto{
+	width: 55px;
+	float: left;
+}
+.img_contacto{
+	margin-left: 25px;
+}
+#content .titulo_contacto{
+	float: left;
+    margin-left: 10px;
+    margin-top: 17px;
+}
+.como_comprar h2{
+	background-color: #323232;
+    color: #FFFFFF;
+    float: left;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 26px;
+    padding: 4px 2px;
+    position: absolute;
+    width: 185px;
+    right: 0;
+	
+}
+#content .como_comprar p{
+	text-align: left;
+	font-weight: normal;
+	padding-top:10px;
+	clear: both;
+}
+.contacto{
+	padding-left: 25px;
+	padding-top: 15px;
+	width: 420px;
+}
+.contacto label, .contacto .text{
+	color: #323232;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+}
+.contacto label{
+	width: 150px;
+}
+.contacto .text{
+	height: 18px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    width: 259px;
+}
+.contacto textarea.text{
+	min-height: 80px;
+	max-height: 80px;
+	min-width: 259px;
+	max-width: 259px;
 }
