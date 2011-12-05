@@ -35,6 +35,7 @@
  */
 	Configure::write('debug', 1);
 	Configure::write('key', "Bl00MWebGr0up");
+	
 /*
 TAMAÑO DE IMAGENES PERSONALIZADAS
 */

@@ -4,6 +4,13 @@ h1,h2,h3,p,a,label,legend,input{
 	font-size:14px; 
 	color:#fff;
 }
+
+#content p{
+	text-align: center;
+	color: #231F20;
+    font-size: 12px;
+    font-weight: bold;
+}
 a{
 	text-decoration: none;
 }
@@ -57,6 +64,7 @@ body{
 .iniciar_sesion{
 	font-size:12px;
 	font-weight: bold;
+	position: relative;
 }
 
 /*Contenido*/
@@ -73,8 +81,9 @@ body{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border-radius: 5px;
-	
-	
+}
+.filtros{
+	margin-bottom: 15px;
 }
 .filtros, .menu_usuario{
 	height: 15px;
@@ -237,9 +246,10 @@ body{
 	font-size: 14px;
 	float: none;
 }
-.descripcion_producto p{
+#content .descripcion_producto p{
 	color:#231f20;
-	
+	text-align: left;
+	font-weight: normal;
 }
 .ubicacion{
 	float: left;
@@ -263,6 +273,23 @@ body{
 	height: 208px;
 	margin-top: 8px;
 	float: none;
+}
+.paging{
+	margin-bottom: 15px;
+}
+.paging span, .paging{
+	text-align: center;
+	color: #231F20;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.paging .disabled{
+	color: #838383;
+}
+.deals-list{
+	margin-bottom: 15px;
 }
 /*Footer*/
 

@@ -1,4 +1,5 @@
 <div class="slide">
+	<?php echo $this->Html->image($this -> webroot.'img/uploads/'.$large_image); ?>
 </div>
 <div class="deals-list">
 	<?php
