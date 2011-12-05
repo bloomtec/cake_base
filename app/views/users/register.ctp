@@ -18,13 +18,14 @@
 				echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]'));
 				echo $this -> Form -> input('phone',array('required' => 'required' , 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines',true) ));
 			?>
-		</div>
+		
 			<?php
 				echo $this -> Form -> input('Address.country_id', array('required' => 'required'));
 				echo $this -> Form -> input('Address.city_id', array('required' => 'required'));
 				echo $this -> Form -> input('Address.address', array('required' => 'required'));
 				
 			?>
+			</div>
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Register', true));?>
 </div>
