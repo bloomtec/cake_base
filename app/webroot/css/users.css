@@ -135,7 +135,7 @@
     font-size: 14px;
     font-weight: bold;
     padding-bottom: 10px;
-    width: 90%;
+    width: 100%;
     margin-bottom: 15px;
     color: #424242;
 }
@@ -150,13 +150,21 @@
     font-weight: bold;
     padding-top: 5px;
 }
-.register input, #UserEmail, .login input, #contacto input, #contacto textarea{
+.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.register select{
 	margin-bottom: 5px;
 	font-family: Arial,Helvetica,sans-serif;
 	padding-left: 3px;
 	width: 250px;
 	border: 1px solid #BCBCBC;
 	height: 20px;
+	color: #424242;
+	font-size: 12px;
+	font-weight: bold
+}
+.register select{
+	height: 24px;
+    padding-top: 3px;
+    width: 150px;
 }
 #contacto textarea{
 	height: 60px;
@@ -165,41 +173,37 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-.register input[type=submit], #rememberForm input[type=submit], #contacto .formulario_contacto .submit{
-	background-image: url("/img/submit_registro.png");
-	border:none;
+.btn_wrraper{
+	width: 421px;
+	height: auto;
+}
+.submit input{
 	background-color: transparent;
-	width: 99px;
-	height: 37px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-style:italic;
-	font-weight: bold;
-	cursor: pointer;
-	margin-left: 290px;
-	margin-top: 8px;
+    background-image: url("/img/btn_login.png");
+    border: medium none;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    width: 79px;
+    color: #fff;
+    margin-top: 4px;
+    cursor: pointer;
 }
 
-.login  .submit input{
-	margin-left: 0px;
-	margin-top: 0;
-	margin-right: 151px;
-}
-.login .submit{
-	height: 26px;
-	float: left;
-	width: 100px;
-	margin-right: 150px;
-	height: 36px;
-
-}
 .login .submit.primero{
-	float: left;
-	padding-top: 12px;
-	margin-top: 0;
-	margin-right: 20px;
-	height: 26px;
-	margin-left: 170px;
+	background-color: transparent;
+    background-image: url("/img/btn_login.png");
+    border: medium none;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    height: 25px;
+    margin-top: 4px;
+    width: 79px;
+    background-repeat: no-repeat;
+    padding-left: 6px;
+    padding-top: 6px;
 }
 .tooltip_login{
 	background-color: #323232;
@@ -244,6 +248,7 @@
 	font-weight: bold;
 	float: right;
 	margin-top: 7px;
+	cursor: pointer;
 }
 .tooltip_login input.btn_login{
 	margin-right: 8px;
@@ -256,6 +261,9 @@
 .correo{
 	width: auto;
 	margin-right: 10px;
+}
+.input.text, .input.password, .input.select{
+	padding-left: 15px;
 }
 #rememberForm input[type=submit]{
 	margin-left: 381px;
@@ -295,5 +303,6 @@ div.images .preview  img{
 	font-size: 12px;
 }
 .centrar{
-	padding: 12px;
+	padding: 12px 20px 0;
+
 }

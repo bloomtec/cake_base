@@ -82,6 +82,9 @@ body{
 	border-radius: 5px;
 	border-radius: 5px;
 }
+.filtros{
+	margin-bottom: 15px;
+}
 .filtros, .menu_usuario{
 	height: 15px;
 	background-color: #323232;
