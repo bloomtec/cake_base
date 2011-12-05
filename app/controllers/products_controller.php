@@ -2,32 +2,18 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
-	
-	function beforeFilter() {
-		parent::beforeFilter();
-		$this->Auth->allow(
-			'getCasings', 'getPowerSupplies', 'getOpticalDrives', 'getHardDrives', 'getMemories',
-			'isVideoIncluded', 'getMotherBoards', 'getProcessors','getSocketsByArchitecture',
-			'featuredProduct','searchResults'
-		);
-	}
-	function armaTuComputador(){
-		$this->layout="personaliza";
-		$arquitectures = $this->Product->Architecture->find('list');
-		$this->set(compact('arquitectures'));
-	}
-	
-	function getProduct($product_id = null, $size_id = null) {
+
+	function getProduct($product_id = null) {
 		$this->Product->recursive=-1;
 		$product = $this->Product->read(null, $product_id);
 		$this->Product->Inventory->recursive=-1;
-		$inventory = $this->Product->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id, 'Inventory.size_id'=>$size_id)));
+		$inventory = $this->Product->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id)));
 		$data = array();
 		$data['Product']=$product['Product'];
 		$data['Inventory']=$inventory['Inventory'];
 		return $data;
 	}
-	
+
 	function searchResults(){
 		$q=$this->data['query'];
 		$brand_ids = $this->Product->Brand->find(
@@ -51,12 +37,12 @@ class ProductsController extends AppController {
 		$products = $this->paginate();
 		$this->set('products', $products);
 	}
-	
+
 	function findRecommendedProducts($product_id) {
 		$recommended_product_ids = $this -> Product -> Recommendation -> find('list', array('fields' => array('Recommendation.recommended_product_id'), 'conditions' => array('Recommendation.product_id' => $product_id), 'limit' => 5, 'order' => 'rand()'));
 		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_visible'=>1)));
 	}
-	
+
 	function featuredProduct($tag_id) {
 		$this->layout="ajax";
 		$featured_products_ids = $this->Product->find(
@@ -95,7 +81,7 @@ class ProductsController extends AppController {
 		);
 		$this->set('product', $product);
 	}
-	
+
 	function index() {
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
@@ -107,9 +93,11 @@ class ProductsController extends AppController {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('product', $this->Product->findBySlug($slug));
+		$product = $this->Product->findBySlug($slug);
+		$this->set('product', $product);
+		$this -> requestAction('/visited_products/sync/'.$product['Product']['id']);
 	}
-	
+
 	function admin_index() {
 		if(!empty($this->data)) {
 			//debug($this->data);
@@ -138,9 +126,11 @@ class ProductsController extends AppController {
 		}
 		$this->set('product', $this->Product->findBySlug($slug));
 	}
-	
+
 	function admin_formByType($type_id = null, $id = null) {
 		$this->layout="ajax";
+		$this -> data = $this ->Session->read('tmp_data');
+		$this->Session->delete('tmp_data');
 		if (empty($this->data) && $id) {
 			$this->data = $this->Product->read(null, $id);
 		}
@@ -149,19 +139,10 @@ class ProductsController extends AppController {
 		$slots = $this->Product->Slot->find('list');
 		$this->set(compact('productTypes', 'architectures', 'slots', 'type_id'));
 	}
-	
-	function getSocketsByArchitecture($architecture_id = null) {
-		$this->layout="ajax";
-		if($architecture_id) {
-			echo json_encode($this->Product->Socket->find('list', array('conditions'=>array('Socket.architecture_id'=>$architecture_id))));
-		} else {
-			echo null;
-		}
-		exit(0);
-	}
-	
+
 	function admin_add() {
 		if (!empty($this->data)) {
+			$this->Session->write('tmp_data', $this->data);
 			// Añadir el Tag
 			$this->data['Tag']['Tag'][]=$this->data['Product']['product_type_id'];
 			// Revisar las recomendaciones
@@ -174,14 +155,22 @@ class ProductsController extends AppController {
 			if(!$recommendations || !empty($data)) {
 				$this->Product->create();
 				if ($this->Product->save($this->data)) {
+					// Asignar los slots
+					foreach($this->data['slots'] as $slot_id=>$data) {
+						if($data['checked']) {
+							$this->Product->ProductsSlot->create();
+							$this->Product->ProductsSlot->set('product_id', $this->Product->id);
+							$this->Product->ProductsSlot->set('slot_id', $slot_id);
+							$this->Product->ProductsSlot->set('quantity', $data['quantity']);
+							$this->Product->ProductsSlot->save();
+						}
+					}
 					// Crear el inventario en 0
 					$this->Product->Inventory->create();
 					$this->Product->Inventory->set('product_id', $this->Product->id);
 					$this->Product->Inventory->set('quantity', 0);
 					if($this->Product->Inventory->save()) {
-						/**
-						 * Añadir las recomendaciones
-						 */
+						// Añadir las recomendaciones
 						$data = split(",", $data);
 						foreach ($data as $ref) {
 							$recommended_product = $this -> Product -> findByRef($ref);
@@ -190,7 +179,7 @@ class ProductsController extends AppController {
 							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
 							$this -> Product -> Recommendation -> save();
 						}
-						$this->Session->setFlash(__('The product has been saved', true));
+					$this->Session->setFlash(__('The product has been saved', true));
 					} else {
 						$this->Session->setFlash(__('The product has been saved without an inventory', true));
 					}
@@ -205,10 +194,10 @@ class ProductsController extends AppController {
 		}
 		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
 		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>18)));
 		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
-	
+
 	function validateRecommendations($data = null, $ref = null) {
 		$this->autorender=false;
 		$valid_recommendations = true;
@@ -262,18 +251,60 @@ class ProductsController extends AppController {
 			return $data;
 		}
 	}
-	
+
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Product->save($this->data)) {
-				$this->Session->setFlash(__('The product has been saved', true));
-				$this->redirect(array('action' => 'index'));
+			// Revisar las recomendaciones
+			$data = null;
+			$recommendations = false;
+			if(!empty($this -> data['Product']['recommendations'])) {
+				$data = $this->validateRecommendations($this -> data['Product']['recommendations'], $this -> data['Product']['ref']);
+				$recommendations = true;
+			}
+			if(!$recommendations || !empty($data)) {
+				if ($this->Product->save($this->data)) {
+					// Eliminar slots para reasignarlos
+					$slots = $this->Product->ProductsSlot->find('all', array('conditions'=>array('ProductsSlot.product_id'=>$this->data['Product']['id'])));
+					foreach($slots as $slot) {
+						$this->Product->ProductsSlot->delete($slot['ProductsSlot']['id']);
+					}
+					// Asignar los slots
+					foreach($this->data['slots'] as $slot_id=>$data) {
+						if($data['checked']) {
+							$this->Product->ProductsSlot->create();
+							$this->Product->ProductsSlot->set('product_id', $this->data['Product']['id']);
+							$this->Product->ProductsSlot->set('slot_id', $slot_id);
+							$this->Product->ProductsSlot->set('quantity', $data['quantity']);
+							$this->Product->ProductsSlot->save();
+						}
+					}
+					// Eliminar recomendaciones para reasignarlar
+					$recomendados = $this -> Product -> Recommendation -> find('all', array('conditions'=>array('Recommendation.product_id'=>$this->data['Product']['id'])));
+					if(!empty($recomendados)) {
+						foreach($recomendados as $recomendado) {
+							$this -> Product -> Recommendation -> delete($recomendado['Recommendation']['id']);
+						}
+						// Añadir las recomendaciones
+						$data = split(",", $data);
+						foreach ($data as $ref) {
+							$recommended_product = $this -> Product -> findByRef($ref);
+							$this -> Product -> Recommendation -> create();
+							$this -> Product -> Recommendation -> set('product_id', $this->data['Product']['id']);
+							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
+							$this -> Product -> Recommendation -> save();
+						}
+					}
+					$this->Session->setFlash(__('The product has been saved', true));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				}
 			} else {
-				$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The recommendations don\'t seem valid. Check them and try again', true));
 			}
 		}
 		if (empty($this->data)) {
@@ -281,10 +312,10 @@ class ProductsController extends AppController {
 		}
 		$productTypes = $this->Product->ProductType->find('list', array('order'=>array('ProductType.name'=>'ASC')));
 		$brands = $this->Product->Brand->find('list', array('order'=>array('Brand.name'=>'ASC')));
-		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>15)));
+		$tags = $this->Product->Tag->find('list', array('conditions'=>array('Tag.id >'=>18)));
 		$this->set(compact('productTypes', 'brands', 'tags'));
 	}
-	
+
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product', true));
@@ -298,8 +329,7 @@ class ProductsController extends AppController {
 		$this->Session->setFlash(__('Product was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	
+
 	function admin_setInactive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product', true));
@@ -314,7 +344,7 @@ class ProductsController extends AppController {
 		$this->Session->setFlash(__('Product was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	
+
 	function admin_setActive($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for product', true));
@@ -329,219 +359,14 @@ class ProductsController extends AppController {
 		$this->Session->setFlash(__('Product was not archived', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	// Métodos aplicación ARMA TU PC
-	//	
-	
-	/**
-	 * $architecture_id : ID de la arquitectura seleccionada
-	 */
-	function getProcessors($architecture_id = null) {
+
+	function getSocketsByArchitecture($architecture_id = null) {
 		$this->layout="ajax";
-		$processors = $this->Product->find(
-			'list',
-			array(
-				'recursive'=>-1,
-				'conditions'=>array(
-					'Product.architecture_id'=>$architecture_id,
-					'Product.product_type_id'=>1
-				)
-			)
-		);
-		$this -> set(compact('processors'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (procesador) seleccionado.
-	 * De ahí procesar la arquitectura y el tipo de socket
-	 */
-	function getMotherBoards($product_id = null, $selectedId = 0) {
-		$this->layout="ajax";
-		$processor = $this->Product->find('first', array('recursive'=>1, 'conditions'=>array('Product.id'=>$product_id)));
-		$architecture_id = $processor['Socket'][0]['architecture_id'];
-		$socket_id = $processor['Socket'][0]['ProductsSocket']['socket_id'];
-		$product_ids = $this->Product->ProductsSocket->find(
-			'list',
-			array(
-				'conditions'=>array(
-					'ProductsSocket.socket_id' => $socket_id
-				),
-				'fields'=>array(
-					'ProductsSocket.product_id'
-				)
-			)
-		);
-		$motherboards = $this->Product->find(
-			'list',
-			array(
-				'recursive'=>-1,
-				'conditions'=>array(
-					'Product.architecture_id'=>$architecture_id,
-					'Product.product_type_id'=>2,
-					'Product.id'=>$product_ids
-				)
-			)
-		);
-		$this -> set(compact('motherboards','selectedId'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (tarjeta madre) seleccionada.
-	 * De ahí procesar si tiene video o no
-	 */
-	function isVideoIncluded($product_id = null) {
-		$this->layout="ajax";
-		$motherboard = $this->Product->findById($product_id);
-		if($motherboard['Product']['is_video_included']) {
-			echo true;
+		if($architecture_id) {
+			echo json_encode($this->Product->Socket->find('list', array('conditions'=>array('Socket.architecture_id'=>$architecture_id))));
 		} else {
-			echo false;
+			echo null;
 		}
 		exit(0);
 	}
-	/**
-	 * $product_id : ID del producto (tarjeta madre) seleccionada.
-	 * De ahí procesar las memorias disponibles compatibles
-	 */
-	function getVideoCards($product_id = null , $selectedId = 0 ) {
-		$this->layout="ajax";
-		$motherboard = $this->Product->findById($product_id);
-		$motherboard_slots = array();
-		foreach($motherboard['Slot'] as $slot) {
-			$motherboard_slots[] = $slot['id'];
-		}		
-		$videoCard = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>5)));
-		$compatible_cards = array();
-		foreach($videoCard as $card) {
-			if(in_array($card['Slot'][0]['id'], $motherboard_slots)) {
-				$compatible_cards[] = $card['Product']['id'];
-			}
-		}
-		$videoCards = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_cards)));
-		$this -> set(compact('videoCards','selectedId'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (tarjeta madre) seleccionada.
-	 * De ahí procesar las memorias disponibles compatibles
-	 */
-	function getMemories($product_id = null ,  $selectedId = 0) {
-		$this->layout="ajax";
-		$motherboard = $this->Product->findById($product_id);
-		$motherboard_slots = array();
-		foreach($motherboard['Slot'] as $slot) {
-			$motherboard_slots[] = $slot['id'];
-		}		
-		$memories = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>3)));
-		$compatible_memories = array();
-		foreach($memories as $memory) {
-			if(in_array($memory['Slot'][0]['id'], $motherboard_slots)) {
-				$compatible_memories[] = $memory['Product']['id'];
-			}
-		}
-		$memories = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_memories)));
-		$this -> set(compact('memories','selectedId'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (tarjeta madre) seleccionada.
-	 * De ahí procesar los discos duros disponibles compatibles
-	 */
-	function getHardDrives($product_id = null,  $selectedId = 0) {
-		$this->layout="ajax";
-		$motherboard = $this->Product->findById($product_id);
-		$motherboard_slots = array();
-		foreach($motherboard['Slot'] as $slot) {
-			$motherboard_slots[] = $slot['id'];
-		}		
-		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>4)));
-		$compatible_drives = array();
-		foreach($drives as $drive) {
-			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
-				$compatible_drives[] = $drive['Product']['id'];
-			}
-		}
-		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set(compact('drives' , 'selectedId'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (tarjeta madre) seleccionada.
-	 * De ahí procesar las unidades opticas disponibles compatibles
-	 */
-	function getOpticalDrives($product_id = null,  $selectedId = 0) {
-		$this->layout="ajax";
-		$motherboard = $this->Product->findById($product_id);
-		$motherboard_slots = array();
-		foreach($motherboard['Slot'] as $slot) {
-			$motherboard_slots[] = $slot['id'];
-		}		
-		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>14)));
-		$compatible_drives = array();
-		foreach($drives as $drive) {
-			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
-				$compatible_drives[] = $drive['Product']['id'];
-			}
-		}
-		$drives = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_drives)));
-		$this -> set(compact('drives' ,'selectedId'));
-	}
-	
-	/**
-	 * $product_id : ID del producto (tarjeta de video) seleccionada.
-	 * De ahí procesar las fuentes disponibles compatibles
-	 */
-	function getPowerSupplies($product_id = null, $selectedId = 0) {
-		$this->layout="ajax";
-		$supplies = array();
-		if($product_id) {
-			$video_card = $this->Product->findById($product_id);
-			$required = $video_card['Product']['required_power'];
-			$compatible_psus = array();
-			foreach ($supplies as $supply) {
-				$output = $supply['Product']['power_output'];
-				if(($output - $required) >= 450) {
-					$compatible_psus[] = $supply['Product']['id'];
-				}
-			}
-			$supplies = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
-		} else {
-			$supplies = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>13)));
-		}
-		$this -> set(compact('supplies','selectedId'));
-	}
-	
-	/**
-	 * Si se incluye $product_id : ID del producto (tarjeta de video) seleccionada.
-	 * De ahí procesar las cajas disponibles compatibles
-	 * Si no se incluye retornar todas.
-	 */
-	function getCasings($product_id = null,  $selectedId = 0) {
-		$this->layout="ajax";
-		$casings = array();
-		if($product_id) {
-			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
-		} else {
-			$casings = $this->Product->find('all', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
-		}
-		$this -> set(compact('casings','selectedId'));
-	}
-	
-	function getMonitors($selecteds = 0){
-		
-		$this -> set(compact('monitors', 'selecteds'));
-	}
-
-	function getPeripherals($selecteds = 0){
-		$this -> set(compact('peripherals', 'selecteds'));
-	}
-	
-	function getOtherCards($boardId, $selecteds = 0){
-		$this -> set(compact('otherCards', 'boardId','selecteds'));
-	}
-	
-	function getAccesories($selecteds = 0){
-		$this -> set(compact('accesories', 'selecteds'));
-	}
-
 }

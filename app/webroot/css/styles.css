@@ -996,12 +996,19 @@ span.linea_footer {
     top: 53px;
 }
 .go-cart.numero .cart-num-items{
-	color: #FFFFFF;
-    display: block;
-    font-size: 11px;
-    left: 26px;
-    position: absolute;
-    text-align: center;
-    top: -36px;
-    width: 12px;
+	background-color: black;
+	color: white;
+	display: block;
+	font-size: 11px;
+	height: 12px;
+	left: 24px;
+	padding-top: 3px;
+	position: absolute;
+	text-align: center;
+	top: -38px;
+	width: 18px;
+	-webkit-border-radius: 90px;
+	-moz-border-radius: 90px;
+	border-radius: 90px;
+	padding-bottom: 3px
 }

@@ -16,9 +16,10 @@
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
 
-	<script type="text/javascript">
+<script type="text/javascript">
+console.log('panda');
 			CKEDITOR.replace('data[Page][wysiwyg_content]',{
         	filebrowserUploadUrl : '/upload.php',
         	filebrowserBrowseUrl : '/admin/images/wysiwyg',
 		} );
-		</script>
+</script>

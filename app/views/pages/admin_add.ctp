@@ -15,9 +15,9 @@
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
 
-	<script type="text/javascript">
-			CKEDITOR.replace('data[Page][wysiwyg_content]',{
+<script type="text/javascript">
+	CKEDITOR.replace('data[Page][wysiwyg_content]',{
         	filebrowserUploadUrl : '/upload.php',
         	filebrowserBrowseUrl : '/admin/pages/wysiwyg',
-		} );
-		</script>
+	} );
+</script>
