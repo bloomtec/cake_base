@@ -204,6 +204,27 @@ class ShopCartsController extends BcartAppController {
 		}
 		exit(0);
 	}
+
+		/**
+	 * Añadir ítems al carrito
+	 **/
+	function addPCToCart() {
+		$this->autoRender=false;
+		$this->layout="ajax";
+		$shopping_cart = $this->getCart();
+		$cart_id = $shopping_cart['ShopCart']['id'];
+		
+		$myPC = $this -> requestAction('/make_pc/getMyPC');
+		$this->ShopCart->ShopCartItem->create();
+		$this->ShopCart->ShopCartItem->set('shop_cart_id', $cart_id);
+		$this->ShopCart->ShopCartItem->set('pc_order', json_encode($myPC));
+		if($this->ShopCart->ShopCartItem->save()) {
+			echo json_encode($this->getCart());
+		} else {
+			echo 'false';
+		}
+		exit(0);
+	}
 	
 	/**
 	 * Remover ítems del carrito
