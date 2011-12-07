@@ -14,7 +14,6 @@ class RestaurantsController extends AppController {
 			return ($this->Session->read('Auth.User.id') == $restaurant['Restaurant']['manager_id']);
 		} else {
 			return false;
-		
 		}
 	}
 

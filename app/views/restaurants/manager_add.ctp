@@ -11,6 +11,7 @@
 		echo $this->Form->input('schedule');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('address');
+		echo $this->Form->input('promote');
 		echo $this->Form->input('lat');
 		echo $this->Form->input('long');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
