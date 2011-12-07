@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.58, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: bloomweb_clickneat
+-- Host: 127.0.0.1    Database: bloomweb_clickneat
 -- ------------------------------------------------------
--- Server version	5.1.58-1ubuntu1
+-- Server version	5.1.53-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -162,7 +162,7 @@ CREATE TABLE `cities` (
   PRIMARY KEY (`id`),
   KEY `fk_cities_countries_INDEX` (`country_id`),
   CONSTRAINT `fk_cities_countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `cities` (
 
 LOCK TABLES `cities` WRITE;
 /*!40000 ALTER TABLE `cities` DISABLE KEYS */;
-INSERT INTO `cities` VALUES (1,1,'Bogota',NULL,'',1,NULL,NULL,NULL,NULL,NULL),(2,1,'Cali',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL),(3,2,'Miami',NULL,NULL,1,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `cities` VALUES (1,2,'Bogota','','',1,'','','','2011-11-23 15:17:39','2011-11-23 15:17:52'),(2,2,'Cali','','',1,'','','','2011-11-23 15:18:12','2011-11-23 15:18:12');
 /*!40000 ALTER TABLE `cities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
-INSERT INTO `countries` VALUES (1,'Colombia','',NULL,NULL,NULL,NULL,NULL,NULL),(2,'USA','',NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `countries` VALUES (1,'USA','','','eng',1,'','2011-11-23 15:04:24','2011-11-23 15:04:24'),(2,'Colombia','','','spa',1,'','2011-11-23 15:09:59','2011-11-23 15:10:24');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,7 +254,7 @@ CREATE TABLE `cuisines` (
   `created` datetime DEFAULT NULL,
   `updated` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,6 +263,7 @@ CREATE TABLE `cuisines` (
 
 LOCK TABLES `cuisines` WRITE;
 /*!40000 ALTER TABLE `cuisines` DISABLE KEYS */;
+INSERT INTO `cuisines` VALUES (1,'Mexicana','','','mexicana','2011-11-23 15:14:41','2011-11-23 15:14:41'),(2,'Colombiana','','','colombiana','2011-11-23 15:14:57','2011-11-23 15:14:57'),(3,'Italiana','','','italiana','2011-11-23 15:15:13','2011-11-23 15:15:13'),(4,'Comida Rapida','','','comida-rapida','2011-11-23 15:15:34','2011-11-23 15:15:34'),(5,'Argentina','','','argentina','2011-11-23 15:15:47','2011-11-23 15:15:47'),(6,'China','','','china','2011-11-23 15:16:03','2011-11-23 15:16:03'),(7,'Francesa','','','francesa','2011-11-23 15:16:16','2011-11-23 15:16:37'),(8,'Fusion','','','fusion','2011-11-23 15:16:51','2011-11-23 15:16:51'),(9,'Asiatica','','','asiatica','2011-11-23 15:17:05','2011-11-23 15:17:05');
 /*!40000 ALTER TABLE `cuisines` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +283,7 @@ CREATE TABLE `cuisines_deals` (
   KEY `fk_cuisines_deals_deals_INDEX` (`deal_id`),
   CONSTRAINT `fk_cuisines_deals_cuisines` FOREIGN KEY (`cuisine_id`) REFERENCES `cuisines` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_cuisines_deals_deals` FOREIGN KEY (`deal_id`) REFERENCES `deals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,6 +292,7 @@ CREATE TABLE `cuisines_deals` (
 
 LOCK TABLES `cuisines_deals` WRITE;
 /*!40000 ALTER TABLE `cuisines_deals` DISABLE KEYS */;
+INSERT INTO `cuisines_deals` VALUES (4,5,2),(10,9,1),(13,9,3),(16,1,4),(17,4,4),(20,1,5),(21,4,5);
 /*!40000 ALTER TABLE `cuisines_deals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -321,7 +323,7 @@ CREATE TABLE `deals` (
   PRIMARY KEY (`id`),
   KEY `fk_deals_restaurants_INDEX` (`restaurant_id`),
   CONSTRAINT `fk_deals_restaurants` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,6 +332,7 @@ CREATE TABLE `deals` (
 
 LOCK TABLES `deals` WRITE;
 /*!40000 ALTER TABLE `deals` DISABLE KEYS */;
+INSERT INTO `deals` VALUES (1,4,'Black Friday','Parrillada Mixta (250gr carne de Pollo, 250gr carde de res, papa criolla, chorizo, papas a la fransesa, jugo natural y postre)','de lunes a viernes de 3:00pm a 9:00pm','parrilladamixta.jpg',NULL,20,30000,50000,3,'2011-11-20 17:45:00',0,'black-friday','2011-11-23 15:49:47','2011-11-23 16:05:29'),(2,2,'Parrillada Argentina','Parrillada Argentina (4 personas) + Vino de la casa','de lunes a viernes de 3:00pm a 9:00pm','parrillada.jpg',NULL,100,100000,50000,3,'2011-11-23 18:45:00',0,'parrillada-argentina','2011-11-23 15:53:42','2011-11-23 15:53:42'),(3,1,'Combo','Pollo baÃ±ado en salsa wok + gaseosa personal','de lunes a viernes de 3:00pm a 9:00pm','pollo-al-wok (1).jpg',NULL,100,30000,10000,3,'2011-11-23 18:45:00',0,'combo','2011-11-23 16:06:51','2011-11-23 16:08:00'),(4,3,'CMBO PARA UNO','TACO Chilly hot + Gaseosa personal + postre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,8000,15000,2,'2011-11-23 16:10:00',0,'cmbo-para-uno','2011-11-23 16:12:19','2011-11-23 16:12:19'),(5,3,'CMBO PARA DOS','2 TACO Chilly hot + Gaseosa 1.5 lts + epostre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,15000,30000,2,'2011-11-23 16:10:00',0,'cmbo-para-dos','2011-11-23 16:13:10','2011-11-23 16:13:10');
 /*!40000 ALTER TABLE `deals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -352,7 +355,7 @@ CREATE TABLE `i18n` (
   KEY `model` (`model`),
   KEY `row_id` (`foreign_key`),
   KEY `field` (`field`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -361,6 +364,7 @@ CREATE TABLE `i18n` (
 
 LOCK TABLES `i18n` WRITE;
 /*!40000 ALTER TABLE `i18n` DISABLE KEYS */;
+INSERT INTO `i18n` VALUES (5,'eng','Country',2,'name','Colombi'),(6,'eng','Country',2,'description',''),(7,'spa','Country',2,'name','Colombia'),(8,'spa','Country',2,'description',''),(9,'eng','Country',3,'name','asdfa'),(10,'eng','Country',3,'description',''),(11,'spa','Country',3,'name','asdfa'),(12,'spa','Country',3,'description',''),(13,'eng','Country',1,'name','USA'),(14,'eng','Country',1,'description',''),(15,'spa','Country',1,'name','USA'),(16,'spa','Country',1,'description',''),(17,'spa','Cuisine',1,'name','Mexicana'),(18,'spa','Cuisine',1,'description',''),(19,'eng','Cuisine',1,'name','Mexicana'),(20,'eng','Cuisine',1,'description',''),(21,'spa','Cuisine',2,'name','Colombiana'),(22,'spa','Cuisine',2,'description',''),(23,'eng','Cuisine',2,'name','Colombiana'),(24,'eng','Cuisine',2,'description',''),(25,'spa','Cuisine',3,'name','Italiana'),(26,'spa','Cuisine',3,'description',''),(27,'eng','Cuisine',3,'name','Italiana'),(28,'eng','Cuisine',3,'description',''),(29,'spa','Cuisine',4,'name','Comida Rapida'),(30,'spa','Cuisine',4,'description',''),(31,'eng','Cuisine',4,'name','Comida Rapida'),(32,'eng','Cuisine',4,'description',''),(33,'spa','Cuisine',5,'name','Argentina'),(34,'spa','Cuisine',5,'description',''),(35,'eng','Cuisine',5,'name','Argentina'),(36,'eng','Cuisine',5,'description',''),(37,'spa','Cuisine',6,'name','China'),(38,'spa','Cuisine',6,'description',''),(39,'eng','Cuisine',6,'name','China'),(40,'eng','Cuisine',6,'description',''),(41,'spa','Cuisine',7,'name','Francesa'),(42,'spa','Cuisine',7,'description',''),(43,'eng','Cuisine',7,'name','China'),(44,'eng','Cuisine',7,'description','Asiatica'),(45,'spa','Cuisine',8,'name','Fusion'),(46,'spa','Cuisine',8,'description',''),(47,'eng','Cuisine',8,'name','Fusion'),(48,'eng','Cuisine',8,'description',''),(49,'spa','Cuisine',9,'name','Asiatica'),(50,'spa','Cuisine',9,'description',''),(51,'eng','Cuisine',9,'name','Asiatica'),(52,'eng','Cuisine',9,'description',''),(53,'spa','City',1,'name','Bogota'),(54,'spa','City',1,'description',''),(55,'eng','City',1,'name','Bogota'),(56,'eng','City',1,'description',''),(57,'spa','City',2,'name','Cali'),(58,'spa','City',2,'description',''),(59,'eng','City',2,'name','Cali'),(60,'eng','City',2,'description',''),(61,'spa','Zone',1,'name','NORTE'),(62,'spa','Zone',1,'description',''),(63,'eng','Zone',1,'name','NORTE'),(64,'eng','Zone',1,'description',''),(65,'spa','Zone',2,'name','SUR'),(66,'spa','Zone',2,'description',''),(67,'eng','Zone',2,'name','SUR'),(68,'eng','Zone',2,'description',''),(69,'spa','Zone',3,'name','OESTE'),(70,'spa','Zone',3,'description',''),(71,'eng','Zone',3,'name','OESTE'),(72,'eng','Zone',3,'description',''),(73,'spa','Zone',4,'name','Parque del perro'),(74,'spa','Zone',4,'description',''),(75,'eng','Zone',4,'name','Parque del perro'),(76,'eng','Zone',4,'description',''),(77,'spa','Zone',5,'name','Granada'),(78,'spa','Zone',5,'description',''),(79,'eng','Zone',5,'name','Granada'),(80,'eng','Zone',5,'description',''),(81,'spa','Zone',6,'name','NORTE'),(82,'spa','Zone',6,'description',''),(83,'eng','Zone',6,'name','NORTE'),(84,'eng','Zone',6,'description',''),(85,'spa','Zone',7,'name','Parque de la 93'),(86,'spa','Zone',7,'description',''),(87,'eng','Zone',7,'name','Parque de la 93'),(88,'eng','Zone',7,'description',''),(89,'spa','Restaurant',1,'name','Panda Wok'),(90,'spa','Restaurant',1,'description',''),(91,'spa','Restaurant',1,'address',''),(92,'spa','Restaurant',1,'schedule',''),(93,'eng','Restaurant',1,'name','Panda Wok'),(94,'eng','Restaurant',1,'description',''),(95,'eng','Restaurant',1,'address',''),(96,'eng','Restaurant',1,'schedule',''),(97,'spa','Restaurant',2,'name','PAMPERO'),(98,'spa','Restaurant',2,'description',''),(99,'spa','Restaurant',2,'address',''),(100,'spa','Restaurant',2,'schedule',''),(101,'eng','Restaurant',2,'name','PAMPERO'),(102,'eng','Restaurant',2,'description',''),(103,'eng','Restaurant',2,'address',''),(104,'eng','Restaurant',2,'schedule',''),(105,'spa','Restaurant',3,'name','El gran taco'),(106,'spa','Restaurant',3,'description',''),(107,'spa','Restaurant',3,'address',''),(108,'spa','Restaurant',3,'schedule',''),(109,'eng','Restaurant',3,'name','El gran taco'),(110,'eng','Restaurant',3,'description',''),(111,'eng','Restaurant',3,'address',''),(112,'eng','Restaurant',3,'schedule',''),(113,'spa','Restaurant',4,'name','AndrÃ©s carne de res'),(114,'spa','Restaurant',4,'description',''),(115,'spa','Restaurant',4,'address',''),(116,'spa','Restaurant',4,'schedule',''),(117,'eng','Restaurant',4,'name','AndrÃ©s carne de res'),(118,'eng','Restaurant',4,'description',''),(119,'eng','Restaurant',4,'address',''),(120,'eng','Restaurant',4,'schedule',''),(121,'spa','Restaurant',5,'name','Fridays'),(122,'spa','Restaurant',5,'description',''),(123,'spa','Restaurant',5,'address',''),(124,'spa','Restaurant',5,'schedule',''),(125,'eng','Restaurant',5,'name','Fridays'),(126,'eng','Restaurant',5,'description',''),(127,'eng','Restaurant',5,'address',''),(128,'eng','Restaurant',5,'schedule',''),(129,'spa','Deal',1,'name','Black Friday'),(130,'spa','Deal',1,'description','Parrillada Mixta (250gr carne de Pollo, 250gr carde de res, papa criolla, chorizo, papas a la fransesa, jugo natural y postre)'),(131,'spa','Deal',1,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(132,'eng','Deal',1,'name','COMBO PANDA WOK'),(133,'eng','Deal',1,'description','Incluye un plato de pollo al wok, Gaseosa personal'),(134,'eng','Deal',1,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(135,'spa','Deal',2,'name','Parrillada Argentina'),(136,'spa','Deal',2,'description','Parrillada Argentina (4 personas) + Vino de la casa'),(137,'spa','Deal',2,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(138,'eng','Deal',2,'name','Parrillada Argentina'),(139,'eng','Deal',2,'description','Parrillada Argentina (4 personas) + Vino de la casa'),(140,'eng','Deal',2,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(141,'spa','Deal',3,'name','Combo'),(142,'spa','Deal',3,'description','Pollo baÃ±ado en salsa wok + gaseosa personal'),(143,'spa','Deal',3,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(144,'eng','Deal',3,'name','Combo'),(145,'eng','Deal',3,'description','Parrillada Argentina (4 personas) + Vino de la casa'),(146,'eng','Deal',3,'conditions','de lunes a viernes de 3:00pm a 9:00pm'),(147,'spa','Deal',4,'name','CMBO PARA UNO'),(148,'spa','Deal',4,'description','TACO Chilly hot + Gaseosa personal + postre'),(149,'spa','Deal',4,'conditions','jueves y viernes de 7:00pm a 11:00pm'),(150,'eng','Deal',4,'name','CMBO PARA UNO'),(151,'eng','Deal',4,'description','TACO Chilly hot + Gaseosa personal + postre'),(152,'eng','Deal',4,'conditions','jueves y viernes de 7:00pm a 11:00pm'),(153,'spa','Deal',5,'name','CMBO PARA DOS'),(154,'spa','Deal',5,'description','2 TACO Chilly hot + Gaseosa 1.5 lts + epostre'),(155,'spa','Deal',5,'conditions','jueves y viernes de 7:00pm a 11:00pm'),(156,'eng','Deal',5,'name','CMBO PARA DOS'),(157,'eng','Deal',5,'description','2 TACO Chilly hot + Gaseosa 1.5 lts + epostre'),(158,'eng','Deal',5,'conditions','jueves y viernes de 7:00pm a 11:00pm');
 /*!40000 ALTER TABLE `i18n` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -544,7 +548,7 @@ CREATE TABLE `restaurants` (
   KEY `fk_restaurants_users_INDEX` (`manager_id`),
   CONSTRAINT `fk_restaurants_users` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_restaurants_zones` FOREIGN KEY (`zone_id`) REFERENCES `zones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -553,6 +557,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
+INSERT INTO `restaurants` VALUES (1,1,2,'Panda Wok','','','','','sin imagen.png','','','2011-11-23 15:42:27','2011-11-23 15:42:27'),(2,1,5,'PAMPERO','','','','','sin imagen.png','','','2011-11-23 15:43:03','2011-11-23 15:43:03'),(3,1,2,'El gran taco','','','','','sin imagen.png','','','2011-11-23 15:43:29','2011-11-23 15:43:29'),(4,1,6,'AndrÃ©s carne de res','','','','','sin imagen.png','','','2011-11-23 15:44:54','2011-11-23 15:44:54'),(5,1,7,'Fridays','','','','','sin imagen.png','','','2011-11-23 15:45:21','2011-11-23 15:45:21');
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -606,7 +611,7 @@ CREATE TABLE `users` (
   KEY `fk_users_cities_INDEX` (`city_id`),
   CONSTRAINT `fk_users_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -615,7 +620,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@bloomweb.co','','','3d66fec9c10dbc7be728b94116fdbad76c134090',1,1,NULL,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'admin@bloomweb.co','','','3d66fec9c10dbc7be728b94116fdbad76c134090',1,1,NULL,NULL,NULL,NULL),(2,'jiovanna@clickandeat.co','Jiovanna','Alvarez','d17bec2aee4a56a3387465656d45755c2b4ae5c0',2,1,1,'','2011-11-23 15:27:56','2011-11-23 15:27:56'),(3,'diana@clickandeat.co','Diana','Garcia','7afcda2606ba835c11f6b0db4f4ea7247d60b94b',2,1,2,'','2011-11-23 15:29:13','2011-11-23 15:29:13');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -639,7 +644,7 @@ CREATE TABLE `zones` (
   PRIMARY KEY (`id`),
   KEY `fk_zones_cities_INDEX` (`city_id`),
   CONSTRAINT `fk_zones_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -648,6 +653,7 @@ CREATE TABLE `zones` (
 
 LOCK TABLES `zones` WRITE;
 /*!40000 ALTER TABLE `zones` DISABLE KEYS */;
+INSERT INTO `zones` VALUES (1,2,'NORTE','','','','','2011-11-23 15:22:09','2011-11-23 15:22:09'),(2,2,'SUR','','','','','2011-11-23 15:22:27','2011-11-23 15:22:27'),(3,2,'OESTE','','','','','2011-11-23 15:22:45','2011-11-23 15:22:45'),(4,2,'Parque del perro','','','','','2011-11-23 15:23:10','2011-11-23 15:23:10'),(5,2,'Granada','','','','','2011-11-23 15:23:28','2011-11-23 15:23:28'),(6,1,'NORTE','','','','','2011-11-23 15:23:47','2011-11-23 15:23:47'),(7,1,'Parque de la 93','','','','','2011-11-23 15:24:05','2011-11-23 15:24:05');
 /*!40000 ALTER TABLE `zones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -660,4 +666,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-11-28 13:02:41
+-- Dump completed on 2011-12-05  9:45:30

@@ -2,11 +2,7 @@
 	<?php echo $this->Html->image($this -> webroot.'img/uploads/'.$large_image); ?>
 </div>
 <div class="deals-list">
-	<?php
-		foreach ($deals as $deal) {
-			echo $this->element('product_list', array('deal'=>$deal));
-		}
-	?>
+	<?php echo $this->element('product_list'); ?>
 </div>
 <p>
 	<?php

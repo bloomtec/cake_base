@@ -31,6 +31,26 @@ class PagesController extends AppController {
 		$this -> set('pages', $this -> paginate());
 	}
 
+	function politicas() {
+		$this -> layout = "default";
+	}
+	
+	function nuestraEmpresa() {
+		$this -> layout = "default";
+	}
+	
+	function contacto() {
+		$this -> layout = "default";
+	}
+	
+	function dudas() {
+		$this -> layout = "default";
+	}
+	
+	function comoComprar() {
+		$this -> layout = "default";
+	}
+	
 	function view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid page', true));
