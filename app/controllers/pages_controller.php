@@ -54,7 +54,6 @@ class PagesController extends AppController {
 			} else {
 				$this -> Session -> setFlash(__('Ha ocurrido un error al tratar de enviar el mensaje. Por favor intenta de nuevo.', true));
 			}
-
 		}
 	}
 	
