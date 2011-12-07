@@ -43,9 +43,18 @@ class PagesController extends AppController {
 		$this -> layout = "default";
 		if(!empty($this->data)) {
 			// $this->data['Contacto']['{texto||nombre||email}']
-			if(isset($this->data['Contacto']['texto']) && !empty($this->data['Contacto']['texto'])) {
-				
+			$para = $this->data['Contacto']['email'];
+			$asunto = 'Página De Contacto ' . Configure::read('site_name');
+			$mensaje = $this->data['Contacto']['texto'];
+
+			$cabeceras = 'From: ' . Configure::read('contact_mail') . "\r\n" . 'Reply-To: ' . Configure::read('reply_mail') . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+			if(mail($para, $asunto, $mensaje, $cabeceras)) {
+				$this -> Session -> setFlash(__('Mensaje enviado', true));
+			} else {
+				$this -> Session -> setFlash(__('Ha ocurrido un error al tratar de enviar el mensaje. Por favor intenta de nuevo.', true));
 			}
+
 		}
 	}
 	
