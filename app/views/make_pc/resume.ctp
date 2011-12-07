@@ -195,6 +195,6 @@
 	<div class="imprimir-pagar-producto">
 		<div style="clear: both"></div>
 		
-		<a href="" class="pagar">Pagar</a>
+		<a href="#" class="pagar">Pagar</a>
 	</div>
 </div>

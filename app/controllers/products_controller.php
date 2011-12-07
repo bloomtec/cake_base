@@ -23,7 +23,7 @@ class ProductsController extends AppController {
 				'conditions'=>array('Brand.name LIKE' => "%$q%"),
 				'recursive'				
 			)
-		);		
+		);
 		$this->paginate = array(
 			'conditions' => array(
 				"OR" => array(
