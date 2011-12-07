@@ -3,13 +3,15 @@
 <p class="info">
 	Déjanos tu mensaje y nos estaremos comunicando en el menor tiempo posible
 </p>
-<fieldset class="contacto">
-	<label>Nombre:</label>
-	<input type="text" required="required"  class="text"/>
-	<label>E-mail:</label>
-	<input type="email" required="required" class="text"/>
-	<label>Mensaje:</label>
-	<textarea class="text"></textarea>
-	<input type="submit" class="submit" value="Enviar" />
-	<div style="clear: both"></div>
-</fieldset>
+<form id="ContactForm" accept-charset="utf-8" method="post" controller="pages" action="contacto">
+	<fieldset class="contacto">
+		<label for="ContactoNombre">Nombre:</label>
+		<input id="ContactoNombre" type="text" required="required" class="text" name="data[Contacto][nombre]"/>
+		<label for="ContactoEmail">E-mail:</label>
+		<input id="ContactoEmail" type="email" required="required" class="text" name="data[Contacto][email]"/>
+		<label for="ContactoTexto">Mensaje:</label>
+		<textarea id="ContactoTexto" required="required" class="text" name="data[Contacto][texto]"></textarea>
+		<input type="submit" class="submit" value="Enviar" />
+		<div style="clear: both"></div>
+	</fieldset>
+</form>

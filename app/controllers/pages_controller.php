@@ -41,6 +41,12 @@ class PagesController extends AppController {
 	
 	function contacto() {
 		$this -> layout = "default";
+		if(!empty($this->data)) {
+			// $this->data['Contacto']['{texto||nombre||email}']
+			if(isset($this->data['Contacto']['texto']) && !empty($this->data['Contacto']['texto'])) {
+				
+			}
+		}
 	}
 	
 	function dudas() {
