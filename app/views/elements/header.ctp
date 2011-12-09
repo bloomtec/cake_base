@@ -11,17 +11,26 @@
 			<a href=""><img src="/img/ingles.png" /></a>
 			<a href=""><img src="/img/espanol.png" /></a>
 			<div style="clear: both"></div>
-			<a href="/users/login" class="iniciar_sesion">Iniciar sesión</a>
+			<?php if(!$this -> Session-> read('Auth.User.id')){?>
+			<a href="/users/login" class="iniciar_sesion"><?php __('Sign in'); ?></a>
 			-
-			<a href="/users/register" class="iniciar_sesion">Registrarse</a>
-			<div class="tooltip_login">
-				<label>Usuario:</label>
-				<input type="text" class="input_text" />
-				<label>Contraseña:</label>
-				<input type="password" class="input_text" />
+			<a href="/users/register" class="iniciar_sesion"><?php __('Register'); ?></a>
+			<?php }else{?>
+			<a href="/users/logout"><?php __('Log out');?></a>
+			<?php } ?>
+			<div class="tooltip_login ajax_login">
+				<?php echo $this -> Form -> create('User', array('action' => 'ajaxLogin')); ?>
+				<label for="email">E-mail:</label>
+				<input type="email" required="required" name="data[User][email]" id="email" class="input_text">
+				<label for="password">Password:</label>
+				<input type="password" required="required" name="data[User][password]" id="password" class="input_text">
+				<span class="message">
+					espacio de error
+				</span>
+				<div style='clear:both;'></div>
 				<input type="submit" class="btn_login" value="Ingresar" />
-				<a href="/users/register" class="btn_login">Registrarse</a>
-				
+				<a href="/users/register" class="btn_login"><?php __('Registrer') ?></a>
+				<?php echo $this -> Form ->end();?>
 			</div>
 		</div>
 	</div>
