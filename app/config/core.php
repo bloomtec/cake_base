@@ -20,6 +20,20 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+ /**
+  * Configuraciónes extras
+  */
+ 	// Nombre del sitio
+ 	Configure::write('site_name', 'Click & Eat');
+	// Email de contacto
+	Configure::write('contact_mail', 'contacto@clickandeat.co');
+	Configure::write('reply_mail', 'contacto@clickandeat.co');
+	// TAMAÑO DE IMAGENES PERSONALIZADAS
+	Configure::write('custom_width', 25);
+	Configure::write('custom_height', 25);
+	// Llave
+	Configure::write('key', "Bl00MWebGr0up");
+
 /**
  * CakePHP Debug Level:
  *
@@ -34,13 +48,6 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 1);
-	Configure::write('key', "Bl00MWebGr0up");
-	
-/*
-TAMAÑO DE IMAGENES PERSONALIZADAS
-*/
-Configure::write('custom_width', 25);
-Configure::write('custom_height', 25);
 
 /**
  * CakePHP Log Level:

@@ -42,3 +42,23 @@
 	<div id="single-upload-2" controller="deals">
 	</div>
 </div>
+
+<script type="text/javascript">
+	CKEDITOR.replace(
+		'data[Deal][description]',
+		{
+			filebrowserUploadUrl : '/upload.php',
+       		filebrowserBrowseUrl : '/admin/pages/wysiwyg',
+		} 
+	);
+</script>
+
+<script type="text/javascript">
+	CKEDITOR.replace(
+		'data[Deal][conditions]',
+		{
+			filebrowserUploadUrl : '/upload.php',
+       		filebrowserBrowseUrl : '/admin/pages/wysiwyg',
+		} 
+	);
+</script>

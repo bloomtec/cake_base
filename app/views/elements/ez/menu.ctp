@@ -8,14 +8,13 @@
 		<a href=""><?php __('CONTENT')?></a>
 		<ul>
 			<li>
-				<?php echo $html->link(__('PAGES',true),array('controller'=>'pages'));?>
-
+				<?php echo $html->link(__('PAGES',true),array('controller'=>'pages', 'action'=>'index'));?>
 			</li>
 		</ul>
 	</li>
 	
 	<li>
-		<?php echo $html->link(__('DEALS',true),array('controller'=>'deals'));?>
+		<?php echo $html->link(__('DEALS',true),array('controller'=>'deals', 'action'=>'index'));?>
 	</li>
 	
 	<li>

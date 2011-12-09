@@ -67,11 +67,14 @@
 					<p>
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 						<br /> nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+						<br />
+						<a class="ver_mas" href="/pages/politicas">Ver Más</a>
 					</p>
 					<div style="clear: both"></div>
-					<a href="#">Nuestra empresa</a>
-					<a href="#">¿Tienes alguna sugerencia, queja o reclamo?</a>
-					<a href="#">Contáctenos</a>
+					<a href="/pages/comoComprar">Cómo comprar</a>
+					<a href="/pages/nuestraEmpresa">Nuestra empresa</a>
+					<a href="/pages/dudas">¿Tienes alguna sugerencia, queja o reclamo?</a>
+					<a href="/pages/contacto">Contáctenos</a>
 				</div>
 				<div class="derecha">
 					<h1>Recomienda esta página a tus amigos</h1>

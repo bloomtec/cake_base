@@ -177,7 +177,7 @@
 	width: 421px;
 	height: auto;
 }
-.submit input{
+.submit input,.contacto .submit{
 	background-color: transparent;
     background-image: url("/img/btn_login.png");
     border: medium none;
@@ -217,6 +217,7 @@
     -moz-box-shadow: 2px 2px 4px #6A6A6A;
 	-webkit-box-shadow: 2px 2px 4px #6A6A6A;
 	box-shadow: 2px 2px 4px #6A6A6A;
+	display: none;
 }
 .tooltip_login label{
 	color: #FFFFFF;
@@ -305,4 +306,12 @@ div.images .preview  img{
 .centrar{
 	padding: 12px 20px 0;
 
+}
+.message{
+	color: red;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 10px;
+    margin-left: 36px;
+    margin-top: 11px;
+    width: 208px;
 }
