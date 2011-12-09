@@ -164,6 +164,7 @@ class UsersController extends AppController {
 	
 	function ajaxLogin() {
 		if ($this -> Auth -> login($this -> data)) {
+			$this -> User -> recursive = -1;
 			$user = $this -> User -> read(null, $this -> Auth -> user('id'));
 			$user['success']=true;
 			echo json_encode($user);

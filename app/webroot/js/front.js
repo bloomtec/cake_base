@@ -38,13 +38,14 @@ $(function(){
 		var form=$(this);
 		BJS.JSONP(form.attr("action"),form.serialize(), function(user) {
 			if(user.success === true){
-				if(){
-					
+				console.log(user);
+				if(user.User.active && user.User.email_verified){
+					document.location.href="/users/profile";
 				}else{
-					
+					document.location.href="/users/validateEmail";
 				}
 			}else{
-				console.log('no se logueo');
+				form.find('.message').html(user.message);
 			}
 		});
 	});

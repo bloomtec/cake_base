@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.1.49, for debian-linux-gnu (i686)
+-- MySQL dump 10.13  Distrib 5.1.58, for debian-linux-gnu (i686)
 --
 -- Host: 127.0.0.1    Database: bloomweb_clickneat
 -- ------------------------------------------------------
@@ -64,8 +64,8 @@ CREATE TABLE `addresses` (
   KEY `fk_addresses_countries_INDEX` (`country_id`),
   KEY `fk_addresses_cities_INDEX` (`city_id`),
   KEY `fk_addresses_users_INDEX` (`user_id`),
-  CONSTRAINT `fk_addresses_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_addresses_countries` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_addresses_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_addresses_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -316,6 +316,7 @@ CREATE TABLE `deals` (
   `normal_price` double NOT NULL DEFAULT '0',
   `max_buys` int(11) NOT NULL DEFAULT '0',
   `expires` datetime DEFAULT NULL,
+  `is_promoted` tinyint(1) NOT NULL DEFAULT '0',
   `visits` int(11) NOT NULL DEFAULT '0',
   `slug` varchar(50) NOT NULL,
   `created` datetime DEFAULT NULL,
@@ -332,7 +333,7 @@ CREATE TABLE `deals` (
 
 LOCK TABLES `deals` WRITE;
 /*!40000 ALTER TABLE `deals` DISABLE KEYS */;
-INSERT INTO `deals` VALUES (1,4,'Black Friday','Parrillada Mixta (250gr carne de Pollo, 250gr carde de res, papa criolla, chorizo, papas a la fransesa, jugo natural y postre)','de lunes a viernes de 3:00pm a 9:00pm','parrilladamixta.jpg',NULL,20,30000,50000,3,'2011-11-20 17:45:00',0,'black-friday','2011-11-23 15:49:47','2011-11-23 16:05:29'),(2,2,'Parrillada Argentina','Parrillada Argentina (4 personas) + Vino de la casa','de lunes a viernes de 3:00pm a 9:00pm','parrillada.jpg',NULL,100,100000,50000,3,'2011-11-23 18:45:00',0,'parrillada-argentina','2011-11-23 15:53:42','2011-11-23 15:53:42'),(3,1,'Combo','Pollo baÃ±ado en salsa wok + gaseosa personal','de lunes a viernes de 3:00pm a 9:00pm','pollo-al-wok (1).jpg',NULL,100,30000,10000,3,'2011-11-23 18:45:00',0,'combo','2011-11-23 16:06:51','2011-11-23 16:08:00'),(4,3,'CMBO PARA UNO','TACO Chilly hot + Gaseosa personal + postre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,8000,15000,2,'2011-11-23 16:10:00',0,'cmbo-para-uno','2011-11-23 16:12:19','2011-11-23 16:12:19'),(5,3,'CMBO PARA DOS','2 TACO Chilly hot + Gaseosa 1.5 lts + epostre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,15000,30000,2,'2011-11-23 16:10:00',0,'cmbo-para-dos','2011-11-23 16:13:10','2011-11-23 16:13:10');
+INSERT INTO `deals` VALUES (1,4,'Black Friday','Parrillada Mixta (250gr carne de Pollo, 250gr carde de res, papa criolla, chorizo, papas a la fransesa, jugo natural y postre)','de lunes a viernes de 3:00pm a 9:00pm','parrilladamixta.jpg',NULL,20,30000,50000,3,'2011-11-20 17:45:00',0,0,'black-friday','2011-11-23 15:49:47','2011-11-23 16:05:29'),(2,2,'Parrillada Argentina','Parrillada Argentina (4 personas) + Vino de la casa','de lunes a viernes de 3:00pm a 9:00pm','parrillada.jpg',NULL,100,100000,50000,3,'2011-11-23 18:45:00',0,0,'parrillada-argentina','2011-11-23 15:53:42','2011-11-23 15:53:42'),(3,1,'Combo','Pollo baÃ±ado en salsa wok + gaseosa personal','de lunes a viernes de 3:00pm a 9:00pm','pollo-al-wok (1).jpg',NULL,100,30000,10000,3,'2011-11-23 18:45:00',0,0,'combo','2011-11-23 16:06:51','2011-11-23 16:08:00'),(4,3,'CMBO PARA UNO','TACO Chilly hot + Gaseosa personal + postre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,8000,15000,2,'2011-11-23 16:10:00',0,0,'cmbo-para-uno','2011-11-23 16:12:19','2011-11-23 16:12:19'),(5,3,'CMBO PARA DOS','2 TACO Chilly hot + Gaseosa 1.5 lts + epostre','jueves y viernes de 7:00pm a 11:00pm','receta-de-tacos-de-pollo.jpg',NULL,0,15000,30000,2,'2011-11-23 16:10:00',0,0,'cmbo-para-dos','2011-11-23 16:13:10','2011-11-23 16:13:10');
 /*!40000 ALTER TABLE `deals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -474,10 +475,10 @@ CREATE TABLE `orders` (
   KEY `fk_orders_deals_INDEX` (`deal_id`),
   KEY `fk_orders_address_INDEX` (`address_id`),
   KEY `fk_orders_order_states_INDEX` (`order_state_id`),
-  CONSTRAINT `fk_orders_address` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_orders_deals` FOREIGN KEY (`deal_id`) REFERENCES `deals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_orders_order_states` FOREIGN KEY (`order_state_id`) REFERENCES `order_states` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_orders_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_orders_address` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orders_order_states` FOREIGN KEY (`order_state_id`) REFERENCES `order_states` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -537,6 +538,7 @@ CREATE TABLE `restaurants` (
   `phone` varchar(50) DEFAULT NULL,
   `address` varchar(100) DEFAULT NULL,
   `description` text,
+  `service_policies` text,
   `schedule` text,
   `image` varchar(255) DEFAULT NULL,
   `lat` varchar(45) NOT NULL,
@@ -546,8 +548,8 @@ CREATE TABLE `restaurants` (
   PRIMARY KEY (`id`),
   KEY `fk_restaurants_zones_INDEX` (`zone_id`),
   KEY `fk_restaurants_users_INDEX` (`manager_id`),
-  CONSTRAINT `fk_restaurants_users` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_restaurants_zones` FOREIGN KEY (`zone_id`) REFERENCES `zones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_restaurants_zones` FOREIGN KEY (`zone_id`) REFERENCES `zones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_restaurants_users` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -557,7 +559,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,1,2,'Panda Wok','','','','','sin imagen.png','','','2011-11-23 15:42:27','2011-11-23 15:42:27'),(2,1,5,'PAMPERO','','','','','sin imagen.png','','','2011-11-23 15:43:03','2011-11-23 15:43:03'),(3,1,2,'El gran taco','','','','','sin imagen.png','','','2011-11-23 15:43:29','2011-11-23 15:43:29'),(4,1,6,'AndrÃ©s carne de res','','','','','sin imagen.png','','','2011-11-23 15:44:54','2011-11-23 15:44:54'),(5,1,7,'Fridays','','','','','sin imagen.png','','','2011-11-23 15:45:21','2011-11-23 15:45:21');
+INSERT INTO `restaurants` VALUES (1,1,2,'Panda Wok','','','',NULL,'','sin imagen.png','','','2011-11-23 15:42:27','2011-11-23 15:42:27'),(2,1,5,'PAMPERO','','','',NULL,'','sin imagen.png','','','2011-11-23 15:43:03','2011-11-23 15:43:03'),(3,1,2,'El gran taco','','','',NULL,'','sin imagen.png','','','2011-11-23 15:43:29','2011-11-23 15:43:29'),(4,1,6,'AndrÃ©s carne de res','','','',NULL,'','sin imagen.png','','','2011-11-23 15:44:54','2011-11-23 15:44:54'),(5,1,7,'Fridays','','','',NULL,'','sin imagen.png','','','2011-11-23 15:45:21','2011-11-23 15:45:21');
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -601,6 +603,7 @@ CREATE TABLE `users` (
   `password` char(40) NOT NULL,
   `role_id` int(11) NOT NULL DEFAULT '2',
   `active` tinyint(1) NOT NULL DEFAULT '1',
+  `email_verified` tinyint(1) NOT NULL DEFAULT '0',
   `city_id` int(11) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
@@ -609,8 +612,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `fk_users_roles_INDEX` (`role_id`),
   KEY `fk_users_cities_INDEX` (`city_id`),
-  CONSTRAINT `fk_users_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_cities` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -620,7 +623,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@bloomweb.co','','','3d66fec9c10dbc7be728b94116fdbad76c134090',1,1,NULL,NULL,NULL,NULL),(2,'jiovanna@clickandeat.co','Jiovanna','Alvarez','d17bec2aee4a56a3387465656d45755c2b4ae5c0',2,1,1,'','2011-11-23 15:27:56','2011-11-23 15:27:56'),(3,'diana@clickandeat.co','Diana','Garcia','7afcda2606ba835c11f6b0db4f4ea7247d60b94b',2,1,2,'','2011-11-23 15:29:13','2011-11-23 15:29:13');
+INSERT INTO `users` VALUES (1,'admin@bloomweb.co','','','3d66fec9c10dbc7be728b94116fdbad76c134090',1,1,0,NULL,NULL,NULL,NULL),(2,'jiovanna@clickandeat.co','Jiovanna','Alvarez','d17bec2aee4a56a3387465656d45755c2b4ae5c0',2,1,0,1,'','2011-11-23 15:27:56','2011-11-23 15:27:56'),(3,'diana@clickandeat.co','Diana','Garcia','7afcda2606ba835c11f6b0db4f4ea7247d60b94b',2,1,0,2,'','2011-11-23 15:29:13','2011-11-23 15:29:13');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,4 +669,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-12-05  9:45:30
+-- Dump completed on 2011-12-09 18:08:08
