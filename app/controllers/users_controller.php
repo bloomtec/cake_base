@@ -16,7 +16,44 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera');
+		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera', 'validateEmail');
+	}
+	
+	function validateEmail($code = null) {
+			
+		if(!$code) {
+			if(!empty($this->data)) {
+				if(isset($this->data['User']['validation_code']) && !empty($this->data['User']['validation_code'])) {
+					$code = $this->data['User']['validation_code'];
+				}
+			}
+		}
+		
+		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id')));
+		$max_id = $max_id[0]['max_id'];
+		$user = null;
+		
+		for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
+			if ($id_tested == crypt($code, '23()23*$%g4F^aN!^^%')) {
+				$user = $this -> User -> read(null, $id_tested);	
+				break;
+			} else {
+				$user = null;
+			}
+		}
+		
+		if($user) {
+			$user['User']['email_verified'] = true;
+			if ($this -> User -> save($user)) {
+				$this->Session->setFlash(__('Thank you for validating your email', true));
+				$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
+			} else {
+				$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
+				$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+			}
+		} else {
+			$this -> Session -> setFlash(__('Enter a valid code to verify', true));
+		}
 	}
 
 	function register() {
@@ -24,11 +61,13 @@ class UsersController extends AppController {
 			$this -> User -> create();
 			$this -> data['User']['role_id']=3;
 			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Registro Exitoso', true));
+				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
+				// TODO : Enviar el correo con el codigo
+				$this -> Session -> setFlash(__('Registration successful', true));
 				$this->Auth->login($this->data);
 				$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
 		}
 		$countries =  $this -> User -> Address -> Country -> find('list');
@@ -36,17 +75,18 @@ class UsersController extends AppController {
 		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
 		$this -> set(compact('countries','cities'));
 	}
+	
 	function registerProvider() {
 		if (!empty($this -> data)) {
 			$this -> User -> create();
 			$this -> data['User']['role_id']=3;
 			$this -> data['User']['is_active']=false;
 			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Registro Exitoso', true));
+				$this -> Session -> setFlash(__('Registration successful', true));
 				$this->Auth->login($this->data);
 				$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('No se pudo completar el registro. Por favor, intenta de nuevo.', true));
+				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
 		}
 	}
@@ -110,6 +150,9 @@ class UsersController extends AppController {
 		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
 			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
 			if (!empty($user) && $this -> Auth -> login($user)) {
+				if(!$user['User']['email_verified']) {
+					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				}
 				if ($this -> Auth -> autoRedirect) {
 					$this -> redirect($this -> Auth -> redirect());
 				}
@@ -117,6 +160,18 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
 			}
 		}
+	}
+	
+	function ajaxLogin() {
+		if ($this -> Auth -> login($this -> data)) {
+			$user = $this -> User -> read(null, $this -> Auth -> read('User.id'));
+			echo json_encode($user);
+		} else {
+			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
+		}
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		exit(0);
 	}
 
 	function logout() {
@@ -127,9 +182,11 @@ class UsersController extends AppController {
 		$this->layout="profile";
 		$this->set('user',$this->User->read(null, $this -> Auth -> user('id')));
 	}
+	
 	function orders(){
 		$this->layout="profile";
 	}
+	
 	function edit($id) {
 		$this->layout="profile";
 		if (!$id && empty($this -> data)) {
@@ -182,9 +239,11 @@ class UsersController extends AppController {
 			}
 		}
 	}
+
 	function recordarPassword(){
 		
 	}
+	
 	function rememberPassword() {
 		if (!empty($this -> data)) {
 			$this -> User -> recursive = 0;
@@ -222,19 +281,6 @@ class UsersController extends AppController {
 			$cad .= substr($str, rand(0, 62), 1);
 		}
 		return $cad;
-	}
-
-	function ajaxLogin() {
-		if ($this -> Auth -> login($this -> data)) {
-			$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
-			$this -> Session -> write('Auth.User.UserField', $userField['UserField']);
-			echo true;
-		} else {
-			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
-		}
-		$this -> autoRender = false;
-		Configure::write('debug', 0);
-		exit(0);
 	}
 
 	function admin_login() {
