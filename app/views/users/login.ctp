@@ -1,6 +1,6 @@
 <div class="login form">
 	<?php
-	echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'login'));
+	echo $this -> Form -> create('User', array('action' => 'login'));
 	?>
 	<fieldset class="centrar">
 		<legend>

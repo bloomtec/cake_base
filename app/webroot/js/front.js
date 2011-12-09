@@ -23,4 +23,29 @@ $(function(){
 		var urlWithCity = BJS.setParam($(this).attr('rel'),$(this).val());
 		document.location = BJS.removeParam('zone',urlWithCity);
 	});
+	$(".iniciar_sesion").toggle(
+			function(e){
+				e.preventDefault();
+				$(".tooltip_login").slideDown(250);
+			},
+			function(e){
+				e.preventDefault();
+				$(".tooltip_login").slideUp(250);
+			}
+	);
+	$(".ajax_login form").validator().submit(function(e){
+		e.preventDefault();
+		var form=$(this);
+		BJS.JSONP(form.attr("action"),form.serialize(), function(user) {
+			if(user.success === true){
+				if(){
+					
+				}else{
+					
+				}
+			}else{
+				console.log('no se logueo');
+			}
+		});
+	});
 });

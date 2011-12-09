@@ -3,7 +3,6 @@ h1,h2,h3,p,a,label,legend,input{
 	font-size:14px; 
 	color:#fff;
 }
-
 #content p{
 	text-align: center;
 	color: #231F20;
@@ -19,8 +18,6 @@ body{
 	background-position: center top;
 	background-repeat: no-repeat;
 }
-
-
 /*Header*/
 
 .wrapper{

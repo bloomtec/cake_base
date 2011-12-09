@@ -164,10 +164,13 @@ class UsersController extends AppController {
 	
 	function ajaxLogin() {
 		if ($this -> Auth -> login($this -> data)) {
-			$user = $this -> User -> read(null, $this -> Auth -> read('User.id'));
+			$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+			$user['success']=true;
 			echo json_encode($user);
 		} else {
-			echo json_encode(array("data[User][email]" => "Verifique sus datos", "data[User][password]" => "Verifique sus datos"));
+			$user['success']=false;
+			$user['message']=__('Invalid data',true);
+			echo json_encode($user);
 		}
 		$this -> autoRender = false;
 		Configure::write('debug', 0);
