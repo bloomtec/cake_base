@@ -123,8 +123,7 @@ class Deal extends AppModel {
 		if($this->sluggable){
 			$this->data['Deal']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Deal']['name']));
 		}
-		$restaurant = $this -> Restaurant -> read(null, $this->data['Deal']['restaurant_id']);
-		if($restaurant['Restaurant']['promote'] && empty($this->data['Deal']['large_image'])) {
+		if($this->data['Deal']['is_promoted'] && empty($this->data['Deal']['large_image'])) {
 			return false;
 		}
 		return true;	

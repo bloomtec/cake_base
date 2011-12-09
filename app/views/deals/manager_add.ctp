@@ -15,6 +15,7 @@
 		echo $this->Form->input('normal_price');
 		echo $this->Form->input('max_buys');
 		echo $this->Form->input('expires');
+		echo $this->Form->input('is_promoted');
 		echo $this->Form->input('Cuisine', array('multiple'=>'checkbox'));
 	?>
 	</fieldset>
