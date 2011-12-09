@@ -16,6 +16,9 @@
 				<a href="/servicios">Servicios</a>
 			</li>
 			<li>
+				<a href="/quienes-somos">Preguntas frecuentes</a>
+			</li>
+			<li>
 				<a href="/proceso-de-pago">Proceso de pago</a>
 			</li>
 			<li>

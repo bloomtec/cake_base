@@ -13,7 +13,6 @@ em, i {
 see http://www.positioniseverything.net/explorer/doubled-margin.html */
 
 #header form input[type="text"] {
-	margin-top:-50px;
 	padding-top:4px;
 	padding-bottom: 2px;
 	}

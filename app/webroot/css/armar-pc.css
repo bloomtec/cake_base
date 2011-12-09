@@ -1,3 +1,10 @@
+#aplicacion{
+	background-image: url(/img/trama_aplicacion.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+	padding-bottom: 15px;
+	padding-left: 5px;
+}
 .tabs { 
 	list-style:none; 
 	margin:0 !important; 
@@ -197,7 +204,7 @@
 }
 #resumen{
 	float: right;
-    height: 514px;
+    height: 560px;
     width: 256px;
     background-color: #e9e9e9;
     margin-top: 6px;
@@ -212,6 +219,9 @@
 	margin-bottom:10px;
 	margin-left: 13px;
 	margin-bottom: 15px;
+}
+.tabla-resumen-productos{
+	margin-top: 10px;
 }
 .categoria-producto, .nombre-total{
 	color: #FF7800;
@@ -298,7 +308,7 @@
     float: right;
     height: 24px;
     margin-top: 20px;
-    width: 156px;
+    width: 142px;
 }
 .imprimir-pagar-producto a{
 	color: #000;
