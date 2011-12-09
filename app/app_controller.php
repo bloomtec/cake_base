@@ -34,7 +34,14 @@ class AppController extends Controller {
 	}
 
 	function configEmail() {
-		$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'auth' => true, 'host' => 'ssl://smtp.gmail.com', 'username' => 'your_username@gmail.com', 'password' => 'your_gmail_password', );
+		$this -> Email -> smtpOptions = array(
+			'port' => '465',
+			'timeout' => '30',
+			'auth' => true,
+			'host' => 'ssl://smtp.gmail.com',
+			'username' => 'your_username@gmail.com',
+			'password' => 'your_gmail_password'
+		);
 		$this -> Email -> delivery = 'smtp';
 		/**
 		 $body='prueba';
@@ -51,7 +58,6 @@ class AppController extends Controller {
 		$this -> Email -> send();
 		/* Check for SMTP errors. */
 		$this -> set('smtp_errors', $this -> Email -> smtpError);
-
 	}
 
 	function getComments($foreign_key) {
