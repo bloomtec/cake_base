@@ -28,10 +28,11 @@ class UsersController extends AppController {
 			if ($this -> User -> save($this -> data)) {
 				// Generar el codigo para el correo de registro
 				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
+				$code = urlencode($code);
 				// Enviar el correo con el codigo
 				$this->registrationEmail($this->data['User']['email'], $code);
 				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
-				$this->Auth->login($this->data);
+				//$this->Auth->login($this->data);
 				$this -> redirect(array('action' => 'validateEmail'));
 			} else {
 				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
@@ -56,7 +57,7 @@ class UsersController extends AppController {
 				$this->registrationEmail($this->data['User']['email'], $code);
 				$address['Address'] = $this -> data['Address'];
 				$this -> User -> Address -> save($address);
-				$this -> Auth -> login($this -> data);
+				//$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
 			} else {
@@ -141,26 +142,31 @@ class UsersController extends AppController {
 		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id')));
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
-		for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
-			if ($code == crypt($id_tested, '23()23*$%g4F^aN!^^%')) {
-				$user = $this -> User -> read(null, $id_tested);	
-				break;
-			} else {
-				$user = null;
+		if($code) {
+			$code = urldecode($code);
+			for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
+				if ($code == crypt($id_tested, '23()23*$%g4F^aN!^^%')) {
+					$user = $this -> User -> read(null, $id_tested);	
+					break;
+				} else {
+					$user = null;
+				}
 			}
-		}
-		
-		if($user) {
-			$user['User']['email_verified'] = true;
-			if ($this -> User -> save($user)) {
-				$this->Session->setFlash(__('Thank you for validating your email', true));
-				$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
+			
+			if($user) {
+				$user['User']['email_verified'] = true;
+				if ($this -> User -> save($user)) {
+					$this->Session->setFlash(__('Thank you for validating your email', true));
+					$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
+				} else {
+					$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
+					$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				}
 			} else {
-				$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
-				$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				$this -> Session -> setFlash(__('Enter a valid code and try again', true));
 			}
 		} else {
-			$this -> Session -> setFlash(__('Enter a valid code to verify', true));
+			$this -> Session -> setFlash(__('Enter the given code to verify', true));
 		}
 	}
 	
@@ -169,6 +175,44 @@ class UsersController extends AppController {
 	}
 
 	function login() {
+		if (isset($this->data['User']['email']) && !empty($this->data['User']['email']) && isset($this->data['User']['password']) && !empty($this->data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this->data['User']['email']);
+			if (!empty($user)) {
+				if($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function admin_login() {
+		$this -> layout = "ez/login";
+		if (isset($this->data['User']['email']) && !empty($this->data['User']['email']) && isset($this->data['User']['password']) && !empty($this->data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this->data['User']['email']);
+			if (!empty($user)) {
+				if($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+	
+	function manager_login() {
+		$this -> layout = "ez/login";
 		if (isset($this->data['User']['email']) && !empty($this->data['User']['email']) && isset($this->data['User']['password']) && !empty($this->data['User']['password'])) {
 			$this -> User -> recursive = -1;
 			$user = $this -> User -> findByEmail($this->data['User']['email']);
@@ -320,34 +364,6 @@ class UsersController extends AppController {
 			$cad .= substr($str, rand(0, 62), 1);
 		}
 		return $cad;
-	}
-
-	function admin_login() {
-		$this -> layout = "ez/login";
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if ($this -> Auth -> autoRedirect) {
-					$this -> redirect($this -> Auth -> redirect());
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
-	
-	function manager_login() {
-		$this -> layout = "ez/login";
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if ($this -> Auth -> autoRedirect) {
-					$this -> redirect($this -> Auth -> redirect());
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
 	}
 
 	function admin_index() {
