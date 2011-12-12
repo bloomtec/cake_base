@@ -10,19 +10,19 @@
 				<a href="/users/registerProvider">Registro de Proveedores</a>
 			</li>
 			<li>
-				<a href="/quienes-somos">¿Quienes somos?</a>
+				<a href="/pages/servicios">Servicios</a>
 			</li>
 			<li>
-				<a href="/servicios">Servicios</a>
+				<a href="/pages/preguntas">Preguntas frecuentes</a>
 			</li>
 			<li>
-				<a href="/quienes-somos">Preguntas frecuentes</a>
+				<a href="/pages/procesos_pago">Proceso de pago</a>
 			</li>
 			<li>
-				<a href="/proceso-de-pago">Proceso de pago</a>
+				<a href="/pages/politicas_garantia">Políticas de Garantía</a>
 			</li>
 			<li>
-				<a href="politicas-de-garantia">Políticas de Garantía</a>
+				<a href="/pages/pague_seguro">Pague seguro</a>
 			</li>
 		</ul>
 		<ul id="social">

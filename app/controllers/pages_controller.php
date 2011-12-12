@@ -38,6 +38,24 @@ class PagesController extends AppController {
 	function home() {
 		$this -> layout = "default";
 	}
+	function preguntas() {
+		$this -> layout = "personaliza";
+	}
+	function politicas_garantia() {
+		$this -> layout = "personaliza";
+	}
+	function procesos_pago() {
+		$this -> layout = "personaliza";
+	}
+	function servicios() {
+		$this -> layout = "personaliza";
+	}
+	function empresa() {
+		$this -> layout = "personaliza";
+	}
+	function pague_seguro() {
+		$this -> layout = "personaliza";
+	}
 	function contacto() {
 		$this -> layout = 'default';
 		if (!empty($this -> data)) {

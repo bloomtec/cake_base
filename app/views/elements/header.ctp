@@ -97,7 +97,7 @@
 				<a href="/mi-pc">ARMA TU PC</a>
 			</li>
 			<li>
-				<a href="/empresa">EMPRESA</a>
+				<a href="/pages/empresa">EMPRESA</a>
 			</li>
 			<li class="ultimo">
 				<a href="/contacto">CONTÁCTO</a>

@@ -4,6 +4,10 @@
 		<legend>
 			<?php __('Registro de proveedores');?>
 		</legend>
+		<p>
+				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+				Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+		</p>
 		<div class="input text">
 			<label for="UserEmail">Email:</label>
 			<input id='UserEmail' type='email' name='data[User][email]' required = 'required' style="background-image: url(/img/registro2.png);" />
@@ -13,9 +17,9 @@
 			<input id='UserConfirmEmail' type='email' name='data[User][confirm_email]' data-equals='data[User][email]' required = 'required' style="background-image: url(/img/registro2.png);" />
 		</div>
 		<?php
-			echo $this -> Form -> input('password:', array('type' => 'password','required' => 'required' , 'label'=>'Contraseña'));
-			echo $this -> Form -> input('confirm_password:', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]' , 'label'=>'Confirmar Contraseña'));
-			echo $this -> Form -> input('Nit:', array('required' => 'required'));
+			echo $this -> Form -> input('password', array('type' => 'password','required' => 'required' , 'label'=>'Contraseña'));
+			echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]' , 'label'=>'Confirmar Contraseña'));
+			echo $this -> Form -> input('Nit', array('required' => 'required'));
 		?>
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Registrarse', true));?>

@@ -28,9 +28,9 @@
 				echo $this -> Form -> input('phone',array('required' => 'required' , 'label'=>'Teléfono', 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines',true) ));
 			?>
 			<?php
-				echo $this -> Form -> input('Address.country_id', array('required' => 'required' , 'label'=>'País'));
-				echo $this -> Form -> input('Address.city_id', array('required' => 'required' , 'label'=>'Ciudad'));
-				echo $this -> Form -> input('Address.address', array('required' => 'required' , 'label'=>'Dirección'));
+				echo $this -> Form -> input('Address.country_id', array('label'=>'País'));
+				echo $this -> Form -> input('Address.city_id', array('label'=>'Ciudad'));
+				echo $this -> Form -> input('Address.address', array('label'=>'Dirección'));
 				
 			?>
 	</fieldset>
