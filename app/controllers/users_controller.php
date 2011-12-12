@@ -157,7 +157,7 @@ class UsersController extends AppController {
 				$user['User']['email_verified'] = true;
 				if ($this -> User -> save($user)) {
 					$this->Session->setFlash(__('Thank you for validating your email', true));
-					$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
+					$this -> redirect(array('controller'=>'users', 'action'=>'login'));
 				} else {
 					$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
 					$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
