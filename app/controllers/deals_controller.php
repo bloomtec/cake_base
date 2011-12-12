@@ -85,7 +85,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
 			}
 		}
 		$restaurants = $this -> Deal -> Restaurant -> find('list');
@@ -103,7 +103,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -148,7 +148,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
 			}
 		}
 		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
@@ -166,7 +166,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('The deal has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
 			}
 		}
 		if (empty($this -> data)) {
