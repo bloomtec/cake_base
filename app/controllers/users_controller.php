@@ -18,43 +18,6 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera', 'validateEmail');
 	}
-	
-	function validateEmail($code = null) {
-			
-		if(!$code) {
-			if(!empty($this->data)) {
-				if(isset($this->data['User']['validation_code']) && !empty($this->data['User']['validation_code'])) {
-					$code = $this->data['User']['validation_code'];
-				}
-			}
-		}
-		
-		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id')));
-		$max_id = $max_id[0]['max_id'];
-		$user = null;
-		
-		for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
-			if ($id_tested == crypt($code, '23()23*$%g4F^aN!^^%')) {
-				$user = $this -> User -> read(null, $id_tested);	
-				break;
-			} else {
-				$user = null;
-			}
-		}
-		
-		if($user) {
-			$user['User']['email_verified'] = true;
-			if ($this -> User -> save($user)) {
-				$this->Session->setFlash(__('Thank you for validating your email', true));
-				$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
-				$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
-			}
-		} else {
-			$this -> Session -> setFlash(__('Enter a valid code to verify', true));
-		}
-	}
 
 	function register() {
 		if (!empty($this -> data)) {
@@ -148,7 +111,7 @@ class UsersController extends AppController {
 		exit(0);
 	}
 	
-	private function registrationEmail($email = null, $code = null) {		
+	private function registrationEmail($email = null, $code = null) {	
 		/**
 		 * Asignar las variables del componente Email
 		 */
@@ -197,11 +160,48 @@ class UsersController extends AppController {
 			/**
 			 * Enviar el correo
 			 */
+			Configure::write('debug', 0);
 			$this -> Email -> send();
 			$this -> set('smtp_errors', $this->Email->smtpError);
 			$this -> Email -> reset();
 		}
 		
+	}
+
+	function validateEmail($code = null) {
+		if(!$code) {
+			if(!empty($this->data)) {
+				if(isset($this->data['User']['validation_code']) && !empty($this->data['User']['validation_code'])) {
+					$code = $this->data['User']['validation_code'];
+				}
+			}
+		}
+		
+		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id')));
+		$max_id = $max_id[0]['max_id'];
+		$user = null;
+		for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
+			debug(crypt($id_tested, '23()23*$%g4F^aN!^^%'));
+			if ($code == crypt($id_tested, '23()23*$%g4F^aN!^^%')) {
+				$user = $this -> User -> read(null, $id_tested);	
+				break;
+			} else {
+				$user = null;
+			}
+		}
+		
+		if($user) {
+			$user['User']['email_verified'] = true;
+			if ($this -> User -> save($user)) {
+				$this->Session->setFlash(__('Thank you for validating your email', true));
+				$this -> redirect(array('controller'=>'deals', 'action'=>'index'));
+			} else {
+				$this->Session->setFlash(__('An error ocurred while validating your email, please try again', true));
+				$this -> redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+			}
+		} else {
+			$this -> Session -> setFlash(__('Enter a valid code to verify', true));
+		}
 	}
 	
 	function enEspera(){
