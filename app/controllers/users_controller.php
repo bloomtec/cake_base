@@ -184,7 +184,7 @@ class UsersController extends AppController {
 				'port' => '465',
 				'timeout' => '30',
 				'host' => 'ssl://smtp.gmail.com',
-				'username' => $fromEmail,
+				'username' => Configure::read('register_mail'),
 				'password' => 'rr40r900343',
 				'client' => 'smtp_helo_clickandeat.co'
 			);
