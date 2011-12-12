@@ -25,6 +25,14 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'enter an email',
+				//'allowEmpty' => false,
+				//'required' => true,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 		),
 		'password' => array(
 			'notempty' => array(
@@ -119,6 +127,7 @@ class User extends AppModel {
 	);
 
 	function beforeSave(){
+		/*
 		if($this->data['User']['role_id'] != 1) {
 			if(!empty($this->data['User']['city_id'])) {
 				return true;
@@ -129,6 +138,9 @@ class User extends AppModel {
 		} else {
 			return true;
 		}
+		 * 
+		 */
+		return true;
 	}
 	
 	function addPoints($points = null) {
