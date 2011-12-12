@@ -23,7 +23,6 @@ class UsersController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> data['User']['role_id'] = 3;
 			$this -> data['User']['active'] = 1;
-			debug($this->data);
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				// Generar el codigo para el correo de registro
@@ -181,7 +180,6 @@ class UsersController extends AppController {
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
 		for ($id_tested = 1; $id_tested <= $max_id; $id_tested+=1) {
-			debug(crypt($id_tested, '23()23*$%g4F^aN!^^%'));
 			if ($code == crypt($id_tested, '23()23*$%g4F^aN!^^%')) {
 				$user = $this -> User -> read(null, $id_tested);	
 				break;
