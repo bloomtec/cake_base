@@ -29,6 +29,7 @@
 	Configure::write('site_domain', 'clickneat.bloomweb.co');
 	// Email de registro
 	Configure::write('register_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_register_mail', 'rr40r900343');
 	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
 	// Email de contacto
 	Configure::write('contact_mail', 'contacto@clickandeat.co');
