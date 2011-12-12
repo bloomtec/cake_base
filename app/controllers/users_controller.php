@@ -58,11 +58,14 @@ class UsersController extends AppController {
 
 	function register() {
 		if (!empty($this -> data)) {
+			$this -> data['User']['role_id'] = 3;
+			$this -> data['User']['active'] = 1;
+			debug($this->data);
 			$this -> User -> create();
-			$this -> data['User']['role_id']=3;
 			if ($this -> User -> save($this -> data)) {
+				// Generar el codigo para el correo de registro
 				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
-				// TODO : Enviar el correo con el codigo
+				// Enviar el correo con el codigo
 				$this->registrationEmail($this->data['User']['email'], $code);
 				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
 				$this->Auth->login($this->data);
@@ -85,6 +88,8 @@ class UsersController extends AppController {
 			if ($this -> User -> save($this -> data)) {
 				$this -> data['Address']['user_id'] = $this -> User -> id;
 				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
+				// Enviar el correo con el codigo
+				$this->registrationEmail($this->data['User']['email'], $code);
 				$address['Address'] = $this -> data['Address'];
 				$this -> User -> Address -> save($address);
 				$this -> Auth -> login($this -> data);
@@ -95,7 +100,6 @@ class UsersController extends AppController {
 				foreach ($this->User->invalidFields() as $name => $value) {
 					$errors["data[User][" . $name . "]"] = $value;
 				}
-
 				echo json_encode($errors);
 			}
 		}

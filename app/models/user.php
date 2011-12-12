@@ -26,7 +26,7 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'pass' => array(
+		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				'message' => 'enter a password',
