@@ -5,6 +5,7 @@ class UsersController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->autoRedirect=false;
 		if (isset($this -> params["prefix"])) {
 			$prefix = $this -> params["prefix"];
 			if($prefix == "admin") {
@@ -168,14 +169,16 @@ class UsersController extends AppController {
 	}
 
 	function login() {
-		if (!empty($this -> data) && !empty($this -> Auth -> data['User']['username']) && !empty($this -> Auth -> data['User']['password'])) {
-			$user = $this -> User -> find('first', array('conditions' => array('User.email' => $this -> Auth -> data['User']['username'], 'User.password' => $this -> Auth -> data['User']['password']), 'recursive' => -1));
-			if (!empty($user) && $this -> Auth -> login($user)) {
-				if(!$user['User']['email_verified']) {
-					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
-				}
-				if ($this -> Auth -> autoRedirect) {
+		if (isset($this->data['User']['email']) && !empty($this->data['User']['email']) && isset($this->data['User']['password']) && !empty($this->data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this->data['User']['email']);
+			if (!empty($user)) {
+				if($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
 					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
 				}
 			} else {
 				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
@@ -184,16 +187,27 @@ class UsersController extends AppController {
 	}
 	
 	function ajaxLogin() {
-		if ($this -> Auth -> login($this -> data)) {
-			$this -> User -> recursive = -1;
-			$user = $this -> User -> read(null, $this -> Auth -> user('id'));
-			$user['success']=true;
-			echo json_encode($user);
+		$this -> User -> recursive = -1;
+		$user = $this -> User -> findByEmail($this->data['User']['email']);
+		if(!empty($user)) {
+			if($user['User']['email_verified']) {
+				if ($this -> Auth -> login($this -> data)) {
+					//$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+					$user['success']=true;
+					$user['message']=__('Login successful',true);
+				} else {
+					$user['success']=false;
+					$user['message']=__('Invalid data',true);
+				}
+			} else {
+				$user['success']=false;
+				$user['message']=__('Email has not been verified :: <a href="/users/validateEmail">Verify email</a>',true);
+			}
 		} else {
 			$user['success']=false;
-			$user['message']=__('Invalid data',true);
-			echo json_encode($user);
+			$user['message']=__('No user with that email is registered', true);
 		}
+		echo json_encode($user);
 		$this -> autoRender = false;
 		Configure::write('debug', 0);
 		exit(0);
