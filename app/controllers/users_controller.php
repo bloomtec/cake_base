@@ -31,7 +31,7 @@ class UsersController extends AppController {
 				$this->registrationEmail($this->data['User']['email'], $code);
 				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
 				$this->Auth->login($this->data);
-				$this -> redirect(array('action' => 'profile'));
+				$this -> redirect(array('action' => 'validateEmail'));
 			} else {
 				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
@@ -46,6 +46,7 @@ class UsersController extends AppController {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
 			$this -> data['User']['role_id'] = 3;
+			$this -> data['User']['active'] = 1;
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> data['Address']['user_id'] = $this -> User -> id;
@@ -62,46 +63,6 @@ class UsersController extends AppController {
 				foreach ($this->User->invalidFields() as $name => $value) {
 					$errors["data[User][" . $name . "]"] = $value;
 				}
-				echo json_encode($errors);
-			}
-		}
-		$this -> autoRender = false;
-		Configure::write('debug', 0);
-		exit(0);
-	}
-	
-	function registerProvider() {
-		if (!empty($this -> data)) {
-			$this -> User -> create();
-			$this -> data['User']['role_id']=3;
-			$this -> data['User']['is_active']=false;
-			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Registration successful', true));
-				$this->Auth->login($this->data);
-				$this -> redirect(array('action' => 'profile'));
-			} else {
-				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
-			}
-		}
-	}
-
-	function ajaxRegisterProvider() {
-		if (!empty($this -> data)) {
-			// Validar el nombre de usuario
-			$this -> data['User']['role_id'] = 3;
-			$this -> data['User']['is_active']=false;
-			$this -> User -> create();
-			$this -> User -> set($this -> data);
-			if ($this -> User -> save($this -> data)) {
-				
-				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
-				echo true;
-			} else {
-				$errors = array();
-				foreach ($this->User->invalidFields() as $name => $value) {
-					$errors["data[User][" . $name . "]"] = $value;
-				}
-
 				echo json_encode($errors);
 			}
 		}
