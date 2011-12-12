@@ -14,6 +14,7 @@ class CitiesController extends AppController {
 		$this -> autoRender = false;
 		exit(0);
 	}
+	
 	function index() {
 		$this->City->recursive = 0;
 		$this->set('cities', $this->paginate());
