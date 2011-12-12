@@ -63,7 +63,8 @@ class UsersController extends AppController {
 			if ($this -> User -> save($this -> data)) {
 				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
 				// TODO : Enviar el correo con el codigo
-				$this -> Session -> setFlash(__('Registration successful', true));
+				$this->registrationEmail($this->data['User']['email'], $code);
+				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
 				$this->Auth->login($this->data);
 				$this -> redirect(array('action' => 'profile'));
 			} else {
@@ -141,6 +142,62 @@ class UsersController extends AppController {
 		$this -> autoRender = false;
 		Configure::write('debug', 0);
 		exit(0);
+	}
+	
+	private function registrationEmail($email = null, $code = null) {		
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if($email && $code) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $email;
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('reply_register_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_register_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('register_mail');
+			// subject for the message (string)		
+			$this -> Email -> subject = 'Registro al sitio ' . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'registration_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array(
+				'port' => '465',
+				'timeout' => '30',
+				'host' => 'ssl://smtp.gmail.com',
+				'username' => $fromEmail,
+				'password' => 'rr40r900343',
+				'client' => 'smtp_helo_clickandeat.co'
+			);
+			
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('code', $code);
+			
+			/**
+			 * Enviar el correo
+			 */
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this->Email->smtpError);
+			$this -> Email -> reset();
+		}
+		
 	}
 	
 	function enEspera(){
@@ -421,62 +478,6 @@ class UsersController extends AppController {
 		}
 		$this -> Session -> setFlash(__('User was not set to active', true));
 		$this -> redirect(array('action' => 'index'));
-	}
-	
-	function registrationEmail() {
-		$this -> autoRender = false;
-		
-		/**
-		 * Asignar las variables del componente Email
-		 */
-		$fromEmail = 'pruebas@bloomweb.co';
-		// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
-		$this -> Email -> to = 'juliodominguez@gmail.com';
-		// array of addresses to cc the message to
-		$this -> Email -> cc = '';
-		// array of addresses to bcc (blind carbon copy) the message to
-		$this -> Email -> bcc = '';
-		// reply to address (string)
-		$this -> Email -> replyTo = $fromEmail;
-		// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
-		$this -> Email -> return = $fromEmail;
-		// from address (string)
-		$this -> Email -> from = $fromEmail;
-		// subject for the message (string)		
-		$this -> Email -> subject = 'Prueba';
-		// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
-		$this -> Email -> template = 'registration_email';
-		// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
-		//$this -> Email -> layout = '';
-		// Length at which lines should be wrapped. Defaults to 70. (integer)
-		//$this -> Email -> lineLength = '';
-		// how do you want message sent string values of text, html or both
-		$this -> Email -> sendAs = 'html';
-		// array of files to send (absolute and relative paths)
-		//$this -> Email -> attachments = '';
-		// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
-		$this -> Email -> delivery = 'smtp';
-		// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-		$this -> Email -> smtpOptions = array(
-			'port' => '465',
-			'timeout' => '30',
-			'host' => 'ssl://smtp.gmail.com',
-			'username' => $fromEmail,
-			'password' => 'rr40r900343',
-			'client' => 'smtp_helo_clickandeat.co'
-		);
-		
-		/**
-		 * Asignar cosas al template
-		 */
-		$this -> set('code', 'ThisIsATestCode');
-		
-		/**
-		 * Enviar el correo
-		 */
-		$this -> Email -> send();
-		$this -> set('smtp_errors', $this->Email->smtpError);
-		$this -> Email -> reset();
 	}
 
 }

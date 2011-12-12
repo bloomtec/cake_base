@@ -25,9 +25,14 @@
   */
  	// Nombre del sitio
  	Configure::write('site_name', 'Click & Eat');
+	// Dominio del sitio
+	Configure::write('site_domain', 'clickneat.bloomweb.co');
+	// Email de registro
+	Configure::write('register_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
 	// Email de contacto
 	Configure::write('contact_mail', 'contacto@clickandeat.co');
-	Configure::write('reply_mail', 'contacto@clickandeat.co');
+	Configure::write('reply_contact_mail', 'contacto@clickandeat.co');
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
 	Configure::write('custom_width', 25);
 	Configure::write('custom_height', 25);
