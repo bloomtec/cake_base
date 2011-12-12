@@ -14,7 +14,7 @@
 			<?php if(!$this -> Session-> read('Auth.User.id')){?>
 			<a href="/users/login" class="iniciar_sesion"><?php __('Sign in'); ?></a>
 			-
-			<a href="/users/register" class="iniciar_sesion"><?php __('Register'); ?></a>
+			<a href="/users/register" ><?php __('Register'); ?></a>
 			<?php }else{?>
 			<a href="/users/logout"><?php __('Log out');?></a>
 			<?php } ?>
