@@ -1,3 +1,6 @@
+<div>
+	<?php echo $this->Session->flash(); ?>
+</div>
 <?php
 	e($this->Form->create());
 	e('<fieldset>');

@@ -12,7 +12,7 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera');
+		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword','enEspera', 'validateEmail');
 	}
 	
 	/*
@@ -107,10 +107,10 @@ class UsersController extends AppController {
 				$code = crypt($this->User->id, '23()23*$%g4F^aN!^^%');
 				// Enviar el correo con el codigo
 				$this->registrationEmail($this->data['User']['email'], $code);
-				$address['Address'] = $this -> data['Address'];
-				$this -> User -> Address -> save($address);
+				//$address['Address'] = $this -> data['Address'];
+				//$this -> User -> Address -> save($address);
 				//$this -> Auth -> login($this -> data);
-				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
+				//$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
 			} else {
 				$errors = array();
