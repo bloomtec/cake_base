@@ -1,4 +1,4 @@
-<div id="register_login">
+<div id="register_login" class="password">
 	<div class="register form">
 		<fieldset class="centrar">
 		<legend>
@@ -12,7 +12,9 @@
 				<input type="email" id="UserEmail" name="data[User][email]"  required="required" />
 				<div style="clear: both"></div>
 				<!--<a class="azul ingresar" href="#">Ingresar</a>-->
-				<input type="submit" class='twCenMt' value="Solicitar" />
+				<div class="submit">
+					<input type="submit" value="Solicitar" />
+				</div>
 				<div style="clear: both"></div>
 				<div class='confirmacion-remember'>
 					Se ha enviado un nuevo password a tu correo electronico
