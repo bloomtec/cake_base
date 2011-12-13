@@ -25,13 +25,10 @@
 			<?php
 				echo $this -> Form -> input('password', array('type' => 'password','required' => 'required' , 'label'=>'Contraseña'));
 				echo $this -> Form -> input('confirm_password', array('type' => 'password',  'required' => 'required', 'data-equals'=>'data[User][password]' , 'label'=>'Confirmar Contraseña'));
-				echo $this -> Form -> input('phone',array('required' => 'required' , 'label'=>'Teléfono', 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines',true) ));
-			?>
-			<?php
-				echo $this -> Form -> input('Address.country_id', array('label'=>'País'));
-				echo $this -> Form -> input('Address.city_id', array('label'=>'Ciudad'));
-				echo $this -> Form -> input('Address.address', array('label'=>'Dirección'));
-				
+				echo $this -> Form -> input('state', array('label'=>'Departamento',  'required' => 'required'));
+				echo $this -> Form -> input('city', array('label'=>'Ciudad',  'required' => 'required'));
+				echo $this -> Form -> input('address', array('label'=>'Dirección',  'required' => 'required'));
+				echo $this -> Form -> input('phone',array('required' => 'required' , 'label'=>'Teléfono', 'title' => __('Este campo es para contactarte una vez compres un domicilio, no utilizaremos esta información para otros fines',true) ));				
 			?>
 	</fieldset>
 	<?php echo $this -> Form -> end(__('Register', true));?>
@@ -39,11 +36,12 @@
 </div>
 <script type='text/javascript'> 
 $(function(){
-
+	/*
 	if($('#AddressCountryId').val()) BJS.updateSelect($('#AddressCityId'),'/countries/getCities/'+$('#AddressCountryId').val());
 	$('#AddressCountryId').change(function(){
 		BJS.updateSelect($('#AddressCityId'),'/countries/getCities/'+$(this).val());
 	});
+	*/
 	$('#UserAjaxRegisterForm').validator({lang:'es'}).submit(function(e){
 	var form=$(this);
 	var fields=$(this).serialize();
@@ -56,7 +54,7 @@ $(function(){
 			data : fields,
 			success : function(validate){
 				if(validate===1){
-					window.location='/users/profile';
+					window.location='/users/validateEmail';
 				}else{
 					form.data("validator").invalidate(validate);
 				}
