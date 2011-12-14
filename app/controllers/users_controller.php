@@ -233,6 +233,7 @@ class UsersController extends AppController {
 	function ajaxLogin() {
 		$this -> User -> recursive = -1;
 		$user = $this -> User -> findByEmail($this->data['User']['email']);
+		$email = $user['User']['email'];
 		if(!empty($user)) {
 			if($user['User']['email_verified']) {
 				if ($this -> Auth -> login($this -> data)) {
@@ -241,7 +242,7 @@ class UsersController extends AppController {
 					$user['message']=__('Login successful',true);
 				} else {
 					$user['success']=false;
-					$user['message']=__('Invalid data',true);
+					$user['message']=__("Invalid data. Click <a href=\"/users/resetPassword/$email\">here</a> for password reset.",true);
 				}
 			} else {
 				$user['success']=false;
@@ -322,48 +323,98 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
-	function recordarPassword(){
-		
-	}
 	
-	function rememberPassword() {
-		if (!empty($this -> data)) {
+	function resetPassword($data = null) {
+		//$this -> autoRender = false;
+		if ($data) {
 			$this -> User -> recursive = 0;
-			$user = $this -> User -> find("first", array('conditions' => array('User.email' => trim($this -> data['User']['email']))));
-			if ($user) {
-				$newPassword = $this -> _generarPassword();
-				$user["User"]["password"] = $this -> Auth -> password($newPassword);
-				//debug($datos);
+			$user = $this -> User -> findByEmail(trim($data));
+			if (!empty($user)) {
 				$email = $user['User']['email'];
-				$asunto = "Tu password de color tennis";
-				$mensaje = "Tu nuevo password: " . $newPassword;
-				$cabeceras = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-				// Cabeceras adicionales
-				$cabeceras .= 'From: Colors Tennis <info@colorstennis.com>' . "\r\n";
-				//debug($mensaje);
-				if (mail($email, $asunto, $mensaje, $cabeceras) && $this -> User -> save($user)) {
-					echo true;
+				$password = $this -> createPassword();
+				$user['User']['password'] = $this -> Auth -> password($password);
+				if($this -> User -> save($user)) {
+					$this -> passwordEmail($email, $email, $password);
+					//echo json_encode(array('success'=>true, 'message'=>__("An email has been sent to $email with the new password.", true)));
+					$this -> Session -> setFlash(__("An email has been sent to $email with the new password.", true));
 				} else {
-					echo false;
+					//echo json_encode(array('success'=>false, 'message'=>__('An error occurred in the process. Please try again.', true)));
+					$this -> Session -> setFlash(__('An error occurred in the process. Please try again.', true));
 				}
 			} else {
-				echo false;
+				//echo json_encode(array('success'=>false, 'message'=>__('No user with that email registered', true)));
+				$this -> Session -> setFlash(__('No user with that email registered', true));
 			}
-
 		}
-		Configure::write('debug', 0);
-		$this -> autoRender = false;
-		exit(0);
+		$this -> redirect('/');
+		//exit(0);
 	}
 
-	function _generarPassword() {
+	private function createPassword() {
 		$str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 		$cad = "";
 		for ($i = 0; $i < 8; $i++) {
 			$cad .= substr($str, rand(0, 62), 1);
 		}
 		return $cad;
+	}
+	
+	private function passwordEmail($email = null, $username = null, $password = null) {	
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if($email && $username && $password) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $email;
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('reply_password_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_password_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('password_mail');
+			// subject for the message (string)		
+			$this -> Email -> subject = __('Password change request from ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'password_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array(
+				'port' => '465',
+				'timeout' => '30',
+				'host' => 'ssl://smtp.gmail.com',
+				'username' => Configure::read('password_mail'),
+				'password' => Configure::read('password_password_mail'),
+				'client' => 'smtp_helo_clickandeat.co'
+			);
+			
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('username', $username);
+			$this -> set('password', $password);
+			
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this->Email->smtpError);
+			$this -> Email -> reset();
+		}
+		
 	}
 
 	function admin_index() {
