@@ -27,6 +27,10 @@
  	Configure::write('site_name', 'Excelenter');
 	// Dominio del sitio
 	Configure::write('site_domain', 'excelenter.bloomweb.co');
+	// Email de recordar contraseña
+	Configure::write('password_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_password_mail', 'rr40r900343');
+	Configure::write('reply_password_mail', 'pruebas@bloomweb.co');
 	// Email de registro
 	Configure::write('register_mail', 'pruebas@bloomweb.co');
 	Configure::write('password_register_mail', 'rr40r900343');
