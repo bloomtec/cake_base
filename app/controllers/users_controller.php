@@ -155,6 +155,7 @@ class UsersController extends AppController {
 		 * Asignar las variables del componente Email
 		 */
 		if($email && $code) {
+			$reply_email = Configure::read('reply_register_mail');
 			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
 			$this -> Email -> to = $email;
 			// array of addresses to cc the message to
@@ -162,12 +163,12 @@ class UsersController extends AppController {
 			// array of addresses to bcc (blind carbon copy) the message to
 			$this -> Email -> bcc = '';
 			// reply to address (string)
-			$this -> Email -> replyTo = Configure::read('reply_register_mail');
+			$this -> Email -> replyTo = $reply_email;
 			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
-			$this -> Email -> return = Configure::read('reply_register_mail');
+			$this -> Email -> return = $reply_email;
 			// from address (string)
 			$this -> Email -> from = Configure::read('register_mail');
-			// subject for the message (string)		
+			// subject for the message (string)
 			$this -> Email -> subject = 'Registro al sitio ' . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'registration_email';
