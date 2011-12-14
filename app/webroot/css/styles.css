@@ -1,4 +1,4 @@
-h1,h2,h3,p,a,label,legend,input{
+h1,h2,h3,h4,p,a,label,legend,input{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:14px; 
 	color:#fff;
@@ -13,16 +13,20 @@ a{
 	text-decoration: none;
 }
 body{
-	background-color: #e76012;
 	background-image: url(/img/fondo.jpg);
 	background-position: center top;
 	background-repeat: no-repeat;
+	background-color: #181818;
+}
+#container{
+	background-color: #e76012;
 }
 /*Header*/
 
 .wrapper{
 	width: 1024px;
 	margin: 0 auto;
+	position: relative;
 }
 .logo_header{
 	background-image: url(/img/logo_header.png);
@@ -58,9 +62,10 @@ body{
     margin-top: 19px;
 }
 .iniciar_sesion{
-	font-size:12px;
-	font-weight: bold;
-	position: relative;
+	font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
 }
 
 /*Contenido*/
@@ -123,9 +128,11 @@ body{
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
-.lista_producto h1{
+#content .lista_producto h1{
 	margin-top: 7px;
 	padding: 5px;
+	margin-top: 0;
+	margin-left: 0;
 }
 .lista_producto a img{
 	width: 240px;
@@ -139,7 +146,6 @@ body{
 	font-size: 21px;
 	color:#ed1c24;
 	margin-top: 10px;
-	margin-bottom: 15px;
 }
 .lista_producto label{
 	font-size: 12px;
@@ -163,7 +169,12 @@ body{
     font-size: 9px;
     margin-top: 5px;
 }
-
+.lista_producto h4 {
+    color: #ED1C24;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
 
 /*Detalle del producto*/
 .deals{
@@ -414,32 +425,6 @@ body{
 	font-weight: normal;
 	padding-top:10px;
 	clear: both;
-}
-.contacto{
-	padding-left: 25px;
-	padding-top: 15px;
-	width: 420px;
-}
-.contacto label, .contacto .text{
-	color: #323232;
-    float: left;
-    font-size: 12px;
-    font-weight: bold;
-}
-.contacto label{
-	width: 150px;
-}
-.contacto .text{
-	height: 18px;
-    margin-bottom: 5px;
-    padding-left: 5px;
-    width: 259px;
-}
-.contacto textarea.text{
-	min-height: 80px;
-	max-height: 80px;
-	min-width: 259px;
-	max-width: 259px;
 }
 .error {
 	/* supply height to ensure consistent positioning for every browser */
