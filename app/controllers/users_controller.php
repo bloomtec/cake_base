@@ -157,6 +157,7 @@ class UsersController extends AppController {
 		if($email && $code) {
 			$reply_email = Configure::read('reply_register_mail');
 			$from_email = Configure::read('register_mail');
+			$site_name = Configure::read('site_name');
 			
 			/**
 			 * Configurar el componente de correo
@@ -165,7 +166,7 @@ class UsersController extends AppController {
 			$this -> Email -> replyTo = $reply_email;
 			$this -> Email -> return = $reply_email;
 			$this -> Email -> from = $from_email;
-			$this -> Email -> subject = 'Registro al sitio ' . Configure::read('site_name');
+			$this -> Email -> subject = "Registro al sitio $site_name";
 			$this -> Email -> template = 'registration_email';
 			$this -> Email -> sendAs = 'html';
 			$this -> Email -> delivery = 'smtp';
