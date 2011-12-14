@@ -242,7 +242,7 @@ class UsersController extends AppController {
 					$user['message']=__('Login successful',true);
 				} else {
 					$user['success']=false;
-					$user['message']=__("Invalid data. Click <a href=\"/users/resetPassword/$email\">here</a> for password reset.",true);
+					$user['message']=__("Data entered is not correct. Click <a href=\"/users/resetPassword/$email\">here</a> if you want to reset your password.",true);
 				}
 			} else {
 				$user['success']=false;
