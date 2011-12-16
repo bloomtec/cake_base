@@ -65,6 +65,7 @@ class ShopCart extends BcartAppModel {
 				$this->delete($cart['ShopCart']['id']);
 			}
 		}
+	return true;
 	}
 
 }

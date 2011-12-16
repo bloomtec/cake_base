@@ -6,6 +6,10 @@
 		<legend>
 			<?php __('Ingresar');?>
 		</legend>
+		<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+		Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+		</p>
 		<div class="input text">
 			<label for='email'>E-mail:</label>
 			<input type="email" class="input" id='email' name='data[User][email]' required="required" />
@@ -14,14 +18,19 @@
 			<label for='password'>Password:</label>
 			<input type="password" id='password' class="input" name='data[User][password]' required="required" />
 		</div>
-		
-		<a class="submit primero" href='/users/register'> Registrese </a>
 		<?php
 		echo $this -> Form -> end(__('Ingresar', true));
 		?>
+		<a class="submit primero" href='/users/register'> Registrese </a>
 		
 	</fieldset>
 	<?php
 		echo $this -> Session -> flash('auth');
-		?>
+		echo $this -> Session -> flash();
+	?>
+	<div class="reset-password">
+		<p>
+			<?php echo __('Si no recuerda su contraseña ingrese '); ?><a href="/users/resetPassword"><?php echo __('aquí', true); ?></a>
+		</p>
+	</div>
 </div>

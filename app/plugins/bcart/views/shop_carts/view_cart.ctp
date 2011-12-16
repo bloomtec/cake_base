@@ -83,10 +83,14 @@
 	<h1 class="total">TOTAL <span class="total">$<?php if(isset($subtotal)) {echo number_format(($subtotal * (1 - $coupon_value)), 0, ' ', '.');} else {echo number_format(0, 0, ' ', '.');} ?></span></h1>
 	<div id="btn_cupon">
 		<div class="continuar">
-			<h1><a href="/bcart/orders/getAddressInfo">Continuar</a></h1>
+			<h1>
+				<a href="/bcart/orders/getAddressInfo">Continuar</a>
+			</h1>
 		</div>
 		<div class="seguir">
-			<h1><a href="<?php echo $session->read('referer');?>">Seguir Comprando</a></h1>
+			<h1>
+				<a href="<?php echo $session->read('referer');?>">Seguir Comprando</a>
+			</h1>
 		</div>
 		<div style="clear: both"></div>
 	</div>

@@ -1,10 +1,4 @@
-h1,h2,h3,p,label,input,section,table, th, a{
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
-a{
-	text-decoration: none;
-}
+
 .shop-cart-list-container table{
 	width: 100%;
 }
@@ -123,13 +117,30 @@ a{
 }
 
 #cupon .continuar a{
-	background-image: url(/img/submit_registro.png);
-	height: 24px;
-    padding-top: 12px;
-    width: 99px;
+	width: 90px;
+	border: 1px solid #d06200;
+	padding: 0;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 11px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff7800 1%, #d96700 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff7800), color-stop(99%,#d96700)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff7800 1%,#d96700 99%); /* IE10+ */
+	background: linear-gradient(top, #ff7800 1%,#d96700 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7800', endColorstr='#d96700',GradientType=0 ); /* IE6-9 */
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+	height: 0;
+    padding: 12px 0 18px;
     display: block;
-    text-align: center;
-    float: right;	
+    float: right;
 }
 #cupon .seguir a{
 	float: right;

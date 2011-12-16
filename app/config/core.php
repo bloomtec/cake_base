@@ -20,6 +20,30 @@
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 
+ /**
+  * Configuraciónes extras
+  */
+ 	// Nombre del sitio
+ 	Configure::write('site_name', 'Excelenter');
+	// Dominio del sitio
+	Configure::write('site_domain', 'excelenter.bloomweb.co');
+	// Email de recordar contraseña
+	Configure::write('password_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_password_mail', 'rr40r900343');
+	Configure::write('reply_password_mail', 'pruebas@bloomweb.co');
+	// Email de registro
+	Configure::write('register_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_register_mail', 'rr40r900343');
+	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
+	// Email de contacto
+	// Configure::write('contact_mail', 'contacto@clickandeat.co');
+	// Configure::write('reply_contact_mail', 'contacto@clickandeat.co');
+	// TAMAÑO DE IMAGENES PERSONALIZADAS
+	// Configure::write('custom_width', 25);
+	// Configure::write('custom_height', 25);
+	// Llave
+	Configure::write('key', "Bl00MWebGr0up");
+ 
 /**
  * CakePHP Debug Level:
  *
@@ -34,7 +58,6 @@
  * In development mode, you need to click the flash message to continue.
  */
 	Configure::write('debug', 1);
-	Configure::write('key', "Bl00MWebGr0up");
 	
 /**
  * TAMAÑO DE IMAGENES PERSONALIZADAS
