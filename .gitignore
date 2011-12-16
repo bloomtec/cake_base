@@ -1,5 +1,5 @@
 .project
-/app/config/database.php
+/config/dump.sql
 /app/tmp/cache/*
 /app/tmp/logs/*
 /app/tmp/sessions/*
