@@ -130,6 +130,7 @@ input.input_buscar{
     font-style: italic;
     text-align: center;
     width: 181px;
+    float:left;
 }
 #header input.submit{
 	background-image: url(/img/btn_buscar.png);
@@ -919,8 +920,8 @@ span.linea_footer {
     font-size: 11px;
     font-style: italic;
     height: 14px;
-    margin-left: -120px;
-    padding: 5px 10px;
+    /*margin-left: -120px;*/
+    padding: 5px 5px;
 
 
 	/* CSS3 spicing for mozilla and webkit */

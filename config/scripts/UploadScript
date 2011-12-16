@@ -16,10 +16,10 @@ sleep 2
 echo "--------------------------------------------------"
 echo "Finalizado el dump SQL..."
 echo "--------------------------------------------------"
-ssh embalao@bloomweb.co -L 13306:${DB_SERVER}:3306 -N &
 echo "--------------------------------------------------"
 echo "Esperando que se cree el tunel mediante SSH..."
 echo "--------------------------------------------------"
+ssh embalao@bloomweb.co -L 13306:${DB_SERVER}:3306 -N &
 sleep 10
 echo "--------------------------------------------------"
 echo "Cerradas las conexiones SSH..."

@@ -120,7 +120,7 @@ class ShopCartsController extends BcartAppController {
 	/**
 	 * Encontrar el carrito
 	 */
-	function getCart() {
+	function getCart() { 
 		// Datos con los que podría existir el carrito
 		$user_id = $this->Session->read('Auth.User.id');
 		$identifier = $this->Session->read('carrito');
@@ -234,6 +234,7 @@ class ShopCartsController extends BcartAppController {
 		$shopping_cart = $this->getCart();
 		if(empty($shopping_cart)) {
 			// No hay carrito; hacer algo?
+			echo false;
 		} else {
 			// Hay carrito, borrar el ítem acorde su id
 			$this->ShopCart->ShopCartItem->delete($item_id);
