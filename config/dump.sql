@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.1.58, for debian-linux-gnu (i686)
 --
--- Host: localhost    Database: bloomweb_excelenter
+-- Host: 127.0.0.1    Database: bloomweb_excelenter
 -- ------------------------------------------------------
--- Server version	5.1.58-1ubuntu1
+-- Server version	5.1.53-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -663,6 +663,7 @@ CREATE TABLE `shop_cart_items` (
   `model_name` varchar(50) NOT NULL,
   `foreign_key` int(11) NOT NULL,
   `quantity` int(11) NOT NULL DEFAULT '1',
+  `is_gift` tinyint(1) NOT NULL DEFAULT '0',
   `nombre` varchar(100) DEFAULT NULL,
   `apellido` varchar(100) DEFAULT NULL,
   `pais` varchar(100) DEFAULT NULL,
@@ -675,7 +676,7 @@ CREATE TABLE `shop_cart_items` (
   PRIMARY KEY (`id`),
   KEY `fk_shop_cart_items_shop_carts_INDEX` (`shop_cart_id`),
   CONSTRAINT `fk_shop_cart_items_shop_carts` FOREIGN KEY (`shop_cart_id`) REFERENCES `shop_carts` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -684,6 +685,7 @@ CREATE TABLE `shop_cart_items` (
 
 LOCK TABLES `shop_cart_items` WRITE;
 /*!40000 ALTER TABLE `shop_cart_items` DISABLE KEYS */;
+INSERT INTO `shop_cart_items` VALUES (4,18,'Product',13,2,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 15:58:21','2011-12-15 15:58:21'),(5,18,'Product',16,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 15:59:09','2011-12-15 15:59:09'),(6,18,'Product',15,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 16:00:17','2011-12-15 16:00:17'),(7,17,'Product',13,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 16:03:17','2011-12-15 16:03:17'),(8,17,'Product',15,1,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 16:03:26','2011-12-15 16:03:26');
 /*!40000 ALTER TABLE `shop_cart_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -716,7 +718,7 @@ CREATE TABLE `shop_carts` (
   UNIQUE KEY `identifier_UNIQUE` (`identifier`),
   KEY `fk_shop_carts_users_INDEX` (`user_id`),
   CONSTRAINT `fk_shop_carts_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -725,7 +727,7 @@ CREATE TABLE `shop_carts` (
 
 LOCK TABLES `shop_carts` WRITE;
 /*!40000 ALTER TABLE `shop_carts` DISABLE KEYS */;
-INSERT INTO `shop_carts` VALUES (16,NULL,'1323974035.889',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 13:33:55','2011-12-15 13:33:55');
+INSERT INTO `shop_carts` VALUES (16,NULL,'1323974035.889',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 13:33:55','2011-12-15 13:33:55'),(17,NULL,'1323982365.5054',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 15:52:45','2011-12-15 15:52:45'),(18,NULL,'1323982681.8293',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2011-12-15 15:58:01','2011-12-15 15:58:01');
 /*!40000 ALTER TABLE `shop_carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -929,4 +931,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-12-15 15:44:19
+-- Dump completed on 2011-12-16 11:13:40

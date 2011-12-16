@@ -89,6 +89,7 @@ class ProductsController extends AppController {
 	}
 
 	function view($slug = null) {
+		$this->layout="personaliza";
 		if (!$slug) {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));
