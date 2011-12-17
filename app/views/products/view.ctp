@@ -62,32 +62,11 @@
 </div>
 <div class="comentar">
 	<h1>Déjanos un comentario</h1>
-	<form>
-		<label>Nombre:</label>
-		<input type="text" />
-		<label>E-mail:</label>
-		<input type="text" />
-		<label>Comentario:</label>
-		<textarea></textarea>
-		<input type="submit" class="submit" value="Enviar" />
-	</form>
+	<?php echo $this -> element('simpleCommentForm',array("model"=>"Product","foreign_key"=>$product["Product"]["id"])); ?>
+
 </div>
 <div class="otros_comentarios">
-	<h1>Otros Comentarios</h1>
-	<div class="comentario_usuario">
-		<div class="usuario">
-			<h1>Ricardo</h1>
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-		</div>
-		<div class="comentario">
-			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.
-			</p>
-		</div>
-	</div>
+	<h1>Comentarios</h1>
+	<?php echo $this -> element('comments',array("comments"=>$product["Comment"]))?>
 </div>
 <div style="clear: both"></div>

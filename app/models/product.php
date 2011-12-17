@@ -188,6 +188,19 @@ class Product extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
+		'Comment' => array(
+			'className' => 'Comment',
+			'foreignKey' => 'foreign_key',
+			'dependent' => true,
+			'conditions' => array("model"=>"Product"),
+			'fields' => '',
+			'order' => 'created DESC',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
 		'VisitedProduct' => array(
 			'className' => 'VisitedProduct',
 			'foreignKey' => 'product_id',

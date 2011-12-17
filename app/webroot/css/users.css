@@ -173,9 +173,8 @@
 	background-image: url(/img/registro2.png);
 }
 
-.comentario{
-	background-image: url(/img/registro7.png);
-	background-position: 2% 24%;
+textarea.comentario{
+	
 }
 #UserPassword,#UserConfirmPassword,#password{
 	background-image: url(/img/registro6.png);

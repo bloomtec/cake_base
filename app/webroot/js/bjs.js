@@ -78,4 +78,45 @@ $(function(){
 			return params + param + ":" + value;
 		}
 	}
+	
+	//COMENTARIOS__________________
+	$("#CommentForm").submit(function(e){
+			e.preventDefault();
+			var $form = $(this);
+			BJS.post("/comments/add",$form.serialize(),function(created){
+				if(created){
+					$commentList = $(".comments-list");
+					if($(".comments-list .comment").length){
+						$commentList.prepend("\
+						<div class='comentario_usuario comment ajax'>\
+							<div class='usuario'>\
+						 		<h1>Tu Comentario</h1>\
+							</div>\
+							<div class='comentario'>\
+								<p>"+$('#CommentComment').val()+"</p>\
+							</div>\
+							<div style='clear:both;'></div>\
+						</div>\
+						");	
+					}else{
+						//$commentList.html();	
+					}
+					$("#CommentForm").append("<div class='message success'> su comentario ha sido añadido </dov>");	
+					setTimeout(function(){
+						$("#CommentForm div.message").hide().remove();
+						$(".comment.ajax").removeClass("ajax");
+					},2000);
+				}
+			});
+	});
+	$("a.delete-comment").live("click",function(e){
+		var rel=$(this).attr('rel');
+		e.preventDefault();
+		BJS.get("/comments/delete/"+rel,{},function(data){
+			if(data){
+				$('div.comment[rel="'+rel+'"]').remove();
+			}
+		});
+	});
+	
 });

@@ -593,13 +593,20 @@ input.input_buscar{
 	margin-top: 50px;
 	margin-left: 20px;
 }
-.comentar .submit{
+.comentar .submit {
+	  clear: left;
+    float: none;
+}
+.comment.ajax{
+	background-color: gray;
+}
+.comentar .submit input{
 	background-color: transparent;
     background-image: url("/img/submit_registro.png");
     background-position: center center;
     background-repeat: no-repeat;
     color: #262525;
-    float: right;
+  
     font-family: Arial,Helvetica,sans-serif;
     font-size: 14px;
     font-style: italic;
@@ -614,7 +621,7 @@ input.input_buscar{
 }
 .usuario{
 	width: 140px;
-	text-align: center;
+	/*text-align: center;*/
 	float: left;
 }
 .usuario .estrellas{
