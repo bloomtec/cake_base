@@ -561,8 +561,9 @@ input.input_buscar{
 	color:#ff7800;
 }
 .comentar{
-	width: 397px;
+	width: 325px;
 	border-right: 1px dotted #555555;
+	clear:left;
 	float: left;
 	margin-top: 50px;
 	padding-right: 30px
@@ -631,7 +632,7 @@ input.input_buscar{
 	margin-bottom: 4px;
 }
 .comentario{
-	width: 365px;
+	width: 446px;
 	float: left;
 }
 .comentario_usuario{

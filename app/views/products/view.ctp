@@ -1,4 +1,5 @@
-<h1>nombre del producto</h1>
+<?php debug($product["Inventory"][0]['quantity']);?>
+<h1><?php echo $product['Product']['name'];?></h1>
 <div class="detalle_producto galeria">
 	<div class="galeria">
 		<img src="/img/com_galeria.jpg" />
@@ -10,7 +11,7 @@
 	</div>
 	<div class="nuestro_precio">
 		<h2>Nuestro Precio</h2>
-		<h1>$ 1.500.000</h1>
+		<h1>$<?php echo number_format($product['Product']['price'],0,'.','.'); ?></h1>
 		<h3>¡ahorrate un 10%!</h3>
 	</div>
 	<div class="comprar">
@@ -18,17 +19,13 @@
 		<?php echo $this -> element('poll-in', array('active' => true, 'model'=>'Product','foreign_key' => $product['Product']['id'])); ?>
 	</div>
 	<div style="clear: both"></div>
-	<a class="compartir" href="#"><img src="/img/compartir_face.png" /></a>
-	<a class="compartir" href="#"><img src="/img/compartir_twitt.png" /></a>
+	<a class="compartir" href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".$_SERVER['SERVER_NAME'].$html->url("/products/".$product["Product"]["slug"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/compartir_face.png" /></a>
+	<a class="compartir" href="#" onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode("http://".$_SERVER["SERVER_NAME"]."/products/view/".$html->url("/products/view/".$product["Product"]["id"]));?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="twitter" target="_blank"><img src="/img/compartir_twitt.png" /></a>
 </div>
 <div class="detalle_producto descripcion">
 	<h1>Descripción</h1>
 	<p>
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+		<?php echo $product['Product']['description'];?>
 	</p>
 	<h1>Especificaciones Técnicas</h1>
 	<p class="descripcion">

@@ -6,11 +6,7 @@ if($comments){
 	<div class="comentario_usuario comment" rel="<?php echo $comment['id'];?>">
 		<div class="usuario">
 			<h1><?php echo $comment["User"]["name"]." ".$comment["User"]["last_name"]?></h1>
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
-			<img class="estrellas" src="/img/estrella_categoria.png" />
+			<?php echo $this -> element('poll-in', array('active' => true, 'model'=>'Comment','foreign_key' => $comment['id'])); ?>
 			<?php 
 				if($comment["User"]["id"] == $this -> Session ->read("Auth.User.id")){
 					echo $html -> link("borrar", array("controller" => "comments", "action"=> "delete",$comment['id']),array('class'=>'delete-comment','rel'=>$comment['id']));
