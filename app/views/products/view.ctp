@@ -1,12 +1,18 @@
-<?php debug($product["Inventory"][0]['quantity']);?>
+<?php //debug($product["Inventory"][0]['quantity']);?>
+<?php debug($product);?>
 <h1><?php echo $product['Product']['name'];?></h1>
 <div class="detalle_producto galeria">
 	<div class="galeria">
+		<div id="gallery">
+			<?php if(!empty($product['ProductPicture'])) echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
+		</div>
+		<!--
 		<img src="/img/com_galeria.jpg" />
 		<div style="clear: both"></div>
 		<a><img class="miniaturas" src="/img/com_minitura.jpg"/></a>
 		<a><img class="miniaturas active" src="/img/com_minitura.jpg"/></a>
 		<a><img class="miniaturas" src="/img/com_minitura.jpg"/></a>
+		-->
 		<div style="clear: both"></div>
 	</div>
 	<div class="nuestro_precio">
@@ -24,38 +30,25 @@
 </div>
 <div class="detalle_producto descripcion">
 	<h1>Descripción</h1>
-	<p>
+	<div class='description'>
 		<?php echo $product['Product']['description'];?>
-	</p>
+	</div>
 	<h1>Especificaciones Técnicas</h1>
-	<p class="descripcion">
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel.
-	</p>
-	<ul>
-		<li>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.
-		</li>
-		<li>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.
-		</li>
-		<li>
-			Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit.
-		</li>
-	</ul>
+	<div class='tech_specs'>
+		<?php echo $product['Product']['tech_specs'];?>
+	</div>
 </div>
 <div class="detalle_producto relacionados">
+	<?php $recomendados=$this->requestAction('/products/findRecommendedProducts/'.$product['Product']['id']);?>
 	<h1>Productos relacionados</h1>
+	<?php foreach($recomendados as $recomendado):?>
 	<div class="productos_relacionados">
-		<a href="#"><img src="/img/computador_categoria.jpg"/></a>
-		<a href=""><h1>Computador dell -core i5</h1></a>
-		<h2>Precio: <span>$1.500.000</span></h2>
-		<a href="#"><img src="/img/computador_categoria.jpg"/></a>
-		<a href=""><h1>Computador dell -core i5</h1></a>
-		<h2>Precio: <span>$1.500.000</span></h2>
-		<a href="#"><img src="/img/computador_categoria.jpg"/></a>
-		<a href=""><h1>Computador dell -core i5</h1></a>
-		<h2>Precio: <span>$1.500.000</span></h2>
+		<a href="/productos/<?php echo $recomendado['Product']['slug']; ?>"><img src="/img/uploads/100x100/<?php echo $recomendado['Product']['image']; ?>" /></a>
+	
+		<h1><a href="/productos/<?php echo $recomendado['Product']['slug']; ?>"><?php echo $recomendado['Product']['name']; ?></a></h1>
+		<h2>Precio: <span>$<?php echo number_format($product['Product']['price'],0,'.','.'); ?></span></h2>
 	</div>
+	<?php endforeach;?>
 </div>
 <div class="comentar">
 	<h1>Déjanos un comentario</h1>

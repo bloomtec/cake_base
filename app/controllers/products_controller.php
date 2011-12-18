@@ -40,7 +40,7 @@ class ProductsController extends AppController {
 
 	function findRecommendedProducts($product_id) {
 		$recommended_product_ids = $this -> Product -> Recommendation -> find('list', array('fields' => array('Recommendation.recommended_product_id'), 'conditions' => array('Recommendation.product_id' => $product_id), 'limit' => 5, 'order' => 'rand()'));
-		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_visible'=>1)));
+		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_active'=>1)));
 	}
 
 	function featuredProduct($tag_id) {
