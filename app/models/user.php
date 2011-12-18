@@ -73,19 +73,6 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'ProductsPoll' => array(
-			'className' => 'ProductsPoll',
-			'foreignKey' => 'user_id',
-			'dependent' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'VisitedProduct' => array(
 			'className' => 'VisitedProduct',
 			'foreignKey' => 'user_id',

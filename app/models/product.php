@@ -175,11 +175,11 @@ class Product extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'ProductsPoll' => array(
-			'className' => 'ProductsPoll',
-			'foreignKey' => 'product_id',
+		'Poll' => array(
+			'className' => 'Poll',
+			'foreignKey' => 'foreign_key',
 			'dependent' => true,
-			'conditions' => '',
+			'conditions' => array("model"=>"Product"),
 			'fields' => '',
 			'order' => '',
 			'limit' => '',

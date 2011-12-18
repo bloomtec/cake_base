@@ -15,7 +15,7 @@
 	</div>
 	<div class="comprar">
 		<a class="comprar" href="#">Comprar</a>
-		<?php echo $this -> element('poll-in', array('active' => true, '$product' => $product)); ?>
+		<?php echo $this -> element('poll-in', array('active' => true, 'model'=>'Product','foreign_key' => $product['Product']['id'])); ?>
 	</div>
 	<div style="clear: both"></div>
 	<a class="compartir" href="#"><img src="/img/compartir_face.png" /></a>

@@ -31,7 +31,7 @@
 	
 </style>
 <?php if( $session -> read('Auth.User.id') && $active ){?>
-<div class='vote active' rel='<?php echo $product['Product']['id']; ?>'>
+<div class='vote active' rel='<?php echo $model."/".$foreign_key; ?>'>
 	<div class='start' rel='0'> </div>
 	<div class='start' rel='1'> </div>
 	<div class='start' rel='2'> </div>
@@ -40,7 +40,7 @@
 	<div style='clear:both;'></div>
 </div>
 <?php }else{ ?>
-<div class='vote' rel='<?php echo $product['Product']['id']; ?>'>
+<div class='vote' rel='<?php echo $model."/".$foreign_key; ?>'>
 	<div class='start' rel='0'> </div>
 	<div class='start' rel='1'> </div>
 	<div class='start' rel='2'> </div>
@@ -71,7 +71,7 @@
 			}
 		}
 	
-		BJS.post('/productsPolls/getProductPoll/'+$('.vote').attr('rel'),{},function(data){
+		BJS.post('/polls/getPolls/'+$('.vote').attr('rel'),{},function(data){
 			initVote(data);
 		});
 		$('.active .start').mouseenter(function(){
@@ -90,14 +90,14 @@
 			$(this).prevAll().removeClass('start-0 start-1 start-2 start-3 start-4').addClass('start-5');
 			estrellas[$(this).attr('rel')]['actual-class']='start-5'; */
 		});
-		$('.active .vote').mouseout(function(){
+		$('.active.vote').mouseout(function(){
 			$.each(estrellas,function(i,val){
 				val['element'].removeClass('start-0 start-1 start-2 start-3 start-4').addClass(val['first-class']);
 				val['actual-class'] = val['first-class'];
 			});
 		});
 		$('.active .start').click(function(){
-			BJS.post('/productsPolls/userPoll/'+$('.vote').attr('rel') + '/' + (parseInt($(this).attr('rel')) + 1),{},function(data){
+			BJS.post('/polls/add/'+$('.vote').attr('rel') + '/' + (parseInt($(this).attr('rel')) + 1),{},function(data){
 			if(data){ 
 				initVote(data)
 			};
