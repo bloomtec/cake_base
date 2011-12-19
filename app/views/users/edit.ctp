@@ -51,6 +51,11 @@
 				<td><a href="/addresses/edit/<?=$address['id'];?>">Editar</a></td>
 				<td><a href="/addresses/delete/<?=$address['id'];?>">Eliminar</a></td>
 			</tr>
+			<?php if($address['default']): ?>
+			<tr>
+				<td>Dirección de envío primaria</td>
+			</tr>
+			<?php endif; ?>
 		</table>
 			<?php
 				endforeach;
@@ -69,6 +74,7 @@
 				echo $this -> Form -> input('Address.address_line_1', array('required' => 'required'));
 				echo $this -> Form -> input('Address.address_line_2');
 				echo $this -> Form -> input('Address.phone', array('required' => 'required'));
+				echo $this -> Form -> input('Address.default');
 			?>
 		</fieldset>
 		<?php echo $this -> Form -> end(__('Submit', true));?>

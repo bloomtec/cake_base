@@ -80,7 +80,9 @@ class Address extends AppModel {
 			'order' => ''
 		)
 	);
+	
 	function beforeSave(){
-		return true;	
+		return true;
 	}
+	
 }

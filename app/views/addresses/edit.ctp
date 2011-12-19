@@ -11,6 +11,7 @@
 		echo $this->Form->input('address_line_1');
 		echo $this->Form->input('address_line_2');
 		echo $this->Form->input('phone');
+		echo $this->Form->input('default');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

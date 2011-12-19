@@ -13,10 +13,38 @@ class AddressesController extends AppController {
 		$this->set('addresses', $this->paginate());
 	}
 	
+	private function verifyDefaultAddress($data = null) {
+		$this->Address->recursive=-1;
+		$user_addresses = $this -> Address -> find('all', array('conditions'=>array('Address.id <>'=>$data['Address']['id'])));
+		
+		if($data['Address']['default']) {
+			// Asignar como defecto
+			foreach($user_addresses as $address) {
+				$this->Address->read(null, $address['Address']['id']);
+				$this->Address->saveField('default', false);
+			}
+		} else {
+			// No asignar como defecto
+			$previous_default_address = null;
+			foreach($user_addresses as $address) {
+				if($address['default']) {
+					$previous_default_address = $address['id'];
+					break;
+				}
+			}
+			if(!$previous_default_address) {
+				$data['Address']['default'] = true;
+				$this->Address->save($data);
+			}
+		}
+	}
+	
 	function add() {
 		if (!empty($this->data)) {
 			$this->Address->create();
 			if ($this->Address->save($this->data)) {
+				$this->data['Address']['id'] = $this -> Address -> id;
+				$this->verifyDefaultAddress($this->data);
 				$this->Session->setFlash(__('The address has been saved', true));
 				$this->redirect(array('controller'=>'users', 'action' => 'profile'));
 			} else {
@@ -36,6 +64,7 @@ class AddressesController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->Address->save($this->data)) {
+				$this->verifyDefaultAddress($this->data);
 				$this->Session->setFlash(__('The address has been saved', true));
 				$this->redirect(array('controller'=>'users', 'action' => 'profile'));
 			} else {
