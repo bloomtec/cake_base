@@ -51,7 +51,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 	<?php e($this -> Form -> input('Envio.state', array('disabled' => true, 'required' => 'required')));?>
 	<?php e($this -> Form -> input('Envio.city', array('disabled' => true, 'required' => 'required')));?>
 	<?php e($this -> Form -> input('Envio.address_line_1', array('disabled' => true, 'required' => 'required')));?>
-	<?php e($this -> Form -> input('Envio.address_line_2', array('disabled' => true, 'required' => 'required')));?>
+	<?php e($this -> Form -> input('Envio.address_line_2', array('disabled' => true)));?>
 	<?php e($this -> Form -> input('Envio.phone', array('disabled' => true, 'required' => 'required')));?>
 	<?php // e($this -> Form -> input('Envio.email', array('label' => 'Correo Electrónico', 'value' => $email, "required" => "required")));?>
 	<div style="clear: both"></div>
@@ -131,6 +131,7 @@ if (isset($subtotal)) {
 } else {
 	e($this -> Form -> hidden('Order.subtotal', array('value' => 0)));
 	e($this -> Form -> hidden('Order.total', array('value' => 0)));
+	//e($this->Form->end('enviar'));
 }
 ?>
 </form>
@@ -140,7 +141,7 @@ if (isset($subtotal)) {
 	 */
 	$(function() {
 		$('#EnvioAddressId').change(function(){
-			if($('#EnvioAddressId option:selected').text()==='Otra dirección...') {
+			if($('#EnvioAddressId option:selected').text()==='Otro destino...') {
 				$('#EnvioCountry').attr('disabled', false);
 				$('#EnvioState').attr('disabled', false);
 				$('#EnvioCity').attr('disabled', false);
