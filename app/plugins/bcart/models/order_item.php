@@ -58,6 +58,13 @@ class OrderItem extends BcartAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Address' => array(
+			'className' => 'Address',
+			'foreignKey' => 'address_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 	function beforeSave(){

@@ -8,6 +8,11 @@ class InventoriesController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
+	function checkProductAvailability($product_id = null) {
+		$inventory = $this->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id)));
+		return $inventory['Inventory']['quantity'];
+	}
+	
 	function productListWithInventory() {
 		$result = $this->Inventory->find(
 			'list',

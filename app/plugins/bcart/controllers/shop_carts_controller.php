@@ -290,6 +290,29 @@ class ShopCartsController extends BcartAppController {
 		$this -> set('shopping_cart', $shopping_cart);
 	}
 	
+	function checkInventory() {
+		$this->loadModel('Product');
+		$carts = $this->ShopCart->find('all');
+		// Recorrer los carros
+		foreach($carts as $cart) {
+			// Recorrer los items del carro
+			foreach($cart['ShopCartItem'] as $item) {
+				$availability = $this->requestAction('/inventories/checkProductAvailability/'.$item['foreign_key']);
+				if($availability < $item['quantity']) {
+					$aItem = $this->ShopCart->ShopCartItem->read(null, $item['id']);
+					$aItem['ShopCartItem']['message']='La cantidad de este item es inferior a la ingresada originalmente';
+					$aItem['ShopCartItem']['quantity']=$availability;
+					$this->ShopCart->ShopCartItem->save($aItem);
+					$aProduct = $this->Product->read(null, $item['foreign_key']);
+					if(!$aProduct['Product']['is_active']) {
+						$aItem['ShopCartItem']['message']='Este producto no esta activo en la tienda actualmente';
+						$this->ShopCart->ShopCartItem->save($aItem);
+					}
+				}
+			}
+		}
+	}
+	
 	/**
 	 * ---------------------------------------------------------------------------------------------
 	 * 										CRUD
