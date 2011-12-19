@@ -8,6 +8,10 @@ class TagsController extends AppController {
 		$this->Auth->allow('filtro','view','index','productsFilter');
 	}
 	
+	private function productsWithInventory() {
+		return $this->requestAction('/inventories/productListWithInventory');
+	}
+	
 	function index() {
 		$this->Tag->recursive = 0;
 		$this->set('tags', $this->paginate());
@@ -23,7 +27,6 @@ class TagsController extends AppController {
 		$tag = $this->Tag->findBySlug($slug);
 		$slides=$this->Tag->TagSlider->find('all',array('conditions'=>array('tag_id'=>$tag['Tag']['id'])));
 		if(isset($this->params['named']) && !empty($this->params['named'])) {
-	
 			/**
 			 * Proceder con el filtrado
 			 */
@@ -42,14 +45,15 @@ class TagsController extends AppController {
 					'list',
 					array(
 						'conditions' => array(
-							'ProductsSocket.socket_id'=>$this->params['named']['socket_id']
+							'ProductsSocket.socket_id'=>$this->params['named']['socket_id'],
+							'ProductsSocket.product_id'=>$this->productsWithInventory()
 						),
 						'fields'=>array(
 							'ProductsSocket.product_id'
 						)
 					)
 				);
-				$conditions['Product.id'] = $products_with_socket_id; 
+				$conditions['Product.id'] = $products_with_socket_id;
 			}
 			// Revisar si se filtra por nombre de producto
 			if(isset($this->params['named']['name']) && !empty($this->params['named']['name'])) {
@@ -73,6 +77,7 @@ class TagsController extends AppController {
 			}
 		}
 		// Obtener del tag el tipo de producto
+		$conditions['Product.id']=$this->productsWithInventory();
 		$conditions['Product.product_type_id']=$tag['Tag']['id'];
 		if (empty($tag)) {
 			$this->Session->setFlash(__('Invalid tag', true));

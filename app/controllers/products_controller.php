@@ -2,6 +2,10 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
+	
+	private function productsWithInventory() {
+		return $this->requestAction('/inventories/productListWithInventory');
+	}
 
 	function getProduct($product_id = null) {
 		$this->Product->recursive=-1;
@@ -23,7 +27,7 @@ class ProductsController extends AppController {
 				'conditions'=>array('Brand.name LIKE' => "%$q%"),
 				'recursive'				
 			)
-		);		
+		);
 		$this->paginate = array(
 			'conditions' => array(
 				"OR" => array(
@@ -52,6 +56,7 @@ class ProductsController extends AppController {
 					'Product.id'
 				),
 				'conditions' => array(
+					'Product.id'=>$this->productsWithInventory(),
 					'Product.is_featured' => 1
 				)
 			)
@@ -83,9 +88,9 @@ class ProductsController extends AppController {
 	}
 
 	function index() {
+		$this->layout="personaliza";
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
-		$this->layout="personaliza";
 	}
 
 	function view($slug = null) {
