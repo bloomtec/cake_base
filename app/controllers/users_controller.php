@@ -246,6 +246,8 @@ class UsersController extends AppController {
 	function profile() {
 		$this->layout="profile";
 		$this->set('user',$this->User->read(null, $this -> Auth -> user('id')));
+		$this->User->Address->recursive=-1;
+		$this->set('addresses', $this->User->Address->findByUserId($this -> Auth -> user('id')));
 	}
 	function orders(){
 		$this->layout="profile";
