@@ -1,20 +1,7 @@
 <?php //debug($product["Inventory"][0]['quantity']);?>
-<?php debug($product);?>
 <h1><?php echo $product['Product']['name'];?></h1>
 <div class="detalle_producto galeria">
-	<div class="galeria">
-		<div id="gallery">
-			<?php if(!empty($product['ProductPicture'])) echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>5,'pictures'=>$product['ProductPicture']));?>
-		</div>
-		<!--
-		<img src="/img/com_galeria.jpg" />
-		<div style="clear: both"></div>
-		<a><img class="miniaturas" src="/img/com_minitura.jpg"/></a>
-		<a><img class="miniaturas active" src="/img/com_minitura.jpg"/></a>
-		<a><img class="miniaturas" src="/img/com_minitura.jpg"/></a>
-		-->
-		<div style="clear: both"></div>
-	</div>
+	<?php /*if(!empty($product['ProductPicture']))*/  echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>3,'pictures'=>$product['ProductPicture']));?>
 	<div class="nuestro_precio">
 		<h2>Nuestro Precio</h2>
 		<h1>$<?php echo number_format($product['Product']['price'],0,'.','.'); ?></h1>

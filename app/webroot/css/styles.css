@@ -325,8 +325,10 @@ input.input_buscar{
 	font-size: 12px;
 	margin-bottom: 5px;
 }
+
 .producto .foto_producto{
 	margin: 15px auto;
+	width: 100px;
 }
 .info_categoria{
 	padding: 12px;
@@ -432,28 +434,7 @@ input.input_buscar{
 .detalle_producto.galeria{
 	border:0;
 }
-.galeria{
-	width: 300px;
-	border:1px solid #d1d1d1;
 
-}
-.galeria img{
-	margin-top:10px;
-	margin-bottom: 10px;
-}
-.galeria .miniaturas{
-	float: left;
-	margin-bottom: 0;
-	padding: 8px;
-	border-right:1px solid #d1d1d1;
-	border-top:1px solid #d1d1d1;
-	cursor: pointer;
-}
-.galeria .miniaturas.active{
-	border-top:none;
-	border-right:1px solid #d1d1d1;
-	cursor: default;
-}
 .nuestro_precio, .comprar{
 	float: left;
 	width: 150px;

@@ -216,6 +216,9 @@ div.view {
 	width:96%;
 	padding:10px 2%;
 }
+.index table img{
+	width:100px;
+}
 div.form2{/*Form whith image*/
 	float:left;
 	width:60%;
