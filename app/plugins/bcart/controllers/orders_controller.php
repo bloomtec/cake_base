@@ -142,7 +142,7 @@ class OrdersController extends AppController {
 	 */
 	function mailingMethod() {
 		$this -> layout = "carrito";
-		$shop_cart = $this -> requestAction('/shop_carts/getCart');
+		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
 
 		if ($shop_cart) {
 			/**
@@ -300,10 +300,10 @@ class OrdersController extends AppController {
 	 * Obtener información de envío
 	 */
 	function getAddressInfo() {
-		$this -> layout = "carrito";
+		$this -> layout = "bcart";
 
 		// Obtener el carrito
-		$shop_cart = $this -> requestAction('/shop_carts/getCart');
+		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
 				/**
@@ -360,6 +360,14 @@ class OrdersController extends AppController {
 		}
 		$user_id = $this -> Session -> read('Auth.User.id');
 		$user = $this -> Order -> User -> read(null, $user_id);
+		$this -> loadModel('Address');
+		$result = $this -> Address -> find('list', array('order'=>array('Address.default'=>'DESC'), 'fields'=>array('Address.id', 'Address.address_line_1'), 'conditions'=>array('Address.user_id'=>$this -> Session -> read('Auth.User.id'))));
+		$addresses = array();
+		foreach($result as $key=>$address) {
+			$addresses[$key] = $address;
+		}
+		$addresses[]='Otra dirección...';
+		$this -> set('addresses', $addresses);
 		$this -> set('user', $user);
 		$this -> set('shop_cart', $shop_cart);
 	}
