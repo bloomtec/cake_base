@@ -106,84 +106,154 @@
 .users .producto.primero{
 	margin-left: 0;
 }
-.register legend, .login legend, #contacto h1{
-	border-bottom: 1px solid #BCBCBC;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    font-weight: bold;
-    padding-bottom: 10px;
-    width: 90%;
-    margin-bottom: 15px;
-    color: #424242;
+.input.text,.input.password,.input.select{
+	background-color: #F1F1F1;
+    margin-left: 20px;
+    margin-top: 8px;
+    padding: 8px 0;
 }
-.register label, .correo, .login label, #contacto label{
-  	color: #424242;
-    display: block;
-    float: left;
+.input.text span,.input.password span,.input.select span{
+	color: red;
+	margin-left: 2px;
+}
+.register legend, .login legend, #contacto h1,#content legend{
     font-family: Arial,Helvetica,sans-serif;
     font-size: 12px;
-    width: 130px;
-    margin-bottom: 5px;
     font-weight: bold;
-    padding-top: 5px;
+    padding-bottom: 10px;
+    font-style:italic;
+    color: #d96700;
 }
-.register input, #UserEmail, .login input, #contacto input, #contacto textarea{
-	margin-bottom: 5px;
-	font-family: Arial,Helvetica,sans-serif;
-	padding-left: 3px;
-	width: 250px;
-	border: 1px solid #BCBCBC;
-	height: 20px;
+.register p, .login p, #contacto p{
+	margin-bottom: 15px;
+}
+.register label, .correo, .login label, #contacto label,#login label,.correo{
+  	color: #202020;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    width: 130px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 12px;
+    font-style: italic;
+    margin-top: 8px;
+}
+#login h1, #respaldados h1 {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    margin-bottom: 17px;
+    padding-top: 12px;
+    text-align: center;
+}
+#login label{
+	margin-left: 5px;
+	margin-top: 8px;
+    width: 65px;
+}
+#login .input {
+    float: left;
+    margin-bottom: 6px;
+    width: 140px;
+}
+#login .submit{
+	margin-right: 25px;
+}
+#login h3 a {
+    color: #272727;
+    font-size: 11px;
+    text-decoration: none;
+}
+.data,#UserNit{
+	background-image: url(/img/registro1.png);
+}
+#UserEmail,#email{
+	background-image: url(/img/registro2.png);
+}
+
+textarea.comentario{
+	
+}
+#UserPassword,#UserConfirmPassword,#password{
+	background-image: url(/img/registro6.png);
+}
+#UserPhone{
+	background-image: url(/img/registro3.png);
+}
+#AddressCountryId,#AddressCityId{
+	background-image: url(/img/registro5.png);
+}
+#AddressAddress{
+	background-image: url(/img/registro4.png);
+}
+
+.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.input select,#password,#email{
+	background-position: 2% 0;
+    background-repeat: no-repeat;
+    border: 1px solid #C8C8C8;
+    font-family: Arial,Helvetica,sans-serif;
+    height: 22px;
+    margin-bottom: 0;
+    padding-left: 50px;
+    width: 315px;
+    -webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+.input select{
+	width: 170px;
+	height: 26px;
 }
 #contacto textarea{
 	height: 60px;
-	max-width: 250px;
-	min-width: 250px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 }
-.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit{
-	background-image: url("/img/submit_registro.png");
-	border:none;
-	background-color: transparent;
-	width: 99px;
-	height: 37px;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	font-style:italic;
+.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit,.login .submit input,#login .submit,.submit.primero{
+	height: 30px;
+	width: 90px;
+	border: 1px solid #d06200;
+	padding: 0;
 	font-weight: bold;
+	font-style: italic;
+	font-size: 11px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff7800 1%, #d96700 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff7800), color-stop(99%,#d96700)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff7800 1%,#d96700 99%); /* IE10+ */
+	background: linear-gradient(top, #ff7800 1%,#d96700 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7800', endColorstr='#d96700',GradientType=0 ); /* IE6-9 */
+	color: #fff;
+	text-align: center;
 	cursor: pointer;
-	margin-left: 290px;
-	margin-top: 8px;
+	
 }
-
-.login  .submit input{
-	margin-left: 0px;
-	margin-top: 0;
-	margin-right: 151px;
+.register input[type=submit]:hover, #rememberForm input[type=submit]:hover, .login input[type=submit]:hover,#contacto .formulario_contacto .submit:hover,.login .submit input:hover,#login .submit:hover,.submit.primero:hover{
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #d96700  1%, #ff7800 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d96700 ), color-stop(99%,#ff7800 )); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #d96700  1%, #ff7800 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #d96700  1%, #ff7800 99%); /* IE10+ */
+	background: linear-gradient(top, #d96700  1%, #ff7800 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d96700 ', endColorstr='#d96700 ',GradientType=0 ); /* IE6-9 */
 }
-.login .submit{
-	height: 26px;
-	float: left;
-	width: 100px;
-	margin-right: 150px;
-	height: 36px;
-
+.submit{
+	float: right;
+	margin-right: 35px;
+	margin-top: 12px;
 }
-.login .submit.primero{
-	float: left;
-	padding-top: 12px;
-	margin-top: 0;
-	margin-right: 20px;
-	height: 26px;
-	margin-left: 170px;
-}
-.correo{
-	width: auto;
-	margin-right: 10px;
-}
-#rememberForm input[type=submit]{
-	margin-left: 381px;
+.submit.primero, #login .submit.primero{
+	height: 0;
+    padding: 12px 0 18px;
+    margin-right: 15px;
 }
 #rememberForm p{
 	font-family: Arial, Helvetica, sans-serif;
@@ -227,4 +297,7 @@ div.images .preview  img{
 	margin-top: 36px;
 	display: inline-block;
 	margin-bottom: 200px;
+}
+.input:focus .error{
+	display:none;
 }

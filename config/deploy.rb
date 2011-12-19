@@ -36,6 +36,7 @@ namespace :deploy do
   
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "cp /home/embalao/excelenter.bloomweb.co/current/. /home/embalao/excelenter.bloomweb.co/ -R"
+    run "chmod 666 /home/embalao/excelenter.bloomweb.co/app/config/database.php"
     run "cp /home/embalao/excelenter.bloomweb.co/app/config/database.php.srvr /home/embalao/excelenter.bloomweb.co/app/config/database.php"
     run "chmod 777 /home/embalao/excelenter.bloomweb.co/app/tmp/ -R"
     run "chmod 777 /home/embalao/excelenter.bloomweb.co/app/webroot/img/uploads/ -R"

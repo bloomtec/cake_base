@@ -4,7 +4,7 @@ echo $html -> script('tab-pc.js');
 ?>
 <div class='pc-error' style='display:none; position:fixed; top:0; left:0;'></div>
 <?php $form -> create('PC', array('action' => 'armaTuPC'));?>
-
+<div id="aplicacion">
 <div class="panes">
 	<div>
 		<div class='content'>
@@ -233,6 +233,6 @@ echo $html -> script('tab-pc.js');
 		</div>
 	</ul>
 </div>
-
 <div style="clear: both"></div>
+</div>
 </form>

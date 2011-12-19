@@ -46,9 +46,9 @@ class Comment extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
-		'Users' => array(
-			'className' => 'Users',
-			'foreignKey' => 'users_id',
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
@@ -56,5 +56,16 @@ class Comment extends AppModel {
 	);
 	function beforeSave(){
 		return true;	
+	}
+	function afterFind($results,$primary){
+		if(!$primary){
+			foreach($results as $key => $result){
+				$this-> User -> recursive = -1;
+				$user =$this-> User -> read(null,$result["Comment"]["user_id"]);
+				$results[$key]["Comment"]["User"]=$user["User"];
+			}
+			
+		}
+		return $results;
 	}
 }

@@ -2,7 +2,13 @@
 body {
 	background-color:#202020;
 }
-
+h1, h2, h3,h4, p, label, input, section, table, th, a, #content {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+}
+a{
+	text-decoration: none;
+}
 /*HEADER */
 
 
@@ -32,7 +38,7 @@ a.logo_header {
     padding: 6px;
     position: absolute;
     right: 0;
-    top: 89px;
+    top: 88px;
     -moz-border-rdius:4px;
 	-webkit-border-radius:4px;
 	border-radius:4px;
@@ -41,6 +47,8 @@ a.logo_header {
 }
 #header form .submit{
 	background-color: transparent;
+	margin-right: 4px;
+    margin-top: 1px;
 }
 #main_menu{
 	position: absolute;
@@ -114,21 +122,22 @@ a.logo_header {
 	display: block;
 }
 input.input_buscar{
-	background-image: url(/img/trama_buscar.png);
-	width: 181px;
-	border: none;
-	text-align: center;
-	color: #272727;
-	font-family: Arial, Helvetica, sans-serif;
-	font-style: italic;
-	font-size: 13px;
+	background-image: url("/img/trama_buscar.png");
+    border: medium none;
+    color: #272727;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    font-style: italic;
+    text-align: center;
+    width: 181px;
+    float:left;
 }
-input.submit{
+#header input.submit{
 	background-image: url(/img/btn_buscar.png);
 	width: 25px;
 	height: 22px;
 	border: none;
-	background-color: #000;
+	background-color: transparent;
 	margin-left: 7px;
 	background-position: center center;
 }
@@ -177,25 +186,7 @@ input.submit{
 }
 #login {
 	width:300px;
-	height:175px;
-}
-#login h1, #respaldados h1{
-	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 18px;
-	padding-top: 12px;
-	margin-bottom: 17px;
-}
-#login label{
-	float: left;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: bold;
-    margin-left: 34px;
-    padding-top: 3px;
-    width: 76px;
+	height:180px;
 }
 #login h3{
 	width: 246px;
@@ -204,39 +195,6 @@ input.submit{
 	font-size: 11px;
 	font-family: Arial;
 	font-style: italic;
-}
-#login h3 a{
-	color: #272727;
-	text-decoration: none;
-}
-#login .input{
-	float: left;
-	width: 166px;
-	margin-bottom: 6px;
-}
-#login input.submit, a.submit{
-	background-color: transparent;
-    background-image: url("/img/submit_registro.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: #262525;
-    float: right;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    font-style: italic;
-    height: 37px;
-    margin-right: 17px;
-    margin-top: 7px;
-    text-align: center;
-    width: 99px;
-    font-weight: bold;
-    text-decoration: none;
-    margin-top: 10px;
-}
-#login a.submit.primero{
-	height: 26px;
-    margin-right: 7px;
-    padding-top: 12px;
 }
 #content {
 	width:640px;
@@ -603,8 +561,9 @@ input.submit{
 	color:#ff7800;
 }
 .comentar{
-	width: 397px;
+	width: 325px;
 	border-right: 1px dotted #555555;
+	clear:left;
 	float: left;
 	margin-top: 50px;
 	padding-right: 30px
@@ -635,13 +594,20 @@ input.submit{
 	margin-top: 50px;
 	margin-left: 20px;
 }
-.comentar .submit{
+.comentar .submit {
+	  clear: left;
+    float: none;
+}
+.comment.ajax{
+	background-color: gray;
+}
+.comentar .submit input{
 	background-color: transparent;
     background-image: url("/img/submit_registro.png");
     background-position: center center;
     background-repeat: no-repeat;
     color: #262525;
-    float: right;
+  
     font-family: Arial,Helvetica,sans-serif;
     font-size: 14px;
     font-style: italic;
@@ -656,7 +622,7 @@ input.submit{
 }
 .usuario{
 	width: 140px;
-	text-align: center;
+	/*text-align: center;*/
 	float: left;
 }
 .usuario .estrellas{
@@ -666,11 +632,70 @@ input.submit{
 	margin-bottom: 4px;
 }
 .comentario{
-	width: 365px;
+	width: 446px;
 	float: left;
 }
 .comentario_usuario{
 	margin-bottom: 20px;
+}
+#content h1{
+	font-size: 12px;
+	font-weight: bold;
+	font-style: italic;
+	color:#FF7800;
+	margin-bottom: 5px;
+	
+}
+.producto_inicio{
+	width: 180px;
+	height: 260px;
+	background-image: url(/img/trama_cuadro_inicio.png);
+	background-position: left bottom;
+	background-repeat: repeat-x;
+	margin-top: 25px;
+	float: left;
+	margin-right: 33px;
+	-webkit-border-bottom-right-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+.producto_inicio.ultimo{
+	margin-right: 0;
+}
+.producto_inicio h2{
+	color:#202020;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 10px;
+	text-align: center;
+	
+}
+.producto_inicio h2 span{
+	color: #FF7800;
+}
+.producto_inicio p{
+	font-size: 11px;
+    margin-left: 17px;
+    margin-top: 10px;
+    text-align: justify;
+    width: 84%;
+}
+.tarjetas{
+	text-align: center;
+	margin-top: 50px;
+}
+.tarjetas h3{
+	font-size: 10px;
+    font-style: italic;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+.tarjetas img{
+	width: 170px;
 }
 /*FOOTER */
 
@@ -774,7 +799,7 @@ span.linea_footer {
     font-size: 13px;
     left: 241px;
     position: absolute;
-    top: 210px;
+    top: 227px;
 }
 #personaliza #content{
 	width: 964px;
@@ -895,14 +920,16 @@ span.linea_footer {
 }
 .error {
 	/* supply height to ensure consistent positioning for every browser */
-	height:15px;
-	background-color:#FFFE36;
-	border:1px solid #E1E16D;
-	font-size:11px;
-	font-family:Arial, Helvetica, sans-serif;
-	color:#000;
-	padding:3px 10px;
-	margin-left:-2px;
+	background-color: #FFFE36;
+    border-left: 1px solid #E1E16D;
+    border-radius: 0 4px 4px 0;
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 11px;
+    font-style: italic;
+    height: 14px;
+    /*margin-left: -120px;*/
+    padding: 5px 5px;
 
 
 	/* CSS3 spicing for mozilla and webkit */
@@ -912,9 +939,6 @@ span.linea_footer {
 	-moz-border-radius-topleft:0;
 	-webkit-border-bottom-left-radius:0;
 	-webkit-border-top-left-radius:0;
-
-	-moz-box-shadow:0 0 6px #ddd;
-	-webkit-box-shadow:0 0 6px #ddd;
 }
 .nav-usuario{
 	
@@ -1011,4 +1035,92 @@ span.linea_footer {
 	-moz-border-radius: 90px;
 	border-radius: 90px;
 	padding-bottom: 3px
+}
+.quest,.warranty{
+    background-color: #F1F1F1;
+    margin-left: 20px;
+    margin-top: 8px;
+    padding: 15px 0 15px 75px;
+    background-image: url(/img/pregunta.png);
+    background-repeat: no-repeat;
+    background-position: 2% 50%;
+}
+.pay, .services{
+	background-color: #F1F1F1;
+    margin-left: 20px;
+    margin-top: 8px;
+    padding: 15px 0 15px 0px;
+}
+.pay.first,.services.first{
+	margin-top: 25px;
+}
+.pay span,.services span{
+	background-color: #202020;
+    color: #FFFFFF;
+    float: left;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: -5px;
+    margin-right: 15px;
+    padding: 5px 3px 5px 40px;
+}
+.pay p{
+	float: left;
+	width: 850px;
+}
+.services{
+	width: 96%;
+	background-color: #F1F1F1;
+}
+.services p{
+	width: 84%;
+	float: left;
+}
+.warranty{
+	background-image: url(/img/politicas.png);
+}
+.quest.first,.warranty.first{
+	margin-top: 25px;
+}
+.quest p{
+    margin-left: 15px;
+    width: 830px;
+}
+#content h4{
+	float: right;
+    font-style: italic;
+    margin-right: 12px;
+    margin-top: 25px;
+}
+.image{
+	text-align: center;
+	margin-bottom: 15px;
+}
+.empresa{
+	float: left;
+    margin-left: 28px;
+    margin-top: 35px;
+    padding-left: 70px;
+    width: 370px;
+    background-image: url(/img/empresa2.png);
+    background-repeat: no-repeat;
+    background-position: 2% 5%;
+    padding-top: 5px;
+    margin-bottom: 35px;
+}
+.nuestra_empresa{
+	margin-left: 40px;
+    width: 885px;
+}
+.nuestra_empresa.ultimo{
+	margin-bottom: 50px;
+}
+.contact_data{
+	float: left;
+    margin-left: 35px;
+    margin-top: 25px;
+}
+.contact_data h2{
+	font-weight: normal;
+    margin-bottom: 2px;
 }

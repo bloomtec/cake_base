@@ -1,7 +1,7 @@
 <?php
-class ProductsPoll extends AppModel {
-	var $name = 'ProductsPoll';
-	var $displayField = 'id';
+class Address extends AppModel {
+	var $name = 'Address';
+	var $displayField = 'address_line_1';
 	var $isPicture = false;
 	var $sluggable = false;
 	var $sortable = false;
@@ -18,9 +18,9 @@ class ProductsPoll extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'product_id' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
+		'country' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -28,18 +28,40 @@ class ProductsPoll extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'vote' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'Debes ingresar un número',
+		'state' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-			'range' => array(
-				'rule' => array('range', 0, 6),
-				'message' => 'El número debe estar entre 1 y 5',
+		),
+		'city' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'address_line_1' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'phone' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -53,13 +75,6 @@ class ProductsPoll extends AppModel {
 		'User' => array(
 			'className' => 'User',
 			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Product' => array(
-			'className' => 'Product',
-			'foreignKey' => 'product_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

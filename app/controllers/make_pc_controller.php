@@ -29,6 +29,10 @@ class MakePcController extends AppController {
 		);
 	}
 	
+	private function productsWithInventory() {
+		return $this->requestAction('/inventories/productListWithInventory');
+	}
+	
 	function getMyPC() {
 		$myPC = $this->Session->read('myPC', $this->myPC);
 		if(empty($myPC)) {
@@ -79,9 +83,11 @@ class MakePcController extends AppController {
 		echo true; // IMPORTANTE
 		exit(0);
 	}
+
 	function resume(){
 		$this -> layout = 'ajax';
 	}
+	
 	function getMyPCTotal() {
 		$myPC = $this->getMyPC();
 		$total = 0;
@@ -218,7 +224,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}
-		$videoCard = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>5)));
+		$videoCard = $this->Product->find('all', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>5)));
 		$compatible_cards = array();
 		foreach($videoCard as $card) {
 			if(in_array($card['Slot'][0]['id'], $motherboard_slots)) {
@@ -248,7 +254,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}
-		$memories = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>3)));
+		$memories = $this->Product->find('all', array('Product.id'=>$this->productsWithInventory(), 'conditions'=>array('Product.product_type_id'=>3)));
 		$compatible_memories = array();
 		foreach($memories as $memory) {
 			if(in_array($memory['Slot'][0]['id'], $motherboard_slots)) {
@@ -278,7 +284,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}		
-		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>4)));
+		$drives = $this->Product->find('all', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>4)));
 		$compatible_drives = array();
 		foreach($drives as $drive) {
 			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
@@ -307,7 +313,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}		
-		$drives = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>14)));
+		$drives = $this->Product->find('all', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>14)));
 		$compatible_drives = array();
 		foreach($drives as $drive) {
 			if(in_array($drive['Slot'][0]['id'], $motherboard_slots)) {
@@ -335,16 +341,9 @@ class MakePcController extends AppController {
 		if($product_id) {
 			$video_card = $this->Product->findById($product_id);
 			$required = $video_card['Product']['required_power'];
-			$compatible_psus = array();
-			foreach ($supplies as $supply) {
-				$output = $supply['Product']['power_output'];
-				if(($output - $required) >= 450) {
-					$compatible_psus[] = $supply['Product']['id'];
-				}
-			}
-			$supplies = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$compatible_psus)));
+			$supplies = $this->Product->find('list', array('conditions'=>array('Product.power_output >'=>$required+450, 'Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>13)));
 		} else {
-			$supplies = $this->Product->find('list', array('conditions'=>array('Product.product_type_id'=>13)));
+			$supplies = $this->Product->find('list', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>13)));
 		}
 		$this -> set ('items',$supplies);
 		$myPC = $this->getMyPC();
@@ -362,9 +361,9 @@ class MakePcController extends AppController {
 		$this->layout="ajax";
 		$casings = array();
 		if($product_id) {
-			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
+			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 7, 'Product.is_big_casing' => 1)));
 		} else {
-			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 7)));
+			$casings = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 7)));
 		}
 		$this -> set('items', $casings);
 		$myPC = $this->getMyPC();
@@ -374,7 +373,7 @@ class MakePcController extends AppController {
 	}
 	
 	function getMonitors() {
-		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 9)));
+		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 9)));
 		$this -> set(compact('items'));
 		$myPC = $this->getMyPC();
 		if(isset($myPC['Monitor'][1]['Product']['id']) && !empty($myPC['Monitor'][1]['Product']['id'])) {
@@ -386,7 +385,7 @@ class MakePcController extends AppController {
 	}
 	
 	function getOtherCards($boardId) {
-		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.product_type_id' => 10)));
+		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 10)));
 		$this -> set(compact('items', 'boardId'));
 	}
 	
@@ -398,7 +397,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}		
-		$mice = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>17)));
+		$mice = $this->Product->find('all', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>17)));
 		$compatible_mice = array();
 		foreach($mice as $mouse) {
 			if(in_array($mouse['Slot'][0]['id'], $motherboard_slots)) {
@@ -421,7 +420,7 @@ class MakePcController extends AppController {
 		foreach($motherboard['Slot'] as $slot) {
 			$motherboard_slots[] = $slot['id'];
 		}		
-		$keyboards = $this->Product->find('all', array('conditions'=>array('Product.product_type_id'=>18)));
+		$keyboards = $this->Product->find('all', array('conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id'=>18)));
 		$compatible_keyboards = array();
 		foreach($keyboards as $keyboard) {
 			if(in_array($keyboard['Slot'][0]['id'], $motherboard_slots)) {

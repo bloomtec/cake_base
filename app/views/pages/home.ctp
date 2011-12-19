@@ -1,15 +1,52 @@
-<div class="img-contenido">
-	<img class="ilustracion" src="/img/ilustracion.jpg"/>		
+<h1>Bienvenidos a Excelenter</h1>
+<p>
+	Empresa dedicada a la venta de computadores, portátiles, periféricos, software y partes para computación e informática,
+	Nuestro nombre se encuentra bien posicionado en el mercado, gracias a nuestro excelente servicio, garantía, puntualidad y calidad en los productos. 
+</p>
+<div class="producto_inicio">
+	<a href=""><img src="/img/imagenes_inicio1.jpg" /></a>
+	<a href="">
+		
+		<h2>
+			<span>"</span>
+			Lorem ipsum dolor sit amet, consectetuer
+			<span>"</span>		
+		</h2>	
+	</a>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
+	</p>
 </div>
-<div class="contenido">	
-	<h1>amarillo2</h1>
-	<p>cada imagen es un pensamiento, un pequeño fragmento de<br /> historias cotidianas plasmadas sobre cartón; toma tu tiempo<br /> para interpretarlas.
-	pensamientos que dejan huella,<br />
-	que se pueden compartir, tocar y oler;<br />
-	pensamientos de color amarillo, ¡dale color al tuyo!
+<div class="producto_inicio">
+	<a href=""><img src="/img/imagenes_inicio2.jpg" /></a>
+	<a href="">
+		
+		<h2>
+			<span>"</span>
+			Lorem ipsum dolor sit amet, consectetuer
+			<span>"</span>		
+		</h2>	
+	</a>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 	</p>
-	<h1>descripción</h1>
-	<p>reloj para pared hecho a mano con cartón y<br /> papel.
-	Las manecillas de colores rompen de modo agradable<br /> el trazo de los anillos concéntricos y los ángulos que parecen casi hipnóticos de las diferentes carátulas, generando una armónica propuesta de diseño ideal para hogares y oficinas. Los relojes amarillo2 se presentan en un empaque perfecto para regalar.
+</div>
+<div class="producto_inicio ultimo">
+	<a href=""><img src="/img/imagenes_inicio3.jpg" /></a>
+	<a href="">
+		
+		<h2>
+			<span>"</span>
+			Lorem ipsum dolor sit amet, consectetuer
+			<span>"</span>		
+		</h2>	
+	</a>
+	<p>
+		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
 	</p>
+</div>
+<div style=" clear: both"></div>
+<div class="tarjetas">
+	<h3>Pague seguro:</h3>
+	<img src="/img/tarjetas.jpg" />
 </div>
