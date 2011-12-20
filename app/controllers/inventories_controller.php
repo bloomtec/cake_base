@@ -148,6 +148,7 @@ class InventoriesController extends AppController {
 			// TODO : ¿Qué hacer en caso de que se entre aquí?
 			$this->redirect('/');
 		}
+	
 	}
 
 }

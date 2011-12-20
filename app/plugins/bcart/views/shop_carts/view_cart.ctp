@@ -25,7 +25,19 @@
 					$item = $this->requestAction("/$model" . "s/getProduct/$foreign_key/");
 					$subtotal += $item[$model_name]["price"]*$shoppin_cart_item['quantity'];
 			?>
-			<tr class="shop-cart-item" rel="<?php echo $shoppin_cart_item["id"]?>">
+			<?php
+				$class = null;
+				if(!empty($shoppin_cart_item['message'])) {
+					if($shoppin_cart_item['message'] === 'La cantidad de este item es inferior a la ingresada originalmente' && $shoppin_cart_item['quantity'] > 0) {
+						$class = 'shop-cart-item check-item';
+					} else {
+						$class = 'shop-cart-item remove-item';
+					}
+				} else { 
+					$class = 'shop-cart-item';
+				}
+			?>
+			<tr class="<?=$class;?>" rel="<?php echo $shoppin_cart_item["id"]?>">
 				<td class="description">
 					<div class="img-item">
 						<img src="<?php echo "/img/uploads/100x100/".$item["$model_name"]["image"]?>"/>
@@ -49,6 +61,13 @@
 							$cantidades[$i]=$i;
 						}
 						echo $form->input('cantidad',array('class'=>'item-quantity','options'=>$cantidades,"selected"=>$shoppin_cart_item['quantity'],'label'=>false,'div'=>false));
+						if($class === 'shop-cart-item check-item') {
+							echo '<br />';
+							echo '<div class="item-message">La disponibilidad de este ítem ha variado.<br />Por favor revisar.</div>';
+						} elseif($class === 'shop-cart-item remove-item') {
+							echo '<br />';
+							echo '<div class="item-message">Este ítem ya no esta disponible.<br /><h1 class="remove-from-cart"><a href="#">QUITAR</a></h1></div>';
+						}
 					 ?>
 				</td>
 				<td class="price">

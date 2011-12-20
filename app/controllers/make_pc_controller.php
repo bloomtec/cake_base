@@ -146,6 +146,7 @@ class MakePcController extends AppController {
 			array(
 				'recursive'=>-1,
 				'conditions'=>array(
+					'Product.id'=>$this->productsWithInventory(), 
 					'Product.architecture_id'=>$architecture_id,
 					'Product.product_type_id'=>1
 				)
@@ -188,9 +189,9 @@ class MakePcController extends AppController {
 			array(
 				'recursive'=>-1,
 				'conditions'=>array(
+					'Product.id'=>array_intersect($this->productsWithInventory(), $product_ids),
 					'Product.architecture_id'=>$architecture_id,
-					'Product.product_type_id'=>2,
-					'Product.id'=>$product_ids
+					'Product.product_type_id'=>2
 				)
 			)
 		);
