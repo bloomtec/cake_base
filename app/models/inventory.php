@@ -62,7 +62,6 @@ class Inventory extends AppModel {
 	}
 	
 	function afterSave($created) {
-		debug($created);
 		$this->checkInventory();
 	}
 	
@@ -80,7 +79,7 @@ class Inventory extends AppModel {
 				$this -> Product -> recursive = -1;
 				$aItem = $this -> ShopCart -> ShopCartItem -> read(null, $item['id']);
 				$aProduct = $this -> Product -> read(null, $aItem['ShopCartItem']['foreign_key']);
-				$availability = $this -> requestAction('/inventories/checkProductAvailability/' . $aItem['ShopCartItem']['id']);
+				$availability = $this -> requestAction('/inventories/checkProductAvailability/' . $aItem['ShopCartItem']['foreign_key']);
 				if ($availability < $aItem['ShopCartItem']['quantity']) {
 					$aItem['ShopCartItem']['message'] = 'La cantidad de este item es inferior a la ingresada originalmente';
 					$aItem['ShopCartItem']['quantity'] = $availability;

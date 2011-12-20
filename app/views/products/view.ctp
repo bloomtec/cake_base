@@ -9,7 +9,7 @@
 	</div>
 	<div class="comprar">
 		<?php if($product['Inventory'][0]['quantity']):?>
-		<a class="comprar add-to-cart" href="#">Comprar</a>
+		<a href="/shopCarts/add-to-cart/Product:<?php echo $product['Product']['id']; ?>:0" rel='Product:<?php echo $product['Product']['id']; ?>:0'class="comprar add-to-cart" href="#">Comprar</a>
 		<div class='add-cart-confirm' >
 			producto agregado ir a pagar
 		</div>
