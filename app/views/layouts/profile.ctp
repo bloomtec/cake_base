@@ -71,12 +71,10 @@
 						</li>
 	
 						<li>
-							<a href="/users/logout">Salir</a>
+							<a href="/shopCarts/view-cart">Ir a mi carrito</a>
 						</li>
 						<li class="ultimo">
-
-								<a class="carrito" href="/shopCarts/view-cart">Ir a mi carrito</a>
-
+							<a href="/users/logout">Salir</a>
 						</li>
 						<div style="clear: both"></div>
 					</ul>

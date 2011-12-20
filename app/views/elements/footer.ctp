@@ -1,6 +1,6 @@
 <div id="footer">
-	<span class="logo_footer">logo footer</span>
-	<span class="linea_footer">linea footer</span>
+	<span class="logo_footer"></span>
+	<span class="linea_footer"></span>
 	<div class="wrapper">
 		<ul>
 			<li>
@@ -30,13 +30,13 @@
 				<h1>Encuentranos también en:</h1>
 			</li>
 			<li>
-				<a href="#"><img src="/img/facebook_footer.png" /></a>
+				<a href="http://www.facebook.com/pages/Excelenter/294009060618773" target="blank"><img src="/img/facebook_footer.png" /></a>
 			</li>
 			<li>
-				<a href="#"><img src="/img/twitter_footer.png" /></a>
+				<a href="https://twitter.com/#!/Excelenter_Cali" target="blank"><img src="/img/twitter_footer.png" /></a>
 			</li>
 			<li>
-				<a href="#"><img src="/img/youtube.png" /></a>"
+				<a href="http://www.youtube.com/user/ExcelenterWeb" target="blank"><img src="/img/youtube.png" /></a>"
 			</li>
 		</ul>
 		<h1 class="telefonos">Teléfonos:  660 50 79  667 7116, Cali - Valle del cauca </h1>

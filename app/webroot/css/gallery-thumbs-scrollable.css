@@ -57,7 +57,18 @@
 	margin-right: 5px;
 }
 .thumbs  li.current {
-	border: solid 1px black;
+	margin-bottom: 10px;
+    padding: 9px 10px;
+    background: #ffffff; /* Old browsers */
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#efefef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-9 */
+	border: 1px solid #e2e2e2;  
 }
 .thumbs  li img {
 	width: 95px;
@@ -70,7 +81,8 @@
 	overflow: hidden;
 	width: 100%;
 	height: 100px;
-	margin: 0 auto;
+	margin: 15px auto 0;
+	
 }
 .scrollable .items {
 	/* this cannot be too large */
@@ -80,31 +92,30 @@
 .controls {
 	position: relative;
 	width: 100%;
-	background-image: url(../images/pixel-50.png);
-	background-repeat: repeat;
 	height: 71px;
 	margin-top: 5px;
+	margin-bottom: 8px;
+	display: block;
+	text-transform: capitalize;
+	color:#FF7800;
+	background: none;
 }
 .controls .next {
 	float: right;
-	background-image: url(../images/slider-scroll-right.png);
-	background-repeat: no-repeat;
 	display: block;
-	width: 8px;
-	height: 13px;
-	margin-top: 23.5px;
-	padding-right: 10px;
+	margin-top: 0;
+	font-weight: bold;
+	width: auto;
+	margin-left: 0;
+	text-transform: uppercase;
 }
 .controls .prev {
 	float: left;
-	background-image: url(../images/slider-scroll-left.png);
-	background-position: right;
-	background-repeat: no-repeat;
-	width: 8px;
-	height: 13px;
-	margin-top: 23.5px;
-	padding-left: 10px;
+	margin-top: 0;
+	background: none;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 .controls .disabled {
-	display: none;
+	color:#C8C8C8;
 }

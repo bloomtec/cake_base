@@ -25,7 +25,7 @@
 	<div class='description'>
 		<?php echo $product['Product']['description'];?>
 	</div>
-	<h1>Especificaciones Técnicas</h1>
+	<h1 class="especifications">Especificaciones Técnicas</h1>
 	<div class='tech_specs'>
 		<?php echo $product['Product']['tech_specs'];?>
 	</div>

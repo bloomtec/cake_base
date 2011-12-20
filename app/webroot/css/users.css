@@ -1,5 +1,5 @@
 .users{
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 
 }
@@ -9,34 +9,38 @@
 	
 }
 .users ul{
-	border-bottom: 1px solid #CBCACA;
     margin: 0 auto;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    width: 100%;
-    margin-bottom:30px;
+    border:1px solid #d7dee3;
+    background: rgb(246,248,249); /* Old browsers */
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#efefef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-9 */
 }
 .users li{
 	float: left;
-	margin-right: 10px;
 }
 .users li a, .datos_perfil h1{
 	text-decoration: none;
 	color: #424242;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 13px;
 }
 .users li.ultimo a{
 	border: none;
 }
 .users li a{
 	border-right: 1px solid #CBCACA;
-    padding-right: 18px;
+	float: left;
+    padding: 12px;
 }
 .datos_perfil{
 	float: left;
-	width: 270px;
 	margin-bottom: 30px;
 }
 .datos_perfil a{
@@ -46,6 +50,17 @@
 	float: right;
 	margin-top: 10px;
 	font-weight: bold;
+}
+.users a:hover{
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff7800 1%, #d96700 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff7800), color-stop(99%,#d96700)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff7800 1%,#d96700 99%); /* IE10+ */
+	background: linear-gradient(top, #ff7800 1%,#d96700 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7800', endColorstr='#d96700',GradientType=0 ); /* IE6-9 */
+	color:#fff;
 }
 .users .carrito{
 	background-image: url("/img/flecha_siguiente_paso.png");
@@ -66,24 +81,26 @@
 .datos_perfil.primero{
 	width: 200px;
 }
-.datos_perfil h1{
-	margin-top: 13px;
+#content .datos_perfil h1{
+	margin-top: 20px;
 	margin-bottom: 18px;
+}
+.users.form{
+	margin-top: 15px;
 }
 .users h2{
 	display: block;
     float: left;
-    font-size: 12px;
-    margin-bottom: 10px;
+    font-size: 11px;
     text-align: left;
     width: 108px;
     font-weight: bold;
-    clear:left;
+    font-style: italic;
+    color: #202020;
 }
 .users span{
 	float: left;
     font-size: 12px;
-    margin-bottom: 10px;
     margin-left: 15px;
 }
 .users .datos_perfil p{
@@ -122,12 +139,12 @@
     font-weight: bold;
     padding-bottom: 10px;
     font-style:italic;
-    color: #d96700;
+    color: #FF7800;
 }
 .register p, .login p, #contacto p{
 	margin-bottom: 15px;
 }
-.register label, .correo, .login label, #contacto label,#login label,.correo{
+.form label,.register label, .correo, .login label, #contacto label,#login label,.correo{
   	color: #202020;
     float: left;
     font-family: Arial,Helvetica,sans-serif;
@@ -166,7 +183,7 @@
     font-size: 11px;
     text-decoration: none;
 }
-.data,#UserNit{
+.data,#UserNit,#UserName,#UserLastName{
 	background-image: url(/img/registro1.png);
 }
 #UserEmail,#email{
@@ -176,17 +193,17 @@
 #UserPassword,#UserConfirmPassword,#password{
 	background-image: url(/img/registro6.png);
 }
-#UserPhone{
+#UserPhone,#AddressPhone{
 	background-image: url(/img/registro3.png);
 }
-#AddressCountryId,#AddressCityId{
+#AddressCountryId,#AddressCityId,#AddressCountry,#AddressState,#AddressCity{
 	background-image: url(/img/registro5.png);
 }
-#AddressAddress{
+#AddressAddress,#AddressAddressLine1,#AddressAddressLine2{
 	background-image: url(/img/registro4.png);
 }
 
-.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.input select,#password,#email{
+.form input,.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.input select,#password,#email{
 	background-position: 2% 0;
     background-repeat: no-repeat;
     border: 1px solid #C8C8C8;
@@ -204,11 +221,14 @@
 	height: 26px;
 }
 #contacto textarea{
-	height: 60px;
+	min-height: 60px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	min-width: 315px;
+	max-width: 315px;
+	padding-top: 5px;
 }
-.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit,.login .submit input,#login .submit,.submit.primero{
+form .submit input,.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit,.login .submit input,#login .submit,.submit.primero{
 	height: 30px;
 	width: 90px;
 	border: 1px solid #d06200;
@@ -232,7 +252,7 @@
 	cursor: pointer;
 	
 }
-.register input[type=submit]:hover, #rememberForm input[type=submit]:hover, .login input[type=submit]:hover,#contacto .formulario_contacto .submit:hover,.login .submit input:hover,#login .submit:hover,.submit.primero:hover{
+form .submit input:hover,.register input[type=submit]:hover, #rememberForm input[type=submit]:hover, .login input[type=submit]:hover,#contacto .formulario_contacto .submit:hover,.login .submit input:hover,#login .submit:hover,.submit.primero:hover{
 	background: #ff7800; /* Old browsers */
 	background: -moz-linear-gradient(top, #d96700  1%, #ff7800 99%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d96700 ), color-stop(99%,#ff7800 )); /* Chrome,Safari4+ */
@@ -251,6 +271,16 @@
 	height: 0;
     padding: 12px 0 18px;
     margin-right: 15px;
+}
+.input.checkbox{
+	margin-top: 8px;
+}
+.input.checkbox input{
+	margin-left: 22px;
+    margin-top: 7px;
+}
+.form label{
+	margin-top: 4px;
 }
 #rememberForm p{
 	font-family: Arial, Helvetica, sans-serif;
@@ -297,4 +327,32 @@ div.images .preview  img{
 }
 .input:focus .error{
 	display:none;
+}
+
+.registered-addresses h2{
+	float: none;
+	width: 100%;
+	margin-bottom: 18px;
+    margin-top: 20px;
+    color: #FF7800;
+    font-size: 12px;
+}
+.registered-addresses .user_data h2{
+	float: left;
+	width: 108px;
+	margin: 0;
+	color:#202020;
+	font-size: 11px;
+}
+.user_data{
+	background-color: #F1F1F1;
+    margin-bottom: 4px;
+    padding: 11px 20px;
+    width: 100%;
+}
+.user_data:hover{
+	background-color: #03AEED;
+}
+.user_data:hover h2,.user_data:hover span{
+	color:#fff;
 }

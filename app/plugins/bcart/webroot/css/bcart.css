@@ -3,7 +3,7 @@
 	width: 100%;
 }
 .shop-cart-list-container th, .shop-cart-item td{
-	padding-left: 50px;
+	padding-left: 35px;
 	vertical-align: middle;
 	color: #424242;
 }
@@ -19,6 +19,7 @@
 	margin-bottom: 23px;
 	color: #424242;
 	font-style: normal;
+	text-transform: capitalize;
 }
 .shop-cart-item h1{
 	margin-bottom: 6px;
@@ -37,6 +38,23 @@
 	background-image: url(/img/trama_tabla.png);
 	line-height: 26px;
 
+}
+.remove-item{
+	background: #feffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #feffff 0%, #d2ebf9 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feffff), color-stop(100%,#d2ebf9)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #feffff 0%,#d2ebf9 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #feffff 0%,#d2ebf9 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #feffff 0%,#d2ebf9 100%); /* IE10+ */
+	background: linear-gradient(top,  #feffff 0%,#d2ebf9 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#d2ebf9',GradientType=0 ); /* IE6-9 */
+
+}
+.item-message{
+	color: red;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 15px;
 }
 .shop-cart-item td, .shop-cart-item h1{
 	text-align: left;

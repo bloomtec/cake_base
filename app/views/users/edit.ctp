@@ -78,5 +78,6 @@
 			?>
 		</fieldset>
 		<?php echo $this -> Form -> end(__('Submit', true));?>
+		<div style="clear: both"></div>
 	</div>
 </div>

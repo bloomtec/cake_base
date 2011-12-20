@@ -325,7 +325,10 @@ input.input_buscar{
 	font-size: 12px;
 	margin-bottom: 5px;
 }
-
+.add-cart-confirm a{
+	color: #FF7800;
+	font-weight: bold;
+}
 .producto .foto_producto{
 	margin: 15px auto;
 	width: 100px;
@@ -393,26 +396,42 @@ input.input_buscar{
     font-weight: bold;
     height: 20px;
     margin-bottom: 13px;
+    height: 25px;
 	
 }
 #listado_fltro input[type=submit]{
-	background-color: transparent;
-    background-image: url("/img/submit_registro.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    color: #262525;
-    float: right;
-    font-family: Arial,Helvetica,sans-serif;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: bold;
-    height: 37px;
-    margin-top: 10px;
-    text-align: center;
-    text-decoration: none;
-    width: 99px;
-    border: none;
-    margin-left: 50px;
+	height: 30px;
+	width: 90px;
+	border: 1px solid #d06200;
+	padding: 0;
+	font-weight: bold;
+	font-style: italic;
+	font-size: 11px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff7800 1%, #d96700 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff7800), color-stop(99%,#d96700)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff7800 1%,#d96700 99%); /* IE10+ */
+	background: linear-gradient(top, #ff7800 1%,#d96700 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7800', endColorstr='#d96700',GradientType=0 ); /* IE6-9 */
+	color: #fff;
+	text-align: center;
+	cursor: pointer;
+}
+#listado_fltro input[type=submit]:hover{
+	background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #d96700  1%, #ff7800 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#d96700 ), color-stop(99%,#ff7800 )); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #d96700  1%, #ff7800 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #d96700  1%, #ff7800 99%); /* IE10+ */
+	background: linear-gradient(top, #d96700  1%, #ff7800 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d96700 ', endColorstr='#d96700 ',GradientType=0 ); /* IE6-9 */
+
 }
 #listado_fltro input[type=text]{
 	height: 18px;
@@ -437,6 +456,7 @@ input.input_buscar{
 #content .product_name{
 	font-size: 22px;
     font-style: normal;
+    text-transform: capitalize;
 }
 .nuestro_precio, .comprar{
 	float: left;
@@ -514,11 +534,10 @@ input.input_buscar{
 	text-align: left;
 	margin-left: 27px;
 }
-.detalle_producto.descripcion h1{
+#content .detalle_producto.descripcion h1{
 	margin-bottom: 16px;
-	color:#424242;
 }
-.detalle_producto.descripcion p{
+#content .detalle_producto .description{
 	margin-bottom: 50px;
 }
 .detalle_producto.descripcion p.descripcion{
@@ -597,7 +616,6 @@ input.input_buscar{
 	border: 1px solid #C8C8C8;
     border-radius: 5px 5px 5px 5px;
     height: 104px;
-    max-height: 104px;
     max-width: 96%;
     min-width: 96%;
     padding: 5px;
@@ -677,8 +695,16 @@ input.input_buscar{
 }
 .comentario_usuario{
     margin-bottom: 10px;
-    padding: 9px 13px;
-    
+    padding: 9px 10px;
+	background: #ffffff; /* Old browsers */
+	background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* IE10+ */
+	background: linear-gradient(top,  #ffffff 0%,#efefef 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#efefef',GradientType=0 ); /* IE6-9 */
+	border: 1px solid #e2e2e2;    
 }
 .comentario_usuario .start{
 	width: 12px;
