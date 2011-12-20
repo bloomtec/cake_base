@@ -8,7 +8,12 @@
 		<h3>¡ahorrate un 10%!</h3>
 	</div>
 	<div class="comprar">
-		<a class="comprar" href="#">Comprar</a>
+		<?php if($product['Inventory'][0]['quantity']):?>
+		<a class="comprar add-to-cart" href="#">Comprar</a>
+		<div class='add-cart-confirm' >
+			producto agregado ir a pagar
+		</div>
+		<?php endif;?>
 		<?php echo $this -> element('poll-in', array('active' => true, 'model'=>'Product','foreign_key' => $product['Product']['id'])); ?>
 	</div>
 	<div style="clear: both"></div>
