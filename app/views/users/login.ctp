@@ -26,5 +26,11 @@
 	</fieldset>
 	<?php
 		echo $this -> Session -> flash('auth');
-		?>
+		echo $this -> Session -> flash();
+	?>
+	<div class="reset-password">
+		<p>
+			<?php echo __('Si no recuerda su contraseña ingrese '); ?><a href="/users/resetPassword"><?php echo __('aquí', true); ?></a>
+		</p>
+	</div>
 </div>

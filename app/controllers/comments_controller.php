@@ -13,26 +13,22 @@ class CommentsController extends AppController {
 		$this -> set('comments', $this -> paginate());
 	}
 
-	function view($slug = null) {
-		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid comment', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('comment', $this -> Comment -> findBySlug($slug));
-	}
+	
 
 	function add() {
 		if (!empty($this -> data)) {
 			$this -> Comment -> create();
+			$this -> data["Comment"]["user_id"] = $this -> Auth -> user("id");
+			
 			if ($this -> Comment -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The comment has been saved', true));
-				$this -> redirect(array('action' => 'index'));
+				echo $this -> Comment -> id;
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				echo false;
 			}
 		}
-		$users = $this -> Comment -> User -> find('list');
-		$this -> set(compact('users'));
+		Configure::write('debug',0);
+		exit(0);
 	}
 
 	function edit($id = null) {
@@ -58,57 +54,18 @@ class CommentsController extends AppController {
 	function delete($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid id for comment', true));
-			$this -> redirect(array('action' => 'index'));
+			//$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Comment -> delete($id)) {
 			$this -> Session -> setFlash(__('Comment deleted', true));
-			$this -> redirect(array('action' => 'index'));
+			echo true;
+			//$this -> redirect(array('action' => 'index'));
+		}else{
+			echo false;
 		}
-		$this -> Session -> setFlash(__('Comment was not deleted', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setInactive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Comment -> read(null, $id);
-		$oldData["Comment"]["active"] = false;
-		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function setActive($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$oldData = $this -> Comment -> read(null, $id);
-		$oldData["Comment"]["active"] = true;
-		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
-		$this -> redirect(array('action' => 'index'));
-	}
-
-	function requestFind($type, $findParams, $key) {
-		if ($key == Configure::read("key")) {
-			return $this -> Comment -> find($type, $findParams);
-		} else {
-			return null;
-		}
-	}
-
-	function admin_beforeFilter() {
-		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		
+		Configure::write('debug',0);
+		exit(0);
 	}
 
 	function admin_index() {
@@ -200,13 +157,4 @@ class CommentsController extends AppController {
 		$this -> Session -> setFlash(__('Comment was not archived', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-
-	function admin_requestFind($type, $findParams, $key) {
-		if ($key == Configure::read("key")) {
-			return $this -> Comment -> find($type, $findParams);
-		} else {
-			return null;
-		}
-	}
-
 }

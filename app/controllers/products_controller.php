@@ -2,6 +2,10 @@
 class ProductsController extends AppController {
 
 	var $name = 'Products';
+	
+	private function productsWithInventory() {
+		return $this->requestAction('/inventories/productListWithInventory');
+	}
 
 	function getProduct($product_id = null) {
 		$this->Product->recursive=-1;
@@ -23,7 +27,7 @@ class ProductsController extends AppController {
 				'conditions'=>array('Brand.name LIKE' => "%$q%"),
 				'recursive'				
 			)
-		);		
+		);
 		$this->paginate = array(
 			'conditions' => array(
 				"OR" => array(
@@ -40,7 +44,7 @@ class ProductsController extends AppController {
 
 	function findRecommendedProducts($product_id) {
 		$recommended_product_ids = $this -> Product -> Recommendation -> find('list', array('fields' => array('Recommendation.recommended_product_id'), 'conditions' => array('Recommendation.product_id' => $product_id), 'limit' => 5, 'order' => 'rand()'));
-		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_visible'=>1)));
+		return $this -> Product -> find('all', array('conditions' => array('Product.id' => $recommended_product_ids, 'Product.is_active'=>1)));
 	}
 
 	function featuredProduct($tag_id) {
@@ -52,6 +56,7 @@ class ProductsController extends AppController {
 					'Product.id'
 				),
 				'conditions' => array(
+					'Product.id'=>$this->productsWithInventory(),
 					'Product.is_featured' => 1
 				)
 			)
@@ -83,12 +88,13 @@ class ProductsController extends AppController {
 	}
 
 	function index() {
+		$this->layout="personaliza";
 		$this->Product->recursive = 0;
 		$this->set('products', $this->paginate());
-		$this->layout="personaliza";
 	}
 
 	function view($slug = null) {
+		$this->layout="personaliza";
 		if (!$slug) {
 			$this->Session->setFlash(__('Invalid product', true));
 			$this->redirect(array('action' => 'index'));

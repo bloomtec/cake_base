@@ -69,7 +69,7 @@ $(document).ready(function() {
 					var nombre = file[(file.length - 1)];
 					var parentId=$('#pictures-uploader').attr("rel");
 					var controller=$('#pictures-uploader').attr("controller");
-					$.post("/"+controller+"/uploadfy_add", {'name' : nombre,'folder' : "uploads",'parent_id' : parentId}, function(id) {
+					$.post("/admin/"+controller+"/uploadfy_add", {'name' : nombre,'folder' : "uploads",'parent_id' : parentId}, function(id) {
 						if(id){
 							$("#sortable").append('\
 											<li class="image-container ui-state-default" id="'+id+'">\

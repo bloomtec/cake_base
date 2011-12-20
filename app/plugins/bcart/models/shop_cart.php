@@ -28,6 +28,13 @@ class ShopCart extends BcartAppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Address' => array(
+			'className' => 'Address',
+			'foreignKey' => 'address_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
@@ -65,6 +72,7 @@ class ShopCart extends BcartAppModel {
 				$this->delete($cart['ShopCart']['id']);
 			}
 		}
+	return true;
 	}
 
 }

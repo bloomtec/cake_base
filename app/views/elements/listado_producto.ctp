@@ -12,7 +12,7 @@
 	<div class='add-cart-confirm' >
 		producto agregado ir a pagar
 	</div>
-	<?php echo $this -> element("poll-in",array('product' => $product , 'active' => false ));?>
+	<?php echo $this -> element("poll-in",array('model' => 'Product','foreign_key'=>$product['Product']['id']  , 'active' => false ));?>
 </div>
 <?php endforeach; ?>
 <?php }else{?>

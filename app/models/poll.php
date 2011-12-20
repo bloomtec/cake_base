@@ -1,6 +1,6 @@
 <?php
-class ProductsPoll extends AppModel {
-	var $name = 'ProductsPoll';
+class Poll extends AppModel {
+	var $name = 'Poll';
 	var $displayField = 'id';
 	var $isPicture = false;
 	var $sluggable = false;
@@ -49,22 +49,7 @@ class ProductsPoll extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
-	var $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Product' => array(
-			'className' => 'Product',
-			'foreignKey' => 'product_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
+
 	function beforeSave(){
 		return true;	
 	}

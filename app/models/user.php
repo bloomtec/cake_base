@@ -73,8 +73,8 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'ProductsPoll' => array(
-			'className' => 'ProductsPoll',
+		'VisitedProduct' => array(
+			'className' => 'VisitedProduct',
 			'foreignKey' => 'user_id',
 			'dependent' => true,
 			'conditions' => '',
@@ -86,8 +86,8 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'VisitedProduct' => array(
-			'className' => 'VisitedProduct',
+		'Address' => array(
+			'className' => 'Address',
 			'foreignKey' => 'user_id',
 			'dependent' => true,
 			'conditions' => '',

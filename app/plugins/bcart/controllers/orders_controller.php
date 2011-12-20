@@ -142,7 +142,7 @@ class OrdersController extends AppController {
 	 */
 	function mailingMethod() {
 		$this -> layout = "carrito";
-		$shop_cart = $this -> requestAction('/shop_carts/getCart');
+		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
 
 		if ($shop_cart) {
 			/**
@@ -300,12 +300,30 @@ class OrdersController extends AppController {
 	 * Obtener información de envío
 	 */
 	function getAddressInfo() {
-		$this -> layout = "carrito";
+		$this -> layout = "bcart";
 
 		// Obtener el carrito
-		$shop_cart = $this -> requestAction('/shop_carts/getCart');
+		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
+				// Manejar la direccion
+				$this -> loadModel('Address');
+				if($this -> data['Envio']['address_id'] == -1) {
+					$this->Address->create();
+					$address = array();
+					$address['Address']['user_id'] = $this->Session->read('Auth.User.id');
+					$address['Address']['country'] = $this->data['Envio']['country'];
+					$address['Address']['state'] = $this->data['Envio']['state'];
+					$address['Address']['city'] = $this->data['Envio']['city'];
+					$address['Address']['address_line_1'] = $this->data['Envio']['address_line_1'];
+					$address['Address']['address_line_2'] = $this->data['Envio']['address_line_2'];
+					$address['Address']['phone'] = $this->data['Envio']['phone'];
+					if($this->Address->save($address)) {
+						$shop_cart['ShopCart']['address_id'] = $this -> Address -> id;
+					}
+				} else {
+					$shop_cart['ShopCart']['address_id'] = $this -> data['Envio']['address_id'];
+				}
 				/**
 				 * El carrito existe, primero revisar que hayan ítems en el carrito!
 				 */
@@ -319,12 +337,6 @@ class OrdersController extends AppController {
 					$this -> loadModel('ShopCart');
 					$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
 					$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];
-					$shop_cart['ShopCart']['pais'] = $this -> data['Envio']['country'];
-					$shop_cart['ShopCart']['estado'] = $this -> data['Envio']['state'];
-					$shop_cart['ShopCart']['ciudad'] = $this -> data['Envio']['city'];
-					$shop_cart['ShopCart']['direccion'] = $this -> data['Envio']['address'];
-					$shop_cart['ShopCart']['telefono'] = $this -> data['Envio']['phone'];
-					$shop_cart['ShopCart']['celular'] = $this -> data['Envio']['mobile'];
 					$shop_cart['ShopCart']['email'] = $this -> data['Envio']['email'];
 					$shop_cart['ShopCart']['subtotal'] = $this -> data['Order']['subtotal'];
 					$shop_cart['ShopCart']['descuento'] = $this -> data['Order']['subtotal'] - $this -> data['Order']['total'];
@@ -360,6 +372,14 @@ class OrdersController extends AppController {
 		}
 		$user_id = $this -> Session -> read('Auth.User.id');
 		$user = $this -> Order -> User -> read(null, $user_id);
+		$this -> loadModel('Address');
+		$result = $this -> Address -> find('list', array('order'=>array('Address.default'=>'DESC'), 'fields'=>array('Address.id', 'Address.address_line_1'), 'conditions'=>array('Address.user_id'=>$this -> Session -> read('Auth.User.id'))));
+		$addresses = array();
+		foreach($result as $key=>$address) {
+			$addresses[$key] = $address;
+		}
+		$addresses[-1]='Otro destino...';
+		$this -> set('addresses', $addresses);
 		$this -> set('user', $user);
 		$this -> set('shop_cart', $shop_cart);
 	}

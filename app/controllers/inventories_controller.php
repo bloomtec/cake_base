@@ -7,6 +7,22 @@ class InventoriesController extends AppController {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+	
+	function checkProductAvailability($product_id = null) {
+		$inventory = $this->Inventory->find('first', array('conditions'=>array('Inventory.product_id'=>$product_id)));
+		return $inventory['Inventory']['quantity'];
+	}
+	
+	function productListWithInventory() {
+		$result = $this->Inventory->find(
+			'list',
+			array(
+				'conditions'=>array('Inventory.quantity >'=>0),
+				'fields'=>array('Inventory.product_id')
+			)
+		);
+		return $result;
+	}
 
 	function index() {
 		$this -> Inventory -> recursive = 0;
@@ -120,6 +136,7 @@ class InventoriesController extends AppController {
 						} else {
 							$this -> Session -> setFlash(__("The new quantity can't be less than 0. Please, try again.", true));
 						}
+						$this->redirect(array('controller'=>'inventories', 'action'=>'listProductInventory', $product_id));
 					}
 				}
 			}

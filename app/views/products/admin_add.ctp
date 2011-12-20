@@ -11,6 +11,7 @@
 		echo $this -> Form -> input('brand_id');
 		echo $this -> Form -> input('name');
 		echo $this -> Form -> input('description');
+		echo $this -> Form -> input('tech_specs');
 		echo $this -> Form -> input('ref');
 		echo $this -> Form -> input('price');
 		echo $this -> Form -> input('keywords');
