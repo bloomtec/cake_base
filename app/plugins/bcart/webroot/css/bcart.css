@@ -11,13 +11,14 @@
 	width: 40px;
 	text-align: center;
 }
-.shop-cart-list-container h1{
+#content .shop-cart-list-container h1{
 	font-size: 14px;
 	font-weight: bold;
 	width: 100%;
 	text-align: left;
 	margin-bottom: 23px;
 	color: #424242;
+	font-style: normal;
 }
 .shop-cart-item h1{
 	margin-bottom: 6px;
@@ -104,10 +105,11 @@
 	margin-right: 15px;
 	
 }
-#cupon h1{
+#content #cupon h1{
 	text-align: right;
 	margin-bottom: 15px;
 	color: #272727;
+	font-style: normal;
 }
 #cupon a{
 	color: #272727;

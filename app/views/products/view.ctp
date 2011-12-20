@@ -1,5 +1,5 @@
 <?php //debug($product["Inventory"][0]['quantity']);?>
-<h1><?php echo $product['Product']['name'];?></h1>
+<h1 class="product_name"><?php echo $product['Product']['name'];?></h1>
 <div class="detalle_producto galeria">
 	<?php /*if(!empty($product['ProductPicture']))*/  echo $this->element('gallery-thumbs-scrollable',array("thumbsAtTime"=>3,'pictures'=>$product['ProductPicture']));?>
 	<div class="nuestro_precio">
@@ -39,6 +39,9 @@
 </div>
 <div class="comentar">
 	<h1>Déjanos un comentario</h1>
+	<p>
+		Para nosotros es muy importante tu opinión
+	</p>
 	<?php echo $this -> element('simpleCommentForm',array("model"=>"Product","foreign_key"=>$product["Product"]["id"])); ?>
 
 </div>
