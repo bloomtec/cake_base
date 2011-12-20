@@ -136,7 +136,7 @@ class InventoriesController extends AppController {
 						} else {
 							$this -> Session -> setFlash(__("The new quantity can't be less than 0. Please, try again.", true));
 						}
-					//	$this->redirect(array('controller'=>'inventories', 'action'=>'listProductInventory', $product_id));
+						$this->redirect(array('controller'=>'inventories', 'action'=>'listProductInventory', $product_id));
 					}
 				}
 			}

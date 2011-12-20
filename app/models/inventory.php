@@ -58,11 +58,13 @@ class Inventory extends AppModel {
 	);
 
 	function beforeSave(){
-		return true;	
+		return true;
 	}
 	
 	function afterSave($created) {
-		$this->checkInventory();
+		if(!$created) {
+			$this->checkInventory();
+		}
 	}
 	
 	function checkInventory() {

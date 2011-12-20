@@ -26,7 +26,7 @@
 			<?php
 				$class = null;
 				if(!empty($shoppin_cart_item['message'])) {
-					if($shoppin_cart_item['message'] === 'La cantidad de este item es inferior a la ingresada originalmente') {
+					if($shoppin_cart_item['message'] === 'La cantidad de este item es inferior a la ingresada originalmente' && $shoppin_cart_item['quantity'] > 0) {
 						$class = 'shop-cart-item check-item';
 					} else {
 						$class = 'shop-cart-item remove-item';
@@ -112,4 +112,5 @@
 		<div style="clear: both"></div>
 	</div>
 	<div style="clear: both"></div>
+</div>
 </div>
