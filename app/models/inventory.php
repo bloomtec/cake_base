@@ -60,4 +60,46 @@ class Inventory extends AppModel {
 	function beforeSave(){
 		return true;	
 	}
+	
+	function afterSave($created) {
+		debug($created);
+		$this->checkInventory();
+	}
+	
+	function checkInventory() {
+		App::import('Model', 'Bcart.ShopCart');
+		//App::import('Model', 'Bcart.ShopCartItem');
+		$this -> ShopCart = new ShopCart();
+		//$this -> ShopCart -> ShopCartItem = new ShopCartItem();
+		$carts = $this -> ShopCart -> find('all');
+		// Recorrer los carros
+		foreach ($carts as $cart) {
+			// Recorrer los items del carro
+			foreach ($cart['ShopCartItem'] as $item) {
+				$this -> Product -> ShopCart -> ShopCartItem -> recursive = -1;
+				$this -> Product -> recursive = -1;
+				$aItem = $this -> ShopCart -> ShopCartItem -> read(null, $item['id']);
+				$aProduct = $this -> Product -> read(null, $aItem['ShopCartItem']['foreign_key']);
+				$availability = $this -> requestAction('/inventories/checkProductAvailability/' . $aItem['ShopCartItem']['id']);
+				if ($availability < $aItem['ShopCartItem']['quantity']) {
+					$aItem['ShopCartItem']['message'] = 'La cantidad de este item es inferior a la ingresada originalmente';
+					$aItem['ShopCartItem']['quantity'] = $availability;
+					if($this -> ShopCart -> ShopCartItem -> save($aItem)){
+						//debug('se realizo un cambio');
+					} else {
+						//debug('error al realizar un cambio');
+					}
+					if ($aProduct['Product']['is_active'] === false) {
+						$aItem['ShopCartItem']['message'] = 'Este producto no esta activo en la tienda actualmente';
+						if($this -> ShopCart -> ShopCartItem -> save($aItem)){
+							//debug('se realizo un cambio');
+						} else {
+							//debug('error al realizar un cambio');
+						}
+					}
+				}
+			}
+		}
+	}
+	
 }
