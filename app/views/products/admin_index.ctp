@@ -17,9 +17,10 @@
 		<th><?php echo $this->Paginator->sort('ref');?></th>
 		<th><?php echo $this->Paginator->sort('price');?></th>
 		<th><?php echo $this->Paginator->sort('image');?></th>
-		<th><?php echo $this->Paginator->sort('is_gamers');?></th>
-		<th><?php echo $this->Paginator->sort('Status','is_active');?></th>
-		<th><?php echo $this->Paginator->sort('times_visited');?></th>
+		<th><?php echo $this->Paginator->sort(_('Gamers'), 'is_gamers');?></th>
+		<th><?php echo $this->Paginator->sort(__('Activo'),'is_active');?></th>
+		<th><?php echo $this->Paginator->sort(__('Visitas'), 'times_visited');?></th>
+		<th><?php __('Inventario'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -39,6 +40,7 @@
 		<td><?php if($product['Product']['is_gamers']){echo "Sí";}else{echo "No";} ?>&nbsp;</td>
 		<td><?php if($product['Product']['is_active']){echo "Sí";}else{echo "No";} ?>&nbsp;</td>
 		<td><?php echo $product['Product']['times_visited']; ?>&nbsp;</td>
+		<td><?php echo $this->requestAction('/inventories/checkProductAvailability/'.$product['Product']['id']); ?></td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $product['Product']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $product['Product']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
