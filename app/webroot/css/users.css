@@ -11,8 +11,7 @@
 .users ul{
     margin: 0 auto;
     border:1px solid #d7dee3;
-    background: rgb(246,248,249); /* Old browsers */
-	background: #ffffff; /* Old browsers */
+    background: #ffffff; /* Old browsers */
 	background: -moz-linear-gradient(top,  #ffffff 0%, #efefef 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top,  #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
@@ -38,6 +37,11 @@
 	border-right: 1px solid #CBCACA;
 	float: left;
     padding: 12px;
+    -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 .datos_perfil{
 	float: left;
@@ -144,7 +148,7 @@
 .register p, .login p, #contacto p{
 	margin-bottom: 15px;
 }
-.form label,.register label, .correo, .login label, #contacto label,#login label,.correo{
+.input label,.form label,.register label, .correo, .login label, #contacto label,#login label,.correo{
   	color: #202020;
     float: left;
     font-family: Arial,Helvetica,sans-serif;
@@ -190,20 +194,20 @@
 	background-image: url(/img/registro2.png);
 }
 
-#UserPassword,#UserConfirmPassword,#password{
+#UserOldPassword,#UserNewPassword,#UserPassword,#UserConfirmPassword,#password{
 	background-image: url(/img/registro6.png);
 }
 #UserPhone,#AddressPhone{
 	background-image: url(/img/registro3.png);
 }
-#AddressCountryId,#AddressCityId,#AddressCountry,#AddressState,#AddressCity{
+#UserState,#UserCity,#AddressCountryId,#AddressCityId,#AddressCountry,#AddressState,#AddressCity{
 	background-image: url(/img/registro5.png);
 }
-#AddressAddress,#AddressAddressLine1,#AddressAddressLine2{
+#UserAddress,#AddressAddress,#AddressAddressLine1,#AddressAddressLine2{
 	background-image: url(/img/registro4.png);
 }
 
-.form input,.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.input select,#password,#email{
+.input input,.form input,.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.input select,#password,#email{
 	background-position: 2% 0;
     background-repeat: no-repeat;
     border: 1px solid #C8C8C8;
@@ -215,6 +219,14 @@
     -webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+.input input:focus,.form input:focus,.register input:focus, #UserEmail:focus, .login input:focus, #contacto input:focus, #contacto textarea:focus,.input select:focus,#password:focus,#email:focus{
+	border: 1px solid #FF7800;
 }
 .input select{
 	width: 170px;
@@ -228,7 +240,7 @@
 	max-width: 315px;
 	padding-top: 5px;
 }
-form .submit input,.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit,.login .submit input,#login .submit,.submit.primero{
+.users .submit,form .submit input,.register input[type=submit], #rememberForm input[type=submit], .login input[type=submit],#contacto .formulario_contacto .submit,.login .submit input,#login .submit,.submit.primero{
 	height: 30px;
 	width: 90px;
 	border: 1px solid #d06200;
@@ -349,10 +361,43 @@ div.images .preview  img{
     margin-bottom: 4px;
     padding: 11px 20px;
     width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
 }
 .user_data:hover{
 	background-color: #03AEED;
 }
 .user_data:hover h2,.user_data:hover span{
 	color:#fff;
+}
+.users.form h2{
+	clear: both;
+    color: #FF7800;
+    float: none;
+    margin-bottom: 10px;
+    margin-top: 25px;
+    text-transform: capitalize;
+    width: auto;
+}
+.users td{
+	vertical-align: middle;
+}
+.users td a{
+	color:#FF7800;
+	margin-right: 5px;
+	font-weight: bold;
+}
+.users td a:hover{
+	background: none;
+	color:#FF7800;
+}
+.users.form .address-info{
+	float: left;
+	margin-right: 50px;
+}
+.users h1{
+	margin-top: 15px;
 }

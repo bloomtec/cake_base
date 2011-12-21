@@ -238,7 +238,9 @@ class UsersController extends AppController {
 	function enEspera(){
 		$this -> layout = "personaliza";
 	}
-
+	function recordarPassword(){
+		$this -> layout = "personaliza";
+	}
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}

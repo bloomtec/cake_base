@@ -8,6 +8,7 @@ h1, h2, h3,h4, p, label, input, section, table, th, a,textarea, #content {
 }
 a{
 	text-decoration: none;
+	cursor: pointer;
 }
 /*HEADER */
 
@@ -226,8 +227,9 @@ input.input_buscar{
     width: 208px;
 }
 .producto h1 a{
-	color:black;
-	text-decoration: none;
+	color: black;
+    display: block;
+    height: 25px;
 }
 #producto_destacado img{
 	width: 158px;
@@ -319,11 +321,12 @@ input.input_buscar{
 	width: 100%;
 }
 .producto h2{
-	width: 100%;
-	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin-bottom: 5px;
+	color: #FF7800;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 100%;
 }
 .add-cart-confirm a{
 	color: #FF7800;

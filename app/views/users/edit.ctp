@@ -23,6 +23,11 @@
 				foreach($this->data['Address'] as $address):
 		?>
 		<table class="address-info">
+			<?php if($address['default']): ?>
+			<tr>
+				<td>Dirección de envío primaria</td>
+			</tr>
+			<?php endif; ?>
 			<tr>
 				<td><label>País</label></td>
 				<td><?=$address['country'];?></td>
@@ -48,20 +53,20 @@
 				<td><?=$address['phone'];?></td>
 			</tr>
 			<tr>
-				<td><a href="/addresses/edit/<?=$address['id'];?>">Editar</a></td>
-				<td><a href="/addresses/delete/<?=$address['id'];?>">Eliminar</a></td>
+				<td></td>
+				<td>
+					<a href="/addresses/edit/<?=$address['id'];?>">Editar</a>
+					<a href="/addresses/delete/<?=$address['id'];?>">Eliminar</a>
+				</td>
 			</tr>
-			<?php if($address['default']): ?>
-			<tr>
-				<td>Dirección de envío primaria</td>
-			</tr>
-			<?php endif; ?>
+			
 		</table>
 			<?php
 				endforeach;
 			}
 		?>
 	</div>
+	<div style="clear: both"></div>
 	<div>
 		<h2><?php __('Registrar una nueva dirección'); ?></h2>
 		<?php echo $this -> Form -> create('Address', array('action' => 'add'));?>
