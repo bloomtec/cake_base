@@ -304,6 +304,7 @@ class OrdersController extends AppController {
 
 		// Obtener el carrito
 		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
+		
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
 				// Manejar la direccion
@@ -334,6 +335,7 @@ class OrdersController extends AppController {
 					/**
 					 * Organizar la información en el carrito de compras
 					 */
+					debug($shop_cart);
 					$this -> loadModel('ShopCart');
 					$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
 					$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];

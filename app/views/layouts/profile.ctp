@@ -71,7 +71,7 @@
 						</li>
 	
 						<li>
-							<a href="/shopCarts/view-cart">Ir a mi carrito</a>
+							<a href="/bcart/view">Ir a mi carrito</a>
 						</li>
 						<li class="ultimo">
 							<a href="/users/logout">Salir</a>
