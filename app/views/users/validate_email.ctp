@@ -1,6 +1,6 @@
 <div>
 	<?php echo $this->Session->flash(); ?>
-</div>
+
 <?php
 	e($this->Form->create());
 	e('<fieldset>');
@@ -8,3 +8,5 @@
 	e('</fieldset>');
 	e($this->Form->end(__('Validate Email', true)));
 ?>
+<div style="clear:both;"></div>
+</div>
