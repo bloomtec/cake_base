@@ -24,7 +24,7 @@ if (empty($shop_cart['ShopCartItem'])) {
 	foreach ($shop_cart['ShopCartItem'] as $shoppin_cart_item) {
 		$model_name = $shoppin_cart_item['model_name'];
 		$foreign_key = $shoppin_cart_item['foreign_key'];
-		$item = $this -> requestAction("/bcart/shopCarts/getItem/Product/$foreign_key");
+		$item = $this -> requestAction("/products/getProduct/$foreign_key");
 		$subtotal += $item[$model_name]["price"] * $shoppin_cart_item['quantity'];
 		//	if($shoppin_cart_item['is_gift']) $foundGift=true;
 	}

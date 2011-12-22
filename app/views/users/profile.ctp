@@ -38,6 +38,11 @@
 		
 		<div class="address-info">
 			<div class="user_data">
+				<h2>Nombre</h2>
+				<span><?=$address['name'];?></span>
+				<div style="clear: both"></div>
+			</div>
+			<div class="user_data">
 				<h2>País</h2>
 				<span><?=$address['country'];?></span>
 				<div style="clear: both"></div>

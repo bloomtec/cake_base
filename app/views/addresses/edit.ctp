@@ -5,6 +5,7 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->hidden('user_id', array('value'=>$users[0]));
+		echo $this->Form->input('name');
 		echo $this->Form->input('country');
 		echo $this->Form->input('state');
 		echo $this->Form->input('city');

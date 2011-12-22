@@ -17,7 +17,7 @@ class AddressesController extends AppController {
 		$this->Address->recursive=-1;
 		$user_addresses = $this -> Address -> find('all', array('conditions'=>array('Address.id <>'=>$data['Address']['id'])));
 		
-		if($data['Address']['default']) {
+		if(isset($data['Address']['default']) && $data['Address']['default']) {
 			// Asignar como defecto
 			foreach($user_addresses as $address) {
 				$this->Address->read(null, $address['Address']['id']);

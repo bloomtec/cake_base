@@ -18,9 +18,15 @@ $(function(){
 		divPromocionado.load('/products/featuredProduct/'+divPromocionado.attr('rel'));
 	}
 	
-	
 	//CARRITO
-		
+	/**
+	 * Continuar con la orden desde
+	 * /bcart/orders/getAddressInfo
+	 */
+	$(".envio-form").click(function(e){
+		e.preventDefault();
+		$("#OrderGetAddressInfoForm").submit();
+	});
 	
 	//VALIDACION DE FORMULARIOS
 	$.tools.validator.fn("[data-equals]", "el campo no es igual", function(input) {

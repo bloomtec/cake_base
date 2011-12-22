@@ -4,6 +4,7 @@
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('user_id');?></th>
+		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('country');?></th>
 		<th><?php echo $this->Paginator->sort('state');?></th>
 		<th><?php echo $this->Paginator->sort('city');?></th>
@@ -26,6 +27,7 @@
 		<td>
 			<?php echo $this->Html->link($address['User']['email'], array('controller' => 'users', 'action' => 'view', $address['User']['id'])); ?>
 		</td>
+		<td><?php echo $address['Address']['name']; ?>&nbsp;</td>
 		<td><?php echo $address['Address']['country']; ?>&nbsp;</td>
 		<td><?php echo $address['Address']['state']; ?>&nbsp;</td>
 		<td><?php echo $address['Address']['city']; ?>&nbsp;</td>

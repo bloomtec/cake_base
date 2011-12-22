@@ -29,6 +29,10 @@
 			</tr>
 			<?php endif; ?>
 			<tr>
+				<td><label>Nombre</label></td>
+				<td><?=$address['name'];?></td>
+			</tr>
+			<tr>
 				<td><label>País</label></td>
 				<td><?=$address['country'];?></td>
 			</tr>
@@ -73,6 +77,7 @@
 		<fieldset>
 			<?php
 				echo $this -> Form -> hidden('Address.user_id', array('value' => $this -> Session -> read('Auth.User.id')));
+				echo $this -> Form -> input('Address.name', array('required' => 'required'));
 				echo $this -> Form -> input('Address.country', array('required' => 'required'));
 				echo $this -> Form -> input('Address.state', array('required' => 'required'));
 				echo $this -> Form -> input('Address.city', array('required' => 'required'));

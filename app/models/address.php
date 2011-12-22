@@ -1,7 +1,7 @@
 <?php
 class Address extends AppModel {
 	var $name = 'Address';
-	var $displayField = 'address_line_1';
+	var $displayField = 'name';
 	var $isPicture = false;
 	var $sluggable = false;
 	var $sortable = false;
@@ -12,6 +12,24 @@ class Address extends AppModel {
 			'numeric' => array(
 				'rule' => array('numeric'),
 				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'name' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'addressName' => array(
+				'rule' => array('addressName'),
+				'message' => 'Ese nombre ya existe en las direcciones registradas',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -80,6 +98,14 @@ class Address extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	function addressName() {
+		if($this->find('first', array('conditions'=>array('Address.user_id'=>$this->data['Address']['user_id'], 'Address.name'=>$this->data['Address']['name'])))) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 	
 	function beforeSave(){
 		return true;

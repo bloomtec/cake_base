@@ -247,7 +247,7 @@ class OrdersController extends AppController {
 							$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
 							$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
 							$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
-							$product = $this->requestAction('/products/getProduct/'.$shop_cart_item['ShopCartItem']['foreign_key'].'/'.$shop_cart_item['ShopCartItem']['size_id']);
+							$product = $this->requestAction('/products/getProduct/'.$shop_cart_item['ShopCartItem']['foreign_key']);
 							$this -> Order -> OrderItem -> set('price_item', $product['Product']['price']);
 							$this -> Order -> OrderItem -> set('price_total', ($product['Product']['price']*$shop_cart_item['ShopCartItem']['quantity']));
 							$this -> Order -> OrderItem -> save();
@@ -255,11 +255,7 @@ class OrdersController extends AppController {
 								$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
 								$this -> Order -> OrderItem -> saveField('nombre', $shop_cart_item['ShopCartItem']['nombre']);
 								$this -> Order -> OrderItem -> saveField('apellido', $shop_cart_item['ShopCartItem']['apellido']);
-								$this -> Order -> OrderItem -> saveField('pais', $shop_cart_item['ShopCartItem']['pais']);
-								$this -> Order -> OrderItem -> saveField('estado', $shop_cart_item['ShopCartItem']['estado']);
-								$this -> Order -> OrderItem -> saveField('ciudad', $shop_cart_item['ShopCartItem']['ciudad']);
-								$this -> Order -> OrderItem -> saveField('direccion', $shop_cart_item['ShopCartItem']['direccion']);
-								$this -> Order -> OrderItem -> saveField('telefono', $shop_cart_item['ShopCartItem']['telefono']);
+								$this -> Order -> OrderItem -> saveField('address_id', $shop_cart_item['ShopCartItem']['address_id']);
 							}
 						}
 	
@@ -313,6 +309,7 @@ class OrdersController extends AppController {
 					$this->Address->create();
 					$address = array();
 					$address['Address']['user_id'] = $this->Session->read('Auth.User.id');
+					$address['Address']['name'] = $this->data['Envio']['name'];
 					$address['Address']['country'] = $this->data['Envio']['country'];
 					$address['Address']['state'] = $this->data['Envio']['state'];
 					$address['Address']['city'] = $this->data['Envio']['city'];
@@ -335,8 +332,7 @@ class OrdersController extends AppController {
 					/**
 					 * Organizar la información en el carrito de compras
 					 */
-					debug($shop_cart);
-					$this -> loadModel('ShopCart');
+					$this -> loadModel('Bcart.ShopCart');
 					$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
 					$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];
 					$shop_cart['ShopCart']['email'] = $this -> data['Envio']['email'];

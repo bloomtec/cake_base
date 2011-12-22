@@ -107,4 +107,5 @@ $(function(){
 		var itemId=$(this).parents('.shop-cart-item').attr('rel');
 		bCart.removeAll(itemId);
 	});
+	
 });
