@@ -294,18 +294,21 @@ class ProductsController extends AppController {
 						foreach($recomendados as $recomendado) {
 							$this -> Product -> Recommendation -> delete($recomendado['Recommendation']['id']);
 						}
-						// Añadir las recomendaciones
-						$data = split(",", $data);
-						foreach ($data as $ref) {
-							$recommended_product = $this -> Product -> findByRef($ref);
+					}
+					// Añadir las recomendaciones
+					$data = split(",", $data);
+					foreach ($data as $ref) {
+						$recommended_product = $this -> Product -> findByRef($ref);
+						if($recommended_product){
 							$this -> Product -> Recommendation -> create();
 							$this -> Product -> Recommendation -> set('product_id', $this->data['Product']['id']);
 							$this -> Product -> Recommendation -> set('recommended_product_id', $recommended_product['Product']['id']);
-							$this -> Product -> Recommendation -> save();
-						}
+							$this -> Product -> Recommendation -> save();	
+						}	
 					}
+					
 					$this->Session->setFlash(__('The product has been saved', true));
-					$this->redirect(array('action' => 'index'));
+					//$this->redirect(array('action' => 'index'));
 				} else {
 					$this->Session->setFlash(__('The product could not be saved. Please, try again.', true));
 				}

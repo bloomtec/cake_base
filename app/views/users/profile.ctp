@@ -29,6 +29,7 @@
 	</p>-->
 	<div class="registered-addresses">
 		<?php
+		
 			if(empty($addresses)) {
 				echo '<br />';
 			} else {
@@ -39,40 +40,42 @@
 		<div class="address-info">
 			<div class="user_data">
 				<h2>Nombre</h2>
-				<span><?=$address['name'];?></span>
+				<span><?=$address['Address']['name'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>País</h2>
-				<span><?=$address['country'];?></span>
+				<span><?=$address['Address']['country'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>Departamento</h2>
-				<span><?=$address['state'];?></span>
+				<span><?=$address['Address']['state'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>Ciudad</h2>
-				<span><?=$address['city'];?></span>
+				<span><?=$address['Address']['city'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>Dirección Linea 1</h2>
-				<span><?=$address['address_line_1'];?></span>
+				<span><?=$address['Address']['address_line_1'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>Dirección Linea 2</h2>
-				<span><?=$address['address_line_2'];?></span>
+				<span><?=$address['Address']['address_line_2'];?></span>
 				<div style="clear: both"></div>
 			</div>
 			<div class="user_data">
 				<h2>Teléfono</h2>
-				<span><?=$address['phone'];?></span>
+				<span><?=$address['Address']['phone'];?></span>
 				<div style="clear: both"></div>
 			</div>
 		</div>
+		<br />
+		<br />
 			<?php
 				endforeach;
 			}

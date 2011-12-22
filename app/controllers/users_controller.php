@@ -249,7 +249,8 @@ class UsersController extends AppController {
 		$this->layout="profile";
 		$this->set('user',$this->User->read(null, $this -> Auth -> user('id')));
 		$this->User->Address->recursive=-1;
-		$this->set('addresses', $this->User->Address->findByUserId($this -> Auth -> user('id')));
+		$addresses = $this->User->Address->find('all',array("conditions"=>array($this -> Auth -> user('id'))));
+		$this->set('addresses', $addresses);
 	}
 	function orders(){
 		$this->layout="profile";
@@ -285,20 +286,21 @@ class UsersController extends AppController {
 			$this -> redirect(array('action' => 'profile'));
 		}
 		if (!empty($this -> data)) {
-			$user = $this -> User -> findById($id);
+				
+			$user = $this -> User -> findById($this->data['User']['id']);
 			if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
 				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
 				if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
 					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
-					$this -> redirect($this -> referer());
+					//$this -> redirect($this -> referer());
 				} else {
 					$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
-					$this -> redirect($this -> referer());
+					//$this -> redirect($this -> referer());
 				}
 
 			} else {
 				$this -> Session -> setFlash(__('Su password anterior no es valido', true));
-				$this -> redirect($this -> referer());
+				//$this -> redirect($this -> referer());
 			}
 		}
 	}
