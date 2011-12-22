@@ -5,9 +5,7 @@ class OrdersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow(
-			'confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo', 'seguimiento'
-		);
+		$this -> Auth -> allow('confirmarPagosOnline', 'callBackPagosOnline', 'mailingMethod', 'getAddressInfo', 'seguimiento');
 	}
 
 	/**
@@ -19,66 +17,62 @@ class OrdersController extends AppController {
 	 */
 
 	function confirmarPagosOnline() {
-		$extra1 = $_REQUEST['extra1']; // id del carrito respectivo
-		$llave="132f4e12b03";
-		$usuario_id=$_REQUEST['usuario_id'];
-		$descripcion=$_REQUEST['descripcion'];
-		$ref_venta=$_REQUEST['ref_venta'];
-		$valor=$_REQUEST['valor'];
-		$moneda=$_REQUEST['moneda'];
-		$estado_pol=$_REQUEST['estado_pol'];
-		$codigo_respuesta_pol=$_REQUEST['codigo_respuesta_pol'];
-		$firma_cadena= "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
-		$firmacreada = md5($firma_cadena);//firma que generaron ustedes
-		$firma =$_REQUEST['firma'];//firma que envía nuestro sistema
-		$ref_venta=$_REQUEST['ref_venta'];
-		$fecha_procesamiento=$_REQUEST['fecha_procesamiento'];
-		$ref_pol=$_REQUEST['ref_pol'];
-		$cus=$_REQUEST['cus'];
-		$banco_pse=$_REQUEST['banco_pse'];
-		$this->loadModel('Order');
+		$extra1 = $_REQUEST['extra1'];
+		// id del carrito respectivo
+		$llave = "132f4e12b03";
+		$usuario_id = $_REQUEST['usuario_id'];
+		$descripcion = $_REQUEST['descripcion'];
+		$ref_venta = $_REQUEST['ref_venta'];
+		$valor = $_REQUEST['valor'];
+		$moneda = $_REQUEST['moneda'];
+		$estado_pol = $_REQUEST['estado_pol'];
+		$codigo_respuesta_pol = $_REQUEST['codigo_respuesta_pol'];
+		$firma_cadena = "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
+		$firmacreada = md5($firma_cadena);
+		//firma que generaron ustedes
+		$firma = $_REQUEST['firma'];
+		//firma que envía nuestro sistema
+		$ref_venta = $_REQUEST['ref_venta'];
+		$fecha_procesamiento = $_REQUEST['fecha_procesamiento'];
+		$ref_pol = $_REQUEST['ref_pol'];
+		$cus = $_REQUEST['cus'];
+		$banco_pse = $_REQUEST['banco_pse'];
+		$this -> loadModel('Order');
 		$order = $this -> Order -> findByCode($ref_venta);
 		$this -> Order -> read(null, $order['Order']['id']);
-		if(strtoupper($firma)!=strtoupper($firmacreada)){
+		if (strtoupper($firma) != strtoupper($firmacreada)) {
 			$this -> Order -> saveField('order_state_id', 7);
 			$this -> autoRender = false;
 			exit(0);
 			return;
 		}
-		if($estado_pol == 6 && $codigo_respuesta_pol == 5) {
+		if ($estado_pol == 6 && $codigo_respuesta_pol == 5) {
 			//"Transacción fallida"
 			$this -> Order -> saveField('order_state_id', 4);
-		} else if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
+		} else if ($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
 			//"Transacción rechazada"
 			$this -> Order -> saveField('order_state_id', 5);
-		} else if($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
+		} else if ($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
 			//"Pendiente, Por favor revisar si el débito fue realizado en el Banco"
 			$this -> Order -> saveField('order_state_id', 6);
-		} else if($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
+		} else if ($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
 			//"Transacción aprobada"
 			$this -> Order -> saveField('order_state_id', 2);
-			if(!empty($order['Order']['coupon_id'])) {
+			if (!empty($order['Order']['coupon_id'])) {
 				// Se utilizó un cupon, marcarlo como redimido
-				$this->loadModel('Coupon');
-				$this->Coupon->read(null, $order['Order']['coupon_id']);
-				$this->Coupon->saveField('is_redeemed', 1);
+				$this -> loadModel('Coupon');
+				$this -> Coupon -> read(null, $order['Order']['coupon_id']);
+				$this -> Coupon -> saveField('is_redeemed', 1);
 			}
 			// Eliminar el carrito porque ya se pago
-			$this->loadModel('ShopCart');
-			$this->ShopCart->delete($extra1);
+			$this -> loadModel('ShopCart');
+			$this -> ShopCart -> delete($extra1);
 			// Reducir de inventario la cantidad de items comprados
-			$this->loadModel('Inventory');
-			foreach($order['OrderItem'] as $item) {
-				$inventario = $this->Inventory->find(
-					'first',
-					array(
-						'conditions'=>array(
-							'Inventory.product_id'=>$item['foreign_key']
-						)
-					)
-				);
-				$inventario['Inventory']['quantity']-=$item['quantity'];
-				$this->Inventory->save($inventario);
+			$this -> loadModel('Inventory');
+			foreach ($order['OrderItem'] as $item) {
+				$inventario = $this -> Inventory -> find('first', array('conditions' => array('Inventory.product_id' => $item['foreign_key'])));
+				$inventario['Inventory']['quantity'] -= $item['quantity'];
+				$this -> Inventory -> save($inventario);
 			}
 		} else {
 			//"Otro, revisar con P.O."
@@ -90,45 +84,43 @@ class OrdersController extends AppController {
 	}
 
 	function callBackPagosOnline() {
-		$user_id = $_REQUEST['extra2']; 
+		$user_id = $_REQUEST['extra2'];
 		if ($user_id) {
 			$this -> loadModel('User');
 			$user = $this -> User -> read(null, $user_id);
 			$this -> Auth -> login($user);
 		}
-		$llave="132f4e12b03";/////llave de usuario de pruebas 2
-		$usuario_id=$_REQUEST['usuario_id'];
-		$descripcion=$_REQUEST['descripcion'];
-		$ref_venta=$_REQUEST['ref_venta'];
-		$valor=$_REQUEST['valor'];
-		$moneda=$_REQUEST['moneda'];
-		$estado_pol=$_REQUEST['estado_pol'];
-		$firma_cadena= "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
-		$firmacreada = md5($firma_cadena);//firma que generaron ustedes
-		$firma =$_REQUEST['firma'];//firma que envía nuestro sistema
-		$ref_venta=$_REQUEST['ref_venta'];
-		$fecha_procesamiento=$_REQUEST['fecha_procesamiento'];
-		$ref_pol=$_REQUEST['ref_pol'];
-		$cus=$_REQUEST['cus'];
-		$banco_pse=$_REQUEST['banco_pse'];
-		if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 5) {
+		$llave = "132f4e12b03";
+		/////llave de usuario de pruebas 2
+		$usuario_id = $_REQUEST['usuario_id'];
+		$descripcion = $_REQUEST['descripcion'];
+		$ref_venta = $_REQUEST['ref_venta'];
+		$valor = $_REQUEST['valor'];
+		$moneda = $_REQUEST['moneda'];
+		$estado_pol = $_REQUEST['estado_pol'];
+		$firma_cadena = "$llave~$usuario_id~$ref_venta~$valor~$moneda~$estado_pol";
+		$firmacreada = md5($firma_cadena);
+		//firma que generaron ustedes
+		$firma = $_REQUEST['firma'];
+		//firma que envía nuestro sistema
+		$ref_venta = $_REQUEST['ref_venta'];
+		$fecha_procesamiento = $_REQUEST['fecha_procesamiento'];
+		$ref_pol = $_REQUEST['ref_pol'];
+		$cus = $_REQUEST['cus'];
+		$banco_pse = $_REQUEST['banco_pse'];
+		if ($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 5) {
 			$estadoTx = "Transacci&oacute;n fallida";
-		} else if($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
+		} else if ($_REQUEST['estado_pol'] == 6 && $_REQUEST['codigo_respuesta_pol'] == 4) {
 			$estadoTx = "Transacci&oacute;n rechazada";
-		} else if($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
+		} else if ($_REQUEST['estado_pol'] == 12 && $_REQUEST['codigo_respuesta_pol'] == 9994) {
 			$estadoTx = "Pendiente, Por favor revisar si el d&eacute;bito fue realizado en el Banco";
-		} else if($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
+		} else if ($_REQUEST['estado_pol'] == 4 && $_REQUEST['codigo_respuesta_pol'] == 1) {
 			$estadoTx = "Transacci&oacute;n aprobada";
 		} else {
-			$estadoTx=$_REQUEST['mensaje'];
+			$estadoTx = $_REQUEST['mensaje'];
 		}
-		$this->set(
-			compact(
-				'firma', 'firmacreada', 'fecha_procesamiento', 'estadoTx',
-				'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda', 'descripcion'
-			)
-		);
-		$this->layout="callback";
+		$this -> set(compact('firma', 'firmacreada', 'fecha_procesamiento', 'estadoTx', 'ref_venta', 'ref_pol', 'banco_pse', 'cus', 'valor', 'moneda', 'descripcion'));
+		$this -> layout = "callback";
 	}
 
 	/**
@@ -155,33 +147,26 @@ class OrdersController extends AppController {
 				/**
 				 * Ultima validación de inventario para proceder a pagar
 				 */
-				$this->loadModel('Inventory');
+				$this -> loadModel('Inventory');
 				$inventario_existente = true;
 				for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
-					$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
-					$aInventory = $this->Inventory->find(
-						'first',
-						array(
-							'conditions' => array(
-								'Inventory.product_id'=>$shop_cart_item['ShopCartItem']['foreign_key']
-							)
-						)
-					);
-					if($aInventory['Inventory']['quantity'] < $shop_cart_item['ShopCartItem']['quantity']) {
+					$shop_cart_item = $this -> Order -> User -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+					$aInventory = $this -> Inventory -> find('first', array('conditions' => array('Inventory.product_id' => $shop_cart_item['ShopCartItem']['foreign_key'])));
+					if ($aInventory['Inventory']['quantity'] < $shop_cart_item['ShopCartItem']['quantity']) {
 						$inventario_existente = false;
 						$shop_cart_item['ShopCartItem']['quantity'] = $aInventory['Inventory']['quantity'];
-						$this -> Order -> User-> ShopCart -> ShopCartItem ->save($shop_cart_item);
+						$this -> Order -> User -> ShopCart -> ShopCartItem -> save($shop_cart_item);
 					}
 				}
 				/**
 				 * Fin validación de inventario existente
 				 */
-				
-				if($inventario_existente) {
+
+				if ($inventario_existente) {
 					// El carrito tiene al menos un ítem y ya tiene un total asignado con inventario existente, proceder
 					// Crear una orden
 					$this -> Order -> create();
-	
+
 					// Generar el código de la orden
 					$order_code = $this -> Order -> find('first', array('fields' => array('MAX(Order.code) as max_code')));
 					if ($order_code[0]['max_code']) {
@@ -193,30 +178,30 @@ class OrdersController extends AppController {
 					for ($i = (9 - $longitud); $i > 0; $i--) {
 						$order_code = "0" . $order_code;
 					}
-	
+
 					//Asignar el codigo de orden y su status inicial
 					$this -> Order -> set('code', $order_code);
 					$this -> Order -> set('order_state_id', 1);
-	
+
 					// Description
 					$descripcion = "Pago de compra en www.excelenter.com - Referencia $order_code";
-	
+
 					// Valor
 					$valor = $shop_cart['ShopCart']['total'];
-	
+
 					// Moneda
 					$moneda = "COP";
-	
+
 					// Nombre
 					$nombre = $shop_cart['ShopCart']['nombre'] . " " . $shop_cart['ShopCart']['apellido'];
-	
+
 					// Email
 					$email = $shop_cart['ShopCart']['email'];
-	
+
 					// Firma :: 132f4e12b03 <-- llave
 					// formato firma --> "llaveEncripcion~usuarioId~refVenta~valor~moneda"
 					$firma = md5("132f4e12b03~76075~$order_code~$valor~$moneda");
-	
+
 					/**
 					 * Organizar la información en el carrito de compras
 					 * y asignarla de una vez a la orden
@@ -236,20 +221,20 @@ class OrdersController extends AppController {
 					$this -> Order -> set('subtotal', $shop_cart['ShopCart']['subtotal']);
 					$this -> Order -> set('descuento', $shop_cart['ShopCart']['descuento']);
 					$this -> Order -> set('total', $shop_cart['ShopCart']['total']);
-	
+
 					if ($this -> Order -> save()) {
 						$order_id = $this -> Order -> id;
 						for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
-							$shop_cart_item = $this -> Order -> User-> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+							$shop_cart_item = $this -> Order -> User -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
 							$this -> Order -> OrderItem -> create();
 							$this -> Order -> OrderItem -> set('order_id', $order_id);
 							$this -> Order -> OrderItem -> set('model_name', $shop_cart_item['ShopCartItem']['model_name']);
 							$this -> Order -> OrderItem -> set('foreign_key', $shop_cart_item['ShopCartItem']['foreign_key']);
 							$this -> Order -> OrderItem -> set('is_gift', $shop_cart_item['ShopCartItem']['is_gift']);
 							$this -> Order -> OrderItem -> set('quantity', $shop_cart_item['ShopCartItem']['quantity']);
-							$product = $this->requestAction('/products/getProduct/'.$shop_cart_item['ShopCartItem']['foreign_key']);
+							$product = $this -> requestAction('/products/getProduct/' . $shop_cart_item['ShopCartItem']['foreign_key']);
 							$this -> Order -> OrderItem -> set('price_item', $product['Product']['price']);
-							$this -> Order -> OrderItem -> set('price_total', ($product['Product']['price']*$shop_cart_item['ShopCartItem']['quantity']));
+							$this -> Order -> OrderItem -> set('price_total', ($product['Product']['price'] * $shop_cart_item['ShopCartItem']['quantity']));
 							$this -> Order -> OrderItem -> save();
 							if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
 								$this -> Order -> OrderItem -> read(null, $this -> Order -> OrderItem -> id);
@@ -258,7 +243,7 @@ class OrdersController extends AppController {
 								$this -> Order -> OrderItem -> saveField('address_id', $shop_cart_item['ShopCartItem']['address_id']);
 							}
 						}
-	
+
 						/**
 						 * Asignar los datos requeridos en el formulario!
 						 */
@@ -271,19 +256,19 @@ class OrdersController extends AppController {
 						$this -> set('moneda', $moneda);
 						$this -> set('nombre', $nombre);
 						$this -> set('extra1', $shop_cart['ShopCart']['id']);
-						$this -> set('order', $this->Order->read(null, $order_id));
+						$this -> set('order', $this -> Order -> read(null, $order_id));
 						$user_id = $this -> Session -> read('Auth.User.id');
 						$user = null;
 						if ($user_id)
 							$user = $this -> Order -> User -> read(null, $user_id);
 						$this -> set('user', $user);
-	
+
 					} else {
 						// No se pudo crear la orden, hacer algo?
 					}
 				} else {
 					//Qué hacer si no hay inventario de los items?
-					$this->redirect(array('controller'=>'shop_carts', 'action'=>'viewCart'));
+					$this -> redirect(array('controller' => 'shop_carts', 'action' => 'viewCart'));
 				}
 			} else {
 				// El carrito no tiene ítems, hacer algo?
@@ -300,23 +285,23 @@ class OrdersController extends AppController {
 
 		// Obtener el carrito
 		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
-		
+
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
 				// Manejar la direccion
 				$this -> loadModel('Address');
-				if($this -> data['Envio']['address_id'] == -1) {
-					$this->Address->create();
+				if ($this -> data['Envio']['address_id'] == -1) {
+					$this -> Address -> create();
 					$address = array();
-					$address['Address']['user_id'] = $this->Session->read('Auth.User.id');
-					$address['Address']['name'] = $this->data['Envio']['name'];
-					$address['Address']['country'] = $this->data['Envio']['country'];
-					$address['Address']['state'] = $this->data['Envio']['state'];
-					$address['Address']['city'] = $this->data['Envio']['city'];
-					$address['Address']['address_line_1'] = $this->data['Envio']['address_line_1'];
-					$address['Address']['address_line_2'] = $this->data['Envio']['address_line_2'];
-					$address['Address']['phone'] = $this->data['Envio']['phone'];
-					if($this->Address->save($address)) {
+					$address['Address']['user_id'] = $this -> Session -> read('Auth.User.id');
+					$address['Address']['name'] = $this -> data['Envio']['name'];
+					$address['Address']['country'] = $this -> data['Envio']['country'];
+					$address['Address']['state'] = $this -> data['Envio']['state'];
+					$address['Address']['city'] = $this -> data['Envio']['city'];
+					$address['Address']['address_line_1'] = $this -> data['Envio']['address_line_1'];
+					$address['Address']['address_line_2'] = $this -> data['Envio']['address_line_2'];
+					$address['Address']['phone'] = $this -> data['Envio']['phone'];
+					if ($this -> Address -> save($address)) {
 						$shop_cart['ShopCart']['address_id'] = $this -> Address -> id;
 					}
 				} else {
@@ -371,33 +356,36 @@ class OrdersController extends AppController {
 		$user_id = $this -> Session -> read('Auth.User.id');
 		$user = $this -> Order -> User -> read(null, $user_id);
 		$this -> loadModel('Address');
-		$result = $this -> Address -> find('list', array('order'=>array('Address.default'=>'DESC'), 'fields'=>array('Address.id', 'Address.address_line_1'), 'conditions'=>array('Address.user_id'=>$this -> Session -> read('Auth.User.id'))));
+		$result = $this -> Address -> find('list', array('order' => array('Address.default' => 'DESC'), 'fields' => array('Address.id', 'Address.address_line_1'), 'conditions' => array('Address.user_id' => $this -> Session -> read('Auth.User.id'))));
 		$addresses = array();
-		foreach($result as $key=>$address) {
+		foreach ($result as $key => $address) {
 			$addresses[$key] = $address;
 		}
-		$addresses[-1]='Otro destino...';
+		$addresses[-1] = 'Otro destino...';
 		$this -> set('addresses', $addresses);
 		$this -> set('user', $user);
 		$this -> set('shop_cart', $shop_cart);
 	}
-	function view($id){
-		$this->layout='callback';
-		$this->set('order',$this->Order->findById($id));
+
+	function view($id) {
+		$this -> layout = 'callback';
+		$this -> set('order', $this -> Order -> findById($id));
 	}
-	function seguimiento($code){
-		$this->layout='ajax';
-		$this->set('order',$this->Order->findByCode($code));
+
+	function seguimiento($code) {
+		$this -> layout = 'ajax';
+		$this -> set('order', $this -> Order -> findByCode($code));
 	}
-	function getOrders(){
-		$userId=$this->Auth->user('id');
-		if($userId){
-			return $this->Order->find('all',array('conditions'=>array('user_id'=>$userId)));
-		}else{
+
+	function getOrders() {
+		$userId = $this -> Auth -> user('id');
+		if ($userId) {
+			return $this -> Order -> find('all', array('conditions' => array('user_id' => $userId)));
+		} else {
 			return null;
-		}	
+		}
 	}
-	
+
 	/**
 	 * ----------------------------------------------------------------------------------------------------
 	 * 										METODOS CRUD
@@ -407,13 +395,8 @@ class OrdersController extends AppController {
 	 */
 
 	function admin_index() {
-		$this->paginate=array(
-			'recursive'=>1,
-			'conditions'=>array(
-				'Order.code >'=>'000000100'
-			)
-		);
-		$orders = $this->paginate('Order');
+		$this -> paginate = array('recursive' => 1, 'conditions' => array('Order.code >' => '000000100'));
+		$orders = $this -> paginate('Order');
 		$this -> set('orders', $orders);
 	}
 
