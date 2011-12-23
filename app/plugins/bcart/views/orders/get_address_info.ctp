@@ -64,17 +64,18 @@ if (empty($shop_cart['ShopCartItem'])) {
 	<div style="clear: both"></div>
 </div>
 <div class="form">
-	<?php if($foundGift):
+	<?php
+	if ($foundGift) {
+		e($this -> Form -> input('Gift.name', array('label' => 'Nombre', "required" => "required")));
+		e($this -> Form -> input('Gift.surname', array('label' => 'Apellido', "required" => "required")));
+		e($this -> Form -> input('Gift.country', array('label' => 'País', "required" => "required")));
+		e($this -> Form -> input('Gift.state', array('label' => 'Departamento', "required" => "required")));
+		e($this -> Form -> input('Gift.city', array('label' => 'Ciudad', "required" => "required")));
+		e($this -> Form -> input('Gift.result', array('label' => 'Ciudad', 'id' => 'resultGeoGift')));
+		e($this -> Form -> input('Gift.address', array('label' => 'Dirección', "required" => "required")));
+		e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico', "required" => "required")));
+	}
 	?>
-	<?php e($this -> Form -> input('Gift.name', array('label' => 'Nombre', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.surname', array('label' => 'Apellido', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.country', array('label' => 'País', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.state', array('label' => 'Departamento', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.city', array('label' => 'Ciudad', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.result', array('label' => 'Ciudad', 'id' => 'resultGeoGift')));?>
-	<?php e($this -> Form -> input('Gift.address', array('label' => 'Dirección', "required" => "required")));?>
-	<?php e($this -> Form -> input('Gift.phone', array('label' => 'Número Telefónico', "required" => "required")));?>
-	<?php endif;?>
 
 	<?php //if(!$foundGift):?>
 	<?php //e($this -> Form -> input('Gift.country', array('label' => 'País')));?>
@@ -137,17 +138,41 @@ if (isset($subtotal)) {
 </form>
 <script>
 	/**
+	 * Llenar campos de la direccion al cargar el documento
+	 */
+	$(document).ready(function() {
+		$.ajax({
+			url : '/addresses/getAddresses/' + $('#EnvioAddressId option:selected').val(),
+			cache : false,
+			dataType : 'json',
+			success : function(address) {
+				$('#EnvioCountry').val(address.country);
+				$('#EnvioState').val(address.state);
+				$('#EnvioCity').val(address.city);
+				$('#EnvioAddressLine1').val(address.address_line_1);
+				$('#EnvioAddressLine2').val(address.address_line_2);
+				$('#EnvioPhone').val(address.phone);
+			}
+		});
+	});
+	/**
 	 * Verificar cambio de estado de las direcciones
 	 */
 	$(function() {
-		$('#EnvioAddressId').change(function(){
-			if($('#EnvioAddressId option:selected').text()==='Otro destino...') {
+		$('#EnvioAddressId').change(function() {
+			if($('#EnvioAddressId option:selected').text() === 'Otro destino...') {
 				$('#EnvioCountry').attr('disabled', false);
 				$('#EnvioState').attr('disabled', false);
 				$('#EnvioCity').attr('disabled', false);
 				$('#EnvioAddressLine1').attr('disabled', false);
 				$('#EnvioAddressLine2').attr('disabled', false);
 				$('#EnvioPhone').attr('disabled', false);
+				$('#EnvioCountry').val('');
+				$('#EnvioState').val('');
+				$('#EnvioCity').val('');
+				$('#EnvioAddressLine1').val('');
+				$('#EnvioAddressLine2').val('');
+				$('#EnvioPhone').val('');
 			} else {
 				$('#EnvioCountry').attr('disabled', true);
 				$('#EnvioState').attr('disabled', true);
@@ -155,6 +180,19 @@ if (isset($subtotal)) {
 				$('#EnvioAddressLine1').attr('disabled', true);
 				$('#EnvioAddressLine2').attr('disabled', true);
 				$('#EnvioPhone').attr('disabled', true);
+				$.ajax({
+					url : '/addresses/getAddresses/' + $('#EnvioAddressId option:selected').val(),
+					cache : false,
+					dataType : 'json',
+					success : function(address) {
+						$('#EnvioCountry').val(address.country);
+						$('#EnvioState').val(address.state);
+						$('#EnvioCity').val(address.city);
+						$('#EnvioAddressLine1').val(address.address_line_1);
+						$('#EnvioAddressLine2').val(address.address_line_2);
+						$('#EnvioPhone').val(address.phone);
+					}
+				});
 			}
 		});
 	});

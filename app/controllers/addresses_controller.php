@@ -5,12 +5,21 @@ class AddressesController extends AppController {
 	
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
+		$this->Auth->allow('getAddresses');
 	}
 	
-	function index() {
-		$this->Address->recursive = 0;
-		$this->set('addresses', $this->paginate());
+	function getAddresses($address_id = null) {
+		$this->autoRender=false;
+		$user_id = $this->Session->read('Auth.User.id');
+		if($user_id && $address_id) {
+			$this->Address->recursive=-1;
+			$address = $this->Address->find('first', array('conditions'=>array('Address.id'=>$address_id, 'Address.user_id'=>$user_id)));
+			$address = $address['Address'];
+			echo json_encode($address);
+		} else {
+			echo 'null';
+		}
+		exit(0);
 	}
 	
 	private function verifyDefaultAddress($data = null) {
@@ -37,6 +46,11 @@ class AddressesController extends AppController {
 				$this->Address->save($data);
 			}
 		}
+	}
+	
+	function index() {
+		$this->Address->recursive = 0;
+		$this->set('addresses', $this->paginate());
 	}
 	
 	function add() {
