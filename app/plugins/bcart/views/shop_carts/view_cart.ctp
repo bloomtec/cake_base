@@ -52,7 +52,7 @@
 				</td>
 
 				<td class="price"> <!-- celda con el precio -->
-					<h1>$ <?php echo number_format($item["$model_name"]["price"], 0, ' ', '.'); ?></h1>
+					<h1>$ <?php echo number_format($item[$model_name]["price"], 0, ' ', '.'); ?></h1>
 				</td>
 				<td class="quantity">
 					<?php 
@@ -71,6 +71,10 @@
 					 ?>
 				</td>
 				<td class="price">
+					<?php 
+					//debug($shoppin_cart_item);
+					//debug($item[$model_name]["price"]);
+					?>
 					<h1 >$<?php echo number_format($shoppin_cart_item['quantity']* $item["$model_name"]["price"], 0, ' ', '.');?></h1>
 				</td>
 				<td>
