@@ -141,19 +141,40 @@ if (isset($subtotal)) {
 	 * Llenar campos de la direccion al cargar el documento
 	 */
 	$(document).ready(function() {
-		$.ajax({
-			url : '/addresses/getAddresses/' + $('#EnvioAddressId option:selected').val(),
-			cache : false,
-			dataType : 'json',
-			success : function(address) {
-				$('#EnvioCountry').val(address.country);
-				$('#EnvioState').val(address.state);
-				$('#EnvioCity').val(address.city);
-				$('#EnvioAddressLine1').val(address.address_line_1);
-				$('#EnvioAddressLine2').val(address.address_line_2);
-				$('#EnvioPhone').val(address.phone);
-			}
-		});
+		if($('#EnvioAddressId option:selected').text() === 'Otro destino...') {
+			$('#EnvioCountry').attr('disabled', false);
+			$('#EnvioState').attr('disabled', false);
+			$('#EnvioCity').attr('disabled', false);
+			$('#EnvioAddressLine1').attr('disabled', false);
+			$('#EnvioAddressLine2').attr('disabled', false);
+			$('#EnvioPhone').attr('disabled', false);
+			$('#EnvioCountry').val('');
+			$('#EnvioState').val('');
+			$('#EnvioCity').val('');
+			$('#EnvioAddressLine1').val('');
+			$('#EnvioAddressLine2').val('');
+			$('#EnvioPhone').val('');
+		} else {
+			$('#EnvioCountry').attr('disabled', true);
+			$('#EnvioState').attr('disabled', true);
+			$('#EnvioCity').attr('disabled', true);
+			$('#EnvioAddressLine1').attr('disabled', true);
+			$('#EnvioAddressLine2').attr('disabled', true);
+			$('#EnvioPhone').attr('disabled', true);
+			$.ajax({
+				url : '/addresses/getAddresses/' + $('#EnvioAddressId option:selected').val(),
+				cache : false,
+				dataType : 'json',
+				success : function(address) {
+					$('#EnvioCountry').val(address.country);
+					$('#EnvioState').val(address.state);
+					$('#EnvioCity').val(address.city);
+					$('#EnvioAddressLine1').val(address.address_line_1);
+					$('#EnvioAddressLine2').val(address.address_line_2);
+					$('#EnvioPhone').val(address.phone);
+				}
+			});
+		}
 	});
 	/**
 	 * Verificar cambio de estado de las direcciones

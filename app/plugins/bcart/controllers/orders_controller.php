@@ -288,9 +288,10 @@ class OrdersController extends AppController {
 
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
+				$valid_address = false;
 				// Manejar la direccion
-				$this -> loadModel('Address');
 				if ($this -> data['Envio']['address_id'] == -1) {
+					$this -> loadModel('Address');
 					$this -> Address -> create();
 					$address = array();
 					$address['Address']['user_id'] = $this -> Session -> read('Auth.User.id');
@@ -303,51 +304,63 @@ class OrdersController extends AppController {
 					$address['Address']['phone'] = $this -> data['Envio']['phone'];
 					if ($this -> Address -> save($address)) {
 						$shop_cart['ShopCart']['address_id'] = $this -> Address -> id;
+						$valid_address = true;
 					}
 				} else {
 					$shop_cart['ShopCart']['address_id'] = $this -> data['Envio']['address_id'];
+					$valid_address = true;
 				}
 				/**
-				 * El carrito existe, primero revisar que hayan ítems en el carrito!
+				 * Si hay direccion asignada continuar
 				 */
-				// Revisar si hay ítems en el carrito
-				if (count($shop_cart['ShopCartItem']) >= 1) {
-					// El carrito tiene al menos un ítem, proceder
-
+				if($valid_address) {
 					/**
-					 * Organizar la información en el carrito de compras
+					 * El carrito existe, primero revisar que hayan ítems en el carrito!
 					 */
-					$this -> loadModel('Bcart.ShopCart');
-					$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
-					$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];
-					$shop_cart['ShopCart']['email'] = $this -> data['Envio']['email'];
-					$shop_cart['ShopCart']['subtotal'] = $this -> data['Order']['subtotal'];
-					$shop_cart['ShopCart']['descuento'] = $this -> data['Order']['subtotal'] - $this -> data['Order']['total'];
-					$shop_cart['ShopCart']['total'] = $this -> data['Order']['total'];
-
-					for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
-						$shop_cart_item = $this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
-						if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
-							$this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
-							$this -> ShopCart -> ShopCartItem -> saveField('nombre', $this -> data['Gift']['name']);
-							$this -> ShopCart -> ShopCartItem -> saveField('apellido', $this -> data['Gift']['surname']);
-							$this -> ShopCart -> ShopCartItem -> saveField('pais', $this -> data['Gift']['country']);
-							$this -> ShopCart -> ShopCartItem -> saveField('estado', $this -> data['Gift']['state']);
-							$this -> ShopCart -> ShopCartItem -> saveField('ciudad', $this -> data['Gift']['city']);
-							$this -> ShopCart -> ShopCartItem -> saveField('direccion', $this -> data['Gift']['address']);
-							$this -> ShopCart -> ShopCartItem -> saveField('telefono', $this -> data['Gift']['phone']);
+					// Revisar si hay ítems en el carrito
+					if (count($shop_cart['ShopCartItem']) >= 1) {
+						// El carrito tiene al menos un ítem, proceder
+	
+						/**
+						 * Organizar la información en el carrito de compras
+						 */
+						$this -> loadModel('Bcart.ShopCart');
+						$shop_cart['ShopCart']['nombre'] = $this -> data['Envio']['name'];
+						$shop_cart['ShopCart']['apellido'] = $this -> data['Envio']['surname'];
+						$shop_cart['ShopCart']['email'] = $this -> data['Envio']['email'];
+						$shop_cart['ShopCart']['subtotal'] = $this -> data['Order']['subtotal'];
+						$shop_cart['ShopCart']['descuento'] = $this -> data['Order']['subtotal'] - $this -> data['Order']['total'];
+						$shop_cart['ShopCart']['total'] = $this -> data['Order']['total'];
+	
+						for ($i = 0; $i < count($shop_cart['ShopCartItem']); $i++) {
+							$shop_cart_item = $this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+							if ($shop_cart['ShopCartItem'][$i]['is_gift']) {
+								$this -> ShopCart -> ShopCartItem -> read(null, $shop_cart['ShopCartItem'][$i]['id']);
+								$this -> ShopCart -> ShopCartItem -> saveField('nombre', $this -> data['Gift']['name']);
+								$this -> ShopCart -> ShopCartItem -> saveField('apellido', $this -> data['Gift']['surname']);
+								$this -> ShopCart -> ShopCartItem -> saveField('pais', $this -> data['Gift']['country']);
+								$this -> ShopCart -> ShopCartItem -> saveField('estado', $this -> data['Gift']['state']);
+								$this -> ShopCart -> ShopCartItem -> saveField('ciudad', $this -> data['Gift']['city']);
+								$this -> ShopCart -> ShopCartItem -> saveField('direccion', $this -> data['Gift']['address']);
+								$this -> ShopCart -> ShopCartItem -> saveField('telefono', $this -> data['Gift']['phone']);
+							}
 						}
-					}
-
-					if ($this -> ShopCart -> save($shop_cart)) {
-						// Redireccionar a la información final de envío
-						// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
-						$this -> redirect(array('action' => 'mailingMethod'));
+	
+						if ($this -> ShopCart -> save($shop_cart)) {
+							// Redireccionar a la información final de envío
+							// Parametros :: referencia de venta, descripción, valor, firma, email, moneda
+							$this -> redirect(array('action' => 'mailingMethod'));
+						}
+					} else {
+						/**
+						 * No hay ítems en el carrito, por ende se hace nada.
+						 */
 					}
 				} else {
 					/**
-					 * No hay ítems en el carrito, por ende se hace nada.
+					 * No hay dirección valida asignada
 					 */
+					$this -> Session -> setFlash(__('No hay dirección válida de envío.', true));
 				}
 			} else {
 				// El usuario no tiene carrito asignado
