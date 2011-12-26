@@ -99,9 +99,20 @@ $(function(){
 						</div>\
 						");	
 					}else{
-						//$commentList.html();	
+						$commentList.html("\
+						<div class='comentario_usuario comment ajax'>\
+							<div class='usuario'>\
+						 		<h1>Tu Comentario</h1>\
+							</div>\
+							<div class='comentario'>\
+								<p>"+$('#CommentComment').val()+"</p>\
+							</div>\
+							<div style='clear:both;'></div>\
+						</div>\
+						");	
 					}
 					$("#CommentForm").append("<div class='message success'> su comentario ha sido añadido </dov>");	
+					$('#CommentComment').val("")
 					setTimeout(function(){
 						$("#CommentForm div.message").hide().remove();
 						$(".comment.ajax").removeClass("ajax");
