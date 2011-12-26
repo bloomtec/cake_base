@@ -285,6 +285,11 @@ class OrdersController extends AppController {
 
 		// Obtener el carrito
 		$shop_cart = $this -> requestAction('/bcart/shop_carts/getCart');
+		
+		if (count($shop_cart['ShopCartItem']) == 0) {
+			$this -> Session -> setFlash(__('No tienes ítems en el carrito para comprar', true));
+			$this -> redirect('/bcart/view');
+		}
 
 		if (!empty($this -> data)) {
 			if ($shop_cart) {
@@ -353,8 +358,10 @@ class OrdersController extends AppController {
 						}
 					} else {
 						/**
-						 * No hay ítems en el carrito, por ende se hace nada.
+						 * No hay ítems en el carrito, redireccionar.
 						 */
+						$this -> Session -> setFlash(__('No tienes ítems en el carrito para comprar', true));
+						$this -> redirect('/bcart/view');
 					}
 				} else {
 					/**

@@ -57,6 +57,7 @@
         	<div id="content" class="border_radius">
         		
         	<?php echo $content_for_layout; ?>
+        	<?php echo $this->Session->flash(); ?>
         	</div>
     		
     	</div>
