@@ -17,7 +17,7 @@
 		<a href="/" class="logo_header"></a>
 		<p>
 			Dile a tu amigos que hay pa´comer  y acumula puntos.
-			Mira la opción <a href="#">PREMIOS</a>  y decide que te quieres ganar!
+			Mira la opción <a href="/prizes/index">PREMIOS</a>  y decide que te quieres ganar!
 			<br /><a href="#">¡INVITAR A MIS AMIGOS!</a>
 		</p>
 		<div class="sesion">
