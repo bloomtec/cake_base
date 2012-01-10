@@ -1,42 +1,13 @@
-<div class="prizes view">
-<h2><?php  __('Prize');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['name']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['description']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $this->Html->image('uploads/100x100/'.$prize['Prize']['image']); ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Score'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['score']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['created']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Updated'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $prize['Prize']['updated']; ?>
-			&nbsp;
-		</dd>
-	</dl>
+<div class="deals">
+	<img src="/img/uploads/<?php echo $prize ['Prize']['image'] ?>" />
+	<h1><?php echo $prize ['Prize']['name'] ?></h1>
+	<div class="info_producto">
+		<p>
+			<?php echo $prize ['Prize']['description']?>
+		</p>
+		<h3>Para redimir este premio necesitas</h2>
+		<h4><?php echo $prize ['Prize']['score'] ?> puntos</h3>
+		<a class="comprar" href="#"></a>
+	</div>
 </div>
-
-
+<h1 class="premios">Premios</h1>
