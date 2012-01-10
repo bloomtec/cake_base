@@ -38,7 +38,6 @@ $(function(){
 		var form=$(this);
 		BJS.JSONP(form.attr("action"),form.serialize(), function(user) {
 			if(user.success === true){
-				console.log(user);
 				if(user.User.active && user.User.email_verified){
 					document.location.href="/users/profile";
 				}else{
