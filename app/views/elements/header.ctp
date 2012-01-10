@@ -29,7 +29,7 @@
 				</span>
 				<div style='clear:both;'></div>
 				<input type="submit" class="btn_login" value="Ingresar" />
-				<a href="/users/register" class="btn_login"><?php __('Registrer') ?></a>
+				<a href="/users/register" class="btn_login"><?php __('Register') ?></a>
 				<?php echo $this -> Form ->end();?>
 			</div>
 		</div>
