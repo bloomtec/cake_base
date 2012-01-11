@@ -270,6 +270,9 @@ body{
 	margin-left: 180px;
 	margin-top: 35px;
 }
+.comprar.redimir{
+	background-image: url(/img/redimir.png);
+}
 .descripcion_producto{
 	width: 640px;
 	margin-left: 12px;
