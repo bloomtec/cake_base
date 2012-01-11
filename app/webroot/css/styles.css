@@ -498,6 +498,25 @@ body{
     padding-top: 23px;
     width: 100%;
 }
+#content h1.premios.otros{
+	float: left;
+	width: auto;
+}
+#content .volver_premios{
+	background-image: url("/img/volver_regalos.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: #181818;
+    display: block;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 37px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 32px;
+    padding-top: 10px;
+}
 #content p.premios{
 	font-weight: normal;
     margin-bottom: 20px;

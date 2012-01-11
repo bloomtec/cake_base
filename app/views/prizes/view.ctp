@@ -11,7 +11,9 @@
 		<a class="comprar redimir" href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>
 
 	</div>
-	<h1 class="premios">Otros Premios</h1>
+	<h1 class="premios otros">Otros Premios</h1>
+	<a href="/prizes/" class="volver_premios">Volver a los premios</a>
+	<div style="clear: both"></div>
 	<!-- "previous page" action -->
 	<a class="prev browse left"></a>
 	
