@@ -7,7 +7,9 @@
 		</p>
 		<h3>Para redimir este premio necesitas</h2>
 		<h4><?php echo $prize ['Prize']['score'] ?> puntos</h3>
-		<a class="comprar redimir" href="#"></a>
+
+		<a class="comprar redimir" href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>
+
 	</div>
 	<h1 class="premios">Otros Premios</h1>
 	<!-- "previous page" action -->
