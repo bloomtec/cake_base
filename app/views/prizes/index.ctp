@@ -14,7 +14,7 @@
 			</p>
 		</div>
 		<div class="premios_puntos">
-			<h1>Para <a href="/prizes/view/<?php echo $premio ['Prize']['id']?>">REDIMIR</a> este premio, necesitas</h1>
+			<h1>Para <a href="/prizes/redeem/<?php echo $premio ['Prize']['id']?>">REDIMIR</a> este premio, necesitas</h1>
 			<h2><?php echo $premio ['Prize']['score'] ?> puntos</h2>
 		</div>
 		<div style="clear: both"></div>

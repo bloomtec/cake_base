@@ -27,7 +27,9 @@ class PrizesController extends AppController {
 		$this->Prize->recursive = 0;
 		$this->set('prizes', $this->paginate());
 	}
-
+	function redeem($id = null){
+		
+	}
 	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid prize', true));

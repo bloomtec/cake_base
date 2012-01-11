@@ -10,6 +10,14 @@
 			<li>
 				<?php echo $html->link(__('PAGES',true),array('controller'=>'pages', 'action'=>'index'));?>
 			</li>
+			<?php if($session -> read('Auth.User.role_id') == 1): ?>
+			<li>
+				<?php echo $html->link(__('PRIZES',true),array('controller'=>'prizes', 'action'=>'index'));?>
+			</li>
+			<li>
+				<?php echo $html->link(__('ADD PRIZE',true),array('controller'=>'prizes', 'action'=>'add'));?>
+			</li>
+			<?php endif;?>
 		</ul>
 	</li>
 	
