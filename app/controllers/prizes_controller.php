@@ -19,6 +19,7 @@ class PrizesController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('prize', $this->Prize->read(null, $id));	
+		$this->set('prizes', $this->paginate());
 	}
 	
 	

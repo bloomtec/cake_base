@@ -187,23 +187,27 @@ body{
 	margin-top: 20px;
 }
 .deals img{
-	width: 450px;
-	height: 340px;
+	min-width: 450px;
+	max-width: 450px;
+	min-height: 340px;
+	max-height: 340px;
 	float: left;
 }
 #content .deals h1{
 	color: #231F20;
     float: left;
-    font-size: 17px;
-    height: 36px;
+    font-size: 20px;
+    height: 42px;
+    margin-bottom: 8px;
     margin-left: 20px;
-    margin-right: 15px;
-    width: 508px;
     margin-top: 22px;
+    overflow: hidden;
+    padding-right: 15px;
+    width: 491px;
 }
 .info_producto{
 	width: 526px;
-	height: 282px;
+	height: 268px;
 	background-color: #dedede;
 	float: left;
 	background-image: url(/img/trama_descripcion.png);
@@ -489,6 +493,7 @@ body{
     padding-bottom: 15px;
     padding-left: 51px;
     padding-top: 23px;
+    width: 100%;
 }
 #content p.premios{
 	font-weight: normal;
@@ -501,6 +506,12 @@ body{
 .producto_premio{
 	margin-bottom: 10px;
     padding: 0 15px;
+}
+.producto_premio img{
+	min-width: 218px;
+	max-width: 218px;
+	min-height: 162px;
+	max-height: 162px; 
 }
 .producto_premio a{
 	float: left;
@@ -559,4 +570,112 @@ body{
 	text-align: center;
 	color: #fff;
 	font-size: 22px;
+}
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 915px;
+	height:260px;
+	float: left;
+}
+
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accommodate scrollable items.
+	it's enough that you set width and height for the root element and
+	not for this element.
+*/
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+}
+
+/*
+	a single item. must be floated in horizontal scrolling.
+	typically, this element is the one that *you* will style
+	the most.
+*/
+.items div {
+	float:left;
+}
+.next{
+	display: block;
+	background-color: #1e1e1e;
+	width: 29px;
+	height: 260px;
+	float: right;
+	background-image: url(/img/next.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 15px;
+}
+.next.disabled{
+	background-image: url(/img/next_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.prev{
+	display: block;
+	background-color: #1e1e1e;
+	width: 29px;
+	height: 260px;
+	float: left;
+	background-image: url(/img/prev.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 12px;
+}
+.prev.disabled{
+	background-image: url(/img/prev_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.otros_premios{
+	background-color: #dedede;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	height: 260px;
+	margin-right: 14px;
+	width: 218px;
+}
+.otros_premios img{
+	min-width: 218px;
+	min-height: 162px;
+	max-width: 218px;
+	max-height: 162px;
+	float: none;
+}
+#content .otros_premios a.descripcion_premios{
+	display: block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 23px;
+    margin: 8px 0 0;
+    overflow: hidden;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+    color: #181818;
+}
+#content .otros_premios h2{
+	clear: both;
+    color: #ED1C22;
+    font-size: 16px;
+    height: 20px;
+    padding-top: 15px;
+    text-align: center;
 }
