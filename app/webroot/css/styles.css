@@ -1208,3 +1208,24 @@ span.linea_footer {
 	font-weight: normal;
     margin-bottom: 2px;
 }
+.reset-password a{
+	color: #FF7800;
+	font-weight: bold;
+	text-transform: uppercase;	
+}
+.message{
+    color: #FFFFFF;
+    height: 20px;
+    margin-top: 8px;
+    padding-top: 10px;
+    text-align: center;
+    background: #ff7800; /* Old browsers */
+	background: -moz-linear-gradient(top, #ff7800 1%, #d96700 99%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#ff7800), color-stop(99%,#d96700)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ff7800 1%,#d96700 99%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ff7800 1%,#d96700 99%); /* IE10+ */
+	background: linear-gradient(top, #ff7800 1%,#d96700 99%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7800', endColorstr='#d96700',GradientType=0 ); /* IE6-9 */
+	font-weight: bold;
+}
