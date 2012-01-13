@@ -110,9 +110,95 @@ body{
 	float:left;
 }
 .slide{
-	height: 330px;
-	margin-top: 12px;
+	height: 335px;
+    margin: 12px auto 20px auto; 
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 1000px;
+   	
 }
+
+.slide img{
+	min-width: 1000px;
+	min-height: 310px;
+	max-width: 1000px;
+	max-height: 310px;
+}	
+/** slide**/
+	
+.slide .images {
+    cursor: pointer;
+    float: none;
+    width: auto;
+    height: 310px;
+}
+
+.slide .images div{
+	overflow: hidden;
+	width: auto;
+	height: 310px;
+	margin: 0 auto;
+	position: absolute;
+
+}
+.images h3 {
+    color: #445566;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 20px;
+}
+.slidetabs {
+    clear: both;
+    padding-left: 48%;
+    margin-top: 12px;
+}
+
+.slidetabs a {
+    background: url("/img/slide_inactivo.jpg") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 10px;
+    margin: 3px;
+    width: 10px;
+}
+.slidetabs a.current {
+    background: url("/img/slide_activo.jpg") no-repeat scroll 0 0 transparent;
+}
+.forward, .backward {
+    background: url("/tools/img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 30px;
+    margin-top: 140px;
+    text-indent: -9999em;
+    width: 30px;
+}
+.forward {
+    background-position: 0 -30px;
+    clear: right;
+}
+.forward:hover {
+    background-position: -30px -30px;
+}
+.forward:active {
+    background-position: -60px -30px;
+}
+.backward:hover {
+    background-position: -30px 0;
+}
+.backward:active {
+    background-position: -60px 0;
+}
+.disabled {
+    visibility: hidden !important;
+}
+
+	
+/** end slide **/	
 .lista_producto{
 	width: 240px;
 	float: left;
@@ -144,7 +230,7 @@ body{
 	color: #231F20;
     display: block;
     font-size: 12px;
-    height: 26px;
+    height:35px;
     overflow: hidden;
 }
 .precio{
@@ -347,7 +433,7 @@ body{
     margin-left: 27px;
     padding-top: 12px;
     text-align: left;
-    width: 990px;
+    width: 965px;
     color: #323232;
     clear: both;
 }
