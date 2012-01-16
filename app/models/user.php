@@ -143,11 +143,34 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function addPoints($points = null) {
-		
+	function addScore($id,$reason) {
+		App::import('model','Config');
+		$config = $this -> Config -> read(null,1);
+		$user = $this -> read(null,$id);
+		$return = false;
+		switch ($reason) {
+			case 'score_by_registering':
+			case 'score_for_buying':
+				$this -> recursive = -1;
+				$user['User']['score'] += $config['Config'][$reason];
+				$return = $this -> save($user);
+				break;
+			case 'score_by_invitations':
+				if($user['User']['score_for_buying'] <= $config['Config']['max_score_by_invitations']){
+					$user['User']['score'] += $config['Config'][$reason];
+					$return = $this -> save($user);			
+				}else{
+					$return = false;	
+				}
+				break;
+			default:
+				
+				break;
+		}
+		return $return;
 	}
 	
-	function redeemPoints($deal_id = null) {
+	function redeemScore($deal_id = null) {
 		
 	}
 	

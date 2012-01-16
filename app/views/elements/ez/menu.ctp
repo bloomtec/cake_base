@@ -29,6 +29,7 @@
 		<a href='#'> <?php __('SETTINGS') ?></a>
 		<ul>
 			<?php if($session -> read('Auth.User.role_id') == 1): ?>
+			<li><?php echo $html->link(__('CONFIG',true),array('controller'=>'config', 'action'=>'edit', 1));?></li>
 			<li><?php echo $html->link(__('COUNTRIES',true),array('controller'=>'countries', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD COUNTRY',true),array('controller'=>'countries','action' => 'add'));?></li>
 			<li><?php echo $html->link(__('CITIES',true),array('controller'=>'cities', 'action'=>'index'));?></li>
