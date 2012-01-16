@@ -18,8 +18,8 @@ class DealsController extends AppController {
 	
 	private function getALargeImage() {
 		$this->recursive=-1;
-		$deal = $this->Deal->find('first', array('order'=>'rand()', 'conditions'=>array('Deal.image_large <>'=>null)));
-		return $deal['Deal']['image_large']; 
+		$deal = $this->Deal->find('all', array('order'=>'rand()', 'conditions'=>array('Deal.image_large <>'=>null,'Deal.image_large <>'=>'')));
+		return $deal; 
 	}
 
 	function index() {
@@ -46,7 +46,7 @@ class DealsController extends AppController {
 
 		$this -> set('deals', $this -> paginate());
 
-		$this->set('large_image', $this->getALargeImage());
+		$this->set('large_images', $this->getALargeImage());
 		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 		$cuisines = $this -> requestAction('/cuisines/getList');
 		$prices = array('ASC' => __('lowest to highest', true), 'DESC' => __('highest to lowest', true));
