@@ -7,6 +7,7 @@
 		</a>
 	</h1>
 	<h2 class="precio"> HOY: $<?php echo $deal['Deal']['price']; ?> </h2><!-- price -->
+	<h4>Promocion válida solo por internet</h4>
 	<label>Comprar con:</label>
 	<select>
 		<option>Tarjeta de crédito</option>

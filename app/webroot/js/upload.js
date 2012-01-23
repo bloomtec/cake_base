@@ -37,9 +37,9 @@ $(document).ready(function() {
 				'cancelImg' : '/img/cancel.png',
 				'onComplete' : function(a, b, c, d) {
 					var oldImage=$("#single-field-2").val();
-					$.post("/images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
+					/*$.post("/images/deleteImage", {name:oldImage}, function(data){//Elimina la imagen antigua
 						
-					});							
+					});	*/						
 					$(".preview-2").html('<img  src="' + d + '" />');
 					var file = d.split("/");
 					var nombre = file[(file.length - 1)];
@@ -91,7 +91,6 @@ $(document).ready(function() {
 				'onAllComplete' : function(event, data) {
 					$('#status-message').text(data.filesUploaded+ ' files uploaded, '+ data.errors+ ' errors.');
 					$( "#sortable" ).sortable('refresh');
-					console.log();
 				}
 			});
 

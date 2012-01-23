@@ -4,6 +4,7 @@ class ImagesController extends AppController {
 	var $name = 'Images';
 	var $components = array('Attachment');
 	var $uses=array();
+	
 	function resizeImage(){
 		
 		$this->autoRender = false;

@@ -150,7 +150,7 @@
     font-weight: bold;
     padding-top: 5px;
 }
-.register input, #UserEmail, .login input, #contacto input, #contacto textarea,.register select{
+.register input, .login input, .register select{
 	margin-bottom: 5px;
 	font-family: Arial,Helvetica,sans-serif;
 	padding-left: 3px;
@@ -174,90 +174,89 @@
 	font-size: 12px;
 }
 .btn_wrraper{
-	width: 421px;
+	width: 432px;
 	height: auto;
 }
-.submit input,.contacto .submit{
-	background-color: transparent;
-    background-image: url("/img/btn_login.png");
-    border: medium none;
-    float: right;
-    font-size: 12px;
-    font-weight: bold;
-    height: 25px;
-    width: 79px;
-    color: #fff;
-    margin-top: 4px;
-    cursor: pointer;
-}
 
-.login .submit.primero{
-	background-color: transparent;
-    background-image: url("/img/btn_login.png");
-    border: medium none;
-    float: right;
-    font-size: 12px;
-    font-weight: bold;
-    height: 25px;
-    margin-top: 4px;
-    width: 79px;
-    background-repeat: no-repeat;
-    padding-left: 6px;
-    padding-top: 6px;
-}
 .tooltip_login{
 	background-color: #323232;
     border-radius: 5px 5px 5px 5px;
     height: 130px;
     position: absolute;
-    right: 310px;
-    top: 120px;
-    width: 280px;
+    right: 136px;
+    top: 119px;
+    width: 299px;
     border: 1px solid #868686;
-    -moz-box-shadow: 2px 2px 4px #6A6A6A;
-	-webkit-box-shadow: 2px 2px 4px #6A6A6A;
-	box-shadow: 2px 2px 4px #6A6A6A;
 	display: none;
+	padding-bottom: 13px;
+}
+.tooltip_login form{
+	width: 95%;
+	margin: 0 auto;
 }
 .tooltip_login label{
 	color: #FFFFFF;
     float: left;
     font-size: 11px;
     font-weight: bold;
-    margin: 20px 8px 0 10px;
+    margin: 27px 8px 0 10px;
     text-align: right;
+    text-transform: uppercase;
     width: 68px;
 }
 .tooltip_login .input_text{
-	float: left;
-	width: 180px;
-	margin-top: 15px;
-	margin-bottom: 0;
-	color:#323232;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-weight: bold;
-	height: 18px;
+	color: #323232;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    height: 24px;
+    margin-bottom: 0;
+    margin-top: 15px;
+    width: 188px;
+    background-color: #D1D1D1;
+    border: 1px solid #BCBCBC;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+    -webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+.tooltip_login .input_text:focus{
+	background-color: #fff;
 }
 .tooltip_login .btn_login{
-	background-image: url(/img/btn_login.png);
-	width: 79px;
-	height: 25px;
-	background-color: transparent;
-	border:none;
 	font-size: 12px;
+    height: 30px;
+    text-transform: uppercase;
+    width: 94px;
+    background: #e76012;
+	background: -moz-linear-gradient(top,  #e76012 0%, #c64f0f 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e76012), color-stop(100%,#c64f0f));
+	background: -webkit-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -o-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -ms-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76012', endColorstr='#c64f0f',GradientType=0 );
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #E57D44;
 	font-weight: bold;
-	float: right;
-	margin-top: 7px;
+	float:right;
 	cursor: pointer;
 }
 .tooltip_login input.btn_login{
 	margin-right: 8px;
 }
 .tooltip_login a.btn_login{
-	background-repeat: no-repeat;
-    padding-left: 6px;
-    padding-top: 6px; 
+	height: 13px;
+    margin-right: 5px;
+    padding: 8px 9px;
+    width: 70px;
 }
 .correo{
 	width: auto;
@@ -309,9 +308,164 @@ div.images .preview  img{
 }
 .message{
 	color: red;
+    float: right;
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 10px;
-    margin-left: 36px;
-    margin-top: 11px;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    margin-right: 13px;
+    margin-top: 6px;
+    text-align: right;
     width: 208px;
+}
+/** login y registro **/
+
+#register_login{
+	background-color: #181818;
+    margin: 0 auto;
+    width: 950px;
+    -webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	padding-bottom: 30px;
+}
+#register_login.contact .submit{
+	width: 410px;
+}
+#register_login.verify .submit{
+	width: 412px;
+}
+#register_login.verify .submit input{
+	width: auto;
+}
+#register_login.password .register.form{
+	float: left;
+	width: 59%;
+}
+.register.form,.login.form{
+	float: left;
+	width: 50%;
+}
+#register_login legend{
+	background-color: #E0050B;
+    border: medium none;
+    color: #FFFFFF;
+    float: left;
+    font-size: 21px;
+    margin-bottom: 10px;
+    margin-left: -26px;
+    padding-bottom: 8px;
+    padding-left: 38px;
+    padding-top: 8px;
+    text-transform: uppercase;
+    width: 400px;
+}
+#register_login .login legend{
+	width: 450px;
+}
+#content #register_login p{
+	color: #FFFFFF;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 13px;
+    margin-bottom: 30px;
+    text-align: left;
+    width: 96%;
+    clear: both;
+}
+#register_login .input.text{
+	padding-left: 0;
+}
+#register_login label{
+	color:#fff;
+	width: 136px;
+	text-align: right;
+	font-size: 13px;
+	margin-right: 25px;
+	margin-top: 10px;
+	text-transform: uppercase;
+}
+#register_login .correo{
+	width: auto;
+}
+#register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
+	width: 245px;
+	height: 37px;
+	margin-bottom: 16px;
+	background-color: #d1d1d1;
+	color:#181818;
+	font-size: 13px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-transition: all 1s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	transition: all 1s ease-in-out;
+}
+.contacto textarea{
+	font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    max-width: 245px;
+    min-height: 100px;
+    min-width: 245px;
+    padding-left: 3px;
+}
+#register_login .input input:focus,#register_login select:focus,#UserEmail:focus{
+	background-color: #fff;
+}
+#register_login select{
+	padding-top: 10px;
+	width: 250px;
+}
+#register_login .input.password label,#register_login .input.select label{
+	width: 121px;
+}
+#register_login h3,.confirmacion-remember{
+	clear: both;
+    color: #FFFFFF;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+    padding-top: 20px;
+}
+.confirmacion-remember{
+	margin-left: 0px;
+}
+#register_login .submit input{
+	font-size: 13px;
+    height: 37px;
+    text-transform: uppercase;
+    width: 100px;
+    background: #e76012;
+	background: -moz-linear-gradient(top,  #e76012 0%, #c64f0f 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e76012), color-stop(100%,#c64f0f));
+	background: -webkit-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -o-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -ms-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76012', endColorstr='#c64f0f',GradientType=0 );
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #E57D44;
+	color: #fff;
+	float: right;
+}
+#register_login .submit input:hover{
+	background: #c64f0f;
+	background: -moz-linear-gradient(top,  #c64f0f 0%, #e76012 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c64f0f), color-stop(100%,#e76012));
+	background: -webkit-linear-gradient(top,  #c64f0f 0%, #e76012 100%);
+	background: -o-linear-gradient(top,  #c64f0f 0%, #e76012 100%);
+	background: -ms-linear-gradient(top, #c64f0f 0%, #e76012 100%);
+	background: linear-gradient(top,  #c64f0f 0%, #e76012 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c64f0f', endColorstr='#e76012',GradientType=0 );
+}
+.field_required{
+	color: red;
+    margin-top: 5px;
 }

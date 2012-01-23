@@ -1,4 +1,3 @@
-	
 <div class="deals form2">
 <?php echo $this->Form->create('Deal');?>
 	<fieldset>
@@ -26,7 +25,13 @@
 	<h2><?php __('Image'); ?></h2>
 	<div class="preview">
 		<div class="wrapper">
-				 <?php echo $this->Html->image('preview.png');?>
+				 <?php
+				 	if(isset($this->data['Deal']['image']) && !empty($this->data['Deal']['image'])) {
+				 		echo $this->Html->image('uploads/'.$this->data['Deal']['image']);
+				 	} else {
+				 		echo $this->Html->image('preview.png');
+				 	}
+				 ?>
 		</div>
 	</div>
 	<div id="single-upload" controller="deals">
@@ -37,7 +42,13 @@
 	<h2><?php __('Large Image'); ?></h2>
 	<div class="preview-2">
 		<div class="wrapper">
-				 <?php echo $this->Html->image('preview.png');?>
+				 <?php
+				 	if(isset($this->data['Deal']['image_large']) && !empty($this->data['Deal']['image_large'])) {
+				 		echo $this->Html->image('uploads/'.$this->data['Deal']['image_large']);
+				 	} else {
+				 		echo $this->Html->image('preview.png');
+				 	}
+				 ?>
 		</div>
 	</div>
 	<div id="single-upload-2" controller="deals">
