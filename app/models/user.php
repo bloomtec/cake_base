@@ -143,17 +143,11 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function user_registered($id = null) {
-		$this -> addScore($id, 'score_by_registering');
-	}
+	function user_registered($id = null) { $this -> addScore($id, 'score_by_registering'); }
 	
-	function user_bought($id = null) {
-		$this -> addScore($id, 'score_for_buying');
-	}
+	function user_bought($id = null) { $this -> addScore($id, 'score_for_buying'); }
 	
-	function user_invited($id = null) {
-		$this -> addScore($id, 'score_by_invitations');
-	}
+	function user_invited($id = null) { $this -> addScore($id, 'score_by_invitations'); }
 	
 	function addScore($id = null,$reason = null) {
 		App::import('model','Config');
