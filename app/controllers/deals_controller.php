@@ -15,14 +15,15 @@ class DealsController extends AppController {
 	private function getRestaurants() {
 		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
 	}
-	
+
 	private function getRestaurantsByOwner() {
 		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.owner_id' => $this -> Session -> read('Auth.User.id'))));
 	}
+
 	private function getALargeImage() {
-		$this->recursive=-1;
-		$deal = $this->Deal->find('all', array('order'=>'rand()', 'conditions'=>array('Deal.image_large <>'=>null,'Deal.image_large <>'=>'')));
-		return $deal; 
+		$this -> recursive = -1;
+		$deal = $this -> Deal -> find('all', array('order' => 'rand()', 'conditions' => array('Deal.image_large <>' => null, 'Deal.image_large <>' => '')));
+		return $deal;
 	}
 
 	function index() {
@@ -49,7 +50,7 @@ class DealsController extends AppController {
 
 		$this -> set('deals', $this -> paginate());
 
-		$this->set('large_images', $this->getALargeImage());
+		$this -> set('large_images', $this -> getALargeImage());
 		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 		$cuisines = $this -> requestAction('/cuisines/getList');
 		$prices = array('ASC' => __('lowest to highest', true), 'DESC' => __('highest to lowest', true));
@@ -141,7 +142,7 @@ class DealsController extends AppController {
 		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurants()));
 		$this -> set('deals', $this -> paginate());
 	}
-	
+
 	function manager_view($slug = null) {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid deal', true));

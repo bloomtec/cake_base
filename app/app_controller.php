@@ -7,7 +7,7 @@ class AppController extends Controller {
 		if (isset($this -> params["prefix"])) {
 			$role_id = $this -> Session -> read('Auth.User.role_id');
 			$prefix = $this -> params["prefix"];
-			if (($prefix == "admin" && $role_id == 1) || ($prefix == "manager" && ($role_id == 1 || $role_id == 2)) || ($prefix == "owner" && ($role_id == 1 || $role_id == 4)) ) {
+			if (($prefix == "admin" && $role_id == 1) || ($prefix == "manager" && ($role_id == 1 || $role_id == 2)) || ($prefix == "owner" && ($role_id == 1 || $role_id == 4))) {
 				return true;
 			} else {
 				return false;
@@ -34,14 +34,7 @@ class AppController extends Controller {
 	}
 
 	function configEmail() {
-		$this -> Email -> smtpOptions = array(
-			'port' => '465',
-			'timeout' => '30',
-			'auth' => true,
-			'host' => 'ssl://smtp.gmail.com',
-			'username' => 'your_username@gmail.com',
-			'password' => 'your_gmail_password'
-		);
+		$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'auth' => true, 'host' => 'ssl://smtp.gmail.com', 'username' => 'your_username@gmail.com', 'password' => 'your_gmail_password');
 		$this -> Email -> delivery = 'smtp';
 		/**
 		 $body='prueba';

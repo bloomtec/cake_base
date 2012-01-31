@@ -2,7 +2,7 @@
 class PagesController extends AppController {
 
 	var $name = 'Pages';
-	
+
 	function display() {
 		$path = func_get_args();
 
@@ -25,7 +25,7 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
-	
+
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
@@ -34,37 +34,37 @@ class PagesController extends AppController {
 	function politicas() {
 		$this -> layout = "default";
 	}
-	
+
 	function nuestraEmpresa() {
 		$this -> layout = "default";
 	}
-	
+
 	function contacto() {
 		$this -> layout = "default";
-		if(!empty($this->data)) {
+		if (!empty($this -> data)) {
 			// $this->data['Contacto']['{texto||nombre||email}']
-			$para = $this->data['Contacto']['email'];
+			$para = $this -> data['Contacto']['email'];
 			$asunto = 'Página De Contacto ' . Configure::read('site_name');
-			$mensaje = $this->data['Contacto']['texto'];
+			$mensaje = $this -> data['Contacto']['texto'];
 
 			$cabeceras = 'From: ' . Configure::read('contact_mail') . "\r\n" . 'Reply-To: ' . Configure::read('reply_mail') . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
-			if(mail($para, $asunto, $mensaje, $cabeceras)) {
+			if (mail($para, $asunto, $mensaje, $cabeceras)) {
 				$this -> Session -> setFlash(__('Mensaje enviado', true));
 			} else {
 				$this -> Session -> setFlash(__('Ha ocurrido un error al tratar de enviar el mensaje. Por favor intenta de nuevo.', true));
 			}
 		}
 	}
-	
+
 	function dudas() {
 		$this -> layout = "default";
 	}
-	
+
 	function comoComprar() {
 		$this -> layout = "default";
 	}
-	
+
 	function view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid page', true));
@@ -145,26 +145,29 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('Page was not archived', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-	
-	function owner_ez() {}
-	
-	function manager_ez() {}
-	
+
+	function owner_ez() {
+	}
+
+	function manager_ez() {
+	}
+
 	function manager_index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}
-	
-	function admin_ez() {}
-	
-	function admin_layouts(){
+
+	function admin_ez() {
+	}
+
+	function admin_layouts() {
 		App::import("Folder");
 		$folder = new Folder(LAYOUTS);
-		$layoutsCtp=$folder->read();
+		$layoutsCtp = $folder -> read();
 		$layouts;
-		foreach($layoutsCtp[1] as $layout){
-				$layout=substr($layout,0, -4);
-				$layouts[$layout]=$layout;
+		foreach ($layoutsCtp[1] as $layout) {
+			$layout = substr($layout, 0, -4);
+			$layouts[$layout] = $layout;
 		}
 		return $layouts;
 	}
@@ -224,14 +227,14 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('Page was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-	
-	function admin_wysiwyg(){//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
-	    $this->layout="ez/file_browser";
-	    App::import("Folder");
-	    $folder= new Folder(WWW_ROOT.DS."wysiwyg");
-	    $this->set("folder",$folder->read());
-	    $this->set("folderPath",DS."wysiwyg");
- 	}
+
+	function admin_wysiwyg() {//ESTA FUNCION MUESTRA EL LISTADO DE LAS IMAGENES SUBIDAS POR EL WYSIWYG
+		$this -> layout = "ez/file_browser";
+		App::import("Folder");
+		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
+		$this -> set("folder", $folder -> read());
+		$this -> set("folderPath", DS . "wysiwyg");
+	}
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
