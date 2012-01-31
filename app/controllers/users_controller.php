@@ -14,24 +14,22 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('register', 'ajaxRegister', 'resetPassword', 'enEspera', 'validateEmail');
 	}
+	
+	function encrypt($str, $key) {
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = $block - (strlen($str) % $block);
+		$str .= str_repeat(chr($pad), $pad);
 
-	/*
-	 *
-	 function register() {
-	 if (!empty($this -> data)) {
-	 $this -> User -> create();
-	 $this -> data['User']['role_id']=2;
-	 if ($this -> User -> save($this -> data)) {
-	 $this -> Session -> setFlash(__('Registro Exitoso', true));
-	 $this->Auth->login($this->data);
-	 $this -> redirect(array('action' => 'profile'));
-	 } else {
-	 $this -> Session -> setFlash(__('The user could not be saved. Please, try again.', true));
-	 }
-	 }
-	 }
-	 *
-	 */
+		return mcrypt_encrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+	}
+
+	function decrypt($str, $key) {
+		$str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = ord($str[($len = strlen($str)) - 1]);
+		return substr($str, 0, strlen($str) - $pad);
+	}
 
 	function register() {
 		if (!empty($this -> data)) {
@@ -40,8 +38,7 @@ class UsersController extends AppController {
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				// Generar el codigo para el correo de registro
-				$code = crypt($this -> User -> id, '23()23*$%g4F^aN!^^%');
-				$code = urlencode($code);
+				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				// Enviar el correo con el codigo
 				$this -> registrationEmail($this -> data['User']['email'], $code);
 				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
@@ -68,34 +65,6 @@ class UsersController extends AppController {
 		}
 	}
 
-	/*
-	 *
-	 function ajaxRegister() {
-	 if (!empty($this -> data)) {
-	 // Validar el nombre de usuario
-	 $user['User']['role_id'] = 2;
-	 $this -> User -> create();
-	 $this -> User -> set($this -> data);
-	 if ($this -> User -> save($this -> data)) {
-	 $this -> Auth -> login($this -> data);
-	 $userField = $this -> User -> read(null, $this -> Auth -> user('id'));
-	 echo true;
-	 } else {
-	 $errors = array();
-	 foreach ($this->User->invalidFields() as $name => $value) {
-	 $errors["data[User][" . $name . "]"] = $value;
-	 }
-
-	 echo json_encode($errors);
-	 }
-	 }
-	 $this -> autoRender = false;
-	 Configure::write('debug', 0);
-	 exit(0);
-	 }
-	 *
-	 */
-
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
 			// Validar el nombre de usuario
@@ -104,7 +73,8 @@ class UsersController extends AppController {
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> data['Address']['user_id'] = $this -> User -> id;
-				$code = crypt($this -> User -> id, '23()23*$%g4F^aN!^^%');
+				// Generar el codigo para el correo de registro
+				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				// Enviar el correo con el codigo
 				$this -> registrationEmail($this -> data['User']['email'], $code);
 				//$address['Address'] = $this -> data['Address'];
@@ -133,7 +103,6 @@ class UsersController extends AppController {
 			$this -> User -> create();
 			$this -> User -> set($this -> data);
 			if ($this -> User -> save($this -> data)) {
-
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
 			} else {
@@ -197,20 +166,17 @@ class UsersController extends AppController {
 			}
 		}
 
-		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id')));
+		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
 		if ($code) {
-			$code = urldecode($code);
-			for ($id_tested = 1; $id_tested <= $max_id; $id_tested += 1) {
-				if ($code == crypt($id_tested, '23()23*$%g4F^aN!^^%')) {
+			$code = $this -> decrypt(urldecode($encrypted_id), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+			for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
+				if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
 					$user = $this -> User -> read(null, $id_tested);
 					break;
-				} else {
-					$user = null;
 				}
 			}
-
 			if ($user) {
 				$user['User']['email_verified'] = true;
 				if ($this -> User -> save($user)) {
