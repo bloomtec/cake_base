@@ -17,7 +17,7 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
+		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
 	}
 
 	function encrypt($str, $key) {
