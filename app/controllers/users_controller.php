@@ -230,6 +230,26 @@ class UsersController extends AppController {
 		}
 	}
 	
+	function owner_login() {
+		$this -> layout = "ez/login";
+		if (isset($this->data['User']['email']) && !empty($this->data['User']['email']) && isset($this->data['User']['password']) && !empty($this->data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this->data['User']['email']);
+			if (!empty($user)) {
+				if($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this->redirect(array('controller'=>'users', 'action'=>'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+	
+	
 	function ajaxLogin() {
 		$this -> User -> recursive = -1;
 		$user = $this -> User -> findByEmail($this->data['User']['email']);
@@ -257,7 +277,10 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-
+	
+	function owner_logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}

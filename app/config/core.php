@@ -109,7 +109,7 @@
  *
  * [Note Routing.admin is deprecated in 1.3.  Use Routing.prefixes instead]
  */
-	Configure::write('Routing.prefixes', array('admin', 'manager'));
+	Configure::write('Routing.prefixes', array('admin', 'manager','owner'));
 
 /**
  * Turn off all caching application-wide.

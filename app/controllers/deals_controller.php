@@ -16,6 +16,9 @@ class DealsController extends AppController {
 		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
 	}
 	
+	private function getRestaurantsByOwner() {
+		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.owner_id' => $this -> Session -> read('Auth.User.id'))));
+	}
 	private function getALargeImage() {
 		$this->recursive=-1;
 		$deal = $this->Deal->find('all', array('order'=>'rand()', 'conditions'=>array('Deal.image_large <>'=>null,'Deal.image_large <>'=>'')));
@@ -133,6 +136,12 @@ class DealsController extends AppController {
 		$this -> set('deals', $this -> paginate());
 	}
 
+	function owner_index() {
+		$this -> Deal -> recursive = 0;
+		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurants()));
+		$this -> set('deals', $this -> paginate());
+	}
+	
 	function manager_view($slug = null) {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid deal', true));

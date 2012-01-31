@@ -146,6 +146,8 @@ class PagesController extends AppController {
 		$this -> redirect(array('action' => 'index'));
 	}
 	
+	function owner_ez() {}
+	
 	function manager_ez() {}
 	
 	function manager_index() {

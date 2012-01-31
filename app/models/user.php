@@ -111,9 +111,22 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Restaurant' => array(
+		'Client' => array(
 			'className' => 'Restaurant',
 			'foreignKey' => 'manager_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Restaurant' => array(
+			'className' => 'Restaurant',
+			'foreignKey' => 'owner_id',
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',

@@ -7,7 +7,7 @@ class AppController extends Controller {
 		if (isset($this -> params["prefix"])) {
 			$role_id = $this -> Session -> read('Auth.User.role_id');
 			$prefix = $this -> params["prefix"];
-			if (($prefix == "admin" && $role_id == 1) || ($prefix == "manager" && ($role_id == 1 || $role_id == 2))) {
+			if (($prefix == "admin" && $role_id == 1) || ($prefix == "manager" && ($role_id == 1 || $role_id == 2)) || ($prefix == "owner" && ($role_id == 1 || $role_id == 4)) ) {
 				return true;
 			} else {
 				return false;
@@ -22,7 +22,7 @@ class AppController extends Controller {
 		if (isset($this -> params["prefix"])) {
 			$this -> layout = "ez/ez";
 			$prefix = $this -> params["prefix"];
-			$this -> Auth -> loginRedirect = array("controller" => "pages", "action" => "ez", "$prefix" => true);
+			$this -> Auth -> loginRedirect = array("controller" => "pages", "action" => "ez", $prefix => true);
 			$this -> Auth -> deny($this -> action);
 		} else {
 			$this -> Auth -> allow($this -> action);
