@@ -156,7 +156,13 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function addScore($id,$reason) {
+	function user_registered($id = null) { $this -> addScore($id, 'score_by_registering'); }
+	
+	function user_bought($id = null) { $this -> addScore($id, 'score_for_buying'); }
+	
+	function user_invited($id = null) { $this -> addScore($id, 'score_by_invitations'); }
+	
+	function addScore($id = null,$reason = null) {
 		App::import('model','Config');
 		$config = $this -> Config -> read(null,1);
 		$user = $this -> read(null,$id);
@@ -169,15 +175,15 @@ class User extends AppModel {
 				$return = $this -> save($user);
 				break;
 			case 'score_by_invitations':
-				if($user['User']['score_for_buying'] <= $config['Config']['max_score_by_invitations']){
+				if($user['User']['score_by_invitations'] < $config['Config']['max_score_by_invitations']){
 					$user['User']['score'] += $config['Config'][$reason];
-					$return = $this -> save($user);			
+					$user['User']['score_by_invitations'] += $config['Config'][$reason];
+					$return = $this -> save($user);
 				}else{
 					$return = false;	
 				}
 				break;
 			default:
-				
 				break;
 		}
 		return $return;

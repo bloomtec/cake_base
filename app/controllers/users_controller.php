@@ -156,6 +156,10 @@ class UsersController extends AppController {
 			if($user) {
 				$user['User']['email_verified'] = true;
 				if ($this -> User -> save($user)) {
+					
+					// Bonificación por registro por registro
+					$this -> User -> user_registered($user['User']['id']);
+					
 					$this->Session->setFlash(__('Thank you for validating your email', true));
 					$this -> redirect(array('controller'=>'users', 'action'=>'login'));
 				} else {
