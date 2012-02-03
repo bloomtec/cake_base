@@ -111,9 +111,22 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Restaurant' => array(
+		'Client' => array(
 			'className' => 'Restaurant',
 			'foreignKey' => 'manager_id',
+			'dependent' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		),
+		'Restaurant' => array(
+			'className' => 'Restaurant',
+			'foreignKey' => 'owner_id',
 			'dependent' => true,
 			'conditions' => '',
 			'fields' => '',
@@ -143,11 +156,40 @@ class User extends AppModel {
 		return true;
 	}
 	
-	function addPoints($points = null) {
-		
+	function user_registered($id = null) { $this -> addScore($id, 'score_by_registering'); }
+	
+	function user_bought($id = null) { $this -> addScore($id, 'score_for_buying'); }
+	
+	function user_invited($id = null) { $this -> addScore($id, 'score_by_invitations'); }
+	
+	function addScore($id = null,$reason = null) {
+		App::import('model','Config');
+		$config = $this -> Config -> read(null,1);
+		$user = $this -> read(null,$id);
+		$return = false;
+		switch ($reason) {
+			case 'score_by_registering':
+			case 'score_for_buying':
+				$this -> recursive = -1;
+				$user['User']['score'] += $config['Config'][$reason];
+				$return = $this -> save($user);
+				break;
+			case 'score_by_invitations':
+				if($user['User']['score_by_invitations'] < $config['Config']['max_score_by_invitations']){
+					$user['User']['score'] += $config['Config'][$reason];
+					$user['User']['score_by_invitations'] += $config['Config'][$reason];
+					$return = $this -> save($user);
+				}else{
+					$return = false;	
+				}
+				break;
+			default:
+				break;
+		}
+		return $return;
 	}
 	
-	function redeemPoints($deal_id = null) {
+	function redeemScore($deal_id = null) {
 		
 	}
 	

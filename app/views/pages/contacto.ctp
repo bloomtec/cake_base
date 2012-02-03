@@ -25,3 +25,19 @@
 	</div>
 	<div style="clear: both"></div>
 </div>
+<script type="text/javascript">
+	$('#ContactForm').validator({lang:'es', position:"bottom left"}).submit(function(e){
+		var form=$(this);
+		var fields=$(this).serialize();
+		if(!e.isDefaultPrevented()){
+			BJS.post('/users/rememberPassword',fields,function(response){
+				if(response){
+					$('.confirmacion-remember').show();
+				}else{
+					$('.confirmacion-remember').html('no se pudo realizar tu solicitud verifica tu email').show();
+				}
+			})
+			e.preventDefault();
+		}
+	});
+</script>

@@ -3,24 +3,33 @@
 		<a href=""><?php __('HOME'); ?></a>
 	</li>
 
-	
+	<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2): ?>
 	<li>
 		<a href=""><?php __('CONTENT')?></a>
 		<ul>
 			<li>
 				<?php echo $html->link(__('PAGES',true),array('controller'=>'pages', 'action'=>'index'));?>
 			</li>
+			<?php if($session -> read('Auth.User.role_id') == 1): ?>
+			<li>
+				<?php echo $html->link(__('PRIZES',true),array('controller'=>'prizes', 'action'=>'index'));?>
+			</li>
+			<li>
+				<?php echo $html->link(__('ADD PRIZE',true),array('controller'=>'prizes', 'action'=>'add'));?>
+			</li>
+			<?php endif;?>
 		</ul>
 	</li>
-	
+	<?php endif;?>
 	<li>
 		<?php echo $html->link(__('DEALS',true),array('controller'=>'deals', 'action'=>'index'));?>
 	</li>
-	
+	<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2): ?>
 	<li>
 		<a href='#'> <?php __('SETTINGS') ?></a>
 		<ul>
 			<?php if($session -> read('Auth.User.role_id') == 1): ?>
+			<li><?php echo $html->link(__('CONFIG',true),array('controller'=>'config', 'action'=>'edit', 1));?></li>
 			<li><?php echo $html->link(__('COUNTRIES',true),array('controller'=>'countries', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD COUNTRY',true),array('controller'=>'countries','action' => 'add'));?></li>
 			<li><?php echo $html->link(__('CITIES',true),array('controller'=>'cities', 'action'=>'index'));?></li>
@@ -34,7 +43,7 @@
 			<li><?php echo $html->link(__('ADD RESTAURANT',true),array('controller'=>'restaurants','action' => 'add'));?></li>
 		</ul>
 	</li>
-	
+	<?php endif; ?>
 	<?php if($session -> read('Auth.User.role_id') == 1): ?>
 	<li>
 		<?php echo $html->link(__('USERS',true),array('controller'=>'users'));?>

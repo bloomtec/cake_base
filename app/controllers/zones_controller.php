@@ -31,7 +31,7 @@ class ZonesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid zone', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$zone = $this->Zone->find('first', array('recursive'=>2, array('conditions'=>array('Zone.id'=>$id))));
+		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
 		$this -> set('zone', $zone);
 	}
 
@@ -93,7 +93,7 @@ class ZonesController extends AppController {
 			$this -> Session -> setFlash(__('Invalid zone', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$zone = $this->Zone->find('first', array('recursive'=>2, array('conditions'=>array('Zone.id'=>$id))));
+		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
 		$this -> set('zone', $zone);
 	}
 

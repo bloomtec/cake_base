@@ -6,7 +6,7 @@ h1,h2,h3,h4,p,a,label,legend,input{
 #content p{
 	text-align: center;
 	color: #231F20;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
 }
 a{
@@ -110,9 +110,95 @@ body{
 	float:left;
 }
 .slide{
-	height: 330px;
-	margin-top: 12px;
+	height: 335px;
+    margin: 12px auto 20px auto; 
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 1000px;
+   	
 }
+
+.slide img{
+	min-width: 1000px;
+	min-height: 310px;
+	max-width: 1000px;
+	max-height: 310px;
+}	
+/** slide**/
+	
+.slide .images {
+    cursor: pointer;
+    float: none;
+    width: auto;
+    height: 310px;
+}
+
+.slide .images div{
+	overflow: hidden;
+	width: auto;
+	height: 310px;
+	margin: 0 auto;
+	position: absolute;
+
+}
+.images h3 {
+    color: #445566;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 20px;
+}
+.slidetabs {
+    clear: both;
+    padding-left: 48%;
+    margin-top: 12px;
+}
+
+.slidetabs a {
+    background: url("/img/slide_inactivo.jpg") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 10px;
+    margin: 3px;
+    width: 10px;
+}
+.slidetabs a.current {
+    background: url("/img/slide_activo.jpg") no-repeat scroll 0 0 transparent;
+}
+.forward, .backward {
+    background: url("/tools/img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 30px;
+    margin-top: 140px;
+    text-indent: -9999em;
+    width: 30px;
+}
+.forward {
+    background-position: 0 -30px;
+    clear: right;
+}
+.forward:hover {
+    background-position: -30px -30px;
+}
+.forward:active {
+    background-position: -60px -30px;
+}
+.backward:hover {
+    background-position: -30px 0;
+}
+.backward:active {
+    background-position: -60px 0;
+}
+.disabled {
+    visibility: hidden !important;
+}
+
+	
+/** end slide **/	
 .lista_producto{
 	width: 240px;
 	float: left;
@@ -135,12 +221,17 @@ body{
 	margin-left: 0;
 }
 .lista_producto a img{
-	width: 240px;
-	height: 220px;
+	min-width: 240px;
+	min-height: 220px;
+	max-width: 240px;
+	max-height: 220px;
 }
 .lista_producto h1 a{
-	font-size: 12px;
-	color: #231f20;
+	color: #231F20;
+    display: block;
+    font-size: 12px;
+    height:35px;
+    overflow: hidden;
 }
 .precio{
 	font-size: 21px;
@@ -182,25 +273,29 @@ body{
 	margin-top: 20px;
 }
 .deals img{
-	width: 450px;
-	height: 340px;
+	min-width: 450px;
+	max-width: 450px;
+	min-height: 340px;
+	max-height: 340px;
 	float: left;
 }
-.deals h1{
+#content .deals h1{
 	color: #231F20;
     float: left;
-    font-size: 17px;
-    height: 36px;
+    font-size: 20px;
+    height: 42px;
+    margin-bottom: 8px;
     margin-left: 20px;
-    margin-right: 15px;
-    width: 508px;
+    margin-top: 22px;
+    overflow: hidden;
+    padding-right: 15px;
+    width: 491px;
 }
 .info_producto{
 	width: 526px;
-	height: 282px;
+	height: 268px;
 	background-color: #dedede;
 	float: left;
-	margin-top: 23px;
 	background-image: url(/img/trama_descripcion.png);
 	background-position: top left;
 	background-repeat: repeat-x;
@@ -227,10 +322,30 @@ body{
 	margin-left: 50px;
 }
 .info_producto li{
-	font-size: 12px;
+	font-size: 13px;
 	list-style-type: disc;
 	margin-bottom: 7px;
 	font-family: Arial, Helvetica, sans-serif;
+}
+#content .info_producto p{
+	 font-weight: normal;
+    margin-top: 15px;
+    padding: 0 23px;
+    text-align: left;
+}
+.info_producto h3, .info_producto h4{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	color: #181818;
+}
+.info_producto h3{
+	margin-top: 30px;
+}
+.info_producto h4{
+	color: #ED1C24;
+	font-size: 22px;
+	margin-top: 10px;
 }
 .comprar{
 	display: block;
@@ -241,6 +356,9 @@ body{
 	margin-left: 180px;
 	margin-top: 35px;
 }
+.comprar.redimir{
+	background-image: url(/img/redimir.png);
+}
 .descripcion_producto{
 	width: 640px;
 	margin-left: 12px;
@@ -248,7 +366,7 @@ body{
 	margin-right:50px;
 	float: left;
 }
-.deals .descripcion{
+#content .deals .descripcion{
 	margin-left: 0;
 	font-size: 14px;
 	float: none;
@@ -268,12 +386,19 @@ body{
 	padding: 15px;
 	margin-bottom: 50px;
 }
-.info_ubicacion h1{
+#content .info_ubicacion h1{
 	margin-left: 0;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	margin-bottom: 8px;
 }
 .info_ubicacion h3{
-	color:#231F20;
-	margin-bottom: 5px;
+	clear: left;
+    color: #231F20;
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 5px;
 }
 .info_ubicacion img{
 	width: 246px;
@@ -308,7 +433,7 @@ body{
     margin-left: 27px;
     padding-top: 12px;
     text-align: left;
-    width: 990px;
+    width: 965px;
     color: #323232;
     clear: both;
 }
@@ -429,8 +554,6 @@ body{
 .error {
 	/* supply height to ensure consistent positioning for every browser */
 	height:15px;
-	background-color:#FFFE36;
-	border:1px solid #E1E16D;
 	font-size:11px;
 	color:#000;
 	padding:3px 10px;
@@ -438,13 +561,229 @@ body{
 
 
 	/* CSS3 spicing for mozilla and webkit */
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
 	-moz-border-radius-bottomleft:0;
 	-moz-border-radius-topleft:0;
 	-webkit-border-bottom-left-radius:0;
 	-webkit-border-top-left-radius:0;
 
-	-moz-box-shadow:0 0 6px #ddd;
-	-webkit-box-shadow:0 0 6px #ddd;
+}
+.error p{
+	color: #E0050B;
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#content h1.premios{
+	background-image: url("/img/regalos.png");
+    background-repeat: no-repeat;
+    padding-bottom: 15px;
+    padding-left: 51px;
+    padding-top: 23px;
+    width: 100%;
+}
+#content h1.premios.otros{
+	float: left;
+	width: auto;
+}
+#content .volver_premios{
+	background-image: url("/img/volver_regalos.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: #181818;
+    display: block;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 37px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 32px;
+    padding-top: 10px;
+}
+#content p.premios{
+	font-weight: normal;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: left;
+}
+.producto_premio{
+	margin-bottom: 10px;
+    padding: 0 15px;
+}
+.producto_premio img{
+	min-width: 218px;
+	max-width: 218px;
+	min-height: 162px;
+	max-height: 162px; 
+}
+.producto_premio a{
+	float: left;
+}
+.premios_info{
+	background-color: #DDDDDD;
+    background-image: url("/img/trama_regalos.png");
+    background-position: left top;
+    background-repeat: repeat-x;
+    float: left;
+    height: 112px;
+    padding: 25px 15px;
+    width: 520px;
+    margin-left: 9px;
+}
+#content .premios_info a{
+	font-size: 15px;
+	text-transform: uppercase;
+	color:#ed1c22;
+	margin-top: 0;
+	margin-left: 0;
+	height: 35px;
+	overflow: hidden;
+	padding-right: 15px;
+	float: none;
+	
+}
+#content .premios_info p{
+	font-size: 12px;
+    margin-left: 0;
+    text-align: left;
+    font-weight: normal;
+    margin-top: 15px;
+}
+.premios_puntos{
+	background-color: #181818;
+    float: left;
+    margin-left: 9px;
+    padding: 20px;
+    width: 168px;
+    height: 122px;
+}
+#content .premios_puntos h1{
+	color: #FFFFFF;
+    font-size: 16px;
+    margin: 19px 0 15px;
+    padding: 0;
+    text-align: center;
+}
+.premios_puntos a{
+	color: #ED1C22;
+    float: none;
+    font-size: 16px;
+}
+#content .premios_puntos h2{
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+}
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 915px;
+	height:260px;
+	float: left;
+}
+
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accommodate scrollable items.
+	it's enough that you set width and height for the root element and
+	not for this element.
+*/
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+}
+
+/*
+	a single item. must be floated in horizontal scrolling.
+	typically, this element is the one that *you* will style
+	the most.
+*/
+.items div {
+	float:left;
+}
+.next{
+	display: block;
+	background-color: #1e1e1e;
+	width: 29px;
+	height: 260px;
+	float: right;
+	background-image: url(/img/next.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 15px;
+}
+.next.disabled{
+	background-image: url(/img/next_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.prev{
+	display: block;
+	background-color: #1e1e1e;
+	width: 29px;
+	height: 260px;
+	float: left;
+	background-image: url(/img/prev.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 12px;
+}
+.prev.disabled{
+	background-image: url(/img/prev_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.otros_premios{
+	background-color: #dedede;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	height: 260px;
+	margin-right: 14px;
+	width: 218px;
+}
+.otros_premios img{
+	min-width: 218px;
+	min-height: 162px;
+	max-width: 218px;
+	max-height: 162px;
+	float: none;
+}
+#content .otros_premios a.descripcion_premios{
+	display: block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 23px;
+    margin: 8px 0 0;
+    overflow: hidden;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+    color: #181818;
+}
+#content .otros_premios h2{
+	clear: both;
+    color: #ED1C22;
+    font-size: 16px;
+    height: 20px;
+    padding-top: 15px;
+    text-align: center;
 }

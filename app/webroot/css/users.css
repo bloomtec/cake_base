@@ -391,7 +391,7 @@ div.images .preview  img{
 #register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
 	width: 245px;
 	height: 37px;
-	margin-bottom: 14px;
+	margin-bottom: 16px;
 	background-color: #d1d1d1;
 	color:#181818;
 	font-size: 13px;

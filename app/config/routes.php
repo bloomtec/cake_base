@@ -29,7 +29,8 @@
 App::import('Lib', 'DealRoute');
  
 Router::connect('/admin', array('controller' => 'users', 'action' => 'login', "admin" => true));
-Router::connect('/manager', array('controller' => 'users', 'action' => 'login', "manager" => true));
+Router::connect('/managers', array('controller' => 'users', 'action' => 'login', "manager" => true));
+Router::connect('/owners', array('controller' => 'users', 'action' => 'login', "owner" => true));
 Router::connect('/', array('controller' => 'deals', 'action' => 'index'));
 Router::connect('/:slug::value/*', array('controller' => 'deals', 'action' => 'index'),array('routeClass' => 'DealRoute'));
 /**

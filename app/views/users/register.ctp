@@ -83,6 +83,8 @@
 
 <script type='text/javascript'> 
 $(function(){
+	
+	$('#UserLoginForm').validator({lang:'es',position:"bottom left"});
 	var country_id = $('#UserCountryId').val();
 	if($('#UserCountryId').val()) {
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
@@ -90,7 +92,7 @@ $(function(){
 	$('#UserCountryId').change(function(){
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
 	});
-	$('#UserAjaxRegisterForm').validator({lang:'es'}).submit(function(e){
+	$('#UserAjaxRegisterForm').validator({lang:'es',position:"bottom left"}).submit(function(e){
 	var form=$(this);
 	var fields=$(this).serialize();
 	if(!e.isDefaultPrevented()){

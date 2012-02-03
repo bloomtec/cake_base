@@ -33,12 +33,11 @@ $(function(){
 				$(".tooltip_login").slideUp(250);
 			}
 	);
-	$(".ajax_login form").validator().submit(function(e){
+	$(".ajax_login form").validator({position:"bottom left"}).submit(function(e){
 		e.preventDefault();
 		var form=$(this);
 		BJS.JSONP(form.attr("action"),form.serialize(), function(user) {
 			if(user.success === true){
-				console.log(user);
 				if(user.User.active && user.User.email_verified){
 					document.location.href="/users/profile";
 				}else{
