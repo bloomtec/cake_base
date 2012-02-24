@@ -24,7 +24,13 @@
 		<h2>Image</h2>
 		<div class="preview">
 			<div class="wrapper">
-					 <?php echo $this->Html->image('preview.png');?>
+				<?php
+					if(!empty($this -> data['Restaurant']['image'])) {
+				 		echo $this->Html->image('/img/uploads/'.$this -> data['Restaurant']['image']);
+				 	} else {
+				 		echo $this->Html->image('preview.png');
+				 	}
+				 ?>
 			</div>
 		</div>
 		<div id="single-upload" controller="restaurants">

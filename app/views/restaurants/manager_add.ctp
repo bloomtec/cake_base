@@ -19,13 +19,13 @@
 	<fieldset>
 		<legend><?php __("Restaurant's User"); ?></legend>
 		<?php 
-		echo $this->Form->input("Owner.name");
-		echo $this->Form->input("Owner.last_name");
-		echo $this->Form->input("Owner.email");
-		echo $this->Form->input("Owner.password");
-		echo $this->Form->hidden("Owner.role_id",array('value'=>4));
-		echo $this->Form->hidden("Owner.email_verified",array('value'=>1));
-		echo $this->Form->input('Owner.active', array('checked'=>true));
+		echo $this->Form->input("User.name");
+		echo $this->Form->input("User.last_name");
+		echo $this->Form->input("User.email");
+		echo $this->Form->input("User.password");
+		echo $this->Form->hidden("User.role_id",array('value'=>4));
+		echo $this->Form->hidden("User.email_verified",array('value'=>1));
+		echo $this->Form->input('User.active', array('checked'=>true));
 		?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

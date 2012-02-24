@@ -23,6 +23,11 @@ class CuisinesController extends AppController {
 
 	function admin_index() {
 		$this -> Cuisine -> recursive = 0;
+		$this -> paginate = array(
+			'order' => array(
+				'Cuisine.name' => 'ASC'
+			)
+		);
 		$this -> set('cuisines', $this -> paginate());
 	}
 

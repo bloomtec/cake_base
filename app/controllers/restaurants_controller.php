@@ -45,17 +45,15 @@ class RestaurantsController extends AppController {
 
 	function admin_add() {
 		if (!empty($this -> data)) {
-			debug($this -> data);
-			/*
-			$this -> Restaurant -> create();
-			$this -> data['Restaurant']['manager_id'] = $this -> Auth -> user('id');
-			if ($this -> Restaurant -> save($this -> data)) {
+			$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			// $this -> Restaurant -> create();
+			// if ($this -> Restaurant -> save($this -> data)) {
+			if($this -> Restaurant -> saveAll($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
 			}
-			*/
 		}
 		//$zones = $this->Restaurant->Zone->find('list');
 		//$cities = $this->Restaurant->Zone->City->find('list');

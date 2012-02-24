@@ -6,8 +6,10 @@
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('description');?></th>
 		<th><?php echo $this->Paginator->sort('image');?></th>
+		<!--
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
+		-->
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -22,8 +24,10 @@
 		<td><?php echo $cuisine['Cuisine']['name']; ?>&nbsp;</td>
 		<td><?php echo $cuisine['Cuisine']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/50x50/'.$cuisine['Cuisine']['image']); ?>&nbsp;</td>
+		<!--
 		<td><?php echo $cuisine['Cuisine']['created']; ?>&nbsp;</td>
 		<td><?php echo $cuisine['Cuisine']['updated']; ?>&nbsp;</td>
+		-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $cuisine['Cuisine']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $cuisine['Cuisine']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

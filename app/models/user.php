@@ -111,19 +111,6 @@ class User extends AppModel {
 			'finderQuery' => '',
 			'counterQuery' => ''
 		),
-		'Client' => array(
-			'className' => 'Restaurant',
-			'foreignKey' => 'manager_id',
-			'dependent' => true,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
 		'Restaurant' => array(
 			'className' => 'Restaurant',
 			'foreignKey' => 'owner_id',
@@ -138,23 +125,6 @@ class User extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
-	function beforeSave(){
-		/*
-		if($this->data['User']['role_id'] != 1) {
-			if(!empty($this->data['User']['city_id'])) {
-				return true;
-			} else {
-				//$this->Session->setFlash(__('You must select a city for this type of user'));
-				return false;
-			}
-		} else {
-			return true;
-		}
-		 * 
-		 */
-		return true;
-	}
 	
 	function user_registered($id = null) { $this -> addScore($id, 'score_by_registering'); }
 	

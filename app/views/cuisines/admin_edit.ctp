@@ -13,15 +13,20 @@
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
-
 <div class="images">
-		<h2>Image</h2>
-		<div class="preview">
-			<div class="wrapper">
-					 <?php echo $this->Html->image('preview.png');?>
-			</div>
+	<h2>Image</h2>
+	<div class="preview">
+		<div class="wrapper">
+			<?php
+			 	if(!empty($this -> data['Cuisine']['image'])) {
+			 		echo $this->Html->image('/img/uploads/'.$this -> data['Cuisine']['image']);
+			 	} else {
+			 		echo $this->Html->image('preview.png');
+			 	}					 	
+			 ?>
 		</div>
-		<div id="single-upload" controller="cuisines">
-		</div>			
+	</div>
+	<div id="single-upload" controller="cuisines">
+	</div>			
 </div>
 

@@ -43,13 +43,6 @@ class Restaurant extends AppModel {
 			'fields' => '',
 			'order' => ''
 		),
-		'Manager' => array(
-			'className' => 'User',
-			'foreignKey' => 'manager_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
 		'Owner' => array(
 			'className' => 'User',
 			'foreignKey' => 'owner_id',
@@ -75,12 +68,4 @@ class Restaurant extends AppModel {
 		)
 	);
 
-	function beforeSave(){
-		if(isset($this -> data['User'])){
-			App::import('Model','User');
-			$User = new User();
-			$User -> save($this -> data['User']);
-		}
-		return true;	
-	}
 }
