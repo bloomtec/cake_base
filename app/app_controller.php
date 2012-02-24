@@ -2,6 +2,8 @@
 class AppController extends Controller {
 
 	var $components = array('Session', 'Auth' => array('authorize' => 'controller', 'userScope' => array('User.active' => 1), 'fields' => array('username' => 'email', 'password' => 'password')), 'Email', 'Language', );
+	
+	var $cacheAction = true;
 
 	function isAuthorized() {
 		if (isset($this -> params["prefix"])) {

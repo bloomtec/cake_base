@@ -9,10 +9,12 @@
 		<th><?php echo $this->Paginator->sort('image');?></th>
 		<th><?php echo $this->Paginator->sort('is_present');?></th>
 		<th><?php echo $this->Paginator->sort('code');?></th>
+		<!--
 		<th><?php echo $this->Paginator->sort('lat');?></th>
 		<th><?php echo $this->Paginator->sort('long');?></th>
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
+		-->
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -30,12 +32,24 @@
 		<td><?php echo $city['City']['name']; ?>&nbsp;</td>
 		<td><?php echo $city['City']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$city['City']['image']); ?>&nbsp;</td>
-		<td><?php echo $city['City']['is_present']; ?>&nbsp;</td>
+		<td>
+			<?php
+				// echo $city['City']['is_present'];
+				if($city['City']['is_present']) {
+					echo '<input type="checkbox" disabled checked />';
+				} else {
+					echo '<input type="checkbox" disabled />';
+				}
+			?>
+			&nbsp;
+		</td>
 		<td><?php echo $city['City']['code']; ?>&nbsp;</td>
+		<!--
 		<td><?php echo $city['City']['lat']; ?>&nbsp;</td>
 		<td><?php echo $city['City']['long']; ?>&nbsp;</td>
 		<td><?php echo $city['City']['created']; ?>&nbsp;</td>
 		<td><?php echo $city['City']['updated']; ?>&nbsp;</td>
+		-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $city['City']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $city['City']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

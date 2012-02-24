@@ -23,7 +23,15 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Present'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php if($city['City']['is_present']){echo __('Yes', true);}else{echo __('No', true);}; ?>
+			<?php //if($city['City']['is_present']){echo __('Yes', true);}else{echo __('No', true);}; ?>
+			<?php
+				// echo $city['City']['is_present'];
+				if($city['City']['is_present']) {
+					echo '<input type="checkbox" disabled checked />';
+				} else {
+					echo '<input type="checkbox" disabled />';
+				}
+			?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
@@ -31,6 +39,7 @@
 			<?php echo $city['City']['code']; ?>
 			&nbsp;
 		</dd>
+		<!--
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Lat'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $city['City']['lat']; ?>
@@ -51,6 +60,7 @@
 			<?php echo $city['City']['updated']; ?>
 			&nbsp;
 		</dd>
+		-->
 	</dl>
 </div>
 
