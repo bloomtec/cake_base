@@ -57,7 +57,7 @@ class RestaurantsController extends AppController {
 		}
 		//$zones = $this->Restaurant->Zone->find('list');
 		//$cities = $this->Restaurant->Zone->City->find('list');
-		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list');
+		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		$this -> set(compact('countries'));
 	}
 

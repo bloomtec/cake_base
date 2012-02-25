@@ -23,7 +23,14 @@
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Is Present'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php if($country['Country']['is_present']){echo __('Yes', true);}else{echo __('No', true);} ?>
+			<?php
+				// echo $country['Country']['is_present'];
+				if($country['Country']['is_present']) {
+					echo '<input type="checkbox" disabled checked />';
+				} else {
+					echo '<input type="checkbox" disabled />';
+				}
+			?>
 			&nbsp;
 		</dd>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
@@ -31,6 +38,7 @@
 			<?php echo $country['Country']['code']; ?>
 			&nbsp;
 		</dd>
+		<!--
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $country['Country']['created']; ?>
@@ -41,6 +49,7 @@
 			<?php echo $country['Country']['updated']; ?>
 			&nbsp;
 		</dd>
+		-->
 	</dl>
 </div>
 
@@ -103,8 +112,10 @@
 		<th><?php __('Image'); ?></th>
 		<th><?php __('Is Present'); ?></th>
 		<th><?php __('Code'); ?></th>
+		<!--
 		<th><?php __('Created'); ?></th>
 		<th><?php __('Updated'); ?></th>
+		-->
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -118,11 +129,21 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $city['name'];?></td>
 			<td><?php echo $city['description'];?></td>
-			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$city['image']); ?></td>
-			<td><?php if($city['is_present']){echo __('Yes', true);}else{echo __('No', true);} ?></td>
+			<td><?php echo $this->Html->image('/img/uploads/100x100/'.$city['image']); ?></td>
+			<td>
+				<?php
+					if($city['is_present']) {
+						echo '<input type="checkbox" disabled checked />';
+					} else {
+						echo '<input type="checkbox" disabled />';
+					}
+				?>
+			</td>
 			<td><?php echo $city['code'];?></td>
+			<!--
 			<td><?php echo $city['created'];?></td>
 			<td><?php echo $city['updated'];?></td>
+			-->
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'cities', 'action' => 'view', $city['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'cities', 'action' => 'edit', $city['id'])); ?>

@@ -178,7 +178,7 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $zone['name'];?></td>
 			<td><?php echo $zone['description'];?></td>
-			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$zone['image']); ?></td>
+			<td><?php echo $this->Html->image('/img/uploads/100x100/'.$zone['image']); ?></td>
 			<td class="actions">
 				<?php echo $this->Html->link(__('View', true), array('controller' => 'zones', 'action' => 'view', $zone['id'])); ?>
 				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'zones', 'action' => 'edit', $zone['id'])); ?>
