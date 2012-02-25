@@ -9,7 +9,7 @@ class CountriesController extends AppController {
 	}
 
 	function getCities($id) {
-		echo json_encode($this -> Country -> City -> find('list', array('conditions' => array('country_id' => $id))));
+		echo json_encode($this -> Country -> City -> find('list', array('conditions' => array('country_id' => $id, 'is_present' => true))));
 		Configure::write('debug', 0);
 		$this -> autoRender = false;
 		exit(0);

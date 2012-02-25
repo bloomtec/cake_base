@@ -6,8 +6,10 @@
 		<th><?php echo $this->Paginator->sort('name');?></th>
 		<th><?php echo $this->Paginator->sort('description');?></th>
 		<th><?php echo $this->Paginator->sort('image');?></th>
+		<!--
 		<th><?php echo $this->Paginator->sort('lat');?></th>
 		<th><?php echo $this->Paginator->sort('long');?></th>
+		-->
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -22,8 +24,10 @@
 		<td><?php echo $zone['Zone']['name']; ?>&nbsp;</td>
 		<td><?php echo $zone['Zone']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$zone['Zone']['image']); ?>&nbsp;</td>
+		<!--
 		<td><?php echo $zone['Zone']['lat']; ?>&nbsp;</td>
 		<td><?php echo $zone['Zone']['long']; ?>&nbsp;</td>
+		-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $zone['Zone']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $zone['Zone']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>

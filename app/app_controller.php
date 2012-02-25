@@ -32,7 +32,11 @@ class AppController extends Controller {
 	}
 
 	function getList() {
-		return $this -> {$this -> modelNames[0]} -> find("list");
+		if($this -> {$this -> modelNames[0]} -> hasField('is_present', false)) {
+			return $this -> {$this -> modelNames[0]} -> find("list", array('conditions' => array('is_present' => true)));
+		} else {
+			return $this -> {$this -> modelNames[0]} -> find("list");
+		}
 	}
 
 	function configEmail() {

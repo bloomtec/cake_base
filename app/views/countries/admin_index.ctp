@@ -9,8 +9,10 @@
 		<th><?php echo $this->Paginator->sort('language');?></th>
 		<th><?php echo $this->Paginator->sort('is_present');?></th>
 		<th><?php echo $this->Paginator->sort('code');?></th>
+		<!--
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
+		-->
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -26,10 +28,22 @@
 		<td><?php echo $country['Country']['description']; ?>&nbsp;</td>
 		<td><?php echo $this->Html->image('uploads/100x100/'.$country['Country']['image']); ?>&nbsp;</td>
 		<td><?php echo $country['Country']['language']; ?>&nbsp;</td>
-		<td><?php echo $country['Country']['is_present']; ?>&nbsp;</td>
+		<td>
+			<?php
+				// echo $country['Country']['is_present'];
+				if($country['Country']['is_present']) {
+					echo '<input type="checkbox" disabled checked />';
+				} else {
+					echo '<input type="checkbox" disabled />';
+				}
+			?>
+			&nbsp;
+		</td>
 		<td><?php echo $country['Country']['code']; ?>&nbsp;</td>
+		<!--
 		<td><?php echo $country['Country']['created']; ?>&nbsp;</td>
 		<td><?php echo $country['Country']['updated']; ?>&nbsp;</td>
+		-->
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $country['Country']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $country['Country']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
