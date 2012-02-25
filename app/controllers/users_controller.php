@@ -53,7 +53,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
 		}
-		$countries = $this -> User -> Address -> Country -> find('list');
+		$countries = $this -> User -> Address -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
 		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
 		$this -> set(compact('countries', 'cities'));
@@ -150,7 +150,7 @@ class UsersController extends AppController {
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
 		if ($code) {
-			$code = $this -> decrypt(urldecode($encrypted_id), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+			$code = $this -> decrypt(urldecode($code), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
 			for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
 				if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
 					$user = $this -> User -> read(null, $id_tested);

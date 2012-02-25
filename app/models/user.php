@@ -134,7 +134,8 @@ class User extends AppModel {
 	
 	function addScore($id = null,$reason = null) {
 		App::import('model','Config');
-		$config = $this -> Config -> read(null,1);
+		$Config = new Config();
+		$config = $Config -> read(null,1);
 		$user = $this -> read(null,$id);
 		$return = false;
 		switch ($reason) {

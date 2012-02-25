@@ -1,4 +1,6 @@
-<?php foreach ($deals as $deal): ?>
+<?php
+	if(isset($deals) && !empty($deals)) foreach ($deals as $deal): 
+?>
 <div class="lista_producto"><!-- deals -->
 	<a href="/deals/view/<?php echo $deal['Deal']['slug']; ?>"><img src="/img/uploads/200x200/<?php echo $deal['Deal']['image']; ?>" /></a>
 	<h1>

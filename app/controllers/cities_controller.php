@@ -3,11 +3,6 @@ class CitiesController extends AppController {
 
 	var $name = 'Cities';
 
-	function beforeFilter() {
-		parent::beforeFilter();
-		//$this->Auth->allow('*');
-	}
-
 	function getZones($id) {
 		echo json_encode($this -> City -> Zone -> find('list', array('conditions' => array('city_id' => $id))));
 		Configure::write('debug', 0);

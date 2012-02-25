@@ -24,7 +24,6 @@
 	<li>
 		<?php echo $html->link(__('DEALS',true),array('controller'=>'deals', 'action'=>'index'));?>
 	</li>
-	<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2): ?>
 	<li>
 		<a href='#'> <?php __('SETTINGS') ?></a>
 		<ul>
@@ -37,13 +36,14 @@
 			<li><?php echo $html->link(__('CUISINES',true),array('controller'=>'cuisines','action' => 'index'));?></li>
 			<li><?php echo $html->link(__('ADD CUISINE',true),array('controller'=>'cuisines','action' => 'add'));?></li>
 			<?php endif; ?>
+			<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2): ?>
 			<li><?php echo $html->link(__('ZONES',true),array('controller'=>'zones', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD ZONE',true),array('controller'=>'zones','action' => 'add'));?></li>
+			<?php endif; ?>
 			<li><?php echo $html->link(__('RESTAURANTS',true),array('controller'=>'restaurants', 'action'=>'index'));?></li>
 			<li><?php echo $html->link(__('ADD RESTAURANT',true),array('controller'=>'restaurants','action' => 'add'));?></li>
 		</ul>
 	</li>
-	<?php endif; ?>
 	<?php if($session -> read('Auth.User.role_id') == 1): ?>
 	<li>
 		<?php echo $html->link(__('USERS',true),array('controller'=>'users'));?>

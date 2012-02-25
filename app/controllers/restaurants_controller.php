@@ -3,15 +3,28 @@ class RestaurantsController extends AppController {
 
 	var $name = 'Restaurants';
 
-	function beforeFilter() {
-		parent::beforeFilter();
-		//$this->Auth->allow('*');
-	}
-
 	private function isManager($restaurant_id = null) {
 		if ($restaurant_id) {
-			$restaurant = $this -> Restaurant -> read(null, $restaurant_id);
-			return ($this -> Session -> read('Auth.User.id') == $restaurant['Restaurant']['manager_id']);
+			$zones = $this -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
+			$restaurant = $this -> Restaurant -> find('first', array('conditions' => array('Restaurant.id' => $restaurant_id, 'Restaurant.zone_id' => $zones)));
+			if(!empty($restaurant)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
+	private function isOwner($restaurant_id = null) {
+		if ($restaurant_id) {
+			$restaurant = $this -> Restaurant -> find('first', array('conditions' => array('Restaurant.id' => $restaurant_id, 'Restaurant.owner_id' => $this -> Auth -> user('id'))));
+			if(!empty($restaurant)) {
+				return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
@@ -46,8 +59,6 @@ class RestaurantsController extends AppController {
 	function admin_add() {
 		if (!empty($this -> data)) {
 			$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
-			// $this -> Restaurant -> create();
-			// if ($this -> Restaurant -> save($this -> data)) {
 			if($this -> Restaurant -> saveAll($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
@@ -55,9 +66,9 @@ class RestaurantsController extends AppController {
 				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
 			}
 		}
-		//$zones = $this->Restaurant->Zone->find('list');
-		//$cities = $this->Restaurant->Zone->City->find('list');
 		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list', array('conditions' => array('is_present' => true)));
+		// $cities = $this->Restaurant->Zone->City->find('list');
+		// $zones = $this->Restaurant->Zone->find('list');
 		$this -> set(compact('countries'));
 	}
 
@@ -99,7 +110,8 @@ class RestaurantsController extends AppController {
 
 	function manager_index() {
 		$this -> Restaurant -> recursive = 0;
-		$this -> paginate = array('conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id')));
+		$zones = $this -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
+		$this -> paginate = array('conditions' => array('Restaurant.zone_id' => $zones));
 		$this -> set('restaurants', $this -> paginate());
 	}
 
@@ -113,18 +125,15 @@ class RestaurantsController extends AppController {
 
 	function manager_add() {
 		if (!empty($this -> data)) {
-			$this -> Restaurant -> create();
-			$this -> data['Restaurant']['manager_id'] = $this -> Auth -> user('id');
-			if ($this -> Restaurant -> save($this -> data)) {
+			$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			if($this -> Restaurant -> saveAll($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
 			}
 		}
-		$this -> loadModel('User');
-		$manager = $this -> User -> read(null, $this -> Session -> read('Auth.User.id'));
-		$zones = $this -> Restaurant -> Zone -> find('list', array('City.id' => $manager['User']['city_id']));
+		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
 		$this -> set(compact('zones'));
 	}
 
@@ -144,9 +153,7 @@ class RestaurantsController extends AppController {
 		if (empty($this -> data)) {
 			$this -> data = $this -> Restaurant -> read(null, $id);
 		}
-		$this -> loadModel('User');
-		$manager = $this -> User -> read(null, $this -> Session -> read('Auth.User.id'));
-		$zones = $this -> Restaurant -> Zone -> find('list', array('City.id' => $manager['User']['city_id']));
+		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
 		$this -> set(compact('zones'));
 	}
 
@@ -161,6 +168,41 @@ class RestaurantsController extends AppController {
 		}
 		$this -> Session -> setFlash(__('Restaurant was not deleted', true));
 		$this -> redirect(array('action' => 'index'));
+	}
+	
+	function owner_index() {
+		$this -> Restaurant -> recursive = 0;
+		$restaurants = $this -> Restaurant -> find('list', array('conditions' => array('Restaurant.owner_id' => $this -> Auth -> user('id')), 'fields' => array('Restaurant.id')));
+		$this -> paginate = array('conditions' => array('Restaurant.id' => $restaurants));
+		$this -> set('restaurants', $this -> paginate());
+	}
+	
+	function owner_view($id = null) {
+		if (!$id || !$this -> isOwner($id)) {
+			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
+	}
+	
+	function owner_edit($id = null) {
+		if ((!$id && empty($this -> data)) || !$this -> isOwner($id)) {
+			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		if (!empty($this -> data) && $this -> isOwner($this -> data['Restaurant']['id'])) {
+			if ($this -> Restaurant -> save($this -> data)) {
+				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> redirect(array('action' => 'index'));
+			} else {
+				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> Restaurant -> read(null, $id);
+		}
+		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
+		$this -> set(compact('zones'));
 	}
 
 }
