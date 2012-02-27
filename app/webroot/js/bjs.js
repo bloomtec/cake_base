@@ -28,7 +28,8 @@ $(function(){
 			cache : false,
 			dataType : "json",
 			data : params,
-			success : callback
+			success : callback,
+			async : false
 		});
 	}
 

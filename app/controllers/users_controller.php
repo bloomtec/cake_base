@@ -35,6 +35,19 @@ class UsersController extends AppController {
 		$pad = ord($str[($len = strlen($str)) - 1]);
 		return substr($str, 0, strlen($str) - $pad);
 	}
+	
+	function getOwners() {
+		$this -> layout = "ajax";
+		$owners = array();
+		$owners[''] = __('Select...', true);
+		$conditions = array('role_id' => 4);
+		$owners_tmp = $this -> User -> find('list', array('conditions' => $conditions));
+		foreach($owners_tmp as $key => $owner) {
+			$owners[$key] = $owner;
+		}
+		echo json_encode($owners);
+		exit(0);
+	}
 
 	function register() {
 		if (!empty($this -> data)) {

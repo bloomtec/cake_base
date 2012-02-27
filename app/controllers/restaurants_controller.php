@@ -58,7 +58,13 @@ class RestaurantsController extends AppController {
 
 	function admin_add() {
 		if (!empty($this -> data)) {
-			$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			if(isset($this -> data['Owner']['password'])) {
+				$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			}
+			if(isset($this -> data['Owner']['id'])) {
+				$this -> data['Restaurant']['owner_id'] = $this -> data['Owner']['id'];
+				unset($this -> data['Owner']);
+			}
 			if($this -> Restaurant -> saveAll($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
@@ -125,7 +131,13 @@ class RestaurantsController extends AppController {
 
 	function manager_add() {
 		if (!empty($this -> data)) {
-			$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			if(isset($this -> data['Owner']['password'])) {
+				$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
+			}
+			if(isset($this -> data['Owner']['id'])) {
+				$this -> data['Restaurant']['owner_id'] = $this -> data['Owner']['id'];
+				unset($this -> data['Owner']);
+			}
 			if($this -> Restaurant -> saveAll($this -> data)) {
 				$this -> Session -> setFlash(__('The restaurant has been saved', true));
 				$this -> redirect(array('action' => 'index'));
