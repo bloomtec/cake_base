@@ -25,7 +25,7 @@ class ZonesController extends AppController {
 		$this -> Zone -> recursive = 0;
 		$this -> paginate = array(
 			'order' => array(
-				'Zone.city_id' => 'ASC',
+				'City.name' => 'ASC',
 				'Zone.name' => 'ASC'
 			)
 		);
@@ -91,6 +91,12 @@ class ZonesController extends AppController {
 
 	function manager_index() {
 		$this -> Zone -> recursive = 0;
+		$this -> paginate = array(
+			'order' => array(
+				'City.name' => 'ASC',
+				'Zone.name' => 'ASC'
+			)
+		);
 		$this -> set('zones', $this -> paginate());
 	}
 

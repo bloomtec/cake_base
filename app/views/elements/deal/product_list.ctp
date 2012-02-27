@@ -1,6 +1,4 @@
-<?php
-	if(isset($deals) && !empty($deals)) foreach ($deals as $deal): 
-?>
+<?php if(isset($deals) && !empty($deals)) foreach ($deals as $deal) : ?>
 <div class="lista_producto"><!-- deals -->
 	<a href="/deals/view/<?php echo $deal['Deal']['slug']; ?>"><img src="/img/uploads/200x200/<?php echo $deal['Deal']['image']; ?>" /></a>
 	<h1>
@@ -18,7 +16,7 @@
 	<p>
 		<?php echo $deal['Deal']['conditions']; ?>
 	</p>
-	<img class="logo_negocio" src="/img/uploads/50x50/<?php $deal['Restaurant']['image']; ?>"/>
+	<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
 	<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
 </div>
 <?php endforeach; ?>

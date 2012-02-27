@@ -21,7 +21,7 @@
 	
 </div>
 <div class="deals-list">
-	<?php echo $this->element('product_list'); ?>
+	<?php echo $this->element('deal/product_list'); ?>
 </div>
 <p>
 	<?php
