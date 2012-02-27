@@ -1,6 +1,6 @@
 <?php if(isset($deals) && !empty($deals)) foreach ($deals as $deal) : ?>
 <div class="lista_producto"><!-- deals -->
-	<a href="/deals/view/<?php echo $deal['Deal']['slug']; ?>"><img src="/img/uploads/200x200/<?php echo $deal['Deal']['image']; ?>" /></a>
+	<a href="/deals/view/<?php echo urlencode($deal['Deal']['slug']); ?>"><img src="/img/uploads/200x200/<?php echo $deal['Deal']['image']; ?>" /></a>
 	<h1>
 		<a href="/deals/view/<?php echo $deal['Deal']['slug']; ?>"><!-- descripcion -->
 			<?php echo $deal['Deal']['description']; ?>

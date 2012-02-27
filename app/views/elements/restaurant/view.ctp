@@ -81,9 +81,13 @@
 			<td><?php echo $deal['created'];?></td>
 			<td><?php echo $deal['updated'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'deals', 'action' => 'view', $deal['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'deals', 'action' => 'edit', $deal['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'deals', 'action' => 'delete', $deal['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $deal['id'])); ?>
+				<?php
+					echo $this->Html->link(__('View', true), array('controller' => 'deals', 'action' => 'view', $deal['slug']));
+					if($this -> Session -> read('Auth.User.role_id') != 4) {
+						echo $this->Html->link(__('Edit', true), array('controller' => 'deals', 'action' => 'edit', $deal['id']));
+						echo $this->Html->link(__('Delete', true), array('controller' => 'deals', 'action' => 'delete', $deal['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $deal['id']));
+					}					
+				?>
 			</td>
 		</tr>
 	<?php endforeach; ?>

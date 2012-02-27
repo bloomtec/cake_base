@@ -5,7 +5,7 @@ class DealsController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('getDeals');
+		$this -> Auth -> allow('getDeals', 'addVisitCount');
 	}
 
 	function getDeals() {
@@ -25,6 +25,14 @@ class DealsController extends AppController {
 		$this -> recursive = -1;
 		$deal = $this -> Deal -> find('all', array('order' => 'rand()', 'conditions' => array('Deal.image_large <>' => null, 'Deal.image_large <>' => '')));
 		return $deal;
+	}
+	
+	function addVisitCount($id) {
+		if($id) {
+			$deal = $this -> Deal -> read(null, $id);
+			$deal['Deal']['visits'] += 1;
+			$this -> Deal -> save($deal);
+		}
 	}
 
 	function index() {		
@@ -197,7 +205,8 @@ class DealsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 			$this -> layout = "default";
 		}
-		$deal = $this -> Deal -> find('first', array('recursive' => 2, array('conditions' => array('Deal.slug' => $slug))));
+		$this -> Deal -> recursive = 2;
+		$deal = $this -> Deal -> findBySlug($slug);
 		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($deal['Restaurant']['Zone']['city_id']);
 		$this -> set('deal', $deal);
 		$this -> set('city', $city);
@@ -278,6 +287,14 @@ class DealsController extends AppController {
 	}
 
 	function manager_view($slug = null) {
+		if (!$slug) {
+			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+		$this -> set('deal', $this -> Deal -> findBySlug($slug));
+	}
+	
+	function owner_view($slug = null) {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Invalid deal', true));
 			$this -> redirect(array('action' => 'index'));
