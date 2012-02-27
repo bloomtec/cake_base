@@ -1,7 +1,21 @@
 <?php
 class AppController extends Controller {
 
-	var $components = array('Session', 'Auth' => array('authorize' => 'controller', 'userScope' => array('User.active' => 1), 'fields' => array('username' => 'email', 'password' => 'password')), 'Email', 'Language', );
+	var $components = array(
+		'Session',
+		'Auth' => array(
+			'authorize' => 'controller',
+			'userScope' => array(
+				'User.active' => 1
+			),
+			'fields' => array(
+				'username' => 'email',
+				'password' => 'password'
+			)
+		),
+			'Email',
+			'Language'
+		);
 	
 	var $cacheAction = true;
 
@@ -9,7 +23,11 @@ class AppController extends Controller {
 		if (isset($this -> params["prefix"])) {
 			$role_id = $this -> Session -> read('Auth.User.role_id');
 			$prefix = $this -> params["prefix"];
-			if (($prefix == "admin" && $role_id == 1) || ($prefix == "manager" && ($role_id == 1 || $role_id == 2)) || ($prefix == "owner" && ($role_id == 1 || $role_id == 4))) {
+			if (
+				($prefix == "admin" && $role_id == 1) ||
+				($prefix == "manager" && ($role_id == 1 || $role_id == 2)) ||
+				($prefix == "owner" && ($role_id == 1 || $role_id == 4))
+			) {
 				return true;
 			} else {
 				return false;

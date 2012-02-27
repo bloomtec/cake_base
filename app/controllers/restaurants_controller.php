@@ -95,9 +95,9 @@ class RestaurantsController extends AppController {
 			$this -> data = $this -> Restaurant -> read(null, $id);
 		}
 		$city = $this -> Restaurant -> Zone -> City -> read(null, $this -> data['Zone']['city_id']);
-		$cities = $this -> Restaurant -> Zone -> City -> find('list', array('conditions' => array('country_id' => $city['Country']['id'])));
+		$cities = $this -> Restaurant -> Zone -> City -> find('list', array('conditions' => array('is_present' => true, 'country_id' => $city['Country']['id'])));
 		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('city_id' => $city['City']['id'])));
-		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list');
+		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		$this -> set(compact('zones', 'cities', 'countries', 'city'));
 	}
 
@@ -213,8 +213,6 @@ class RestaurantsController extends AppController {
 		if (empty($this -> data)) {
 			$this -> data = $this -> Restaurant -> read(null, $id);
 		}
-		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
-		$this -> set(compact('zones'));
 	}
 
 }

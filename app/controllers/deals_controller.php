@@ -12,8 +12,9 @@ class DealsController extends AppController {
 		return $this -> Deal -> find('all');
 	}
 
-	private function getRestaurants() {
-		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
+	private function getRestaurantsByManager() {
+		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
+		return $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zones)));
 	}
 
 	private function getRestaurantsByOwner() {
@@ -133,13 +134,13 @@ class DealsController extends AppController {
 
 	function manager_index() {
 		$this -> Deal -> recursive = 0;
-		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurants()));
+		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurantsByManager()));
 		$this -> set('deals', $this -> paginate());
 	}
 
 	function owner_index() {
 		$this -> Deal -> recursive = 0;
-		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurants()));
+		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurantsByOwner()));
 		$this -> set('deals', $this -> paginate());
 	}
 

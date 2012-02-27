@@ -8,8 +8,12 @@
 			echo $this->Form->input('country_id',array('options' => $countries, 'selected'=>$city['City']['country_id']));
 			echo $this->Form->input('city_id',array('options' => $cities, 'selected'=>$city['City']['id']));
 		}
-		echo $this->Form->input('zone_id');
-		echo $this->Form->input('name');
+		if($this -> Session -> read('Auth.User.role_id') != 4) {
+			echo $this->Form->input('zone_id');
+			echo $this->Form->input('name');
+		} else {
+			echo $this->Form->input('name', array('disabled' => 'disabled'));
+		}
 		echo $this->Form->input('description');
 		echo $this->Form->input('service_policies');
 		echo $this->Form->input('schedule');
@@ -39,25 +43,63 @@
 		</div>			
 </div>
 <script type="text/javascript">
-	$(function(){
+	$(function() {
 		var $country = $('#RestaurantCountryId');
 		var $city = $('#RestaurantCityId');
 		var $zone = $('#RestaurantZoneId');
-		$country.change(function(){
+		updateCountry();
+		$country.change(function() {
 			updateCountry();
 		});
-		$city.change(function(){
+		$city.change(function() {
 			updateCity();
 		});
-		
-		function updateCountry(){
-			BJS.updateSelect($city, '/countries/getCities/'+$country.val(),function(){
-				BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+		function updateCountry() {
+			BJS.updateSelect($city, '/countries/getCities/' + $country.val(), function() {
+				BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
 			});
 		}
+
+		function updateCity() {
+			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+		}
+		/*
+		 * --------------------------------------------
+		 */
+		var $owner = $('#OwnerId');
+		updateOwner();
+		function updateOwner() {
+			BJS.updateSelect($owner, '/users/getOwners');
+		}
 		
-		function updateCity(){
-			BJS.updateSelect($zone, '/cities/getZones/'+$city.val());
+		$owner.change(function() {
+			if($owner.val() == '') {
+				camposUsuario(true);
+			} else {
+				camposUsuario(false);
+			}
+		});
+		
+		function camposUsuario(habilitar) {
+			if(habilitar) {
+				$('#OwnerName').removeAttr('disabled');
+				$('#OwnerLastName').removeAttr('disabled');
+				$('#OwnerEmail').removeAttr('disabled');
+				$('#OwnerPassword').removeAttr('disabled');
+				$('#OwnerActive').removeAttr('disabled');
+				$('#OwnerActive_').removeAttr('disabled');
+				$('#OwnerEmailVerified').removeAttr('disabled');
+				$('#OwnerRoleId').removeAttr('disabled');
+			} else {
+				$('#OwnerName').attr('disabled', 'disabled');
+				$('#OwnerLastName').attr('disabled', 'disabled');
+				$('#OwnerEmail').attr('disabled', 'disabled');
+				$('#OwnerPassword').attr('disabled', 'disabled');
+				$('#OwnerActive').attr('disabled', 'disabled');
+				$('#OwnerActive_').attr('disabled', 'disabled');
+				$('#OwnerEmailVerified').attr('disabled', 'disabled');
+				$('#OwnerRoleId').attr('disabled', 'disabled');
+			}
 		}
 		
 	});

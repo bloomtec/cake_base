@@ -8,32 +8,12 @@ class UsersController extends AppController {
 		$this -> Auth -> autoRedirect = false;
 		if (isset($this -> params["prefix"])) {
 			$prefix = $this -> params["prefix"];
-			if ($prefix == "admin") {
-				$this -> Auth -> logoutRedirect = '/admin';
-			} else {
-				$this -> Auth -> logoutRedirect = '/manager';
-			}
+			$this -> Auth -> logoutRedirect = "/$prefix";
 		} else {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
 		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
-	}
-
-	function encrypt($str, $key) {
-		$block = mcrypt_get_block_size('des', 'ecb');
-		$pad = $block - (strlen($str) % $block);
-		$str .= str_repeat(chr($pad), $pad);
-
-		return mcrypt_encrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
-	}
-
-	function decrypt($str, $key) {
-		$str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
-
-		$block = mcrypt_get_block_size('des', 'ecb');
-		$pad = ord($str[($len = strlen($str)) - 1]);
-		return substr($str, 0, strlen($str) - $pad);
 	}
 	
 	function getOwners() {
@@ -195,117 +175,6 @@ class UsersController extends AppController {
 
 	}
 
-	function login() {
-		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
-			$this -> User -> recursive = -1;
-			$user = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (!empty($user)) {
-				if ($user['User']['email_verified']) {
-					$this -> Auth -> login($user);
-					$this -> redirect($this -> Auth -> redirect());
-				} else {
-					$this -> Auth -> logout($user);
-					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
-
-	function admin_login() {
-		$this -> layout = "ez/login";
-		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
-			$this -> User -> recursive = -1;
-			$user = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (!empty($user)) {
-				if ($user['User']['email_verified']) {
-					$this -> Auth -> login($user);
-					$this -> redirect($this -> Auth -> redirect());
-				} else {
-					$this -> Auth -> logout($user);
-					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
-
-	function manager_login() {
-		$this -> layout = "ez/login";
-		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
-			$this -> User -> recursive = -1;
-			$user = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (!empty($user)) {
-				if ($user['User']['email_verified']) {
-					$this -> Auth -> login($user);
-					$this -> redirect($this -> Auth -> redirect());
-				} else {
-					$this -> Auth -> logout($user);
-					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
-
-	function owner_login() {
-		$this -> layout = "ez/login";
-		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
-			$this -> User -> recursive = -1;
-			$user = $this -> User -> findByEmail($this -> data['User']['email']);
-			if (!empty($user)) {
-				if ($user['User']['email_verified']) {
-					$this -> Auth -> login($user);
-					$this -> redirect($this -> Auth -> redirect());
-				} else {
-					$this -> Auth -> logout($user);
-					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
-				}
-			} else {
-				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
-			}
-		}
-	}
-
-	function ajaxLogin() {
-		$this -> User -> recursive = -1;
-		$user = $this -> User -> findByEmail($this -> data['User']['email']);
-		$email = $user['User']['email'];
-		if (!empty($user)) {
-			if ($user['User']['email_verified']) {
-				if ($this -> Auth -> login($this -> data)) {
-					//$user = $this -> User -> read(null, $this -> Auth -> user('id'));
-					$user['success'] = true;
-					$user['message'] = __('Login successful', true);
-				} else {
-					$user['success'] = false;
-					$user['message'] = __("Data entered is not correct. Click <a href=\"/users/resetPassword/$email\">here</a> if you want to reset your password.", true);
-				}
-			} else {
-				$user['success'] = false;
-				$user['message'] = __('Email has not been verified :: <a href="/users/validateEmail">Verify email</a>', true);
-			}
-		} else {
-			$user['success'] = false;
-			$user['message'] = __('No user with that email is registered', true);
-		}
-		echo json_encode($user);
-		$this -> autoRender = false;
-		Configure::write('debug', 0);
-		exit(0);
-	}
-
-	function owner_logout() {
-		$this -> redirect($this -> Auth -> logout());
-	}
-
-	function logout() {
-		$this -> redirect($this -> Auth -> logout());
-	}
-
 	function profile() {
 		$this -> layout = "profile";
 		$this -> set('user', $this -> User -> read(null, $this -> Auth -> user('id')));
@@ -459,14 +328,6 @@ class UsersController extends AppController {
 		$this -> set('users', $this -> paginate());
 	}
 
-	function admin_logout() {
-		$this -> redirect($this -> Auth -> logout());
-	}
-
-	function manager_logout() {
-		$this -> redirect($this -> Auth -> logout());
-	}
-
 	function admin_view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid user', true));
@@ -559,6 +420,141 @@ class UsersController extends AppController {
 		}
 		$this -> Session -> setFlash(__('User was not set to active', true));
 		$this -> redirect(array('action' => 'index'));
+	}
+	
+	function login() {
+		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this -> data['User']['email']);
+			if (!empty($user)) {
+				if ($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+	
+	function owner_login() {
+		$this -> layout = "ez/login";
+		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this -> data['User']['email']);
+			if (!empty($user)) {
+				if ($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function admin_login() {
+		$this -> layout = "ez/login";
+		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this -> data['User']['email']);
+			if (!empty($user)) {
+				if ($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function manager_login() {
+		$this -> layout = "ez/login";
+		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
+			$this -> User -> recursive = -1;
+			$user = $this -> User -> findByEmail($this -> data['User']['email']);
+			if (!empty($user)) {
+				if ($user['User']['email_verified']) {
+					$this -> Auth -> login($user);
+					$this -> redirect($this -> Auth -> redirect());
+				} else {
+					$this -> Auth -> logout($user);
+					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
+				}
+			} else {
+				$this -> Session -> setFlash($this -> Auth -> loginError, $this -> Auth -> flashElement, array(), 'auth');
+			}
+		}
+	}
+
+	function ajaxLogin() {
+		$this -> User -> recursive = -1;
+		$user = $this -> User -> findByEmail($this -> data['User']['email']);
+		$email = $user['User']['email'];
+		if (!empty($user)) {
+			if ($user['User']['email_verified']) {
+				if ($this -> Auth -> login($this -> data)) {
+					//$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+					$user['success'] = true;
+					$user['message'] = __('Login successful', true);
+				} else {
+					$user['success'] = false;
+					$user['message'] = __("Data entered is not correct. Click <a href=\"/users/resetPassword/$email\">here</a> if you want to reset your password.", true);
+				}
+			} else {
+				$user['success'] = false;
+				$user['message'] = __('Email has not been verified :: <a href="/users/validateEmail">Verify email</a>', true);
+			}
+		} else {
+			$user['success'] = false;
+			$user['message'] = __('No user with that email is registered', true);
+		}
+		echo json_encode($user);
+		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		exit(0);
+	}
+	
+	function logout() {
+		$this -> redirect($this -> Auth -> logout());
+	}
+	
+	function owner_logout() {
+		$this -> logout();
+	}
+
+	function admin_logout() {
+		$this -> logout();
+	}
+
+	function manager_logout() {
+		$this -> logout();
+	}
+	
+	function encrypt($str, $key) {
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = $block - (strlen($str) % $block);
+		$str .= str_repeat(chr($pad), $pad);
+
+		return mcrypt_encrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+	}
+
+	function decrypt($str, $key) {
+		$str = mcrypt_decrypt(MCRYPT_DES, $key, $str, MCRYPT_MODE_ECB);
+
+		$block = mcrypt_get_block_size('des', 'ecb');
+		$pad = ord($str[($len = strlen($str)) - 1]);
+		return substr($str, 0, strlen($str) - $pad);
 	}
 
 }

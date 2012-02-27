@@ -19,7 +19,13 @@
 	?>
 	<tr<?php echo $class;?> id='<?php echo $restaurant['Restaurant']['id'] ?>'>
 		<td>
-			<?php echo $this->Html->link($restaurant['Zone']['name'], array('controller' => 'zones', 'action' => 'view', $restaurant['Zone']['id'])); ?>
+			<?php
+				if($this -> Session -> read('Auth.User.role_id') != 4) {
+					echo $this->Html->link($restaurant['Zone']['name'], array('controller' => 'zones', 'action' => 'view', $restaurant['Zone']['id']));
+				} else {
+					echo $restaurant['Zone']['name'];
+				}
+			?>
 		</td>
 		<td><?php echo $restaurant['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $restaurant['Restaurant']['description']; ?>&nbsp;</td>
@@ -28,7 +34,11 @@
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $restaurant['Restaurant']['id']),array('class'=>'view icon','title'=>__('View',true))); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $restaurant['Restaurant']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $restaurant['Restaurant']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $restaurant['Restaurant']['id'])); ?>
+			<?php
+				if($this -> Session -> read('Auth.User.role_id') != 4) {
+					echo $this->Html->link(__('Delete', true), array('action' => 'delete', $restaurant['Restaurant']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $restaurant['Restaurant']['id']));
+				}
+			?>
 			<?php if(isset($restaurant['Restaurant']['active'])&& $restaurant['Restaurant']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $restaurant['Restaurant']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $restaurant['Restaurant']['id']));
 }?>
@@ -54,8 +64,13 @@
 	</div>
 	<div class="actions">
 		<ul>
-			<li>	<?php echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add')); ?>
-</li>
+			<li>
+				<?php
+					if($this -> Session -> read('Auth.User.role_id') != 4) {
+						echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add'));
+					}
+				?>
+			</li>
 		</ul>
 	</div>
 </div>
