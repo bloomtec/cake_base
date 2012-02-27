@@ -5,7 +5,6 @@ class OrdersController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
 	}
 
 	function index() {

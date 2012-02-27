@@ -141,6 +141,12 @@ class DealsController extends AppController {
 		 */
 		$conditions = array();
 		
+		/**
+		 * Como condición genérica, solo se deben mostrar aquellas promos que no hayan llegado a su fin de tiempo
+		 */
+		$now = new DateTime('now');
+		$conditions['Deal.expires >'] = $now -> format('Y-m-d H:i:s');
+		
 		if($city && !$zone) {
 			/**
 			 * Solo se ha seleccionado ciudad
@@ -206,7 +212,7 @@ class DealsController extends AppController {
 			$this -> layout = "default";
 		}
 		$this -> Deal -> recursive = 2;
-		$deal = $this -> Deal -> findBySlug($slug);
+		$deal = $this -> Deal -> find('first', array('conditions' => array('Deal.slug' => $slug)));
 		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($deal['Restaurant']['Zone']['city_id']);
 		$this -> set('deal', $deal);
 		$this -> set('city', $city);
