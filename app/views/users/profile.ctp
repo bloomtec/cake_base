@@ -28,4 +28,4 @@
 	<?php //echo $this -> element('listado_producto',array('products'=>$productsVisited));?>
 	<div style="clear: both"></div>
 </div>
-<?php echo $this -> element('product_list');?>
+<?php echo $this -> element('deal/product_list');?>

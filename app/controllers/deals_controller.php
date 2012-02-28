@@ -228,6 +228,7 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid deal', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Deal -> recursive = 2;
 		$this -> set('deal', $this -> Deal -> findBySlug($slug));
 	}
 
@@ -297,6 +298,7 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid deal', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Deal -> recursive = 2;
 		$this -> set('deal', $this -> Deal -> findBySlug($slug));
 	}
 	
@@ -305,6 +307,7 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Invalid deal', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Deal -> recursive = 2;
 		$this -> set('deal', $this -> Deal -> findBySlug($slug));
 	}
 

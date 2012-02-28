@@ -55,15 +55,13 @@
 	<?php if (!empty($deal['Order'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
-		<th><?php __('Id'); ?></th>
-		<th><?php __('Code'); ?></th>
-		<th><?php __('User Id'); ?></th>
-		<th><?php __('Address Id'); ?></th>
-		<th><?php __('Quantity'); ?></th>
-		<th><?php __('Deal Id'); ?></th>
-		<th><?php __('Order State Id'); ?></th>
-		<th><?php __('Created'); ?></th>
-		<th><?php __('Updated'); ?></th>
+		<th><?php __('Código'); ?></th>
+		<th><?php __('Usuario'); ?></th>
+		<th><?php __('Dirección'); ?></th>
+		<th><?php __('Cantidad'); ?></th>
+		<th><?php __('Estado'); ?></th>
+		<th><?php __('Creada'); ?></th>
+		<th><?php __('Actualizada'); ?></th>
 		<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -75,30 +73,24 @@
 			}
 		?>
 		<tr<?php echo $class;?>>
-			<td><?php echo $order['id'];?></td>
 			<td><?php echo $order['code'];?></td>
-			<td><?php echo $order['user_id'];?></td>
-			<td><?php echo $order['address_id'];?></td>
+			<td><?php echo $order['User']['email'];?></td>
+			<td><?php echo $order['Address']['address'];?></td>
 			<td><?php echo $order['quantity'];?></td>
-			<td><?php echo $order['deal_id'];?></td>
-			<td><?php echo $order['order_state_id'];?></td>
+			<td><?php echo $order['OrderState']['name'];?></td>
 			<td><?php echo $order['created'];?></td>
 			<td><?php echo $order['updated'];?></td>
 			<td class="actions">
-				<?php echo $this->Html->link(__('View', true), array('controller' => 'orders', 'action' => 'view', $order['id'])); ?>
-				<?php echo $this->Html->link(__('Edit', true), array('controller' => 'orders', 'action' => 'edit', $order['id'])); ?>
-				<?php echo $this->Html->link(__('Delete', true), array('controller' => 'orders', 'action' => 'delete', $order['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $order['id'])); ?>
+				<?php
+					echo $this->Html->link(__('View', true), array('controller' => 'orders', 'action' => 'view', $order['id']));
+					if($this -> Session -> read('Auth.User.role_id') == 4) {
+						echo $this->Html->link(__('Edit', true), array('controller' => 'orders', 'action' => 'edit', $order['id']));
+					}
+				?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
-	<?php endif; ?>
-	<?php if($this -> Session -> read('Auth.User.role_id') != 4) : ?>
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Order', true), array('controller' => 'orders', 'action' => 'add'));?> </li>
-		</ul>
-	</div>
 	<?php endif; ?>
 </div>
 <div class="related">

@@ -24,6 +24,9 @@
 	<li>
 		<?php echo $html -> link(__('DEALS', true), array('controller' => 'deals', 'action' => 'index')); ?>
 	</li>
+	<li>
+		<?php echo $html -> link(__('ORDERS', true), array('controller' => 'orders', 'action' => 'index')); ?>
+	</li>
 	<?php if($this -> Session -> read('Auth.User.role_id') != 4) : ?>
 	<li>
 		<a href='#'> <?php __('SETTINGS'); ?></a>

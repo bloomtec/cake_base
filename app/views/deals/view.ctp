@@ -24,7 +24,7 @@
 			</li>
 		</ul>
 		<div style="clear: both"></div>
-		<a class="comprar" href="/orders/"></a>
+		<a class="comprar" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>"></a>
 	</div>
 	<div class="descripcion_producto">
 		<h1 class="descripcion">Descripción del producto</h1>

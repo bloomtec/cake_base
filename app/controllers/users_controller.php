@@ -333,6 +333,7 @@ class UsersController extends AppController {
 			$this -> Session -> setFlash(__('Invalid user', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> User -> recursive = 2;
 		$this -> set('user', $this -> User -> read(null, $id));
 	}
 
