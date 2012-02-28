@@ -27,14 +27,15 @@
 					echo $this -> Form -> input('Info.last_name', array('label' => __('Apellido', true), 'value' => $user['User']['last_name'], 'disabled' => 'disabled'));
 					echo $this -> Form -> input('Info.email', array('label' => __('Correo Electrónico', true), 'value' => $user['User']['email'], 'disabled' => 'disabled'));
 					echo $this -> Form -> input('Info.phone', array('label' => __('Teléfono', true), 'value' => $user['User']['phone'], 'disabled' => 'disabled'));
-			?>
-			<?php
-			} else {
-				echo $this -> Form -> input('User.email');
-				echo $this -> Form -> input('User.password');
-			?>
-			<?php
-			}
+				} else {
+					echo $this -> Form -> input('User.name', array('label' => __('Nombre', true)));
+					echo $this -> Form -> input('User.last_name', array('label' => __('Apellido', true)));
+					echo $this -> Form -> input('User.email', array('label' => __('Correo Electrónico', true)));
+					echo $this -> Form -> input('User.password', array('label' => __('Contraseña', true)));
+					echo $this -> Form -> input('User.phone', array('label' => __('Teléfono', true)));
+					echo $this -> Form -> input('User.country_id', array('label' => __('País', true)));
+					echo $this -> Form -> input('User.city_id', array('label' => __('Ciudad', true)));
+				}
 			?>
 		</fieldset>
 	</div>
@@ -61,3 +62,14 @@
 	</div>
 	<?php echo $this -> Form -> end(__('Submit', true));?>
 </div>
+<script type="text/javascript">
+	$(function() {
+		var country_id = $('#UserCountryId').val();
+		if($('#UserCountryId').val()) {
+			BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
+		}
+		$('#UserCountryId').change(function(){
+			BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
+		});
+	});
+</script>

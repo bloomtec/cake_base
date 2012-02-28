@@ -16,10 +16,12 @@ class OrdersController extends AppController {
 	}
 	
 	function add($slug = null) {
+		
 		if (!empty($this -> data)) {
 			/**
 			 * TODO : revisar el maximo de compras de la promocion vs la cantidad comprada por el usuario
 			 */
+			
 			// Generar el código a asignar a la órden antes de guardar
 			$max_id = $this -> Order -> query('SELECT MAX(`id`) FROM `orders`');
 			$max_id = $max_id[0][0]['MAX(`id`)'];
@@ -30,50 +32,116 @@ class OrdersController extends AppController {
 			}
 			$this -> data['Order']['code'] = 1000000 + $max_id;
 			$this -> data['Order']['order_state_id'] = 1; // En espera de pago
-			// debug($this -> data);
-			/**
-			 * 
-			 */
+			
 			if(isset($this -> data['User'])) {
-				// No estaba registrado el usuario
-				debug('Creando desde cero para poder generar la orden');
-			} elseif(!isset($this -> data['Order']['address_id']) && isset($this -> data['Address'])) {
-				// Está registrado el usuario pero no tiene registrada una dirección
-				// debug('Caso en el que hay usuario pero no hay dirección registrada');
-				$this -> Order -> User -> Address -> create();
-				$address = array();
-				$address['Address'] = $this -> data['Address'];
-				if($this -> Order -> User -> Address -> save($address)) {
-					$this -> Order -> create();
-					$this -> data['Order']['address_id'] = $this -> Order -> User -> Address -> id;
-					$order = array();
-					$order['Order'] = $this -> data['Order'];
-					if($this -> Order -> save($order)) {
+				if($this -> Order -> User -> findByEmail(trim($this -> data['User']['email']))) {
+					$this -> Session -> setFlash(__('Este correo ya está registrado. Por favor inicia sesión', true));
+					$this -> redirect('/deals');
+				} else {
+					/**
+					 * No estaba registrado el usuario
+					 * Crear el usuario
+					 * Crear la dirección
+					 * Crear la orden
+					 */
+					// Crear el usuario
+					$this -> data['User']['role_id'] = 3;
+					$this -> data['User']['active'] = 1;
+					$this -> Order -> User -> create();
+					$user = array();
+					$user['User'] = $this -> data['User'];
+					if ($this -> Order -> User -> save($user)) {
+						// Generar el codigo para el correo de registro
+						$code = $this -> requestAction('/users/encrypt/' . $this -> Order -> User -> id . '/' . "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+						$code = urlencode($code);
+						// Enviar el correo con el codigo
+						$this -> requestAction('/users/registrationEmail/' . $user['User']['email'] . '/' . $code);
+						
+						// Crear la dirección, en este caso asignar user_id, country_id y city_id
+						$this -> data['Address']['user_id'] = $this -> Order -> User -> id;
+						$this -> data['Address']['country_id'] = $user['User']['country_id'];
+						$this -> data['Address']['city_id'] = $user['User']['city_id'];
+						$this -> Order -> User -> Address -> create();
+						$address = array();
+						$address['Address'] = $this -> data['Address'];
+						if($this -> Order -> User -> Address -> save($address)) {
+							$this -> Order -> create();
+							$this -> data['Order']['address_id'] = $this -> Order -> User -> Address -> id;
+							$this -> data['Order']['user_id'] = $this -> Order -> User -> id;
+							$order = array();
+							$order['Order'] = $this -> data['Order'];
+							if($this -> Order -> save($order)) {
+								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
+								$this -> redirect('/deals');
+							} else {
+								$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
+								debug($order);
+								debug($this -> Order -> invalidFields());
+							}
+						} else {
+							$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación de la dirección.', true));
+							debug($address);
+							debug($this -> Order -> User -> Address -> invalidFields());
+						}
+					} else {
+						$this -> Session -> setFlash(__('Ha ocurrido un error al registrar el usuario.', true));
+						debug($user);
+						debug($this -> Order -> User -> invalidFields());
+					}
+				}			
+			} else {
+				if(!isset($this -> data['Order']['address_id']) && isset($this -> data['Address'])) {
+					// Está registrado el usuario pero no tiene registrada una dirección
+					// debug('Caso en el que hay usuario pero no hay dirección registrada');
+					$this -> Order -> User -> Address -> create();
+					$address = array();
+					$address['Address'] = $this -> data['Address'];
+					if($this -> Order -> User -> Address -> save($address)) {
+						$this -> Order -> create();
+						$this -> data['Order']['address_id'] = $this -> Order -> User -> Address -> id;
+						$order = array();
+						$order['Order'] = $this -> data['Order'];
+						if($this -> Order -> save($order)) {
+							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
+							$this -> redirect('/deals');
+						} else {
+							$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
+							debug($order);
+							debug($this -> Order -> invalidFields());
+						}
+					} else {
+						$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación de la dirección.', true));
+						debug($address);
+						debug($this -> Order -> User -> Address -> invalidFields());
+					}
+				} else {
+					if($this -> Order -> save($this -> data)) {
 						$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 						$this -> redirect('/deals');
 					} else {
-						$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación de la órden.', true));
-						// debug($order);
-						// debug($this -> Order -> invalidFields());
+						$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
+						debug($order);
+						debug($this -> Order -> invalidFields());
 					}
-				} else {
-					$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación de la dirección.', true));
-					// debug($address);
-					// debug($this -> Order -> User -> Address -> invalidFields());
 				}
 			}
-		} elseif(!$slug) {
-			$this -> redirect('/deals');
+		} else {
+			if(!$slug) {
+				$this -> redirect('/deals');
+			}
 		}
+
 		$deal = $this -> Order -> Deal -> find('first', array('conditions' => array('Deal.slug' => $slug)));
 		$user = $this -> Order -> User -> read(null, $this -> Auth -> user('id'));
+		$countries = $this -> Order -> User -> Address -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		if($user) {
 			unset($user['Restaurant']);
 			unset($user['Order']);
 			unset($user['Role']);
+			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.user_id' => $user['User']['id'])));
+			$this -> set('addresses', $addresses);
 		}
-		$this -> set(compact('deal', 'user'));
-		
+		$this -> set(compact('deal', 'user', 'countries'));		
 	}
 
 	function admin_index() {

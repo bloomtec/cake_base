@@ -81,7 +81,7 @@ class UsersController extends AppController {
 		exit(0);
 	}
 
-	private function registrationEmail($email = null, $code = null) {
+	public function registrationEmail($email = null, $code = null) {
 		/**
 		 * Asignar las variables del componente Email
 		 */
