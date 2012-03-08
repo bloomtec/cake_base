@@ -43,6 +43,13 @@ class Address extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'Zone' => array(
+			'className' => 'Zone',
+			'foreignKey' => 'zone_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 
