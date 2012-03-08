@@ -74,7 +74,7 @@ class RestaurantsController extends AppController {
 			if(isset($this -> data['Owner']['password'])) {
 				$this -> data['Owner']['password'] = $this -> Auth -> password($this -> data['Owner']['password']);
 			}
-			if(isset($this -> data['Owner']['id'])) {
+			if(isset($this -> data['Owner']['id']) && !empty($this -> data['Owner']['id'])) {
 				$this -> data['Restaurant']['owner_id'] = $this -> data['Owner']['id'];
 				unset($this -> data['Owner']);
 			}
