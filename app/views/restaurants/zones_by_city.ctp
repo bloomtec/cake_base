@@ -1,0 +1,1 @@
+<?php echo $this -> Form -> input('Zone', array('label' => __('Delivery Districts', true), 'multiple' => 'checkbox')); ?>
