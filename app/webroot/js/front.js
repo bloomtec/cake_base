@@ -50,4 +50,10 @@ $(function(){
 	});
 	// SOCORE BOX
 	$('.score-box span').load('/users/getScore');
+	$("#UserAjaxLoginForm").keyup(function(e){
+		var $that=$(this);
+		if(e.keyCode == 13){
+			$that.submit();
+		}
+	});
 });

@@ -181,7 +181,7 @@
 .tooltip_login{
 	background-color: #323232;
     border-radius: 5px 5px 5px 5px;
-    height: 130px;
+    height: 150px;
     position: absolute;
     right: 136px;
     top: 70px;
@@ -314,7 +314,7 @@ div.images .preview  img{
     font-weight: bold;
     margin-bottom: 6px;
     margin-right: 13px;
-    margin-top: 6px;
+    margin-top: 15px;
     text-align: right;
     width: 208px;
 }
