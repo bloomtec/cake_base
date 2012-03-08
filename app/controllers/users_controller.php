@@ -34,7 +34,7 @@ class UsersController extends AppController {
 		echo json_encode($owners);
 		exit(0);
 	}
-
+	
 	function register() {
 		if (!empty($this -> data)) {
 			$this -> data['User']['role_id'] = 3;
@@ -63,14 +63,21 @@ class UsersController extends AppController {
 			// Validar el nombre de usuario
 			$this -> data['User']['role_id'] = 3;
 			$this -> data['User']['active'] = 1;
+			
+			// Añadir campos al Address del usuario
+			$this -> data['Address']['country_id'] = $this -> data['User']['country_id'];
+			$this -> data['Address']['city_id'] = $this -> data['User']['city_id'];
+			//echo json_encode(debug($this -> data));
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
+				// Guardar la dirección
 				$this -> data['Address']['user_id'] = $this -> User -> id;
-				$code = crypt($this -> User -> id, '23()23*$%g4F^aN!^^%');
+				$this -> User -> Address -> create();
+				$this -> User -> Address -> save($this -> data);
+				
 				// Enviar el correo con el codigo
+				$code = crypt($this -> User -> id, '23()23*$%g4F^aN!^^%');
 				$this -> registrationEmail($this -> data['User']['email'], $code);
-				$address['Address'] = $this -> data['Address'];
-				$this -> User -> Address -> save($address);
 				//$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
@@ -111,7 +118,7 @@ class UsersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('register_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = 'Registro al sitio ' . Configure::read('site_name');
+			$this -> Email -> subject = __('Registration to the site: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'registration_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -165,12 +172,15 @@ class UsersController extends AppController {
 			if ($user) {
 				$user['User']['email_verified'] = true;
 				if ($this -> User -> save($user)) {
-
 					// Bonificación por registro por registro
 					$this -> User -> user_registered($user['User']['id']);
 
 					$this -> Session -> setFlash(__('Thank you for validating your email', true));
-					$this -> redirect(array('controller' => 'users', 'action' => 'login'));
+					if($this -> Auth -> login($user)) {
+						$this -> redirect(array('controller' => 'users', 'action' => 'profile'));
+					} else {
+						$this -> redirect(array('controller' => 'users', 'action' => 'login'));
+					}
 				} else {
 					$this -> Session -> setFlash(__('An error ocurred while validating your email, please try again', true));
 					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));

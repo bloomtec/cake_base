@@ -7,6 +7,11 @@ class ZonesController extends AppController {
 		parent::beforeFilter();
 		//$this->Auth->allow('*');
 	}
+	
+	function getZones($city_id = null) {
+		return json_encode($this -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id))));
+		$this -> autoRender = false;
+	}
 
 	function index() {
 		$this -> Zone -> recursive = 0;
