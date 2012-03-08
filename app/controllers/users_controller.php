@@ -86,6 +86,12 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
+	
+	public function refer() {
+		if(!empty($this -> data)) {
+			debug($this -> data);
+		}
+	}
 
 	public function registrationEmail($email = null, $code = null) {
 		/**
