@@ -5,8 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
-			echo $this->Form->input('country_id',array('options' => $countries, 'selected'=>$city['City']['country_id']));
-			echo $this->Form->input('city_id',array('options' => $cities, 'selected'=>$city['City']['id']));
+			echo $this->Form->input('country_id',array('label' => __('Country', true), 'options' => $countries, 'selected'=>$city['City']['country_id']));
+			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'selected'=>$city['City']['id']));
 		}
 		if($this -> Session -> read('Auth.User.role_id') != 4) {
 			echo $this->Form->input('zone_id');

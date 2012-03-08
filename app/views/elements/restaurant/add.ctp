@@ -6,17 +6,17 @@
 		</legend>
 		<?php
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
-			echo $this -> Form -> input('country_id', array('options' => $countries, 'div' => 'input select geo'));
-			echo $this -> Form -> input('city_id', array('div' => 'input select geo'));
+			echo $this -> Form -> input('country_id', array('label' => __('Country', true), 'options' => $countries, 'div' => 'input select geo'));
+			echo $this -> Form -> input('city_id', array('label' => __('City', true), 'div' => 'input select geo'));
 		}
-		echo $this -> Form -> input('zone_id', array('div' => 'input select geo'));
-		echo $this -> Form -> input('name');
-		echo $this -> Form -> input('description');
-		echo $this -> Form -> input('service_policies');
-		echo $this -> Form -> input('schedule');
-		echo $this -> Form -> input('phone');
-		echo $this -> Form -> input('address');
-		echo $this -> Form -> input('Zone', array('label' => 'Barrios Con Domicilio', 'multiple' => 'checkbox'));
+		echo $this -> Form -> input('zone_id', array('label' => __('District', true), 'div' => 'input select geo'));
+		echo $this -> Form -> input('name', array('label' => __('Name', true)));
+		echo $this -> Form -> input('description', array('label' => __('Description', true)));
+		echo $this -> Form -> input('service_policies', array('label' => __('Service Policies', true)));
+		echo $this -> Form -> input('schedule', array('label' => __('Schedule', true)));
+		echo $this -> Form -> input('phone', array('label' => __('Phone', true)));
+		echo $this -> Form -> input('address', array('label' => __('Address', true)));
+		echo $this -> Form -> input('Zone', array('label' => __('Delivery Districts', true), 'multiple' => 'checkbox'));
 		// echo $this->Form->input('lat');
 		// echo $this->Form->input('long');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));

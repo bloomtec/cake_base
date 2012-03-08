@@ -55,6 +55,10 @@ class RestaurantsController extends AppController {
 		}
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
 	}
+	
+	function zonesByCity($city_id = null) {
+		$this -> layout = 'ajax';
+	}
 
 	function admin_add() {
 		if (!empty($this -> data)) {
