@@ -35,7 +35,6 @@ class UsersController extends AppController {
 		exit(0);
 	}
 	
-	/*
 	function register() {
 		if (!empty($this -> data)) {
 			$this -> data['User']['role_id'] = 3;
@@ -58,7 +57,6 @@ class UsersController extends AppController {
 		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
 		$this -> set(compact('countries', 'cities'));
 	}
-	*/
 
 	function ajaxRegister() {
 		if (!empty($this -> data)) {
@@ -174,12 +172,15 @@ class UsersController extends AppController {
 			if ($user) {
 				$user['User']['email_verified'] = true;
 				if ($this -> User -> save($user)) {
-
 					// Bonificación por registro por registro
 					$this -> User -> user_registered($user['User']['id']);
 
 					$this -> Session -> setFlash(__('Thank you for validating your email', true));
-					$this -> redirect(array('controller' => 'users', 'action' => 'login'));
+					if($this -> Auth -> login($user)) {
+						$this -> redirect(array('controller' => 'users', 'action' => 'profile'));
+					} else {
+						$this -> redirect(array('controller' => 'users', 'action' => 'login'));
+					}
 				} else {
 					$this -> Session -> setFlash(__('An error ocurred while validating your email, please try again', true));
 					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
