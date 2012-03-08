@@ -24,6 +24,7 @@
 		// echo $this->Form->input('long');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 	?>
+	<div id="zones"></div>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
 </div>
@@ -67,7 +68,7 @@
 		}
 		
 		function updateZones(){
-			//BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
 			$("#zones").load("/restaurants/zonesByCity/"+$city.val()+"/"+$("#RestaurantId").val());
 		}
 		/*

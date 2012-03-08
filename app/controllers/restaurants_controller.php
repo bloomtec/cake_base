@@ -66,7 +66,7 @@ class RestaurantsController extends AppController {
 			$this -> set('restaurant_zones', $restaurant_zones);
 		}
 		
-		$this -> set('zones');
+		$this -> set('zones',$zones);
 	}
 
 	function admin_add() {

@@ -72,7 +72,7 @@
 		}
 		
 		function updateZones(){
-			//BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
 			$("#zones").load("/restaurants/zonesByCity/"+$city.val());
 		}
 		/*
