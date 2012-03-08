@@ -58,6 +58,8 @@ class RestaurantsController extends AppController {
 	
 	function zonesByCity($city_id = null) {
 		$this -> layout = 'ajax';
+		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id)));
+		$this -> set('zones');
 	}
 
 	function admin_add() {
@@ -77,9 +79,9 @@ class RestaurantsController extends AppController {
 			}
 		}
 		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list', array('conditions' => array('is_present' => true)));
-		$zones = $this -> Restaurant -> Zone -> find('list');
 		// $cities = $this->Restaurant->Zone->City->find('list');
-		$this -> set(compact('countries', 'zones'));
+		// $zones = $this -> Restaurant -> Zone -> find('list');
+		$this -> set(compact('countries'));
 	}
 
 	function admin_edit($id = null) {

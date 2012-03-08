@@ -16,7 +16,7 @@
 		echo $this -> Form -> input('schedule', array('label' => __('Schedule', true)));
 		echo $this -> Form -> input('phone', array('label' => __('Phone', true)));
 		echo $this -> Form -> input('address', array('label' => __('Address', true)));
-		echo $this -> Form -> input('Zone', array('label' => __('Delivery Districts', true), 'multiple' => 'checkbox'));
+		echo '<div class="zones-by-city"></div>';
 		// echo $this->Form->input('lat');
 		// echo $this->Form->input('long');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
