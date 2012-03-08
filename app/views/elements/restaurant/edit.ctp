@@ -49,6 +49,7 @@
 		var $city = $('#RestaurantCityId');
 		var $zone = $('#RestaurantZoneId');
 		updateCountry();
+		
 		$country.change(function() {
 			updateCountry();
 		});
@@ -57,12 +58,17 @@
 		});
 		function updateCountry() {
 			BJS.updateSelect($city, '/countries/getCities/' + $country.val(), function() {
-				BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+				updateZones();
 			});
 		}
 
 		function updateCity() {
-			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			updateZones();
+		}
+		
+		function updateZones(){
+			//BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			$("#zones").load("/zones/zonesByCity/"+$city.val()+"/"+$("#RestaurantId").val());
 		}
 		/*
 		 * --------------------------------------------

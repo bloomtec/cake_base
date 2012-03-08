@@ -16,11 +16,12 @@
 		echo $this -> Form -> input('schedule');
 		echo $this -> Form -> input('phone');
 		echo $this -> Form -> input('address');
-		echo $this -> Form -> input('Zone', array('label' => 'Barrios Con Domicilio', 'multiple' => 'checkbox'));
+		
 		// echo $this->Form->input('lat');
 		// echo $this->Form->input('long');
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		?>
+		<div id="zones"></div>
 	</fieldset>
 	<fieldset>
 		<legend>
@@ -62,12 +63,17 @@
 		});
 		function updateCountry() {
 			BJS.updateSelect($city, '/countries/getCities/' + $country.val(), function() {
-				BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+				updateZones();
 			});
 		}
 
 		function updateCity() {
-			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			updateZones();
+		}
+		
+		function updateZones(){
+			//BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			$("#zones").load("/zones/zonesByCity"+$city.val());
 		}
 		/*
 		 * --------------------------------------------
