@@ -223,6 +223,33 @@ class UsersController extends AppController {
 		$this -> set(compact('countries', 'cities'));
 		$this -> set(compact('roles'));
 	}
+	function updateAddresses($id) {
+		$this -> layout = "profile";
+		if (!$id && empty($this -> data)) {
+			$this -> Session -> setFlash(__('Usuario no valid', true));
+			$this -> redirect(array('action' => 'index'));
+		}
+
+		if (!empty($this -> data)) {
+			if (!empty($this -> data['User']['pass']))
+				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			if ($this -> User -> saveAll($this -> data)) {
+				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
+				$this -> redirect(array('action' => 'profile'));
+			} else {
+				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
+			}
+		}
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		$roles = $this -> User -> Role -> find('list');
+		$countries = $this -> User -> Address -> Country -> find('list');
+		//$conditions['country_id']=empty($countries) ? null : key($countries);
+		$cities = $this -> User -> Address -> City -> find('list');
+		$this -> set(compact('countries', 'cities'));
+		$this -> set(compact('roles'));
+	}
 
 	function changePassword($id = null) {
 		$this -> layout = "profile";
