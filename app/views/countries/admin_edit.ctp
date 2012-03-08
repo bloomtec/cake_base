@@ -11,6 +11,8 @@
 		echo $this->Form->input('language');
 		echo $this->Form->input('is_present');
 		echo $this->Form->input('code');
+		echo $this->Form->input('money_symbol');
+		echo $this->Form->input('price_ranges');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
