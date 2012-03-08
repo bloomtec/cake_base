@@ -38,6 +38,16 @@
 			<?php echo $country['Country']['code']; ?>
 			&nbsp;
 		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Money Symbol'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $country['Country']['money_symbol']; ?>
+			&nbsp;
+		</dd>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Price Ranges'); ?></dt>
+		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
+			<?php echo $country['Country']['price_ranges']; ?>
+			&nbsp;
+		</dd>
 		<!--
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -80,7 +90,7 @@
 		<tr<?php echo $class;?>>
 			<td><?php echo $address['name'];?></td>
 			<td><?php echo $address['user_id'];?></td>
-			<td><?php echo $address['adress'];?></td>
+			<td><?php echo $address['address'];?></td>
 			<td><?php echo $address['zip'];?></td>
 			<td><?php echo $address['country_id'];?></td>
 			<td><?php echo $address['city_id'];?></td>

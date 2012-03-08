@@ -51,7 +51,7 @@ class DealsController extends AppController {
 		$cities = array();
 		$zones = array();
 		
-		$cities[0] = __('Todas las ciudades...', true);
+		$cities[0] = __('All cities...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
 		foreach($cities_tmp as $key => $city_tmp) {
 			$cities[$key] = $city_tmp;
@@ -71,12 +71,12 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Todos...', true);
+			$zones[0] = __('All districts...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Todos...', true);
+			$zones[0] = __('All districts...', true);
 			$zones_tmp = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 			foreach($zones_tmp as $key => $data) {
 				$zones[$key] = $data;
@@ -101,7 +101,7 @@ class DealsController extends AppController {
 		 * Armar el filtro de cuisines
 		 */
 		$cuisines = array();
-		$cuisines[0] = __('Todas...', true);
+		$cuisines[0] = __('All cuisines...', true);
 		$cuisines_tmp = $this -> requestAction('/cuisines/getList');
 		foreach($cuisines_tmp as $key => $cuisine_tmp) {
 			$cuisines[$key] = $cuisine_tmp;
@@ -134,7 +134,7 @@ class DealsController extends AppController {
 		/**
 		 * Filtro de orden de precios
 		 */
-		$prices = array(0 => 'Sin orden...', 'ASC' => __('menor a mayor', true), 'DESC' => __('mayor a menor', true));
+		$prices = array(0 => 'No range selected...', 'ASC' => __('menor a mayor', true), 'DESC' => __('mayor a menor', true));
 		
 		/**
 		 * Armar las condiciones para mostrar los deals
