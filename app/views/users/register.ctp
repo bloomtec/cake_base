@@ -32,6 +32,7 @@
 					<span class="field_required">*</span>
 				</div>
 				<?php
+					// Datos personales
 					echo $this -> Form -> input('name', array('label'=>__('Name', true), 'required'=>'required'));
 					echo $this -> Form -> input('last_name', array('label'=>__('Last Name', true), 'required'=>'required'));
 					echo $this -> Form -> input('password', array('label'=>__('Password', true), 'required' => 'required', 'value'=>''));
@@ -39,6 +40,11 @@
 					echo $this -> Form -> input('phone', array('label'=>__('Phone', true), 'required' => 'required' , 'title' => __('This field is to be able to contact you once you make a purchase. It will not be used otherwise.',true) ));
 					echo $this -> Form -> input('country_id', array('label'=>__('Country', true)));
 					echo $this -> Form -> input('city_id', array('label'=>__('City', true)));
+					// Direccion
+					echo $this -> Form -> input('Address.name', array('label' => __('Name', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.zone_id', array('label' => __('District', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.address', array('label' => __('Address', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.zip', array('label' => __('Zip Code', true), 'required' => 'required'));
 				?>
 		</fieldset>
 		<div class="btn_wrraper">
@@ -88,10 +94,16 @@ $(function(){
 	var country_id = $('#UserCountryId').val();
 	if($('#UserCountryId').val()) {
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
+		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$('#UserCityId').val());
 	} 
 	$('#UserCountryId').change(function(){
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
 	});
+	
+	$('#UserCityId').change(function(){
+		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$(this).val());
+	});
+	
 	$('#UserAjaxRegisterForm').validator({lang:'es',position:"bottom left"}).submit(function(e){
 	var form=$(this);
 	var fields=$(this).serialize();

@@ -25,22 +25,34 @@
   */
  	// Nombre del sitio
  	Configure::write('site_name', 'Click & Eat');
+	
 	// Dominio del sitio
-	Configure::write('site_domain', 'clickneat.bloomweb.co');
+	Configure::write('site_domain', 'jucedogi.dyndns.org:83');
+	//Configure::write('site_domain', 'clickneat.bloomweb.co');
+	
 	// Email de recordar contraseña
 	Configure::write('password_mail', 'pruebas@bloomweb.co');
 	Configure::write('password_password_mail', 'rr40r900343');
 	Configure::write('reply_password_mail', 'pruebas@bloomweb.co');
+	
 	// Email de registro
 	Configure::write('register_mail', 'pruebas@bloomweb.co');
 	Configure::write('password_register_mail', 'rr40r900343');
 	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
+	
+	// Email de recomendaciones
+	Configure::write('referer_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_referer_mail', 'rr40r900343');
+	Configure::write('reply_referer_mail', 'pruebas@bloomweb.co');
+	
 	// Email de contacto
 	Configure::write('contact_mail', 'contacto@clickandeat.co');
 	Configure::write('reply_contact_mail', 'contacto@clickandeat.co');
+	
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
 	Configure::write('custom_width', 25);
 	Configure::write('custom_height', 25);
+	
 	// Llave
 	Configure::write('key', "Bl00MWebGr0up");
 
