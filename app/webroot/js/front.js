@@ -48,4 +48,6 @@ $(function(){
 			}
 		});
 	});
+	// SOCORE BOX
+	$('.score-box span').load('/users/getScore');
 });

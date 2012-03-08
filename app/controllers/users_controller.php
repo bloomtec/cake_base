@@ -15,7 +15,13 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
 	}
-	
+	function getScore(){
+		$this -> User -> recursive = -1;
+		$user = $this -> User -> read(null,$this->Auth->user('id'));
+		echo ($user['User']['score'] + $user['User']['score_by_invitations']);
+		$this->autoRender=false;
+		exit(0);
+	}
 	function getOwners() {
 		$this -> layout = "ajax";
 		$owners = array();

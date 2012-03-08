@@ -184,7 +184,7 @@
     height: 130px;
     position: absolute;
     right: 136px;
-    top: 119px;
+    top: 70px;
     width: 299px;
     border: 1px solid #868686;
 	display: none;
@@ -468,4 +468,25 @@ div.images .preview  img{
 .field_required{
 	color: red;
     margin-top: 5px;
+}
+/* SCORE BOX*/
+.score-box{
+	display:block;
+	position: fixed;
+	background: #181818;
+	width: 100px;
+	height: 50px;
+	right: 0;
+	padding:10px;
+	color:white;
+	text-align:center;
+	top:50%;
+	margin-top:-30px;
+	-webkit-border-radius: 10px 0 0 10px;
+	-moz-border-radius: 10px 0 0 10px;
+	border-radius: 10px 0 0 10px;
+}
+.score-box span{
+	color:#ED1C24;
+	font-weight: bold;
 }

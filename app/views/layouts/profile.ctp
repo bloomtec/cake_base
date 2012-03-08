@@ -53,6 +53,11 @@
 		?>
 	</head>
 	<body>
+		<?php 
+			if($this -> Session -> read('Auth.User.id')){
+				echo $this -> element('score-box');
+			}
+		?>
 		<div id="container">
 			<?php echo $this->element('header'); ?>
 			<div id="content">
