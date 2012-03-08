@@ -56,9 +56,16 @@ class RestaurantsController extends AppController {
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
 	}
 	
-	function zonesByCity($city_id = null) {
+	function zonesByCity($city_id = null, $restaurant_id = null) {
 		$this -> layout = 'ajax';
+		
 		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id)));
+		
+		if($restaurant_id) {
+			$restaurant_zones = $this -> Restaurant -> RestaurantsZone -> find('list', array('fields' => array('RestaurantsZone.zone_id'), 'conditions' => array('RestaurantsZone.restaurant_id' => $restaurant_id)));
+			$this -> set('restaurant_zones', $restaurant_zones);
+		}
+		
 		$this -> set('zones');
 	}
 
