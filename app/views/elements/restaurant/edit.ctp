@@ -5,11 +5,11 @@
 	<?php
 		echo $this->Form->input('id');
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
-			echo $this->Form->input('country_id',array('label' => __('Country', true), 'options' => $countries, 'selected'=>$city['City']['country_id']));
-			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'selected'=>$city['City']['id']));
+			echo $this->Form->input('country_id',array('label' => __('Country', true), 'options' => $countries, 'selected'=>$city['City']['country_id'], 'div' => 'input select geo'));
+			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'selected'=>$city['City']['id'], 'div' => 'input select geo'));
 		}
 		if($this -> Session -> read('Auth.User.role_id') != 4) {
-			echo $this->Form->input('zone_id');
+			echo $this -> Form -> input('zone_id', array('label' => __('District', true), 'div' => 'input select geo'));
 			echo $this->Form->input('name');
 		} else {
 			echo $this->Form->input('name', array('disabled' => 'disabled'));
