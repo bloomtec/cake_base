@@ -59,6 +59,24 @@ class Zone extends AppModel {
 			'counterQuery' => ''
 		)
 	);
+	
+	var $hasAndBelongsToMany = array(
+		'RestaurantZone' => array(
+			'className' => 'Restaurant',
+			'joinTable' => 'restaurants_zones',
+			'foreignKey' => 'zone_id',
+			'associationForeignKey' => 'restaurant_id',
+			'unique' => true,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
 
 	function beforeSave(){
 		return true;	

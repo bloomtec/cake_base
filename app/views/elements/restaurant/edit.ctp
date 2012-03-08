@@ -19,6 +19,7 @@
 		echo $this->Form->input('schedule');
 		echo $this->Form->input('phone');
 		echo $this->Form->input('address');
+		echo $this -> Form -> input('Zone', array('label' => 'Barrios Con Domicilio', 'multiple' => 'checkbox'));
 		// echo $this->Form->input('lat');
 		// echo $this->Form->input('long');
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
