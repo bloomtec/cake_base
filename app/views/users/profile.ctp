@@ -20,6 +20,7 @@
 </div>
 <div style="clear: both"></div>
 -->
+<?php //echo $this -> element('share-in-facebook'); ?>
 <div class="comprados">
 	<h1>Mis pedidos</h1>
 	<?php //$productsVisited= $this -> requestAction('/visited_products/visited');?>
