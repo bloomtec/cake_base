@@ -46,7 +46,7 @@
 			echo $this -> Html -> Script("jquery.uploadify.v2.1.4.min");
 			echo $this -> Html -> script('upload');
 			echo $this -> Html -> script('bjs');
-			echo $this -> Html -> script('/bcart/js/bcart');
+			//echo $this -> Html -> script('/bcart/js/bcart');
 			echo $this -> Html -> script('front');
 	
 			echo $scripts_for_layout;

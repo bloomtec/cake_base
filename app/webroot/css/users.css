@@ -302,6 +302,15 @@ div.images .preview  img{
     text-align: right;
     width: 208px;
 }
+#profile .message{
+	float:none;
+	color:white;
+	width: auto;
+	text-align: center;
+	background: #E76012;
+	padding: 10px 0;
+	margin:0;
+}
 /** login y registro **/
 
 #register_login{
@@ -376,14 +385,14 @@ div.images .preview  img{
 	display: block;
 	margin-bottom:5px;
 	font-weight: bold;
-	padding-top:5px;
+
 }
 #register_login .correo{
 	width: auto;
 }
 #register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
 	width: 245px;
-	height: 37px;
+	height: 20px;
 	margin-bottom: 16px;
 	background-color: #d1d1d1;
 	color:#181818;
@@ -410,7 +419,7 @@ div.images .preview  img{
 	background-color: #fff;
 }
 #register_login select{
-	padding-top: 10px;
+	padding-top: 2px;
 	width: 250px;
 }
 #register_login .input.password label,#register_login .input.select label{

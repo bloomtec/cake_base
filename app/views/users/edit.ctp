@@ -1,4 +1,4 @@
-<div class="users form" id="register_login">
+<div class="users form datos_perfil" id="register_login">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
 		<h1><?php __('Update My Info'); ?></h1>

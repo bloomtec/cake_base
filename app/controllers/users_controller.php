@@ -217,10 +217,10 @@ class UsersController extends AppController {
 			if (!empty($this -> data['User']['pass']))
 				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
 			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
-				$this -> redirect(array('action' => 'profile'));
+				$this -> Session -> setFlash(__('Your Info was upadated.', true));
+				//$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
+				$this -> Session -> setFlash(__('Your Info was not upadated. Please try again', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -241,23 +241,21 @@ class UsersController extends AppController {
 		}
 
 		if (!empty($this -> data)) {
-			if (!empty($this -> data['User']['pass']))
-				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
-			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('Tus datos se han actualizado', true));
-				$this -> redirect(array('action' => 'profile'));
+			if ($this -> User -> Address -> save($this -> data)) {
+				$this -> Session -> setFlash(__('Your Address has been save', true));
+			//	$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('No se pudo guardar el usuario. Por favor, intenta de nuevo.', true));
+				$this -> Session -> setFlash(__('Your Address could not be saved. Please, try again.', true));
 			}
 		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> User -> read(null, $id);
-		}
+		$this -> User -> Address -> recursive = -1;
+		$addresses = $this -> User -> Address -> find('all',array('conditions'=>array('user_id'=>$id)));
 		$roles = $this -> User -> Role -> find('list');
 		$countries = $this -> User -> Address -> Country -> find('list');
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
 		$cities = $this -> User -> Address -> City -> find('list');
-		$this -> set(compact('countries', 'cities'));
+		$zones = $this -> User -> Address -> Zone -> find('list');
+		$this -> set(compact('countries', 'cities','addresses','zones'));
 		$this -> set(compact('roles'));
 	}
 
