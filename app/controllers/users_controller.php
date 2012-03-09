@@ -52,10 +52,14 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
 		}
+		$referer_code = null;
+		if(isset($this -> params['pass'][0]) && !empty($this -> params['pass'][0])) {
+			$referer_code = $this -> params['pass'][0];
+		}
 		$countries = $this -> User -> Address -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
 		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
-		$this -> set(compact('countries', 'cities'));
+		$this -> set(compact('countries', 'cities', 'referer_code'));
 	}
 
 	function ajaxRegister() {
@@ -150,12 +154,26 @@ class UsersController extends AppController {
 
 	}
 
+	private function validateReferer($code = null) {
+		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
+		$max_id = $max_id[0]['max_id'];
+		$user = null;
+		$code = $this -> decrypt(urldecode($code), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+		for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
+			if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
+				$user = $this -> User -> read(null, $id_tested);
+				break;
+			}
+		}
+		if ($user) {
+			$this -> user_invited($user['User']['id']);
+		}
+	}
+
 	function validateEmail($code = null) {
-		if (!$code) {
-			if (!empty($this -> data)) {
-				if (isset($this -> data['User']['validation_code']) && !empty($this -> data['User']['validation_code'])) {
-					$code = $this -> data['User']['validation_code'];
-				}
+		if (!$code && !empty($this -> data)) {
+			if (isset($this -> data['User']['validation_code']) && !empty($this -> data['User']['validation_code'])) {
+				$code = $this -> data['User']['validation_code'];
 			}
 		}
 		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
