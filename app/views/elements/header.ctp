@@ -6,7 +6,7 @@
 			<input type="email" required="required" name="data[User][email]" id="email" class="input_text">
 			<label for="password">Password:</label>
 			<input type="password" required="required" name="data[User][password]" id="password" class="input_text">
-			<span class="message">
+			<span class="message"> &nbsp;
 			</span>
 			<div style='clear:both;'></div>
 			<!-- <input type="submit" class="btn_login" value="Ingresar" /> -->
@@ -33,7 +33,9 @@
 			-
 			<a href="/users/register" class="iniciar_sesion" ><?php __('Register'); ?></a>
 			<?php }else{ ?>
-			<a href="/users/logout"><?php __('Log out');?></a>
+			<a href="/users/profile"><?php __('Mi profile');?></a>
+			-
+			 <a href="/users/logout"><?php __('Log out');?></a>
 			<?php } ?>
 		</div>
 		<div style="clear: both"></div>

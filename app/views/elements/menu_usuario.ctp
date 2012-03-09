@@ -1,8 +1,9 @@
 <div class="menu_usuario">
 	<ul>
-		<li><a href="">Mis Datos</a></li>
-		<li><a href="">Completar o modificar mis datos</a></li>
-		<li><a href="">Cambiar contraseña</a></li>
-		<li><a href="">Cerrar sesión</a></li>
+		<li><a href="/users/profile"><?php __('My Orders')?></a></li>
+		<li><a href="/users/edit/<?php echo $this -> Session -> read('Auth.User.id')?>"><?php __('Update Info')?></a></li>
+		<li><a href="/users/updateAddresses/<?php echo $this -> Session -> read('Auth.User.id')?>"><?php __('Update Addresses')?></a></li>
+		<li><a href="/users/refer"><?php __('Refer Friends')?></a></li>
+		<li><a href="/users/logout"><?php __('Log out')?></a></li>
 	</ul>
 </div>

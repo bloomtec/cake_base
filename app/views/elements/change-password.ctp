@@ -1,5 +1,5 @@
 <?php echo $this->Form->create('User',array('action'=>'changePassword'));?>
-<h1 class="orden twCenMt">Cambiar Contraseña</h1>
+<h1><?php __('Change Password')?></h1>
 	<fieldset>
 	<?php
 		echo $this->Form->input('id',array('value'=>$this->params['pass'][0]));
@@ -8,8 +8,9 @@
 		echo $this->Form->input('confirm_password',array('type'=>'password','label'=>'Confirmar password','required'=>'required' , 'data-equals'=>'data[User][new_password]'));
 	?>
 	</fieldset>
-	<input type="submit" class="input_verde" value="Cambiar" />
-	<a href='/users/profile' class="azul volver_profile"> Volver </a>
+	<div class='submit'>
+	<input type="submit"  value="Cambiar" />
+	</div>
 <?php echo $this->Form->end();?>
 <script type='text/javascript'>
 	$(function(){

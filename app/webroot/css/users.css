@@ -35,11 +35,7 @@
     padding-right: 18px;
 }
 .datos_perfil{
-	float: left;
-	width: 385px;
-	margin-bottom: 30px;
-	margin-left: 40px;
-	margin-top: 50px;
+
 }
 .datos_perfil a{
 	font-size: 11px;
@@ -139,7 +135,7 @@
     margin-bottom: 15px;
     color: #424242;
 }
-.register label, .correo, .login label, #contacto label{
+ #contacto label{
   	color: #424242;
     display: block;
     float: left;
@@ -181,7 +177,7 @@
 .tooltip_login{
 	background-color: #323232;
     border-radius: 5px 5px 5px 5px;
-    height: 130px;
+    height: 150px;
     position: absolute;
     right: 136px;
     top: 70px;
@@ -289,19 +285,7 @@ div.images .preview{
 div.images .preview  img{
 	max-width:100%;
 }
-.menu_usuario ul{
-	margin-left: 15px;
-}
-.menu_usuario li{
-	float: left;
-	border-right: 1px solid #818181;
-	padding-right: 15px;
-	margin-right: 15px;
-	
-}
-.menu_usuario li a{
-	font-size: 12px;
-}
+
 .centrar{
 	padding: 12px 20px 0;
 
@@ -314,9 +298,18 @@ div.images .preview  img{
     font-weight: bold;
     margin-bottom: 6px;
     margin-right: 13px;
-    margin-top: 6px;
+    margin-top: 8px;
     text-align: right;
     width: 208px;
+}
+#profile .message{
+	float:none;
+	color:white;
+	width: auto;
+	text-align: center;
+	background: #E76012;
+	padding: 10px 0;
+	margin:0;
 }
 /** login y registro **/
 
@@ -346,11 +339,14 @@ div.images .preview  img{
 	float: left;
 	width: 50%;
 }
+#register_login form{
+	padding-top:20px;
+}
 #register_login legend{
 	background-color: #E0050B;
     border: medium none;
     color: #FFFFFF;
-    float: left;
+    display:block;
     font-size: 21px;
     margin-bottom: 10px;
     margin-left: -26px;
@@ -375,6 +371,7 @@ div.images .preview  img{
 }
 #register_login .input.text{
 	padding-left: 0;
+	clear: left;
 }
 #register_login label{
 	color:#fff;
@@ -384,13 +381,18 @@ div.images .preview  img{
 	margin-right: 25px;
 	margin-top: 10px;
 	text-transform: uppercase;
+	float:left;
+	display: block;
+	margin-bottom:5px;
+	font-weight: bold;
+
 }
 #register_login .correo{
 	width: auto;
 }
 #register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
 	width: 245px;
-	height: 37px;
+	height: 20px;
 	margin-bottom: 16px;
 	background-color: #d1d1d1;
 	color:#181818;
@@ -417,7 +419,7 @@ div.images .preview  img{
 	background-color: #fff;
 }
 #register_login select{
-	padding-top: 10px;
+	padding-top: 2px;
 	width: 250px;
 }
 #register_login .input.password label,#register_login .input.select label{
@@ -473,7 +475,7 @@ div.images .preview  img{
 .score-box{
 	display:block;
 	position: fixed;
-	background: #181818;
+	background: #323232;
 	width: 100px;
 	right: 0;
 	padding:10px;
@@ -488,4 +490,68 @@ div.images .preview  img{
 .score-box span{
 	color:#ED1C24;
 	font-weight: bold;
+}
+.menu_usuario{
+	width: 250px;
+	height: 100%;
+	padding-bottom: 50px;
+	float:left;
+	background-color: #323232;
+	-webkit-border-radius: 5px 0 0 5px;
+	-moz-border-radius: 5px 0 0 5px;
+	border-radius: 5px 0 0 5px;
+}
+
+.menu_usuario li:first-child{
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+	border-radius: 5px 0 0 0;
+}
+.menu_usuario li{
+	border-bottom: 1px solid #818181;
+	padding:0 12px;
+	margin-right: 5px;	
+	background-color: #323232;
+}
+.menu_usuario li:hover{
+	background: #181818;s
+}
+.menu_usuario li a{
+	font-size: 18px;
+	display:block;
+	padding: 25px 0;
+	text-align:center;
+}
+
+#profile #content{
+	padding-bottom: 0;
+}
+#profile #register_login{
+	width:600px;
+	background:white;
+	
+}
+#profile #register_login label{
+	color:black;
+}
+#profile #register_login legend{
+	margin-left:0;
+	width:100%;
+	margin-bottom:0;
+	display:block;
+	float:left;
+}
+#profile #register_login .submit input{
+	float:none;
+	margin-left:310px;
+}
+#profile #register_login form{
+	padding-top:0;
+}
+#profile .wrapperContent{
+	float:left;
+	width:600px;
+	margin-left:50px;
+	padding: 25px 0;
+	height: 100%;
 }

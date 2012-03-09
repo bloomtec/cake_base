@@ -20,7 +20,12 @@ class AddressesController extends AppController {
 		}
 		$this -> set('address', $this -> Address -> read(null, $id));
 	}
-
+	function getJSON($id){
+		$this -> Address -> recursive = -1;
+		echo json_encode($this -> Address -> read(null,$id));
+		$this -> autorender = false;
+		exit(0);
+	}
 	function edit($id = null) {
 		if (!$id && empty($this -> data)) {
 			$this -> Session -> setFlash(__('Invalid address', true));
@@ -29,10 +34,10 @@ class AddressesController extends AppController {
 		if (!empty($this -> data)) {
 			if ($this -> Address -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The address has been saved', true));
-				$this -> redirect(array('controller' => 'users', 'action' => 'edit', $this -> data['Address']['user_id']));
+				$this -> redirect(array('controller' => 'users', 'action' => 'updateAddresses', $this -> data['Address']['user_id']));
 			} else {
 				$this -> Session -> setFlash(__('The address could not be saved. Please, try again.', true));
-				$this -> redirect(array('controller' => 'users', 'action' => 'edit', $this -> data['Address']['user_id']));
+				$this -> redirect(array('controller' => 'users', 'action' => 'updateAddresses', $this -> data['Address']['user_id']));
 			}
 		}
 		if (empty($this -> data)) {
@@ -49,10 +54,10 @@ class AddressesController extends AppController {
 			$this -> Address -> create();
 			if ($this -> Address -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The address has been saved', true));
-				$this -> redirect(array('controller' => 'users', 'action' => 'edit', $this -> data['Address']['user_id']));
+				$this -> redirect(array('controller' => 'users', 'action' => 'updateAddresses', $this -> data['Address']['user_id']));
 			} else {
 				$this -> Session -> setFlash(__('The address could not be saved. Please, try again.', true));
-				$this -> redirect(array('controller' => 'users', 'action' => 'edit', $this -> data['Address']['user_id']));
+				$this -> redirect(array('controller' => 'users', 'action' => 'updateAddresses', $this -> data['Address']['user_id']));
 			}
 		}
 		$users = $this -> Address -> User -> find('list');

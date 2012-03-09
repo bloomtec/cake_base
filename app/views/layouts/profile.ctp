@@ -46,13 +46,13 @@
 			echo $this -> Html -> Script("jquery.uploadify.v2.1.4.min");
 			echo $this -> Html -> script('upload');
 			echo $this -> Html -> script('bjs');
-			echo $this -> Html -> script('/bcart/js/bcart');
+			//echo $this -> Html -> script('/bcart/js/bcart');
 			echo $this -> Html -> script('front');
 	
 			echo $scripts_for_layout;
 		?>
 	</head>
-	<body>
+	<body id="profile">
 		<?php 
 			if($this -> Session -> read('Auth.User.id')){
 				echo $this -> element('score-box');
@@ -62,10 +62,11 @@
 			<?php echo $this->element('header'); ?>
 			<div id="content">
 				<?php echo $this->element('menu_usuario'); ?>
-				
+				<div class="wrapperContent">
 				<?php echo $this->Session->flash(); ?>
 	
 				<?php echo $content_for_layout; ?>
+				</div>
 				<div style="clear: both"></div>	
 			</div>
 			<div id="footer">
