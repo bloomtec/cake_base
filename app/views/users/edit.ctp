@@ -12,4 +12,6 @@
 	</fieldset>
 	<?php echo $this -> Form -> submit(__('Submit', true))?>
 	</form>
+	
+	<?php echo $this -> element('change-password');?>
 </div>
