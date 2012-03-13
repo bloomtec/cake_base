@@ -34,7 +34,7 @@
 				<?php
 					// Código del referente si lo hay
 					if(isset($referer_code) && !empty($referer_code)) {
-						echo $this -> Form -> hidden('referer', array('value' => $referer_code));
+						echo $this -> Form -> hidden('referer_code', array('value' => $referer_code));
 					}
 					// Datos personales
 					echo $this -> Form -> input('name', array('label'=>__('Name', true), 'required'=>'required'));

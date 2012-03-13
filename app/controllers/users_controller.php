@@ -154,7 +154,7 @@ class UsersController extends AppController {
 
 	}
 
-	private function validateReferer($code = null) {
+	public function validateReferer($code = null) {
 		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
