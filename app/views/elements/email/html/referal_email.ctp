@@ -3,11 +3,9 @@
 		<?php echo __('A friend wants you to join the site :: ', true) . Configure::read('site_name'); ?>
 	</p>
 	<p>
-		<?php echo __('To finish your registration process, click the following link:', true); ?> <a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail/' . $code; ?>"><?php echo __('confirm email', true); ?></a><br />
-		<?php echo __('If the link fails to work for you then go ', true); ?><a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail'; ?>"><?php echo __('here', true); ?></a><br />
-		<?php echo __('Enter the code: "', true) . $code . __('" (without the quotes) in the corresponding field.', true); ?>
+		<?php echo __('To register go to the following link:', true); ?> <a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/register/' . $code; ?>"><?php echo __('register', true); ?></a><br />
 	</p>
 	<p>
-		<?php echo __('Thank you for registering.', true); ?>
+		<?php echo __('We hope to have you soon!.', true); ?>
 	</p>
 </div>
