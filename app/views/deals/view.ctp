@@ -4,6 +4,7 @@
 	<div class="info_producto">
 		<h2 class="precio">Nuestro Precio: $<?php echo  number_format($deal['Deal']['price'], 0, ",", ".");?></h2>
 		<h2 class="precio_regular">Precio regular: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
+		<div style="clear: both;"></div>
 		<ul>
 			<?php if(isset($deal['Deal']['expires']) && !empty($deal['Deal']['expires'])) : ?>
 			<li>
@@ -33,7 +34,8 @@
 		<a class="comprar" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>"></a>
 	</div>
 	<div class="descripcion_producto">
-		<h1 class="descripcion">Descripción del producto</h1>
+		<h1 class="descripcion">Descripción del producto<img src="/img/descripcion_bg.png" /></h1>
+		<h2><?php echo $deal['Deal']['name'];?></h2>
 		<p>
 			<?php echo $deal['Deal']['description'];?>
 		</p>

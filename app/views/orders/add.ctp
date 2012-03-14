@@ -1,4 +1,5 @@
 <div class="orders register form">
+	<h1 class="mensaje-compra">Antes de comprar ten en cuenta.</h1>
 	<p class="mensaje-compra">
 		Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
 		ubicacion desde donde se haga su pedido sera registrada en nuestro sitio web.
@@ -15,16 +16,18 @@
 				<?php __('Comprar Promoción');?>
 			</legend>
 			<div class="promo">
+				
+				<h1><?php echo $deal['Deal']['name']; ?></h1>
 				<p>
-					<?php echo $deal['Deal']['name']; ?>
 					<?php echo $deal['Deal']['description']; ?>
 				</p>
 				<img src="/img/uploads/50x50/<?php echo $deal['Deal']['image']; ?>" />
-			</div>
-			<?php
+				<?php
 				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
 				echo $this -> Form -> input('quantity', array('label' => __('Cantidad (máximo: ' . $deal['Deal']['max_buys'] . ')', true), 'value' => 1));
-			?>
+				?>
+			</div>
+			
 		</fieldset>
 	</div>
 	<div class="orden datos-usuario">
