@@ -10,8 +10,9 @@
 		echo $this->Form->input('language');
 		echo $this->Form->input('is_present');
 		echo $this->Form->input('code');
-		echo $this->Form->input('money_symbol');
-		echo $this->Form->input('price_ranges');
+		$money_symbols = Configure::read('currencies');
+		echo $this->Form->input('money_symbol', array('label' => __('Money Symbol', true), 'type' => 'select', 'options' => $money_symbols));
+		echo $this->Form->input('price_ranges', array('label' => __('Price Ranges', true) . ' (1-2:3-4, etc)'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

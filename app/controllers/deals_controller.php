@@ -35,7 +35,8 @@ class DealsController extends AppController {
 		}
 	}
 
-	function index() {		
+	function index() {
+		
 		$this -> Deal -> recursive = 0;
 		
 		$city = $zone = $cuisine = null;
@@ -134,7 +135,19 @@ class DealsController extends AppController {
 		/**
 		 * Filtro de orden de precios
 		 */
-		$prices = array(0 => 'No range selected...', 'ASC' => __('menor a mayor', true), 'DESC' => __('mayor a menor', true));
+		if(!isset($this -> params['named']['city']) || (isset($this -> params['named']['city']) && $this -> params['named']['city'] == 0)) {
+			$prices = array(0 => __('No city selected...', true));
+		} else {
+			$prices = array(0 => __('No range selected...', true));
+			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city);
+			$country = $this -> Deal -> Restaurant -> Zone -> City -> Country -> findById($tmp_city['City']['country_id']);
+			$price_ranges = $country['Country']['price_ranges'];
+			$price_ranges = explode(':', $price_ranges);
+			foreach($price_ranges as $key => $price_range) {
+				$min_max_range = explode('-', $price_range);
+				$prices[$price_range] = $country['Country']['money_symbol'] . $min_max_range[0] . ' - ' . $country['Country']['money_symbol'] . $min_max_range[1];
+			}
+		}
 		
 		/**
 		 * Armar las condiciones para mostrar los deals
@@ -194,7 +207,9 @@ class DealsController extends AppController {
 		if(isset($this -> params['named']['price']) && !empty($this -> params['named']['price'])) {
 			$price = $this -> params['named']['price'];
 			if($price) {
-				$order['Deal.price'] = $price;
+				debug($price);
+				$min_max_price = explode('-', $price);
+				$conditions['Deal.price BETWEEN ? AND ?'] = array($min_max_price[0], $min_max_price[1]);
 			}
 		}
 		

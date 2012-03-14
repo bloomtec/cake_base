@@ -55,6 +55,31 @@
 	
 	// Llave
 	Configure::write('key', "Bl00MWebGr0up");
+	
+	// Monedas
+	Configure::write(
+		'currencies',
+		array(
+			'$' => '$',
+			'ƒ' => 'ƒ',
+			'ман' => 'ман',
+			'$b' => '$b',
+			'R$' => 'R$',
+			'₡' => '₡',
+			'kn' => 'kn',
+			'₱' => '₱',
+			'RD$' => 'RD$',
+			'£' => '£',
+			'€' => '€',
+			'¢' => '¢',
+			'Q' => 'Q',
+			'L' => 'L',
+			'J$' => 'J$',
+			'B/.' => 'B/.',
+			'S/.' => 'S/.',
+			'Gs' => 'Gs'
+		)
+	);
 
 /**
  * CakePHP Debug Level:
