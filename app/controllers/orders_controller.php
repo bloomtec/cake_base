@@ -93,7 +93,7 @@ class OrdersController extends AppController {
 										$this -> dealsFinishedEmail($deal['Deal']['id']);
 									}
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
-									$this -> redirect('/deals');
+									$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 								} else {
 									$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
 									debug($order);
@@ -128,7 +128,7 @@ class OrdersController extends AppController {
 									$this -> dealsFinishedEmail($deal['Deal']['id']);
 								}
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
-								$this -> redirect('/deals');
+								$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 							} else {
 								$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
 								debug($order);
@@ -146,7 +146,7 @@ class OrdersController extends AppController {
 								$this -> dealsFinishedEmail($deal['Deal']['id']);
 							}
 							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
-							$this -> redirect('/deals');
+							$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 						} else {
 							$this -> Session -> setFlash(__('Ha ocurrido un error al generar el pedido en la creación del pedido.', true));
 							debug($order);
@@ -259,7 +259,12 @@ class OrdersController extends AppController {
 	
 	public function orderInfo($order_id = null) {
 		if($order_id) {
-			$this -> data = $this -> Order -> read(null, $order_id);
+			$order = $this -> Order -> read(null, $order_id);
+			$deal = $this -> Order -> Deal -> read(null, $order['Order']['deal_id']);
+			$restaurant = $this -> Order -> Deal -> Restaurant -> read(null, $deal['Deal']['restaurant_id']);
+			$zone = $this -> Order -> Deal -> Restaurant -> Zone -> read(null, $restaurant['Restaurant']['zone_id']);
+			$city = $this -> Order -> Deal -> Restaurant -> Zone -> City -> read(null, $zone['Zone']['city_id']);
+			$this -> set(compact('order', 'deal', 'city'));
 		}
 	}
 	

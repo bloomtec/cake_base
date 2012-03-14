@@ -33,7 +33,12 @@ class PrizesController extends AppController {
 	}
 
 	function redeem($id = null) {
-
+		if($id) {
+			$this -> loadModel('User');
+			$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+			$prize = $this -> Prize -> read(null, $id);
+			
+		}
 	}
 
 	function admin_view($id = null) {

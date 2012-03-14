@@ -1,6 +1,6 @@
 <div class="orden-info">
 	<?php __('Order number');?>:
-	<span><?php $order['Order']['code'];?></span>
+	<span><?php echo $order['Order']['code'];?></span>
 </div>
 <div class="explicacion-proceso">
 	<?php  __('Si usted no recibe un correo notificando su pedido en los próximos 10 minutos por favor contáctese  con el restaurante
