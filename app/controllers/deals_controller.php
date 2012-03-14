@@ -211,9 +211,10 @@ class DealsController extends AppController {
 			$this -> redirect(array('action' => 'index'));
 			$this -> layout = "default";
 		}
-		$this -> Deal -> recursive = 2;
+		$this -> Deal -> recursive = 1;
 		$deal = $this -> Deal -> find('first', array('conditions' => array('Deal.slug' => $slug)));
-		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($deal['Restaurant']['Zone']['city_id']);
+		$zone = $this -> Deal -> Restaurant -> Zone -> findById($deal['Restaurant']['zone_id']);
+		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($zone['Zone']['city_id']);
 		$this -> set('deal', $deal);
 		$this -> set('city', $city);
 	}
