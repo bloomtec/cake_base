@@ -46,8 +46,8 @@
 	Configure::write('reply_referer_mail', 'pruebas@bloomweb.co');
 	
 	// Email de contacto
-	Configure::write('contact_mail', 'contacto@clickandeat.co');
-	Configure::write('reply_contact_mail', 'contacto@clickandeat.co');
+	Configure::write('contact_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_contact_mail', 'pruebas@bloomweb.co');
 	
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
 	Configure::write('custom_width', 25);

@@ -15,26 +15,28 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
 	}
-	function getScore(){
+
+	function getScore() {
 		$this -> User -> recursive = -1;
-		$user = $this -> User -> read(null,$this->Auth->user('id'));
-		echo ($user['User']['score'] + $user['User']['score_by_invitations']);
-		$this->autoRender=false;
+		$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+		echo($user['User']['score'] + $user['User']['score_by_invitations']);
+		$this -> autoRender = false;
 		exit(0);
 	}
+
 	function getOwners() {
 		$this -> layout = "ajax";
 		$owners = array();
 		$owners[''] = __('Select...', true);
 		$conditions = array('role_id' => 4);
 		$owners_tmp = $this -> User -> find('list', array('conditions' => $conditions));
-		foreach($owners_tmp as $key => $owner) {
+		foreach ($owners_tmp as $key => $owner) {
 			$owners[$key] = $owner;
 		}
 		echo json_encode($owners);
 		exit(0);
 	}
-	
+
 	function register() {
 		if (!empty($this -> data)) {
 			$this -> data['User']['role_id'] = 3;
@@ -52,10 +54,15 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
 			}
 		}
+		$referer_code = null;
+		if (isset($this -> params['pass'][0]) && !empty($this -> params['pass'][0])) {
+			$referer_code = $this -> params['pass'][0];
+			$referer_code = $this -> decrypt($referer_code, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+		}
 		$countries = $this -> User -> Address -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
 		//$cities =  $this -> User -> Address -> City -> find('list',array('conditions' => $conditions));
-		$this -> set(compact('countries', 'cities'));
+		$this -> set(compact('countries', 'cities', 'referer_code'));
 	}
 
 	function ajaxRegister() {
@@ -63,7 +70,7 @@ class UsersController extends AppController {
 			// Validar el nombre de usuario
 			$this -> data['User']['role_id'] = 3;
 			$this -> data['User']['active'] = 1;
-			
+
 			// Añadir campos al Address del usuario
 			$this -> data['Address']['country_id'] = $this -> data['User']['country_id'];
 			$this -> data['Address']['city_id'] = $this -> data['User']['city_id'];
@@ -74,9 +81,9 @@ class UsersController extends AppController {
 				$this -> data['Address']['user_id'] = $this -> User -> id;
 				$this -> User -> Address -> create();
 				$this -> User -> Address -> save($this -> data);
-				
+
 				// Enviar el correo con el codigo
-				$code = crypt($this -> User -> id, '23()23*$%g4F^aN!^^%');
+				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				$this -> registrationEmail($this -> data['User']['email'], $code);
 				//$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
@@ -93,10 +100,40 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-	
+
 	public function refer() {
-		if(!empty($this -> data)) {
-			debug($this -> data);
+		if($this -> Auth -> user('id')) {
+			if (!empty($this -> data)) {
+				if (isset($this -> data['User']['correo_recomendado_1']) && !empty($this -> data['User']['correo_recomendado_1'])) {
+					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_1'])) {
+						$this -> referalEmail($this -> data['User']['correo_recomendado_1'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+					}
+				}
+				if (isset($this -> data['User']['correo_recomendado_2']) && !empty($this -> data['User']['correo_recomendado_2'])) {
+					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_2'])) {
+						$this -> referalEmail($this -> data['User']['correo_recomendado_2'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+					}
+				}
+				if (isset($this -> data['User']['correo_recomendado_3']) && !empty($this -> data['User']['correo_recomendado_3'])) {
+					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_3'])) {
+						$this -> referalEmail($this -> data['User']['correo_recomendado_3'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+					}
+				}
+				if (isset($this -> data['User']['correo_recomendado_4']) && !empty($this -> data['User']['correo_recomendado_4'])) {
+					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_4'])) {
+						$this -> referalEmail($this -> data['User']['correo_recomendado_4'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+					}
+				}
+				if (isset($this -> data['User']['correo_recomendado_5']) && !empty($this -> data['User']['correo_recomendado_5'])) {
+					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_5'])) {
+						$this -> referalEmail($this -> data['User']['correo_recomendado_5'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+					}
+				}
+				$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+				$this -> redirect(array('action' => 'profile'));
+			}
+		} else {
+			$this -> Session -> setFlash(__('You must be signed in to be able to refer a friend', true));
 		}
 	}
 
@@ -150,21 +187,85 @@ class UsersController extends AppController {
 
 	}
 
-	function validateEmail($code = null) {
-		if (!$code) {
-			if (!empty($this -> data)) {
-				if (isset($this -> data['User']['validation_code']) && !empty($this -> data['User']['validation_code'])) {
-					$code = $this -> data['User']['validation_code'];
-				}
-			}
+	public function referalEmail($email = null, $code = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($email && $code) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $email;
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('referer_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_referer_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('referer_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('Referal to the site: ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'referal_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_clickandeat.co');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('code', $code);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
 		}
+
+	}
+
+	public function validateReferer($code = null) {
 		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
 		$max_id = $max_id[0]['max_id'];
 		$user = null;
+		$code = $this -> decrypt(urldecode($code), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+		for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
+			if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
+				$user = $this -> User -> read(null, $id_tested);
+				break;
+			}
+		}
+		if ($user) {
+			$this -> user_invited($user['User']['id']);
+		}
+	}
+
+	function validateEmail($code = null) {
+		if (!$code && !empty($this -> data)) {
+			if (isset($this -> data['User']['validation_code']) && !empty($this -> data['User']['validation_code'])) {
+				$code = $this -> data['User']['validation_code'];
+			}
+		}
 		if ($code) {
-			$code = $this -> decrypt(urldecode($code), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
+			$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
+			$max_id = $max_id[0]['max_id'];
+			$user = null;
+			$code = urldecode($code);
 			for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
-				if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
+				if ($code == $this -> encrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
 					$user = $this -> User -> read(null, $id_tested);
 					break;
 				}
@@ -176,8 +277,8 @@ class UsersController extends AppController {
 					$this -> User -> user_registered($user['User']['id']);
 
 					$this -> Session -> setFlash(__('Thank you for validating your email', true));
-					if($this -> Auth -> login($user)) {
-						$this -> redirect(array('controller' => 'users', 'action' => 'profile'));
+					if ($this -> Auth -> login($user)) {
+						$this -> redirect(array('controller' => 'users', 'action' => 'refer'));
 					} else {
 						$this -> redirect(array('controller' => 'users', 'action' => 'login'));
 					}
@@ -233,6 +334,7 @@ class UsersController extends AppController {
 		$this -> set(compact('countries', 'cities'));
 		$this -> set(compact('roles'));
 	}
+
 	function updateAddresses($id) {
 		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
@@ -243,19 +345,19 @@ class UsersController extends AppController {
 		if (!empty($this -> data)) {
 			if ($this -> User -> Address -> save($this -> data)) {
 				$this -> Session -> setFlash(__('Your Address has been save', true));
-			//	$this -> redirect(array('action' => 'profile'));
+				//	$this -> redirect(array('action' => 'profile'));
 			} else {
 				$this -> Session -> setFlash(__('Your Address could not be saved. Please, try again.', true));
 			}
 		}
 		$this -> User -> Address -> recursive = -1;
-		$addresses = $this -> User -> Address -> find('all',array('conditions'=>array('user_id'=>$id)));
+		$addresses = $this -> User -> Address -> find('all', array('conditions' => array('user_id' => $id)));
 		$roles = $this -> User -> Role -> find('list');
 		$countries = $this -> User -> Address -> Country -> find('list');
 		//$conditions['country_id']=empty($countries) ? null : key($countries);
 		$cities = $this -> User -> Address -> City -> find('list');
 		$zones = $this -> User -> Address -> Zone -> find('list');
-		$this -> set(compact('countries', 'cities','addresses','zones'));
+		$this -> set(compact('countries', 'cities', 'addresses', 'zones'));
 		$this -> set(compact('roles'));
 	}
 
@@ -469,7 +571,7 @@ class UsersController extends AppController {
 		$this -> Session -> setFlash(__('User was not set to active', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-	
+
 	function login() {
 		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
 			$this -> User -> recursive = -1;
@@ -487,7 +589,7 @@ class UsersController extends AppController {
 			}
 		}
 	}
-	
+
 	function owner_login() {
 		$this -> layout = "ez/login";
 		if (isset($this -> data['User']['email']) && !empty($this -> data['User']['email']) && isset($this -> data['User']['password']) && !empty($this -> data['User']['password'])) {
@@ -572,11 +674,11 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
-	
+
 	function logout() {
 		$this -> redirect($this -> Auth -> logout());
 	}
-	
+
 	function owner_logout() {
 		$this -> logout();
 	}
@@ -588,7 +690,7 @@ class UsersController extends AppController {
 	function manager_logout() {
 		$this -> logout();
 	}
-	
+
 	function encrypt($str, $key) {
 		$block = mcrypt_get_block_size('des', 'ecb');
 		$pad = $block - (strlen($str) % $block);

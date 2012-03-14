@@ -32,6 +32,11 @@
 					<span class="field_required">*</span>
 				</div>
 				<?php
+					// Código del referente si lo hay
+					if(isset($referer_code) && !empty($referer_code)) {
+						debug($referer_code);
+						echo $this -> Form -> hidden('referer_code', array('value' => $referer_code));
+					}
 					// Datos personales
 					echo $this -> Form -> input('name', array('label'=>__('Name', true), 'required'=>'required'));
 					echo $this -> Form -> input('last_name', array('label'=>__('Last Name', true), 'required'=>'required'));
@@ -41,7 +46,7 @@
 					echo $this -> Form -> input('country_id', array('label'=>__('Country', true)));
 					echo $this -> Form -> input('city_id', array('label'=>__('City', true)));
 					// Direccion
-					echo $this -> Form -> input('Address.name', array('label' => __('Name', true), 'required' => 'required'));
+					echo $this -> Form -> hidden('Address.name', array('label' => __('Name', true), 'required' => 'required', 'value' => 'default'));
 					echo $this -> Form -> input('Address.zone_id', array('label' => __('District', true), 'required' => 'required'));
 					echo $this -> Form -> input('Address.address', array('label' => __('Address', true), 'required' => 'required'));
 					echo $this -> Form -> input('Address.zip', array('label' => __('Zip Code', true), 'required' => 'required'));
