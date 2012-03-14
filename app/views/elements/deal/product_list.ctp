@@ -15,9 +15,9 @@
 		<option>Efectivo</option>
 	</select>
 	-->
-	<p class="condiciones">
+
 		<?php echo $deal['Deal']['conditions']; ?>
-	</p>
+
 	<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
 	<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
 </div>

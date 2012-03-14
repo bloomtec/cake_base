@@ -214,6 +214,10 @@ body{
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 }
+.lista_producto p{
+	height: 28px;
+	overflow: hidden;
+}
 #content .lista_producto h1{
 	margin-top: 7px;
 	padding: 5px;

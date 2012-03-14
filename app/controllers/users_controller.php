@@ -155,6 +155,7 @@ class UsersController extends AppController {
 		} else {
 			$this -> Session -> setFlash(__('You must be signed in to be able to refer a friend', true));
 		}
+		$this -> layout = "profile";
 	}
 
 	public function registrationEmail($email = null, $code = null) {
