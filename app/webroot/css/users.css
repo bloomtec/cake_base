@@ -550,9 +550,8 @@ div.images .preview  img{
 	padding-top:0;
 }
 #profile .wrapperContent{
-	float:left;
-	width:600px;
-	margin-left:50px;
-	padding: 25px 0;
+	width: 75%;
+	padding: 1px 0;
 	height: 100%;
+	float: left;
 }

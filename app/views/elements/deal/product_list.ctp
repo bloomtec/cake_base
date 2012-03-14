@@ -15,7 +15,7 @@
 		<option>Efectivo</option>
 	</select>
 	-->
-	<p>
+	<p class="condiciones">
 		<?php echo $deal['Deal']['conditions']; ?>
 	</p>
 	<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
