@@ -27,7 +27,7 @@
  	Configure::write('site_name', 'Click & Eat');
 	
 	// Dominio del sitio
-	Configure::write('site_domain', 'jucedogi.dyndns.org:83');
+	Configure::write('site_domain', 'clickneat.bloomweb.co');
 	//Configure::write('site_domain', 'clickneat.bloomweb.co');
 	
 	// Email de recordar contraseña
