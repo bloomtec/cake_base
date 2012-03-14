@@ -216,7 +216,7 @@ class UsersController extends AppController {
 		/**
 		 * Asignar las variables del componente Email
 		 */
-		if ($email && $code) {
+		if ($email && $referer_email) {
 			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
 			$this -> Email -> to = $referer_email;
 			// array of addresses to cc the message to

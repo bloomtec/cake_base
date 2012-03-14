@@ -80,6 +80,9 @@ class OrdersController extends AppController {
 								$order['Order'] = $this -> data['Order'];
 								if($this -> Order -> save($order)) {
 									$this -> Order -> Deal -> save($deal);
+									if($deal['Deal']['amount'] == 0) {
+										$this -> dealsFinishedEmail($deal['Deal']['id']);
+									}
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 									$this -> redirect('/deals');
 								} else {
@@ -112,6 +115,9 @@ class OrdersController extends AppController {
 							$order['Order'] = $this -> data['Order'];
 							if($this -> Order -> save($order)) {
 								$this -> Order -> Deal -> save($deal);
+								if($deal['Deal']['amount'] == 0) {
+									$this -> dealsFinishedEmail($deal['Deal']['id']);
+								}
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 								$this -> redirect('/deals');
 							} else {
@@ -126,6 +132,10 @@ class OrdersController extends AppController {
 						}
 					} else {
 						if($this -> Order -> save($this -> data)) {
+							$this -> Order -> Deal -> save($deal);
+							if($deal['Deal']['amount'] == 0) {
+								$this -> dealsFinishedEmail($deal['Deal']['id']);
+							}
 							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 							$this -> redirect('/deals');
 						} else {
@@ -239,6 +249,63 @@ class OrdersController extends AppController {
 		if($order_id) {
 			$this -> data = $this -> Order -> read(null, $order_id);
 		}
+	}
+	
+	public function dealsFinishedEmail($deal_id = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($deal_id) {
+			// Obtener los datos de la promo
+			$deal = $this -> Order -> Deal -> read(null, $deal_id);
+			$restaurant = $this -> Order -> Deal -> Restaurant -> read(null, $deal['Deal']['restaurant_id']);
+			$owner = $this -> Order -> Deal -> Restaurant -> Owner -> read(null, $restaurant['Restaurant']['owner_id']);
+			
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $owner['User']['email'];
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('The deal: ', true) . $deal['Deal']['name'] . __(' has finished', true);
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'deals_finished_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('deal', $deal);
+			$this -> set('restaurant', $restaurant);
+			$this -> set('owner', $owner);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+
 	}
 	
 	private function isManager($order_id = null) {
