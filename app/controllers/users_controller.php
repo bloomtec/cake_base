@@ -15,6 +15,10 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
 	}
+	
+	function addUserScoreForBuying($user_id = null) {
+		$this -> User -> user_bought($user_id);
+	}
 
 	function getScore() {
 		$this -> User -> recursive = -1;

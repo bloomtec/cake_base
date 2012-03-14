@@ -157,7 +157,7 @@ class OrdersController extends AppController {
 			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.user_id' => $user['User']['id'])));
 			$this -> set('addresses', $addresses);
 		}
-		$this -> set(compact('deal', 'user', 'countries'));		
+		$this -> set(compact('deal', 'user', 'countries'));
 	}
 
 	function admin_index() {
@@ -220,6 +220,9 @@ class OrdersController extends AppController {
 
 		if (!empty($this -> data)) {
 			if ($this -> Order -> save($this -> data)) {
+				if($this -> data['Order']['order_state_id'] == 2) {
+					$this -> requestAction('/users/addUserScoreForBuying/' . $this -> data['User']['id']);
+				}
 				$this -> Session -> setFlash(__('La orden se ha guardado', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {

@@ -1,5 +1,5 @@
 <div class="users form datos_perfil" id="register_login">
-<?php if(isset($addresses)):?>
+<?php if(isset($addresses[0])):?>
 <h1><?php __('Update My Address'); ?></h1>	
 <?php 
 $addressList = array();

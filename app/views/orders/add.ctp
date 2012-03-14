@@ -1,4 +1,9 @@
 <div class="orders register form">
+	<p class="mensaje-compra">
+		Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
+		ubicacion desde donde se haga su pedido sera registrada en nuestro sitio web.
+		Compra con responsabilidad
+	</p>
 	<?php
 	// debug($user);
 	echo $this -> Form -> create('Order');
