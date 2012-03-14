@@ -25,6 +25,9 @@
 			<li>
 				Hasta <?php echo $deal['Deal']['max_buys'];?> cupones por persona.
 			</li>
+			<li>
+				<?php echo $this->Html->link(__('ver terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));?>
+			</li>
 		</ul>
 		<div style="clear: both"></div>
 		<a class="comprar" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>"></a>

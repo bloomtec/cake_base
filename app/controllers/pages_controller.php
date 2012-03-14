@@ -34,6 +34,9 @@ class PagesController extends AppController {
 	function politicas() {
 		$this -> layout = "default";
 	}
+	function terminosYCondiciones() {
+		$this -> layout = "default";
+	}
 
 	function nuestraEmpresa() {
 		$this -> layout = "default";
