@@ -219,11 +219,11 @@ class UsersController extends AppController {
 			// array of addresses to bcc (blind carbon copy) the message to
 			$this -> Email -> bcc = '';
 			// reply to address (string)
-			$this -> Email -> replyTo = Configure::read('referer_mail');
+			$this -> Email -> replyTo = Configure::read('info_mail');
 			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
-			$this -> Email -> return = 'no-reply@' . Configure::read('site_domain');
+			$this -> Email -> return = Configure::read('reply_info_mail');
 			// from address (string)
-			$this -> Email -> from = 'no-reply@' . Configure::read('site_domain');
+			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
 			$this -> Email -> subject = __('Friend registered: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
@@ -239,7 +239,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
 
 			/**
 			 * Asignar cosas al template
@@ -273,11 +273,11 @@ class UsersController extends AppController {
 			// array of addresses to bcc (blind carbon copy) the message to
 			$this -> Email -> bcc = '';
 			// reply to address (string)
-			$this -> Email -> replyTo = Configure::read('referer_mail');
+			$this -> Email -> replyTo = Configure::read('info_mail');
 			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
-			$this -> Email -> return = Configure::read('reply_referer_mail');
+			$this -> Email -> return = Configure::read('reply_info_mail');
 			// from address (string)
-			$this -> Email -> from = Configure::read('referer_mail');
+			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
 			$this -> Email -> subject = __('Referal to the site: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
@@ -293,7 +293,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
 
 			/**
 			 * Asignar cosas al template

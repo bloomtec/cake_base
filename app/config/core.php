@@ -41,9 +41,9 @@
 	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
 	
 	// Email de recomendaciones
-	Configure::write('referer_mail', 'pruebas@bloomweb.co');
-	Configure::write('password_referer_mail', 'rr40r900343');
-	Configure::write('reply_referer_mail', 'pruebas@bloomweb.co');
+	Configure::write('info_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_info_mail', 'rr40r900343');
+	Configure::write('reply_info_mail', 'pruebas@bloomweb.co');
 	
 	// Email de contacto
 	Configure::write('contact_mail', 'pruebas@bloomweb.co');
