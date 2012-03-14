@@ -6,10 +6,10 @@
 		echo $this->Form->input('id');
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
 			echo $this->Form->input('country_id',array('label' => __('Country', true), 'options' => $countries, 'selected'=>$city['City']['country_id'], 'div' => 'input select geo'));
-			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'selected'=>$city['City']['id'], 'div' => 'input select geo'));
+			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'val'=>$city['City']['id'], 'div' => 'input select geo','type'=>'select'));
 		}
 		if($this -> Session -> read('Auth.User.role_id') != 4) {
-			echo $this -> Form -> input('zone_id', array('label' => __('District', true), 'div' => 'input select geo'));
+			echo $this -> Form -> input('zone_id', array('label' => __('District', true), 'div' => 'input select geo','val'=>$this->data['Restaurant']['zone_id']));
 			echo $this->Form->input('name');
 		} else {
 			echo $this->Form->input('name', array('disabled' => 'disabled'));
@@ -59,6 +59,7 @@
 		});
 		function updateCountry() {
 			BJS.updateSelect($city, '/countries/getCities/' + $country.val(), function() {
+				$city.val($city.attr('val'));
 				updateZones();
 			});
 		}
@@ -68,7 +69,9 @@
 		}
 		
 		function updateZones(){
-			BJS.updateSelect($zone, '/cities/getZones/' + $city.val());
+			BJS.updateSelect($zone, '/cities/getZones/' + $city.val(),function(){
+				$zone.val($zone.attr('val'));
+			});
 			$("#zones").load("/restaurants/zonesByCity/"+$city.val()+"/"+$("#RestaurantId").val());
 		}
 		/*
