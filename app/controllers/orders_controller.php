@@ -33,7 +33,9 @@ class OrdersController extends AppController {
 			 */
 			$deal = $this -> Order -> Deal -> read(null, $this -> data['Deal']['id']);
 			$current_quantity = $this -> getUserDealCount($deal['Deal']['id'], $this -> data['Order']['user_id']);
-			if($current_quantity + $this -> data['Order']['quantity'] <= $deal['Deal']['max_buys']) {
+			
+			if(($this -> data['Order']['quantity'] <= $deal['Deal']['amount']) && ($current_quantity + $this -> data['Order']['quantity'] <= $deal['Deal']['max_buys'])) {
+				$deal['Deal']['amount'] -= $this -> data['Order']['quantity'];
 				// Generar el código a asignar a la órden antes de guardar
 				$max_id = $this -> Order -> query('SELECT MAX(`id`) FROM `orders`');
 				$max_id = $max_id[0][0]['MAX(`id`)'];
@@ -50,12 +52,6 @@ class OrdersController extends AppController {
 						$this -> Session -> setFlash(__('Este correo ya está registrado. Por favor inicia sesión', true));
 						$this -> redirect('/deals');
 					} else {
-						/**
-						 * No estaba registrado el usuario
-						 * Crear el usuario
-						 * Crear la dirección
-						 * Crear la orden
-						 */
 						// Crear el usuario
 						$this -> data['User']['role_id'] = 3;
 						$this -> data['User']['active'] = 1;
@@ -83,6 +79,7 @@ class OrdersController extends AppController {
 								$order = array();
 								$order['Order'] = $this -> data['Order'];
 								if($this -> Order -> save($order)) {
+									$this -> Order -> Deal -> save($deal);
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 									$this -> redirect('/deals');
 								} else {
@@ -114,6 +111,7 @@ class OrdersController extends AppController {
 							$order = array();
 							$order['Order'] = $this -> data['Order'];
 							if($this -> Order -> save($order)) {
+								$this -> Order -> Deal -> save($deal);
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 								$this -> redirect('/deals');
 							} else {
@@ -140,7 +138,7 @@ class OrdersController extends AppController {
 			} else {
 				$this -> Session -> setFlash('The quantity selected exceeds the maximum allowed');
 				$this -> redirect(array('action' => 'add', $deal['Deal']['slug']));
-			}			
+			}
 		} else {
 			if(!$slug) {
 				$this -> redirect('/deals');
@@ -235,6 +233,12 @@ class OrdersController extends AppController {
 		}
 		$orderStates = $this -> Order -> OrderState -> find('list');
 		$this -> set(compact('orderStates'));
+	}
+	
+	public function orderInfo($order_id = null) {
+		if($order_id) {
+			$this -> data = $this -> Order -> read(null, $order_id);
+		}
 	}
 	
 	private function isManager($order_id = null) {
