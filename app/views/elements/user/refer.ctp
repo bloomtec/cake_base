@@ -31,6 +31,6 @@
 		</label>
 		<input name="data[User][correo_recomendado_5]" type="text" id="UserCorreoRecomendado5">
 	</div>
-	<?php echo $this -> Form -> end(__('Refer Friends', true));?>
+	<?php echo $this -> Form -> end(__('Refer', true));?>
 <div style="clear:both;"></div>
 </fieldset>

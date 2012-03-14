@@ -67,7 +67,7 @@
 .datos_perfil form{
 	margin-bottom: 25px;
 }
-#content .datos_perfil h1, #content .comprados h1{
+#content .datos_perfil h1, #content .comprados h1,#content .users.refer h1{
 	font-size: 18px;
 	float: left;
 	width: 97%;
@@ -78,7 +78,18 @@
 	padding-top: 15px;
 	padding-bottom: 15px;
 	color: white;
-	}
+}
+#content .users.refer p{
+	text-align: left;
+	color: #231F20;
+	font-size: 13px;
+	font-weight: bold;
+	float: left;
+	width: 100%;
+	margin-top: 18px;
+	margin-bottom: 23px;
+	text-indent: 32px;
+}
 .datos_perfil h1,.datos_perfil h2, .comprados h1{
 	font-size: 25px;
     font-weight: normal;
@@ -389,13 +400,13 @@ div.images .preview  img{
 	padding-left: 0;
 	clear: left;
 }
-#register_login label{
-	color:#fff;
+#register_login label,.users .input label{
+	color:#000;
 	width: 136px;
 	text-align: right;
 	font-size: 13px;
 	margin-right: 25px;
-	margin-top: 7px;
+	margin-top: 8px;
 	text-transform: uppercase;
 	float:left;
 	display: block;
@@ -406,7 +417,7 @@ div.images .preview  img{
 #register_login .correo{
 	width: auto;
 }
-#register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
+#register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea, .users .input input{
 	width: 245px;
 	height: 25px;
 	margin-bottom: 16px;
@@ -433,7 +444,7 @@ div.images .preview  img{
     min-width: 245px;
     padding-left: 3px;
 }
-#register_login .input input:focus,#register_login select:focus,#UserEmail:focus{
+#register_login .input input:focus,#register_login select:focus,#UserEmail:focus, .users .input input:focus{
 	background-color: #fff;
 }
 #register_login select{
@@ -455,7 +466,7 @@ div.images .preview  img{
 .confirmacion-remember{
 	margin-left: 0px;
 }
-#register_login .submit input{
+#register_login .submit input, .users .submit input{
 	font-size: 13px;
     height: 37px;
     text-transform: uppercase;
@@ -588,11 +599,14 @@ div.images .preview  img{
 	display:block;
 	float:left;
 }
-#profile #register_login .submit input{
+#profile #register_login .submit input, .users .submit input{
 	float:none;
 	margin-left:310px;
 	font-weight: bold;
 	border: 1px solid #E57D44;
+}
+.users .submit input{
+	margin-left:327px;
 }
 #profile #register_login form{
 	padding-top:0;
@@ -602,4 +616,7 @@ div.images .preview  img{
 	padding: 1px 0;
 	height: 100%;
 	float: left;
+}
+.sesion a{
+	font-weight: bold;
 }
