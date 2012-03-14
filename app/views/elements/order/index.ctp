@@ -7,9 +7,8 @@
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
+		<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>
 		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
-		<th><?php echo $this->Paginator->sort('Creada', 'created');?></th>
-		<th><?php echo $this->Paginator->sort('Actualizada', 'updated');?></th>
 		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
 	<?php
@@ -39,15 +38,26 @@
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
 		<td>
+			<?php
+				if($order['Order']['is_approved']) {
+					echo '<input type="checkbox" disabled checked />';
+				} else {
+					echo '<input type="checkbox" disabled />';
+				}
+			?>
+		</td>
+		<td>
 			<?php echo $order['OrderState']['name']; ?>
 		</td>
-		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
-		<td><?php echo $order['Order']['updated']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php
-				echo $this->Html->link(__('Ver', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
+				echo $this->Html->link(__('View', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
 				if($this -> Session -> read('Auth.User.role_id') == 4) {
-					echo $this->Html->link(__('Editar', true), array('action' => 'edit', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
+					if(!$order['Order']['is_approved']) {
+						echo $this->Html->link(__('Approve', true), array('action' => 'approve', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Approve',true)));
+					} else {
+						echo $this->Html->link(__('Edit', true), array('action' => 'edit', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
+					}
 				}
 			?>
 		</td>

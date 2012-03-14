@@ -207,7 +207,6 @@ class DealsController extends AppController {
 		if(isset($this -> params['named']['price']) && !empty($this -> params['named']['price'])) {
 			$price = $this -> params['named']['price'];
 			if($price) {
-				debug($price);
 				$min_max_price = explode('-', $price);
 				$conditions['Deal.price BETWEEN ? AND ?'] = array($min_max_price[0], $min_max_price[1]);
 			}

@@ -7,6 +7,15 @@ class OrdersController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function owner_approve($id) {
+		$this -> autoRender = false;
+		$this -> Order -> read(null, $id);
+		$this -> Order -> set('is_approved', true);
+		$this -> Order -> save();
+		$this -> orderApprovedEmail($id);
+		$this -> redirect(array('action' => 'index'));
+	}
+	
 	private function getUserDealCount($deal_id = null, $user_id = null) {
 		//$deal = $this -> Order -> Deal -> read(null, $deal_id);
 		$orders = $this -> Order -> find('all', array('conditions' => array('Order.deal_id' => $deal_id, 'Order.user_id' => $user_id)));
@@ -156,16 +165,19 @@ class OrdersController extends AppController {
 		}
 
 		$deal = $this -> Order -> Deal -> find('first', array('conditions' => array('Deal.slug' => $slug)));
+		$restaurant = $this -> Order -> Deal -> Restaurant -> findById($deal['Deal']['restaurant_id']);
+		$zones = $this -> Order -> Deal -> Restaurant -> RestaurantsZone -> find('list', array('conditions' => array('RestaurantsZone.restaurant_id' => $restaurant['Restaurant']['id']), 'fields' => array('RestaurantsZone.zone_id')));
 		$user = $this -> Order -> User -> read(null, $this -> Auth -> user('id'));
 		$countries = $this -> Order -> User -> Address -> Country -> find('list', array('conditions' => array('is_present' => true)));
 		if($user) {
 			unset($user['Restaurant']);
 			unset($user['Order']);
 			unset($user['Role']);
-			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.user_id' => $user['User']['id'])));
+			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.zone_id' => $zones, 'Address.user_id' => $user['User']['id'])));
 			$this -> set('addresses', $addresses);
 		}
-		$this -> set(compact('deal', 'user', 'countries'));
+		$zones = $this -> Order -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.id' => $zones)));
+		$this -> set(compact('deal', 'user', 'countries', 'zones'));
 	}
 
 	function admin_index() {
@@ -249,6 +261,65 @@ class OrdersController extends AppController {
 		if($order_id) {
 			$this -> data = $this -> Order -> read(null, $order_id);
 		}
+	}
+	
+	public function orderApprovedEmail($order_id = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($order_id) {
+			// Obtener los datos de la promo
+			$order = $this -> Order -> read(null, $order_id);
+			$client = $this -> Order -> User -> read(null, $order['Order']['user_id']);
+			$deal = $this -> Order -> Deal -> read(null, $order['Order']['deal_id']);
+			$restaurant = $this -> Order -> Deal -> Restaurant -> read(null, $deal['Deal']['restaurant_id']);
+			
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $client['User']['email'];
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = Configure::read('site_name') . __(' order approved', true);
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'order_approved_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('deal', $deal);
+			$this -> set('restaurant', $restaurant);
+			$this -> set('client', $client);
+			$this -> set('order', $order);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+
 	}
 	
 	public function dealsFinishedEmail($deal_id = null) {

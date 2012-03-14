@@ -57,7 +57,7 @@
 				<?php __('Datos Dirección');?>
 			</legend>
 			<?php
-			if ($user['Address']) {
+			if ($user['Address'] && !empty($addresses)) {
 				echo $this -> Form -> input('address_id');
 			} else {
 				echo $this -> Form -> input('Address.name', array('label' => 'Nombre'));
@@ -66,7 +66,8 @@
 					echo $this -> Form -> hidden('Address.country_id', array('value' => $user['City']['country_id']));
 					echo $this -> Form -> hidden('Address.city_id', array('value' => $user['City']['id']));
 				}
-				echo $this -> Form -> input('Address.address', array('label' => 'Dirección'));
+				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text'));
+				echo $this -> Form -> input('Address.zone_id');
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
 			}
 			echo "<div class='terminos'>";
