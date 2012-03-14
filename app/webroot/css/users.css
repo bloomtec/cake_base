@@ -253,6 +253,7 @@
     margin-right: 5px;
     padding: 8px 9px;
     width: 70px;
+    text-align: center;
 }
 .correo{
 	width: auto;
@@ -392,7 +393,7 @@ div.images .preview  img{
 }
 #register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea{
 	width: 245px;
-	height: 20px;
+	height: 25px;
 	margin-bottom: 16px;
 	background-color: #d1d1d1;
 	color:#181818;
