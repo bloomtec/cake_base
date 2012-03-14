@@ -9,9 +9,16 @@
 			<legend>
 				<?php __('Comprar Promoción');?>
 			</legend>
+			<div class="promo">
+				<p>
+					<?php echo $deal['Deal']['name']; ?>
+					<?php echo $deal['Deal']['description']; ?>
+				</p>
+				<img src="/img/uploads/50x50/<?php echo $deal['Deal']['image']; ?>" />
+			</div>
 			<?php
-				echo $this -> Form -> hidden('max_buys', array('value' => $deal['Deal']['max_buys']));
-				echo $this -> Form -> input('quantity', array('label' => __('Cantidad (máximo: ' . $deal['Deal']['max_buys'] . ')', true)));
+				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
+				echo $this -> Form -> input('quantity', array('label' => __('Cantidad (máximo: ' . $deal['Deal']['max_buys'] . ')', true), 'value' => 1));
 			?>
 		</fieldset>
 	</div>

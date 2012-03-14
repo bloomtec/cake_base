@@ -85,6 +85,16 @@ class UsersController extends AppController {
 				// Enviar el correo con el codigo
 				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				$this -> registrationEmail($this -> data['User']['email'], $code);
+				
+				// Verificar si fue referido
+				if(isset($this -> data['User']['referer_code'])) {
+					$referer = $this -> User -> read(null, $this -> data['User']['referer_code']);
+					if($referer) {
+						$this -> User -> user_invited($this -> data['User']['referer_code']);
+						$this -> referalRegisteredEmail($this -> data['User']['email'], $referer['User']['email']);
+					}
+				}
+				
 				//$this -> Auth -> login($this -> data);
 				$userField = $this -> User -> read(null, $this -> Auth -> user('id'));
 				echo true;
@@ -104,32 +114,42 @@ class UsersController extends AppController {
 	public function refer() {
 		if($this -> Auth -> user('id')) {
 			if (!empty($this -> data)) {
+				$referals_made = false;
 				if (isset($this -> data['User']['correo_recomendado_1']) && !empty($this -> data['User']['correo_recomendado_1'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_1'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_1'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_2']) && !empty($this -> data['User']['correo_recomendado_2'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_2'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_2'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_3']) && !empty($this -> data['User']['correo_recomendado_3'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_3'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_3'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_4']) && !empty($this -> data['User']['correo_recomendado_4'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_4'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_4'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_5']) && !empty($this -> data['User']['correo_recomendado_5'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_5'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_5'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
-				$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+				if($referals_made) {
+					$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+				} else {
+					$this -> Session -> setFlash(__('Hopefully you will invite some friends soon!', true));
+				}
 				$this -> redirect(array('action' => 'profile'));
 			}
 		} else {
@@ -186,6 +206,60 @@ class UsersController extends AppController {
 		}
 
 	}
+	
+	public function referalRegisteredEmail($email = null, $referer_email = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($email && $code) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $referer_email;
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('Friend registered: ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'referal_registered_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$ths -> loadModel('Config');
+			$config = $this -> Config -> read(null, 1);
+			$this -> set('referer_email', $referer_email);
+			$this -> set('email', $email);
+			$this -> set('points', $config['Config']['score_by_invitations']);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+
+	}
 
 	public function referalEmail($email = null, $code = null) {
 		/**
@@ -199,11 +273,11 @@ class UsersController extends AppController {
 			// array of addresses to bcc (blind carbon copy) the message to
 			$this -> Email -> bcc = '';
 			// reply to address (string)
-			$this -> Email -> replyTo = Configure::read('referer_mail');
+			$this -> Email -> replyTo = Configure::read('info_mail');
 			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
-			$this -> Email -> return = Configure::read('reply_referer_mail');
+			$this -> Email -> return = Configure::read('reply_info_mail');
 			// from address (string)
-			$this -> Email -> from = Configure::read('referer_mail');
+			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
 			$this -> Email -> subject = __('Referal to the site: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
@@ -219,7 +293,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
 
 			/**
 			 * Asignar cosas al template
@@ -235,22 +309,6 @@ class UsersController extends AppController {
 			$this -> Email -> reset();
 		}
 
-	}
-
-	public function validateReferer($code = null) {
-		$max_id = $this -> User -> find('first', array('fields' => array('MAX(User.id) as max_id'), 'recursive' => -1));
-		$max_id = $max_id[0]['max_id'];
-		$user = null;
-		$code = $this -> decrypt(urldecode($code), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2");
-		for ($id_tested = $max_id; $id_tested > 0; $id_tested -= 1) {
-			if ($code == $this -> decrypt($id_tested, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")) {
-				$user = $this -> User -> read(null, $id_tested);
-				break;
-			}
-		}
-		if ($user) {
-			$this -> user_invited($user['User']['id']);
-		}
 	}
 
 	function validateEmail($code = null) {
