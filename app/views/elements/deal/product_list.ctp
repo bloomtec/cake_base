@@ -6,20 +6,22 @@
 			<?php echo $deal['Deal']['description']; ?>
 		</a>
 	</h1>
-	<h2 class="precio"> HOY: $<?php echo $deal['Deal']['price']; ?> </h2><!-- price -->
-	<h4>Promocion válida solo por internet</h4>
-	<!--
+	<h2 class="precio-normal">Precio normal: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", "."); ?>
+	<h2 class="precio"> HOY: $<?php echo number_format($deal['Deal']['price'], 0, ",", "."); ?> </h2><!-- price -->
+	
 	<label>Comprar con:</label>
 	<select>
-		<option>Tarjeta de crédito</option>
+		<!--<option>Tarjeta de crédito</option>-->
 		<option>Efectivo</option>
 	</select>
-	-->
-
-		<?php echo $deal['Deal']['conditions']; ?>
-
-	<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
-	<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
+	<div class='informacion-restaurante'>
+		
+		<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
+		<div class='informacion'>
+			<h1 class="horario">Horario de atención: <br /> <?php echo $deal['Restaurant']['schedule']; ?></h1>
+			<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
+		</div>
+	</div>
 </div>
 <?php endforeach; ?>
 <div style="clear: both"></div>

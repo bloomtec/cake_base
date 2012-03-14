@@ -237,10 +237,16 @@ body{
     height:35px;
     overflow: hidden;
 }
+.precio-normal{
+	color:black;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
 .precio{
 	font-size: 21px;
 	color:#ed1c24;
-	margin-top: 10px;
+	margin-top: 5px;
 }
 .lista_producto label{
 	font-size: 12px;
@@ -252,12 +258,25 @@ body{
     padding: 7px;
     width: 225px;
 }
+.lista_producto .informacion-restaurante{
+	margin-top:10px;
+}
+#content .lista_producto .informacion-restaurante h1{
+	 font-size: 9px;
+	 padding:0;
+}
 .lista_producto .logo_negocio{
 	float: left;
     height: 44px;
     margin-left: 30px;
     margin-top: 5px;
     width: 61px;
+    display: block;
+}
+.informacion-restaurante .informacion{
+	float:right;
+	width:130px;
+	text-align: left;
 }
 .lista_producto h3{
 	color: #ED1C24;
