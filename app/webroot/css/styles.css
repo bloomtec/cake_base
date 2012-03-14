@@ -810,3 +810,18 @@ body{
     padding-top: 15px;
     text-align: center;
 }
+
+/*ORDENES*/
+.orders label{
+	color:black;
+}
+.orders a{
+	color:black;
+	text-decoration: underline;
+}
+.orders #OrderTerminos{ /*CHECKBOX PARA ACEPTAR TERMINOS*/
+	width:30px;
+	height: 15px;
+	margin-top:3px;
+	margin:0;
+}

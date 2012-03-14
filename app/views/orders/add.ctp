@@ -69,6 +69,11 @@
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
 			}
+			echo "<div class='terminos'>";
+			__('Acepto ');
+			echo $this->Html->link(__('Los terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));
+			echo $this -> Form -> checkbox('terminos',array('label'=>false,"required"=>'required'));
+			echo "</div>";
 			?>
 		</fieldset>
 	</div>
@@ -83,5 +88,16 @@
 		$('#UserCountryId').change(function(){
 			BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
 		});
+		$.tools.validator.localize("es", {
+		'*'			: 'dato no valido',
+		':email'  	: 'email no valido',
+		':number' 	: 'el campo debe ser numerico',
+		':url' 		: 'URL no valida',
+		'[max]'	 	: 'el campo debe ser menor a $1',
+		'[min]'		: 'el campo debe ser mayot a $1',
+		'[required]'	: 'campo obligatorio',
+		'[data-equals]' : 'verifique este campo'
+		});
+		$('form').validator({'lang':'es'});
 	});
 </script>
