@@ -114,32 +114,42 @@ class UsersController extends AppController {
 	public function refer() {
 		if($this -> Auth -> user('id')) {
 			if (!empty($this -> data)) {
+				$referals_made = false;
 				if (isset($this -> data['User']['correo_recomendado_1']) && !empty($this -> data['User']['correo_recomendado_1'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_1'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_1'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_2']) && !empty($this -> data['User']['correo_recomendado_2'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_2'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_2'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_3']) && !empty($this -> data['User']['correo_recomendado_3'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_3'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_3'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_4']) && !empty($this -> data['User']['correo_recomendado_4'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_4'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_4'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
 				if (isset($this -> data['User']['correo_recomendado_5']) && !empty($this -> data['User']['correo_recomendado_5'])) {
 					if (!$this -> User -> findByEmail($this -> data['User']['correo_recomendado_5'])) {
 						$this -> referalEmail($this -> data['User']['correo_recomendado_5'], urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
+						$referals_made = true;
 					}
 				}
-				$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+				if($referals_made) {
+					$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+				} else {
+					$this -> Session -> setFlash(__('Hopefully you will invite some friends soon!', true));
+				}
 				$this -> redirect(array('action' => 'profile'));
 			}
 		} else {
