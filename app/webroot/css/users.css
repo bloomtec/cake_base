@@ -620,3 +620,11 @@ div.images .preview  img{
 .sesion a{
 	font-weight: bold;
 }
+.users.refer{
+	position: relative;
+}
+.users.refer .compartir{
+	position: absolute;
+	top:187px;
+	right: 50px;
+}
