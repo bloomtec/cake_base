@@ -234,8 +234,11 @@ class UsersController extends AppController {
 			/**
 			 * Asignar cosas al template
 			 */
+			$ths -> loadModel('Config');
+			$config = $this -> Config -> read(null, 1);
 			$this -> set('referer_email', $referer_email);
 			$this -> set('email', $email);
+			$this -> set('points', $config['Config']['score_by_invitations']);
 
 			/**
 			 * Enviar el correo
