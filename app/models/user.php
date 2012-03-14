@@ -148,18 +148,20 @@ class User extends AppModel {
 		$user = $this -> read(null,$id);
 		$return = false;
 		
-		if($reason == 'score_by_invitations') {
-			if($user['User']['score_by_invitations'] < $config['Config']['max_score_by_invitations']){
-				$user['User']['score_by_invitations'] += $config['Config'][$reason];
-				if($user['User']['score_by_invitations'] > $config['Config']['max_score_by_invitations']) {
-					$user['User']['score_by_invitations'] = $config['Config']['max_score_by_invitations'];
+		if($user) {
+			if($reason == 'score_by_invitations') {
+				if($user['User']['score_by_invitations'] < $config['Config']['max_score_by_invitations']){
+					$user['User']['score_by_invitations'] += $config['Config'][$reason];
+					if($user['User']['score_by_invitations'] > $config['Config']['max_score_by_invitations']) {
+						$user['User']['score_by_invitations'] = $config['Config']['max_score_by_invitations'];
+					}
+					$return = $this -> save($user);
 				}
+			} else {
+				$this -> recursive = -1;
+				$user['User']['score'] += $config['Config'][$reason];
 				$return = $this -> save($user);
 			}
-		} else {
-			$this -> recursive = -1;
-			$user['User']['score'] += $config['Config'][$reason];
-			$return = $this -> save($user);
 		}
 		
 		return $return;
