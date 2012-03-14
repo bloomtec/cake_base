@@ -2,14 +2,17 @@
 	<img src="/img/uploads/400x400/<?php echo $deal['Deal']['image'];?>" />
 	<h1><?php echo $deal['Deal']['name'];?></h1>
 	<div class="info_producto">
-		<h2 class="precio">Nuestro Precio: $<?php echo $deal['Deal']['price'];?></h2>
-		<h2 class="precio_regular">Precio regular: $<?php echo $deal['Deal']['normal_price'];?></h2>
+		<h2 class="precio">Nuestro Precio: $<?php echo  number_format($deal['Deal']['price'], 0, ",", ".");?></h2>
+		<h2 class="precio_regular">Precio regular: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
 		<ul>
 			<?php if(isset($deal['Deal']['expires']) && !empty($deal['Deal']['expires'])) : ?>
 			<li>
 				Finaliza el <?php echo $deal['Deal']['expires'];?>
 			</li>
 			<?php endif; ?>
+			<li>
+				Promoción válida solo pro internet 
+			</li>
 			<li>
 				Horario de atención: <?php echo $deal['Restaurant']['schedule'];?>
 			</li>
@@ -32,20 +35,7 @@
 			<?php echo $deal['Deal']['description'];?>
 		</p>
 	</div>
-	<div class="ubicacion">
-		<h1 class="descripcion">Ubicación</h1>
-		<div class="info_ubicacion">
-			<h1><?php echo $deal['Restaurant']['name'];?></h1>
-			<h3><?php echo $deal['Restaurant']['schedule'];?></h3>
-			<h3>Teléfono(s) <?php echo $deal['Restaurant']['phone'];?></h3>
-			<h3>Dirección <?php echo $deal['Restaurant']['address'];?></h3>
-			<h3><?php echo $city['City']['name'];?></h3>
-			<!-- Área Google Map -->
-			<!--<img alt="<?php echo 'Ubicación '.$deal['Restaurant']['name']; ?>" src="http://maps.googleapis.com/maps/api/staticmap?maptype=hybrid&zoom=17&size=246x208&sensor=true&markers=icon:http://chart.googleapis.com/chart?=|<?php echo $deal['Restaurant']['lat']; ?>,<?php echo $deal['Restaurant']['long']; ?>" />-->
-			<div id="map_canvas" style="height: 243px;" onactivate="initialize()"></div>
-			<!-- Fin área Google Map -->
-		</div>
-	</div>
+	
 </div>
 <?php $this -> requestAction('deals/addVisitCount/'.$deal['Deal']['id']); ?>
 <!--
