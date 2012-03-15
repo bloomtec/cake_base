@@ -1006,3 +1006,6 @@ input[type='checkbox']{
 	margin-right: 8px;
 	margin-left: 15px;
 }
+.ordenes tr{
+	font-family: Arial, Helvetica, sans-serif;
+}
