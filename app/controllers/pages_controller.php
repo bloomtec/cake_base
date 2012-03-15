@@ -67,7 +67,12 @@ class PagesController extends AppController {
 	function comoComprar() {
 		$this -> layout = "default";
 	}
-
+	function privacidad(){
+		
+	}
+	function sugierenos(){
+		
+	}
 	function view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid page', true));
