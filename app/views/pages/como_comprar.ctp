@@ -1,4 +1,4 @@
-<h1>Como comprar</h1>
+<!--<h1 class="descripcion">Como comprar<img src="/img/descripcion_bg.png" /></h1>
 <p class="info">
 	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.
 	<br />
@@ -31,3 +31,12 @@ Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit ame
 Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
 	</p>
 </div>
+-->
+
+<h1 class="descripcion">Como comprar<img src="/img/descripcion_bg.png" /></h1>
+
+<p class="info">	<span class="numeros">1</span>	Elige la promoción que mas te guste</p>
+<p class="info">	<span class="numeros">2</span>	Haz el pedido online</p>
+<p class="info">	<span class="numeros">3</span>	Recíbela</p>
+<p class="info">	<span class="numeros">4</span>	Págala en efectivo</p>
+</p>

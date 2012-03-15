@@ -21,7 +21,22 @@
 				<div style="clear: both"></div>
 			</fieldset>
 		</form>
+		<h1>DOMISALECOMOPROMOS</h1>
+		<p>
+			
+			<br />
+			<br />
+			Teléfono: +57 2 664 97 34
+			<br />
+			<br />
+			E-mail: info@domisalecomopromos.com
+			<br /><br />
+			Si quieres trabajar con nosotros
+			<br />
+			E-mail: jobs@domisalecomopromos.com
+		</p>
 		</fieldset>
+		
 	</div>
 	<div style="clear: both"></div>
 </div>

@@ -23,14 +23,19 @@
 		<?php echo $this->Html->charset(); ?>
 		<title>
 			<?php
-				$model = $this -> params['models'][0];
-				$singularVar = strtolower($model);
-				if (isset(${$singularVar}[$model]['name'])) {
-					echo ${$singularVar}[$model]['name'];
-				} else {
-					echo $title_for_layout;
-				}
-			?>
+			   $model = $this -> params['models'][0];
+			    $singularVar = strtolower($model);
+			   if($this->params['action']=="register"){
+			    echo "Como Promos"; 
+			   }else{
+			    
+			    if (isset(${$singularVar}[$model]['name'])) {
+			     echo ${$singularVar}[$model]['name'];
+			    } else {
+			     echo $title_for_layout;
+			    }
+			   }
+  			 ?>
 		</title>
 		<?php
 			if (isset(${$singularVar}[$model]['keywords'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
@@ -73,9 +78,11 @@
 					<div class="izquierda">
 						<h1>Políticas</h1>
 						<p>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-							<br /> nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
-							<br />
+							Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web. 
+							<br/>
+							<br/>
+							Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.
+							<br/>
 							<a class="ver_mas" href="/pages/politicas">Ver Más</a>
 						</p>
 						<div style="clear: both"></div>
