@@ -1,0 +1,2 @@
+<h1 class="descripcion">Sugiérenos un restaurante<img src="/img/descripcion_bg.png" /></h1>
+<p class="info">¿Sabes de algún restaurante que crees debería estar en ComoPromos? Nos encantaría conocerlo. Por favor completa el cuestionario que encontrarás más abajo y podremos ofrecerte nuestros servicios. </p>

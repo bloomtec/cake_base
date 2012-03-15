@@ -1,0 +1,1042 @@
+h1,h2,h3,h4,p,a,label,legend,input{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:14px; 
+	color:#fff;
+}
+#content p{
+	text-align: center;
+	color: #231F20;
+    font-size: 13px;
+    font-weight: bold;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background-image: url(/img/fondo.jpg);
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color: #181818;
+}
+#container{
+	background-color: #e76012;
+}
+/*Header*/
+
+.wrapper{
+	width: 1024px;
+	margin: 0 auto;
+	position: relative;
+}
+.logo_header{
+	background-image: url(/img/logo_header.png);
+	display:block;
+	width: 257px;
+	height: 215px;
+	float: left;
+}
+.wrapper p{
+	width: 430px;
+	font-size: 17px;
+	text-align: center;
+	float: left;
+	margin-left: 75px;
+	margin-top: 50px;
+}
+.wrapper p a{
+	color:#006838;
+	font-size: 18px;
+}
+.wrapper p br{
+	margin-bottom: 8px;
+}
+.sesion{
+	float: right;
+    margin-top: 50px;
+    width: 190px;
+}
+.sesion h1{
+	float: left;
+	font-size: 11px;
+	margin-right: 12px;
+    margin-top: 19px;
+}
+.iniciar_sesion{
+	font-size: 13px;
+    font-weight: bold;
+    position: relative;
+    text-transform: uppercase;
+}
+
+/*Contenido*/
+
+#content{
+	width: 1024px;
+	background-color: #fff;
+	clear: both;
+	margin: 0 auto;
+	padding-bottom:25px;
+	-webkit-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border-radius: 5px;
+}
+.filtros{
+	margin-bottom: 15px;
+}
+.filtros{
+	height: 15px;
+	background-color: #323232;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	padding: 14px 12px;
+	padding-top: 9px;
+}
+.filtros label{
+	font-size: 12px;
+	margin-right: 5px;
+}
+.filtros select{
+	margin-right: 40px;
+	width: auto;
+	border: none;
+}
+.filtros .input.select {
+	float:left;
+}
+.slide{
+	height: 335px;
+    margin: 12px auto 20px auto; 
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 1000px;
+   	
+}
+
+.slide img{
+	min-width: 1000px;
+	min-height: 310px;
+	max-width: 1000px;
+	max-height: 310px;
+}	
+/** slide**/
+	
+.slide .images {
+    cursor: pointer;
+    float: none;
+    width: auto;
+    height: 310px;
+}
+
+.slide .images div{
+	overflow: hidden;
+	width: auto;
+	height: 310px;
+	margin: 0 auto;
+	position: absolute;
+
+}
+.images h3 {
+    color: #445566;
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0 0 20px;
+}
+.slidetabs {
+    clear: both;
+    padding-left: 48%;
+    margin-top: 12px;
+}
+
+.slidetabs a {
+    background: url("/img/slide_inactivo.jpg") no-repeat scroll 0 0 transparent;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 10px;
+    margin: 3px;
+    width: 10px;
+}
+.slidetabs a.current {
+    background: url("/img/slide_activo.jpg") no-repeat scroll 0 0 transparent;
+}
+.forward, .backward {
+    background: url("/tools/img/scrollable/arrow/hori_large.png") no-repeat scroll 0 0 #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 1px;
+    height: 30px;
+    margin-top: 140px;
+    text-indent: -9999em;
+    width: 30px;
+}
+.forward {
+    background-position: 0 -30px;
+    clear: right;
+}
+.forward:hover {
+    background-position: -30px -30px;
+}
+.forward:active {
+    background-position: -60px -30px;
+}
+.backward:hover {
+    background-position: -30px 0;
+}
+.backward:active {
+    background-position: -60px 0;
+}
+.disabled {
+    visibility: hidden !important;
+}
+
+	
+/** end slide **/	
+.lista_producto{
+	width: 240px;
+	float: left;
+	margin-left: 12px;
+	text-align: center;
+	padding-bottom:10px;
+	margin-bottom:12px;
+	background-color: #dedede;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.lista_producto p{
+	height: 25px;
+	overflow: hidden;
+	display: block;
+}
+#content .lista_producto h1{
+	margin-top: 7px;
+	padding: 5px;
+	margin-top: 0;
+	margin-left: 0;
+}
+.lista_producto a img{
+	min-width: 240px;
+	min-height: 220px;
+	max-width: 240px;
+	max-height: 220px;
+}
+.lista_producto h1 a{
+	color: #231F20;
+    display: block;
+    font-size: 12px;
+    height:35px;
+    overflow: hidden;
+}
+.precio-normal{
+	color:black;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+.precio{
+	font-size: 21px;
+	color:#ed1c24;
+	margin-top: 5px;
+}
+.lista_producto label{
+	font-size: 12px;
+	color:#231f20;
+}
+.lista_producto p{
+	color: #231F20;
+    font-size: 9px;
+    padding: 7px 7px 2px;
+    width: 225px;
+}
+.lista_producto .informacion-restaurante{
+	margin-top:10px;
+}
+#content .lista_producto .informacion-restaurante h1{
+	 font-size: 9px;
+	 padding:0;
+}
+.lista_producto .logo_negocio{
+	float: left;
+    height: 44px;
+    margin-left: 30px;
+    margin-top: 5px;
+    width: 61px;
+    display: block;
+}
+.informacion-restaurante .informacion{
+	float:right;
+	width:130px;
+	text-align: left;
+}
+.lista_producto h3{
+	color: #ED1C24;
+    font-size: 9px;
+    margin-top: 5px;
+}
+.lista_producto h4 {
+    color: #ED1C24;
+    font-size: 11px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/*Detalle del producto*/
+.deals{
+	margin-left: 12px;
+	margin-top: 20px;
+}
+.deals img{
+	min-width: 450px;
+	max-width: 450px;
+	min-height: 340px;
+	max-height: 340px;
+	float: left;
+}
+#content .deals h1{
+	color: #231F20;
+    float: left;
+    font-size: 20px;
+    height: 42px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+    margin-top: 22px;
+    overflow: hidden;
+    padding-right: 15px;
+    width: 491px;
+    text-transform: uppercase;
+}
+.info_producto{
+	width: 526px;
+	height: 268px;
+	background-color: #dedede;
+	float: left;
+	background-image: url(/img/trama_descripcion.png);
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+.info_producto .precio{
+	margin-left: 20px;
+	margin-top: 15px;
+	float: left;
+	border-right:1px solid #c1c1c1;
+	padding-top: 8px;
+	padding-right: 20px;
+	padding-bottom: 8px;
+	font-size:20px;
+}
+.info_producto .precio_regular{
+	color: #323232;
+    font-size: 20px;
+    margin-left: 15px;
+    margin-top: 15px;
+    float: left;
+    padding-top: 8px;
+}
+.info_producto ul{
+	float: left;
+	margin-left: 50px;
+}
+.info_producto li{
+	font-size: 13px;
+	list-style-type: disc;
+	margin-bottom: 7px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+#content .info_producto p{
+	 font-weight: normal;
+    text-align: left;
+}
+#content .info_producto a{
+	color: #000;
+}
+.info_producto h3, .info_producto h4{
+	width: 100%;
+	text-align: center;
+	font-size: 15px;
+	color: #181818;
+}
+.info_producto h3{
+	margin-top: 30px;
+}
+.info_producto h4{
+	color: #ED1C24;
+	font-size: 22px;
+	margin-top: 10px;
+}
+.comprar{
+	display: block;
+	width: 178px;
+	height: 47px;
+	background-image: url(/img/btn_comprar.png);
+	clear: both;
+	margin-left: 180px;
+	margin-top: 14px;
+}
+.comprar.redimir{
+	background-image: url(/img/redimir.png);
+}
+.descripcion_producto{
+	margin-left: 12px;
+	margin-top: 30px;
+	margin-right:50px;
+	float: left;
+}
+#content .deals .descripcion{
+	margin-left: 0;
+	font-size: 14px;
+	float: none;
+	
+}
+#content .descripcion_producto h1, #content .descripcion{
+	background-color: #E76012;
+	position: relative;
+	overflow: visible;
+	height: auto;
+	line-height: 48px;
+	text-indent: 15px;
+	color: white;
+	font-size: 18px;
+}
+#content .descripcion{
+	width: 320px;
+}
+#content .descripcion_producto h2{
+	color: #000;
+	margin-bottom: 8px;
+	margin-top: 8px;
+}
+#content .descripcion_producto img, #content .descripcion img{
+	position: absolute;
+	top:-27px;
+	right: -53px;
+	min-width:183px;
+	min-height: 75px;
+}
+#content .descripcion_producto p{
+	color:#231f20;
+	text-align: left;
+	font-weight: normal;
+	line-height: 15px;
+}
+.ubicacion{
+	float: left;
+	width: 273px;
+	margin-top: 30px;
+}
+.info_ubicacion{
+	background-color: #DEDEDE;
+	padding: 15px;
+	margin-bottom: 50px;
+}
+#content .info_ubicacion h1{
+	margin-left: 0;
+	width: auto;
+	height: auto;
+	margin-top: 5px;
+	margin-bottom: 8px;
+}
+.info_ubicacion h3{
+	clear: left;
+    color: #231F20;
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+.info_ubicacion img{
+	width: 246px;
+	height: 208px;
+	margin-top: 8px;
+	float: none;
+}
+.paging{
+	margin-bottom: 15px;
+}
+.paging span, .paging{
+	text-align: center;
+	color: #231F20;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+.paging .disabled{
+	color: #838383;
+}
+.deals-list{
+	margin-bottom: 15px;
+}
+#content h1{
+	margin-left: 27px;
+	color: #181818;
+	margin-top: 25px;
+}
+#content .info{
+	font-weight: normal;
+    margin-left: 27px;
+    padding-top: 12px;
+    text-align: left;
+    width: 965px;
+    color: #323232;
+    clear: both;
+}
+/*Footer*/
+
+#footer{
+	clear: both;
+	background-color: #181818;
+	height: 305px;
+	margin-top: 30px;
+	
+}
+#footer .wrapper{
+	position: relative;
+}
+.izquierda{
+	float: left;
+	width: 680px;
+	margin-left: 15px;
+	margin-top: 35px;
+}
+.izquierda p{
+	margin-left: 0;
+	margin-top: 8px;
+	text-align: left;
+	font-size: 12px;
+	margin-bottom: 23px;
+	width: 500px;
+}
+.izquierda a{
+	display: block;
+	margin-bottom: 12px;
+	text-decoration: underline;
+}
+.derecha{
+	width: 320px;
+	margin-top: 35px;
+	float: right;
+	padding-top: 15px;
+}
+.derecha h1{
+	float: left;
+	font-size: 12px;
+	margin-top: 12px;
+}
+.derecha a{
+	float: left;
+	margin-left: 13px;
+}
+.volver_arriba{
+	background-image: url("/img/volver_arriba.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    bottom: 0;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    height: 13px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    position: absolute;
+    right: 0;
+    width: 111px;
+
+}
+.ver_mas, #footer .ver_mas{
+	font-size: 12px;
+	text-decoration: underline;
+	color: #fff;
+}
+.como_comprar{
+	float: left;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    margin-top: 29px;
+    width: 250px;
+    padding: 10px 10px 20px;
+    -webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 10px; 
+	background-color: #eeeeee;
+	position: relative;
+	
+	
+	
+}
+.como_comprar img, .img_contacto{
+	width: 55px;
+	float: left;
+}
+.img_contacto{
+	margin-left: 25px;
+}
+#content .titulo_contacto{
+	float: left;
+    margin-left: 10px;
+    margin-top: 17px;
+}
+.como_comprar h2{
+	background-color: #323232;
+    color: #FFFFFF;
+    float: left;
+    font-size: 12px;
+    margin-left: 10px;
+    margin-top: 26px;
+    padding: 4px 2px;
+    position: absolute;
+    width: 185px;
+    right: 0;
+	
+}
+#content .como_comprar p{
+	text-align: left;
+	font-weight: normal;
+	padding-top:10px;
+	clear: both;
+}
+.error {
+	/* supply height to ensure consistent positioning for every browser */
+	height:15px;
+	font-size:11px;
+	color:#000;
+	padding:3px 10px;
+	margin-left:-2px;
+
+
+	/* CSS3 spicing for mozilla and webkit */
+	-moz-border-radius:2px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	-moz-border-radius-bottomleft:0;
+	-moz-border-radius-topleft:0;
+	-webkit-border-bottom-left-radius:0;
+	-webkit-border-top-left-radius:0;
+
+}
+.error p{
+	color: #E0050B;
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#content h1.premios{
+	background-image: url("/img/regalos.png");
+    background-repeat: no-repeat;
+    padding-bottom: 15px;
+    padding-left: 51px;
+    padding-top: 23px;
+    width: 100%;
+}
+#content h1.premios.otros{
+	float: left;
+	width: auto;
+}
+#content .volver_premios{
+	background-image: url("/img/volver_regalos.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    color: #181818;
+    display: block;
+    float: right;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 37px;
+    margin-top: 10px;
+    padding-bottom: 8px;
+    padding-left: 32px;
+    padding-top: 10px;
+}
+#content p.premios{
+	font-weight: normal;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: left;
+}
+.producto_premio{
+	margin-bottom: 10px;
+    padding: 0 15px;
+}
+.producto_premio img{
+	min-width: 218px;
+	max-width: 218px;
+	min-height: 162px;
+	max-height: 162px; 
+}
+.producto_premio a{
+	float: left;
+}
+.premios_info{
+	background-color: #DDDDDD;
+    background-image: url("/img/trama_regalos.png");
+    background-position: left top;
+    background-repeat: repeat-x;
+    float: left;
+    height: 112px;
+    padding: 25px 15px;
+    width: 520px;
+    margin-left: 9px;
+}
+#content .premios_info a{
+	font-size: 15px;
+	text-transform: uppercase;
+	color:#ed1c22;
+	margin-top: 0;
+	margin-left: 0;
+	height: 35px;
+	overflow: hidden;
+	padding-right: 15px;
+	float: none;
+	
+}
+#content .premios_info p{
+	font-size: 12px;
+	margin-left: 0;
+	text-align: left;
+	font-weight: normal;
+	margin-top: 15px;
+	height: 86px;
+	overflow: hidden;
+}
+.premios_puntos{
+	background-color: #181818;
+    float: left;
+    margin-left: 9px;
+    padding: 20px;
+    width: 168px;
+    height: 122px;
+}
+#content .premios_puntos h1{
+	color: #FFFFFF;
+    font-size: 16px;
+    margin: 19px 0 15px;
+    padding: 0;
+    text-align: center;
+}
+.premios_puntos a{
+	color: #ED1C22;
+    float: none;
+    font-size: 16px;
+}
+#content .premios_puntos h2{
+	text-align: center;
+	color: #fff;
+	font-size: 22px;
+}
+/*
+	root element for the scrollable.
+	when scrolling occurs this element stays still.
+*/
+.scrollable {
+
+	/* required settings */
+	position:relative;
+	overflow:hidden;
+	width: 915px;
+	height:260px;
+	float: left;
+}
+
+/*
+	root element for scrollable items. Must be absolutely positioned
+	and it should have a extremely large width to accommodate scrollable items.
+	it's enough that you set width and height for the root element and
+	not for this element.
+*/
+.scrollable .items {
+	/* this cannot be too large */
+	width:20000em;
+	position:absolute;
+}
+
+/*
+	a single item. must be floated in horizontal scrolling.
+	typically, this element is the one that *you* will style
+	the most.
+*/
+.items div {
+	float:left;
+}
+.next{
+	display: block;
+	background-color: #181818;
+	width: 29px;
+	height: 260px;
+	float: right;
+	background-image: url(/img/next.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 15px;
+}
+.next.disabled{
+	background-image: url(/img/next_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.prev{
+	display: block;
+	background-color: #181818;
+	width: 29px;
+	height: 260px;
+	float: left;
+	background-image: url(/img/prev.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor: pointer;
+	margin-right: 12px;
+}
+.prev.disabled{
+	background-image: url(/img/prev_disabled.png);
+	background-color: #e7e7e7;
+	cursor:default;
+}
+.otros_premios{
+	background-color: #dedede;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	height: 260px;
+	margin-right: 14px;
+	width: 218px;
+}
+.otros_premios img{
+	min-width: 218px;
+	min-height: 162px;
+	max-width: 218px;
+	max-height: 162px;
+	float: none;
+}
+#content .otros_premios a.descripcion_premios{
+	display: block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 23px;
+    margin: 8px 0 0;
+    overflow: hidden;
+    padding: 0 10px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+    color: #181818;
+}
+#content .otros_premios h2{
+	clear: both;
+    color: #ED1C22;
+    font-size: 16px;
+    height: 20px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+/*ORDENES*/
+.orders label{
+	color:black;
+}
+.orders a{
+	color:black;
+	text-decoration: underline;
+}
+.orders #OrderTerminos{ /*CHECKBOX PARA ACEPTAR TERMINOS*/
+	width:30px;
+	height: 15px;
+	margin-top:3px;
+	margin:0;
+}
+.info_producto ul{
+	margin-top: 8px;
+}
+.orders.register{
+	width: 100%;
+}
+#content .orders.register h1{
+	margin-left: 20px;
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+#content .orders.register p{
+	text-align: left;
+	padding-left: 20px;
+}
+#content .mensaje-compra, #content .mensaje-compra h1{
+	color: #E0050B;
+}
+#content .orders.register .input{
+	float: left;
+}
+.orders.register legend{
+	font-size: 18px;
+	float: left;
+	width: 96%;
+	padding-left: 4%;
+	margin-left: 0%;
+	margin-top: 15px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: white;
+	background: #424242; /* Old browsers */
+	background: -moz-linear-gradient(top,  #424242 0%, #1e1e1e 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#424242), color-stop(100%,#1e1e1e)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* IE10+ */
+	background: linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#1e1e1e',GradientType=0 ); /* IE6-9 */
+}
+.promo img{
+	float: left;
+	margin-left: 20px;
+	margin-top: 15px;
+}
+.promo .input{
+	margin-top: 15px;
+}
+#content .orden.datos-usuario .input{
+	float: none;
+}
+#content .orden.datos-usuario label, #content .orden .input.text label, #content .orden .input.select label{
+	color: black;
+	width: 167px;
+	text-align: right;
+	font-size: 13px;
+	margin-right: 25px;
+	margin-top: 8px;
+	text-transform: uppercase;
+	float: left;
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+
+}
+#content .input.select.required, #content .orden .input.text, #content .orden .input.select{
+	float: none;
+}
+#content .input.select.required label{
+	color: black;
+	width: 167px;
+	text-align: right;
+	font-size: 13px;
+	margin-right: 25px;
+	margin-top: 8px;
+	text-transform: uppercase;
+	float: left;
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.terminos{
+	margin-left: 214px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	margin-top: 8px;
+}
+.terminos a{
+	color: #E0050B;
+	text-decoration: none;
+	font-size: 13px;
+}
+.orders .submit input{
+	font-size: 13px;
+    height: 37px;
+    text-transform: uppercase;
+    width: 100px;
+    background: #e76012;
+	background: -moz-linear-gradient(top,  #e76012 0%, #c64f0f 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e76012), color-stop(100%,#c64f0f));
+	background: -webkit-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -o-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: -ms-linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	background: linear-gradient(top,  #e76012 0%,#c64f0f 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76012', endColorstr='#c64f0f',GradientType=0 );
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #E57D44;
+	color: #fff;
+	margin-left: 356px;
+	margin-top: 15px;
+}
+input[type='checkbox']{
+	border: none;
+}
+#UserReferForm fieldset{
+	float: left;
+}
+#UserReferForm label{
+	color: #000;
+}
+#content .centrar h1{
+	margin: 0;
+	color: #fff;
+}
+#content .info span, fieldset span{
+	font-weight: bold;
+}
+.info .numeros{
+	background-color: black;
+	width: 30px;
+	display: block;
+	float: left;
+	margin-bottom: 8px;
+	height: 26px;
+	color: white;
+	text-align: center;
+	padding-top: 8px;
+	margin-top: -7px;
+	margin-right: 8px;
+	margin-left: 15px;
+}
+#ordenes{
+	width: 90%;
+	margin-left: 15px;
+}
+#ordenes tr{
+	font-family: Arial, Helvetica, sans-serif;
+}
+#ordenes th{
+	text-align: left;
+	padding-right: 8px;
+	padding-bottom: 8px;
+	padding-top: 8px;
+	color: #fff;
+	font-size: 14px;
+	padding-left: 8px;
+	border-right: 1px solid #ccc;
+	background: #424242; /* Old browsers */
+	background: -moz-linear-gradient(top,  #424242 0%, #1e1e1e 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#424242), color-stop(100%,#1e1e1e)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* IE10+ */
+	background: linear-gradient(top,  #424242 0%,#1e1e1e 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#1e1e1e',GradientType=0 ); /* IE6-9 */
+}
+#ordenes td{
+	vertical-align: middle;
+	padding-right: 8px;
+	padding-top: 5px;
+	text-align: left;
+	font-weight: bold;
+	font-size: 12px;
+	padding-left: 8px;
+}
+#ordenes td img{
+	display: block;
+	margin-bottom: 5px;
+}

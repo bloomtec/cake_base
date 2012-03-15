@@ -89,6 +89,8 @@
 						<a href="/pages/comoComprar">Cómo comprar</a>
 						<a href="/pages/nuestraEmpresa">Nuestra empresa</a>
 						<a href="/pages/dudas">¿Tienes alguna sugerencia, queja o reclamo?</a>
+						<a href="/pages/sugierenos">Sugierenos un restaurante</a>
+						<a href="/pages/privacidad">Privacidad</a>
 						<a href="/pages/contacto">Contáctenos</a>
 					</div>
 					<div class="derecha">
