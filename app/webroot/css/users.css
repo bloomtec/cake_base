@@ -401,7 +401,7 @@ div.images .preview  img{
 	clear: left;
 }
 #register_login label,.users .input label{
-	color:#000;
+	color:#fff;
 	width: 136px;
 	text-align: right;
 	font-size: 13px;
@@ -417,7 +417,7 @@ div.images .preview  img{
 #register_login .correo{
 	width: auto;
 }
-#register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea, .users .input input{
+#register_login .input input,#register_login select,#UserEmail,.contacto input,.contacto textarea, .users .input input, .input input, .input select{
 	width: 245px;
 	height: 25px;
 	margin-bottom: 16px;
@@ -444,7 +444,7 @@ div.images .preview  img{
     min-width: 245px;
     padding-left: 3px;
 }
-#register_login .input input:focus,#register_login select:focus,#UserEmail:focus, .users .input input:focus{
+#register_login .input input:focus,#register_login select:focus,#UserEmail:focus, .users .input input:focus, .input input:focus, .input select:focus{
 	background-color: #fff;
 }
 #register_login select{

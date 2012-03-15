@@ -1,5 +1,6 @@
 <div id="header">
 	<div class="wrapper">
+		<img src="/img/logo.jpg" style="display: none;" />
 		<div class="tooltip_login ajax_login">
 			<?php echo $this -> Form -> create('User', array('action' => 'ajaxLogin')); ?>
 			<label for="email">E-mail:</label>

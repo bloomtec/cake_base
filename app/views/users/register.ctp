@@ -19,7 +19,7 @@
 				<?php __('¿Aún no eres usuario?');?>
 			</legend>
 			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posu
+				Registrate y empieza a disfrutar de los mejores descuentos!
 			</p>
 				<div class="input text">
 					<label for="UserEmail"><?php echo __('Email', true); ?></label>
@@ -67,7 +67,7 @@
 				<?php __('Ingresar');?>
 			</legend>
 			<p>
-				Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posu
+				Introduce tus datos de sesión para acceder a tu cuenta
 			</p>
 			<div class="input text">
 				<label for='email'>E-mail</label>
