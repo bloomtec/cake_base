@@ -160,6 +160,7 @@ class UsersController extends AppController {
 			$this -> Session -> setFlash(__('You must be signed in to be able to refer a friend', true));
 		}
 		$this -> layout = "profile";
+		$this->set('code',urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
 	}
 
 	public function registrationEmail($email = null, $code = null) {
