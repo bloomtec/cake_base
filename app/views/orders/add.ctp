@@ -63,7 +63,7 @@
 			if ($user['Address'] && !empty($addresses)) {
 				echo $this -> Form -> input('address_id');
 			} else {
-				echo $this -> Form -> input('Address.name', array('label' => 'Nombre'));
+				echo $this -> Form -> input('Address.name', array('label' => 'Nombre', 'value' => __('default', true)));
 				if($user) {
 					echo $this -> Form -> hidden('Address.user_id', array('value' => $user['User']['id']));
 					echo $this -> Form -> hidden('Address.country_id', array('value' => $user['City']['country_id']));
