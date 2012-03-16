@@ -18,27 +18,41 @@
 	<div class="register form">
 		<fieldset class="centrar">
 		<legend>
-			<?php __('Dudas, sugerencias o reclamos');?>
+			<?php //echo __('Dudas, sugerencias o reclamos'); ?>
+			<?php echo __('Doubts, suggestions or complaints'); ?>
 		</legend>
 		<p>
-			ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos, donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio. 
+			<!-- ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos,
+			donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio. -->
+			<?php echo __('ComoPromos gives you a warm welcome to our suggestions and complaints page. Here you can give us input about your opinions regarding us giving you a better service', true); ?> 
 			<br /><br />
-			Por medio de nuestro correo electrónico <span>servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones.
+			<!-- Por medio de nuestro correo electrónico <span>servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones. -->
+			<?php echo __('Through our email <span>servicioalcliente@comopromos.com</span> or our phone line <span>057 2 664 97 34</span> we are willing to provide fast and effective attention to your observations.', true); ?>
 		</p>
-		<form id="ContactForm" accept-charset="utf-8" method="post" controller="pages" action="contacto">
+		<?php echo $this -> Form -> create('Pages', array('controller' => 'pages', 'action' => 'dudas')); ?>
+		<!-- <form id="ContactForm" accept-charset="utf-8" method="post" controller="pages" action="contacto"> -->
 			<fieldset class="contacto">
-				<label for="ContactoNombre">Nombre:</label>
-				<input id="ContactoNombre" type="text" required="required" class="text" name="data[Contacto][nombre]"/>
-				<label for="ContactoEmail">E-mail:</label>
-				<input id="ContactoEmail" type="email" required="required" class="text" name="data[Contacto][email]"/>
-				<label for="ContactoTexto">Mensaje:</label>
-				<textarea id="ContactoTexto" required="required" class="text" name="data[Contacto][texto]"></textarea>
-				<div class="submit">
-					<input type="submit" value="Enviar" />
+				<?php echo $this -> Form -> input('name', array('label' => __('Name:', true), 'required' => 'required')); ?>
+				<!--<label for="ContactoNombre">Nombre:</label>
+				<input id="ContactoNombre" type="text" required="required" class="text" name="data[Contacto][nombre]"/>-->
+				<?php // echo $this -> Form -> input('email', array('label' => __('E-mail:', true), 'required' => 'required')); ?>
+				<div class="input text">
+					<label for="PagesEmail">E-mail:</label>
+					<input id="PagesEmail" type="email" required="required" name="data[Pages][email]">
 				</div>
+				<!--<label for="ContactoEmail">E-mail:</label>
+				<input id="ContactoEmail" type="email" required="required" class="text" name="data[Contacto][email]"/>-->
+				<?php echo $this -> Form -> input('message', array('label' => __('Message:', true), 'type' => 'textarea', 'required' => 'required')); ?>
+				<!--<label for="ContactoTexto">Mensaje:</label>
+				<textarea id="ContactoTexto" required="required" class="text" name="data[Contacto][texto]"></textarea>-->
+				<?php echo $this -> Form -> submit(__('Send', true)); ?>
+				<!--<div class="submit">
+					<input type="submit" value="Enviar" />
+				</div>-->
 				<div style="clear: both"></div>
 			</fieldset>
-		</form>
+		<?php echo $this -> Form -> end(); ?>
+		<!--</form>-->
 		</fieldset>
 	</div>
 	<div style="clear: both"></div>
