@@ -34,7 +34,7 @@ class Country extends AppModel {
 		'price_ranges' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'Please enter price ranges for this country',
+				'message' => 'Debes ingresar rangos de precio para este país',
 				//'allowEmpty' => false,
 				//'required' => false,
 				'last' => true, // Stop validation after this rule
@@ -42,7 +42,7 @@ class Country extends AppModel {
 			),
 			'priceRangeFormat' => array(
 				'rule' => array('priceRangeFormat'),
-				'message' => 'Current price range format is invalid',
+				'message' => 'El formato actual para rangos de precio no es válido',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
