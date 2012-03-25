@@ -22,7 +22,7 @@ class CountriesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid country', true));
+			$this -> Session -> setFlash(__('País no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('country', $this -> Country -> read(null, $id));
@@ -35,7 +35,7 @@ class CountriesController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid country', true));
+			$this -> Session -> setFlash(__('País no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('country', $this -> Country -> read(null, $id));
@@ -45,25 +45,25 @@ class CountriesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Country -> create();
 			if ($this -> Country -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The country has been saved', true));
+				$this -> Session -> setFlash(__('Se agregó el país', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The country could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo agregar el país. Por favor, intente de nuevo.', true));
 			}
 		}
 	}
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid country', true));
+			$this -> Session -> setFlash(__('País no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Country -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The country has been saved', true));
+				$this -> Session -> setFlash(__('Se agregó el país', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The country could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo agregar el país. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -73,14 +73,14 @@ class CountriesController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for country', true));
+			$this -> Session -> setFlash(__('ID de país no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Country -> delete($id)) {
-			$this -> Session -> setFlash(__('Country deleted', true));
+			$this -> Session -> setFlash(__('País eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Country was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó el país', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
