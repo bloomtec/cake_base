@@ -52,7 +52,7 @@ class DealsController extends AppController {
 		$cities = array();
 		$zones = array();
 		
-		$cities[0] = __('All cities...', true);
+		$cities[0] = __('Escoja...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
 		foreach($cities_tmp as $key => $city_tmp) {
 			$cities[$key] = $city_tmp;
@@ -72,12 +72,12 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('All districts...', true);
+			$zones[0] = __('Escoja...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('All districts...', true);
+			$zones[0] = __('Escoja...', true);
 			$zones_tmp = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 			foreach($zones_tmp as $key => $data) {
 				$zones[$key] = $data;
@@ -221,7 +221,7 @@ class DealsController extends AppController {
 
 	function view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 			$this -> layout = "default";
 		}
@@ -240,7 +240,7 @@ class DealsController extends AppController {
 
 	function admin_view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> Deal -> recursive = 2;
@@ -251,10 +251,11 @@ class DealsController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Deal -> create();
 			if ($this -> Deal -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The deal has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la promo', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
 			}
 		}
 		$restaurants = $this -> Deal -> Restaurant -> find('list');
@@ -264,15 +265,16 @@ class DealsController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Deal -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The deal has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la promo', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -285,14 +287,14 @@ class DealsController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for deal', true));
+			$this -> Session -> setFlash(__('ID de promo no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Deal -> delete($id)) {
-			$this -> Session -> setFlash(__('Deal deleted', true));
+			$this -> Session -> setFlash(__('Promo eliminada', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Deal was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó la promo', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -310,7 +312,7 @@ class DealsController extends AppController {
 
 	function manager_view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> Deal -> recursive = 2;
@@ -319,7 +321,7 @@ class DealsController extends AppController {
 	
 	function owner_view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> Deal -> recursive = 2;
@@ -330,10 +332,11 @@ class DealsController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Deal -> create();
 			if ($this -> Deal -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The deal has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la promo', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
 			}
 		}
 		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
@@ -343,15 +346,16 @@ class DealsController extends AppController {
 
 	function manager_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid deal', true));
+			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Deal -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The deal has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la promo', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -364,14 +368,14 @@ class DealsController extends AppController {
 
 	function manager_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for deal', true));
+			$this -> Session -> setFlash(__('ID de promo no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Deal -> delete($id)) {
-			$this -> Session -> setFlash(__('Deal deleted', true));
+			$this -> Session -> setFlash(__('Promo eliminada', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Deal was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó la promo', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 

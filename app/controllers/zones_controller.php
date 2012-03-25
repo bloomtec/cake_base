@@ -20,7 +20,7 @@ class ZonesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid zone', true));
+			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('zone', $this -> Zone -> read(null, $id));
@@ -39,7 +39,7 @@ class ZonesController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid zone', true));
+			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
@@ -50,10 +50,10 @@ class ZonesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Zone -> create();
 			if ($this -> Zone -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The zone has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el barrio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The zone could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se puedo guardar el barrio. Por favor, intente de nuevo', true));
 			}
 		}
 		$countries = $this -> Zone -> City -> Country -> find('list');
@@ -67,10 +67,10 @@ class ZonesController extends AppController {
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Zone -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The zone has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el barrio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The zone could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se puedo guardar el barrio. Por favor, intente de nuevo', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -83,14 +83,14 @@ class ZonesController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for zone', true));
+			$this -> Session -> setFlash(__('ID de barrio no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Zone -> delete($id)) {
-			$this -> Session -> setFlash(__('Zone deleted', true));
+			$this -> Session -> setFlash(__('Barrio eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Zone was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó el barrio', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -107,7 +107,7 @@ class ZonesController extends AppController {
 
 	function manager_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid zone', true));
+			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
@@ -118,10 +118,10 @@ class ZonesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Zone -> create();
 			if ($this -> Zone -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The zone has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el barrio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The zone could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se puedo guardar el barrio. Por favor, intente de nuevo', true));
 			}
 		}
 		$countries = $this -> Zone -> City -> Country -> find('list');
@@ -130,15 +130,15 @@ class ZonesController extends AppController {
 
 	function manager_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid zone', true));
+			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Zone -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The zone has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el barrio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The zone could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se puedo guardar el barrio. Por favor, intente de nuevo', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -151,14 +151,14 @@ class ZonesController extends AppController {
 
 	function manager_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for zone', true));
+			$this -> Session -> setFlash(__('ID de barrio no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Zone -> delete($id)) {
-			$this -> Session -> setFlash(__('Zone deleted', true));
+			$this -> Session -> setFlash(__('Barrio eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Zone was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó el barrio', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
