@@ -52,7 +52,7 @@ class DealsController extends AppController {
 		$cities = array();
 		$zones = array();
 		
-		$cities[0] = __('Escoja...', true);
+		$cities[0] = __('Todas...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
 		foreach($cities_tmp as $key => $city_tmp) {
 			$cities[$key] = $city_tmp;
@@ -72,12 +72,12 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Escoja...', true);
+			$zones[0] = __('Escoja ciudad...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Escoja...', true);
+			$zones[0] = __('Todos...', true);
 			$zones_tmp = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
 			foreach($zones_tmp as $key => $data) {
 				$zones[$key] = $data;
@@ -102,7 +102,7 @@ class DealsController extends AppController {
 		 * Armar el filtro de cuisines
 		 */
 		$cuisines = array();
-		$cuisines[0] = __('All cuisines...', true);
+		$cuisines[0] = __('Todas...', true);
 		$cuisines_tmp = $this -> requestAction('/cuisines/getList');
 		foreach($cuisines_tmp as $key => $cuisine_tmp) {
 			$cuisines[$key] = $cuisine_tmp;
@@ -136,9 +136,9 @@ class DealsController extends AppController {
 		 * Filtro de orden de precios
 		 */
 		if(!isset($this -> params['named']['city']) || (isset($this -> params['named']['city']) && $this -> params['named']['city'] == 0)) {
-			$prices = array(0 => __('No city selected...', true));
+			$prices = array(0 => __('Escoja ciudad...', true));
 		} else {
-			$prices = array(0 => __('No range selected...', true));
+			$prices = array(0 => __('Escoja un rango...', true));
 			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city);
 			$country = $this -> Deal -> Restaurant -> Zone -> City -> Country -> findById($tmp_city['City']['country_id']);
 			$price_ranges = $country['Country']['price_ranges'];
