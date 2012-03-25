@@ -30,10 +30,13 @@ body{
 }
 .logo_header{
 	background-image: url(/img/logo_header.png);
-	display:block;
+	display: block;
 	width: 257px;
-	height: 215px;
+	height: 171px;
 	float: left;
+	margin-top: 15px;
+	margin-bottom: 25px;
+	background-repeat: no-repeat;
 }
 .wrapper p{
 	width: 430px;
@@ -486,17 +489,18 @@ body{
 	font-weight: normal;
     margin-left: 27px;
     padding-top: 12px;
-    text-align: left;
+    text-align: justify;
     width: 965px;
     color: #323232;
     clear: both;
+    line-height: 17px;
 }
 /*Footer*/
 
 #footer{
 	clear: both;
 	background-color: #181818;
-	height: 305px;
+	height: auto;
 	margin-top: 30px;
 	
 }
@@ -1039,4 +1043,31 @@ input[type='checkbox']{
 #ordenes td img{
 	display: block;
 	margin-bottom: 5px;
+}
+.orden-info{
+	padding-left: 27px;
+	width: 500px;
+	float: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	margin-right: 70px;
+}
+#content .orden-info .descripcion{
+	margin-left: 0;
+}
+.orden .ubicacion{
+	float: left;
+	margin-top: 0; 
+	width: auto;
+}
+
+#content .orden .ubicacion .descripcion{
+	margin-left: 0;
+}
+.orden-info h2{
+	color: #000;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 17px;
+	margin-bottom: 8px;
 }

@@ -32,19 +32,19 @@
 			</fieldset>
 		<?php echo $this -> Form -> end(); ?>
 		<!--</form>-->
-		<h1>DOMISALECOMOPROMOS</h1>
+		<h1>COMOPROMOS</h1>
 		<p>
 			<br />
 			<br />
 			Teléfono: +57 2 664 97 34
 			<br />
 			<br />
-			E-mail: info@domisalecomopromos.com
+			E-mail: info@comopromos.com
 			<br /><br />
 			<!--Si quieres trabajar con nosotros-->
-			<?php echo __('If you want to work with us', true); ?>
+			<?php echo __('¿Te gustaría trabajar con nosotros?', true); ?>
 			<br />
-			E-mail: jobs@domisalecomopromos.com
+			E-mail: jobs@comopromos.com
 		</p>
 		</fieldset>
 		
