@@ -6,7 +6,7 @@
 			$selectedCuisine = (isset($this->params['named'][__('cuisine',true)]) && !empty($this->params['named'][__('cuisine',true)])) ?  $this->params['named'][__('cuisine',true)] : null;
 			$selectedPrice = (isset($this->params['named'][__('price',true)]) && !empty($this->params['named'][__('price',true)])) ?  $this->params['named'][__('price',true)] : null;
 			
-			echo $this -> Form -> input('city_id',array('options' => $cities,'label' => __('What´s there to eat at:', true),'rel'=>__('city',true), 'selected' => $selectedCity));
+			echo $this -> Form -> input('city_id',array('options' => $cities,'label' => __('What´s there to eat in:', true),'rel'=>__('city',true), 'selected' => $selectedCity));
 			echo $this -> Form -> input('zone_id',array('options' => $zones,'label' => __('District:', true),'rel'=>__('zone',true), 'selected' => $selectedZone));
 			echo $this -> Form -> input('cuisine_id',array('options' => $cuisines,'label' => __('Cuisine:', true),'rel'=>__('cuisine',true), 'selected' => $selectedCuisine));
 			echo $this -> Form -> input('price_range',array('options' => $prices,'label' => __('Price Range:', true),'rel'=>__('price',true), 'selected' => $selectedPrice));

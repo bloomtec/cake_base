@@ -76,7 +76,7 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'mysql.bloomweb.co',
 		'login' => 'bloomweb',
 		'password' => 'rr40r900343',
 		'database' => 'bloomweb_clickneat',
