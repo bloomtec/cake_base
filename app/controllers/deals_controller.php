@@ -52,7 +52,7 @@ class DealsController extends AppController {
 		$cities = array();
 		$zones = array();
 		
-		$cities[0] = __('Todas...', true);
+		$cities[0] = __('Ciudades...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
 		foreach($cities_tmp as $key => $city_tmp) {
 			$cities[$key] = $city_tmp;

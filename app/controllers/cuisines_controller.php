@@ -18,6 +18,7 @@ class CuisinesController extends AppController {
 			$this -> Session -> setFlash(__('Cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Cuisine -> recursive = 2;
 		$this -> set('cuisine', $this -> Cuisine -> findBySlug($slug));
 	}
 
@@ -36,6 +37,7 @@ class CuisinesController extends AppController {
 			$this -> Session -> setFlash(__('Cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Cuisine -> recursive = 2;
 		$this -> set('cuisine', $this -> Cuisine -> findBySlug($slug));
 	}
 

@@ -3,16 +3,16 @@
 	<h2><?php __('Deals');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
-		<th><?php echo $this->Paginator->sort('restaurant_id');?></th>
-		<th><?php echo $this->Paginator->sort('name');?></th>
-		<th><?php echo $this->Paginator->sort('description');?></th>
-		<th><?php echo $this->Paginator->sort('image');?></th>
-		<th><?php echo $this->Paginator->sort('amount');?></th>
-		<th><?php echo $this->Paginator->sort('price');?></th>
-		<th><?php echo $this->Paginator->sort('max_buys');?></th>
-		<th><?php echo $this->Paginator->sort('visits');?></th>
-		<th><?php echo $this->Paginator->sort('created');?></th>
-		<th class="actions"><?php __('Actions');?></th>
+		<th><?php echo $this->Paginator->sort(__('Restaurante', true), 'restaurant_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Nombre', true), 'name');?></th>
+		<th><?php echo $this->Paginator->sort(__('Descripción', true), 'description');?></th>
+		<th><?php echo $this->Paginator->sort(__('Imagen', true), 'image');?></th>
+		<th><?php echo $this->Paginator->sort(__('Cantidad', true), 'amount');?></th>
+		<th><?php echo $this->Paginator->sort(__('Precio', true), 'price');?></th>
+		<th><?php echo $this->Paginator->sort(__('Limite', true), 'max_buys');?></th>
+		<th><?php echo $this->Paginator->sort(__('Visitas', true), 'visits');?></th>
+		<th><?php echo $this->Paginator->sort(__('Creado', true), 'created');?></th>
+		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -36,10 +36,10 @@
 		<td><?php echo $deal['Deal']['created']; ?>&nbsp;</td>
 		<td class="actions">
 			<?php
-				echo $this->Html->link(__('View', true), array('action' => 'view', $deal['Deal']['slug']),array('class'=>'view icon','title'=>__('View',true)));
+				echo $this->Html->link(__('Ver', true), array('action' => 'view', $deal['Deal']['slug']),array('class'=>'view icon','title'=>__('View',true)));
 				if($this -> Session -> read('Auth.User.role_id') != 4) {
-					echo $this->Html->link(__('Edit', true), array('action' => 'edit', $deal['Deal']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
-					echo $this->Html->link(__('Delete', true), array('action' => 'delete', $deal['Deal']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $deal['Deal']['id']));
+					echo $this->Html->link(__('Editar', true), array('action' => 'edit', $deal['Deal']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
+					echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $deal['Deal']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $deal['Deal']['id']));
 				}
 			?>
 			<?php if(isset($deal['Deal']['active'])&& $deal['Deal']['active']){
@@ -53,23 +53,21 @@
 <?php endforeach; ?>
 	</table>
 	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
+		<?php
+			echo $this->Paginator->counter(array('format' => __('Página %page% de %pages%, mostrando %current% registros de un total de %count%, desde el %start%, hasta el %end%', true)));
+		?>
+	</p>
 	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
 	 | 	<?php echo $this->Paginator->numbers();?>
  |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 	<?php if($this -> Session -> read('Auth.User.role_id') != 4) : ?>
 	<div class="actions">
 		<ul>
 			<li>
-				<?php echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add')); ?>
+				<?php echo $this->Html->link(__('Agregar', true), array('action' => 'add'),array('class'=>'add')); ?>
 			</li>
 		</ul>
 	</div>
