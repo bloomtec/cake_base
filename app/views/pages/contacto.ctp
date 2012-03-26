@@ -36,10 +36,10 @@
 		<p>
 			<br />
 			<br />
-			Teléfono: +57 2 664 97 34
+			<?php __('Teléfono:'); ?> <a href="tel:+57 2 664 97 34">+57 2 664 97 34</a>
 			<br />
 			<br />
-			E-mail: info@comopromos.com
+			<?php __('Correo:'); ?> <a href="mailto:info@comopromos.com">info@comopromos.com</a>
 			<br /><br />
 			<!--Si quieres trabajar con nosotros-->
 			<?php echo __('¿Te gustaría trabajar con nosotros? Contactanos:', true); ?><a href="mailto:jobs@comopromos.com">jobs@comopromos.com</a>
