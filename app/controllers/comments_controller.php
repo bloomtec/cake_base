@@ -15,7 +15,7 @@ class CommentsController extends AppController {
 
 	function view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid comment', true));
+			$this -> Session -> setFlash(__('Comentario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('comment', $this -> Comment -> findBySlug($slug));
@@ -25,10 +25,10 @@ class CommentsController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Comment -> create();
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó el comentario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el comentario. Por favor, intente de nuevo.', true));
 			}
 		}
 		$users = $this -> Comment -> User -> find('list');
@@ -37,15 +37,15 @@ class CommentsController extends AppController {
 
 	function edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid comment', true));
+			$this -> Session -> setFlash(__('Comentario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó el comentario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el comentario. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -57,44 +57,44 @@ class CommentsController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Comment -> delete($id)) {
-			$this -> Session -> setFlash(__('Comment deleted', true));
+			$this -> Session -> setFlash(__('Comentario eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not deleted', true));
+		$this -> Session -> setFlash(__('El comentario no fue eliminado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function setInactive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> Comment -> read(null, $id);
 		$oldData["Comment"]["active"] = false;
 		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
+			$this -> Session -> setFlash(__('Comentario archivado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
+		$this -> Session -> setFlash(__('El comentario no fue archivado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function setActive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> Comment -> read(null, $id);
 		$oldData["Comment"]["active"] = true;
 		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
+			$this -> Session -> setFlash(__('Comentario archivado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
+		$this -> Session -> setFlash(__('El comentario no fue archivado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -118,7 +118,7 @@ class CommentsController extends AppController {
 
 	function admin_view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid comment', true));
+			$this -> Session -> setFlash(__('Comentario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('comment', $this -> Comment -> findBySlug($slug));
@@ -128,10 +128,10 @@ class CommentsController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Comment -> create();
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó el comentario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el comentario. Por favor, intente de nuevo.', true));
 			}
 		}
 		$users = $this -> Comment -> User -> find('list');
@@ -140,15 +140,15 @@ class CommentsController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid comment', true));
+			$this -> Session -> setFlash(__('Comentario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó el comentario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el comentario. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -160,44 +160,44 @@ class CommentsController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Comment -> delete($id)) {
-			$this -> Session -> setFlash(__('Comment deleted', true));
+			$this -> Session -> setFlash(__('Comentario eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not deleted', true));
+		$this -> Session -> setFlash(__('El comentario no fue eliminado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> Comment -> read(null, $id);
 		$oldData["Comment"]["active"] = false;
 		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
+			$this -> Session -> setFlash(__('Comentario archivado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
+		$this -> Session -> setFlash(__('El comentario no fue archivado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function admin_setActive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for comment', true));
+			$this -> Session -> setFlash(__('ID de comentario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> Comment -> read(null, $id);
 		$oldData["Comment"]["active"] = true;
 		if ($this -> Comment -> save($oldData)) {
-			$this -> Session -> setFlash(__('Comment archived', true));
+			$this -> Session -> setFlash(__('Comentario archivado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Comment was not archived', true));
+		$this -> Session -> setFlash(__('El comentario no fue archivado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 

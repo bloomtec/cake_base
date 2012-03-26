@@ -37,7 +37,7 @@ class RestaurantsController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
@@ -50,7 +50,7 @@ class RestaurantsController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
@@ -79,10 +79,10 @@ class RestaurantsController extends AppController {
 				unset($this -> data['Owner']);
 			}
 			if($this -> Restaurant -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el restaurante', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el restaurante. Por favor, intente de nuevo.', true));
 			}
 		}
 		$countries = $this -> Restaurant -> Zone -> City -> Country -> find('list', array('conditions' => array('is_present' => true)));
@@ -93,15 +93,15 @@ class RestaurantsController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Restaurant -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el restaurante', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el restaurante. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -116,14 +116,14 @@ class RestaurantsController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for restaurant', true));
+			$this -> Session -> setFlash(__('ID de restaurante no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Restaurant -> delete($id)) {
-			$this -> Session -> setFlash(__('Restaurant deleted', true));
+			$this -> Session -> setFlash(__('Se eliminó el restaurante', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Restaurant was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó el restaurante', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -136,7 +136,7 @@ class RestaurantsController extends AppController {
 
 	function manager_view($id = null) {
 		if (!$id || !$this -> isManager($id)) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
@@ -152,10 +152,10 @@ class RestaurantsController extends AppController {
 				unset($this -> data['Owner']);
 			}
 			if($this -> Restaurant -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el restaurante', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el restaurante. Por favor, intente de nuevo.', true));
 			}
 		}
 		$zones = $this -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
@@ -164,15 +164,15 @@ class RestaurantsController extends AppController {
 
 	function manager_edit($id = null) {
 		if ((!$id && empty($this -> data)) || !$this -> isManager($id)) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data) && $this -> isManager($this -> data['Restaurant']['id'])) {
 			if ($this -> Restaurant -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el restaurante', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el restaurante. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -184,14 +184,14 @@ class RestaurantsController extends AppController {
 
 	function manager_delete($id = null) {
 		if (!$id || !$this -> isManager($id)) {
-			$this -> Session -> setFlash(__('Invalid id for restaurant', true));
+			$this -> Session -> setFlash(__('ID de restaurante no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Restaurant -> delete($id)) {
-			$this -> Session -> setFlash(__('Restaurant deleted', true));
+			$this -> Session -> setFlash(__('Se eliminó el restaurante', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Restaurant was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó el restaurante', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 	
@@ -204,7 +204,7 @@ class RestaurantsController extends AppController {
 	
 	function owner_view($id = null) {
 		if (!$id || !$this -> isOwner($id)) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
@@ -212,15 +212,15 @@ class RestaurantsController extends AppController {
 	
 	function owner_edit($id = null) {
 		if ((!$id && empty($this -> data)) || !$this -> isOwner($id)) {
-			$this -> Session -> setFlash(__('Invalid restaurant', true));
+			$this -> Session -> setFlash(__('Restaurante no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data) && $this -> isOwner($this -> data['Restaurant']['id'])) {
 			if ($this -> Restaurant -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The restaurant has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el restaurante', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The restaurant could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el restaurante. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {

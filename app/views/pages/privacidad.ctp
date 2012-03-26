@@ -2,7 +2,7 @@
 <p class="info">
 Protegemos su información personal y sus datos
 <br/><br/>
-Debido a la actividad comercial que desarrolla, COMOPROMOSCOMOPROMOS recoge y en algunos casos, comunica información sobre los Usuarios de su Sitio web. 
+Debido a la actividad comercial que desarrolla, COMOPROMOS recoge y en algunos casos, comunica información sobre los Usuarios de su Sitio web. 
 <br/><br/>
 1. Protegiéndolo<br/>
 COMOPROMOS está comprometido a proteger su privacidad. En esta Política de Privacidad se describe la información que COMOPROMOS recoge sobre sus Usuarios y visitantes y lo que puede ocurrir con dicha información. Si no está de acuerdo con esta Política de Privacidad no utilice el Sitio. 

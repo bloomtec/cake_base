@@ -17,7 +17,7 @@ class CitiesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid city', true));
+			$this -> Session -> setFlash(__('Ciudad no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('city', $this -> City -> read(null, $id));
@@ -30,7 +30,7 @@ class CitiesController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid city', true));
+			$this -> Session -> setFlash(__('Ciudad no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$city = $this -> City -> find('first', array('recursive' => 2, 'conditions' => array('City.id' => $id)));
@@ -41,10 +41,10 @@ class CitiesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> City -> create();
 			if ($this -> City -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The city has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la ciudad', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The city could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la ciudad. Por favor, intente de nuevo.', true));
 			}
 		}
 		$countries = $this -> City -> Country -> find('list');
@@ -53,15 +53,15 @@ class CitiesController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid city', true));
+			$this -> Session -> setFlash(__('Ciudad no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> City -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The city has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la ciudad', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The city could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la ciudad. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -73,20 +73,20 @@ class CitiesController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for city', true));
+			$this -> Session -> setFlash(__('ID de ciudad no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> City -> delete($id)) {
-			$this -> Session -> setFlash(__('City deleted', true));
+			$this -> Session -> setFlash(__('Ciudad eliminada', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('City was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó la ciudad', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function manager_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid city', true));
+			$this -> Session -> setFlash(__('Ciudad no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$city = $this -> City -> find('first', array('recursive' => 2, 'conditions' => array('City.id' => $id)));

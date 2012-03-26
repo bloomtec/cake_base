@@ -23,19 +23,18 @@
 <div class="deals-list">
 	<?php echo $this->element('deal/product_list'); ?>
 </div>
-<p>
-	<?php
-		echo $this->Paginator->counter(
-			array('format' => __('Page %page% of %pages%, showing %current% deals out of %count% total', true))
-		);
-	?>
-</p>
+	<p>
+		<?php
+			echo $this->Paginator->counter(array('format' => __('Página %page% de %pages%, mostrando %current% registros de un total de %count%, desde el %start%, hasta el %end%', true)));
+		?>
+	</p>
 <?php if(count($deals) > 8):?>
-<div class="paging">
-	<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	|	<?php echo $this->Paginator->numbers();?>	|
-	<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-</div>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
+	 | 	<?php echo $this->Paginator->numbers();?>
+ |
+		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div>
 <?php endif;?>
 <script type="text/javascript">
 	$(".slidetabs").tabs(".images > div", {

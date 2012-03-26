@@ -50,24 +50,22 @@
 <?php endforeach; ?>
 	</table>
 	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
+		<?php
+			echo $this->Paginator->counter(array('format' => __('Página %page% de %pages%, mostrando %current% registros de un total de %count%, desde el %start%, hasta el %end%', true)));
+		?>
+	</p>
 	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
 	 | 	<?php echo $this->Paginator->numbers();?>
  |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 	<div class="actions">
 		<ul>
 			<li>
 				<?php
 					if($this -> Session -> read('Auth.User.role_id') != 4) {
-						echo $this->Html->link(__('Add', true), array('action' => 'add'),array('class'=>'add'));
+						echo $this->Html->link(__('Agregar', true), array('action' => 'add'),array('class'=>'add'));
 					}
 				?>
 			</li>

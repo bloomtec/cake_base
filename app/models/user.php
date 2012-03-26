@@ -15,7 +15,7 @@ class User extends AppModel {
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				'message' => 'enter an email',
+				'message' => 'Ingresa un correo',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -23,7 +23,7 @@ class User extends AppModel {
 			),
 			'isUnique' => array(
 				'rule' => array('isUnique'),
-				'message' => 'the email is already registered',
+				'message' => 'Este correo ya esta registrado',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -31,7 +31,7 @@ class User extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'enter an email',
+				'message' => 'Ingresa un correo',
 				//'allowEmpty' => false,
 				//'required' => true,
 				//'last' => false, // Stop validation after this rule
@@ -41,7 +41,7 @@ class User extends AppModel {
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				'message' => 'enter a password',
+				'message' => 'Ingresa la contraseña',
 				//'allowEmpty' => false,
 				//'required' => true,
 				//'last' => false, // Stop validation after this rule

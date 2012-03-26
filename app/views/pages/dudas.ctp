@@ -18,34 +18,33 @@
 	<div class="register form">
 		<fieldset class="centrar">
 		<legend>
-			<?php //echo __('Dudas, sugerencias o reclamos'); ?>
-			<?php echo __('Doubts, suggestions or complaints'); ?>
+			<?php echo __('Dudas, sugerencias o reclamos'); ?>
+			<?php // echo __('Doubts, suggestions or complaints'); ?>
 		</legend>
 		<p>
-			<!-- ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos,
-			donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio. -->
-			<?php echo __('ComoPromos gives you a warm welcome to our suggestions and complaints page. Here you can give us input about your opinions regarding us giving you a better service', true); ?> 
+			<?php echo __('ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos, donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio.', true); ?>
+			<?php // echo __('ComoPromos gives you a warm welcome to our suggestions and complaints page. Here you can give us input about your opinions regarding us giving you a better service', true); ?> 
 			<br /><br />
-			<!-- Por medio de nuestro correo electrónico <span>servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones. -->
-			<?php echo __('Through our email <span>servicioalcliente@comopromos.com</span> or our phone line <span>057 2 664 97 34</span> we are willing to provide fast and effective attention to your observations.', true); ?>
+			<?php echo __('Por medio de nuestro correo electrónico <span>servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones.', true); ?>
+			<?php // echo __('Through our email <span>servicioalcliente@comopromos.com</span> or our phone line <span>057 2 664 97 34</span> we are willing to provide fast and effective attention to your observations.', true); ?>
 		</p>
 		<?php echo $this -> Form -> create('Pages', array('controller' => 'pages', 'action' => 'dudas')); ?>
 		<!-- <form id="ContactForm" accept-charset="utf-8" method="post" controller="pages" action="contacto"> -->
 			<fieldset class="contacto">
-				<?php echo $this -> Form -> input('name', array('label' => __('Name:', true), 'required' => 'required')); ?>
+				<?php echo $this -> Form -> input('name', array('label' => __('Nombre:', true), 'required' => 'required')); ?>
 				<!--<label for="ContactoNombre">Nombre:</label>
 				<input id="ContactoNombre" type="text" required="required" class="text" name="data[Contacto][nombre]"/>-->
 				<?php // echo $this -> Form -> input('email', array('label' => __('E-mail:', true), 'required' => 'required')); ?>
 				<div class="input text">
-					<label for="PagesEmail">E-mail:</label>
+					<label for="PagesEmail"><?php __('Correo:'); ?></label>
 					<input id="PagesEmail" type="email" required="required" name="data[Pages][email]">
 				</div>
 				<!--<label for="ContactoEmail">E-mail:</label>
 				<input id="ContactoEmail" type="email" required="required" class="text" name="data[Contacto][email]"/>-->
-				<?php echo $this -> Form -> input('message', array('label' => __('Message:', true), 'type' => 'textarea', 'required' => 'required')); ?>
+				<?php echo $this -> Form -> input('message', array('label' => __('Mensaje:', true), 'type' => 'textarea', 'required' => 'required')); ?>
 				<!--<label for="ContactoTexto">Mensaje:</label>
 				<textarea id="ContactoTexto" required="required" class="text" name="data[Contacto][texto]"></textarea>-->
-				<?php echo $this -> Form -> submit(__('Send', true)); ?>
+				<?php echo $this -> Form -> submit(__('Enviar', true)); ?>
 				<!--<div class="submit">
 					<input type="submit" value="Enviar" />
 				</div>-->

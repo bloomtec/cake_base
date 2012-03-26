@@ -15,9 +15,10 @@ class CuisinesController extends AppController {
 
 	function view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid cuisine', true));
+			$this -> Session -> setFlash(__('Cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Cuisine -> recursive = 2;
 		$this -> set('cuisine', $this -> Cuisine -> findBySlug($slug));
 	}
 
@@ -33,9 +34,10 @@ class CuisinesController extends AppController {
 
 	function admin_view($slug = null) {
 		if (!$slug) {
-			$this -> Session -> setFlash(__('Invalid cuisine', true));
+			$this -> Session -> setFlash(__('Cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
+		$this -> Cuisine -> recursive = 2;
 		$this -> set('cuisine', $this -> Cuisine -> findBySlug($slug));
 	}
 
@@ -43,10 +45,10 @@ class CuisinesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Cuisine -> create();
 			if ($this -> Cuisine -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The cuisine has been saved', true));
+				$this -> Session -> setFlash(__('Se agregó el tipo de cocina', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The cuisine could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el tipo de cocina. Por favor, intente de nuevo.', true));
 			}
 		}
 		$deals = $this -> Cuisine -> Deal -> find('list');
@@ -55,15 +57,15 @@ class CuisinesController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid cuisine', true));
+			$this -> Session -> setFlash(__('Cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Cuisine -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The cuisine has been saved', true));
+				$this -> Session -> setFlash(__('Se agregó el tipo de cocina', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The cuisine could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar el tipo de cocina. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -75,11 +77,11 @@ class CuisinesController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for cuisine', true));
+			$this -> Session -> setFlash(__('ID de cocina no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Cuisine -> delete($id)) {
-			$this -> Session -> setFlash(__('Cuisine deleted', true));
+			$this -> Session -> setFlash(__('Tipo de cocina eliminada', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> Session -> setFlash(__('Cuisine was not deleted', true));

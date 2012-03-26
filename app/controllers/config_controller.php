@@ -10,14 +10,13 @@ class ConfigController extends AppController {
 
 	function admin_edit($id = 1) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid city', true));
-
+			$this -> Session -> setFlash(__('Configuración no válida', true));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Config -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The configuration has been saved', true));
+				$this -> Session -> setFlash(__('Se guardó la configuración', true));
 			} else {
-				$this -> Session -> setFlash(__('The configuration could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la configuración. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {

@@ -51,11 +51,12 @@ class UsersController extends AppController {
 				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				// Enviar el correo con el codigo
 				$this -> registrationEmail($this -> data['User']['email'], $code);
-				$this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
+				// $this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
+				$this -> Session -> setFlash(__('Registro exitoso. Por favor revisa tu correo para terminar el proceso de registro.', true));
 				//$this->Auth->login($this->data);
 				$this -> redirect(array('action' => 'validateEmail'));
 			} else {
-				$this -> Session -> setFlash(__('Registration failed, please try again.', true));
+				$this -> Session -> setFlash(__('Ocurrió un error. Por favor, intenta de nuevo.', true));
 			}
 		}
 		$referer_code = null;
@@ -150,14 +151,15 @@ class UsersController extends AppController {
 					}
 				}
 				if($referals_made) {
-					$this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+					// $this -> Session -> setFlash(__('Thank you for inviting your friends over. If they register you will receive points for each succesfull registration!', true));
+					$this -> Session -> setFlash(__('Gracias por invitar a tus amigos. ¡Cada registro exitoso te dará puntos!', true));
 				} else {
-					$this -> Session -> setFlash(__('Hopefully you will invite some friends soon!', true));
+					$this -> Session -> setFlash(__('Esperamos invites más personas pronto.', true));
 				}
 				$this -> redirect(array('action' => 'profile'));
 			}
 		} else {
-			$this -> Session -> setFlash(__('You must be signed in to be able to refer a friend', true));
+			$this -> Session -> setFlash(__('Debes de haber iniciado sesión para referir a tus amigos', true));
 		}
 		$this -> layout = "profile";
 		$this->set('code',urlencode($this -> encrypt($this -> Auth -> user('id'), "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2")));
@@ -195,7 +197,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template
@@ -245,7 +247,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template
@@ -299,7 +301,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template
@@ -340,21 +342,21 @@ class UsersController extends AppController {
 					// Bonificación por registro por registro
 					$this -> User -> user_registered($user['User']['id']);
 
-					$this -> Session -> setFlash(__('Thank you for validating your email', true));
+					$this -> Session -> setFlash(__('Gracias por validar el correo', true));
 					if ($this -> Auth -> login($user)) {
 						$this -> redirect(array('controller' => 'users', 'action' => 'refer'));
 					} else {
 						$this -> redirect(array('controller' => 'users', 'action' => 'login'));
 					}
 				} else {
-					$this -> Session -> setFlash(__('An error ocurred while validating your email, please try again', true));
+					$this -> Session -> setFlash(__('Ha ocurrido un error al validar el correo. Por favor, intente de nuevo.', true));
 					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
 				}
 			} else {
-				$this -> Session -> setFlash(__('Enter a valid code and try again', true));
+				$this -> Session -> setFlash(__('Ingresa un código válido e intenta de nuevo.', true));
 			}
 		} else {
-			$this -> Session -> setFlash(__('Enter the given code to verify', true));
+			$this -> Session -> setFlash(__('Ingresa un código válido e intenta de nuevo.', true));
 		}
 	}
 
@@ -374,7 +376,7 @@ class UsersController extends AppController {
 	function edit($id) {
 		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Usuario no valid', true));
+			$this -> Session -> setFlash(__('Usuario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 
@@ -382,10 +384,10 @@ class UsersController extends AppController {
 			if (!empty($this -> data['User']['pass']))
 				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
 			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('Your Info was upadated.', true));
+				$this -> Session -> setFlash(__('Se actualizó la información.', true));
 				//$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('Your Info was not upadated. Please try again', true));
+				$this -> Session -> setFlash(__('No se pudo actualizar la información', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -408,10 +410,10 @@ class UsersController extends AppController {
 
 		if (!empty($this -> data)) {
 			if ($this -> User -> Address -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Your Address has been save', true));
+				$this -> Session -> setFlash(__('Se registró la dirección', true));
 				//	$this -> redirect(array('action' => 'profile'));
 			} else {
-				$this -> Session -> setFlash(__('Your Address could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('La dirección no se pudo registrar. Por favor, intente de nuevo.', true));
 			}
 		}
 		$this -> User -> Address -> recursive = -1;
@@ -428,7 +430,7 @@ class UsersController extends AppController {
 	function changePassword($id = null) {
 		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> Session -> setFlash(__('Usuario no válido', true));
 			$this -> redirect(array('action' => 'profile'));
 		}
 		if (!empty($this -> data)) {
@@ -439,12 +441,12 @@ class UsersController extends AppController {
 					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
 					$this -> redirect($this -> referer());
 				} else {
-					$this -> Session -> setFlash(__('No coincide la confirmacion del password', true));
+					$this -> Session -> setFlash(__('No coincide la confirmación del password', true));
 					$this -> redirect($this -> referer());
 				}
 
 			} else {
-				$this -> Session -> setFlash(__('Su password anterior no es valido', true));
+				$this -> Session -> setFlash(__('Su password anterior no es válido', true));
 				$this -> redirect($this -> referer());
 			}
 		}
@@ -462,14 +464,14 @@ class UsersController extends AppController {
 				if ($this -> User -> save($user)) {
 					$this -> passwordEmail($email, $email, $password);
 					//echo json_encode(array('success'=>true, 'message'=>__("An email has been sent to $email with the new password.", true)));
-					$this -> Session -> setFlash(__("An email has been sent to $email with the new password.", true));
+					$this -> Session -> setFlash(__("Se ha enviado un correo a $email con la nueva contraseña.", true));
 				} else {
 					//echo json_encode(array('success'=>false, 'message'=>__('An error occurred in the process. Please try again.', true)));
-					$this -> Session -> setFlash(__('An error occurred in the process. Please try again.', true));
+					$this -> Session -> setFlash(__('Ocurrio un error en el proceso. Por favor, intente de nuevo', true));
 				}
 			} else {
 				//echo json_encode(array('success'=>false, 'message'=>__('No user with that email registered', true)));
-				$this -> Session -> setFlash(__('No user with that email registered', true));
+				$this -> Session -> setFlash(__('No existe un usuario con ese correo registrado.', true));
 			}
 		}
 		$this -> redirect('/');
@@ -503,7 +505,7 @@ class UsersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('password_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = __('Password change request from ', true) . Configure::read('site_name');
+			$this -> Email -> subject = __('Petición de cambio de contaseña ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'password_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -517,7 +519,7 @@ class UsersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('password_mail'), 'password' => Configure::read('password_password_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('password_mail'), 'password' => Configure::read('password_password_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template
@@ -543,7 +545,7 @@ class UsersController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> Session -> setFlash(__('Usuario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> User -> recursive = 2;
@@ -558,7 +560,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. If the user is not an admin check that you have selected a city. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el usuario. Si el usuario no es un admin verifica que hayas seleccionado una ciudad e intenta de nuevo.', true));
 			}
 		}
 		$roles = $this -> User -> Role -> find('list');
@@ -568,7 +570,7 @@ class UsersController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid user', true));
+			$this -> Session -> setFlash(__('Usuario no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 
@@ -581,7 +583,7 @@ class UsersController extends AppController {
 				$this -> Session -> setFlash(__('The user has been saved', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The user could not be saved. If the user is not an admin check that you have selected a city. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el usuario. Si el usuario no es un admin verifica que hayas seleccionado una ciudad e intenta de nuevo.', true));
 			}
 		}
 
@@ -595,44 +597,44 @@ class UsersController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> Session -> setFlash(__('ID de usuario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> User -> delete($id)) {
-			$this -> Session -> setFlash(__('User deleted', true));
+			$this -> Session -> setFlash(__('Usuario eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('User was not deleted', true));
+		$this -> Session -> setFlash(__('El usuario no fue eliminado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function admin_setInactive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> Session -> setFlash(__('ID de usuario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> User -> read(null, $id);
 		$oldData["User"]["active"] = false;
 		if ($this -> User -> save($oldData)) {
-			$this -> Session -> setFlash(__('User set to inactive', true));
+			$this -> Session -> setFlash(__('Usuario activado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('User was not set to inactive', true));
+		$this -> Session -> setFlash(__('El usuario no fue activado', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
 	function admin_setActive($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for user', true));
+			$this -> Session -> setFlash(__('ID de usuario no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$oldData = $this -> User -> read(null, $id);
 		$oldData["User"]["active"] = true;
 		if ($this -> User -> save($oldData)) {
-			$this -> Session -> setFlash(__('User set to active', true));
+			$this -> Session -> setFlash(__('Se activo el usuario', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('User was not set to active', true));
+		$this -> Session -> setFlash(__('No se activo el usuario', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
@@ -720,18 +722,18 @@ class UsersController extends AppController {
 				if ($this -> Auth -> login($this -> data)) {
 					//$user = $this -> User -> read(null, $this -> Auth -> user('id'));
 					$user['success'] = true;
-					$user['message'] = __('Login successful', true);
+					$user['message'] = __('Inicio de sesión exitoso', true);
 				} else {
 					$user['success'] = false;
-					$user['message'] = __("Data entered is not correct. Click <a href=\"/users/resetPassword/$email\">here</a> if you want to reset your password.", true);
+					$user['message'] = __("La información no es correcta. Click <a href=\"/users/resetPassword/$email\">aquí</a> si quieres resetear tu contraseña.", true);
 				}
 			} else {
 				$user['success'] = false;
-				$user['message'] = __('Email has not been verified :: <a href="/users/validateEmail">Verify email</a>', true);
+				$user['message'] = __('El correo no ha sido verificado :: <a href="/users/validateEmail">Verify email</a>', true);
 			}
 		} else {
 			$user['success'] = false;
-			$user['message'] = __('No user with that email is registered', true);
+			$user['message'] = __('No existe un usario registrado con ese correo', true);
 		}
 		echo json_encode($user);
 		$this -> autoRender = false;

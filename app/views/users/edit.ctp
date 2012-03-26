@@ -1,16 +1,16 @@
 <div class="users form datos_perfil" id="register_login">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
-		<h1><?php __('Update My Info'); ?></h1>
+		<h1><?php __('Mis Datos'); ?></h1>
 	<?php
 	
 		echo $this->Form->input('id');
-		echo $this->Form->input('name');
-		echo $this->Form->input('last_name');
-		echo $this->Form->input('phone');
+		echo $this->Form->input('name', array('label' =>__('Nombres', true)));
+		echo $this->Form->input('last_name', array('label' =>__('Apellidos', true)));
+		echo $this->Form->input('phone', array('label' =>__('Teléfono', true)));
 	?>
 	</fieldset>
-	<?php echo $this -> Form -> submit(__('Submit', true))?>
+	<?php echo $this -> Form -> submit(__('Actualizar', true))?>
 	</form>
 	
 	<?php echo $this -> element('change-password');?>

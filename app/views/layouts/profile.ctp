@@ -72,7 +72,8 @@
 				</div>
 				<div style="clear: both"></div>
 			</div>
-			<div id="footer">
+			<h1 style="height: 30px;text-indent: -1000000em;">zczxc</h1>
+			<div id="footer" style="margin: 0">
 				<div class="wrapper">
 					<div class="izquierda">
 						<h1>Políticas</h1>

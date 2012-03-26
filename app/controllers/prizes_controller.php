@@ -15,7 +15,7 @@ class PrizesController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid prize', true));
+			$this -> Session -> setFlash(__('Premio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('prize', $this -> Prize -> read(null, $id));
@@ -51,12 +51,12 @@ class PrizesController extends AppController {
 				if($this -> User -> save($user)) {
 					// Se quitaron los puntos al usuario, enviar el correo
 					$this -> prizeRedeemedEmail($user, $prize);
-					$this -> Session -> setFlash(__('An email has been sent to you with information!', true));
+					$this -> Session -> setFlash(__('¡Se te ha enviado un correo con información!', true));
 					$this -> redirect(array('action' => 'index'));
 				}
 			} else {
 				// No alcanzan los puntos
-				$this -> Session -> setFlash(__('You do not have enough points for this prize!', true));
+				$this -> Session -> setFlash(__('¡No tienes suficientes puntos para este premio!', true));
 				$this -> redirect(array('action' => 'index'));
 			}
 		}
@@ -116,7 +116,7 @@ class PrizesController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid prize', true));
+			$this -> Session -> setFlash(__('Premio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('prize', $this -> Prize -> read(null, $id));
@@ -126,25 +126,25 @@ class PrizesController extends AppController {
 		if (!empty($this -> data)) {
 			$this -> Prize -> create();
 			if ($this -> Prize -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The prize has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el premio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The prize could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el premio. Por favor, intente de nuevo.', true));
 			}
 		}
 	}
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid prize', true));
+			$this -> Session -> setFlash(__('Premio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {
 			if ($this -> Prize -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The prize has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el premio', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The prize could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el premio. Por favor, intente de nuevo.', true));
 			}
 		}
 		if (empty($this -> data)) {
@@ -154,14 +154,14 @@ class PrizesController extends AppController {
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid id for prize', true));
+			$this -> Session -> setFlash(__('ID de premio no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if ($this -> Prize -> delete($id)) {
-			$this -> Session -> setFlash(__('Prize deleted', true));
+			$this -> Session -> setFlash(__('Premio eliminado', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Prize was not deleted', true));
+		$this -> Session -> setFlash(__('No se pudo eliminar el premio', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 

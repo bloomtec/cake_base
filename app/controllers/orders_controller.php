@@ -155,7 +155,7 @@ class OrdersController extends AppController {
 					}
 				}
 			} else {
-				$this -> Session -> setFlash('The quantity selected exceeds the maximum allowed');
+				$this -> Session -> setFlash('Ha escogido una cantidad mayor a la permitida');
 				$this -> redirect(array('action' => 'add', $deal['Deal']['slug']));
 			}
 		} else {
