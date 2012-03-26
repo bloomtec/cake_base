@@ -14,15 +14,25 @@
 			</p>
 		</div>
 		<div class="premios_puntos">
-			<h1>Para <a href="/prizes/redeem/<?php echo $premio ['Prize']['id']?>">REDIMIR</a> este premio, necesitas</h1>
+			<h1>
+				Para
+				<?php if($this -> Session -> read('Auth.User.id')) : ?>
+					<a href="/prizes/redeem/<?php echo $premio ['Prize']['id']?>">
+				<?php endif; ?>
+				REDIMIR
+				<?php if($this -> Session -> read('Auth.User.id')) : ?>
+					</a>
+				<?php endif; ?>
+				este premio, necesitas
+			</h1>
 			<h2><?php echo $premio ['Prize']['score'] ?> puntos</h2>
 		</div>
 		<div style="clear: both"></div>
 	</div>
 <?php	endforeach; ?>
 <div class="paging">
-	<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
+	<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
  | 	<?php echo $this->Paginator->numbers();?>
 |
-	<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 </div>

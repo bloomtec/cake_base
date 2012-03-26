@@ -11,8 +11,8 @@
 			</span>
 			<div style='clear:both;'></div>
 			<!-- <input type="submit" class="btn_login" value="Ingresar" /> -->
-			<a href="#" id="AjaxLoginSubmit" class="btn_login"><?php __('Sign in'); ?></a>
-			<a href="/users/register" class="btn_login"><?php __('Register'); ?></a>
+			<a href="#" id="AjaxLoginSubmit" class="btn_login"><?php __('Entrar'); ?></a>
+			<a href="/users/register" class="btn_login"><?php __('Registro'); ?></a>
 			<?php echo $this -> Form ->end();?>
 			<div style="clear: both"></div>
 		</div>
@@ -20,7 +20,10 @@
 		<p>
 			Dile a tu amigos que hay pa´comer  y acumula puntos.
 			Mira la opción <a href="/prizes/index">PREMIOS</a>  y decide que te quieres ganar!
-			<br /><a href="#">¡INVITAR A MIS AMIGOS!</a>
+			<br />
+			<?php if($this -> Session -> read('Auth.User.id')) : ?>
+			<a href="/users/refer">¡INVITAR A MIS AMIGOS!</a>
+			<?php endif; ?>
 		</p>
 		<div class="sesion">
 			<!--
@@ -30,13 +33,13 @@
 			-->
 			<div style="clear: both"></div>
 			<?php if(!$this -> Session-> read('Auth.User.id')){?>
-			<a href="/users/login" class="iniciar_sesion"><?php __('Sign in'); ?></a>
+			<a href="/users/login" class="iniciar_sesion"><?php __('Entrar'); ?></a>
 			-
-			<a href="/users/register" class="iniciar_sesion" ><?php __('Register'); ?></a>
+			<a href="/users/register" class="iniciar_sesion" ><?php __('Registro'); ?></a>
 			<?php }else{ ?>
-			<a href="/users/profile"><?php __('My profile');?></a>
+			<a href="/users/profile"><?php __('Mí Perfil');?></a>
 			-
-			 <a href="/users/logout"><?php __('Log out');?></a>
+			 <a href="/users/logout"><?php __('Salir');?></a>
 			<?php } ?>
 		</div>
 		<div style="clear: both"></div>
