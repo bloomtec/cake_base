@@ -1,5 +1,5 @@
 <div class="orders index">
-	<h2><?php __('Orders');?></h2>
+	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
@@ -51,12 +51,12 @@
 		</td>
 		<td class="actions">
 			<?php
-				echo $this->Html->link(__('View', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
+				echo $this->Html->link(__('Ver', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
 				if($this -> Session -> read('Auth.User.role_id') == 4) {
 					if(!$order['Order']['is_approved']) {
-						echo $this->Html->link(__('Approve', true), array('action' => 'approve', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Approve',true)));
+						echo $this->Html->link(__('Aprovar', true), array('action' => 'approve', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Approve',true)));
 					} else {
-						echo $this->Html->link(__('Edit', true), array('action' => 'edit', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
+						echo $this->Html->link(__('Editar', true), array('action' => 'edit', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
 					}
 				}
 			?>
