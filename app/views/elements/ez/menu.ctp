@@ -78,7 +78,7 @@
 	<?php endif; ?>
 	<?php if($session -> read('Auth.User.role_id') == 1) : ?>
 	<li>
-		<?php echo $html -> link(__('USUSARIOS', true), array('controller' => 'users')); ?>
+		<?php echo $html -> link(__('USUARIOS', true), array('controller' => 'users')); ?>
 		<ul>
 			<li>
 				<?php echo $html -> link(__('AGREGAR USUARIO', true), array('controller' => 'users', 'action' => 'add')); ?>
