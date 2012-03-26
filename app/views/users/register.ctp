@@ -22,12 +22,12 @@
 				Registrate y empieza a disfrutar de los mejores descuentos!
 			</p>
 				<div class="input text">
-					<label for="UserEmail"><?php echo __('Email', true); ?></label>
+					<label for="UserEmail"><?php echo __('Correo', true); ?></label>
 					<input id='UserEmail' type='email' name='data[User][email]' required = 'required' value="<?="$email";?>" />
 					<span class="field_required">*</span>
 				</div>
 				<div class="input text">
-					<label for="UserConfirmEmail"><?php echo __('Confirm Email', true); ?></label>
+					<label for="UserConfirmEmail"><?php echo __('Confirmar Correo', true); ?></label>
 					<input id='UserConfirmEmail' type='email' name='data[User][confirm_email]' data-equals='data[User][email]' required = 'required' value="<?="$confirm_email";?>" />
 					<span class="field_required">*</span>
 				</div>
@@ -38,22 +38,22 @@
 						echo $this -> Form -> hidden('referer_code', array('value' => $referer_code));
 					}
 					// Datos personales
-					echo $this -> Form -> input('name', array('label'=>__('Name', true), 'required'=>'required'));
-					echo $this -> Form -> input('last_name', array('label'=>__('Last Name', true), 'required'=>'required'));
-					echo $this -> Form -> input('password', array('label'=>__('Password', true), 'required' => 'required', 'value'=>''));
-					echo $this -> Form -> input('confirm_password', array('label'=>__('Confirm Password', true), 'type' => 'password',  'required' => 'required', 'value'=>'', 'data-equals'=>'data[User][password]'));
-					echo $this -> Form -> input('phone', array('label'=>__('Phone', true), 'required' => 'required' , 'title' => __('This field is to be able to contact you once you make a purchase. It will not be used otherwise.',true) ));
-					echo $this -> Form -> input('country_id', array('label'=>__('Country', true)));
-					echo $this -> Form -> input('city_id', array('label'=>__('City', true)));
+					echo $this -> Form -> input('name', array('label'=>__('Nombre', true), 'required'=>'required'));
+					echo $this -> Form -> input('last_name', array('label'=>__('Apellido', true), 'required'=>'required'));
+					echo $this -> Form -> input('password', array('label'=>__('Contraseña', true), 'required' => 'required', 'value'=>''));
+					echo $this -> Form -> input('confirm_password', array('label'=>__('Confirmar Contraseña', true), 'type' => 'password',  'required' => 'required', 'value'=>'', 'data-equals'=>'data[User][password]'));
+					echo $this -> Form -> input('phone', array('label'=>__('Teléfono', true), 'required' => 'required' , 'title' => __('Este campo es para contactarte cuando hagas una compra. En caso contrario, no será utilizado.',true) ));
+					echo $this -> Form -> input('country_id', array('label'=>__('País', true)));
+					echo $this -> Form -> input('city_id', array('label'=>__('Ciudad', true)));
 					// Direccion
-					echo $this -> Form -> hidden('Address.name', array('label' => __('Name', true), 'required' => 'required', 'value' => 'default'));
-					echo $this -> Form -> input('Address.zone_id', array('label' => __('District', true), 'required' => 'required'));
-					echo $this -> Form -> input('Address.address', array('label' => __('Address', true), 'required' => 'required'));
-					echo $this -> Form -> input('Address.zip', array('label' => __('Zip Code', true), 'required' => 'required'));
+					echo $this -> Form -> hidden('Address.name', array('label' => __('Nombre', true), 'required' => 'required', 'value' => 'default'));
+					echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true), 'required' => 'required'));
 				?>
 		</fieldset>
 		<div class="btn_wrraper">
-			<?php echo $this -> Form -> end(__('Register', true));?>
+			<?php echo $this -> Form -> end(__('Registro', true));?>
 		</div>
 		
 	</div>
@@ -70,11 +70,11 @@
 				Introduce tus datos de sesión para acceder a tu cuenta
 			</p>
 			<div class="input text">
-				<label for='email'>E-mail</label>
+				<label for='email'><?php __('Correo:'); ?></label>
 				<input type="email" class="input" id='email' name='data[User][email]' required="required" />
 			</div>
 			<div class="input text">
-				<label for='password'>Password</label>
+				<label for='password'><?php __('Contraseña:'); ?></label>
 				<input type="password" id='password' class="input" name='data[User][password]' required="required" />
 			</div>
 			
