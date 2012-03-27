@@ -38,7 +38,9 @@ class PagesController extends AppController {
 	function terminosYCondiciones() {
 		$this -> layout = "default";
 	}
-
+	function terminosPremios() {
+		$this -> layout = "default";
+	}
 	function nuestraEmpresa() {
 		$this -> layout = "default";
 	}
