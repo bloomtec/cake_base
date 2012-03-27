@@ -10,6 +10,7 @@
 			echo $this -> Form -> input('zone_id',array('options' => $zones,'label' => __('Barrio:', true),'rel'=>'zone', 'selected' => $selectedZone));
 			echo $this -> Form -> input('cuisine_id',array('options' => $cuisines,'label' => __('Cocina:', true),'rel'=>'cuisine', 'selected' => $selectedCuisine));
 			echo $this -> Form -> input('price_range',array('options' => $prices,'label' => __('Rango De Precio:', true),'rel'=>'price', 'selected' => $selectedPrice));
+			echo $this -> Form -> submit(__('Buscar', true));
 		}
 	?>
 </div>
