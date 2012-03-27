@@ -328,6 +328,17 @@ body{
 	background-image: url(/img/trama_descripcion.png);
 	background-position: top left;
 	background-repeat: repeat-x;
+	padding-bottom:10px;
+}
+p.terminos-premios{
+	float:left;
+	font-size:9px;
+	margin-top:22px;
+	margin-left:10px;
+}
+p.terminos-premios a{
+font-size:10px;	
+text-decoration: underline;
 }
 .info_producto .precio{
 	margin-left: 20px;

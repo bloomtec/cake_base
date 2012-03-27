@@ -7,8 +7,11 @@
 		</p>
 		<h3>Para redimir este premio necesitas</h2>
 		<h4><?php echo $prize ['Prize']['score'] ?> puntos</h3>
-
-		<a class="comprar redimir" href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>
+		<p class='terminos-premios'>
+			Acepto los <a  target="_blank" href="/pages/terminosPremios">TÉRMINOS Y CONDICIONES</a> de los cupones 
+			<input type="checkbox" id='aceptarTerminos'/>
+		</p>
+		<a class="comprar redimir"  style='float:left; width:150px; margin-left:0; clear:none;' href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>
 
 	</div>
 	<h1 class="premios otros">Otros Premios</h1>
@@ -64,7 +67,12 @@
 <script>
 // execute your scripts when the DOM is ready. this is mostly a good habit
 $(function() {
-
+	$('.redimir').click(function(e){
+		if(!$('#aceptarTerminos').is(':checked')){
+			e.preventDefault()
+			alert('Debe aceptar los TÉRMINOS Y CONDICIONES DE LOS CUPONES DE DESCUENTO COMOPROMOS para redimir tu premio');
+		}
+	});
 	// initialize scrollable
 	$(".scrollable").scrollable();
 

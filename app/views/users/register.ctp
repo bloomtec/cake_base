@@ -38,18 +38,18 @@
 						echo $this -> Form -> hidden('referer_code', array('value' => $referer_code));
 					}
 					// Datos personales
-					echo $this -> Form -> input('name', array('label'=>__('Nombre', true), 'required'=>'required'));
-					echo $this -> Form -> input('last_name', array('label'=>__('Apellido', true), 'required'=>'required'));
-					echo $this -> Form -> input('password', array('label'=>__('Contraseña', true), 'required' => 'required', 'value'=>''));
-					echo $this -> Form -> input('confirm_password', array('label'=>__('Confirmar Contraseña', true), 'type' => 'password',  'required' => 'required', 'value'=>'', 'data-equals'=>'data[User][password]'));
-					echo $this -> Form -> input('phone', array('label'=>__('Teléfono', true), 'required' => 'required' , 'title' => __('Este campo es para contactarte cuando hagas una compra. En caso contrario, no será utilizado.',true) ));
-					echo $this -> Form -> input('country_id', array('label'=>__('País', true)));
-					echo $this -> Form -> input('city_id', array('label'=>__('Ciudad', true)));
+					echo $this -> Form -> input('name', array('label'=>__('Nombre', true), 'required'=>'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('last_name', array('label'=>__('Apellido', true), 'required'=>'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('password', array('label'=>__('Contraseña', true), 'required' => 'required', 'value'=>'','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('confirm_password', array('label'=>__('Confirmar Contraseña', true), 'type' => 'password',  'required' => 'required', 'value'=>'', 'data-equals'=>'data[User][password]','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('phone', array('label'=>__('Teléfono', true), 'required' => 'required' , 'title' => __('Este campo es para contactarte cuando hagas una compra. En caso contrario, no será utilizado.',true),'after'=>'<span class="field_required">*</span>' ));
+					echo $this -> Form -> input('country_id', array('label'=>__('País', true),'after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('city_id', array('label'=>__('Ciudad', true),'after'=>'<span class="field_required">*</span>'));
 					// Direccion
 					echo $this -> Form -> hidden('Address.name', array('label' => __('Nombre', true), 'required' => 'required', 'value' => 'default'));
-					echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'required' => 'required'));
-					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required'));
-					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true), 'required' => 'required'));
+					echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true)));
 				?>
 		</fieldset>
 		<div class="btn_wrraper">
