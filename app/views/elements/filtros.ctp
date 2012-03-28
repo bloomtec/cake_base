@@ -1,4 +1,4 @@
-<div class="filtros">
+<div class="filtros home">
 	<?php
 		if(isset($cities) && !empty($cities)) { 
 			$selectedCity = (isset($this->params['named']['city']) && !empty($this->params['named']['city'])) ?  $this->params['named']['city'] : key($cities);

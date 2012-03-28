@@ -52,7 +52,7 @@ class DealsController extends AppController {
 		}
 
 		$cities = array();
-		$zones = array();
+		
 		
 		$cities[0] = __('Ciudades...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
@@ -203,15 +203,19 @@ class DealsController extends AppController {
 		exit(0);
 	}
 	
-	function filterDataZones() {
-		
+	function filterDataZones($cityId) {
+		$zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $cityId)));
+		echo json_encode($zones);
+		exit(0);
 	}
 	
-	function filterDataCuisines() {
-		
+	function filterDataCuisines($zoneId) {
+		//$cuisines = $this -> Deal -> Restaurant -> Cuisine -> find('list');
+		echo json_encode($this -> requestAction('/cuisines/getList'));
+		exit(0);
 	}
 	
-	function filterDataPrices() {
+	function filterDataPrices($cityId) {
 		/**
 		 * Filtro de orden de precios
 		 */
@@ -228,6 +232,8 @@ class DealsController extends AppController {
 				$prices[$price_range] = $country['Country']['money_symbol'] . $min_max_range[0] . ' - ' . $country['Country']['money_symbol'] . $min_max_range[1];
 			}
 		}
+		echo json_encode($prices);
+		exit(0);
 	}
 
 	function index() {
@@ -414,6 +420,11 @@ class DealsController extends AppController {
 		$this -> set(compact('cities', 'zones', 'cuisines', 'prices'));
 	}
 
+	function getCities(){
+		
+		return $this -> Deal -> Restaurant -> Zone -> City -> find('list');
+	}
+	
 	function view($slug = null) {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Promo no válida', true));
