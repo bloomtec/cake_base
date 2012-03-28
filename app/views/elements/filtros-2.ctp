@@ -2,6 +2,17 @@
 	.submit input{
 		color:black;
 	}
+	.filtros .select{
+		
+	}
+	.filtros .select select{
+		width:130px;
+		margin-right: 15px;
+		padding-left:3px;
+	}
+	#city_id, #price_range{
+		width:105px;
+	}
 </style>
 <div class="filtros default">
 	<?php
