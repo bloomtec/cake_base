@@ -17,7 +17,7 @@
 <div class="filtros default">
 	<?php
 		$selectedCity=null;
-		$cities=$this -> requestAction('/deals/getCities');
+		$cities=$this -> requestAction('/deals/filterDataCities');
 		echo $this -> Form -> input('city_id', array('options' => $cities, 'label' => __('Qué hay para comer en:', true), 'rel' => 'city', 'selected' => $selectedCity));
 		echo $this -> Form -> input('zone_id', array('options' => array(), 'label' => __('Barrio:', true), 'rel' => 'zone'));
 		echo $this -> Form -> input('cuisine_id', array('options' => array(), 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
@@ -32,11 +32,11 @@
 			cityFunctionality();
 		});
 		$('.filtros.default select[id="zone_id"]').change(function() {
-			BJS.updateSelect($('#cuisine_id'),"/deals/filterDataCuisines/"+$('#zone_id').val());
+			BJS.updateSelect($('#cuisine_id'),"/deals/filterDataCuisines/"+$('#city_id').val()+"/"+$('#zone_id').val());
 		});
 		function cityFunctionality(){
 			BJS.updateSelect($('#zone_id'),"/deals/filterDataZones/"+$('#city_id').val(),function(){
-				BJS.updateSelect($('#cuisine_id'),"/deals/filterDataCuisines/"+$('#zone_id').val());
+				BJS.updateSelect($('#cuisine_id'),"/deals/filterDataCuisines/"+$('#city_id').val()+"/"+$('#zone_id').val());
 			});
 			BJS.updateSelect($('#price_range'),"/deals/filterDataPrices/"+$('#city_id').val());
 		}
