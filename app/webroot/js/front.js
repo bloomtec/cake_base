@@ -16,10 +16,10 @@ $(function(){
 		'[data-equals]' : 'verifique este campo'
 	});
 	
-	$('.filtros select[id!="city_id"]').change(function(){
+	$('.filtros.home select[id!="city_id"]').change(function(){
 		document.location = BJS.setParam($(this).attr('rel'),$(this).val());
 	});
-	$('.filtros select[id="city_id"]').change(function(){
+	$('.filtros.home select[id="city_id"]').change(function(){
 		var urlWithCity = BJS.setParam($(this).attr('rel'),$(this).val());
 		document.location = BJS.removeParam('zone',urlWithCity);
 	});

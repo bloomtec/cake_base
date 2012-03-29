@@ -100,7 +100,7 @@ $(function(){
 				$select.append('<option value="'+i+'">'+val+'</option>');
 				count += 1;
 				if(firstArguments.length == 3 && count ==  objectSize){
-					$callback();
+					if($callback)  $callback();
 				}
 				
 			});

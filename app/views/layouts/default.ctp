@@ -66,7 +66,14 @@
 		<div id="container">
 			<?php echo $this->element('header'); ?>
 			<div id="content">
-				<?php echo $this->element('filtros'); ?>
+				<?php 
+				if($this -> params['controller']."/".$this -> params['action']=="deals/index"){
+					echo $this -> element('filtros');
+				}else{
+					echo $this -> element('filtros-2');
+				}
+				?>
+
 				
 				<?php echo $this->Session->flash(); ?>
 	

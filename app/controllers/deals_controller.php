@@ -36,23 +36,13 @@ class DealsController extends AppController {
 	}
 	
 	function filterDataCities() {
-		$this -> autoRender = false;
-		Configure::write('debug', 0);
 		
 		$this -> Deal -> recursive = 0;
 		
-		$city = $zone = $cuisine = null;
-		
-		/**
-		 * Armar el filtro de ciudades
-		 */
-		// Ajuste del filtro de zonas acorde la ciudad
-		if(isset($this -> params['named']['city']) && !empty($this -> params['named']['city'])) {
-			$city = $this -> params['named']['city'];
-		}
+		$city = null;
 
 		$cities = array();
-		$zones = array();
+		
 		
 		$cities[0] = __('Ciudades...', true);
 		$cities_tmp = $this -> requestAction('/cities/getList');
@@ -70,7 +60,14 @@ class DealsController extends AppController {
 			}
 		}
 		
-		if(!$city) {
+		return $cities;
+				
+	}
+	
+	function filterDataZones($city_id = null) {
+		$this -> autoRender = false;
+		$zones = array();
+		if(!$city_id) {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
@@ -80,7 +77,7 @@ class DealsController extends AppController {
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
 			$zones[0] = __('Todos...', true);
-			$zones_tmp = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city)));
+			$zones_tmp = $this -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id)));
 			foreach($zones_tmp as $key => $data) {
 				$zones[$key] = $data;
 			}
@@ -100,9 +97,14 @@ class DealsController extends AppController {
 			$zone = $this -> params['named']['zone'];
 		}
 		
-		/**
-		 * Armar el filtro de cuisines
-		 */
+		echo json_encode($zones);
+		
+		exit(0);
+	}
+	
+	function filterDataCuisines($city_id = null, $zone_id = null) {
+		$this -> autoRender = false;
+		
 		$cuisines = array();
 		$cuisines[0] = __('Todas...', true);
 		$cuisines_tmp = $this -> requestAction('/cuisines/getList');
@@ -110,21 +112,14 @@ class DealsController extends AppController {
 			$cuisines[$key] = $cuisine_tmp;
 		}
 		
-		// Ajuste del filtro de tipo de comida
-		if(isset($this -> params['named']['cuisine']) && !empty($this -> params['named']['cuisine'])) {
-			$cuisine = $this -> params['named']['cuisine'];
-		} else {
-			$cuisine = 0;
-		}
-		
 		// Ajustar para que solamente salgan aquellas "cocinas" que tengan promos
 		$promos = $this -> Deal -> find('list', array('fields' => 'Deal.id'));
-		if($city && !$zone) {
-			$zonas = $this -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $city)));
+		if($city_id && !$zone_id) {
+			$zonas = $this -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $city_id)));
 			$restaurantes = $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zonas)));
 			$promos = $this -> Deal -> find('list', array('fields' => 'Deal.id', 'conditions' => array('Deal.restaurant_id' => $restaurantes)));
-		} elseif($city && $zone) {
-			$restaurantes = $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zone)));
+		} elseif($city_id && $zone_id) {
+			$restaurantes = $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zone_id)));
 			$promos = $this -> Deal -> find('list', array('fields' => 'Deal.id', 'conditions' => array('Deal.restaurant_id' => $restaurantes)));
 		}
 		$cocinas_con_promos = $this -> Deal -> CuisinesDeal -> find('list', array('conditions' => array('CuisinesDeal.deal_id' => $promos), 'fields' => array('CuisinesDeal.cuisine_id')));
@@ -134,92 +129,20 @@ class DealsController extends AppController {
 			}
 		}
 		
+		echo json_encode($cuisines);
 		
-		
-		/**
-		 * Armar las condiciones para mostrar los deals
-		 */
-		$conditions = array();
-		
-		/**
-		 * Como condición genérica, solo se deben mostrar aquellas promos que no hayan llegado a su fin de tiempo
-		 */
-		$now = new DateTime('now');
-		$conditions['Deal.expires >'] = $now -> format('Y-m-d H:i:s');
-		
-		if($city && !$zone) {
-			/**
-			 * Solo se ha seleccionado ciudad
-			 * Mostrar solamente los restaurantes acorde a la ciudad seleccionada
-			 */
-			$search_zones = $this -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $city)));
-			$restaurants = $this -> Deal -> Restaurant -> find(
-				'list',
-				array(
-					'fields' => array('Restaurant.id'),
-					'conditions' => array(
-						'Restaurant.zone_id' => $search_zones
-					)
-				)
-			);
-			$conditions['Deal.restaurant_id'] = $restaurants;
-		} elseif($city && $zone) {
-			/**
-			 * Se seleccionó ciudad y zona
-			 * Mostrar acorde la zona seleccionada
-			 */
-			$restaurants = $this -> Deal -> Restaurant -> find(
-				'list',
-				array(
-					'fields' => array('Restaurant.id'),
-					'conditions' => array(
-						'Restaurant.zone_id' => $zone
-					)
-				)
-			);
-			$conditions['Deal.restaurant_id'] = $restaurants;
-		}
-		
-		if($cuisine) {
-			$deals = $this -> Deal -> CuisinesDeal -> find('list', array(
-					'fields' => array('CuisinesDeal.deal_id'),
-					'conditions' => array('CuisinesDeal.cuisine_id' => $cuisine)
-				)
-			);
-			$conditions['Deal.id'] = $deals;
-		}
-		
-		// Ajuste del filtro acorde orden de precio
-		$order = array();
-		if(isset($this -> params['named']['price']) && !empty($this -> params['named']['price'])) {
-			$price = $this -> params['named']['price'];
-			if($price) {
-				$min_max_price = explode('-', $price);
-				$conditions['Deal.price BETWEEN ? AND ?'] = array($min_max_price[0], $min_max_price[1]);
-			}
-		}
-		
-		$this -> set(compact('cities', 'zones', 'cuisines', 'prices'));
 		exit(0);
 	}
 	
-	function filterDataZones() {
-		
-	}
-	
-	function filterDataCuisines() {
-		
-	}
-	
-	function filterDataPrices() {
-		/**
-		 * Filtro de orden de precios
-		 */
-		if(!isset($this -> params['named']['city']) || (isset($this -> params['named']['city']) && $this -> params['named']['city'] == 0)) {
+	function filterDataPrices($city_id = null) {
+		$prices = null;
+		if($city_id == 0) {
 			$prices = array(0 => __('Escoja ciudad...', true));
 		} else {
 			$prices = array(0 => __('Escoja un rango...', true));
-			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city);
+			$this -> Deal -> Restaurant -> Zone -> City -> recursive = -1;
+			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city_id);
+			$this -> Deal -> Restaurant -> Zone -> City -> Country -> recursive = -1;
 			$country = $this -> Deal -> Restaurant -> Zone -> City -> Country -> findById($tmp_city['City']['country_id']);
 			$price_ranges = $country['Country']['price_ranges'];
 			$price_ranges = explode(':', $price_ranges);
@@ -228,6 +151,8 @@ class DealsController extends AppController {
 				$prices[$price_range] = $country['Country']['money_symbol'] . $min_max_range[0] . ' - ' . $country['Country']['money_symbol'] . $min_max_range[1];
 			}
 		}
+		echo json_encode($prices);
+		exit(0);
 	}
 
 	function index() {
@@ -334,7 +259,9 @@ class DealsController extends AppController {
 			$prices = array(0 => __('Escoja ciudad...', true));
 		} else {
 			$prices = array(0 => __('Escoja un rango...', true));
+			$this -> Deal -> Restaurant -> Zone -> City -> recursive = -1;
 			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city);
+			$this -> Deal -> Restaurant -> Zone -> City -> Country -> recursive = -1;
 			$country = $this -> Deal -> Restaurant -> Zone -> City -> Country -> findById($tmp_city['City']['country_id']);
 			$price_ranges = $country['Country']['price_ranges'];
 			$price_ranges = explode(':', $price_ranges);
@@ -414,6 +341,10 @@ class DealsController extends AppController {
 		$this -> set(compact('cities', 'zones', 'cuisines', 'prices'));
 	}
 
+	function getCities() {
+		return $this -> Deal -> Restaurant -> Zone -> City -> find('list');
+	}
+	
 	function view($slug = null) {
 		if (!$slug) {
 			$this -> Session -> setFlash(__('Promo no válida', true));
