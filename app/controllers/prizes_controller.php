@@ -11,6 +11,7 @@ class PrizesController extends AppController {
 	function index() {
 		$this -> Prize -> recursive = 0;
 		$this -> set('prizes', $this -> paginate());
+		$this -> set('title_for_layout', __('Premios',true));
 	}
 
 	function view($id = null) {
