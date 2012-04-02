@@ -1003,20 +1003,6 @@ input[type='checkbox']{
 #content .info span, fieldset span{
 	font-weight: bold;
 }
-.info .numeros{
-	background-color: black;
-	width: 30px;
-	display: block;
-	float: left;
-	margin-bottom: 8px;
-	height: 26px;
-	color: white;
-	text-align: center;
-	padding-top: 8px;
-	margin-top: -7px;
-	margin-right: 8px;
-	margin-left: 15px;
-}
 #ordenes{
 	width: 90%;
 	margin-left: 15px;
@@ -1081,4 +1067,94 @@ input[type='checkbox']{
 	font-weight: bold;
 	margin-top: 17px;
 	margin-bottom: 8px;
+}
+.info .numeros{
+	background-color: black;
+	width: 30px;
+	display: block;
+	float: left;
+	margin-bottom: 8px;
+	height: 26px;
+	color: white;
+	text-align: center;
+	padding-top: 8px;
+	margin-top: -7px;
+	margin-right: 8px;
+	margin-left: 15px;
+}
+
+/*PAGINAS*/
+.paginas{
+	width:95%;
+	margin:0 auto;
+}
+#content .paginas h1{
+	margin:0;
+	margin-bottom:1em;
+	font-size:20px;
+	text-align: center;
+	text-transform: uppercase;
+}
+#content .paginas h2{
+	color:black;
+	margin-bottom:0.5em;
+	font-size:18px;
+}
+#content .paginas p{
+	text-align: justify;
+	margin:0;
+}
+#content .paginas .info .numeros{
+	margin:0;
+	padding-top:5px;
+	height: 20px;	
+	margin-right: 0.5em;
+}
+#content .paginas .info .info .numeros{
+	width:40px;	
+	padding-top:0;
+	height: 16px;	
+	margin-right: 0.5em;
+}
+
+#content .paginas div.info{
+	margin:0;
+	padding:0;
+	margin-top:1em;
+	text-align: justify;
+	width: auto;
+}
+#content .paginas div.info .info {
+	margin-top:0.8em;
+	padding-left:0.5em;
+}
+span.comopromos{
+	text-transform: uppercase;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+#content .paginas .info p{
+	float:left;
+}
+#content .paginas h3{
+	display: inline;
+	color:black;
+	font-size:18px;
+	text-transform: uppercase;
+	line-height: 25px;
+	vertical-align: middle;
+}
+#content .paginas .info .info h3{
+	line-height: 20px;
+	font-size:13px;
+	color:black;
+}
+#content .paginas a{
+	color:blue;
+	text-decoration: underline;
+}
+#content .paginas li{
+	list-style: lower-alpha;
+	list-style-position: inside;
 }

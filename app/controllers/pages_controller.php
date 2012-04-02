@@ -33,16 +33,23 @@ class PagesController extends AppController {
 
 	function politicas() {
 		$this -> layout = "default";
+		$this -> set ('title_for_layout',_('Póliticas'),true);
+	
 	}
 
 	function terminosYCondiciones() {
 		$this -> layout = "default";
+		$this -> set ('title_for_layout',_('Términos y Condiciones'),true);
 	}
 	function terminosPremios() {
 		$this -> layout = "default";
+		$this -> set ('title_for_layout',_('Términos y Condiciones Cupones'),true);
+	
 	}
 	function nuestraEmpresa() {
 		$this -> layout = "default";
+		$this -> set ('title_for_layout',_('Nuestra Empresa'),true);
+	
 	}
 
 	function contacto() {
@@ -88,6 +95,53 @@ class PagesController extends AppController {
 			$this -> set('smtp_errors', $this -> Email -> smtpError);
 			$this -> Email -> reset();
 		}
+		$this -> set ('title_for_layout',_('Contácto'),true);
+	
+	}
+	function trabajaConNosotros() {
+		$this -> layout = "default";
+		if(!empty($this -> data)) {			
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = Configure::read('job_mail');
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('reply_job_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_job_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('job_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('Petición de trabajo en el sitio ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'job_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('job_mail'), 'password' => Configure::read('password_job_mail'), 'client' => 'smtp_helo_comopromos.com ');
+
+			// Asignar cosas al template
+			$this -> set('name', $this -> data['Pages']['name']);
+			$this -> set('email', $this -> data['Pages']['email']);
+			$this -> set('message', $this -> data['Pages']['message']);
+		
+			// Enviar el correo
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+	$this -> set ('title_for_layout',_('Trabaja con nosotros'),true);
 	}
 
 	function dudas() {
@@ -133,14 +187,17 @@ class PagesController extends AppController {
 			$this -> set('smtp_errors', $this -> Email -> smtpError);
 			$this -> Email -> reset();
 		}
+	$this -> set ('title_for_layout',_('Dudas'),true);
 	}
 
 	function comoComprar() {
 		$this -> layout = "default";
+		$this -> set ('title_for_layout',_('Cómo Comprar'),true);	
 	}
 
 	function privacidad() {
-
+	$this -> set ('title_for_layout',_('Póliticas de privacidad'),true);
+	
 	}
 
 	function sugierenos() {
@@ -188,6 +245,7 @@ class PagesController extends AppController {
 			$this -> set('smtp_errors', $this -> Email -> smtpError);
 			$this -> Email -> reset();
 		}
+	$this -> set ('title_for_layout',_('Sugierenos un restaurante'),true);
 	}
 
 	function view($id = null) {

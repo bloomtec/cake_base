@@ -23,7 +23,7 @@ $(function(){
 		var urlWithCity = BJS.setParam($(this).attr('rel'),$(this).val());
 		document.location = BJS.removeParam('zone',urlWithCity);
 	});
-	$(".iniciar_sesion").toggle(
+	$(".iniciar_sesion.login").toggle(
 			function(e){
 				e.preventDefault();
 				$(".tooltip_login").slideDown(250);

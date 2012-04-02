@@ -50,6 +50,11 @@
 	Configure::write('password_contact_mail', 'rr40r900343');
 	Configure::write('reply_contact_mail', 'pruebas@bloomweb.co');
 	
+	// Email de contacto
+	Configure::write('job_mail', 'pruebas@bloomweb.co');
+	Configure::write('password_job_mail', 'rr40r900343');
+	Configure::write('reply_job_mail', 'pruebas@bloomweb.co');
+	
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
 	Configure::write('custom_width', 25);
 	Configure::write('custom_height', 25);
