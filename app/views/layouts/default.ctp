@@ -20,72 +20,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<?php echo $this->Html->charset(); ?>
-		<title>
-			<?php
-			   $model = $this -> params['models'][0];
-			    $singularVar = strtolower($model);
-			   if($this->params['action']=="register"){
-			    echo "Como Promos"; 
-			   }else{
-			    
-			    if (isset(${$singularVar}[$model]['name'])) {
-			     echo ${$singularVar}[$model]['name'];
-			    } else {
-			     echo $title_for_layout;
-			    }
-			   }
-  			 ?>
-		</title>
+		<?php echo $this -> Html -> charset();?>
+		<title><?php
+		$model = $this -> params['models'][0];
+		$singularVar = strtolower($model);
+		if ($this -> params['action'] == "register") {
+			echo "Como Promos";
+		} else {
+
+			if (isset(${$singularVar}[$model]['name'])) {
+				echo ${$singularVar}[$model]['name'];
+			} else {
+				echo $title_for_layout;
+			}
+		}
+			?></title>
 		<?php
-			if (isset(${$singularVar}[$model]['keywords'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
-			if (isset(${$singularVar}[$model]['description'])) echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
-			
-			echo $this->Html->meta('icon');
-			
-			echo $this->Html->css('reset.css');
-			echo $this->Html->css('ie.css');
-			echo $this->Html->css('users.css');
-			echo $this->Html->css('styles.css');
-					
-			echo $this->Html->script('jquery');
-			echo $this->Html->script('jquery.tools.min');
-			echo $this->Html->script('bjs');
-			
-			echo $this->Html->script('front');
-	
-			echo $scripts_for_layout;
+		if (isset(${$singularVar}[$model]['keywords']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
+		if (isset(${$singularVar}[$model]['description']))
+			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['description']);
+
+		echo $this -> Html -> meta('icon');
+
+		echo $this -> Html -> css('reset.css');
+		echo $this -> Html -> css('ie.css');
+		echo $this -> Html -> css('users.css');
+		echo $this -> Html -> css('styles.css');
+
+		echo $this -> Html -> script('jquery');
+		echo $this -> Html -> script('jquery.tools.min');
+		echo $this -> Html -> script('bjs');
+
+		echo $this -> Html -> script('front');
+
+		echo $scripts_for_layout;
 		?>
 	</head>
 	<body>
-		<?php 
-			if($this -> Session -> read('Auth.User.id')){
-				echo $this -> element('score-box');
-			}
+		<?php
+		if ($this -> Session -> read('Auth.User.id')) {
+			echo $this -> element('score-box');
+		}
 		?>
 		<div id="container">
-			<?php echo $this->element('header'); ?>
+			<?php echo $this -> element('header');?>
 			<div id="content">
-				<?php 
-				if($this -> params['controller']."/".$this -> params['action']=="deals/index"){
-					echo $this -> element('filtros');
-				}else{
-					echo $this -> element('filtros-2');
-				}
-				?>
-
-				
-				<?php echo $this->Session->flash(); ?>
-	
-				<?php echo $content_for_layout; ?>
-				<div style="clear: both"></div>	
+				<?php echo $this -> element('filtros-2'); ?>
+				<?php echo $this -> Session -> flash();?>
+				<?php echo $content_for_layout;?>
+				<div style="clear: both"></div>
 			</div>
 			<div id="footer">
 				<div class="wrapper">
 					<div class="izquierda">
 						<h1>Políticas</h1>
 						<p>
-							Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web. 
+							Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web.
 							<br/>
 							<br/>
 							Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.
@@ -110,6 +101,6 @@
 				</div>
 			</div>
 		</div>
-		<?php echo $this->element('sql_dump'); ?>
+		<?php echo $this -> element('sql_dump');?>
 	</body>
 </html>

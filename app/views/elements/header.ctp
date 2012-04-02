@@ -11,8 +11,8 @@
 			</span>
 			<div style='clear:both;'></div>
 			<!-- <input type="submit" class="btn_login" value="Ingresar" /> -->
-			<a href="#" id="AjaxLoginSubmit" class="btn_login"><?php __('Entrar'); ?></a>
-			<a href="/users/register" class="btn_login"><?php __('Registro'); ?></a>
+			<a href="#" id="AjaxLoginSubmit" class="btn_login"><?php __('INGRESAR'); ?></a>
+			<a href="/users/register" class="btn_login"><?php __('REGISTRO'); ?></a>
 			<?php echo $this -> Form ->end();?>
 			<div style="clear: both"></div>
 		</div>
@@ -33,9 +33,9 @@
 			-->
 			<div style="clear: both"></div>
 			<?php if(!$this -> Session-> read('Auth.User.id')){?>
-			<a href="/users/login" class="iniciar_sesion"><?php __('Entrar'); ?></a>
+			<a href="/users/login" class="iniciar_sesion login"><?php __('INGRESAR'); ?></a>
 			-
-			<a href="/users/register" class="iniciar_sesion" ><?php __('Registro'); ?></a>
+			<a href="/users/register" class="iniciar_sesion" ><?php __('REGISTRO'); ?></a>
 			<?php }else{ ?>
 			<a href="/users/profile"><?php __('Mí Perfil');?></a>
 			-
