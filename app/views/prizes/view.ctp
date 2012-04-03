@@ -12,21 +12,16 @@
 			<input type="checkbox" id='aceptarTerminos'/>
 		</p>
 		<a class="comprar redimir"  style='float:left; width:150px; margin-left:0; clear:none;' href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>
-
 	</div>
 	<h1 class="premios otros">Otros Premios</h1>
 	<a href="/prizes/" class="volver_premios">Volver a los premios</a>
 	<div style="clear: both"></div>
 	<!-- "previous page" action -->
-	<a class="prev browse left"></a>
-	
+	<a class="prev browse left"></a>	
 	<!-- root element for scrollable -->
-	<div class="scrollable">   
-	   
-	   <!-- root element for the items -->
-	   
-	   <div class="items">
-	   
+	<div class="scrollable">      
+	   <!-- root element for the items -->   
+	   <div class="items">  
 	      <!-- 1-5 -->
 	      <div>
 	      	<?php foreach($prizes as $premio): ?>
