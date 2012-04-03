@@ -32,7 +32,7 @@ Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit ame
 	</p>
 </div>
 -->
-
+<!-- 
 <h1 class="descripcion">Como comprar<img src="/img/descripcion_bg.png" /></h1>
 
 <p class="info">	<span class="numeros">1</span>	Elige la promoción que mas te guste</p>
@@ -40,3 +40,23 @@ Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit ame
 <p class="info">	<span class="numeros">3</span>	Recíbela</p>
 <p class="info">	<span class="numeros">4</span>	Págala en efectivo</p>
 </p>
+-->
+<h1 class="descripcion">Como comprar<img src="/img/descripcion_bg.png" /></h1>
+<div class="pasos_contenedor">
+<div class="pasos">
+	<img src="/img/paso1.jpg" />
+	<p>1. Elige la promoción que mas te guste</p>
+</div>
+<div class="pasos">
+	<img src="/img/paso2.jpg" />
+	<p>2. Haz el pedido online</p>
+</div>
+<div class="pasos">
+	<img src="/img/paso3.jpg" />
+	<p>3. Recíbela</p>
+</div>
+<div class="pasos">
+	<img src="/img/paso4.jpg" />
+	<p>4. Págala en efectivo</p>
+</div>
+</div>
