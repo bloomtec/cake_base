@@ -8,7 +8,7 @@
 		<h3>Para redimir este premio necesitas</h2>
 		<h4><?php echo $prize ['Prize']['score'] ?> puntos</h3>
 		<p class='terminos-premios'>
-			Acepto los <a  target="_blank" href="/pages/terminosPremios">TÉRMINOS Y CONDICIONES</a> de los cupones 
+			Acepto los <a  target="_blank" href="/pages/terminosPremios">TÉRMINOS Y CONDICIONES</a> de los premios 
 			<input type="checkbox" id='aceptarTerminos'/>
 		</p>
 		<a class="comprar redimir"  style='float:left; width:150px; margin-left:0; clear:none;' href="/prizes/redeem/<?php echo $prize ['Prize']['id'] ?>"></a>

@@ -1,6 +1,6 @@
 <h1 class="premios">Premios</h1>
 <p class="premios">
-	En COMOPROMOS tus domicilios se convienten el premios, acumula puntos con tu registro, invitando a tus amigos a registrarse y por cada compra que realices. Aqui te damos las siguientes opcione
+	En COMOPROMOS tus domicilios se convienten el premios, acumula puntos con tu registro, invitando a tus amigos a registrarse y por cada compra que realices. Aqui te damos las siguientes opciones
 </p>
 <?php foreach($prizes as $premio): ?>
 	<div class="producto_premio">

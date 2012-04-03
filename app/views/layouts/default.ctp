@@ -74,7 +74,7 @@
 			<div id="footer">
 				<div class="wrapper">
 					<div class="izquierda">
-						<h1>Políticas</h1>
+						<h1>Terminos y condiciones</h1>
 						<p>
 							Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web.
 							<br/>
