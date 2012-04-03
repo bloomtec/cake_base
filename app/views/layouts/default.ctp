@@ -81,7 +81,7 @@
 							<br/>
 							Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.
 							<br/>
-							<a class="ver_mas" href="/pages/politicas">Ver Más</a>
+							<a class="ver_mas" href="/pages/terminosYCondiciones">Ver Más</a>
 						</p>
 						<div style="clear: both"></div>
 						<a href="/pages/comoComprar">Cómo comprar</a>
