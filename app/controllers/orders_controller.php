@@ -76,8 +76,8 @@ class OrdersController extends AppController {
 							
 							// Crear la dirección, en este caso asignar user_id, country_id y city_id
 							$this -> data['Address']['user_id'] = $this -> Order -> User -> id;
-							$this -> data['Address']['country_id'] = $user['User']['country_id'];
-							$this -> data['Address']['city_id'] = $user['User']['city_id'];
+							//$this -> data['Address']['country_id'] = $user['User']['country_id'];
+							//$this -> data['Address']['city_id'] = $user['User']['city_id'];
 							$this -> Order -> User -> Address -> create();
 							$address = array();
 							$address['Address'] = $this -> data['Address'];
