@@ -67,10 +67,10 @@
 				if($user) {
 					echo $this -> Form -> hidden('Address.user_id', array('value' => $user['User']['id']));
 				}
-				echo $this -> Form -> input('Address.country_id', array('label' => __('País', true), 'class' => 'pais'));
+				echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'class' => 'barrio'));
 				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad'));
+				echo $this -> Form -> input('Address.country_id', array('label' => __('País', true), 'class' => 'pais'));
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text'));
-				echo $this -> Form -> input('Address.zone_id', array('class' => 'barrio'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
 			}
 			echo "<div class='terminos'>";
