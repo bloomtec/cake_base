@@ -19,7 +19,7 @@
 		$selectedCity=null;
 		$cities=$this -> requestAction('/deals/filterDataCities');
 		echo $this -> Form -> input('city_id', array('options' => $cities, 'label' => __('Qué hay para comer en:', true), 'rel' => 'city', 'selected' => $selectedCity));
-		echo $this -> Form -> input('zone_id', array('options' => array(), 'label' => __('Barrio:', true), 'rel' => 'zone'));
+		echo $this -> Form -> input('zone_id', array('options' => array(), 'label' => __('Zona:', true), 'rel' => 'zone'));
 		echo $this -> Form -> input('cuisine_id', array('options' => array(), 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
 		echo $this -> Form -> input('price_range', array('options' => array(), 'label' => __('Rango De Precio:', true), 'rel' => 'price'));
 		echo $this -> Form -> submit(__('Buscar', true));

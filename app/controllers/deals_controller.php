@@ -71,7 +71,7 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Escoja ciudad...', true);
+			$zones[0] = __('Escoja su zona...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
@@ -137,9 +137,9 @@ class DealsController extends AppController {
 	function filterDataPrices($city_id = null) {
 		$prices = null;
 		if($city_id == 0) {
-			$prices = array(0 => __('Escoja ciudad...', true));
+			$prices = array(0 => __('Todos...', true));
 		} else {
-			$prices = array(0 => __('Escoja un rango...', true));
+			$prices = array(0 => __('Todos...', true));
 			$this -> Deal -> Restaurant -> Zone -> City -> recursive = -1;
 			$tmp_city = $this -> Deal -> Restaurant -> Zone -> City -> findById($city_id);
 			$this -> Deal -> Restaurant -> Zone -> City -> Country -> recursive = -1;

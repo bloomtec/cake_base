@@ -18,8 +18,9 @@
 		</div>
 		<a href="/" class="logo_header"></a>
 		<p>
-			Dile a tu amigos que hay pa´comer  y acumula puntos.
-			Mira la opción <a href="/prizes/index">PREMIOS</a>  y decide que te quieres ganar!
+			Dile a tu amigos que hay pa´comer  y acumula <span class='dinero'>dinero</span> para tus proximas compras.
+			
+			<br />
 			<br />
 			<?php if($this -> Session -> read('Auth.User.id')) : ?>
 			<a href="/users/refer">¡INVITAR A MIS AMIGOS!</a>

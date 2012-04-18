@@ -38,6 +38,11 @@ body{
 	margin-bottom: 25px;
 	background-repeat: no-repeat;
 }
+span.dinero{
+	text-transform: uppercase;
+	color:#006838;
+	font-size: 18px;
+}
 .wrapper p{
 	width: 430px;
 	font-size: 17px;

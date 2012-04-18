@@ -23,7 +23,7 @@ class UsersController extends AppController {
 	function getScore() {
 		$this -> User -> recursive = -1;
 		$user = $this -> User -> read(null, $this -> Auth -> user('id'));
-		echo($user['User']['score'] + $user['User']['score_by_invitations']);
+		echo "$ ".number_format($user['User']['score'] + $user['User']['score_by_invitations'], 0, ",", ".");
 		$this -> autoRender = false;
 		exit(0);
 	}
@@ -555,6 +555,7 @@ class UsersController extends AppController {
 	function admin_add() {
 		if (!empty($this -> data)) {
 			$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+			$this -> data['User']['mail_verified']=1;
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('The user has been saved', true));

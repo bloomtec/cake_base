@@ -21,7 +21,9 @@
 					<label for="PagesRestaurantEmail"><?php __('Correo Del Restaurante:'); ?></label>
 					<input id="PagesRestaurantEmail" type="email" required="required" name="data[Pages][restaurant_email]">
 				</div>
-				<?php echo $this -> Form -> input('name', array('label' => __('Tú Nombre:', true), 'required' => 'required')); ?>
+				
+				<?php echo $this -> Form -> input('ciudad', array('label' => __('Ciudad:', true), 'required' => 'required')); ?>
+				<?php echo $this -> Form -> input('direccion', array('label' => __('Dirección:', true), 'required' => 'required')); ?>
 				<div class="input text">
 					<label for="PagesEmail"><?php __('Tú Correo:'); ?></label>
 					<input id="PagesEmail" type="email" required="required" name="data[Pages][email]">
