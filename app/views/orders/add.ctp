@@ -24,7 +24,7 @@
 				<img src="/img/uploads/50x50/<?php echo $deal['Deal']['image']; ?>" />
 				<?php
 				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
-				echo $this -> Form -> input('quantity', array('label' => __('Cantidad (máximo: ' . $deal['Deal']['max_buys'] . ')', true), 'value' => 1));
+				echo $this -> Form -> input('quantity', array('label' => __('Cantidad', true), 'value' => 1));
 				?>
 			</div>
 			

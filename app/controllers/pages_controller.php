@@ -234,6 +234,8 @@ class PagesController extends AppController {
 
 			// Asignar cosas al template
 			$this -> set('restaurant', $this -> data['Pages']['restaurant']);
+			$this -> set('ciudad', $this -> data['Pages']['ciudad']);
+			$this -> set('direccion', $this -> data['Pages']['direccion']);
 			$this -> set('restaurant_email', $this -> data['Pages']['restaurant_email']);
 			$this -> set('name', $this -> data['Pages']['name']);
 			$this -> set('email', $this -> data['Pages']['email']);
