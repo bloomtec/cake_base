@@ -8,6 +8,18 @@ class ZonesController extends AppController {
 		//$this->Auth->allow('*');
 	}
 	
+	function getZoneCity($zone_id = null) {
+		$zone = $this -> Zone -> read(null, $zone_id);
+		echo json_encode(
+			array(
+				$zone['City']['id'] => $zone['City']['name']
+			)
+		);
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
+		exit(0);
+	}
+	
 	function getZones($city_id = null) {
 		return json_encode($this -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id))));
 		$this -> autoRender = false;

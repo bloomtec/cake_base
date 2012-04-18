@@ -2,6 +2,18 @@
 class CitiesController extends AppController {
 
 	var $name = 'Cities';
+	
+	function getCityCountry($city_id = null) {
+		$city = $this -> City -> read(null, $city_id);
+		echo json_encode(
+			array(
+				$city['Country']['id'] => $city['Country']['name']
+			)
+		);
+		Configure::write('debug', 0);
+		$this -> autoRender = false;
+		exit(0);
+	}
 
 	function getZones($id) {
 		echo json_encode($this -> City -> Zone -> find('list', array('conditions' => array('city_id' => $id))));

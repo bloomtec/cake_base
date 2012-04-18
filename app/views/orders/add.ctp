@@ -66,11 +66,11 @@
 				echo $this -> Form -> input('Address.name', array('label' => 'Nombre', 'value' => __('default', true)));
 				if($user) {
 					echo $this -> Form -> hidden('Address.user_id', array('value' => $user['User']['id']));
-					echo $this -> Form -> hidden('Address.country_id', array('value' => $user['City']['country_id']));
-					echo $this -> Form -> hidden('Address.city_id', array('value' => $user['City']['id']));
 				}
+				echo $this -> Form -> input('Address.country_id', array('label' => __('País', true), 'class' => 'pais'));
+				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad'));
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text'));
-				echo $this -> Form -> input('Address.zone_id');
+				echo $this -> Form -> input('Address.zone_id', array('class' => 'barrio'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
 			}
 			echo "<div class='terminos'>";
@@ -103,5 +103,20 @@
 		'[data-equals]' : 'verifique este campo'
 		});
 		$('form').validator({'lang':'es'});
+		
+		/** -------- **/
+		
+		var cambiarPaisYCiudad = function() {
+			if($('.barrio').val()) {
+				BJS.updateSelect($('.ciudad'),'/zones/getZoneCity/'+$('.barrio').val());
+				BJS.updateSelect($('.pais'),'/cities/getCityCountry/'+$('.ciudad').val());
+			}
+		};
+		
+		cambiarPaisYCiudad();
+		
+		$('.barrio').change(function() {
+			cambiarPaisYCiudad();
+		});
 	});
 </script>
