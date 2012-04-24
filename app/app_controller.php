@@ -46,9 +46,9 @@ class AppController extends Controller {
 			$role = $this -> Session -> read('Auth.User.role_id');
 			if($role == 1 && $prefix != 'admin') {
 				$this -> redirect(array('controller' => 'Pages', 'action' => 'ez', 'admin' => true));
-			} elseif($role == 2) {
+			} elseif($role == 2 && $prefix != 'manager') {
 				$this -> redirect(array('controller' => 'Pages', 'action' => 'ez', 'manager' => true));
-			} elseif($role == 4) {
+			} elseif($role == 4 && $prefix =! 'owner') {
 				$this -> redirect(array('controller' => 'Pages', 'action' => 'ez', 'owner' => true));
 			} else {
 				// TODO : hacer algo?
