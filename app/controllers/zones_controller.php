@@ -54,7 +54,13 @@ class ZonesController extends AppController {
 			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
+		$zone = $this -> Zone -> find(
+			'first',
+			array(
+				'conditions' => array('Zone.id' => $id),
+				'recursive' => 1
+			)
+		);
 		$this -> set('zone', $zone);
 	}
 
@@ -122,7 +128,13 @@ class ZonesController extends AppController {
 			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$zone = $this -> Zone -> find('first', array('recursive' => 2, array('conditions' => array('Zone.id' => $id))));
+		$zone = $this -> Zone -> find(
+			'first',
+			array(
+				'conditions' => array('Zone.id' => $id),
+				'recursive' => 1
+			)
+		);
 		$this -> set('zone', $zone);
 	}
 

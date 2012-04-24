@@ -3,14 +3,14 @@
 		<?php $prefix = $this -> params['prefix']; ?>
 		<a href="/<?php echo $prefix; ?>/pages/ez"><?php __('INICIO'); ?></a>
 	</li>
-	<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2) : ?>
+	<?php if($this -> Session -> read('Auth.User.role_id') == 1 || $this -> Session -> read('Auth.User.role_id') == 2) : ?>
 	<li>
 		<a href=""><?php __('CONTENIDO'); ?></a>
 		<ul>
 			<li>
 				<?php echo $html -> link(__('PAGINAS', true), array('controller' => 'pages', 'action' => 'index')); ?>
 			</li>
-			<?php if($session -> read('Auth.User.role_id') == 1) : ?>
+			<?php if($this -> Session -> read('Auth.User.role_id') == 1) : ?>
 			<li>
 				<?php echo $html -> link(__('PREMIOS', true), array('controller' => 'prizes', 'action' => 'index')); ?>
 			</li>
@@ -31,7 +31,7 @@
 	<li>
 		<a href='#'> <?php __('CONFIGURACIONES'); ?></a>
 		<ul>
-			<?php if($session -> read('Auth.User.role_id') == 1) : ?>
+			<?php if($this -> Session -> read('Auth.User.role_id') == 1) : ?>
 			<li>
 				<?php echo $html -> link(__('OPCIONES', true), array('controller' => 'config', 'action' => 'edit', 1)); ?>
 			</li>
@@ -54,7 +54,7 @@
 				<?php echo $html -> link(__('AGREGAR COCINA', true), array('controller' => 'cuisines', 'action' => 'add')); ?>
 			</li>
 			<?php endif; ?>
-			<?php if($session -> read('Auth.User.role_id') == 1 || $session -> read('Auth.User.role_id') == 2) : ?>
+			<?php if($this -> Session -> read('Auth.User.role_id') == 1 || $this -> Session -> read('Auth.User.role_id') == 2) : ?>
 			<li>
 				<?php echo $html -> link(__('BARRIOS', true), array('controller' => 'zones', 'action' => 'index')); ?>
 			</li>
@@ -76,7 +76,7 @@
 		<?php echo $html -> link(__('RESTAURANTES', true), array('controller' => 'restaurants', 'action' => 'index')); ?>
 	</li>
 	<?php endif; ?>
-	<?php if($session -> read('Auth.User.role_id') == 1) : ?>
+	<?php if($this -> Session -> read('Auth.User.role_id') == 1) : ?>
 	<li>
 		<?php echo $html -> link(__('USUARIOS', true), array('controller' => 'users')); ?>
 		<ul>
