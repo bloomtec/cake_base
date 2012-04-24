@@ -501,7 +501,7 @@ class DealsController extends AppController {
 				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
 			}
 		}
-		$restaurants = $this -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.manager_id' => $this -> Session -> read('Auth.User.id'))));
+		$restaurants = $this -> Deal -> Restaurant -> find('list');
 		$cuisines = $this -> Deal -> Cuisine -> find('list');
 		$this -> set(compact('restaurants', 'cuisines'));
 	}

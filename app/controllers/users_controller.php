@@ -773,5 +773,14 @@ class UsersController extends AppController {
 		$pad = ord($str[($len = strlen($str)) - 1]);
 		return substr($str, 0, strlen($str) - $pad);
 	}
+	
+	function getCode() {
+		$id = $this -> Session -> read('Auth.User.id');
+		if($id) {
+			$code = urlencode($this -> encrypt($id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
+		} else {
+			return null;
+		}		
+	}
 
 }
