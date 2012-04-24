@@ -369,8 +369,20 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Deal -> recursive = 2;
-		$this -> set('deal', $this -> Deal -> findBySlug($slug));
+		$this -> Deal -> recursive = 1;
+		$deal = $this -> Deal -> findBySlug($slug);
+		$this -> Deal -> Order -> User -> recursive = -1;
+		//debug($deal);
+		$users = array();
+		$addresses = array();
+		foreach($deal['Order'] as $key => $value) {
+			$users[$key] = $this -> Deal -> Order -> User -> findById($value['user_id']);
+			$addresses[$key] = $this -> Deal -> Order -> Address -> findById($value['address_id']);
+		}
+		//debug($users);
+		$this -> set('deal', $deal);
+		$this -> set('users', $users);
+		$this -> set('addresses', $addresses);
 	}
 
 	function admin_add() {
@@ -441,8 +453,20 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Deal -> recursive = 2;
-		$this -> set('deal', $this -> Deal -> findBySlug($slug));
+		$this -> Deal -> recursive = 1;
+		$deal = $this -> Deal -> findBySlug($slug);
+		$this -> Deal -> Order -> User -> recursive = -1;
+		//debug($deal);
+		$users = array();
+		$addresses = array();
+		foreach($deal['Order'] as $key => $value) {
+			$users[$key] = $this -> Deal -> Order -> User -> findById($value['user_id']);
+			$addresses[$key] = $this -> Deal -> Order -> Address -> findById($value['address_id']);
+		}
+		//debug($users);
+		$this -> set('deal', $deal);
+		$this -> set('users', $users);
+		$this -> set('addresses', $addresses);
 	}
 	
 	function owner_view($slug = null) {
@@ -450,8 +474,20 @@ class DealsController extends AppController {
 			$this -> Session -> setFlash(__('Promo no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Deal -> recursive = 2;
-		$this -> set('deal', $this -> Deal -> findBySlug($slug));
+		$this -> Deal -> recursive = 1;
+		$deal = $this -> Deal -> findBySlug($slug);
+		$this -> Deal -> Order -> User -> recursive = -1;
+		//debug($deal);
+		$users = array();
+		$addresses = array();
+		foreach($deal['Order'] as $key => $value) {
+			$users[$key] = $this -> Deal -> Order -> User -> findById($value['user_id']);
+			$addresses[$key] = $this -> Deal -> Order -> Address -> findById($value['address_id']);
+		}
+		//debug($users);
+		$this -> set('deal', $deal);
+		$this -> set('users', $users);
+		$this -> set('addresses', $addresses);
 	}
 
 	function manager_add() {

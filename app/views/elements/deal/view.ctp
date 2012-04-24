@@ -66,7 +66,7 @@
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($deal['Order'] as $order):
+		foreach ($deal['Order'] as $key => $order):
 			$class = null;
 			if ($i++ % 2 == 0) {
 				$class = ' class="altrow"';
@@ -74,10 +74,10 @@
 		?>
 		<tr<?php echo $class;?>>
 			<td><?php echo $order['code'];?></td>
-			<td><?php echo $order['User']['email'];?></td>
-			<td><?php echo $order['Address']['address'];?></td>
+			<td><?php echo $users[$key]['User']['email'];?></td>
+			<td><?php echo $addresses[$key]['Address']['address'];?></td>
 			<td><?php echo $order['quantity'];?></td>
-			<td><?php echo $order['OrderState']['name'];?></td>
+			<td><?php echo $order['state'];?></td>
 			<td><?php echo $order['created'];?></td>
 			<td><?php echo $order['updated'];?></td>
 			<td class="actions">
