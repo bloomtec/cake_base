@@ -38,7 +38,7 @@
 			-
 			<a href="/users/register" class="iniciar_sesion" ><?php __('REGISTRO'); ?></a>
 			<?php }else{ ?>
-			<a href="/users/profile"><?php __('Mí Perfil');?></a>
+			<a href="/users/profile"><?php __('Mi Perfil');?></a>
 			-
 			 <a href="/users/logout"><?php __('Salir');?></a>
 			<?php } ?>

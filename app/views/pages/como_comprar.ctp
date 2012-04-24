@@ -44,19 +44,19 @@ Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit ame
 <h1 class="descripcion">Como comprar<img src="/img/descripcion_bg.png" /></h1>
 <div class="pasos_contenedor">
 <div class="pasos">
-	<img src="/img/paso1.jpg" />
+	<img src="/img/Como comprar 1.jpg" width='220px' />
 	<p>1. Elige la promoción que mas te guste</p>
 </div>
 <div class="pasos">
-	<img src="/img/paso2.jpg" />
+	<img src="/img/Como comprar 2.jpg" width='220px' />
 	<p>2. Haz el pedido online</p>
 </div>
 <div class="pasos">
-	<img src="/img/paso3.jpg" />
+	<img src="/img/Como comprar 3.jpg" width='220px' />
 	<p>3. Recíbela</p>
 </div>
 <div class="pasos">
-	<img src="/img/paso4.jpg" />
+	<img src="/img/Como comprar 4.jpg" width='220px' />
 	<p>4. Págala en efectivo</p>
 </div>
 </div>

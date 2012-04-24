@@ -42,9 +42,8 @@
 		<?php echo $this -> Form -> end(); ?>
 		<!--</form>-->
 	</div>
-	<div style="clear: both"></div>
 	<div class="imagen_formularios">
-		<img src="/img/logo_fondo.png" />
+		<img src="/img/Sugierenos un restaurante.jpg" width="450" />
 	</div>
 </div>
 <script type="text/javascript">

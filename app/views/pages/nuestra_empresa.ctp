@@ -1,6 +1,6 @@
 <h1 class="descripcion">Nuestra Empresa<img src="/img/descripcion_bg.png" /></h1>
 <div class="nuestra_empresa">
-	<img src="/img/empresa.jpg" />
+	<img src="/img/nuestra empresa.jpg"  width="468"/>
 </div>
 <div class="nuestra_empresa imagen">
 <h1>Nuestra empresa</h1>

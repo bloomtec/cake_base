@@ -272,7 +272,7 @@ span.dinero{
 	margin-top:10px;
 }
 #content .lista_producto .informacion-restaurante h1{
-	 font-size: 9px;
+	 font-size: 11px;
 	 padding:0;
 }
 .lista_producto .logo_negocio{
@@ -423,11 +423,15 @@ text-decoration: underline;
 	position: relative;
 	overflow: visible;
 	height: auto;
-	line-height: 48px;
+	padding-bottom: 8px;
+	padding-top: 8px;
 	text-indent: 15px;
 	color: white;
 	font-size: 18px;
 }
+h1.descripcion img{
+ 	display:none;
+ }
 #content .descripcion{
 	width: 320px;
 }
@@ -1213,7 +1217,8 @@ span.comopromos{
 	font-weight: bold;
 }
 .imagen_formularios{
-	position: absolute;
-    right: 12%;
-    top: 28%;
+	float:right;
+}
+.form a{
+	color:black;
 }
