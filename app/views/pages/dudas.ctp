@@ -54,8 +54,7 @@
 		<!--</form>-->
 		</fieldset>
 	</div>
-	<div style="clear: both"></div>
 	<div class="imagen_formularios">
-		<img src="/img/logo_fondo.png" />
+		<img src="/img/Sugerencias y reclamos.jpg" width="450"/>
 	</div>
 </div>

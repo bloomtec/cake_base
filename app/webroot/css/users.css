@@ -380,7 +380,7 @@ div.images .preview  img{
 	padding-top:20px;
 }
 #register_login legend{
-	background-color: #E0050B;
+	background-color: #E76012;
     border: medium none;
     color: #FFFFFF;
     display:block;
@@ -392,6 +392,7 @@ div.images .preview  img{
     padding-top: 8px;
     text-transform: uppercase;
     width: 400px;
+    
 }
 #register_login .login legend{
 	width: 450px;
