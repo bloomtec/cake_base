@@ -18,7 +18,7 @@
 		<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
 		<div class='informacion'>
 			<h1 class="horario">Horario de atención: <br /> <?php echo $deal['Restaurant']['schedule']; ?></h1>
-			<h3>Quedan <?php echo $deal['Deal']['amount']; ?> promociones</h3><!-- amount -->
+			
 		</div>
 	</div>
 </div>

@@ -93,7 +93,7 @@
 					</div>
 					<div class="derecha">
 						<h1>Recomienda esta página a tus amigos</h1>
-						<?php $code = $this -> requerstAction('/users/getCode');?>
+						<?php $code = $this -> requestAction('/users/getCode');?>
 						<a class="compartir"href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".Configure::read('site_domain').'/users/register/').$code;?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>
 						<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 						 <!-- <a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com&amp;via=your_screen_name" class="boton-twitter">Compartir en twitter</a>--> 

@@ -779,7 +779,7 @@ class UsersController extends AppController {
 		if($id) {
 			$code = urlencode($this -> encrypt($id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 		} else {
-			return null;
+			return '';
 		}		
 	}
 
