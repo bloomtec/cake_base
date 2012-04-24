@@ -76,10 +76,10 @@ class DATABASE_CONFIG {
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
-		'host' => 'mysql.bloomweb.co',
-		'login' => 'bloomweb',
+		'host' => 'mysql.comopromos.com',
+		'login' => 'bloom_comopromos',
 		'password' => 'rr40r900343',
-		'database' => 'bloomweb_clickneat',
+		'database' => 'bloomweb_comopromos',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

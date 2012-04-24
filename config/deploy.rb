@@ -1,5 +1,5 @@
 # INITIAL CONFIGURATION
-set :application, "clickneat.bloomweb.co"
+set :application, "comopromos.com"
 set :export, :remote_cache
 set :keep_releases, 5
 set :cakephp_app_path, "app"
@@ -7,19 +7,16 @@ set :cakephp_core_path, "cake"
 #default_run_options[:pty] = true # Para pedir la contraseña de la llave publica de github via consola, sino sale error de llave publica.
 
 # DEPLOYMENT DIRECTORY STRUCTURE
-set :deploy_to, "/home/embalao/clickneat.bloomweb.co"
+set :deploy_to, "/home/comopromos/comopromos.com"
 
 # USER & PASSWORD
-set :user, 'embalao'
-set :password, 'Cobr@Verde'
+set :user, 'comopromos'
+set :password, 'c0m0pr0m0s2012'
 
 # ROLES
-role :app, "clickneat.bloomweb.co"
-role :web, "clickneat.bloomweb.co"
-role :db, "clickneat.bloomweb.co", :primary => true
-
-# DREAMHOST INFORMATION
-set :user, "embalao"
+role :app, "comopromos.com"
+role :web, "comopromos.com"
+role :db, "comopromos.com", :primary => true
 
 # VERSION TRACKER INFORMATION
 set :scm, :git
@@ -35,26 +32,12 @@ namespace :deploy do
   task :stop do ; end
   
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cp /home/embalao/clickneat.bloomweb.co/current/. /home/embalao/clickneat.bloomweb.co/ -R"
-    run "chmod 666 /home/embalao/clickneat.bloomweb.co/app/config/database.php"
-    run "cp /home/embalao/clickneat.bloomweb.co/app/config/database.php.srvr /home/embalao/clickneat.bloomweb.co/app/config/database.php"
-    run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/tmp/ -R"
-    run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/img/uploads/ -R"
-    run "chmod 777 /home/embalao/clickneat.bloomweb.co/app/webroot/files/uploads/ -R"
-  end
-  
-end
-
-namespace :extras do
-  
-  task :start do ; end
-  
-  task :stop do ; end
-  
-  task :restart, :roles => :app, :except => { :no_release => true } do ; end
-  
-  task :download_uploads do
-    run "scp -r embalao@bloomweb.co:/home/embalao/clickneat.bloomweb.co/app/webroot/img/uploads /var/www/clickneat/app/webroot/img/uploads";
+    run "cp /home/comopromos/comopromos.com/current/. /home/comopromos/comopromos.com/ -R"
+    run "chmod 666 /home/comopromos/comopromos.com/app/config/database.php"
+    run "cp /home/comopromos/comopromos.com/app/config/database.php.srvr /home/comopromos/comopromos.com/app/config/database.php"
+    run "chmod 777 /home/comopromos/comopromos.com/app/tmp/ -R"
+    run "chmod 777 /home/comopromos/comopromos.com/app/webroot/img/uploads/ -R"
+    run "chmod 777 /home/comopromos/comopromos.com/app/webroot/files/uploads/ -R"
   end
   
 end
