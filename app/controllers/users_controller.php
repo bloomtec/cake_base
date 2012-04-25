@@ -31,7 +31,7 @@ class UsersController extends AppController {
 	function getOwners() {
 		$this -> layout = "ajax";
 		$owners = array();
-		$owners[''] = __('Select...', true);
+		$owners[''] = __('Seleccione...', true);
 		$conditions = array('role_id' => 4);
 		$owners_tmp = $this -> User -> find('list', array('conditions' => $conditions));
 		foreach ($owners_tmp as $key => $owner) {

@@ -28,7 +28,7 @@
 			<?php __('Propietario Del Restaurante');?>
 		</legend>
 		<?php
-		echo $this -> Form -> input("Owner.id", array('label' => __('Correo Electrónico', true), 'type' => 'select', 'empty' => __('Seleccione...', true), 'option' => ''));
+		echo $this -> Form -> input("Owner.id", array('label' => __('Correo Electrónico', true), 'type' => 'select', 'empty' => __('Seleccione...', true)));
 		echo $this -> Form -> input("Owner.name", array('label' => __('Nombre')));
 		echo $this -> Form -> input("Owner.last_name", array('label' => __('Apellido')));
 		echo $this -> Form -> input("Owner.email", array('label' => __('Correo Electrónico')));
@@ -82,6 +82,7 @@
 		updateOwner();
 		function updateOwner() {
 			BJS.updateSelect($owner, '/users/getOwners');
+			$owner.val('');
 		}
 		
 		$owner.change(function() {
