@@ -27,6 +27,16 @@ class UsersController extends AppController {
 		$this -> autoRender = false;
 		exit(0);
 	}
+	
+	function getUserScore() {
+		$this -> User -> recursive = -1;
+		$user = $this -> User -> read(null, $this -> Auth -> user('id'));
+		if($user) {
+			return $user['User']['score'] + $user['User']['score_by_invitations'];
+		} else {
+			return 0;
+		}
+	}
 
 	function getOwners() {
 		$this -> layout = "ajax";

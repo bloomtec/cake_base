@@ -81,6 +81,18 @@
 			?>
 		</fieldset>
 	</div>
+	<div class="comprar-con-puntos">
+		<?php
+			$userScore = $this -> requestAction('/users/getUserScore');
+			if(true || $userScore) :
+		?>
+		<p>Tienes actualmente <?php echo "$ ".number_format($userScore, 0, ",", "."); ?> de acumulado.</p>
+		<p>¡Puedes actualmente pagar con tu acumulado!</p>
+		<p><?php echo $this -> Form -> input('comprar_con_bono', array('type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => '0')); ?></p>
+		<?php
+			endif;
+		?>
+	</div>
 	<?php echo $this -> Form -> end(__('Comprar', true));?>
 </div>
 <script type="text/javascript">
