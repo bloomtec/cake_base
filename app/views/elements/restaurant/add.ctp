@@ -28,7 +28,7 @@
 			<?php __("Restaurant's Owner");?>
 		</legend>
 		<?php
-		echo $this -> Form -> input("Owner.id", array('label' => __('Owner', true), 'type' => 'select', 'empty' => __('Seleccione...', true), 'value' => ''));
+		echo $this -> Form -> input("Owner.id", array('label' => __('Owner', true), 'type' => 'select', 'empty' => __('Seleccione...', true), 'option' => ''));
 		echo $this -> Form -> input("Owner.name");
 		echo $this -> Form -> input("Owner.last_name");
 		echo $this -> Form -> input("Owner.email");
