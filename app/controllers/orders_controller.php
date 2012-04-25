@@ -7,19 +7,26 @@ class OrdersController extends AppController {
 		parent::beforeFilter();
 	}
 	
-	function orderStatus($lastOrder){
+	function orderStatus($lastOrderId){
+		$object=false;
 		switch ($this -> Auth -> user('role_id')) {
 			case '1': //ADMIN
 				
 				break;
 			case '4': //OWNER
-				
+				$this -> Order -> recursive = -1;
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
+				if($lastOrder){
+					$object=array('event'=>'newOrder','value'=>$lastOrder);
+				}
 				break;
 			
 			default:
 				
 				break;
 		}	
+		echo json_encode($object);
+		exit(0);
 	}
 	
 	function owner_approve($id) {

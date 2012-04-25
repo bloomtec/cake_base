@@ -6,6 +6,7 @@ class Order extends AppModel {
 	var $sluggable = false;
 	var $sortable = false;
 	var $activable = false;
+	var $order = "Order.id DESC";
 	var $virtualFields = array(
 		'state' => 'SELECT `order_states`.`name` FROM `order_states` WHERE `order_states`.`id` = `Order.order_state_id`'
 	);

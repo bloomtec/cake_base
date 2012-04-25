@@ -1,6 +1,6 @@
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
-	<table cellpadding="0" cellspacing="0" >
+	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
