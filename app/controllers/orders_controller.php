@@ -6,17 +6,19 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 	}
-	
+
 	function orderStatus($lastOrderId){
 		$object=false;
 		switch ($this -> Auth -> user('role_id')) {
 			case '1': //ADMIN
-				
-				break;
-			case '4': //OWNER
-				$this -> Order -> recursive = -1;
 				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
 				if($lastOrder){
+					$object=array('event'=>'newOrder','value'=>$lastOrder);
+				}
+				break;
+			case '4': //OWNER
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
+				if($lastOrder && $this -> isOwner($lastOrder['Order']['id'])){
 					$object=array('event'=>'newOrder','value'=>$lastOrder);
 				}
 				break;
@@ -236,7 +238,9 @@ class OrdersController extends AppController {
 			$this -> Session -> setFlash(__('Invalid order', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> set('order', $this -> Order -> read(null, $id));
+		$order=$this -> Order -> read(null,$id);
+		$this -> Order -> saveField('is_viewed',true);
+		$this -> set('order', $order);
 	}
 	
 	function owner_edit($id = null) {

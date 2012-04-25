@@ -21,21 +21,13 @@
 			<?php echo $this->Html->image('uploads/100x100/'.$deal['Deal']['image']); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Cantidad'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $deal['Deal']['amount']; ?>
-			&nbsp;
-		</dd>
+	
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Precio'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $deal['Deal']['price']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Limite'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $deal['Deal']['max_buys']; ?>
-			&nbsp;
-		</dd>
+	
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Visitas'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $deal['Deal']['visits']; ?>

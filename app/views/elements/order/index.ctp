@@ -15,8 +15,14 @@
 	$i = 0;
 	foreach ($orders as $order):
 		$class = null;
+		if(!$order['Order']['is_viewed']){
+				$class = ' class="no-vista"';
+		}
 		if ($i++ % 2 == 0) {
 			$class = ' class="altrow"';
+			if(!$order['Order']['is_viewed']){
+				$class = ' class="no-vista altrow"';
+			}
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
@@ -76,3 +82,37 @@
 		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 </div>
+<?php $lastOrder=isset($orders[0])? $orders[0]['Order']['id']:0;?>
+<script type="text/javascript">
+ 	var lastOrder="<?php echo $lastOrder; ?>";
+	$(function(){
+		setInterval(function(){
+			BJS.JSON('/orders/orderStatus/'+lastOrder,{},function(response){
+				if(response){
+					switch(response.event){
+						case "newOrder":
+						var tr="<tr class='no-vista nueva'>\
+									<td>"+response.value.Order.code+"</td>\
+									<td>"+response.value.User.email+"</td>\
+									<td>"+response.value.Address.address+"</td>\
+									<td>"+response.value.Order.quantity+"</td>\
+									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
+									<td>"+"<input type='checkbox' disabled=''>"+"</td>\
+									<td>"+response.value.OrderState.name+"</td>\
+									<td class='actions'>\
+										<a title='View' class='view icon' href='/owner/orders/view/"+response.value.Order.id+"'>Ver</a>\
+										<a title='Approve' class='edit icon' href='/owner/orders/approve/"+response.value.Order.id+"'>Aprovar</a>\
+									</td>\
+								</tr>";
+						$("table#orders tr:first-child").after(tr);
+						lastOrder=response.value.Order.id;
+						break;
+						
+					}
+				}else{
+					//NO HAY EVENTO
+				}
+			});
+		},5000);
+	});
+</script>
