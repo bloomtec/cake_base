@@ -41,7 +41,7 @@
 	<?php echo $this -> Form -> end(__('Enviar', true));?>
 </div>
 <div class="images">
-	<h2>Image</h2>
+	<h2><?php __('Imagen');?></h2>
 	<div class="preview">
 		<div class="wrapper">
 			<?php echo $this -> Html -> image('preview.png');?>
