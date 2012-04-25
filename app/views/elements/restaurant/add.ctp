@@ -25,14 +25,14 @@
 	</fieldset>
 	<fieldset>
 		<legend>
-			<?php __("Restaurant's Owner");?>
+			<?php __('Propietario Del Restaurante');?>
 		</legend>
 		<?php
-		echo $this -> Form -> input("Owner.id", array('label' => __('Owner', true), 'type' => 'select', 'empty' => __('Seleccione...', true), 'option' => ''));
-		echo $this -> Form -> input("Owner.name");
-		echo $this -> Form -> input("Owner.last_name");
-		echo $this -> Form -> input("Owner.email");
-		echo $this -> Form -> input("Owner.password");
+		echo $this -> Form -> input("Owner.id", array('label' => __('Correo Electrónico', true), 'type' => 'select', 'empty' => __('Seleccione...', true), 'option' => ''));
+		echo $this -> Form -> input("Owner.name", array('label' => __('Nombre')));
+		echo $this -> Form -> input("Owner.last_name", array('label' => __('Apellido')));
+		echo $this -> Form -> input("Owner.email", array('label' => __('Correo Electrónico')));
+		echo $this -> Form -> input("Owner.password", array('label' => __('Contraseña')));
 		echo $this -> Form -> hidden("Owner.role_id", array('value' => 4));
 		echo $this -> Form -> hidden("Owner.email_verified", array('value' => 1));
 		echo $this -> Form -> input('Owner.active', array('checked' => true));
