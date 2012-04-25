@@ -1,35 +1,35 @@
 <div class="restaurants form2">
 <?php echo $this->Form->create('Restaurant');?>
 	<fieldset>
-		<legend><?php __('Edit Restaurant'); ?></legend>
+		<legend><?php __('Editar Restaurante'); ?></legend>
 	<?php
 		echo $this->Form->input('id');
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
-			echo $this->Form->input('country_id',array('label' => __('Country', true), 'options' => $countries, 'selected'=>$city['City']['country_id'], 'div' => 'input select geo'));
-			echo $this->Form->input('city_id',array('label' => __('City', true), 'options' => $cities, 'val'=>$city['City']['id'], 'div' => 'input select geo','type'=>'select'));
+			echo $this->Form->input('country_id',array('label' => __('País', true), 'options' => $countries, 'selected'=>$city['City']['country_id'], 'div' => 'input select geo'));
+			echo $this->Form->input('city_id',array('label' => __('Ciudad', true), 'options' => $cities, 'val'=>$city['City']['id'], 'div' => 'input select geo','type'=>'select'));
 		}
 		if($this -> Session -> read('Auth.User.role_id') != 4) {
-			echo $this -> Form -> input('zone_id', array('label' => __('District', true), 'div' => 'input select geo','val'=>$this->data['Restaurant']['zone_id']));
-			echo $this->Form->input('name');
+			echo $this -> Form -> input('zone_id', array('label' => __('Barrio', true), 'div' => 'input select geo','val'=>$this->data['Restaurant']['zone_id']));
+			echo $this->Form->input('name', array('label' => __('Nombre', true)));
 		} else {
-			echo $this->Form->input('name', array('disabled' => 'disabled'));
+			echo $this->Form->input('name', array('label' => __('Nombre', true), 'disabled' => 'disabled'));
 		}
-		echo $this->Form->input('description');
-		echo $this->Form->input('service_policies');
-		echo $this->Form->input('schedule');
-		echo $this->Form->input('phone');
-		echo $this->Form->input('address');
+		echo $this->Form->input('description', array('label' => __('Descripción', true)));
+		echo $this->Form->input('service_policies', array('label' => __('Políticas De Servicio', true)));
+		echo $this->Form->input('schedule', array('label' => __('Horario', true)));
+		echo $this->Form->input('phone', array('label' => __('Teléfono', true)));
+		echo $this->Form->input('address', array('label' => __('Dirección', true)));
 		echo '<div class="zones-by-city"></div>';
-		// echo $this->Form->input('lat');
-		// echo $this->Form->input('long');
+		echo $this->Form->input('lat', array('label' => __('Latitud', true)));
+		echo $this->Form->input('long', array('label' => __('Longitud', true)));
 		echo $this->Form->hidden('image',array('id' => 'single-field'));
 	?>
 	<div id="zones"></div>
 	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
+<?php echo $this->Form->end(__('Enviar', true));?>
 </div>
 <div class="images">
-		<h2>Image</h2>
+		<h2><?php __('Imagen'); ?></h2>
 		<div class="preview">
 			<div class="wrapper">
 				 <?php
