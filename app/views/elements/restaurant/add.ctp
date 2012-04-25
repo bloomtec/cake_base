@@ -2,7 +2,7 @@
 	<?php echo $this -> Form -> create('Restaurant');?>
 	<fieldset>
 		<legend>
-			<?php __('Add Restaurant');?>
+			<?php __('Crear Restaurante');?>
 		</legend>
 		<?php
 		if($this -> Session -> read('Auth.User.role_id') == 1) {
@@ -38,7 +38,7 @@
 		echo $this -> Form -> input('Owner.active', array('checked' => true));
 		?>
 	</fieldset>
-	<?php echo $this -> Form -> end(__('Submit', true));?>
+	<?php echo $this -> Form -> end(__('Enviar', true));?>
 </div>
 <div class="images">
 	<h2>Image</h2>
