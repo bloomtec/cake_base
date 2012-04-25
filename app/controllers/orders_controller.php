@@ -7,6 +7,21 @@ class OrdersController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function orderStatus($lastOrder){
+		switch ($this -> Auth -> user('role_id')) {
+			case '1': //ADMIN
+				
+				break;
+			case '4': //OWNER
+				
+				break;
+			
+			default:
+				
+				break;
+		}	
+	}
+	
 	function owner_approve($id) {
 		$this -> autoRender = false;
 		$this -> Order -> read(null, $id);
