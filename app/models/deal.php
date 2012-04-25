@@ -31,26 +31,7 @@ class Deal extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'amount' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'Ingrese la cantidad de promos disponibles',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
-		'max_buys' => array(
-			'numeric' => array(
-				'rule' => array('numeric'),
-				'message' => 'Ingrese el limite de compras',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
+		
 		'visits' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
