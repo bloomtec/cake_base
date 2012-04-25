@@ -1,7 +1,7 @@
 <div class="restaurants view">
-<h2><?php  __('Restaurant');?></h2>
+<h2><?php  __('Restaurante');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Zone'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Barrio'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php
 				if($this -> Session -> read('Auth.User.role_id') != 4) {
@@ -12,32 +12,32 @@
 			?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Name'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Nombre'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $restaurant['Restaurant']['name']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Description'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Descripción'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $restaurant['Restaurant']['description']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Phone'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Teléfono'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $restaurant['Restaurant']['phone']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Image'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Imagen'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $this->Html->image('uploads/100x100/'.$restaurant['Restaurant']['image']); ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Creado'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $restaurant['Restaurant']['created']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Updated'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modificado'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
 			<?php echo $restaurant['Restaurant']['updated']; ?>
 			&nbsp;

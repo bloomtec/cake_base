@@ -1,16 +1,16 @@
 
 <div class="cuisines index">
-	<h2><?php __('Cuisines');?></h2>
+	<h2><?php __('Cocinas');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
-		<th><?php echo $this->Paginator->sort('name');?></th>
-		<th><?php echo $this->Paginator->sort('description');?></th>
-		<th><?php echo $this->Paginator->sort('image');?></th>
+		<th><?php echo $this->Paginator->sort(__('Nombre', true), 'name');?></th>
+		<th><?php echo $this->Paginator->sort(__('Descripción', true), 'description');?></th>
+		<th><?php echo $this->Paginator->sort(__('Imagen', true), 'image');?></th>
 		<!--
 		<th><?php echo $this->Paginator->sort('created');?></th>
 		<th><?php echo $this->Paginator->sort('updated');?></th>
 		-->
-		<th class="actions"><?php __('Actions');?></th>
+		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -29,9 +29,9 @@
 		<td><?php echo $cuisine['Cuisine']['updated']; ?>&nbsp;</td>
 		-->
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $cuisine['Cuisine']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $cuisine['Cuisine']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $cuisine['Cuisine']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $cuisine['Cuisine']['id'])); ?>
+			<?php echo $this->Html->link(__('Ver', true), array('action' => 'view', $cuisine['Cuisine']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
+			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $cuisine['Cuisine']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
+			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $cuisine['Cuisine']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $cuisine['Cuisine']['id'])); ?>
 			<?php if(isset($cuisine['Cuisine']['active'])&& $cuisine['Cuisine']['active']){
 			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $cuisine['Cuisine']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $cuisine['Cuisine']['id']));
 }?>
