@@ -42,9 +42,6 @@ class OrdersController extends AppController {
 			 */
 			$deal = $this -> Order -> Deal -> read(null, $this -> data['Deal']['id']);
 			$current_quantity = $this -> getUserDealCount($deal['Deal']['id'], $this -> data['Order']['user_id']);
-			
-			if(($this -> data['Order']['quantity'] <= $deal['Deal']['amount']) && ($current_quantity + $this -> data['Order']['quantity'] <= $deal['Deal']['max_buys'])) {
-				$deal['Deal']['amount'] -= $this -> data['Order']['quantity'];
 				// Generar el código a asignar a la órden antes de guardar
 				$max_id = $this -> Order -> query('SELECT MAX(`id`) FROM `orders`');
 				$max_id = $max_id[0][0]['MAX(`id`)'];
@@ -89,9 +86,6 @@ class OrdersController extends AppController {
 								$order['Order'] = $this -> data['Order'];
 								if($this -> Order -> save($order)) {
 									$this -> Order -> Deal -> save($deal);
-									if($deal['Deal']['amount'] == 0) {
-										$this -> dealsFinishedEmail($deal['Deal']['id']);
-									}
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 									$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 								} else {
@@ -124,9 +118,6 @@ class OrdersController extends AppController {
 							$order['Order'] = $this -> data['Order'];
 							if($this -> Order -> save($order)) {
 								$this -> Order -> Deal -> save($deal);
-								if($deal['Deal']['amount'] == 0) {
-									$this -> dealsFinishedEmail($deal['Deal']['id']);
-								}
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 								$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 							} else {
@@ -142,9 +133,6 @@ class OrdersController extends AppController {
 					} else {
 						if($this -> Order -> save($this -> data)) {
 							$this -> Order -> Deal -> save($deal);
-							if($deal['Deal']['amount'] == 0) {
-								$this -> dealsFinishedEmail($deal['Deal']['id']);
-							}
 							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 							$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 						} else {
@@ -154,10 +142,7 @@ class OrdersController extends AppController {
 						}
 					}
 				}
-			} else {
-				$this -> Session -> setFlash('Ha escogido una cantidad mayor a la permitida');
-				$this -> redirect(array('action' => 'add', $deal['Deal']['slug']));
-			}
+			
 		} else {
 			if(!$slug) {
 				$this -> redirect('/deals');

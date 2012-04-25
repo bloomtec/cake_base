@@ -478,7 +478,7 @@ h1.descripcion img{
     margin-bottom: 5px;
 }
 .info_ubicacion img{
-	width: 246px;
+	width: 320px;
 	height: 208px;
 	margin-top: 8px;
 	float: none;
@@ -970,7 +970,7 @@ h1.descripcion img{
 	font-size: 13px;
 	margin-top: 8px;
 }
-.terminos a{
+.orders .terminos a{
 	color: #E0050B;
 	text-decoration: none;
 	font-size: 13px;
