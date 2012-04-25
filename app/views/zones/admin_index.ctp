@@ -1,5 +1,5 @@
 <div class="zones index">
-	<h2><?php __('Zones');?></h2>
+	<h2><?php __('Barrios');?></h2>
 	<table cellpadding="0" cellspacing="0" >
 	<tr  >
 		<th><?php echo $this->Paginator->sort(__('Ciudad', true), 'city_id');?></th>
