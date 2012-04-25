@@ -41,7 +41,7 @@ class OrdersController extends AppController {
 			 * TODO : revisar el maximo de compras de la promocion vs la cantidad comprada por el usuario
 			 */
 			$deal = $this -> Order -> Deal -> read(null, $this -> data['Deal']['id']);
-			$current_quantity = $this -> getUserDealCount($deal['Deal']['id'], $this -> data['Order']['user_id']);
+			//$current_quantity = $this -> getUserDealCount($deal['Deal']['id'], $this -> data['Order']['user_id']);
 				// Generar el código a asignar a la órden antes de guardar
 				$max_id = $this -> Order -> query('SELECT MAX(`id`) FROM `orders`');
 				$max_id = $max_id[0][0]['MAX(`id`)'];
