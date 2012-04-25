@@ -1,5 +1,5 @@
 <div class="users view">
-<h2><?php  __('User'); ?></h2>
+<h2><?php  __('Usuario'); ?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>
 		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Correo Electrónico'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
@@ -57,7 +57,7 @@
 
 
 <div class="related">
-	<h3><?php __('Related Addresses');?></h3>
+	<h3><?php __('Direcciones Relacionadas');?></h3>
 	<?php if (!empty($user['Address'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
@@ -101,7 +101,7 @@
 	</div> -->
 </div>
 <div class="related">
-	<h3><?php __('Related Orders');?></h3>
+	<h3><?php __('Ordenes Relacionadas');?></h3>
 	<?php if (!empty($user['Order'])):?>
 	<table cellpadding = "0" cellspacing = "0">
 	<tr>
