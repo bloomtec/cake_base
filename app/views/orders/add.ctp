@@ -144,10 +144,10 @@
 		});
 		$('form').validator({'lang':'es'});
 		
-		$('#OrderAddForm').submit(function(e) {
+		/*$('#OrderAddForm').submit(function(e) {
 			e.preventDefault();
 			return false;
-		});
+		});*/
 		
 		/** -------- **/
 		
