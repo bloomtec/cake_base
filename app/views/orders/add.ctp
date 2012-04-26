@@ -16,7 +16,6 @@
 				<?php __('Comprar Promoción');?>
 			</legend>
 			<div class="promo">
-				
 				<h1><?php echo $deal['Deal']['name']; ?></h1>
 				<p>
 					<?php echo $deal['Deal']['description']; ?>
@@ -24,8 +23,13 @@
 				<img src="/img/uploads/50x50/<?php echo $deal['Deal']['image']; ?>" />
 				<?php
 				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
-				echo $this -> Form -> input('quantity', array('label' => __('Cantidad', true), 'value' => 1));
+				echo $this -> Form -> hidden('Deal.price', array('value' => $deal['Deal']['price']));
+				//echo $this -> Form -> input('quantity', array('label' => __('Cantidad', true), 'value' => 1));
 				?>
+				<div class="input text required">
+					<label for="OrderQuantity">Cantidad</label>
+					<input id="OrderQuantity" type="number" maxlength="11" value="1" name="data[Order][quantity]">
+				</div>
 			</div>
 			
 		</fieldset>
@@ -81,29 +85,53 @@
 			?>
 		</fieldset>
 	</div>
-	<div class="comprar-con-puntos">
+	<div class="comprar-con-puntos" style="visibility: visible;">
 		<?php
 			$userScore = $this -> requestAction('/users/getUserScore');
-			if(true || $userScore) :
+			echo $this -> Form -> hidden('User.user_score', array('value' => $userScore));
 		?>
 		<p>Tienes actualmente <?php echo "$ ".number_format($userScore, 0, ",", "."); ?> de acumulado.</p>
 		<p>¡Puedes actualmente pagar con tu acumulado!</p>
 		<p><?php echo $this -> Form -> input('comprar_con_bono', array('type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => '0')); ?></p>
-		<?php
-			endif;
-		?>
 	</div>
 	<?php echo $this -> Form -> end(__('Comprar', true));?>
 </div>
 <script type="text/javascript">
 	$(function() {
+		var actualizarDivComprarConPuntos = function() {
+			cantidad = $('#OrderQuantity').val();
+			//console.log(cantidad);
+			precioUnitario = $('#DealPrice').val();
+			//console.log(precioUnitario);
+			//console.log(cantidad * precioUnitario);
+			puntosUsuario = $('#UserUserScore').val();
+			//console.log(puntosUsuario);
+			if(puntosUsuario >= (cantidad * precioUnitario)) {
+				$('.comprar-con-puntos').css('visibility', 'visible');
+				return true;
+			} else {
+				$('.comprar-con-puntos').css('visibility', 'hidden');
+				return false;
+			}
+		}
+		
+		actualizarDivComprarConPuntos();
+		
+		$('#OrderQuantity').keyup(function() {			
+			if(!actualizarDivComprarConPuntos()) {
+				$('#OrderComprarConBono0').prop('checked', true);
+			}
+		});
+		
 		var country_id = $('#UserCountryId').val();
 		if($('#UserCountryId').val()) {
 			BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
 		}
+		
 		$('#UserCountryId').change(function(){
 			BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
 		});
+		
 		$.tools.validator.localize("es", {
 		'*'			: 'dato no valido',
 		':email'  	: 'email no valido',
@@ -115,6 +143,11 @@
 		'[data-equals]' : 'verifique este campo'
 		});
 		$('form').validator({'lang':'es'});
+		
+		$('#OrderAddForm').submit(function(e) {
+			e.preventDefault();
+			return false;
+		});
 		
 		/** -------- **/
 		

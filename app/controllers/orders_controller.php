@@ -35,6 +35,7 @@ class OrdersController extends AppController {
 		$this -> autoRender = false;
 		$this -> Order -> read(null, $id);
 		$this -> Order -> set('is_approved', true);
+		$this -> Order -> set('is_viewed', true);
 		$this -> Order -> save();
 		$this -> orderApprovedEmail($id);
 		$this -> redirect(array('action' => 'index'));
