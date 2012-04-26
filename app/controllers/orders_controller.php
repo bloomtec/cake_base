@@ -35,6 +35,7 @@ class OrdersController extends AppController {
 		$this -> autoRender = false;
 		$this -> Order -> read(null, $id);
 		$this -> Order -> set('is_approved', true);
+		$this -> Order -> set('is_viewed', true);
 		$this -> Order -> save();
 		$this -> orderApprovedEmail($id);
 		$this -> redirect(array('action' => 'index'));
@@ -76,6 +77,14 @@ class OrdersController extends AppController {
 				}
 				$this -> data['Order']['code'] = 1000000 + $max_id;
 				$this -> data['Order']['order_state_id'] = 1; // En espera de pago
+				if($this -> data['Order']['comprar_con_bono']) {
+					// Revisar que si se puede comprar con puntos
+					if($this -> data['Order']['quantity'] * $this -> data['Deal']['price'] >= $this -> data['User']['user_score']) {
+						$this -> data['Order']['is_paid_with_cash'] = true;
+					} else {
+						$this -> data['Order']['is_paid_with_cash'] = false;
+					}
+				}
 				
 				if(isset($this -> data['User'])) {
 					if($this -> Order -> User -> findByEmail(trim($this -> data['User']['email']))) {
