@@ -402,7 +402,7 @@ div.images .preview  img{
     font-weight: normal;
     line-height: 13px;
     margin-bottom: 30px;
-    text-align: left;
+    text-align: justify;
     width: 96%;
     clear: both;
 }

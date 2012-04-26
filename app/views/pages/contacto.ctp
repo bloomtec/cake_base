@@ -32,12 +32,10 @@
 			</fieldset>
 		<?php echo $this -> Form -> end(); ?>
 		<!--</form>-->
-		<h1>COMOPROMOS</h1>
-		<p>
-			<br />
+		<h1 style="color:black;">COMOPROMOS</h1>
+		<p style="text-align:left;margin-bottom: 0">
 			<br />
 			<?php __('Teléfono:'); ?> <a href="tel:+57 2 664 97 34">+57 2 664 97 34</a>
-			<br />
 			<br />
 			<?php __('Correo:'); ?> <a href="mailto:info@comopromos.com">info@comopromos.com</a>
 			<br /><br />

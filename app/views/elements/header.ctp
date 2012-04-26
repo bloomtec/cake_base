@@ -18,12 +18,12 @@
 		</div>
 		<a href="/" class="logo_header"></a>
 		<p>
-			Dile a tu amigos que hay pa´comer  y acumula <span class='dinero'>dinero</span> para tus proximas compras.
+			Dile a tu amigos que hay para comer  y acumula <span class='dinero'>dinero</span> para tus proximas compras.
 			
 			<br />
 			<br />
 			<?php if($this -> Session -> read('Auth.User.id')) : ?>
-			<a href="/users/refer">¡INVITAR A MIS AMIGOS!</a>
+			<a href="/users/refer"> <span class='dinero'>¡INVITAR A MIS AMIGOS!</span></a>
 			<?php endif; ?>
 		</p>
 		<div class="sesion">

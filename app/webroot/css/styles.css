@@ -17,6 +17,7 @@ body{
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-color: #181818;
+	font-family: Arial, Helvetica, sans-serif;
 }
 #container{
 	background-color: #e76012;
@@ -49,7 +50,7 @@ span.dinero{
 	text-align: center;
 	float: left;
 	margin-left: 75px;
-	margin-top: 50px;
+	margin-top: 104px;
 }
 .wrapper p a{
 	color:#006838;
@@ -90,6 +91,9 @@ span.dinero{
 	-moz-border-radius: 5px;
 	border-radius: 5px;
 	border-radius: 5px;
+}
+#Pages #content{
+	padding-bottom: 0;
 }
 .filtros{
 	margin-bottom: 15px;
@@ -1078,13 +1082,12 @@ input[type='checkbox']{
 	margin-bottom: 8px;
 }
 .info .numeros{
-	background-color: black;
 	width: 30px;
 	display: block;
 	float: left;
 	margin-bottom: 8px;
 	height: 26px;
-	color: white;
+	color: black;
 	text-align: center;
 	padding-top: 8px;
 	margin-top: -7px;
@@ -1136,6 +1139,7 @@ input[type='checkbox']{
 #content .paginas div.info .info {
 	margin-top:0.8em;
 	padding-left:0.5em;
+	font-family: Arial, Helvetica, sans-serif;
 }
 span.comopromos{
 	text-transform: uppercase;
@@ -1190,21 +1194,20 @@ span.comopromos{
 	margin-top: 15px;
 }
 .nuestra_empresa{
-	width: 468px;
+	width: 475px;
 	float: left;
 	margin-left: 26px;
 	margin-top: 12px;
-	margin-bottom: 25px;
+	padding-left: 10px;
 }
 .nuestra_empresa.imagen{
 	margin-left: 0;
 }
 #content .nuestra_empresa p{
-	text-align: left;
+	text-align: justify;
 	font-weight: normal;
 	color: #5c5c5c;
 	line-height: 18px;
-	
 } 
 #content .nuestra_empresa h1{
 	margin-left: 0;

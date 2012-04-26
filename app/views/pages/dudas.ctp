@@ -21,11 +21,11 @@
 			<?php echo __('Dudas, sugerencias o reclamos'); ?>
 			<?php // echo __('Doubts, suggestions or complaints'); ?>
 		</legend>
-		<p>
+		<p style="width: 100%;">
 			<?php echo __('ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos, donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio.', true); ?>
 			<?php // echo __('ComoPromos gives you a warm welcome to our suggestions and complaints page. Here you can give us input about your opinions regarding us giving you a better service', true); ?> 
 			<br /><br />
-			<?php echo __('Por medio de nuestro correo electrónico <span>servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones.', true); ?>
+			<?php echo __('Por medio de nuestro correo electrónico <span> servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones.', true); ?>
 			<?php // echo __('Through our email <span>servicioalcliente@comopromos.com</span> or our phone line <span>057 2 664 97 34</span> we are willing to provide fast and effective attention to your observations.', true); ?>
 		</p>
 		<?php echo $this -> Form -> create('Pages', array('controller' => 'pages', 'action' => 'dudas')); ?>
@@ -55,6 +55,6 @@
 		</fieldset>
 	</div>
 	<div class="imagen_formularios">
-		<img src="/img/Sugerencias y reclamos.jpg" width="450"/>
+		<img src="/img/Sugerencias y reclamos.jpg" width="455"/>
 	</div>
 </div>

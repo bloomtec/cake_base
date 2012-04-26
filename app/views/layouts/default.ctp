@@ -57,7 +57,7 @@
 		echo $scripts_for_layout;
 		?>
 	</head>
-	<body>
+	<body id="<?php echo $this->name ?>">
 		<?php
 		if ($this -> Session -> read('Auth.User.id')) {
 			echo $this -> element('score-box');
