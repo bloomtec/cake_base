@@ -22,7 +22,7 @@
 		echo $this -> Form -> input('zone_id', array('options' => array(), 'label' => __('Zona:', true), 'rel' => 'zone'));
 		echo $this -> Form -> input('cuisine_id', array('options' => array(), 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
 		echo $this -> Form -> input('price_range', array('options' => array(), 'label' => __('Rango De Precio:', true), 'rel' => 'price'));
-		echo $this -> Form -> submit(__('Buscar', true));
+		echo $this -> Form -> submit(__('Buscar', true),array('class'=>'buscar'));
 	?>
 </div>
 <script type='text/javascript'>
@@ -40,7 +40,7 @@
 			});
 			BJS.updateSelect($('#price_range'),"/deals/filterDataPrices/"+$('#city_id').val());
 		}
-		$('.submit').click(function(){
+		$('input.buscar').click(function(){
 		 	var url="city:"+$("#city_id").val()+"/zone:"+$("#zone_id").val()+"/cuisine:"+$("#cuisine_id").val()+"/price:"+$("#price_range").val();
 		 		document.location = "/"+url;
 		});
