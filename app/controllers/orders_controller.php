@@ -6,7 +6,22 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 	}
-
+	function changeStatus($id,$newState){
+		// debe validar tambien que la persona autenticada es la duela del restaurante de la orden de la promocion
+		//devuelve true o false
+		$order = $this -> Order -> read(null,$id);
+		$order['Order']['order_state_id']=$newState;
+		if($this -> Order -> save($order)){
+			if($newState==2){//APROBO LA PROMOCION
+				
+			}
+			echo json_encode(true);
+		}else{
+			echo json_encode(false);
+		}
+		
+		exit(0);
+	}
 	function orderStatus($lastOrderId){
 		$object=false;
 		switch ($this -> Auth -> user('role_id')) {

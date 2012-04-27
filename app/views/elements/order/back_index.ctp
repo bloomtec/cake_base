@@ -2,15 +2,16 @@
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
-	<tr  >
+	<tr>
+		<th>Restaurante</th>
 		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
-		<!--<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>-->
-		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
-		<th class="actions"><?php __('Acciones');?></th>
+		<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>
+		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
+		<!--<th class="actions"><?php __('Acciones');?></th> -->
 	</tr>
 	<?php
 	$i = 0;
@@ -22,6 +23,7 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
+		<td><?php echo $order['Deal']['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $order['Order']['code']; ?>&nbsp;</td>
 		<td>
 			<?php
@@ -51,15 +53,22 @@
 		</td>
 		-->
 		<td>
-			<?php echo $this -> Form -> input('order_state_id',array('options'=>$orderStates,'value'=>$order['OrderState']['id'],'label'=>false,'rel'=>$order['Order']['id']));  ?>
+			<?php echo $order['OrderState']['name']; ?>
 		</td>
+		<!--
 		<td class="actions">
 			<?php
 				echo $this->Html->link(__('Ver', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
-				
+				if($this -> Session -> read('Auth.User.role_id') == 4) {
+					if(!$order['Order']['is_approved']) {
+						echo $this->Html->link(__('Aprovar', true), array('action' => 'approve', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Approve',true)));
+					} else {
+						echo $this->Html->link(__('Editar', true), array('action' => 'edit', $order['Order']['id']),array('class'=>'edit icon','title'=>__('Edit',true)));
+					}
+				}
 			?>
-			archivar
 		</td>
+		-->
 	</tr>
 	<?php endforeach; ?>
 	</table>
@@ -79,36 +88,29 @@
 <script type="text/javascript">
  	var lastOrder="<?php echo $lastOrder; ?>";
 	$(function(){
-		$('select[rel]').change(function(){
-			BJS.JSON('/orders/changeStatus/'+$(this).attr('rel')+'/'+$(this).find('option:selected').val(),{},function(response){
-				if(response){
-					location.reload(true);
-				}else{
-					alert('<?php __('No se pudo actualizar el estado de la orden.')?>');
-				}
-			});
-			
-		});
 		setInterval(function(){
 			BJS.JSON('/orders/orderStatus/'+lastOrder,{},function(response){
 				if(response){
 					switch(response.event){
 						case "newOrder":
-						var tr="<tr class='no-vista nueva'>\
+						var tr="<tr class='1'>\
+									<td>"+response.value.Deal.Restaurant.name+"</td>\
 									<td>"+response.value.Order.code+"</td>\
 									<td>"+response.value.User.email+"</td>\
 									<td>"+response.value.Address.address+"</td>\
 									<td>"+response.value.Order.quantity+"</td>\
 									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
 									<td>"+"<input type='checkbox' disabled=''>"+"</td>\
-									<td>"+response.value.OrderState.name+"</td>\
+								</tr>";
+						$("table#orders tr:first-child").after(tr);
+						lastOrder=response.value.Order.id;
+						/*
+						 <td>"+response.value.OrderState.name+"</td>\
 									<td class='actions'>\
 										<a title='View' class='view icon' href='/owner/orders/view/"+response.value.Order.id+"'>Ver</a>\
 										<a title='Approve' class='edit icon' href='/owner/orders/approve/"+response.value.Order.id+"'>Aprovar</a>\
 									</td>\
-								</tr>";
-						$("table#orders tr:first-child").after(tr);
-						lastOrder=response.value.Order.id;
+						 * */
 						break;
 						
 					}
