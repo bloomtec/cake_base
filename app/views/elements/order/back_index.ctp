@@ -1,9 +1,24 @@
-<?php $mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado')?>
+<?php
+	$mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado');
+	//debug($orders);
+?>
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
+	<div class="orderFilter">
+		<?php echo $this -> Form -> create(); ?>
+		<table id="TableFilters">
+			<tr>
+				<td>Restaurante</td>
+				<td><?php echo $this -> Form -> input('Filtros.restaurante', array('label' => false, 'div' => false)); ?></td>
+				<td>Correo Usuario</td>
+				<td><?php echo $this -> Form -> input('Filtros.usuario', array('label' => false, 'div' => false)); ?></td>
+				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
+			</tr>
+		</table>
+	</div>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr>
-		<th>Restaurante</th>
+		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
 		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>

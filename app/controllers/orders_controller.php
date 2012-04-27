@@ -9,18 +9,21 @@ class OrdersController extends AppController {
 	function changeStatus($id,$newState){
 		// debe validar tambien que la persona autenticada es la duela del restaurante de la orden de la promocion
 		//devuelve true o false
-		$order = $this -> Order -> read(null,$id);
-		$order['Order']['order_state_id']=$newState;
-		if($this -> Order -> save($order)){
-			if($newState==2){//APROBO LA PROMOCION
-				
+		if($this -> isOwner($id)) {
+			$order = $this -> Order -> read(null,$id);
+			$order['Order']['order_state_id']=$newState;
+			if($this -> Order -> save($order)){
+				if($newState==2){//APROBO LA PROMOCION
+					$this -> approve($id);
+				}
+				echo json_encode(true);
+			}else{
+				echo json_encode(false);
 			}
-			echo json_encode(true);
-		}else{
-			echo json_encode(false);
+			exit(0);
+		} else {
+			// TODO : ?
 		}
-		
-		exit(0);
 	}
 	function orderStatus($lastOrderId){
 		$object=false;
@@ -46,14 +49,14 @@ class OrdersController extends AppController {
 		exit(0);
 	}
 	
-	function owner_approve($id) {
-		$this -> autoRender = false;
+	private function approve($id) {
+		//$this -> autoRender = false;
 		$this -> Order -> read(null, $id);
 		$this -> Order -> set('is_approved', true);
 		$this -> Order -> set('is_viewed', true);
 		$this -> Order -> save();
 		$this -> orderApprovedEmail($id);
-		$this -> redirect(array('action' => 'index'));
+		//$this -> redirect(array('action' => 'index'));
 	}
 	
 	private function getUserDealCount($deal_id = null, $user_id = null) {
@@ -214,12 +217,44 @@ class OrdersController extends AppController {
 	}
 
 	function admin_index() {
-		$this->paginate = array(
-		    'contain' => array('Deal'=>array('Restaurant'),'User','Address','OrderState'),
-		    'order'=> 'Order.id DESC',
-		);
-
-		$this -> set('orders', $this -> paginate());
+		if(!empty($this -> data)) {
+			//debug($this -> data);
+			$conditions = array();
+			if(!empty($this -> data['Filtros']['restaurante'])) {
+				$restaurants = $this -> Order -> Deal -> Restaurant -> find(
+					'list',
+					array(
+						'conditions' => array('Restaurant.name LIKE' => '%' . $this -> data['Filtros']['restaurante'] . '%'),
+						'fields' => array('Restaurant.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(!empty($this -> data['Filtros']['usuario'])) {
+				$users = $this -> Order -> User -> find(
+					'list',
+					array(
+						'conditions' => array('User.email LIKE' => '%' . $this -> data['Filtros']['usuario'] . '%'),
+						'fields' => array('User.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Order.user_id'] = $users;
+			}
+			$this->paginate = array(
+				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
+				'order'=> 'Order.id DESC',
+				'conditions' => $conditions
+			);
+			$this -> set('orders', $this -> paginate());
+		} else {
+			$this->paginate = array(
+				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
+				'order'=> 'Order.id DESC',
+			);
+			$this -> set('orders', $this -> paginate());
+		}
 	}
 
 	function admin_view($id = null) {
