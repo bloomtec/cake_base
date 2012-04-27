@@ -7,6 +7,7 @@ class Order extends AppModel {
 	var $sortable = false;
 	var $activable = false;
 	var $order = "Order.id DESC";
+	public $actsAs = array('Containable');
 	var $virtualFields = array(
 		'state' => 'SELECT `order_states`.`name` FROM `order_states` WHERE `order_states`.`id` = `Order.order_state_id`'
 	);

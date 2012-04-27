@@ -1,3 +1,4 @@
+<?php $mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado')?>
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
@@ -7,22 +8,17 @@
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
-		<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>
+		<!--<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>-->
 		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
 	foreach ($orders as $order):
-		$class = null;
-		if(!$order['Order']['is_viewed']){
-				$class = ' class="no-vista"';
-		}
+		$class =  ' class="'.$mapColor[$order['OrderState']['id']].'"';
+		
 		if ($i++ % 2 == 0) {
-			$class = ' class="altrow"';
-			if(!$order['Order']['is_viewed']){
-				$class = ' class="no-vista altrow"';
-			}
+			$class = ' class="altrow '.$mapColor[$order['OrderState']['id']].'"';
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
@@ -43,6 +39,7 @@
 		<td>
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
+		<!--
 		<td>
 			<?php
 				if($order['Order']['is_approved']) {
@@ -52,8 +49,9 @@
 				}
 			?>
 		</td>
+		-->
 		<td>
-			<?php echo $order['OrderState']['name']; ?>
+			<?php echo $this -> Form -> input('order_state_id',array('options'=>$orderStates,'value'=>$order['OrderState']['id'],'label'=>false,'rel'=>$order['Order']['id']));  ?>
 		</td>
 		<td class="actions">
 			<?php
@@ -86,6 +84,9 @@
 <script type="text/javascript">
  	var lastOrder="<?php echo $lastOrder; ?>";
 	$(function(){
+		$('select[rel]').change(function(){
+			alert($(this).attr('rel')+"=>"+$(this).find('option:selected').val());
+		});
 		setInterval(function(){
 			BJS.JSON('/orders/orderStatus/'+lastOrder,{},function(response){
 				if(response){

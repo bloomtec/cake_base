@@ -199,7 +199,11 @@ class OrdersController extends AppController {
 	}
 
 	function admin_index() {
-		$this -> Order -> recursive = 0;
+		$this->paginate = array(
+		    'contain' => array('Deal'=>array('Restaurant'),'User','Address','OrderState'),
+		    'order'=> 'Order.id DESC',
+		);
+
 		$this -> set('orders', $this -> paginate());
 	}
 
@@ -218,9 +222,10 @@ class OrdersController extends AppController {
 		$restaurants = $this -> Order -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.zone_id' => $zones), 'fields' => array('Restaurant.id')));
 		$deals = $this -> Order -> Deal -> find('list', array('conditions' => array('Deal.restaurant_id' => $restaurants), 'fields' => array('Deal.id')));
 		
-		$this -> paginate = array('conditions' => array('Order.deal_id' => $deals));
+		$this -> paginate = array('contain' => array('Deal'=>array('Restaurant'),'User','Address','OrderState'),'conditions' => array('Order.deal_id' => $deals));
 		
 		$this -> set('orders', $this -> paginate());
+		$this -> set('orderStates', $this -> Order -> OrderState -> find('list'));
 	}
 
 	function manager_view($id = null) {
@@ -238,8 +243,8 @@ class OrdersController extends AppController {
 		$deals = $this -> Order -> Deal -> find('list', array('conditions' => array('Deal.restaurant_id' => $restaurants), 'fields' => array('Deal.id')));
 		
 		$this -> paginate = array('conditions' => array('Order.deal_id' => $deals));
-		
 		$this -> set('orders', $this -> paginate());
+		$this -> set('orderStates', $this -> Order -> OrderState -> find('list'));
 	}
 
 	function owner_view($id = null) {
