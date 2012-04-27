@@ -101,7 +101,7 @@ class OrdersController extends AppController {
 					}
 				}
 				
-				if(isset($this -> data['User'])) {
+				if(isset($this -> data['User']['email'])) {
 					if($this -> Order -> User -> findByEmail(trim($this -> data['User']['email']))) {
 						$this -> Session -> setFlash(__('Este correo ya está registrado. Por favor inicia sesión', true));
 						$this -> redirect('/deals');
