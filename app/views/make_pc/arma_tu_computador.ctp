@@ -170,11 +170,11 @@ echo $html -> script('tab-pc.js');
 				<li>Paso Siguiente</li>
 			</ul>
 		</a>
-		<!--<a href="#" class='pagar'>
+		<a href="#" class='pagar'>
 			<ul>
 				<li>Pagar</li>
 			</ul>
-		</a>-->
+		</a>
 		<div style="clear: both"></div>
 	</div>
 </div>
