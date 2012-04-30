@@ -26,7 +26,7 @@ $(function() {
 				return true;
 			}	
 		}else{// no selecciono el procesador
-			$('.pc-error').html(errorMessage).show();
+			$('.pc-error').html("<p>"+errorMessage+"</p>").show();
 			return false;
 		}	
 	}	
@@ -68,7 +68,9 @@ $(function() {
 	
 
 	pc.opticalDriveFunctionality = function(fromTab,toTab){
-	
+		var $return = false;
+		$return = pc.checkItem('.cases','Debe seleccionar una torre.')
+		return $return;
 	}
 	
 	pc.monitorFunctionality = function(fromTab,toTab){

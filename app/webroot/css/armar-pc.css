@@ -28,6 +28,7 @@
 	font-size:11px;
 	display:block;
 	width: 111px;
+	width:98px;
 	text-align:center;	
 	text-decoration:none;siguiente 
 	color:#000;
@@ -91,7 +92,7 @@
 .scrollable {
 	position:relative;
 	overflow:hidden;
-	width: 610px;
+	width: 100%;
 	height:115px;
 	float: left;
 }
@@ -108,9 +109,9 @@
 	font-weight: bold;
 	color: #424242;
 	text-align: center;
-	margin-right: 10px;
+	margin-right: 3px;
 	height: 100px;
-	padding:5px;
+	padding:2.5px;
 }
 .tabs.items a.current{
 	background-image: url(/img/trama_aplicacion_item.png);
@@ -208,13 +209,16 @@
 	text-align: center;
 	height: 67px;
 }
+.img_wrapper img{
+	
+}
 #resumen{
 	float: right;
-    height: 560px;
+    height: 400px;
     width: 256px;
     background-color: #e9e9e9;
+    padding-bottom:18px;
     margin-top: 6px;
-    margin-bottom: 20px;
     background-image: url(/img/trama_resumen.png);
 	background-position: top left;
 	background-repeat: repeat-y;
@@ -358,9 +362,9 @@
 .browse{
 	background-color: #B5B3B1;
     float: left;
-    height: 37px;
-    margin-bottom: 15px;
-    width: 71%;
+    height: 30px;
+    margin-bottom: 10px;
+    width: 100%;
     
 }
 .browse .wrapper_browse{
@@ -373,15 +377,15 @@
 .siguiente_paso{
     background-image:url(/img/siguiente_act.png);
 	display: block;
-	width: 37px;
-	height:36px;
+	width:30px;
+	height:30px;
 	float:left;
 }
 .paso_anterior{
-	background-image:url(/img/atras_des.png);
+	background-image:url(/img/atras_act.png);
 	display: block;
-	width: 37px;
-	height:36px;
+	width:30px;
+	height:30px;
 	float:left;
 }
 .pagar{

@@ -8,8 +8,8 @@
 	}
 ?>
 <div class="exclusivo" rel="Memory">	
-	<h3>Memoria:</h3>
+	<h3>Memoria (1 módulo):</h3>
 	<?php echo $form -> radio('memory_id1', $items, array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
-	<h3>Segunda Memoria (opcional):</h3>
+	<h3>Memoria (2 módulos):</h3>
 	<?php echo $form -> radio('memory_id2', $items, array('legend'=>false,'value'=>$selectedId2, 'rel'=>'2')); ?>	
 </div>

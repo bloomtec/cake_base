@@ -7,7 +7,7 @@
 		$selectedId2 = $selected_id_2;
 	}
 ?>
-<div class="exclusivo" rel="VideoCard">
+<div class="exclusivo opcional" rel="VideoCard">
 	<h3>Tarjeta de Video (opcional):</h3>
 	<?php echo $form->radio('video_card_id1',$items,array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>
 	<h3>Segunda tarjeta de Video (opcional):</h3>

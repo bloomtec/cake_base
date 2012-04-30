@@ -49,15 +49,15 @@ $(function(){
 	var scrollApi = $(".scrollable").data('scrollable');
 	var tabsApi = $("ul.tabs").data("tabs");
 	$('.siguiente_paso').click(function(){
-		if(tabsApi.getIndex() == 4){
+		/*if(tabsApi.getIndex() == 9){
 			scrollApi.next();
-		}
+		}*/
 		tabsApi.next();
 	});
 	$('.paso_anterior').click(function(){
-		if(tabsApi.getIndex() == 5){
+		/*if(tabsApi.getIndex() == 10){
 			scrollApi.prev();
-		}
+		}*/
 		tabsApi.prev();
 	});
 	$('.browse a').click(function(e){

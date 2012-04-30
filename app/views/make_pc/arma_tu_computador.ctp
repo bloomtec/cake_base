@@ -158,7 +158,7 @@ echo $html -> script('tab-pc.js');
 	
 </div>
 
-<div class='browse'>
+<div class='browse'  style='clear:both;'>
 	<div class="wrapper_browse">
 		<a href="#" class="paso_anterior">
 			<ul>
@@ -170,11 +170,11 @@ echo $html -> script('tab-pc.js');
 				<li>Paso Siguiente</li>
 			</ul>
 		</a>
-		<a href="#" class='pagar'>
+		<!--<a href="#" class='pagar'>
 			<ul>
 				<li>Pagar</li>
 			</ul>
-		</a>
+		</a>-->
 		<div style="clear: both"></div>
 	</div>
 </div>
