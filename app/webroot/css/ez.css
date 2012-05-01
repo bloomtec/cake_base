@@ -819,3 +819,28 @@ table#orders  tr.entregado td{
 	background-image: -o-linear-gradient(top, #009900, #00FF00);
 	background-image: linear-gradient(top, #009900, #00FF00);
 }
+#TableFilters input, #TableFilters select{
+	
+	font-size: 90%;
+}
+#TableFilters td{
+	padding:0;
+	vertical-align: middle;
+}
+#TableFilters .submit input{
+	width: 85px;
+}
+#FiltrosFechaInicioMonth,
+#FiltrosFechaFinMonth{
+	width:50px;
+}
+
+#FiltrosFechaInicioDay,
+#FiltrosFechaFinDay{
+	width:40px;
+}
+#FiltrosFechaInicioYear,
+#FiltrosFechaFinYear{
+	width:55px;
+}
+
