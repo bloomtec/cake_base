@@ -272,7 +272,10 @@ class OrdersController extends AppController {
 		$restaurants = $this -> Order -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.zone_id' => $zones), 'fields' => array('Restaurant.id')));
 		$deals = $this -> Order -> Deal -> find('list', array('conditions' => array('Deal.restaurant_id' => $restaurants), 'fields' => array('Deal.id')));
 		
-		$this -> paginate = array('contain' => array('Deal'=>array('Restaurant'),'User','Address','OrderState'),'conditions' => array('Order.deal_id' => $deals));
+		$this -> paginate = array(
+			'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
+			'conditions' => array('Order.deal_id' => $deals)
+		);
 		
 		$this -> set('orders', $this -> paginate());
 		$this -> set('orderStates', $this -> Order -> OrderState -> find('list'));
