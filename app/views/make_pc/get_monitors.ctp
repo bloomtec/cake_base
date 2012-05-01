@@ -8,9 +8,13 @@
 	}
 ?>
 
-<div class="inclusivo opcional" rel="Monitor">
-	<h3>Monitor</h3>
+<div class="inclusivo opcional">
+	<div class="col" rel="Monitor">
+	<h2>Monitor</h2>
 	<?php echo $form->radio('monitor_id1',$items,array('legend'=>false,'value'=>$selectedId1, 'rel'=>'1')); ?>	
-	<h3>Segundo Monitor (opcional):</h3>
+	</div>
+	<div class="col" rel="Monitor">
+	<h2>Segundo Monitor (opcional):</h2>
 	<?php echo $form->radio('monitor_id2',$items,array('legend'=>false,'value'=>$selectedId2, 'rel'=>'2')); ?>	
+	</div>
 </div>

@@ -154,19 +154,24 @@
 .panes{
 	float: left;
     min-height: 390px;
-    padding: 20px;
-    width: 654px;
+    padding: 0;
+    width: 690px;
     padding-bottom:10px;
 }
-.panes h1{
-	font-size: 13px;
-    font-style: italic;
-    margin-bottom: 15px;
+#content .panes h1{
+	font-size:25px;
+	text-transform: uppercase;
+	margin-bottom:15px;
+	font-style: italic;
 }
 .panes h2{
 	margin-bottom: 6px;
     margin-top: 14px;
     font-style: italic;
+    font-size: 18px;
+}
+.panes .input.select{
+	margin-left:0;
 }
 .panes p{
 	font-size:11px;
@@ -233,9 +238,12 @@
 .tabla-resumen-productos{
 	margin-top: 10px;
 }
+.info-producto{
+	height: 2.5em;
+}
 .categoria-producto, .nombre-total{
 	color: #FF7800;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     padding-left: 12px;
 }
@@ -352,13 +360,7 @@
 	height:20px;
 	clear:both;
 }
-/*.browse{
-	 float: left;
-    height: 55px;
-    margin-bottom: 15px;
-    margin-left: 305px;
-    width: 115px;
-}*/
+
 .browse{
 	background-color: #B5B3B1;
     float: left;
@@ -396,18 +398,7 @@
 	float:left;
 }
 
-/* opcion 1
-.browse a ul{
-	bottom: -15px;
-    display: block;
-    position: absolute;
-    width: 90px;
-    color: #000;
-}
-.browse a.siguiente_paso ul{
-	left:-25px;
-}
-*/
+
 .browse a ul{
 	bottom: 11px;
     opacity:0;
@@ -448,17 +439,22 @@
 .pc-error{
 	background-color: #FF7800;
 	background-color: #FF7800;
-    height: 30px;
+    height: 60px;
+    text-transform:uppercase;
     width: 100%;
     -moz-box-shadow: 0px 1px 4px #222222;
 	-webkit-box-shadow: 0px 1px 4px #222222;
 	box-shadow: 0px 1px 4px #222222;
 }
 .pc-error p{
-	font-size: 13px;
+	font-size: 22px;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 20px;
     text-align: center;
     width: 100%;
     color: #FFFFFF;
+}
+div.col{
+	width: 50%;
+	float:left;
 }
