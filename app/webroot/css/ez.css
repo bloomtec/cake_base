@@ -795,6 +795,7 @@ table#orders  tr.despachado td{
 	background-image: -webkit-linear-gradient(top,  #68C6E6, #0000FF);
 	background-image: -o-linear-gradient(top,  #68C6E6, #0000FF);
 	background-image: linear-gradient(top,  #68C6E6, #0000FF);
+	color:white;
 }
 table#orders tr.rechazado td{
 	background: #c43c35;

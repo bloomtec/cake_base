@@ -19,12 +19,13 @@
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr>
 		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
+		<th><?php echo $this->Paginator->sort('Código de orden', 'code');?></th>
+		<th>Forma de pago</th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
-		<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>
+		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
 		<!--<th class="actions"><?php __('Acciones');?></th> -->
 	</tr>
@@ -40,6 +41,14 @@
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
 		<td><?php echo $order['Deal']['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $order['Order']['code']; ?>&nbsp;</td>
+		<td style="text-align: center">
+			<?php 
+			 if($order['Order']['is_paid_with_cash']){
+			 		echo $this -> Html -> image('88.png',array('height'=>'45','title'=>'EFECTIVO','alt'=>'EFECTIVO'));
+			 } else{
+			 	echo $this -> Html -> image('60.png',array('height'=>'40','title'=>'BONO','alt'=>'BONO'));
+			 }
+			?>&nbsp;</td>
 		<td>
 			<?php
 				if($this -> Session -> read('Auth.User.role_id') == 1) {
