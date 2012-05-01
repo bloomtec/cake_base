@@ -242,6 +242,13 @@ class OrdersController extends AppController {
 				);
 				$conditions['Order.user_id'] = $users;
 			}
+			if(!empty($this -> data['Filtros']['pago_efectivo'])) {
+				if($this -> data['Filtros']['pago_efectivo'] == 'si') {
+					$conditions['Order.is_paid_with_cash'] = 1;
+				} elseif($this -> data['Filtros']['pago_efectivo'] == 'no') {
+					$conditions['Order.is_paid_with_cash'] = 0;
+				}
+			}
 			$this->paginate = array(
 				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
 				'order'=> 'Order.id DESC',

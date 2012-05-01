@@ -12,6 +12,9 @@
 				<td><?php echo $this -> Form -> input('Filtros.restaurante', array('label' => false, 'div' => false)); ?></td>
 				<td>Correo Usuario</td>
 				<td><?php echo $this -> Form -> input('Filtros.usuario', array('label' => false, 'div' => false)); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('type' => 'select', 'options' => array('' => '¿Pago En Efectivo?', 'si' => 'Sí', 'no' => 'No'), 'label' => false, 'div' => false)); ?></td>
+				<td>Fecha</td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha', array('type' => 'date', 'label' => false, 'div' => false)); ?></td>
 				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
 			</tr>
 		</table>
@@ -20,11 +23,12 @@
 	<tr>
 		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
 		<th><?php echo $this->Paginator->sort('Código de orden', 'code');?></th>
-		<th>Forma de pago</th>
+		<th><?php echo $this->Paginator->sort('Forma de pago', 'Order.is_paid_with_cash');?></th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
+		<th><?php echo $this->Paginator->sort('Fecha', 'Order.created');?></th>
 		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
 		<!--<th class="actions"><?php __('Acciones');?></th> -->
@@ -65,6 +69,7 @@
 		<td>
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
+		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
 		<!--
 		<td>
 			<?php
