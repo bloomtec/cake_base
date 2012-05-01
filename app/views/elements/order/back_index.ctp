@@ -8,13 +8,11 @@
 		<?php echo $this -> Form -> create(); ?>
 		<table id="TableFilters">
 			<tr>
-				<td>Restaurante</td>
-				<td><?php echo $this -> Form -> input('Filtros.restaurante', array('label' => false, 'div' => false)); ?></td>
-				<td>Correo Usuario</td>
-				<td><?php echo $this -> Form -> input('Filtros.usuario', array('label' => false, 'div' => false)); ?></td>
-				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('type' => 'select', 'options' => array('' => '¿Pago En Efectivo?', 'si' => 'Sí', 'no' => 'No'), 'label' => false, 'div' => false)); ?></td>
-				<td>Fecha</td>
-				<td><?php echo $this -> Form -> input('Filtros.fecha', array('type' => 'date', 'label' => false, 'div' => false)); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.restaurante'); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.usuario'); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('label' => 'Forma De Pago', 'type' => 'select', 'options' => array('' => 'Seleccione...', 'si' => 'Efectivo', 'no' => 'Bono'))); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_inicio', array('type' => 'date')); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_fin', array('type' => 'date')); ?></td>
 				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
 			</tr>
 		</table>
