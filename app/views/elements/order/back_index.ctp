@@ -5,7 +5,7 @@
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<div class="orderFilter">
-		<?php echo $this -> Form -> create(); ?>
+		<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
 		<table id="TableFilters">
 			<tr>
 				<td><?php echo $this -> Form -> input('Filtros.restaurante'); ?></td>
