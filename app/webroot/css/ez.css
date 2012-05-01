@@ -775,6 +775,7 @@ div.code-coverage-results span.result-good {
 
 table#orders tr td{
 	border: 1px solid rgba(0, 0, 0, 0.5);
+	vertical-align: middle;
 }
 table#orders  tr.pendiente td{
 	background: #ffcc00;
