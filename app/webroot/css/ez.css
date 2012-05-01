@@ -790,12 +790,12 @@ table#orders  tr.pendiente td{
 table#orders  tr.despachado td{
 	background:  #68C6E6;
 	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top,  #68C6E6, #0000FF);
-	background-image: -ms-linear-gradient(top,  #68C6E6, #0000FF);
-	background-image: -webkit-gradient(linear, left top, left bottom, from( #68C6E6), to(#0000FF));
-	background-image: -webkit-linear-gradient(top,  #68C6E6, #0000FF);
-	background-image: -o-linear-gradient(top,  #68C6E6, #0000FF);
-	background-image: linear-gradient(top,  #68C6E6, #0000FF);
+	background-image: -moz-linear-gradient(top,  #68C6E6, #049AE1);
+	background-image: -ms-linear-gradient(top,  #68C6E6, #049AE1);
+	background-image: -webkit-gradient(linear, left top, left bottom, from( #68C6E6), to(#049AE1));
+	background-image: -webkit-linear-gradient(top,  #68C6E6, #049AE1);
+	background-image: -o-linear-gradient(top,  #68C6E6, #049AE1);
+	background-image: linear-gradient(top,  #68C6E6, #049AE1);
 	color:white;
 }
 table#orders tr.rechazado td{
