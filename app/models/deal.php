@@ -152,7 +152,8 @@ class Deal extends AppModel {
 
 	function beforeSave(){
 		if($this->sluggable){
-			$this->data['Deal']['slug'] = strtolower(str_ireplace(" ", "-", $this->data['Deal']['name']));
+			$this->data['Deal']['slug'] =strtolower(str_ireplace(" ", "-", $this->data['Deal']['name']));
+			$this->data['Deal']['slug'] =strtolower(str_ireplace("+", "mas", $this->data['Deal']['slug']));
 		}
 		if($this->data['Deal']['is_promoted'] && empty($this->data['Deal']['image_large'])) {
 			return false;

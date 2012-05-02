@@ -7,7 +7,7 @@
 		echo $this -> Form -> input('email', array('label' => __('Correo Electrónico', true)));
 		echo $this -> Form -> input('password', array('label' => __('Contraseña', true))); 
 		echo $this -> Session -> flash('auth');
-		echo $this -> Form -> end(__('Iniciar Sesión', true));
+		echo $this -> Form -> end(__('Ingresar', true));
 	?>
 	</fieldset>
 </div>

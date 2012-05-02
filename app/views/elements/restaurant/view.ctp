@@ -54,7 +54,6 @@
 		<th><?php __('Name'); ?></th>
 		<th><?php __('Description'); ?></th>
 		<th><?php __('Image'); ?></th>
-		<th><?php __('Amount'); ?></th>
 		<th><?php __('Price'); ?></th>
 		<th><?php __('Max Buys'); ?></th>
 		<th><?php __('Visits'); ?></th>
@@ -74,7 +73,6 @@
 			<td><?php echo $deal['name'];?></td>
 			<td><?php echo $deal['description'];?></td>
 			<td><?php echo $this->Html->image('/img/uploads/50x50/'.$deal['image']); ?></td>
-			<td><?php echo $deal['amount'];?></td>
 			<td><?php echo $deal['price'];?></td>
 			<td><?php echo $deal['max_buys'];?></td>
 			<td><?php echo $deal['visits'];?></td>
