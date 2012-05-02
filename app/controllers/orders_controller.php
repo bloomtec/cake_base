@@ -29,7 +29,7 @@ class OrdersController extends AppController {
 		$object=false;
 		switch ($this -> Auth -> user('role_id')) {
 			case '1': //ADMIN
-				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId),'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState')));
 				if($lastOrder){
 					$object=array('event'=>'newOrder','value'=>$lastOrder);
 				}

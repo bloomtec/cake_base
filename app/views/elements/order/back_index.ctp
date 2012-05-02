@@ -120,14 +120,17 @@
 				if(response){
 					switch(response.event){
 						case "newOrder":
-						var tr="<tr class='1'>\
+						formaDePago=response.value.Order.is_paid_with_cash?'<img height="45" alt="EFECTIVO" title="EFECTIVO" src="/img/88.png">':'<img height="40" alt="BONO" title="BONO" src="/img/60.png">';
+						var tr="<tr class='pendiente'>\
 									<td>"+response.value.Deal.Restaurant.name+"</td>\
 									<td>"+response.value.Order.code+"</td>\
-									<td>"+response.value.User.email+"</td>\
+									<td>"+formaDePago+"</td>\
+									<td><a href='/admin/users/view/"+response.value.User.id+"'>"+response.value.User.email+"</a></td>\
 									<td>"+response.value.Address.address+"</td>\
 									<td>"+response.value.Order.quantity+"</td>\
 									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
-									<td>"+"<input type='checkbox' disabled=''>"+"</td>\
+									<td>"+response.value.Deal.created+"</td>\
+									<td>"+response.value.OrderState.name+"</td>\
 								</tr>";
 						$("table#orders tr:first-child").after(tr);
 						lastOrder=response.value.Order.id;
