@@ -116,7 +116,7 @@
  	var lastOrder="<?php echo $lastOrder; ?>";
 	$(function(){
 		setInterval(function(){
-			BJS.JSON('/orders/orderStatus/'+lastOrder,{},function(response){
+			BJS.JSON('/orders/orderStatus/23/'+lastOrder,{},function(response){
 				if(response){
 					switch(response.event){
 						case "newOrder":

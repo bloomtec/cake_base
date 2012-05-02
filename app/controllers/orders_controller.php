@@ -34,6 +34,14 @@ class OrdersController extends AppController {
 					$object=array('event'=>'newOrder','value'=>$lastOrder);
 				}
 				break;
+				
+			case '2': //OWNER
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId),'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState')));
+				if($lastOrder && $this -> isManager($lastOrder['Order']['id'])){
+					$object=array('event'=>'newOrder','value'=>$lastOrder);
+				}
+				break;
+				
 			case '4': //OWNER
 				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
 				if($lastOrder && $this -> isOwner($lastOrder['Order']['id'])){
