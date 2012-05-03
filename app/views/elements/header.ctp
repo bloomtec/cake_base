@@ -3,9 +3,9 @@
 		<img src="/img/logo.jpg" style="display: none;" />
 		<div class="tooltip_login ajax_login">
 			<?php echo $this -> Form -> create('User', array('action' => 'ajaxLogin')); ?>
-			<label for="email">E-mail:</label>
+			<label for="email"><?php __('E-mail'); ?>:</label>
 			<input type="email" required="required" name="data[User][email]" id="email" class="input_text">
-			<label for="password">Password:</label>
+			<label for="password"><?php __('Contraseña'); ?>:</label>
 			<input type="password" required="required" name="data[User][password]" id="password" class="input_text">
 			<span class="message"> &nbsp;
 			</span>
@@ -18,12 +18,12 @@
 		</div>
 		<a href="/" class="logo_header"></a>
 		<p>
-			Dile a tu amigos que hay para comer  y acumula <span class='dinero'>dinero</span> para tus proximas compras.
+			<?php __('Dile a tu amigos que hay para comer y acumula'); ?> <span class='dinero'><?php __('dinero'); ?></span> <?php __('para tus proximas compras.'); ?>
 			
 			<br />
 			<br />
 			<?php if($this -> Session -> read('Auth.User.id')) : ?>
-			<a href="/users/refer"> <span class='dinero'>¡INVITAR A MIS AMIGOS!</span></a>
+			<a href="/users/refer"> <span class='dinero'><?php __('¡INVITAR A MIS AMIGOS!'); ?></span></a>
 			<?php endif; ?>
 		</p>
 		<div class="sesion">

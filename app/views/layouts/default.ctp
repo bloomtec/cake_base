@@ -74,32 +74,32 @@
 			<div id="footer">
 				<div class="wrapper">
 					<div class="izquierda">
-						<h1>Terminos y condiciones</h1>
+						<h1><?php __('Terminos y condiciones'); ?></h1>
 						<p>
-							Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web.
+							<?php __('Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web.'); ?>
 							<br/>
 							<br/>
-							Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.
+							<?php __('Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.'); ?>
 							<br/>
-							<a class="ver_mas" href="/pages/terminosYCondiciones">Ver Más</a>
+							<a class="ver_mas" href="/pages/terminosYCondiciones"><?php __('Ver Más'); ?></a>
 						</p>
 						<div style="clear: both"></div>
-						<a href="/pages/comoComprar">Cómo comprar</a>
-						<a href="/pages/nuestraEmpresa">Nuestra empresa</a>
-						<a href="/pages/dudas">¿Tienes alguna sugerencia, queja o reclamo?</a>
-						<a href="/pages/sugierenos">Sugierenos un restaurante</a>
-						<a href="/pages/privacidad">Privacidad</a>
-						<a href="/pages/contacto">Contáctenos</a>
+						<a href="/pages/comoComprar"><?php __('Cómo comprar'); ?></a>
+						<a href="/pages/nuestraEmpresa"><?php __('Nuestra empresa'); ?></a>
+						<a href="/pages/dudas"><?php __('¿Tienes alguna sugerencia, queja o reclamo?'); ?></a>
+						<a href="/pages/sugierenos"><?php __('Sugierenos un restaurante'); ?></a>
+						<a href="/pages/privacidad"><?php __('Privacidad'); ?></a>
+						<a href="/pages/contacto"><?php __('Contáctenos'); ?></a>
 					</div>
 					<div class="derecha">
-						<h1>Recomienda esta página a tus amigos</h1>
+						<h1><?php __('Recomienda esta página a tus amigos'); ?></h1>
 						<?php $code = $this -> requestAction('/users/getCode');?>
 						<a class="compartir"href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".Configure::read('site_domain').'/users/register/').$code;?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>
 						<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 						 <!-- <a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com&amp;via=your_screen_name" class="boton-twitter">Compartir en twitter</a>--> 
 						<a  onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode(urlencode("http://".Configure::read('site_domain').'/users/register/').$code);?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="boton-twitter" target="_blank" style='cursor:pointer;'><img src="/img/twitter.png" /></a>
 					</div>
-					<a class="volver_arriba" href="#">Volver Arriba</a>
+					<a class="volver_arriba" href="#"><?php __('Volver Arriba'); ?></a>
 					<div style="clear: both"></div>
 				</div>
 			</div>

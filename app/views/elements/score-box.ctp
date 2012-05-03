@@ -1,7 +1,7 @@
 <div class="score-box">
  <?php __("Tienes: "); ?><br /> <span>&nbsp;&nbsp;</span>	
  <p>
- 	acumulados
+ 	<?php __('acumulados'); ?>
  </p>		
 </div>
 <script type="text/javascript">

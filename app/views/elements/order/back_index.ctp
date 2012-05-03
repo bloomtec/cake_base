@@ -8,11 +8,11 @@
 		<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
 		<table id="TableFilters">
 			<tr>
-				<td><?php echo $this -> Form -> input('Filtros.restaurante'); ?></td>
-				<td><?php echo $this -> Form -> input('Filtros.usuario'); ?></td>
-				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('label' => 'Forma De Pago', 'type' => 'select', 'options' => array('' => 'Seleccione...', 'si' => 'Efectivo', 'no' => 'Bono'))); ?></td>
-				<td><?php echo $this -> Form -> input('Filtros.fecha_inicio', array('type' => 'date')); ?></td>
-				<td><?php echo $this -> Form -> input('Filtros.fecha_fin', array('type' => 'date')); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.restaurante', array('label' => __('Restaurante', true))); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.usuario', array('label' => __('Usuario', true))); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('label' => __('Forma De Pago', true), 'type' => 'select', 'options' => array('' => 'Seleccione...', 'si' => 'Efectivo', 'no' => 'Bono'))); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_inicio', array('label' => __('Fecha Inicio', true), 'type' => 'date')); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_fin', array('label' => __('Fecha Fin', true), 'type' => 'date')); ?></td>
 				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
 			</tr>
 		</table>
@@ -20,14 +20,14 @@
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr>
 		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Código de orden', 'code');?></th>
-		<th><?php echo $this->Paginator->sort('Forma de pago', 'Order.is_paid_with_cash');?></th>
-		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
-		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
-		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
-		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
-		<th><?php echo $this->Paginator->sort('Fecha', 'Order.created');?></th>
-		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Código de orden', true), 'code');?></th>
+		<th><?php echo $this->Paginator->sort(__('Forma de pago', true), 'Order.is_paid_with_cash');?></th>
+		<th><?php echo $this->Paginator->sort(__('Usuario', true), 'user_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Dirección', true), 'address_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Cantidad', true), 'quantity');?></th>
+		<th><?php echo $this->Paginator->sort(__('Promoción', true), 'deal_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Fecha', true), 'Order.created');?></th>
+		<th><?php echo $this->Paginator->sort(__('Estado', true), 'order_state_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
 		<!--<th class="actions"><?php __('Acciones');?></th> -->
 	</tr>

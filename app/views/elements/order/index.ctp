@@ -3,11 +3,11 @@
 	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr  >
-		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
-		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
-		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
-		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
-		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Código', true), 'code');?></th>
+		<th><?php echo $this->Paginator->sort(__('Usuario', true), 'user_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Dirección', true), 'address_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Cantidad', true), 'quantity');?></th>
+		<th><?php echo $this->Paginator->sort(__('Promoción', true), 'deal_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>-->
 		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<th class="actions"><?php __('Acciones');?></th>
