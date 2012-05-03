@@ -27,7 +27,59 @@
 </div>
 <script type='text/javascript'>
 	$(function() {
-		cityFunctionality();
+		/* leer los campos de la busqueda en la URL, etc */
+		Object.size = function(obj) {
+			var size = 0, key;
+			for (key in obj) {
+				if (obj.hasOwnProperty(key)) size++;
+			}
+			return size;
+		};
+		var path = document.location.pathname;
+		path = path.substring(1);
+		path = path.split('/');
+		var pathSize = Object.size(path);
+		if(pathSize == 4) {
+			// coincide con tener 4 datos, buscar si son los de la busqueda
+			$.each(path, function(index, value) {
+				path[index] = value.split(':');
+			});
+			var city = -1, zone = -1, cuisine = -1, price = -1;
+			$.each(path, function(index, value) {
+				if(value[0] == 'city') {
+					city = value[1];
+				}
+				if(value[0] == 'zone') {
+					zone = value[1];
+				}
+				if(value[0] == 'cuisine') {
+					cuisine = value[1];
+				}
+				if(value[0] == 'price') {
+					price = value[1];
+				}
+			});
+			if(city >= 0 && zone >= 0 && cuisine >= 0 && price != -1) {
+				// los campos estan bn, proceder a seleccionar los selects.
+				$('#city_id').val(city);
+				cityFunctionality();
+				if(zone > 0) {
+					$('#zone_id').val(zone);
+					BJS.updateSelect($('#cuisine_id'),"/deals/filterDataCuisines/"+$('#city_id').val()+"/"+$('#zone_id').val());
+				}
+				if(cuisine > 0) {
+					$("#cuisine_id").val(cuisine);
+				}
+				if(price != -1) {
+					$("#price_range").val(price);
+				}
+			} else {
+				cityFunctionality();
+			}
+		} else {
+			cityFunctionality();
+		}
+		/* funcionalidad de siempre */
 		$('.filtros.default select[id="city_id"]').change(function() {
 			cityFunctionality();
 		});
