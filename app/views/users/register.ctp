@@ -34,7 +34,7 @@
 				<?php
 					// Código del referente si lo hay
 					if(isset($referer_code) && !empty($referer_code)) {
-						debug($referer_code);
+						//debug($referer_code);
 						echo $this -> Form -> hidden('referer_code', array('value' => $referer_code));
 					}
 					// Datos personales
@@ -48,6 +48,7 @@
 					// Direccion
 					echo $this -> Form -> hidden('Address.name', array('label' => __('Nombre', true), 'required' => 'required', 'value' => 'default'));
 					echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> input('Address.another_zone', array('label' => '', 'style' => 'visibility: hidden;', 'after'=>'<span style="visibility: hidden;" class="field_required afterSpan">*</span>'));
 					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
 					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true)));
 				?>
@@ -92,7 +93,7 @@
 	<div style="clear: both"></div>
 </div>
 
-<script type='text/javascript'> 
+<script type='text/javascript'>
 $(function(){
 	
 	$('#UserLoginForm').validator({lang:'es',position:"bottom left"});
@@ -100,6 +101,7 @@ $(function(){
 	if($('#UserCountryId').val()) {
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
 		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$('#UserCityId').val());
+		$('#AddressZoneId').append('<option value="otro">Otro barrio...</option>');
 	} 
 	$('#UserCountryId').change(function(){
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
@@ -107,6 +109,20 @@ $(function(){
 	
 	$('#UserCityId').change(function(){
 		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$(this).val());
+		$('#AddressZoneId').append('<option value="otro">Otro barrio...</option>');
+	});
+	
+	$('#AddressZoneId').change(function() {
+		if($('#AddressZoneId').val() == 'otro') {
+			$('#AddressAnotherZone').css('visibility', 'visible');
+			$('.afterSpan').css('visibility', 'visible');
+			$('#AddressAnotherZone').attr('required', 'required');
+		} else {
+			$('#AddressAnotherZone').removeAttr('required', 'required');
+			$('#AddressAnotherZone').removeClass('invalid');
+			$('#AddressAnotherZone').css('visibility', 'hidden');
+			$('.afterSpan').css('visibility', 'hidden');
+		}
 	});
 	
 	$('#UserAjaxRegisterForm').validator({lang:'es',position:"bottom left"}).submit(function(e){

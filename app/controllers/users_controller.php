@@ -94,8 +94,21 @@ class UsersController extends AppController {
 			if ($this -> User -> save($this -> data)) {
 				// Guardar la dirección
 				$this -> data['Address']['user_id'] = $this -> User -> id;
-				$this -> User -> Address -> create();
-				$this -> User -> Address -> save($this -> data);
+				/**
+				 * Revisar si se seleccionó la opción de otro barrio
+				 */
+				if($this -> data['Address']['zone_id'] == 'otro') {
+					$this -> User -> Address -> Zone -> create();
+					$newZone = array('Zone' => array('name' => $this -> data['Address']['another_zone']));
+					if($this -> User -> Address -> Zone -> save($newZone)) {
+						$this -> data['Address']['zone_id'] = $this -> User -> Address -> Zone -> id;
+						$this -> User -> Address -> create();
+						$this -> User -> Address -> save($this -> data);
+					} 
+				} else {
+					$this -> User -> Address -> create();
+					$this -> User -> Address -> save($this -> data);
+				}
 
 				// Enviar el correo con el codigo
 				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
