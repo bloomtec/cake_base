@@ -7,8 +7,9 @@
 			<?php // echo __('Suggest a restaurant to us', true); ?>
 		</legend>
 		<p>
-			<!-- ¿Sabes de algún restaurante que crees debería estar en ComoPromos? Nos encantaría conocerlo. Por favor completa el cuestionario que encontrarás más abajo y podremos ofrecerte nuestros servicios. -->
-			<?php echo __('¿Sabes de algún restaurante que crees debería estar en Como Promos? <br/><br/>Nos encantaría conocerlo. Por favor completa el cuestionario y asi tendremos en gusto de tener tu restaurante favorito se encuentre en nuestro sitio web. ', true); ?>
+			<?php echo _('¿Sabes de algún restaurante que crees debería estar en Como Promos? ')?>
+			<br /><br />
+			<?php echo __('Nos encantaría conocerlo. Por favor completa el cuestionario para tener el gusto de contactar tu restaurante favorito y asi puedas disfrutar de todas sus promociones a domicilio por medio de nuestro sitio web.', true); ?>
 		</p>
 		<?php echo $this -> Form -> create('Pages', array('controller' => 'pages', 'action' => 'sugierenos')); ?>
 		<!-- <form id="ContactForm" accept-charset="utf-8" method="post" controller="pages" action="contacto"> -->
