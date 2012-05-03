@@ -29,11 +29,19 @@ class OrdersController extends AppController {
 		$object=false;
 		switch ($this -> Auth -> user('role_id')) {
 			case '1': //ADMIN
-				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId),'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState')));
 				if($lastOrder){
 					$object=array('event'=>'newOrder','value'=>$lastOrder);
 				}
 				break;
+				
+			case '2': //OWNER
+				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId),'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState')));
+				if($lastOrder && $this -> isManager($lastOrder['Order']['id'])){
+					$object=array('event'=>'newOrder','value'=>$lastOrder);
+				}
+				break;
+				
 			case '4': //OWNER
 				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId)));
 				if($lastOrder && $this -> isOwner($lastOrder['Order']['id'])){
@@ -242,6 +250,23 @@ class OrdersController extends AppController {
 				);
 				$conditions['Order.user_id'] = $users;
 			}
+			if(!empty($this -> data['Filtros']['pago_efectivo'])) {
+				if($this -> data['Filtros']['pago_efectivo'] == 'si') {
+					$conditions['Order.is_paid_with_cash'] = 1;
+				} elseif($this -> data['Filtros']['pago_efectivo'] == 'no') {
+					$conditions['Order.is_paid_with_cash'] = 0;
+				}
+			}
+			if(!empty($this -> data['Filtros']['fecha_inicio']) && !empty($this -> data['Filtros']['fecha_fin'])) {
+				$fechaInicio = $this -> data['Filtros']['fecha_inicio'];
+				$fechaInicio = $fechaInicio['year'] . '-' . $fechaInicio['month'] . '-' . $fechaInicio['day'] . ' 00:00:00';
+				$fechaFin = $this -> data['Filtros']['fecha_fin'];
+				$fechaFin = $fechaFin['year'] . '-' . $fechaFin['month'] . '-' . $fechaFin['day'] . ' 23:59:59';
+				$conditions['Order.created BETWEEN ? AND ?'] = array(
+					$fechaInicio,
+					$fechaFin
+				);
+			}
 			$this->paginate = array(
 				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
 				'order'=> 'Order.id DESC',
@@ -267,15 +292,66 @@ class OrdersController extends AppController {
 	
 	function manager_index() {
 		$this -> Order -> recursive = 0;
-		
 		$zones = $this -> Order -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
 		$restaurants = $this -> Order -> Deal -> Restaurant -> find('list', array('conditions' => array('Restaurant.zone_id' => $zones), 'fields' => array('Restaurant.id')));
 		$deals = $this -> Order -> Deal -> find('list', array('conditions' => array('Deal.restaurant_id' => $restaurants), 'fields' => array('Deal.id')));
-		
-		$this -> paginate = array('contain' => array('Deal'=>array('Restaurant'),'User','Address','OrderState'),'conditions' => array('Order.deal_id' => $deals));
-		
-		$this -> set('orders', $this -> paginate());
 		$this -> set('orderStates', $this -> Order -> OrderState -> find('list'));
+		if(!empty($this -> data)) {
+			//debug($this -> data);
+			$conditions = array();
+			if(!empty($this -> data['Filtros']['restaurante'])) {
+				$restaurants = $this -> Order -> Deal -> Restaurant -> find(
+					'list',
+					array(
+						'conditions' => array('Restaurant.name LIKE' => '%' . $this -> data['Filtros']['restaurante'] . '%'),
+						'fields' => array('Restaurant.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(!empty($this -> data['Filtros']['usuario'])) {
+				$users = $this -> Order -> User -> find(
+					'list',
+					array(
+						'conditions' => array('User.email LIKE' => '%' . $this -> data['Filtros']['usuario'] . '%'),
+						'fields' => array('User.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Order.user_id'] = $users;
+			}
+			if(!empty($this -> data['Filtros']['pago_efectivo'])) {
+				if($this -> data['Filtros']['pago_efectivo'] == 'si') {
+					$conditions['Order.is_paid_with_cash'] = 1;
+				} elseif($this -> data['Filtros']['pago_efectivo'] == 'no') {
+					$conditions['Order.is_paid_with_cash'] = 0;
+				}
+			}
+			if(!empty($this -> data['Filtros']['fecha_inicio']) && !empty($this -> data['Filtros']['fecha_fin'])) {
+				$fechaInicio = $this -> data['Filtros']['fecha_inicio'];
+				$fechaInicio = $fechaInicio['year'] . '-' . $fechaInicio['month'] . '-' . $fechaInicio['day'] . ' 00:00:00';
+				$fechaFin = $this -> data['Filtros']['fecha_fin'];
+				$fechaFin = $fechaFin['year'] . '-' . $fechaFin['month'] . '-' . $fechaFin['day'] . ' 23:59:59';
+				$conditions['Order.created BETWEEN ? AND ?'] = array(
+					$fechaInicio,
+					$fechaFin
+				);
+			}
+			$conditions['Order.deal_id'] = $deals; 
+			$this->paginate = array(
+				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
+				'order'=> 'Order.id DESC',
+				'conditions' => $conditions
+			);
+			$this -> set('orders', $this -> paginate());
+		} else {			
+			$this -> paginate = array(
+				'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState'),
+				'conditions' => array('Order.deal_id' => $deals)
+			);			
+			$this -> set('orders', $this -> paginate());
+		}
 	}
 
 	function manager_view($id = null) {

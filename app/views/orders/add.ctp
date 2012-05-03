@@ -61,7 +61,7 @@
 	<div class="orden datos-direccion">
 		<fieldset>
 			<legend>
-				<?php __('Datos Dirección');?>
+				<?php __('Datos donde se entregará su pedido');?>
 			</legend>
 			<?php
 			if ($user['Address'] && !empty($addresses)) {

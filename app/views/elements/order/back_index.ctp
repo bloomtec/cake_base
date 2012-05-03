@@ -5,13 +5,14 @@
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<div class="orderFilter">
-		<?php echo $this -> Form -> create(); ?>
+		<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
 		<table id="TableFilters">
 			<tr>
-				<td>Restaurante</td>
-				<td><?php echo $this -> Form -> input('Filtros.restaurante', array('label' => false, 'div' => false)); ?></td>
-				<td>Correo Usuario</td>
-				<td><?php echo $this -> Form -> input('Filtros.usuario', array('label' => false, 'div' => false)); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.restaurante'); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.usuario'); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.pago_efectivo', array('label' => 'Forma De Pago', 'type' => 'select', 'options' => array('' => 'Seleccione...', 'si' => 'Efectivo', 'no' => 'Bono'))); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_inicio', array('type' => 'date')); ?></td>
+				<td><?php echo $this -> Form -> input('Filtros.fecha_fin', array('type' => 'date')); ?></td>
 				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
 			</tr>
 		</table>
@@ -19,12 +20,14 @@
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr>
 		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
-		<th><?php echo $this->Paginator->sort('Código', 'code');?></th>
+		<th><?php echo $this->Paginator->sort('Código de orden', 'code');?></th>
+		<th><?php echo $this->Paginator->sort('Forma de pago', 'Order.is_paid_with_cash');?></th>
 		<th><?php echo $this->Paginator->sort('Usuario', 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort('Dirección', 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort('Cantidad', 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort('Promoción', 'deal_id');?></th>
-		<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>
+		<th><?php echo $this->Paginator->sort('Fecha', 'Order.created');?></th>
+		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
 		<!--<th class="actions"><?php __('Acciones');?></th> -->
 	</tr>
@@ -40,6 +43,14 @@
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
 		<td><?php echo $order['Deal']['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $order['Order']['code']; ?>&nbsp;</td>
+		<td style="text-align: center">
+			<?php 
+			 if($order['Order']['is_paid_with_cash']){
+			 		echo $this -> Html -> image('88.png',array('height'=>'45','title'=>'EFECTIVO','alt'=>'EFECTIVO'));
+			 } else{
+			 	echo $this -> Html -> image('60.png',array('height'=>'40','title'=>'BONO','alt'=>'BONO'));
+			 }
+			?>&nbsp;</td>
 		<td>
 			<?php
 				if($this -> Session -> read('Auth.User.role_id') == 1) {
@@ -56,6 +67,7 @@
 		<td>
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
+		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
 		<!--
 		<td>
 			<?php
@@ -108,14 +120,17 @@
 				if(response){
 					switch(response.event){
 						case "newOrder":
-						var tr="<tr class='1'>\
+						formaDePago=response.value.Order.is_paid_with_cash?'<img height="45" alt="EFECTIVO" title="EFECTIVO" src="/img/88.png">':'<img height="40" alt="BONO" title="BONO" src="/img/60.png">';
+						var tr="<tr class='pendiente'>\
 									<td>"+response.value.Deal.Restaurant.name+"</td>\
 									<td>"+response.value.Order.code+"</td>\
-									<td>"+response.value.User.email+"</td>\
+									<td>"+formaDePago+"</td>\
+									<td><a href='/admin/users/view/"+response.value.User.id+"'>"+response.value.User.email+"</a></td>\
 									<td>"+response.value.Address.address+"</td>\
 									<td>"+response.value.Order.quantity+"</td>\
 									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
-									<td>"+"<input type='checkbox' disabled=''>"+"</td>\
+									<td>"+response.value.Deal.created+"</td>\
+									<td>"+response.value.OrderState.name+"</td>\
 								</tr>";
 						$("table#orders tr:first-child").after(tr);
 						lastOrder=response.value.Order.id;

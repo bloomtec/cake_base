@@ -58,7 +58,7 @@
 				echo $this->Html->link(__('Ver', true), array('action' => 'view', $order['Order']['id']),array('class'=>'view icon','title'=>__('View',true)));
 				
 			?>
-			archivar
+			
 		</td>
 	</tr>
 	<?php endforeach; ?>
@@ -79,7 +79,7 @@
 <script type="text/javascript">
  	var lastOrder="<?php echo $lastOrder; ?>";
 	$(function(){
-		$('select[rel]').change(function(){
+		$(document).on('change','select[rel]',function(){
 			BJS.JSON('/orders/changeStatus/'+$(this).attr('rel')+'/'+$(this).find('option:selected').val(),{},function(response){
 				if(response){
 					location.reload(true);
@@ -94,17 +94,20 @@
 				if(response){
 					switch(response.event){
 						case "newOrder":
-						var tr="<tr class='no-vista nueva'>\
+						var tr="<tr class='pendiente nueva'>\
 									<td>"+response.value.Order.code+"</td>\
 									<td>"+response.value.User.email+"</td>\
 									<td>"+response.value.Address.address+"</td>\
 									<td>"+response.value.Order.quantity+"</td>\
 									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
-									<td>"+"<input type='checkbox' disabled=''>"+"</td>\
-									<td>"+response.value.OrderState.name+"</td>\
+									<td><select id='order_state_id' rel='25' name='data[order_state_id]'>\
+										<option selected='selected' value='1'>Pendiente</option>\
+										<option value='2'>Despachada</option>\
+										<option value='3'>Rechazada</option>\
+										<option value='4'>Entregada</option>\
+										</select></td>\
 									<td class='actions'>\
 										<a title='View' class='view icon' href='/owner/orders/view/"+response.value.Order.id+"'>Ver</a>\
-										<a title='Approve' class='edit icon' href='/owner/orders/approve/"+response.value.Order.id+"'>Aprovar</a>\
 									</td>\
 								</tr>";
 						$("table#orders tr:first-child").after(tr);

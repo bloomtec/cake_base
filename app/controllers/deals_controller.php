@@ -334,7 +334,7 @@ class DealsController extends AppController {
 			}
 		}
 		
-		$this -> paginate = array('conditions' => $conditions, 'order' => $order);
+		$this -> paginate = array('conditions' => $conditions, 'order' => $order, 'limit'=>4);
 		
 		$this -> set('large_images', $this -> getALargeImage());
 		$this -> set('deals', $this -> paginate());
@@ -352,7 +352,7 @@ class DealsController extends AppController {
 			$this -> layout = "default";
 		}
 		$this -> Deal -> recursive = 1;
-		$deal = $this -> Deal -> find('first', array('conditions' => array('Deal.slug' => $slug)));
+		$deal = $this -> Deal -> find('first', array('conditions' => array('Deal.slug' => urldecode($slug))));
 		$zone = $this -> Deal -> Restaurant -> Zone -> findById($deal['Restaurant']['zone_id']);
 		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($zone['Zone']['city_id']);
 		$this -> set('deal', $deal);

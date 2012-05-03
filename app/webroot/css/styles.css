@@ -557,7 +557,6 @@ h1.descripcion img{
 	padding-top: 15px;
 }
 .derecha h1{
-	float: left;
 	font-size: 12px;
 	margin-top: 12px;
 }
@@ -797,7 +796,7 @@ h1.descripcion img{
 .items div {
 	float:left;
 }
-.next{
+.next{/*
 	display: block;
 	background-color: #181818;
 	width: 29px;
@@ -808,13 +807,17 @@ h1.descripcion img{
 	background-position: center center;
 	cursor: pointer;
 	margin-right: 15px;
+	*/
+	color:black;
 }
-.next.disabled{
+.next.disabled{/*
 	background-image: url(/img/next_disabled.png);
 	background-color: #e7e7e7;
 	cursor:default;
+	*/
+	color:gray;
 }
-.prev{
+.prev{/*
 	display: block;
 	background-color: #181818;
 	width: 29px;
@@ -824,12 +827,24 @@ h1.descripcion img{
 	background-repeat: no-repeat;
 	background-position: center center;
 	cursor: pointer;
-	margin-right: 12px;
+	margin-right: 12px;*/
+	color:black;
 }
 .prev.disabled{
+	/*
 	background-image: url(/img/prev_disabled.png);
 	background-color: #e7e7e7;
 	cursor:default;
+	*/
+	color:gray;
+}
+.paging span a {
+	color:#231F20;
+}
+.paging span.current {
+	color:#ED1C24;
+	font-size:14px;
+	font-weight: bold;
 }
 .otros_premios{
 	background-color: #dedede;
