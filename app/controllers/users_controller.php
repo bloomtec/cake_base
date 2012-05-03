@@ -213,7 +213,7 @@ class UsersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('register_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = __('Registration to the site: ', true) . Configure::read('site_name');
+			$this -> Email -> subject = __('Registro al sitio: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'registration_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -263,7 +263,7 @@ class UsersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = __('Friend registered: ', true) . Configure::read('site_name');
+			$this -> Email -> subject = __('Se ha registrado un amigo: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'referal_registered_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -317,7 +317,7 @@ class UsersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = __('Referal to the site: ', true) . Configure::read('site_name');
+			$this -> Email -> subject = __('Recomendación del sitio: ', true) . Configure::read('site_name');
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'referal_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -468,15 +468,15 @@ class UsersController extends AppController {
 			if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
 				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
 				if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
-					$this -> Session -> setFlash(__('Se ha actualizado tu password', true));
+					$this -> Session -> setFlash(__('Se ha actualizado tu contraseña', true));
 					$this -> redirect($this -> referer());
 				} else {
-					$this -> Session -> setFlash(__('No coincide la confirmación del password', true));
+					$this -> Session -> setFlash(__('No coincide la confirmación de la contraseña', true));
 					$this -> redirect($this -> referer());
 				}
 
 			} else {
-				$this -> Session -> setFlash(__('Su password anterior no es válido', true));
+				$this -> Session -> setFlash(__('Su contraseña anterior no es válida', true));
 				$this -> redirect($this -> referer());
 			}
 		}
@@ -588,7 +588,7 @@ class UsersController extends AppController {
 			$this -> data['User']['mail_verified']=1;
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el usuario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('No se pudo registrar el usuario. Si el usuario no es un admin verifica que hayas seleccionado una ciudad e intenta de nuevo.', true));
@@ -611,7 +611,7 @@ class UsersController extends AppController {
 			}
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The user has been saved', true));
+				$this -> Session -> setFlash(__('Se registró el usuario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
 				$this -> Session -> setFlash(__('No se pudo registrar el usuario. Si el usuario no es un admin verifica que hayas seleccionado una ciudad e intenta de nuevo.', true));

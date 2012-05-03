@@ -80,7 +80,7 @@ class ZonesController extends AppController {
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Invalid zone', true));
+			$this -> Session -> setFlash(__('Barrio no válido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		if (!empty($this -> data)) {

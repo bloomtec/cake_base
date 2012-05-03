@@ -79,7 +79,7 @@ class OrdersController extends AppController {
 
 	function view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid order', true));
+			$this -> Session -> setFlash(__('Orden no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('order', $this -> Order -> read(null, $id));
@@ -284,7 +284,7 @@ class OrdersController extends AppController {
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this -> Session -> setFlash(__('Invalid order', true));
+			$this -> Session -> setFlash(__('Orden no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('order', $this -> Order -> read(null, $id));
@@ -356,7 +356,7 @@ class OrdersController extends AppController {
 
 	function manager_view($id = null) {
 		if (!$id || !$this -> isManager($id)) {
-			$this -> Session -> setFlash(__('Invalid order', true));
+			$this -> Session -> setFlash(__('Orden no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$this -> set('order', $this -> Order -> read(null, $id));
@@ -375,7 +375,7 @@ class OrdersController extends AppController {
 
 	function owner_view($id = null) {
 		if (!$id || !$this -> isOwner($id)) {
-			$this -> Session -> setFlash(__('Invalid order', true));
+			$this -> Session -> setFlash(__('Orden no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 		$order=$this -> Order -> read(null,$id);
@@ -385,7 +385,7 @@ class OrdersController extends AppController {
 	
 	function owner_edit($id = null) {
 		if ((!$id && empty($this -> data)) || !$this -> isOwner($id)) {
-			$this -> Session -> setFlash(__('Invalid order', true));
+			$this -> Session -> setFlash(__('Orden no válida', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 
@@ -443,7 +443,7 @@ class OrdersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = Configure::read('site_name') . __(' order approved', true);
+			$this -> Email -> subject = Configure::read('site_name') . __(' orden aprobada', true);
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'order_approved_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -457,7 +457,7 @@ class OrdersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template
@@ -501,7 +501,7 @@ class OrdersController extends AppController {
 			// from address (string)
 			$this -> Email -> from = Configure::read('info_mail');
 			// subject for the message (string)
-			$this -> Email -> subject = __('The deal: ', true) . $deal['Deal']['name'] . __(' has finished', true);
+			$this -> Email -> subject = __('La promo: ', true) . $deal['Deal']['name'] . __(' ha terminado', true);
 			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
 			$this -> Email -> template = 'deals_finished_email';
 			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
@@ -515,7 +515,7 @@ class OrdersController extends AppController {
 			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
 			$this -> Email -> delivery = 'smtp';
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
-			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
 
 			/**
 			 * Asignar cosas al template

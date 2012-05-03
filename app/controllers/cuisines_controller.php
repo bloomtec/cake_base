@@ -84,7 +84,7 @@ class CuisinesController extends AppController {
 			$this -> Session -> setFlash(__('Tipo de cocina eliminada', true));
 			$this -> redirect(array('action' => 'index'));
 		}
-		$this -> Session -> setFlash(__('Cuisine was not deleted', true));
+		$this -> Session -> setFlash(__('No se eliminó la cocina', true));
 		$this -> redirect(array('action' => 'index'));
 	}
 
