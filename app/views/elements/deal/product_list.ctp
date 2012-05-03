@@ -15,7 +15,7 @@
 		<option>Efectivo</option>
 	</select>
 	<div class='informacion-restaurante'>
-		<img src="/img/uploads/50x50/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
+		<img src="/img/uploads/100x100/<?php echo $deal['Restaurant']['image']; ?>" class="logo_negocio" />
 		<div class='informacion'>
 			<h1 class="horario">Horario de atención: <br /> <?php echo $deal['Restaurant']['schedule']; ?></h1>
 			
