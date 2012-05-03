@@ -99,7 +99,14 @@ class UsersController extends AppController {
 				 */
 				if($this -> data['Address']['zone_id'] == 'otro') {
 					$this -> User -> Address -> Zone -> create();
-					$newZone = array('Zone' => array('name' => $this -> data['Address']['another_zone']));
+					$cityId = $this -> data['User']['city_id'];
+					$zoneName = $this -> data['Address']['another_zone'];
+					$newZone = array(
+						'Zone' => array(
+							'city_id' => $cityId,
+							'name' => $zoneName
+						)
+					);
 					if($this -> User -> Address -> Zone -> save($newZone)) {
 						$this -> data['Address']['zone_id'] = $this -> User -> Address -> Zone -> id;
 						$this -> User -> Address -> create();
