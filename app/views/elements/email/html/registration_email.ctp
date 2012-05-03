@@ -1,13 +1,13 @@
 <div>
 	<p>
-		<?php echo __('Welcome to the site :: ', true) . Configure::read('site_name'); ?>
+		<?php echo __('Bienvenido al sitio :: ', true) . Configure::read('site_name'); ?>
 	</p>
 	<p>
-		<?php echo __('To finish your registration process, click the following link:', true); ?> <a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail/' . $code; ?>"><?php echo __('confirm email', true); ?></a><br />
-		<?php echo __('If the link fails to work for you then go ', true); ?><a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail'; ?>"><?php echo __('here', true); ?></a><br />
-		<?php echo __('Enter the code: "', true) . $code . __('" (without the quotes) in the corresponding field.', true); ?>
+		<?php echo __('Para finalizar el proceso de registro, haz click en el siguiente enlace:', true); ?> <a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail/' . $code; ?>"><?php echo __('validar correo', true); ?></a><br />
+		<?php echo __('Si el enlace falla ve ', true); ?><a href="<?php echo 'http://' . Configure::read('site_domain') . '/users/validateEmail'; ?>"><?php echo __('aquí', true); ?></a><br />
+		<?php echo __('Ingresa el código: "', true) . $code . __('" (sin las comillas) en el campo correspondiente.', true); ?>
 	</p>
 	<p>
-		<?php echo __('Thank you for registering.', true); ?>
+		<?php echo __('Gracias por registrarte.', true); ?>
 	</p>
 </div>

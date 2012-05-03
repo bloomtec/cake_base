@@ -1,11 +1,11 @@
 <div>
 	<p>
-		<?php echo __('Name: ', true) . $name; ?>
+		<?php echo __('Nombre: ', true) . $name; ?>
 	</p>
 	<p>
-		<?php echo __('E-mail: ', true) . $email; ?>
+		<?php echo __('Correo: ', true) . $email; ?>
 	</p>
 	<p>
-		<?php echo __('Message: ', true) . $message; ?>
+		<?php echo __('Mensaje: ', true) . $message; ?>
 	</p>
 </div>

@@ -1,8 +1,8 @@
 <div>
 	<p>
-		<?php echo __('Your friend ', true) . $email . __(' registered!'); ?>
+		<?php echo __('¡Tu amigo ', true) . $email . __(' se registró!'); ?>
 	</p>
 	<p>
-		<?php echo __('Thanks to this you have been given ', true) . $points . __(' extra points.', true); ?>
+		<?php echo __('Gracias a esto se te han otorgado ', true) . $points . __(' puntos extra.', true); ?>
 	</p>
 </div>

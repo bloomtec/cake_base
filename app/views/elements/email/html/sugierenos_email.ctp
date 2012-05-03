@@ -1,23 +1,23 @@
 <div>
 	<p>
-		<?php echo __('Restaurant\'s Name: ', true) . $restaurant; ?>
+		<?php echo __('Nombre Del Restaurante: ', true) . $restaurant; ?>
 	</p>
 	<p>
-		<?php echo __('Restaurant\'s City: ', true) . $ciudad; ?>
+		<?php echo __('Ciudad Del Restaurante: ', true) . $ciudad; ?>
 	</p>
 	<p>
-		<?php echo __('Restaurant\'s Address: ', true) . $direccion; ?>
+		<?php echo __('Dirección Del Restaurante: ', true) . $direccion; ?>
 	</p>
 	<p>
-		<?php echo __('Restaurant\'s E-mail: ', true) . $restaurant_email; ?>
+		<?php echo __('Correo Electrónico Del Restaurante: ', true) . $restaurant_email; ?>
 	</p>
 	<p>
-		<?php echo __('Name: ', true) . $name; ?>
+		<?php echo __('Nombre: ', true) . $name; ?>
 	</p>
 	<p>
-		<?php echo __('E-mail: ', true) . $email; ?>
+		<?php echo __('Correo: ', true) . $email; ?>
 	</p>
 	<p>
-		<?php echo __('Message: ', true) . $message; ?>
+		<?php echo __('Mensaje: ', true) . $message; ?>
 	</p>
 </div>

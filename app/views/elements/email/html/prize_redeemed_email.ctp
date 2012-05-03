@@ -1,8 +1,8 @@
 <div>
 	<p>
-		<?php echo __('You have redeemed ', true) . $prize['Prize']['score'] . __(' points redeeming the prize ', true) . $prize['Prize']['name']; ?>
+		<?php echo __('Haz redimido ', true) . $prize['Prize']['score'] . __(' puntos por el premio ', true) . $prize['Prize']['name']; ?>
 	</p>
 	<p>
-		<?php echo __('Congratulations!', true); ?>
+		<?php echo __('¡Felicitaciones!', true); ?>
 	</p>
 </div>

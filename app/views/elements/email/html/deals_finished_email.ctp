@@ -1,11 +1,11 @@
 <div>
 	<p>
-		<?php echo __('Deals regarding ', true) . $deal['Deal']['name'] . __(' have finished.', true); ?>
+		<?php echo __('Las promos correspondientes a ', true) . $deal['Deal']['name'] . __(' se han agotado.', true); ?>
 	</p>
 	<p>
-		<?php echo __('Please contact your local representative if you wish to add more deals to your restaurant ', true) . $restaurant['Restaurant']['name']; ?>
+		<?php echo __('Por favor contacta a tu agente local para agregar promos o crear una nueva para el restaurante ', true) . $restaurant['Restaurant']['name']; ?>
 	</p>
 	<p>
-		<?php echo __('Thank you for using ', true) . Configure::read('site_domain'); ?>
+		<?php echo __('Gracias por usar ', true) . Configure::read('site_domain'); ?>
 	</p>
 </div>
