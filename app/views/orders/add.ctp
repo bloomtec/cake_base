@@ -77,25 +77,36 @@
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
 			}
-			echo "<div class='terminos'>";
-			__('Acepto ');
-			echo $this->Html->link(__('Los terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));
-			echo $this -> Form -> checkbox('terminos',array('label'=>false,"required"=>'required'));
-			echo "</div>";
 			?>
 		</fieldset>
 	</div>
-	<div class="comprar-con-puntos" style="visibility: visible;">
+	<?php $userScore = $this -> requestAction('/users/getScore'); ?>
+	<?php if($userScore > $deal['Deal']['price']): ?>
+	<div class="comprar-con-puntos" id="comprar-con-bono" style="visibility: visible;">
+		<legend>Comprar con tu bono</legend>
 		<?php
-			$userScore = $this -> requestAction('/users/getUserScore');
+			
 			echo $this -> Form -> hidden('User.user_score', array('value' => $userScore));
 		?>
-		<p>Tienes actualmente <?php echo "$ ".number_format($userScore, 0, ",", "."); ?> de acumulado.</p>
-		<p>¡Puedes actualmente pagar con tu acumulado!</p>
-		<p><?php echo $this -> Form -> input('comprar_con_bono', array('type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => '0')); ?></p>
+		
+		<p>Tienes actualmente <?php echo "$ ".number_format($userScore, 0, ",", "."); ?>  acumulados como bono.</p>
+		<p>¡Puedes actualmente pagar con tu bono!</p>
+		<?php $redimir=isset($this->params['named']['redimir'])?$this->params['named']['redimir']:0;?>
+		<p><?php echo $this -> Form -> input('comprar_con_bono', array('legend'=>false,'type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => $redimir)); ?></p>
 	</div>
+	<?php endif;?>
+	<div style="clear:both"></div>
+	<div class='terminos'>
+		<?php 
+			__('Acepto ');
+			echo $this->Html->link(__('Los terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));
+			echo $this -> Form -> checkbox('terminos',array('label'=>false,"required"=>'required'));
+		?>
+	</div>		
 	<?php echo $this -> Form -> end(__('Comprar', true));?>
 </div>
+
+
 <script type="text/javascript">
 	$(function() {
 		var actualizarDivComprarConPuntos = function() {

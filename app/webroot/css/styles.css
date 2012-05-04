@@ -399,13 +399,47 @@ text-decoration: underline;
 	margin-top: 10px;
 }
 .comprar{
-	display: block;
-	width: 178px;
-	height: 47px;
-	background-image: url(/img/btn_comprar.png);
-	clear: both;
-	margin-left: 180px;
-	margin-top: 14px;
+	
+}
+a.boton{
+	font-size: 18px;
+	height: 37px;
+	line-height:37px;
+	vertical-align:middle;
+	text-align:center;
+	font-weight:bold;
+	text-transform: uppercase;
+	width: 120px;
+	background: #E76012;
+	background: -moz-linear-gradient(top, #E76012 0%, #C64F0F 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E76012), color-stop(100%,#C64F0F));
+	background: -webkit-linear-gradient(top, #E76012 0%,#C64F0F 100%);
+	background: -o-linear-gradient(top, #E76012 0%,#C64F0F 100%);
+	background: -ms-linear-gradient(top, #E76012 0%,#C64F0F 100%);
+	background: linear-gradient(top, #E76012 0%,#C64F0F 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e76012', endColorstr='#c64f0f',GradientType=0 );
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid #E57D44;
+	color: white;
+	float: right;
+	margin-right: 10px;
+}
+.tooltip {
+    display:none;
+    background:transparent url(../img/black_arrow.png);
+    font-size:14px;
+    height:70px;
+    width:160px;
+    padding:25px;
+    color:#eee;
+ }
+.compra-actions{
+	margin-top: 62px;
+}
+#content .info_producto a.boton{
+	color:white;
 }
 .comprar.redimir{
 	background-image: url(/img/redimir.png);
@@ -983,7 +1017,8 @@ h1.descripcion img{
 	font-weight: bold;
 }
 .terminos{
-	margin-left: 214px;
+	margin-left: 20px;
+	float:left;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
@@ -993,6 +1028,9 @@ h1.descripcion img{
 	color: #E0050B;
 	text-decoration: none;
 	font-size: 13px;
+}
+.orders .submit{
+	float:left;
 }
 .orders .submit input{
 	font-size: 13px;
@@ -1012,8 +1050,15 @@ h1.descripcion img{
 	border-radius: 5px;
 	border: 1px solid #E57D44;
 	color: #fff;
-	margin-left: 356px;
-	margin-top: 15px;
+	margin-left: 82px;
+}
+#comprar-con-bono .input.radio{
+	margin: 20px 0;
+}
+#comprar-con-bono .input.radio input{
+	width:60px;
+	height: 15px;
+	margin:0;
 }
 input[type='checkbox']{
 	border: none;
@@ -1240,3 +1285,4 @@ span.comopromos{
 .form a{
 	color:black;
 }
+

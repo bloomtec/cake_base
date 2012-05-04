@@ -25,19 +25,12 @@ class UsersController extends AppController {
 	function getScore() {
 		$this -> User -> recursive = -1;
 		$user = $this -> User -> read(null, $this -> Auth -> user('id'));
-		echo "$ ".number_format($user['User']['score'] + $user['User']['score_by_invitations'], 0, ",", ".");
-		$this -> autoRender = false;
-		exit(0);
-	}
-	
-	function getUserScore() {
-		$this -> User -> recursive = -1;
-		$user = $this -> User -> read(null, $this -> Auth -> user('id'));
 		if($user) {
 			return $user['User']['score'] + $user['User']['score_by_invitations'];
 		} else {
 			return 0;
 		}
+		
 	}
 
 	function getOwners() {

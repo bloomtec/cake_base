@@ -56,6 +56,11 @@
 
 		echo $scripts_for_layout;
 		?>
+		<script type="text/javascript">
+			$(function(){
+				 $("a.boton[title]").tooltip();
+			});
+		</script>
 	</head>
 	<body id="<?php echo $this->name ?>">
 		<?php
