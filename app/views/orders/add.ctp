@@ -1,10 +1,16 @@
 <div class="orders register form">
 	<h1 class="mensaje-compra">Antes de comprar ten en cuenta.</h1>
+	
+	<p class="mensaje-compra">
+		Verifica si este restaurante cubre su zona.
+	</p>
+	<br />
 	<p class="mensaje-compra">
 		Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
 		ubicacion desde donde se haga su pedido sera registrada en nuestro sitio web.
 		Compra con responsabilidad
 	</p>
+	
 	<?php
 	// debug($user);
 	echo $this -> Form -> create('Order');
