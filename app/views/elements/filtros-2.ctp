@@ -16,19 +16,38 @@
 </style>
 <div class="filtros default">
 	<?php
+		$filterData = $session -> read('filterData');
 		$selectedCity=null;
 		$cities=$this -> requestAction('/deals/filterDataCities');
-		echo $this -> Form -> input('city_id', array('options' => $cities, 'label' => __('Qué hay para comer en:', true), 'rel' => 'city', 'selected' => $selectedCity));
-		echo $this -> Form -> input('zone_id', array('options' => array(), 'label' => __('Zona:', true), 'rel' => 'zone'));
-		echo $this -> Form -> input('cuisine_id', array('options' => array(), 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
-		echo $this -> Form -> input('price_range', array('options' => array(), 'label' => __('Rango De Precio:', true), 'rel' => 'price'));
+		if($filterData) {
+			$filterData = explode(';', $filterData);
+			$city = $filterData[0];
+			$zone = $filterData[1];
+			$cuisine = $filterData[2];
+			$price = $filterData[3];
+			$zones = $this -> requestAction('/deals/filterDataZonesRA/' . $city);
+			$cuisines = $this -> requestAction('/deals/filterDataCuisinesRA/' . $city . '/' . $zone);
+			$prices = $this -> requestAction('/deals/filterDataPricesRA/' . $city);
+			echo $this -> Form -> input('city_id', array('options' => $cities, 'value' => $city, 'label' => __('Qué hay para comer en:', true), 'rel' => 'city', 'selected' => $selectedCity));
+			echo $this -> Form -> input('zone_id', array('options' => $zones, 'value' => $zone, 'label' => __('Zona:', true), 'rel' => 'zone'));
+			echo $this -> Form -> input('cuisine_id', array('options' => $cuisines, 'value' => $cuisine, 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
+			echo $this -> Form -> input('price_range', array('options' => $prices, 'value' => $price, 'label' => __('Rango De Precio:', true), 'rel' => 'price'));
+		} else {
+			$zones = $this -> requestAction('/deals/filterDataZonesRA');
+			$cuisines = $this -> requestAction('/deals/filterDataCuisinesRA');
+			$prices = $this -> requestAction('/deals/filterDataPricesRA');
+			echo $this -> Form -> input('city_id', array('options' => $cities, 'label' => __('Qué hay para comer en:', true), 'rel' => 'city', 'selected' => $selectedCity));
+			echo $this -> Form -> input('zone_id', array('options' => $zones, 'label' => __('Zona:', true), 'rel' => 'zone'));
+			echo $this -> Form -> input('cuisine_id', array('options' => $cuisines, 'label' => __('Cocina:', true), 'rel' => 'cuisine'));
+			echo $this -> Form -> input('price_range', array('options' => $prices, 'label' => __('Rango De Precio:', true), 'rel' => 'price'));
+		}
 		echo $this -> Form -> submit(__('Buscar', true),array('class'=>'buscar'));
 	?>
 </div>
 <script type='text/javascript'>
 	$(function() {
 		/* leer los campos de la busqueda en la URL, etc */
-		Object.size = function(obj) {
+		/*Object.size = function(obj) {
 			var size = 0, key;
 			for (key in obj) {
 				if (obj.hasOwnProperty(key)) size++;
@@ -78,8 +97,10 @@
 			}
 		} else {
 			cityFunctionality();
-		}
+		}*/
+		
 		/* funcionalidad de siempre */
+		//cityFunctionality();
 		$('.filtros.default select[id="city_id"]').change(function() {
 			cityFunctionality();
 		});
