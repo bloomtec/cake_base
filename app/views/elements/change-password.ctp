@@ -1,5 +1,6 @@
-<?php echo $this->Form->create('User',array('action'=>'changePassword'));?>
 <h1><?php __('Cambiar Contraseña')?></h1>
+<?php echo $this->Form->create('User',array('action'=>'changePassword','style'=>'clear:both;'));?>
+
 	<fieldset>
 	<?php
 		echo $this->Form->input('id',array('value'=>$this->params['pass'][0]));
@@ -8,9 +9,10 @@
 		echo $this->Form->input('confirm_password',array('type'=>'password','label'=>__('Confirmar Contraseña', true),'required'=>'required' , 'data-equals'=>'data[User][new_password]'));
 	?>
 	</fieldset>
-	<div class='submit'>
-	<input type="submit"  value="Cambiar" />
+	<div class='submit' style='clear: both;'>
+		<input type="submit"  value="Cambiar" />
 	</div>
+	<div style="clear: both"></div>
 <?php echo $this->Form->end();?>
 <script type='text/javascript'>
 	$(function(){

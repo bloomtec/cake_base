@@ -34,13 +34,17 @@
 			-->
 			<div style="clear: both"></div>
 			<?php if(!$this -> Session-> read('Auth.User.id')){?>
+			<a href="/" class='iniciar_sesion'><?php __('INICIO'); ?></a>
+			-
 			<a href="/users/login" class="iniciar_sesion login"><?php __('INGRESAR'); ?></a>
 			-
 			<a href="/users/register" class="iniciar_sesion" ><?php __('REGISTRO'); ?></a>
 			<?php }else{ ?>
-			<a href="/users/profile"><?php __('Mi Perfil');?></a>
+			<a href="/"><?php __('INICIO');?></a>
 			-
-			 <a href="/users/logout"><?php __('Salir');?></a>
+			<a href="/users/profile"><?php __('MI PERFIL');?></a>
+			-
+			 <a href="/users/logout"><?php __('SALIR');?></a>
 			<?php } ?>
 		</div>
 		<div style="clear: both"></div>

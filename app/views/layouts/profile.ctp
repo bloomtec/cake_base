@@ -64,8 +64,10 @@
 		<div id="container">
 			<?php echo $this -> element('header');?>
 			<div id="content">
-				<?php echo $this -> element('menu_usuario');?>
-				<div class="wrapperContent">
+				<?php echo $this -> element('filtros-2'); ?>
+				
+				<div class="wrapperContent <?php echo $class; ?>">
+					<?php echo $this -> element('menu_usuario');?>
 					<?php echo $this -> Session -> flash(); ?>
 
 					<?php echo $content_for_layout; ?>

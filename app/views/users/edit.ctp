@@ -1,7 +1,8 @@
 <div class="users form datos_perfil" id="register_login">
+	<h1><?php __('Mis Datos'); ?></h1>
 <?php echo $this->Form->create('User');?>
 	<fieldset>
-		<h1><?php __('Mis Datos'); ?></h1>
+		
 	<?php
 	
 		echo $this->Form->input('id');
