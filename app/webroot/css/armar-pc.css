@@ -155,7 +155,7 @@
 	float: left;
     min-height: 390px;
     padding: 0;
-    width: 690px;
+    width: 660px;
     padding-bottom:10px;
 }
 #content .panes h1{
@@ -220,10 +220,9 @@
 #resumen{
 	float: right;
     height: 400px;
-    width: 256px;
+    width: 290px;
     background-color: #e9e9e9;
     padding-bottom:18px;
-    margin-top: 6px;
     background-image: url(/img/trama_resumen.png);
 	background-position: top left;
 	background-repeat: repeat-y;
@@ -457,4 +456,10 @@
 div.col{
 	width: 50%;
 	float:left;
+}
+.checkbox .checkbox input{
+	width: 50px;
+}
+.checkbox .checkbox label{
+	text-align: left;
 }

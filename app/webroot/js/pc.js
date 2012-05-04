@@ -153,6 +153,38 @@ $(function() {
 			break;
 		}
 	});
+	$(document).on('click','.checkbox input',function(){
+		removeChecked=false;
+		$item = $(this);
+		var checked =$ (this).is(":checked");
+		position=$item.val();
+		if(checked){
+			val=position;
+		}else{
+			val=0;
+		}
+				
+		rel=$item.parent().parent().parent().attr('rel');
+		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,{},function(data){
+			$('#resumen').load('/makePc/resume');
+		});	
+
+		switch(rel){
+			case "Processor":
+				pc.processor_id=val;
+				getMotherBoard(val);
+			break;
+			case "Motherboard":
+				
+				pc.board_id=val;
+				boardCallBack(val);
+			break;
+			case "VideoCard":
+			pc.video_card_id = val;
+			getCases(val);
+			break;
+		}
+	});
 	
 // FUNCIONES BASE	
 	function getProcessors($architectureId){
@@ -252,7 +284,7 @@ $(function() {
 		})	
 	}
 	function getOtherCards(){
-		$('.radios.other-cards').load('/makePc/getOtherCards/', function(){//traer torres compatibles
+		$('.checkbox.other-cards').load('/makePc/getOtherCards/', function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		});
 	}

@@ -131,12 +131,10 @@
 			<td class="categoria-producto"><?php echo __('Tarjetas Adicionales', true);?></td>
 			<td class="nombre-producto"><?php
 			if (!empty($myPC['Cards'])) {
-				if (isset($myPC['Cards']['1']['Product']['name']))
-					echo $myPC['Cards']['1']['Product']['name'];
-				if (isset($myPC['Cards']['2']['Product']['name']))
-					echo $myPC['Cards']['2']['Product']['name'] . ' x 2';
-				if (isset($myPC['Cards']['Product']['name']))
-					echo $myPC['Cards']['Product']['name'];
+				foreach($myPC['Cards'] as $card){
+					echo $card['Product']['name']."<br />";
+				}
+				
 			} else {
 				echo 'No hay selección';
 			}

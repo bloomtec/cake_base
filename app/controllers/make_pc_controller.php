@@ -75,7 +75,16 @@ class MakePcController extends AppController {
 					}
 				}
 				break;
+			case 'Cards':
+				if($product_id) {
+					$myPC["$product_type"]["$position"] = $product;
+					
+				}else{
+					unset($myPC["$product_type"]["$position"]);
+				}
+				break;
 			default:
+				$esto='elhp entro';
 				$myPC["$product_type"] = $product;
 				break;
 		}
@@ -112,6 +121,14 @@ class MakePcController extends AppController {
 						}
 					}
 					break;
+				case 'Cards':
+					if(!empty($producto)){
+						foreach($producto as $product){
+							$total += $product['Product']['price'];
+						}
+					}
+					
+				break;
 				default:
 					if(isset($producto['Product']['price'])) {
 						$total += $producto['Product']['price'];
@@ -401,12 +418,8 @@ class MakePcController extends AppController {
 	function getOtherCards() {
 		$this->layout="ajax";
 		$myPC = $this->getMyPC();
-		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 10)));
-		$this -> set(compact('items', 'boardId'));
-		if(isset($myPC['Cards']) && !empty($myPC['Cards'])) {
-			debug($myPC['Cards']);	
-		}
-		
+		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => array(10,6))));
+		$this -> set(compact('items', 'myPC'));		
 	}
 	
 	function getMice() {
