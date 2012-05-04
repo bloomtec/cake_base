@@ -89,8 +89,9 @@
 			echo $this -> Form -> hidden('User.user_score', array('value' => $userScore));
 		?>
 		
-		<p>Tienes actualmente tienes <?php echo "$ ".number_format($userScore, 0, ",", "."); ?>  acumulados como bono.</p>
+		<p>Tienes actualmente  <?php echo "$ ".number_format($userScore, 0, ",", "."); ?>  acumulados como bono.</p>
 		<p>¡Puedes actualmente pagar con tu bono!</p>
+		<p> Deseas hacerlo?</p>
 		<?php $redimir=isset($this->params['named']['redimir'])?$this->params['named']['redimir']:0;?>
 		<p><?php echo $this -> Form -> input('comprar_con_bono', array('legend'=>false,'type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => $redimir)); ?></p>
 	</div>

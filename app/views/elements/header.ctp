@@ -1,3 +1,4 @@
+<?php echo $this -> element('overlay-bonos');?>
 <div id="header">
 	<div class="wrapper">
 		<img src="/img/logo.jpg" style="display: none;" />
@@ -18,7 +19,7 @@
 		</div>
 		<a href="/" class="logo_header"></a>
 		<p>
-			<?php __('Dile a tu amigos que hay para comer y acumula'); ?> <span class='dinero'><?php __('dinero'); ?></span> <?php __('para tus proximas compras.'); ?>
+			<?php __('Dile a tu amigos que hay para comer y acumula'); ?> <a class='dinero' rel='#overlay_bonos' href="#"><?php __('dinero'); ?></a> <?php __('para tus proximas compras.'); ?>
 			
 			<br />
 			<br />
@@ -55,5 +56,8 @@
 	$("#AjaxLoginSubmit").click(function(e){
 		e.preventDefault();
 		$("#UserAjaxLoginForm").submit();
+	});
+	$(function(){
+		  $("a.dinero[rel]").overlay();
 	});
 </script>
