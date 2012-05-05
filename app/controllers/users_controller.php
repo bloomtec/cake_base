@@ -489,7 +489,7 @@ class UsersController extends AppController {
 				if ($this -> User -> save($user)) {
 					$this -> passwordEmail($email, $email, $password);
 					//echo json_encode(array('success'=>true, 'message'=>__("An email has been sent to $email with the new password.", true)));
-					$this -> Session -> setFlash(__("Se ha enviado un correo a $email con la nueva contraseña.", true));
+					$this -> Session -> setFlash(__('Se ha enviado un correo a ', true) . $email . __(' con la nueva contraseña.', true));
 				} else {
 					//echo json_encode(array('success'=>false, 'message'=>__('An error occurred in the process. Please try again.', true)));
 					$this -> Session -> setFlash(__('Ocurrio un error en el proceso. Por favor, intente de nuevo', true));
@@ -751,11 +751,11 @@ class UsersController extends AppController {
 					$user['message'] = __('Inicio de sesión exitoso', true);
 				} else {
 					$user['success'] = false;
-					$user['message'] = __("La información no es correcta. Click <a href=\"/users/resetPassword/$email\">aquí</a> si quieres resetear tu contraseña.", true);
+					$user['message'] = __('La información no es correcta.', true) . 'Click <a href="/users/resetPassword/' . $email . '>aquí</a>' . __('si quieres resetear tu contraseña.', true);
 				}
 			} else {
 				$user['success'] = false;
-				$user['message'] = __('El correo no ha sido verificado :: <a href="/users/validateEmail">Verify email</a>', true);
+				$user['message'] = __('El correo no ha sido verificado', true) . ':: <a href="/users/validateEmail">' . __('Verificar correo', true) . '</a>';
 			}
 		} else {
 			$user['success'] = false;

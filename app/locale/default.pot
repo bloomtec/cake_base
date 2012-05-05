@@ -1,0 +1,3063 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-05-05 09:42-0500\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /app_controller.php:100
+msgid "The comment has been saved"
+msgstr ""
+
+#: /app_controller.php:103
+msgid "The comment could not be saved. Please, try again."
+msgstr ""
+
+#: /config/bootstrap.php:52
+msgid "English"
+msgstr ""
+
+#: /config/bootstrap.php:53
+msgid "Spanish"
+msgstr ""
+
+#: /controllers/addresses_controller.php:18;31;76;100
+msgid "Dirección no válida"
+msgstr ""
+
+#: /controllers/addresses_controller.php:36;56;86;105
+msgid "Se guardó la dirección"
+msgstr ""
+
+#: /controllers/addresses_controller.php:39;59;89;108
+msgid "No se pudo guardar la dirección. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/addresses_controller.php:122
+msgid "ID de dirección no válida"
+msgstr ""
+
+#: /controllers/addresses_controller.php:126
+msgid "Dirección eliminada"
+msgstr ""
+
+#: /controllers/addresses_controller.php:129
+msgid "La dirección no fue eliminada"
+msgstr ""
+
+#: /controllers/cities_controller.php:32;45;68;101
+msgid "Ciudad no válida"
+msgstr ""
+
+#: /controllers/cities_controller.php:56;73
+msgid "Se guardó la ciudad"
+msgstr ""
+
+#: /controllers/cities_controller.php:59;76
+msgid "No se pudo guardar la ciudad. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/cities_controller.php:88
+msgid "ID de ciudad no válida"
+msgstr ""
+
+#: /controllers/cities_controller.php:92
+msgid "Ciudad eliminada"
+msgstr ""
+
+#: /controllers/cities_controller.php:95
+msgid "No se eliminó la ciudad"
+msgstr ""
+
+#: /controllers/comments_controller.php:18;40;121;143
+msgid "Comentario no válido"
+msgstr ""
+
+#: /controllers/comments_controller.php:28;45;131;148
+msgid "Se guardó el comentario"
+msgstr ""
+
+#: /controllers/comments_controller.php:31;48;134;151
+msgid "No se pudo guardar el comentario. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/comments_controller.php:60;73;88;163;176;191
+msgid "ID de comentario no válida"
+msgstr ""
+
+#: /controllers/comments_controller.php:64;167
+msgid "Comentario eliminado"
+msgstr ""
+
+#: /controllers/comments_controller.php:67;170
+msgid "El comentario no fue eliminado"
+msgstr ""
+
+#: /controllers/comments_controller.php:79;94;182;197
+msgid "Comentario archivado"
+msgstr ""
+
+#: /controllers/comments_controller.php:82;97;185;200
+msgid "El comentario no fue archivado"
+msgstr ""
+
+#: /controllers/config_controller.php:13
+msgid "Configuración no válida"
+msgstr ""
+
+#: /controllers/config_controller.php:17
+msgid "Se guardó la configuración"
+msgstr ""
+
+#: /controllers/config_controller.php:19
+msgid "No se pudo guardar la configuración. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/countries_controller.php:25;38;58
+msgid "País no válido"
+msgstr ""
+
+#: /controllers/countries_controller.php:48;63
+msgid "Se agregó el país"
+msgstr ""
+
+#: /controllers/countries_controller.php:51;66
+msgid "No se pudo agregar el país. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/countries_controller.php:76
+msgid "ID de país no válida"
+msgstr ""
+
+#: /controllers/countries_controller.php:80
+msgid "País eliminado"
+msgstr ""
+
+#: /controllers/countries_controller.php:83
+msgid "No se eliminó el país"
+msgstr ""
+
+#: /controllers/cuisines_controller.php:18;37;60
+msgid "Cocina no válida"
+msgstr ""
+
+#: /controllers/cuisines_controller.php:48;65
+msgid "Se agregó el tipo de cocina"
+msgstr ""
+
+#: /controllers/cuisines_controller.php:51;68
+msgid "No se pudo guardar el tipo de cocina. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/cuisines_controller.php:80
+msgid "ID de cocina no válida"
+msgstr ""
+
+#: /controllers/cuisines_controller.php:84
+msgid "Tipo de cocina eliminada"
+msgstr ""
+
+#: /controllers/cuisines_controller.php:87
+msgid "No se eliminó la cocina"
+msgstr ""
+
+#: /controllers/deals_controller.php:47;272
+msgid "Ciudades..."
+msgstr ""
+
+#: /controllers/deals_controller.php:73;109
+msgid "Escoja su zona..."
+msgstr ""
+
+#: /controllers/deals_controller.php:78;114;203;205;223;225;297
+msgid "Todos..."
+msgstr ""
+
+#: /controllers/deals_controller.php:142;172;322
+msgid "Todas..."
+msgstr ""
+
+#: /controllers/deals_controller.php:292;356
+msgid "Escoja ciudad..."
+msgstr ""
+
+#: /controllers/deals_controller.php:358
+msgid "Escoja un rango..."
+msgstr ""
+
+#: /controllers/deals_controller.php:447;466;503;550;571;608
+msgid "Promo no válida"
+msgstr ""
+
+#: /controllers/deals_controller.php:489;508;594;613
+msgid "Se guardó la promo"
+msgstr ""
+
+#: /controllers/deals_controller.php:493;512;598;617
+msgid "No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada."
+msgstr ""
+
+#: /controllers/deals_controller.php:525;630
+msgid "ID de promo no válido"
+msgstr ""
+
+#: /controllers/deals_controller.php:529;634
+msgid "Promo eliminada"
+msgstr ""
+
+#: /controllers/deals_controller.php:532;637
+msgid "No se eliminó la promo"
+msgstr ""
+
+#: /controllers/orders_controller.php:82;287;359;378;388
+msgid "Orden no válida"
+msgstr ""
+
+#: /controllers/orders_controller.php:117
+msgid "Este correo ya está registrado. Por favor inicia sesión"
+msgstr ""
+
+#: /controllers/orders_controller.php:148;180;195
+msgid "Se ha generado el pedido."
+msgstr ""
+
+#: /controllers/orders_controller.php:151;183;198
+msgid "Ha ocurrido un error al generar el pedido en la creación del pedido."
+msgstr ""
+
+#: /controllers/orders_controller.php:156;188
+msgid "Ha ocurrido un error al generar el pedido en la creación de la dirección."
+msgstr ""
+
+#: /controllers/orders_controller.php:161
+msgid "Ha ocurrido un error al registrar el usuario."
+msgstr ""
+
+#: /controllers/orders_controller.php:397
+msgid "La orden se ha guardado"
+msgstr ""
+
+#: /controllers/orders_controller.php:400
+msgid "No se pudo guardar la orden"
+msgstr ""
+
+#: /controllers/orders_controller.php:446
+msgid " orden aprobada"
+msgstr ""
+
+#: /controllers/orders_controller.php:504
+msgid "La promo: "
+msgstr ""
+
+#: /controllers/orders_controller.php:504
+msgid " ha terminado"
+msgstr ""
+
+#: /controllers/pages_controller.php:71
+msgid "Petición de contacto del sitio "
+msgstr ""
+
+#: /controllers/pages_controller.php:117
+msgid "Petición de trabajo en el sitio "
+msgstr ""
+
+#: /controllers/pages_controller.php:163
+msgid "Dudas del sitio "
+msgstr ""
+
+#: /controllers/pages_controller.php:219
+msgid "Sugerencia de restaurante para "
+msgstr ""
+
+#: /controllers/pages_controller.php:255
+msgid "Página erronea"
+msgstr ""
+
+#: /controllers/pages_controller.php:265;280;377;392
+msgid "Se guardó la página"
+msgstr ""
+
+#: /controllers/pages_controller.php:268;283;380;395
+msgid "No se pudo guardar la página. Por favor, intenta de nuevo.."
+msgstr ""
+
+#: /controllers/pages_controller.php:275;367;387
+msgid "Página no válida"
+msgstr ""
+
+#: /controllers/pages_controller.php:293;306;321;405;426;441
+msgid "ID de página no válida"
+msgstr ""
+
+#: /controllers/pages_controller.php:297;409
+msgid "Página eliminada"
+msgstr ""
+
+#: /controllers/pages_controller.php:300;412
+msgid "No se eliminó la página"
+msgstr ""
+
+#: /controllers/pages_controller.php:312;327;432;447
+msgid "Página archivada"
+msgstr ""
+
+#: /controllers/pages_controller.php:315;330;435;450
+msgid "No se archivó la página"
+msgstr ""
+
+#: /controllers/prizes_controller.php:14
+msgid "Premios"
+msgstr ""
+
+#: /controllers/prizes_controller.php:19;120;140
+msgid "Premio no válido"
+msgstr ""
+
+#: /controllers/prizes_controller.php:55
+msgid "¡Se te ha enviado un correo con información!"
+msgstr ""
+
+#: /controllers/prizes_controller.php:60
+msgid "¡No tienes suficientes puntos para este premio!"
+msgstr ""
+
+#: /controllers/prizes_controller.php:85
+msgid " prize redeemed"
+msgstr ""
+
+#: /controllers/prizes_controller.php:130;145
+msgid "Se registró el premio"
+msgstr ""
+
+#: /controllers/prizes_controller.php:133;148
+msgid "No se pudo registrar el premio. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/prizes_controller.php:158
+msgid "ID de premio no válida"
+msgstr ""
+
+#: /controllers/prizes_controller.php:162
+msgid "Premio eliminado"
+msgstr ""
+
+#: /controllers/prizes_controller.php:165
+msgid "No se pudo eliminar el premio"
+msgstr ""
+
+#: /controllers/restaurants_controller.php:40;53;96;139;167;207;215
+msgid "Restaurante no válido"
+msgstr ""
+
+#: /controllers/restaurants_controller.php:82;101;155;172;220
+msgid "Se registró el restaurante"
+msgstr ""
+
+#: /controllers/restaurants_controller.php:85;104;158;175;223
+msgid "No se pudo registrar el restaurante. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/restaurants_controller.php:119;187
+msgid "ID de restaurante no válida"
+msgstr ""
+
+#: /controllers/restaurants_controller.php:123;191
+msgid "Se eliminó el restaurante"
+msgstr ""
+
+#: /controllers/restaurants_controller.php:126;194
+msgid "No se eliminó el restaurante"
+msgstr ""
+
+#: /controllers/users_controller.php:39
+#: /views/elements/restaurant/add.ctp:31
+#: /views/users/admin_add.ctp:16
+#: /views/users/admin_edit.ctp:17
+msgid "Seleccione..."
+msgstr ""
+
+#: /controllers/users_controller.php:60
+msgid "Registro exitoso. Por favor revisa tu correo para terminar el proceso de registro."
+msgstr ""
+
+#: /controllers/users_controller.php:64
+msgid "Ocurrió un error. Por favor, intenta de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:180
+msgid "Gracias por invitar a tus amigos. ¡Cada registro exitoso te dará puntos!"
+msgstr ""
+
+#: /controllers/users_controller.php:182
+msgid "Esperamos invites más personas pronto."
+msgstr ""
+
+#: /controllers/users_controller.php:187
+msgid "Debes de haber iniciado sesión para referir a tus amigos"
+msgstr ""
+
+#: /controllers/users_controller.php:211
+msgid "Registro al sitio: "
+msgstr ""
+
+#: /controllers/users_controller.php:261
+msgid "Se ha registrado un amigo: "
+msgstr ""
+
+#: /controllers/users_controller.php:315
+msgid "Recomendación del sitio: "
+msgstr ""
+
+#: /controllers/users_controller.php:370
+msgid "Gracias por validar el correo"
+msgstr ""
+
+#: /controllers/users_controller.php:377
+msgid "Ha ocurrido un error al validar el correo. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:381;384
+msgid "Ingresa un código válido e intenta de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:404;458;573;599
+msgid "Usuario no válido"
+msgstr ""
+
+#: /controllers/users_controller.php:412
+msgid "Se actualizó la información."
+msgstr ""
+
+#: /controllers/users_controller.php:415
+msgid "No se pudo actualizar la información"
+msgstr ""
+
+#: /controllers/users_controller.php:432
+msgid "Usuario no valid"
+msgstr ""
+
+#: /controllers/users_controller.php:438
+msgid "Se registró la dirección"
+msgstr ""
+
+#: /controllers/users_controller.php:441
+msgid "La dirección no se pudo registrar. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:466
+msgid "Se ha actualizado tu contraseña"
+msgstr ""
+
+#: /controllers/users_controller.php:469
+msgid "No coincide la confirmación de la contraseña"
+msgstr ""
+
+#: /controllers/users_controller.php:474
+msgid "Su contraseña anterior no es válida"
+msgstr ""
+
+#: /controllers/users_controller.php:492
+msgid "Se ha enviado un correo a "
+msgstr ""
+
+#: /controllers/users_controller.php:492
+msgid " con la nueva contraseña."
+msgstr ""
+
+#: /controllers/users_controller.php:495
+msgid "Ocurrio un error en el proceso. Por favor, intente de nuevo"
+msgstr ""
+
+#: /controllers/users_controller.php:499
+msgid "No existe un usuario con ese correo registrado."
+msgstr ""
+
+#: /controllers/users_controller.php:533
+msgid "Petición de cambio de contaseña "
+msgstr ""
+
+#: /controllers/users_controller.php:586;609
+msgid "Se registró el usuario"
+msgstr ""
+
+#: /controllers/users_controller.php:589;612
+msgid "No se pudo registrar el usuario. Si el usuario no es un admin verifica que hayas seleccionado una ciudad e intenta de nuevo."
+msgstr ""
+
+#: /controllers/users_controller.php:626;639;654
+msgid "ID de usuario no válida"
+msgstr ""
+
+#: /controllers/users_controller.php:630
+msgid "Usuario eliminado"
+msgstr ""
+
+#: /controllers/users_controller.php:633
+msgid "El usuario no fue eliminado"
+msgstr ""
+
+#: /controllers/users_controller.php:645
+msgid "Usuario activado"
+msgstr ""
+
+#: /controllers/users_controller.php:648
+msgid "El usuario no fue activado"
+msgstr ""
+
+#: /controllers/users_controller.php:660
+msgid "Se activo el usuario"
+msgstr ""
+
+#: /controllers/users_controller.php:663
+msgid "No se activo el usuario"
+msgstr ""
+
+#: /controllers/users_controller.php:751
+msgid "Inicio de sesión exitoso"
+msgstr ""
+
+#: /controllers/users_controller.php:754
+msgid "La información no es correcta."
+msgstr ""
+
+#: /controllers/users_controller.php:754
+msgid "si quieres resetear tu contraseña."
+msgstr ""
+
+#: /controllers/users_controller.php:758
+msgid "El correo no ha sido verificado"
+msgstr ""
+
+#: /controllers/users_controller.php:758
+msgid "Verificar correo"
+msgstr ""
+
+#: /controllers/users_controller.php:762
+msgid "No existe un usario registrado con ese correo"
+msgstr ""
+
+#: /controllers/zones_controller.php:35;54;83;128;157
+msgid "Barrio no válido"
+msgstr ""
+
+#: /controllers/zones_controller.php:71;88;145;162
+msgid "Se registró el barrio"
+msgstr ""
+
+#: /controllers/zones_controller.php:74;91;148;165
+msgid "No se puedo guardar el barrio. Por favor, intente de nuevo"
+msgstr ""
+
+#: /controllers/zones_controller.php:104;178
+msgid "ID de barrio no válida"
+msgstr ""
+
+#: /controllers/zones_controller.php:108;182
+msgid "Barrio eliminado"
+msgstr ""
+
+#: /controllers/zones_controller.php:111;185
+msgid "No se eliminó el barrio"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:87
+msgid "Available ACO sync commands:"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:93
+msgid "For help, run the 'help' command.  For help on a specific command, run 'help <command>'"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:124
+msgid "Aco Update Complete"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:167
+msgid "Deleted %s and all children"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:208
+msgid "Created Aco node: %s"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:244
+msgid "Deleted Aco node %s"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:259
+msgid "Usage: cake acl_extras <command>"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:261
+msgid "Commands:"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:265
+msgid "Add new ACOs for new controllers and actions"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:266
+msgid "Create new ACO's for controllers and their actions. Does not remove any nodes from ACO table"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:270
+msgid "Creates new ACO's for missing controllers and actions. Removes orphaned entries in the ACO table."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:273
+msgid "Verify the tree structure of either your Aco or Aro Trees"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:276
+msgid "Recover a corrupted Tree"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:279
+msgid "Displays this help message, or a message on a specific command."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:290
+msgid "Command '%s' not found"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:302;322
+msgid "Missing Type"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:308
+msgid "Tree is valid and strong"
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:328
+msgid "Tree has been recovered, or tree did not need recovery."
+msgstr ""
+
+#: /plugins/acl_extras/vendors/shells/acl_extras.php:330
+msgid "Tree recovery failed."
+msgstr ""
+
+#: /views/cities/add.ctp:5
+#: /views/cities/admin_add.ctp:5
+msgid "Agregar Ciudad"
+msgstr ""
+
+#: /views/cities/add.ctp:8
+#: /views/cities/admin_add.ctp:8
+#: /views/cities/admin_edit.ctp:9
+#: /views/cities/admin_index.ctp:6
+#: /views/cities/admin_view.ctp:4
+#: /views/cities/edit.ctp:9
+#: /views/cities/manager_view.ctp:4
+#: /views/cities/view.ctp:4
+#: /views/countries/admin_view.ctp:2
+#: /views/elements/restaurant/add.ctp:9
+#: /views/elements/restaurant/edit.ctp:8
+#: /views/orders/add.ctp:61;82
+#: /views/users/admin_view.ctp:67
+#: /views/users/login.ctp:58
+#: /views/users/register.ctp:46
+#: /views/users/update_addresses.ctp:18;34
+#: /views/zones/admin_add.ctp:6
+#: /views/zones/admin_edit.ctp:8
+#: /views/zones/manager_add.ctp:6
+#: /views/zones/manager_edit.ctp:8
+msgid "País"
+msgstr ""
+
+#: /views/cities/add.ctp:9
+#: /views/cities/admin_add.ctp:9
+#: /views/cities/admin_edit.ctp:10
+#: /views/cities/admin_index.ctp:7
+#: /views/cities/admin_view.ctp:9;71;111;163
+#: /views/cities/edit.ctp:10
+#: /views/cities/manager_view.ctp:9;71;111;163
+#: /views/cities/view.ctp:9;71;111;163
+#: /views/countries/admin_add.ctp:8
+#: /views/countries/admin_edit.ctp:9
+#: /views/countries/admin_index.ctp:6
+#: /views/countries/admin_view.ctp:4;70
+#: /views/cuisines/add.ctp:8
+#: /views/cuisines/admin_add.ctp:8
+#: /views/cuisines/admin_edit.ctp:9
+#: /views/cuisines/admin_index.ctp:6
+#: /views/cuisines/admin_view.ctp:4;29
+#: /views/cuisines/edit.ctp:9
+#: /views/cuisines/view.ctp:4;29
+#: /views/deals/admin_edit.ctp:10
+#: /views/deals/edit.ctp:10
+#: /views/deals/manager_edit.ctp:10
+#: /views/elements/deal/add.ctp:9
+#: /views/elements/deal/index.ctp:7
+#: /views/elements/deal/view.ctp:9;93
+#: /views/elements/restaurant/add.ctp:13;32
+#: /views/elements/restaurant/edit.ctp:13;15
+#: /views/elements/restaurant/index.ctp:6
+#: /views/elements/restaurant/view.ctp:15
+#: /views/orders/add.ctp:51;56
+#: /views/orders/owner_edit.ctp:12
+#: /views/users/admin_add.ctp:10
+#: /views/users/admin_edit.ctp:11
+#: /views/users/admin_view.ctp:9;64
+#: /views/users/login.ctp:53
+#: /views/users/register.ctp:41;49
+#: /views/users/update_addresses.ctp:17;33
+#: /views/zones/admin_add.ctp:8
+#: /views/zones/admin_edit.ctp:10
+#: /views/zones/admin_index.ctp:6
+#: /views/zones/admin_view.ctp:9;55
+#: /views/zones/manager_add.ctp:8
+#: /views/zones/manager_edit.ctp:10
+#: /views/zones/manager_index.ctp:5
+#: /views/zones/manager_view.ctp:9;55
+msgid "Nombre"
+msgstr ""
+
+#: /views/cities/add.ctp:10
+#: /views/cities/admin_add.ctp:10
+#: /views/cities/admin_edit.ctp:11
+#: /views/cities/admin_index.ctp:8
+#: /views/cities/admin_view.ctp:14;164
+#: /views/cities/edit.ctp:11
+#: /views/cities/manager_view.ctp:14;164
+#: /views/cities/view.ctp:14;164
+#: /views/countries/admin_add.ctp:9
+#: /views/countries/admin_edit.ctp:10
+#: /views/countries/admin_index.ctp:7
+#: /views/countries/admin_view.ctp:9;71
+#: /views/cuisines/add.ctp:9
+#: /views/cuisines/admin_add.ctp:9
+#: /views/cuisines/admin_edit.ctp:10
+#: /views/cuisines/admin_index.ctp:7
+#: /views/cuisines/admin_view.ctp:9
+#: /views/cuisines/edit.ctp:10
+#: /views/cuisines/view.ctp:9
+#: /views/deals/admin_edit.ctp:12
+#: /views/deals/edit.ctp:12
+#: /views/deals/manager_edit.ctp:12
+#: /views/elements/deal/add.ctp:11
+#: /views/elements/deal/index.ctp:8
+#: /views/elements/deal/view.ctp:14;94
+#: /views/elements/restaurant/add.ctp:14
+#: /views/elements/restaurant/edit.ctp:17
+#: /views/elements/restaurant/index.ctp:7
+#: /views/elements/restaurant/view.ctp:20
+#: /views/zones/admin_add.ctp:9
+#: /views/zones/admin_edit.ctp:11
+#: /views/zones/admin_index.ctp:7
+#: /views/zones/admin_view.ctp:14;56
+#: /views/zones/manager_add.ctp:9
+#: /views/zones/manager_edit.ctp:11
+#: /views/zones/manager_index.ctp:6
+#: /views/zones/manager_view.ctp:14
+msgid "Descripción"
+msgstr ""
+
+#: /views/cities/add.ctp:12
+#: /views/cities/admin_add.ctp:12
+#: /views/cities/admin_edit.ctp:13
+#: /views/cities/admin_index.ctp:10
+#: /views/cities/admin_view.ctp:24
+#: /views/cities/edit.ctp:13
+#: /views/cities/manager_view.ctp:24
+#: /views/cities/view.ctp:24
+#: /views/countries/admin_add.ctp:12
+#: /views/countries/admin_edit.ctp:13
+#: /views/countries/admin_index.ctp:10
+#: /views/countries/admin_view.ctp:24;73
+msgid "Presente"
+msgstr ""
+
+#: /views/cities/add.ctp:13
+#: /views/cities/admin_add.ctp:13
+#: /views/cities/admin_edit.ctp:14
+#: /views/cities/admin_index.ctp:11
+#: /views/cities/admin_view.ctp:37
+#: /views/cities/edit.ctp:14
+#: /views/cities/manager_view.ctp:37
+#: /views/cities/view.ctp:37
+#: /views/countries/admin_add.ctp:13
+#: /views/countries/admin_edit.ctp:14
+#: /views/countries/admin_index.ctp:11
+#: /views/countries/admin_view.ctp:36;74
+#: /views/elements/deal/view.ctp:50
+#: /views/elements/order/index.ctp:6
+#: /views/elements/order/view.ctp:4
+#: /views/orders/owner_edit.ctp:11
+#: /views/users/admin_view.ctp:108
+msgid "Código"
+msgstr ""
+
+#: /views/cities/add.ctp:18
+#: /views/cities/admin_add.ctp:18
+#: /views/cities/admin_edit.ctp:19
+#: /views/cities/edit.ctp:19
+#: /views/config/admin_edit.ctp:13
+#: /views/countries/admin_add.ctp:19
+#: /views/countries/admin_edit.ctp:20
+#: /views/cuisines/add.ctp:14
+#: /views/cuisines/admin_add.ctp:14
+#: /views/cuisines/admin_edit.ctp:15
+#: /views/cuisines/edit.ctp:15
+#: /views/elements/deal/add.ctp:23
+#: /views/elements/restaurant/add.ctp:41
+#: /views/elements/restaurant/edit.ctp:29
+#: /views/pages/contacto.ctp:27
+#: /views/pages/dudas.ctp:47
+#: /views/pages/sugierenos.ctp:37
+#: /views/users/admin_add.ctp:20
+#: /views/users/admin_edit.ctp:21
+#: /views/zones/admin_add.ctp:15
+#: /views/zones/admin_edit.ctp:17
+#: /views/zones/manager_add.ctp:15
+#: /views/zones/manager_edit.ctp:17
+msgid "Enviar"
+msgstr ""
+
+#: /views/cities/add.ctp:21
+#: /views/cities/admin_add.ctp:21
+#: /views/cities/admin_edit.ctp:22
+#: /views/cities/admin_index.ctp:9
+#: /views/cities/admin_view.ctp:19;165
+#: /views/cities/edit.ctp:22
+#: /views/cities/manager_view.ctp:19;165
+#: /views/cities/view.ctp:19;165
+#: /views/countries/admin_add.ctp:22
+#: /views/countries/admin_edit.ctp:23
+#: /views/countries/admin_index.ctp:8
+#: /views/countries/admin_view.ctp:14;72
+#: /views/cuisines/add.ctp:17
+#: /views/cuisines/admin_add.ctp:17
+#: /views/cuisines/admin_edit.ctp:18
+#: /views/cuisines/admin_index.ctp:8
+#: /views/cuisines/admin_view.ctp:14;30
+#: /views/cuisines/edit.ctp:18
+#: /views/cuisines/view.ctp:14;30
+#: /views/deals/edit.ctp:27
+#: /views/deals/manager_edit.ctp:27
+#: /views/elements/deal/add.ctp:26
+#: /views/elements/deal/index.ctp:9
+#: /views/elements/deal/view.ctp:19;95
+#: /views/elements/restaurant/add.ctp:44
+#: /views/elements/restaurant/edit.ctp:32
+#: /views/elements/restaurant/index.ctp:9
+#: /views/elements/restaurant/view.ctp:30
+#: /views/zones/admin_add.ctp:19
+#: /views/zones/admin_edit.ctp:21
+#: /views/zones/admin_index.ctp:8
+#: /views/zones/admin_view.ctp:19;57
+#: /views/zones/manager_add.ctp:19
+#: /views/zones/manager_edit.ctp:21
+#: /views/zones/manager_index.ctp:7
+#: /views/zones/manager_view.ctp:19;57
+msgid "Imagen"
+msgstr ""
+
+#: /views/cities/admin_edit.ctp:5
+#: /views/cities/edit.ctp:5
+msgid "Editar Ciudad"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:3
+#: /views/cities/index.ctp:3
+msgid "Ciudades"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:18
+#: /views/cities/admin_view.ctp:75;166
+#: /views/cities/manager_view.ctp:75;166
+#: /views/cities/view.ctp:75;166
+#: /views/countries/admin_index.ctp:16
+#: /views/countries/admin_view.ctp:79
+#: /views/cuisines/admin_index.ctp:13
+#: /views/cuisines/admin_view.ctp:35
+#: /views/cuisines/view.ctp:35
+#: /views/elements/deal/index.ctp:15
+#: /views/elements/deal/view.ctp:97
+#: /views/elements/order/back_index.ctp:32
+#: /views/elements/order/index.ctp:13
+#: /views/elements/restaurant/index.ctp:10
+#: /views/users/admin_index.ctp:12
+#: /views/users/admin_view.ctp:115
+#: /views/zones/admin_index.ctp:15
+#: /views/zones/admin_view.ctp:62
+#: /views/zones/manager_index.ctp:12
+#: /views/zones/manager_view.ctp:62
+msgid "Acciones"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:54
+#: /views/cities/admin_view.ctp:91;143
+#: /views/cities/manager_view.ctp:91;143
+#: /views/cities/view.ctp:91;143
+#: /views/countries/admin_index.ctp:48
+#: /views/countries/admin_view.ctp:108
+#: /views/cuisines/admin_index.ctp:32
+#: /views/cuisines/admin_view.ctp:54
+#: /views/cuisines/view.ctp:54
+#: /views/elements/deal/index.ctp:39;39
+#: /views/elements/deal/view.ctp:77;114
+#: /views/elements/order/back_index.ctp:88
+#: /views/elements/order/index.ctp:58
+#: /views/elements/restaurant/index.ctp:35;35
+#: /views/users/admin_index.ctp:36;36
+#: /views/zones/admin_index.ctp:39
+#: /views/zones/admin_view.ctp:81
+#: /views/zones/manager_index.ctp:31
+#: /views/zones/manager_view.ctp:81
+msgid "Ver"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:54
+#: /views/cities/admin_view.ctp:181
+#: /views/cities/index.ctp:40;40
+#: /views/cities/manager_view.ctp:181
+#: /views/cities/view.ctp:181
+#: /views/comments/admin_index.ctp:47;47
+#: /views/comments/index.ctp:47;47
+#: /views/countries/admin_index.ctp:48
+#: /views/cuisines/admin_index.ctp:32
+#: /views/cuisines/index.ctp:28;28
+#: /views/elements/order/back_index.ctp:88
+#: /views/elements/order/index.ctp:58
+#: /views/elements/restaurant/view.ctp:83
+#: /views/pages/admin_index.ctp:34;34
+#: /views/pages/index.ctp:45;45
+#: /views/pages/manager_index.ctp:34;34
+#: /views/prizes/admin_index.ctp:30;30
+#: /views/restaurants/index.ctp:32;32
+#: /views/restaurants/view.ctp:84
+#: /views/users/admin_view.ctp:134
+#: /views/users/index.ctp:46;46
+#: /views/users/view.ctp:106;156
+#: /views/zones/admin_index.ctp:39
+#: /views/zones/index.ctp:36;36
+#: /views/zones/manager_index.ctp:31
+#: /views/zones/view.ctp:90
+msgid "View"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:55
+#: /views/cities/admin_view.ctp:92;144
+#: /views/cities/manager_view.ctp:92;144
+#: /views/cities/view.ctp:92;144
+#: /views/countries/admin_index.ctp:49
+#: /views/countries/admin_view.ctp:109
+#: /views/cuisines/admin_index.ctp:33
+#: /views/cuisines/admin_view.ctp:55
+#: /views/cuisines/view.ctp:55
+#: /views/elements/deal/index.ctp:41;41
+#: /views/elements/deal/view.ctp:79;115
+#: /views/elements/order/back_index.ctp:93
+#: /views/elements/restaurant/index.ctp:36;36
+#: /views/users/admin_index.ctp:37;37
+#: /views/zones/admin_index.ctp:40
+#: /views/zones/admin_view.ctp:82
+#: /views/zones/manager_index.ctp:32
+#: /views/zones/manager_view.ctp:82
+msgid "Editar"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:55
+#: /views/cities/admin_view.ctp:182
+#: /views/cities/index.ctp:41;41
+#: /views/cities/manager_view.ctp:182
+#: /views/cities/view.ctp:182
+#: /views/comments/admin_index.ctp:48;48
+#: /views/comments/index.ctp:48;48
+#: /views/countries/admin_index.ctp:49
+#: /views/cuisines/admin_index.ctp:33
+#: /views/cuisines/index.ctp:29;29
+#: /views/elements/order/back_index.ctp:93
+#: /views/elements/restaurant/view.ctp:85
+#: /views/pages/admin_index.ctp:35;35
+#: /views/pages/index.ctp:46;46
+#: /views/pages/manager_index.ctp:35;35
+#: /views/prizes/admin_index.ctp:31;31
+#: /views/restaurants/index.ctp:33;33
+#: /views/restaurants/view.ctp:85
+#: /views/users/admin_view.ctp:90
+#: /views/users/index.ctp:47;47
+#: /views/users/view.ctp:107;157
+#: /views/zones/admin_index.ctp:40
+#: /views/zones/index.ctp:37;37
+#: /views/zones/manager_index.ctp:32
+#: /views/zones/view.ctp:91
+msgid "Edit"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:56
+#: /views/cities/admin_view.ctp:93;145
+#: /views/cities/manager_view.ctp:93;145
+#: /views/cities/view.ctp:93;145
+#: /views/countries/admin_index.ctp:50
+#: /views/countries/admin_view.ctp:110
+#: /views/cuisines/admin_index.ctp:34
+#: /views/cuisines/admin_view.ctp:56
+#: /views/cuisines/view.ctp:56
+#: /views/elements/deal/index.ctp:42;42
+#: /views/elements/deal/view.ctp:116
+#: /views/elements/restaurant/index.ctp:39;39
+#: /views/users/admin_index.ctp:38;38
+#: /views/zones/admin_index.ctp:41
+#: /views/zones/admin_view.ctp:83
+#: /views/zones/manager_index.ctp:33
+#: /views/zones/manager_view.ctp:83
+msgid "Eliminar"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:56
+#: /views/cities/admin_view.ctp:183
+#: /views/cities/index.ctp:42;42
+#: /views/cities/manager_view.ctp:183
+#: /views/cities/view.ctp:183
+#: /views/comments/admin_index.ctp:49;49
+#: /views/comments/index.ctp:49;49
+#: /views/countries/admin_index.ctp:50
+#: /views/cuisines/admin_index.ctp:34
+#: /views/cuisines/index.ctp:30;30
+#: /views/elements/restaurant/view.ctp:86
+#: /views/pages/admin_index.ctp:36;36
+#: /views/pages/index.ctp:47;47
+#: /views/pages/manager_index.ctp:36;36
+#: /views/prizes/admin_index.ctp:32;32
+#: /views/restaurants/index.ctp:34;34
+#: /views/restaurants/view.ctp:86
+#: /views/users/admin_view.ctp:91
+#: /views/users/index.ctp:48;48
+#: /views/users/view.ctp:108;158
+#: /views/zones/admin_index.ctp:41
+#: /views/zones/index.ctp:38;38
+#: /views/zones/manager_index.ctp:33
+#: /views/zones/view.ctp:92
+msgid "Delete"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:56
+#: /views/cities/admin_view.ctp:93;145;183
+#: /views/cities/index.ctp:42
+#: /views/cities/manager_view.ctp:93;145;183
+#: /views/cities/view.ctp:93;145;183
+#: /views/comments/admin_index.ctp:49
+#: /views/comments/index.ctp:49
+#: /views/countries/admin_index.ctp:50
+#: /views/countries/admin_view.ctp:110
+#: /views/cuisines/admin_index.ctp:34
+#: /views/cuisines/admin_view.ctp:56
+#: /views/cuisines/index.ctp:30
+#: /views/cuisines/view.ctp:56
+#: /views/elements/deal/index.ctp:42
+#: /views/elements/deal/view.ctp:116
+#: /views/elements/restaurant/index.ctp:39
+#: /views/elements/restaurant/view.ctp:86
+#: /views/pages/admin_index.ctp:36
+#: /views/pages/index.ctp:47
+#: /views/pages/manager_index.ctp:36
+#: /views/prizes/admin_index.ctp:32
+#: /views/restaurants/index.ctp:34
+#: /views/restaurants/view.ctp:86
+#: /views/users/admin_index.ctp:38
+#: /views/users/admin_view.ctp:91
+#: /views/users/index.ctp:48
+#: /views/users/view.ctp:108;158
+#: /views/zones/admin_index.ctp:41
+#: /views/zones/admin_view.ctp:83
+#: /views/zones/index.ctp:38
+#: /views/zones/manager_index.ctp:33
+#: /views/zones/manager_view.ctp:83
+#: /views/zones/view.ctp:92
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:58;61
+#: /views/cities/index.ctp:44;47
+#: /views/comments/admin_index.ctp:51;54
+#: /views/comments/index.ctp:51;54
+#: /views/countries/admin_index.ctp:52;55
+#: /views/cuisines/admin_index.ctp:36;39
+#: /views/cuisines/index.ctp:32;35
+#: /views/elements/deal/index.ctp:46;49
+#: /views/elements/restaurant/index.ctp:43;46
+#: /views/pages/index.ctp:49;52
+#: /views/prizes/admin_index.ctp:34;37
+#: /views/restaurants/index.ctp:36;39
+#: /views/users/index.ctp:50;53
+#: /views/zones/admin_index.ctp:43;46
+#: /views/zones/index.ctp:40;43
+#: /views/zones/manager_index.ctp:35;38
+msgid " "
+msgstr ""
+
+#: /views/cities/admin_index.ctp:58
+#: /views/cities/index.ctp:44
+#: /views/comments/admin_index.ctp:51
+#: /views/comments/index.ctp:51
+#: /views/countries/admin_index.ctp:52
+#: /views/cuisines/admin_index.ctp:36
+#: /views/cuisines/index.ctp:32
+#: /views/elements/deal/index.ctp:46
+#: /views/elements/restaurant/index.ctp:43
+#: /views/pages/admin_index.ctp:38;38
+#: /views/pages/index.ctp:49
+#: /views/pages/manager_index.ctp:38;38
+#: /views/prizes/admin_index.ctp:34
+#: /views/restaurants/index.ctp:36
+#: /views/users/index.ctp:50
+#: /views/zones/admin_index.ctp:43
+#: /views/zones/index.ctp:40
+#: /views/zones/manager_index.ctp:35
+msgid "Set Inactive"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:58
+#: /views/cities/index.ctp:44
+#: /views/comments/admin_index.ctp:51
+#: /views/comments/index.ctp:51
+#: /views/countries/admin_index.ctp:52
+#: /views/cuisines/admin_index.ctp:36
+#: /views/cuisines/index.ctp:32
+#: /views/elements/deal/index.ctp:46
+#: /views/elements/restaurant/index.ctp:43
+#: /views/pages/admin_index.ctp:38
+#: /views/pages/index.ctp:49
+#: /views/pages/manager_index.ctp:38
+#: /views/prizes/admin_index.ctp:34
+#: /views/restaurants/index.ctp:36
+#: /views/users/admin_index.ctp:40
+#: /views/users/index.ctp:50
+#: /views/zones/admin_index.ctp:43
+#: /views/zones/index.ctp:40
+#: /views/zones/manager_index.ctp:35
+msgid "Are you sure you want to set inactive # %s?"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:61
+#: /views/cities/index.ctp:47
+#: /views/comments/admin_index.ctp:54
+#: /views/comments/index.ctp:54
+#: /views/countries/admin_index.ctp:55
+#: /views/cuisines/admin_index.ctp:39
+#: /views/cuisines/index.ctp:35
+#: /views/elements/deal/index.ctp:49
+#: /views/elements/restaurant/index.ctp:46
+#: /views/pages/admin_index.ctp:41;41
+#: /views/pages/index.ctp:52
+#: /views/pages/manager_index.ctp:41;41
+#: /views/prizes/admin_index.ctp:37
+#: /views/restaurants/index.ctp:39
+#: /views/users/index.ctp:53
+#: /views/zones/admin_index.ctp:46
+#: /views/zones/index.ctp:43
+#: /views/zones/manager_index.ctp:38
+msgid "Set Active"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:61
+#: /views/cities/index.ctp:47
+#: /views/comments/admin_index.ctp:54
+#: /views/comments/index.ctp:54
+#: /views/countries/admin_index.ctp:55
+#: /views/cuisines/admin_index.ctp:39
+#: /views/cuisines/index.ctp:35
+#: /views/elements/deal/index.ctp:49
+#: /views/elements/restaurant/index.ctp:46
+#: /views/pages/admin_index.ctp:41
+#: /views/pages/index.ctp:52
+#: /views/pages/manager_index.ctp:41
+#: /views/prizes/admin_index.ctp:37
+#: /views/restaurants/index.ctp:39
+#: /views/users/admin_index.ctp:43
+#: /views/users/index.ctp:53
+#: /views/zones/admin_index.ctp:46
+#: /views/zones/index.ctp:43
+#: /views/zones/manager_index.ctp:38
+msgid "Are you sure you want to set active # %s?"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:69
+#: /views/cities/index.ctp:55
+#: /views/comments/admin_index.ctp:62
+#: /views/comments/index.ctp:62
+#: /views/countries/admin_index.ctp:63
+#: /views/cuisines/admin_index.ctp:47
+#: /views/cuisines/index.ctp:43
+#: /views/elements/deal/index.ctp:57
+#: /views/elements/order/back_index.ctp:104
+#: /views/elements/order/index.ctp:68
+#: /views/elements/restaurant/index.ctp:54
+#: /views/pages/admin_index.ctp:48
+#: /views/pages/index.ctp:59
+#: /views/pages/manager_index.ctp:48
+#: /views/prizes/admin_index.ctp:45
+#: /views/users/admin_index.ctp:51
+#: /views/users/index.ctp:61
+#: /views/zones/admin_index.ctp:54
+#: /views/zones/index.ctp:51
+#: /views/zones/manager_index.ctp:46
+msgid "Página %page% de %pages%, mostrando %current% registros de un total de %count%, desde el %start%, hasta el %end%"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:73
+#: /views/cities/index.ctp:59
+#: /views/comments/admin_index.ctp:66
+#: /views/comments/index.ctp:66
+#: /views/countries/admin_index.ctp:67
+#: /views/cuisines/admin_index.ctp:51
+#: /views/cuisines/index.ctp:47
+#: /views/deals/index.ctp:32
+#: /views/elements/deal/index.ctp:61
+#: /views/elements/order/back_index.ctp:108
+#: /views/elements/order/index.ctp:72
+#: /views/elements/restaurant/index.ctp:58
+#: /views/pages/admin_index.ctp:52
+#: /views/pages/index.ctp:63
+#: /views/pages/manager_index.ctp:52
+#: /views/prizes/admin_index.ctp:49
+#: /views/prizes/index.ctp:34
+#: /views/users/admin_index.ctp:55
+#: /views/users/index.ctp:65
+#: /views/zones/admin_index.ctp:58
+#: /views/zones/index.ctp:55
+#: /views/zones/manager_index.ctp:50
+msgid "anterior"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:76
+#: /views/cities/index.ctp:62
+#: /views/comments/admin_index.ctp:69
+#: /views/comments/index.ctp:69
+#: /views/countries/admin_index.ctp:70
+#: /views/cuisines/admin_index.ctp:54
+#: /views/cuisines/index.ctp:50
+#: /views/deals/index.ctp:35
+#: /views/elements/deal/index.ctp:64
+#: /views/elements/order/back_index.ctp:111
+#: /views/elements/order/index.ctp:75
+#: /views/elements/restaurant/index.ctp:61
+#: /views/pages/admin_index.ctp:55
+#: /views/pages/index.ctp:66
+#: /views/pages/manager_index.ctp:55
+#: /views/prizes/admin_index.ctp:52
+#: /views/prizes/index.ctp:37
+#: /views/users/admin_index.ctp:58
+#: /views/users/index.ctp:68
+#: /views/zones/admin_index.ctp:61
+#: /views/zones/index.ctp:58
+#: /views/zones/manager_index.ctp:53
+msgid "siguiente"
+msgstr ""
+
+#: /views/cities/admin_index.ctp:81
+#: /views/cities/admin_view.ctp:102;154;192
+#: /views/cities/index.ctp:66
+#: /views/cities/manager_view.ctp:102;154;192
+#: /views/cities/view.ctp:102;154;192
+#: /views/comments/admin_index.ctp:73
+#: /views/comments/index.ctp:73
+#: /views/countries/admin_index.ctp:74
+#: /views/countries/admin_view.ctp:119
+#: /views/cuisines/admin_index.ctp:58
+#: /views/cuisines/admin_view.ctp:65
+#: /views/cuisines/index.ctp:54
+#: /views/cuisines/view.ctp:65
+#: /views/elements/deal/index.ctp:70
+#: /views/elements/deal/view.ctp:126
+#: /views/elements/restaurant/index.ctp:68
+#: /views/pages/admin_index.ctp:59
+#: /views/pages/index.ctp:70
+#: /views/pages/manager_index.ctp:59
+#: /views/prizes/admin_index.ctp:56
+#: /views/users/admin_index.ctp:62
+#: /views/users/index.ctp:72
+#: /views/users/update_addresses.ctp:40
+#: /views/zones/admin_index.ctp:65
+#: /views/zones/index.ctp:62
+#: /views/zones/manager_index.ctp:57
+msgid "Agregar"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:2
+#: /views/cities/manager_view.ctp:2
+#: /views/cities/view.ctp:2
+#: /views/elements/restaurant/add.ctp:10
+#: /views/elements/restaurant/edit.ctp:9
+#: /views/orders/add.ctp:62;81
+#: /views/users/admin_index.ctp:11
+#: /views/users/admin_view.ctp:35;68
+#: /views/users/login.ctp:59
+#: /views/users/register.ctp:47
+#: /views/users/update_addresses.ctp:19;35
+#: /views/zones/admin_add.ctp:7
+#: /views/zones/admin_edit.ctp:9
+#: /views/zones/admin_index.ctp:5
+#: /views/zones/admin_view.ctp:4
+#: /views/zones/manager_add.ctp:7
+#: /views/zones/manager_edit.ctp:9
+#: /views/zones/manager_view.ctp:4
+msgid "Ciudad"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:43
+#: /views/cities/manager_view.ctp:43
+#: /views/cities/view.ctp:43
+#: /views/zones/admin_view.ctp:25;59
+#: /views/zones/manager_view.ctp:25;59
+#: /views/zones/view.ctp:29;64
+msgid "Lat"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:48
+#: /views/cities/manager_view.ctp:48
+#: /views/cities/view.ctp:48
+#: /views/zones/admin_view.ctp:30;60
+#: /views/zones/manager_view.ctp:30;60
+#: /views/zones/view.ctp:34;65
+msgid "Long"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:53
+#: /views/cities/manager_view.ctp:53
+#: /views/cities/view.ctp:53
+#: /views/comments/admin_view.ctp:47
+#: /views/comments/view.ctp:47
+#: /views/countries/admin_view.ctp:52;76
+#: /views/elements/restaurant/view.ctp:60
+#: /views/orders/view.ctp:39
+#: /views/pages/admin_view.ctp:47
+#: /views/pages/view.ctp:47
+#: /views/prizes/admin_view.ctp:29
+#: /views/restaurants/view.ctp:29;58
+#: /views/users/view.ctp:57;83;133
+#: /views/zones/admin_view.ctp:35
+#: /views/zones/manager_view.ctp:35
+#: /views/zones/view.ctp:39;66
+msgid "Created"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:58
+#: /views/cities/manager_view.ctp:58
+#: /views/cities/view.ctp:58
+#: /views/comments/admin_view.ctp:52
+#: /views/comments/view.ctp:52
+#: /views/countries/admin_view.ctp:57;77
+#: /views/elements/restaurant/view.ctp:61
+#: /views/orders/view.ctp:44
+#: /views/pages/admin_view.ctp:52
+#: /views/pages/view.ctp:52
+#: /views/prizes/admin_view.ctp:34
+#: /views/restaurants/view.ctp:34;59
+#: /views/users/view.ctp:62;84;134
+#: /views/zones/admin_view.ctp:40
+#: /views/zones/manager_view.ctp:40
+#: /views/zones/view.ctp:44;67
+msgid "Updated"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:67
+#: /views/cities/manager_view.ctp:67
+#: /views/cities/view.ctp:67
+#: /views/users/admin_view.ctp:60
+msgid "Direcciones Relacionadas"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:72
+#: /views/cities/manager_view.ctp:72
+#: /views/cities/view.ctp:72
+msgid "Ususario"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:73
+#: /views/cities/manager_view.ctp:73
+#: /views/cities/view.ctp:73
+#: /views/elements/deal/view.ctp:52
+#: /views/elements/order/back_index.ctp:26
+#: /views/elements/order/index.ctp:8
+#: /views/elements/order/view.ctp:20
+#: /views/elements/restaurant/add.ctp:18
+#: /views/elements/restaurant/edit.ctp:21
+#: /views/orders/owner_edit.ctp:15
+#: /views/users/admin_view.ctp:65;109
+#: /views/users/register.ctp:52
+#: /views/users/update_addresses.ctp:21;37
+msgid "Dirección"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:74
+#: /views/cities/manager_view.ctp:74
+#: /views/cities/view.ctp:74
+#: /views/users/admin_view.ctp:66
+#: /views/users/register.ctp:53
+msgid "Código Postal"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:107
+#: /views/cities/manager_view.ctp:107
+#: /views/cities/view.ctp:107
+msgid "Usuarios Relacionados"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:112
+#: /views/cities/manager_view.ctp:112
+#: /views/cities/view.ctp:112
+#: /views/elements/restaurant/add.ctp:33
+#: /views/orders/add.ctp:52;57
+#: /views/orders/owner_edit.ctp:13
+#: /views/users/admin_add.ctp:11
+#: /views/users/admin_edit.ctp:12
+#: /views/users/admin_view.ctp:14
+#: /views/users/login.ctp:54
+#: /views/users/register.ctp:42
+msgid "Apellido"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:113
+#: /views/cities/manager_view.ctp:113
+#: /views/cities/view.ctp:113
+#: /views/users/register.ctp:25
+msgid "Correo"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:114
+#: /views/cities/manager_view.ctp:114
+#: /views/cities/view.ctp:114
+#: /views/users/admin_add.ctp:6
+#: /views/users/admin_edit.ctp:7
+#: /views/users/admin_index.ctp:9
+#: /views/users/admin_view.ctp:19
+msgid "Rol"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:115
+#: /views/cities/manager_view.ctp:115
+#: /views/cities/view.ctp:115
+#: /views/users/admin_add.ctp:7
+#: /views/users/admin_edit.ctp:8
+#: /views/users/admin_index.ctp:10
+#: /views/users/admin_view.ctp:24
+msgid "Activo"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:116
+#: /views/cities/manager_view.ctp:116
+#: /views/cities/view.ctp:116
+#: /views/elements/restaurant/add.ctp:17
+#: /views/elements/restaurant/edit.ctp:20
+#: /views/elements/restaurant/index.ctp:8
+#: /views/elements/restaurant/view.ctp:25
+#: /views/orders/add.ctp:54;60
+#: /views/users/admin_add.ctp:12
+#: /views/users/admin_edit.ctp:13
+#: /views/users/admin_view.ctp:40
+#: /views/users/edit.ctp:11
+#: /views/users/login.ctp:57
+#: /views/users/register.ctp:45
+msgid "Teléfono"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:117
+#: /views/cities/index.ctp:16
+#: /views/cities/manager_view.ctp:117
+#: /views/cities/view.ctp:117
+#: /views/comments/admin_index.ctp:21
+#: /views/comments/index.ctp:21
+#: /views/cuisines/index.ctp:11
+#: /views/elements/deal/view.ctp:57
+#: /views/elements/restaurant/view.ctp:62
+#: /views/pages/admin_index.ctp:11
+#: /views/pages/index.ctp:21
+#: /views/pages/manager_index.ctp:11
+#: /views/prizes/admin_index.ctp:12
+#: /views/restaurants/index.ctp:12
+#: /views/restaurants/view.ctp:60
+#: /views/users/admin_view.ctp:71
+#: /views/users/index.ctp:16
+#: /views/users/view.ctp:85;135
+#: /views/zones/index.ctp:14
+#: /views/zones/view.ctp:68
+msgid "Actions"
+msgstr ""
+
+#: /views/cities/admin_view.ctp:159
+#: /views/cities/manager_view.ctp:159
+#: /views/cities/view.ctp:159
+msgid "Barrios Relacionados"
+msgstr ""
+
+#: /views/comments/add.ctp:4
+msgid "Add Comment"
+msgstr ""
+
+#: /views/comments/add.ctp:14
+#: /views/comments/admin_add.ctp:14
+#: /views/comments/admin_edit.ctp:15
+#: /views/comments/edit.ctp:15
+#: /views/deals/admin_edit.ctp:24
+#: /views/deals/edit.ctp:24
+#: /views/deals/manager_edit.ctp:24
+#: /views/orders/owner_edit.ctp:23
+#: /views/pages/add.ctp:14
+#: /views/pages/admin_add.ctp:15
+#: /views/pages/admin_edit.ctp:16
+#: /views/pages/edit.ctp:15
+#: /views/prizes/add.ctp:13
+#: /views/prizes/admin_add.ctp:13
+#: /views/prizes/admin_edit.ctp:14
+#: /views/prizes/edit.ctp:14
+#: /views/users/add.ctp:16
+#: /views/zones/add.ctp:15
+#: /views/zones/edit.ctp:16
+msgid "Submit"
+msgstr ""
+
+#: /views/comments/admin_add.ctp:4
+msgid "Admin Add Comment"
+msgstr ""
+
+#: /views/comments/admin_edit.ctp:4
+msgid "Admin Edit Comment"
+msgstr ""
+
+#: /views/comments/admin_index.ctp:2
+#: /views/comments/index.ctp:2
+msgid "Comments"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:2;14
+#: /views/comments/view.ctp:2;14
+msgid "Comment"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:4
+#: /views/comments/view.ctp:4
+#: /views/orders/view.ctp:4
+#: /views/pages/admin_view.ctp:4
+#: /views/pages/view.ctp:4
+#: /views/prizes/admin_view.ctp:4
+#: /views/restaurants/view.ctp:4;48
+#: /views/users/view.ctp:4;76;126
+#: /views/zones/view.ctp:4;58
+msgid "Id"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:9
+#: /views/comments/view.ctp:9
+#: /views/users/index.ctp:3
+msgid "Users"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:19
+#: /views/comments/view.ctp:19
+msgid "Model"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:24
+#: /views/comments/view.ctp:24
+msgid "Foreign Key"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:30;32;36
+#: /views/comments/view.ctp:30;32;36
+#: /views/pages/admin_view.ctp:25;27;31
+#: /views/pages/view.ctp:25;27;31
+#: /views/users/view.ctp:35;37;41
+msgid "Active"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:38
+#: /views/comments/view.ctp:38
+#: /views/pages/admin_view.ctp:33
+#: /views/pages/view.ctp:33
+#: /views/users/view.ctp:43
+msgid "Inactive"
+msgstr ""
+
+#: /views/comments/admin_view.ctp:42
+#: /views/comments/view.ctp:42
+msgid "Alias"
+msgstr ""
+
+#: /views/comments/edit.ctp:4
+msgid "Edit Comment"
+msgstr ""
+
+#: /views/config/admin_edit.ctp:4
+msgid "Modificar Configuración"
+msgstr ""
+
+#: /views/config/admin_edit.ctp:7
+msgid "Premio De Registro"
+msgstr ""
+
+#: /views/config/admin_edit.ctp:8
+msgid "Premio De Invitación"
+msgstr ""
+
+#: /views/config/admin_edit.ctp:9
+msgid "Máximo De Premio Por Invitación"
+msgstr ""
+
+#: /views/config/admin_edit.ctp:10
+msgid "Premio De Compra"
+msgstr ""
+
+#: /views/countries/admin_add.ctp:5
+msgid "Agregar País"
+msgstr ""
+
+#: /views/countries/admin_add.ctp:11
+#: /views/countries/admin_edit.ctp:12
+#: /views/countries/admin_view.ctp:19
+msgid "Idioma"
+msgstr ""
+
+#: /views/countries/admin_add.ctp:15
+#: /views/countries/admin_edit.ctp:16
+#: /views/countries/admin_view.ctp:41
+msgid "Símbolo Monetario"
+msgstr ""
+
+#: /views/countries/admin_add.ctp:16
+#: /views/countries/admin_edit.ctp:17
+#: /views/countries/admin_view.ctp:46
+msgid "Rangos De Precios"
+msgstr ""
+
+#: /views/countries/admin_edit.ctp:5
+msgid "Editar País"
+msgstr ""
+
+#: /views/countries/admin_index.ctp:3
+msgid "Countries"
+msgstr ""
+
+#: /views/countries/admin_index.ctp:9
+msgid "Lenguaje"
+msgstr ""
+
+#: /views/countries/admin_view.ctp:66
+msgid "Ciudades Relacionadas"
+msgstr ""
+
+#: /views/cuisines/add.ctp:5
+#: /views/cuisines/admin_add.ctp:5
+msgid "Agregar Cocina"
+msgstr ""
+
+#: /views/cuisines/admin_edit.ctp:5
+#: /views/cuisines/edit.ctp:5
+msgid "Editar Cocina"
+msgstr ""
+
+#: /views/cuisines/admin_index.ctp:3
+msgid "Cocinas"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:2
+#: /views/cuisines/view.ctp:2
+#: /views/deals/admin_edit.ctp:21
+#: /views/deals/edit.ctp:21
+#: /views/deals/manager_edit.ctp:21
+#: /views/elements/deal/add.ctp:20
+msgid "Cocina"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:24
+#: /views/cuisines/view.ctp:24
+msgid "Promos Relacionadas"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:28
+#: /views/cuisines/view.ctp:28
+#: /views/deals/admin_edit.ctp:9
+#: /views/deals/edit.ctp:9
+#: /views/deals/manager_edit.ctp:9
+#: /views/elements/deal/add.ctp:8
+#: /views/elements/deal/index.ctp:6
+#: /views/elements/deal/view.ctp:4
+#: /views/elements/order/back_index.ctp:11
+#: /views/elements/restaurant/view.ctp:2
+msgid "Restaurante"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:31
+#: /views/cuisines/view.ctp:31
+#: /views/deals/admin_edit.ctp:16
+#: /views/deals/edit.ctp:16
+#: /views/deals/manager_edit.ctp:16
+#: /views/elements/deal/index.ctp:10
+#: /views/elements/deal/view.ctp:53
+#: /views/elements/order/back_index.ctp:27
+#: /views/elements/order/index.ctp:9
+#: /views/elements/order/view.ctp:25
+#: /views/orders/owner_edit.ctp:14
+#: /views/users/admin_view.ctp:110
+msgid "Cantidad"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:32
+#: /views/cuisines/view.ctp:32
+#: /views/deals/admin_edit.ctp:17
+#: /views/deals/edit.ctp:17
+#: /views/deals/manager_edit.ctp:17
+#: /views/elements/deal/add.ctp:16
+#: /views/elements/deal/index.ctp:11
+#: /views/elements/deal/view.ctp:25
+msgid "Precio"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:33
+#: /views/cuisines/view.ctp:33
+#: /views/deals/admin_edit.ctp:19
+#: /views/deals/edit.ctp:19
+#: /views/deals/manager_edit.ctp:19
+#: /views/elements/deal/index.ctp:12
+msgid "Limite"
+msgstr ""
+
+#: /views/cuisines/admin_view.ctp:34
+#: /views/cuisines/view.ctp:34
+#: /views/elements/deal/index.ctp:13
+#: /views/elements/deal/view.ctp:31
+msgid "Visitas"
+msgstr ""
+
+#: /views/cuisines/index.ctp:3
+msgid "Cuisines"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:5
+#: /views/deals/edit.ctp:5
+#: /views/deals/manager_edit.ctp:5
+msgid "Admin Edit Deal"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:11
+#: /views/deals/edit.ctp:11
+#: /views/deals/manager_edit.ctp:11
+#: /views/elements/deal/add.ctp:10
+msgid "Promocionada"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:13
+#: /views/deals/edit.ctp:13
+#: /views/deals/manager_edit.ctp:13
+#: /views/elements/deal/add.ctp:12
+msgid "Condiciones"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:18
+#: /views/deals/edit.ctp:18
+#: /views/deals/manager_edit.ctp:18
+#: /views/elements/deal/add.ctp:17
+msgid "Precio Normal"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:20
+#: /views/deals/edit.ctp:20
+#: /views/deals/manager_edit.ctp:20
+#: /views/elements/deal/add.ctp:19
+msgid "Vence"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:27
+#: /views/elements/restaurant/view.ctp:56
+#: /views/prizes/admin_view.ctp:19
+#: /views/restaurants/view.ctp:24;52
+#: /views/zones/view.ctp:24;63
+msgid "Image"
+msgstr ""
+
+#: /views/deals/admin_edit.ctp:42
+msgid "Large Image"
+msgstr ""
+
+#: /views/deals/edit.ctp:42
+#: /views/deals/manager_edit.ctp:42
+#: /views/elements/deal/add.ctp:41
+msgid "Imagen Promocionada"
+msgstr ""
+
+#: /views/deals/index.ctp:27
+msgid "Página %page% de %pages%, mostrando %current% promociones de un total de %count%"
+msgstr ""
+
+#: /views/deals/view.ctp:30
+msgid "Ver terminos y condiciones"
+msgstr ""
+
+#: /views/elements/box-login.ctp:1
+msgid "Área de clientes"
+msgstr ""
+
+#: /views/elements/box-login.ctp:3
+#: /views/pages/contacto.ctp:19;40
+#: /views/pages/dudas.ctp:39
+#: /views/users/login.ctp:14;43
+#: /views/users/register.ctp:74
+msgid "Correo:"
+msgstr ""
+
+#: /views/elements/box-login.ctp:5
+#: /views/users/login.ctp:18
+#: /views/users/register.ctp:78
+msgid "Contraseña:"
+msgstr ""
+
+#: /views/elements/box-login.ctp:7
+msgid "¿Olvido su contraseña?"
+msgstr ""
+
+#: /views/elements/box-login.ctp:9
+msgid "Registrese"
+msgstr ""
+
+#: /views/elements/change-password.ctp:1
+#: /views/elements/user_menu.ctp:9
+msgid "Cambiar Contraseña"
+msgstr ""
+
+#: /views/elements/change-password.ctp:7
+msgid "Antigua Contraseña"
+msgstr ""
+
+#: /views/elements/change-password.ctp:8
+#: /views/elements/header.ctp:9
+#: /views/elements/restaurant/add.ctp:35
+#: /views/orders/add.ctp:59
+#: /views/users/admin_add.ctp:9
+#: /views/users/admin_edit.ctp:10
+#: /views/users/admin_login.ctp:8
+#: /views/users/login.ctp:55
+#: /views/users/manager_login.ctp:8
+#: /views/users/owner_login.ctp:8
+#: /views/users/register.ctp:43
+msgid "Contraseña"
+msgstr ""
+
+#: /views/elements/change-password.ctp:9
+#: /views/users/login.ctp:56
+#: /views/users/register.ctp:44
+msgid "Confirmar Contraseña"
+msgstr ""
+
+#: /views/elements/filtros-2.ctp:31;39
+#: /views/elements/filtros.ctp:9
+msgid "Qué hay para comer en:"
+msgstr ""
+
+#: /views/elements/filtros-2.ctp:32;40
+msgid "Zona:"
+msgstr ""
+
+#: /views/elements/filtros-2.ctp:33;41
+#: /views/elements/filtros.ctp:11
+msgid "Cocina:"
+msgstr ""
+
+#: /views/elements/filtros-2.ctp:34;42
+#: /views/elements/filtros.ctp:12
+msgid "Rango De Precio:"
+msgstr ""
+
+#: /views/elements/filtros-2.ctp:44
+msgid "Buscar"
+msgstr ""
+
+#: /views/elements/filtros.ctp:10
+msgid "Barrio:"
+msgstr ""
+
+#: /views/elements/header.ctp:7
+msgid "E-mail"
+msgstr ""
+
+#: /views/elements/header.ctp:15;40
+msgid "INGRESAR"
+msgstr ""
+
+#: /views/elements/header.ctp:16;42
+msgid "REGISTRO"
+msgstr ""
+
+#: /views/elements/header.ctp:22
+msgid "Dile a tu amigos que hay para comer y acumula"
+msgstr ""
+
+#: /views/elements/header.ctp:22
+msgid "dinero"
+msgstr ""
+
+#: /views/elements/header.ctp:22
+msgid "para tus proximas compras."
+msgstr ""
+
+#: /views/elements/header.ctp:27
+msgid "¡INVITAR A MIS AMIGOS!"
+msgstr ""
+
+#: /views/elements/header.ctp:38;44
+#: /views/elements/ez/menu.ctp:4
+msgid "INICIO"
+msgstr ""
+
+#: /views/elements/header.ctp:46
+msgid "MI PERFIL"
+msgstr ""
+
+#: /views/elements/header.ctp:48
+#: /views/elements/ez/menu.ctp:91
+msgid "SALIR"
+msgstr ""
+
+#: /views/elements/menu_usuario.ctp:3
+msgid "Mis Ordenes"
+msgstr ""
+
+#: /views/elements/menu_usuario.ctp:4
+msgid "Datos Personales"
+msgstr ""
+
+#: /views/elements/menu_usuario.ctp:5
+#: /views/users/update_addresses.ctp:15
+msgid "Direcciones"
+msgstr ""
+
+#: /views/elements/menu_usuario.ctp:6
+msgid "Referir"
+msgstr ""
+
+#: /views/elements/menu_usuario.ctp:7
+#: /views/elements/user_menu.ctp:12
+msgid "Salir"
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:27
+msgid "En comopromos tus domicilios te pueden salir gratis"
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:29
+msgid "De que forma puedes acumular dinero?"
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:32
+msgid "Registrate y automaticamente ya estas acumunado dinero."
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:35
+msgid "Invitando a tus amigos a ser parte de nuestra página."
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:38
+msgid "Comprando nuestras promociones, cualquier día y a cualquier hora."
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:41
+msgid "Por favor ten en cuenta:"
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:44
+msgid "Por cada mil pesos en compras que realices recibirás 50 pesos. Este dinero aparecerá al lado derecho de tu pantalla después de realizado tu registro y tu primera compra."
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:47
+msgid "Cuando tengas en dinero acumulado el valor de uno de de los domicilios lo podrás redimir."
+msgstr ""
+
+#: /views/elements/overlay-bonos.ctp:50
+msgid "No podrás pagar con este dinero parte de tus domicilios, tu dinero debe cubrir el valor total de el domicilio que desees."
+msgstr ""
+
+#: /views/elements/score-box.ctp:3
+msgid "Tienes: "
+msgstr ""
+
+#: /views/elements/score-box.ctp:5
+msgid "acumulados"
+msgstr ""
+
+#: /views/elements/share-in-facebook.ctp:2
+msgid "Compartir en facebook"
+msgstr ""
+
+#: /views/elements/user_menu.ctp:3
+msgid "Mis datos"
+msgstr ""
+
+#: /views/elements/user_menu.ctp:6
+msgid "Completar o modificar mis datos"
+msgstr ""
+
+#: /views/elements/user_menu.ctp:15
+msgid "Ir a mi carrito"
+msgstr ""
+
+#: /views/elements/deal/add.ctp:5
+msgid "Agregar Promo"
+msgstr ""
+
+#: /views/elements/deal/index.ctp:3
+msgid "Promos"
+msgstr ""
+
+#: /views/elements/deal/index.ctp:14
+#: /views/elements/deal/view.ctp:36
+#: /views/elements/restaurant/view.ctp:35
+#: /views/users/admin_view.ctp:45
+msgid "Creado"
+msgstr ""
+
+#: /views/elements/deal/product_list.ctp:9
+msgid "Precio normal"
+msgstr ""
+
+#: /views/elements/deal/product_list.ctp:10
+msgid "HOY"
+msgstr ""
+
+#: /views/elements/deal/product_list.ctp:20
+msgid "Horario de atención"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:2
+msgid "Promo"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:46
+#: /views/users/view.ctp:122
+msgid "Related Orders"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:51
+#: /views/elements/order/back_index.ctp:12;25
+#: /views/elements/order/index.ctp:7
+#: /views/elements/order/view.ctp:9
+#: /views/users/admin_view.ctp:2
+msgid "Usuario"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:54
+#: /views/elements/order/back_index.ctp:30
+#: /views/elements/order/view.ctp:46
+#: /views/orders/owner_edit.ctp:17;19
+#: /views/users/admin_view.ctp:112
+msgid "Estado"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:55
+#: /views/elements/order/view.ctp:51
+#: /views/users/admin_view.ctp:69;113
+msgid "Creada"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:56
+#: /views/elements/order/view.ctp:56
+#: /views/users/admin_view.ctp:70;114
+msgid "Actualizada"
+msgstr ""
+
+#: /views/elements/deal/view.ctp:89
+msgid "Cocinas Relacionadas"
+msgstr ""
+
+#: /views/elements/email/html/contact_email.ctp:3
+#: /views/elements/email/html/sugierenos_email.ctp:15
+msgid "Nombre: "
+msgstr ""
+
+#: /views/elements/email/html/contact_email.ctp:6
+#: /views/elements/email/html/sugierenos_email.ctp:18
+msgid "Correo: "
+msgstr ""
+
+#: /views/elements/email/html/contact_email.ctp:9
+#: /views/elements/email/html/sugierenos_email.ctp:21
+msgid "Mensaje: "
+msgstr ""
+
+#: /views/elements/email/html/deals_finished_email.ctp:3
+msgid "Las promos correspondientes a "
+msgstr ""
+
+#: /views/elements/email/html/deals_finished_email.ctp:3
+msgid " se han agotado."
+msgstr ""
+
+#: /views/elements/email/html/deals_finished_email.ctp:6
+msgid "Por favor contacta a tu agente local para agregar promos o crear una nueva para el restaurante "
+msgstr ""
+
+#: /views/elements/email/html/deals_finished_email.ctp:9
+msgid "Gracias por usar "
+msgstr ""
+
+#: /views/elements/email/html/order_approved_email.ctp:3
+msgid "La orden "
+msgstr ""
+
+#: /views/elements/email/html/order_approved_email.ctp:3
+msgid " ha sido aprobada"
+msgstr ""
+
+#: /views/elements/email/html/order_approved_email.ctp:6
+msgid "¡Gracias por tu compra!"
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:3
+msgid "Se te ha enviado este correo desde :: "
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:6
+msgid "Se envió este correo luego de solicitar un cambio de contraseña."
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:7
+msgid "Puedes acceder al sitio usando tu usuario y la contraseña generada."
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:8
+msgid "Usuario :: "
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:9
+msgid "Contraseña :: "
+msgstr ""
+
+#: /views/elements/email/html/password_email.ctp:12
+msgid "Recuerda cambiar la contraseña por una que recuerdes facilmente."
+msgstr ""
+
+#: /views/elements/email/html/prize_redeemed_email.ctp:3
+msgid "Haz redimido "
+msgstr ""
+
+#: /views/elements/email/html/prize_redeemed_email.ctp:3
+msgid " puntos por el premio "
+msgstr ""
+
+#: /views/elements/email/html/prize_redeemed_email.ctp:6
+msgid "¡Felicitaciones!"
+msgstr ""
+
+#: /views/elements/email/html/referal_email.ctp:3
+msgid "Un amigo quiere que te unas al sitio :: "
+msgstr ""
+
+#: /views/elements/email/html/referal_email.ctp:6
+msgid "Para registrarte ve a:"
+msgstr ""
+
+#: /views/elements/email/html/referal_email.ctp:6
+msgid "registro"
+msgstr ""
+
+#: /views/elements/email/html/referal_email.ctp:9
+msgid "¡Esperamos tenerte pronto!."
+msgstr ""
+
+#: /views/elements/email/html/referal_registered_email.ctp:3
+msgid "¡Tu amigo "
+msgstr ""
+
+#: /views/elements/email/html/referal_registered_email.ctp:3
+msgid " se registró!"
+msgstr ""
+
+#: /views/elements/email/html/referal_registered_email.ctp:6
+msgid "Gracias a esto se te han otorgado "
+msgstr ""
+
+#: /views/elements/email/html/referal_registered_email.ctp:6
+msgid " puntos extra."
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:3
+msgid "Bienvenido al sitio :: "
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:6
+msgid "Para finalizar el proceso de registro, haz click en el siguiente enlace:"
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:6
+msgid "validar correo"
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:7
+msgid "Si el enlace falla ve "
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:7
+msgid "aquí"
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:8
+msgid "Ingresa el código: \""
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:8
+msgid "\" (sin las comillas) en el campo correspondiente."
+msgstr ""
+
+#: /views/elements/email/html/registration_email.ctp:11
+msgid "Gracias por registrarte."
+msgstr ""
+
+#: /views/elements/email/html/sugierenos_email.ctp:3
+msgid "Nombre Del Restaurante: "
+msgstr ""
+
+#: /views/elements/email/html/sugierenos_email.ctp:6
+msgid "Ciudad Del Restaurante: "
+msgstr ""
+
+#: /views/elements/email/html/sugierenos_email.ctp:9
+msgid "Dirección Del Restaurante: "
+msgstr ""
+
+#: /views/elements/email/html/sugierenos_email.ctp:12
+msgid "Correo Electrónico Del Restaurante: "
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:8
+msgid "CONTENIDO"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:11
+msgid "PAGINAS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:15
+msgid "PREMIOS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:18
+msgid "AGREGAR PREMIO"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:25
+msgid "PROMOS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:28
+msgid "ORDENES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:32
+msgid "CONFIGURACIONES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:36
+msgid "OPCIONES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:39
+msgid "PAÍSES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:42
+msgid "AGREGAR PAÍS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:45
+msgid "CIUDADES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:48
+msgid "AGREGAR CIUDAD"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:51
+msgid "COCINAS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:54
+msgid "AGREGAR COCINA"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:59
+msgid "BARRIOS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:62
+msgid "AGREGAR BARRIO"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:66;76
+msgid "RESTAURANTES"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:69
+msgid "AGREGAR RESTAURANTE"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:81
+msgid "USUARIOS"
+msgstr ""
+
+#: /views/elements/ez/menu.ctp:84
+msgid "AGREGAR USUARIO"
+msgstr ""
+
+#: /views/elements/front/change-password.ctp:6
+msgid "Antiguo Password"
+msgstr ""
+
+#: /views/elements/front/change-password.ctp:7
+#: /views/users/view.ctp:24
+msgid "Password"
+msgstr ""
+
+#: /views/elements/front/change-password.ctp:8
+msgid "Confirmar password"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:6
+#: /views/elements/order/index.ctp:3
+msgid "Ordenes"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:13
+msgid "Forma De Pago"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:14
+msgid "Fecha Inicio"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:15
+msgid "Fecha Fin"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:23
+msgid "Código de orden"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:24
+msgid "Forma de pago"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:28
+#: /views/elements/order/index.ctp:10
+#: /views/elements/order/view.ctp:30
+#: /views/orders/owner_edit.ctp:10
+#: /views/users/admin_view.ctp:111
+msgid "Promoción"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:29
+msgid "Fecha"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:91
+msgid "Aprovar"
+msgstr ""
+
+#: /views/elements/order/back_index.ctp:91
+msgid "Approve"
+msgstr ""
+
+#: /views/elements/order/index.ctp:87
+msgid "No se pudo actualizar el estado de la orden."
+msgstr ""
+
+#: /views/elements/order/view.ctp:2
+msgid "Orden"
+msgstr ""
+
+#: /views/elements/order/view.ctp:35
+msgid "Aprobada"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:5
+#: /views/zones/admin_view.ctp:92
+msgid "Crear Restaurante"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:12
+#: /views/elements/restaurant/edit.ctp:12
+#: /views/elements/restaurant/index.ctp:5
+#: /views/elements/restaurant/view.ctp:4
+#: /views/orders/add.ctp:80
+#: /views/users/register.ctp:50
+#: /views/users/update_addresses.ctp:20;36
+#: /views/zones/admin_view.ctp:2
+#: /views/zones/manager_view.ctp:2
+msgid "Barrio"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:15
+msgid "Politicas De Servicio"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:16
+#: /views/elements/restaurant/edit.ctp:19
+msgid "Horario"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:20
+#: /views/elements/restaurant/edit.ctp:23
+msgid "Latitud"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:21
+#: /views/elements/restaurant/edit.ctp:24
+msgid "Longitud"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:28
+msgid "Propietario Del Restaurante"
+msgstr ""
+
+#: /views/elements/restaurant/add.ctp:31;34
+#: /views/orders/add.ctp:53;58
+#: /views/users/admin_add.ctp:8
+#: /views/users/admin_edit.ctp:9
+#: /views/users/admin_index.ctp:6
+#: /views/users/admin_login.ctp:7
+#: /views/users/admin_view.ctp:4
+#: /views/users/manager_login.ctp:7
+#: /views/users/owner_login.ctp:7
+msgid "Correo Electrónico"
+msgstr ""
+
+#: /views/elements/restaurant/edit.ctp:4
+msgid "Editar Restaurante"
+msgstr ""
+
+#: /views/elements/restaurant/edit.ctp:18
+msgid "Políticas De Servicio"
+msgstr ""
+
+#: /views/elements/restaurant/index.ctp:2
+msgid "Restaurantes"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:40
+msgid "Modificado"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:50
+#: /views/restaurants/view.ctp:44
+msgid "Related Deals"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:54
+#: /views/pages/admin_view.ctp:9
+#: /views/pages/view.ctp:9
+#: /views/prizes/admin_view.ctp:9
+#: /views/restaurants/view.ctp:14;50
+#: /views/users/view.ctp:14;77
+#: /views/zones/view.ctp:14;61
+msgid "Name"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:55
+#: /views/pages/admin_view.ctp:14
+#: /views/pages/view.ctp:14
+#: /views/prizes/admin_view.ctp:14
+#: /views/restaurants/view.ctp:19;51
+#: /views/zones/view.ctp:19;62
+msgid "Description"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:57
+#: /views/restaurants/view.ctp:54
+msgid "Price"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:58
+#: /views/restaurants/view.ctp:55
+msgid "Max Buys"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:59
+#: /views/restaurants/view.ctp:56
+msgid "Visits"
+msgstr ""
+
+#: /views/elements/restaurant/view.ctp:97
+#: /views/restaurants/view.ctp:95
+msgid "New Deal"
+msgstr ""
+
+#: /views/elements/user/refer.ctp:6;12;18;24;30
+msgid "Refered email"
+msgstr ""
+
+#: /views/elements/user/refer.ctp:34
+msgid "Refer"
+msgstr ""
+
+#: /views/layouts/construccion.ctp:25
+msgid "Web site:"
+msgstr ""
+
+#: /views/layouts/default.ctp:82
+msgid "Terminos y condiciones"
+msgstr ""
+
+#: /views/layouts/default.ctp:84
+#: /views/layouts/profile.ctp:83
+msgid "Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web."
+msgstr ""
+
+#: /views/layouts/default.ctp:87
+#: /views/layouts/profile.ctp:86
+msgid "Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones."
+msgstr ""
+
+#: /views/layouts/default.ctp:89
+#: /views/layouts/profile.ctp:88
+msgid "Ver Más"
+msgstr ""
+
+#: /views/layouts/default.ctp:92
+#: /views/layouts/profile.ctp:91
+msgid "Cómo comprar"
+msgstr ""
+
+#: /views/layouts/default.ctp:93
+#: /views/layouts/profile.ctp:92
+msgid "Nuestra empresa"
+msgstr ""
+
+#: /views/layouts/default.ctp:94
+#: /views/layouts/profile.ctp:93
+msgid "¿Tienes alguna sugerencia, queja o reclamo?"
+msgstr ""
+
+#: /views/layouts/default.ctp:95
+#: /views/layouts/profile.ctp:94
+msgid "Sugierenos un restaurante"
+msgstr ""
+
+#: /views/layouts/default.ctp:96
+#: /views/layouts/profile.ctp:95
+msgid "Privacidad"
+msgstr ""
+
+#: /views/layouts/default.ctp:97
+#: /views/layouts/profile.ctp:96
+msgid "Contáctenos"
+msgstr ""
+
+#: /views/layouts/default.ctp:100
+#: /views/layouts/profile.ctp:99
+msgid "Recomienda esta página a tus amigos"
+msgstr ""
+
+#: /views/layouts/default.ctp:107
+#: /views/layouts/profile.ctp:106
+msgid "Volver Arriba"
+msgstr ""
+
+#: /views/layouts/profile.ctp:54
+msgid "Este es el titulo"
+msgstr ""
+
+#: /views/layouts/profile.ctp:55
+msgid "Este es la descipcion"
+msgstr ""
+
+#: /views/layouts/profile.ctp:81
+msgid "Políticas"
+msgstr ""
+
+#: /views/layouts/ez/ez.ctp:74
+#: /views/layouts/ez/login.ctp:56
+msgid "Bloom Web Company"
+msgstr ""
+
+#: /views/layouts/ez/file_browser.ctp:25
+msgid "Priceshoes Virtual"
+msgstr ""
+
+#: /views/layouts/ez/login.ctp:25
+msgid "EZ CMS:"
+msgstr ""
+
+#: /views/orders/add.ctp:22
+msgid "Comprar Promoción"
+msgstr ""
+
+#: /views/orders/add.ctp:46
+msgid "Datos Usuario"
+msgstr ""
+
+#: /views/orders/add.ctp:70
+msgid "Datos donde se entregará su pedido"
+msgstr ""
+
+#: /views/orders/add.ctp:76
+msgid "default"
+msgstr ""
+
+#: /views/orders/add.ctp:108
+msgid "Acepto "
+msgstr ""
+
+#: /views/orders/add.ctp:109
+msgid "Los terminos y condiciones"
+msgstr ""
+
+#: /views/orders/add.ctp:113
+msgid "Comprar"
+msgstr ""
+
+#: /views/orders/order_info.ctp:4
+msgid "Order number"
+msgstr ""
+
+#: /views/orders/order_info.ctp:8
+msgid "Si después de 10 minutos de realizar su pedido no ha recibido su confirmación, por favor comuniquese con el restaurante usando los datos del restaurante que encontrará a continuación."
+msgstr ""
+
+#: /views/orders/owner_edit.ctp:5
+msgid "Editar Orden"
+msgstr ""
+
+#: /views/orders/view.ctp:2
+msgid "Order"
+msgstr ""
+
+#: /views/orders/view.ctp:9
+#: /views/users/view.ctp:127
+msgid "Code"
+msgstr ""
+
+#: /views/orders/view.ctp:14
+#: /views/users/view.ctp:2
+msgid "User"
+msgstr ""
+
+#: /views/orders/view.ctp:19
+msgid "Address"
+msgstr ""
+
+#: /views/orders/view.ctp:24
+#: /views/users/view.ctp:130
+msgid "Quantity"
+msgstr ""
+
+#: /views/orders/view.ctp:29
+msgid "Deal"
+msgstr ""
+
+#: /views/orders/view.ctp:34
+msgid "Order State"
+msgstr ""
+
+#: /views/pages/add.ctp:4
+msgid "Add Page"
+msgstr ""
+
+#: /views/pages/admin_add.ctp:4
+msgid "Admin Add Page"
+msgstr ""
+
+#: /views/pages/admin_edit.ctp:4
+msgid "Admin Edit Page"
+msgstr ""
+
+#: /views/pages/admin_index.ctp:2
+#: /views/pages/index.ctp:2
+#: /views/pages/manager_index.ctp:2
+msgid "Pages"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:2
+#: /views/pages/view.ctp:2
+msgid "Page"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:19
+#: /views/pages/view.ctp:19
+msgid "Keywords"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:37
+#: /views/pages/view.ctp:37
+msgid "Wysiwyg Content"
+msgstr ""
+
+#: /views/pages/admin_view.ctp:42
+#: /views/pages/view.ctp:42
+#: /views/restaurants/view.ctp:57
+msgid "Slug"
+msgstr ""
+
+#: /views/pages/contacto.ctp:5
+msgid "Contactanos"
+msgstr ""
+
+#: /views/pages/contacto.ctp:8
+msgid "Déjanos tu mensaje y nos estaremos comunicando en el menor tiempo posible"
+msgstr ""
+
+#: /views/pages/contacto.ctp:14
+#: /views/pages/dudas.ctp:34
+msgid "Nombre:"
+msgstr ""
+
+#: /views/pages/contacto.ctp:24
+#: /views/pages/dudas.ctp:44
+#: /views/pages/sugierenos.ctp:34
+msgid "Mensaje:"
+msgstr ""
+
+#: /views/pages/contacto.ctp:38
+msgid "Teléfono:"
+msgstr ""
+
+#: /views/pages/contacto.ctp:43
+msgid "¿Te gustaría trabajar con nosotros? Contactanos:"
+msgstr ""
+
+#: /views/pages/dudas.ctp:21
+msgid "Dudas, sugerencias o reclamos"
+msgstr ""
+
+#: /views/pages/dudas.ctp:25
+msgid "ComoPromos le da una cordial bienvenida a la página de sugerencias y reclamos, donde podrá ingresar sus opiniones en pro de mejorar nuestro servicio."
+msgstr ""
+
+#: /views/pages/dudas.ctp:28
+msgid "Por medio de nuestro correo electrónico <span> servicioalcliente@comopromos.com.</span>  o  nuestra línea telefónica  <span>057 2 664 97 34</span> estaremos dispuestos a brindarle una atención oportuna y efectiva a sus observaciones."
+msgstr ""
+
+#: /views/pages/edit.ctp:4
+msgid "Edit Page"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:6
+msgid "Sugiérenos un restaurante"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:12
+msgid "Nos encantaría conocerlo. Por favor completa el cuestionario para tener el gusto de contactar tu restaurante favorito y asi puedas disfrutar de todas sus promociones a domicilio por medio de nuestro sitio web."
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:17
+msgid "Nombre Del Restaurante:"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:22
+msgid "Correo Del Restaurante:"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:26
+msgid "Ciudad:"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:27
+msgid "Dirección:"
+msgstr ""
+
+#: /views/pages/sugierenos.ctp:29
+msgid "Tú Correo:"
+msgstr ""
+
+#: /views/prizes/add.ctp:5
+msgid "Add Prize"
+msgstr ""
+
+#: /views/prizes/admin_add.ctp:5
+msgid "Admin Add Prize"
+msgstr ""
+
+#: /views/prizes/admin_edit.ctp:5
+msgid "Admin Edit Prize"
+msgstr ""
+
+#: /views/prizes/admin_index.ctp:3
+msgid "Prizes"
+msgstr ""
+
+#: /views/prizes/admin_view.ctp:2
+msgid "Prize"
+msgstr ""
+
+#: /views/prizes/admin_view.ctp:24
+msgid "Score"
+msgstr ""
+
+#: /views/prizes/edit.ctp:5
+msgid "Edit Prize"
+msgstr ""
+
+#: /views/restaurants/index.ctp:3
+msgid "Restaurants"
+msgstr ""
+
+#: /views/restaurants/index.ctp:48
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: /views/restaurants/index.ctp:53
+msgid "previous"
+msgstr ""
+
+#: /views/restaurants/index.ctp:56
+msgid "next"
+msgstr ""
+
+#: /views/restaurants/index.ctp:60
+msgid "Add"
+msgstr ""
+
+#: /views/restaurants/view.ctp:2
+msgid "Restaurant"
+msgstr ""
+
+#: /views/restaurants/view.ctp:9
+#: /views/zones/view.ctp:2
+msgid "Zone"
+msgstr ""
+
+#: /views/restaurants/view.ctp:49
+msgid "Restaurant Id"
+msgstr ""
+
+#: /views/restaurants/view.ctp:53
+msgid "Amount"
+msgstr ""
+
+#: /views/restaurants/zones_by_city.ctp:3;5
+msgid "Delivery Districts"
+msgstr ""
+
+#: /views/users/add.ctp:4
+msgid "Add User"
+msgstr ""
+
+#: /views/users/admin_add.ctp:4
+msgid "Crear Usuario"
+msgstr ""
+
+#: /views/users/admin_edit.ctp:4
+msgid "Admin Edit User"
+msgstr ""
+
+#: /views/users/admin_index.ctp:3
+msgid "Usuarios"
+msgstr ""
+
+#: /views/users/admin_index.ctp:7
+#: /views/users/edit.ctp:9
+msgid "Nombres"
+msgstr ""
+
+#: /views/users/admin_index.ctp:8
+#: /views/users/edit.ctp:10
+msgid "Apellidos"
+msgstr ""
+
+#: /views/users/admin_index.ctp:40;40
+msgid "Poner Inactivo"
+msgstr ""
+
+#: /views/users/admin_index.ctp:43;43
+msgid "Poner Activo"
+msgstr ""
+
+#: /views/users/admin_login.ctp:10
+#: /views/users/login.ctp:8;25
+#: /views/users/manager_login.ctp:10
+#: /views/users/owner_login.ctp:10
+#: /views/users/register.ctp:68;85
+msgid "Ingresar"
+msgstr ""
+
+#: /views/users/admin_view.ctp:50
+msgid "Actualizado"
+msgstr ""
+
+#: /views/users/admin_view.ctp:99
+#: /views/users/view.ctp:117
+msgid "New Address"
+msgstr ""
+
+#: /views/users/admin_view.ctp:104
+msgid "Ordenes Relacionadas"
+msgstr ""
+
+#: /views/users/edit.ctp:2
+msgid "Mis Datos"
+msgstr ""
+
+#: /views/users/edit.ctp:14
+#: /views/users/update_addresses.ctp:25
+msgid "Actualizar"
+msgstr ""
+
+#: /views/users/login.ctp:37
+#: /views/users/register.ctp:19
+msgid "¿Aún no eres usuario?"
+msgstr ""
+
+#: /views/users/login.ctp:48
+msgid "Confirmar Correo:"
+msgstr ""
+
+#: /views/users/login.ctp:57
+msgid "Este campo es para poder contactarte cuando hagas una compra. En caso contrario no será utilizado"
+msgstr ""
+
+#: /views/users/login.ctp:63
+msgid "Register"
+msgstr ""
+
+#: /views/users/recordar_password.ctp:5
+msgid "¿Olvidaste tu contraseña?"
+msgstr ""
+
+#: /views/users/register.ctp:30
+msgid "Confirmar Correo"
+msgstr ""
+
+#: /views/users/register.ctp:45
+msgid "Este campo es para contactarte cuando hagas una compra. En caso contrario, no será utilizado."
+msgstr ""
+
+#: /views/users/register.ctp:57
+msgid "Registro"
+msgstr ""
+
+#: /views/users/update_addresses.ctp:3
+msgid "Actualizar Dirección"
+msgstr ""
+
+#: /views/users/update_addresses.ctp:28
+msgid "Agregar Dirección"
+msgstr ""
+
+#: /views/users/validate_email.ctp:5
+msgid "Autenticación"
+msgstr ""
+
+#: /views/users/validate_email.ctp:15
+msgid "Validate Email"
+msgstr ""
+
+#: /views/users/view.ctp:9
+msgid "Email"
+msgstr ""
+
+#: /views/users/view.ctp:19
+msgid "Last Name"
+msgstr ""
+
+#: /views/users/view.ctp:29
+msgid "Role"
+msgstr ""
+
+#: /views/users/view.ctp:47
+#: /views/zones/view.ctp:9
+msgid "City"
+msgstr ""
+
+#: /views/users/view.ctp:52
+msgid "Phone"
+msgstr ""
+
+#: /views/users/view.ctp:72
+msgid "Related Addresses"
+msgstr ""
+
+#: /views/users/view.ctp:78;128
+msgid "User Id"
+msgstr ""
+
+#: /views/users/view.ctp:79;129
+msgid "Address Id"
+msgstr ""
+
+#: /views/users/view.ctp:80
+msgid "Zip"
+msgstr ""
+
+#: /views/users/view.ctp:81
+msgid "Country Id"
+msgstr ""
+
+#: /views/users/view.ctp:82
+msgid "City Id"
+msgstr ""
+
+#: /views/users/view.ctp:131
+msgid "Deal Id"
+msgstr ""
+
+#: /views/users/view.ctp:132
+msgid "Order State Id"
+msgstr ""
+
+#: /views/users/view.ctp:167
+msgid "New Order"
+msgstr ""
+
+#: /views/zones/add.ctp:5
+msgid "Add Zone"
+msgstr ""
+
+#: /views/zones/admin_add.ctp:4
+#: /views/zones/manager_add.ctp:4
+msgid "Agregar Barrio"
+msgstr ""
+
+#: /views/zones/admin_edit.ctp:5
+#: /views/zones/manager_edit.ctp:5
+msgid "Modificar Barrio"
+msgstr ""
+
+#: /views/zones/admin_index.ctp:2
+#: /views/zones/manager_index.ctp:2
+msgid "Barrios"
+msgstr ""
+
+#: /views/zones/admin_view.ctp:51
+#: /views/zones/manager_view.ctp:51
+msgid "Restaurantes Relacionados"
+msgstr ""
+
+#: /views/zones/edit.ctp:5
+msgid "Edit Zone"
+msgstr ""
+
+#: /views/zones/index.ctp:3
+msgid "Zones"
+msgstr ""
+
+#: /views/zones/manager_view.ctp:56
+msgid "Descripcion"
+msgstr ""
+
+#: /views/zones/manager_view.ctp:92
+#: /views/zones/view.ctp:101
+msgid "New Restaurant"
+msgstr ""
+
+#: /views/zones/view.ctp:54
+msgid "Related Restaurants"
+msgstr ""
+
+#: /views/zones/view.ctp:59
+msgid "Manager Id"
+msgstr ""
+
+#: /views/zones/view.ctp:60
+msgid "Zone Id"
+msgstr ""
+
+#: /webroot/test.php:88
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
