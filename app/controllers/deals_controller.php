@@ -173,7 +173,6 @@ class DealsController extends AppController {
 					)
 				);
 			}
-			debug($conditions);
 		} else {
 			$deal = $this -> Deal -> find(
 				'all',
