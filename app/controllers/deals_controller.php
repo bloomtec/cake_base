@@ -118,16 +118,17 @@ class DealsController extends AppController {
 						$conditions['Deal.id'] = $deals;
 					}
 				}
-				
 				// Manejar si se selecciona un precio
-				if($price != 0) {
+				if(true) {
 					$price = explode('-', $price);
-					$min = $price[0];
-					$max = $price[1];
-					$conditions['Deal.price BETWEEN ? AND ?'] = array(
-						$min,
-						$max
-					);
+					if(count($price) > 1) {
+						$min = $price[0];
+						$max = $price[1];
+						$conditions['Deal.price BETWEEN ? AND ?'] = array(
+							$min,
+							$max
+						);
+					}
 				}
 			}
 			
