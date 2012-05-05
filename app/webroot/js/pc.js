@@ -5,13 +5,13 @@ $(function() {
 		if(errorMessage==null || typeof(errorMessage) == 'undefined'){
 			switch(item){
 				case '.board-cards':
-					errorMessage = '<p>Debe Seleccionar una Tarjeta Madre</p>';
+					errorMessage = 'Debe Seleccionar una Tarjeta Madre';
 				break;
 				case '.ram-cards':
-					errorMessage = '<p>Debe Seleccionar una Tarjeta de Memoria</p>';
+					errorMessage = 'Debe Seleccionar una Tarjeta de Memoria';
 				break; 
 				default:
-					errorMessage = '<p>Faltan Items por seleccionar</p>';
+					errorMessage = 'Faltan Items por seleccionar';
 				break; 
 			}
 		}
@@ -26,7 +26,7 @@ $(function() {
 				return true;
 			}	
 		}else{// no selecciono el procesador
-			$('.pc-error').html(errorMessage).show();
+			if(errorMessage) $('.pc-error').html("<p>["+errorMessage+"]</p>").show();
 			return false;
 		}	
 	}	
@@ -39,6 +39,7 @@ $(function() {
 	}
 	
 	pc.hardDriveFunctionality = function(fromTab,toTab){
+			
 		return pc.checkItem('.board-cards',null,pc.checkItem('.ram-cards'));
 		
 	}
@@ -68,7 +69,17 @@ $(function() {
 	
 
 	pc.opticalDriveFunctionality = function(fromTab,toTab){
-	
+		var $return = false;
+		//VALIDAR SI LA FUENTE NO TIENE TORRE
+		BJS.getS('/makePc/isSuplyIncluded/'+pc.board_id,null,function(data){
+			if(data){
+				$return = pc.checkItem('.cases','Debe seleccionar una torre.');
+			}else{
+				$return = pc.checkItem('.cases','Debe seleccionar una torre.',pc.checkItem('.supplies','La torre seleccionada no tiene fuente, debe seleccionar una.'))
+			}
+		});
+		
+		return $return;
 	}
 	
 	pc.monitorFunctionality = function(fromTab,toTab){
@@ -122,12 +133,42 @@ $(function() {
 				$('#resumen').load('/makePc/resume');
 			});	
 		}
-		if(($item.parent().is('.exclusivo'))){
-			sibling = $item.siblings('input[rel!="'+position+'"]');
+		if(($item.parent().parent().is('.exclusivo'))){
+			sibling = $item.parent().siblings().find('input[rel!="'+position+'"]');
 			 sibling.removeAttr('checked'); 
 		}
-	
-	
+		switch(rel){
+			case "Processor":
+				pc.processor_id=val;
+				getMotherBoard(val);
+			break;
+			case "Motherboard":
+				
+				pc.board_id=val;
+				boardCallBack(val);
+			break;
+			case "VideoCard":
+			pc.video_card_id = val;
+			getCases(val);
+			break;
+		}
+	});
+	$(document).on('click','.checkbox input',function(){
+		removeChecked=false;
+		$item = $(this);
+		var checked =$ (this).is(":checked");
+		position=$item.val();
+		if(checked){
+			val=position;
+		}else{
+			val=0;
+		}
+				
+		rel=$item.parent().parent().parent().attr('rel');
+		BJS.get('/makePc/myPCAddItem/'+rel+'/'+val+"/"+position,{},function(data){
+			$('#resumen').load('/makePc/resume');
+		});	
+
 		switch(rel){
 			case "Processor":
 				pc.processor_id=val;
@@ -172,6 +213,7 @@ $(function() {
 		if(boardId) getHardDrives(boardId );
 		if(boardId) getVideoCards(boardId);
 		if(boardId) getOpticalDrives(boardId);
+		if(boardId) pc.getOptionals(); 
 	}
 	function getRamCards(boardId){
 		$('.radios.ram-cards').load('/makePc/getMemories/'+boardId, function(){//traer torres compatibles
@@ -232,14 +274,24 @@ $(function() {
 	}
 	
 	function getKeyBoards(){
-		$('.radios.peripherals').load('/makePc/getPeripherals', function(){//traer torres compatibles
+		$('.radios.key-boards').load('/makePc/getKeyboards', function(){//traer teclados c
 			//lo que dependa de hardDrives
 		})	
 	}
-	function getOtherCards(boardId){
-		$('.radios.other-cards').load('/makePc/getOtherCards/'+boardId, function(){//traer torres compatibles
+	function getMice(){
+		$('.radios.mice').load('/makePc/getMice', function(){//traer mouse
+			//lo que dependa de hardDrives
+		})	
+	}
+	function getOtherCards(){
+		$('.checkbox.other-cards').load('/makePc/getOtherCards/', function(){//traer torres compatibles
 			//lo que dependa de hardDrives
 		});
 	}
-	
+	 pc.getOptionals = function(){
+		getMonitors();
+		getKeyBoards();
+		getOtherCards();
+		getMice();
+	}
 });

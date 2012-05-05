@@ -75,7 +75,16 @@ class MakePcController extends AppController {
 					}
 				}
 				break;
+			case 'Cards':
+				if($product_id) {
+					$myPC["$product_type"]["$position"] = $product;
+					
+				}else{
+					unset($myPC["$product_type"]["$position"]);
+				}
+				break;
 			default:
+				$esto='elhp entro';
 				$myPC["$product_type"] = $product;
 				break;
 		}
@@ -112,6 +121,14 @@ class MakePcController extends AppController {
 						}
 					}
 					break;
+				case 'Cards':
+					if(!empty($producto)){
+						foreach($producto as $product){
+							$total += $product['Product']['price'];
+						}
+					}
+					
+				break;
 				default:
 					if(isset($producto['Product']['price'])) {
 						$total += $producto['Product']['price'];
@@ -241,6 +258,7 @@ class MakePcController extends AppController {
 		if(isset($myPC['VideoCard'][2]['Product']['id']) && !empty($myPC['VideoCard'][2]['Product']['id'])) {
 			$this -> set('selected_id_2', $myPC['VideoCard'][2]['Product']['id']);
 		}
+		$this ->  set(compact('motherboard'));
 	}
 	
 	/**
@@ -248,6 +266,7 @@ class MakePcController extends AppController {
 	 * De ahí procesar las memorias disponibles compatibles
 	 */
 	function getMemories($product_id = null ) {
+		//$this->Session->write('myPC',null);
 		$pc = $this->Session->read('myPC');
 		$this->layout="ajax";
 		$motherboard = $this->Product->findById($product_id);
@@ -352,6 +371,16 @@ class MakePcController extends AppController {
 			$this -> set('selected_id', $myPC['PowerSupply']['Product']['id']);
 		}
 	}
+	/**
+	 * $product_id : ID del producto (tarjeta madre) seleccionada.
+	 * De ahí procesar si tiene video o no
+	 */
+	function isSuplyIncluded() {
+		$this->layout="ajax";
+		$myPC = $this -> getMyPC();
+		echo  (bool) $myPC['Casing']['Product']['is_power_supply_included'];
+		exit(0);
+	}
 	
 	/**
 	 * Si se incluye $product_id : ID del producto (tarjeta de video) seleccionada.
@@ -374,6 +403,7 @@ class MakePcController extends AppController {
 	}
 	
 	function getMonitors() {
+		$this->layout="ajax";
 		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 9)));
 		$this -> set(compact('items'));
 		$myPC = $this->getMyPC();
@@ -385,9 +415,11 @@ class MakePcController extends AppController {
 		}
 	}
 	
-	function getOtherCards($boardId) {
-		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => 10)));
-		$this -> set(compact('items', 'boardId'));
+	function getOtherCards() {
+		$this->layout="ajax";
+		$myPC = $this->getMyPC();
+		$items = $this->Product->find('list', array('recursive'=>-1, 'conditions'=>array('Product.id'=>$this->productsWithInventory(), 'Product.product_type_id' => array(10,6))));
+		$this -> set(compact('items', 'myPC'));		
 	}
 	
 	function getMice() {

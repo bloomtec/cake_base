@@ -67,7 +67,7 @@
 							<a href="/users/changePassword/<?php echo $session -> read('Auth.User.id');?>">Cambiar Contraseña</a>
 						</li>
 						<li>
-							<a href="/priceLists/download">Lista de precio</a>
+							<a href="/price_lists/download">Lista de precio</a>
 						</li>
 	
 						<li>

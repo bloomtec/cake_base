@@ -1,13 +1,13 @@
-<?php 
-	$selectedId1 = $selectedId2 = null; // los seleccionados en a variable pc
-	if(isset($selected_id_1)) {
-		$selectedId1 = $selected_id_1;
+<?php
+$selected = null;
+if (!empty($myPC['Cards'])) {
+	foreach ($myPC['Cards'] as $key => $val) {
+		$selected[$key]=$key;
 	}
-	if(isset($selected_id_2)) {
-		$selectedId2 = $selected_id_2;
-	}
+}
+// los seleccionados en a variable pc
 ?>
-<div rel='1'>
-	<h3>Otras Tarjetas:</h3>
-	<?php echo $form->radio('other_cards_id',$items,array('legend'=>false,'value'=>$selectedId)); ?>	
+<div class="multiple opcional" rel='Cards'>
+	<h2>Otras Tarjetas:</h2>
+	<?php echo $form -> input('other_cards_id', array('label'=>false,'legend' => false, 'options' => $items, 'multiple' => 'checkbox','selected'=>$selected));?>
 </div>

@@ -34,7 +34,19 @@ class CsvImportShell extends Shell {
 				$tmpItem = array();
 				$tmpItem["$modelo"] = $item;
 				$tmpItem["$modelo"]['id'] = $id;
-				$Modelo -> save($tmpItem);				
+				$this->data = $tmpItem;
+				$this->data["$modelo"]['name'] = trim($this->data["$modelo"]['name']);
+				if(isset($this->data["$modelo"]['slug'])) {
+					$this->data["$modelo"]['slug'] = strtolower(str_ireplace(" ", "-", $this->data["$modelo"]['name']));
+				}
+				if($Modelo -> save($this->data)) {
+					echo 'saved'.chr(10);
+				} else {
+					echo 'not saved'.chr(10);
+					debug($this->data);
+					debug($Modelo->validationErrors);
+				}
+				
 			}
 		}
 		

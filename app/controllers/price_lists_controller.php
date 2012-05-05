@@ -8,20 +8,27 @@ class PriceListsController extends AppController {
 		//$this->Auth->allow('*');
 	}
 
-	function download() {
-		$list = $this -> PriceList -> find('first');
-		$this -> view = 'Media';
-		$fileParts = pathinfo($list['PriceList']['path']);
-		//debug(APP.'webroot/img/uploads/'.$fileParts['basename'].DS );
-		$params = array(
-			'id' => $fileParts['basename'], 
-			'name' => $fileParts['filename'], 
-			'download' => true, 
-			'extension' => $fileParts['extension'], // must be lower case
-			'path' => APP.'webroot/files/uploads'.DS  // don't forget terminal 'DS'
-		);
-		$this -> set($params);
-
+	public function download() {
+		$priceList = $this -> PriceList -> find('first');
+		if(!empty($priceList)) {
+			$this -> view = 'Media';
+			$fileParts = pathinfo($priceList['PriceList']['path']);
+			//debug($priceList);
+			//debug($fileParts);
+			//debug(APP.'webroot/img/uploads/'.$fileParts['basename'].DS );
+			$params = array(
+				'id' => $fileParts['basename'],
+				'name' => $fileParts['filename'],
+				'download' => true, 
+				'extension' => $fileParts['extension'], // must be lower case
+				'path' => APP.'webroot/files/uploads'.DS  // don't forget terminal 'DS'
+			);
+			$this -> set($params);
+		} else {
+			// TODO : que hacer si no hay archivos?
+			$this -> Session -> setFlash('Actualmente no hay listado de precios.');
+			$this -> redirect($this -> referer());
+		}
 	}
 
 	function admin_index() {
