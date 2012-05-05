@@ -49,6 +49,6 @@
  *
  */
 Configure::write('Config.languages', array(
-	'eng' => __('English', true), 
-	'spa' => __('Spanish', true)
+	'eng' => __('Ingles', true), 
+	'spa' => __('Español', true)
 ));

@@ -429,7 +429,7 @@ class UsersController extends AppController {
 	function updateAddresses($id) {
 		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Usuario no valid', true));
+			$this -> Session -> setFlash(__('Usuario no valido', true));
 			$this -> redirect(array('action' => 'index'));
 		}
 

@@ -1,24 +1,16 @@
 <div class="comments index">
-	<h2><?php __('Comments');?></h2>
+	<h2><?php __('Comentarios');?></h2>
 	<table cellpadding="0" cellspacing="0">
-	<tr>
-				
-									
-					<th><?php echo $this->Paginator->sort('users_id');?></th>
-									
-					<th><?php echo $this->Paginator->sort('comment');?></th>
-									
-					<th><?php echo $this->Paginator->sort('model');?></th>
-									
-					<th><?php echo $this->Paginator->sort('foreign_key');?></th>
-										<th><?php echo $this->Paginator->sort('Status','active');?></th>
-						
-					<th><?php echo $this->Paginator->sort('alias');?></th>
-									
-					<th><?php echo $this->Paginator->sort('created');?></th>
-									
-					<th><?php echo $this->Paginator->sort('updated');?></th>
-								<th class="actions"><?php __('Actions');?></th>
+	<tr>									
+		<th><?php echo $this->Paginator->sort(__('ID', true), 'users_id');?></th>
+		<th><?php echo $this->Paginator->sort(__('Comentario', true), 'comment');?></th>
+		<th><?php echo $this->Paginator->sort(__('Modelo', true), 'model');?></th>
+		<th><?php echo $this->Paginator->sort(__('Llave Foránea', true), 'foreign_key');?></th>
+		<th><?php echo $this->Paginator->sort(__('Estado', true),'active');?></th>
+		<th><?php echo $this->Paginator->sort(__('Alias', true), 'alias');?></th>
+		<th><?php echo $this->Paginator->sort(__('Creado', true), 'created');?></th>
+		<th><?php echo $this->Paginator->sort(__('Modificado', true), 'updated');?></th>
+		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -35,27 +27,27 @@
 		<td><?php echo $comment['Comment']['comment']; ?>&nbsp;</td>
 		<td><?php echo $comment['Comment']['model']; ?>&nbsp;</td>
 		<td><?php echo $comment['Comment']['foreign_key']; ?>&nbsp;</td>
-<?php if($comment['Comment']['active']){ ?>
-		<td><?php echo 'Active'; ?>&nbsp;</td>
-<?php }else{ ?>
-		<td><?php echo 'Inactive'; ?>&nbsp;</td>
-<?php }
- ?>		<td><?php echo $comment['Comment']['alias']; ?>&nbsp;</td>
+		<?php if($comment['Comment']['active']){ ?>
+			<td><?php __('Activo'); ?>&nbsp;</td>
+		<?php } else { ?>
+			<td><?php __('Inactivo'); ?>&nbsp;</td>
+		<?php } ?>
+		<td><?php echo $comment['Comment']['alias']; ?>&nbsp;</td>
 		<td><?php echo $comment['Comment']['created']; ?>&nbsp;</td>
 		<td><?php echo $comment['Comment']['updated']; ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $comment['Comment']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
-			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $comment['Comment']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $comment['Comment']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
+			<?php echo $this->Html->link(__('Ver', true), array('action' => 'view', $comment['Comment']['slug']),array('class'=>'view icon','title'=>__('Ver',true))); ?>
+			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $comment['Comment']['id']),array('class'=>'edit icon','title'=>__('Editar',true))); ?>
+			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $comment['Comment']['id']), array('class'=>'delete icon','title'=>__('Eliminar',true)), sprintf(__('Are you sure you want to delete # %s?', true), $comment['Comment']['id'])); ?>
 			<?php if(isset($comment['Comment']['active'])&& $comment['Comment']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $comment['Comment']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $comment['Comment']['id']));
-}?>
+				echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $comment['Comment']['id']), array('class'=>'setInactive icon','title'=>__('Poner Inactivo',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $comment['Comment']['id']));
+			} ?>
 			<?php if(isset($comment['Comment']['active'])&& !$comment['Comment']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $comment['Comment']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $comment['Comment']['id'])); 
-}?>
+				echo $this->Html->link(__(' ', true), array('action' => 'setActive', $comment['Comment']['id']), array('class'=>'setActive icon','title'=>__('Poner Activo',true)), sprintf(__('Are you sure you want to set active # %s?', true), $comment['Comment']['id'])); 
+			}?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 	<p>
 		<?php

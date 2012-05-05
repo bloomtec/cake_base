@@ -97,10 +97,10 @@ class AppController extends Controller {
 		if (!empty($this -> data)) {
 			$this -> Comment -> create();
 			if ($this -> Comment -> save($this -> data)) {
-				$this -> Session -> setFlash(__('The comment has been saved', true));
+				$this -> Session -> setFlash(__('Se registro el comentario', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {
-				$this -> Session -> setFlash(__('The comment could not be saved. Please, try again.', true));
+				$this -> Session -> setFlash(__('No se pudo registrar el comentario. Por favor, intente de nuevo.', true));
 			}
 		}
 	}
