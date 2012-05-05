@@ -23,7 +23,164 @@ class DealsController extends AppController {
 
 	private function getALargeImage() {
 		$this -> recursive = -1;
-		$deal = $this -> Deal -> find('all', array('order' => 'rand()', 'conditions' => array('Deal.image_large <>' => null, 'Deal.image_large <>' => '')));
+		$filterData = $this -> Session -> read('filterData');
+		if(!empty($filterData)) {
+			$filterData = explode(';', $filterData);
+			$city = $filterData[0];
+			$zone = $filterData[1];
+			$cuisine = $filterData[2];
+			$price = $filterData[3];
+			
+			// Crear condiciones
+			$conditions = array();
+			$conditions['Deal.image_large <>'] = null;
+			$conditions['Deal.image_large <>'] = '';
+			
+			// Si se seleccionó una ciudad
+			if($city != 0) {
+				// Manejar si se selecciona una zona
+				$zones = null;
+				if($zone == 0) {
+					$zones = $this -> Deal -> Restaurant -> Zone -> find(
+						'list',
+						array(
+							'conditions' => array(
+								'Zone.city_id' => $city
+							),
+							'fields' => array(
+								'Zone.id'
+							),
+							'recursive' => -1
+						)
+					);
+				} else {
+					$zones = array();
+				}
+				
+				$restaurants = array();
+				if(!empty($zones)) {
+					$restaurants = $this -> Deal -> Restaurant -> find(
+						'list',
+						array(
+							'conditions' => array(
+								'Restaurant.zone_id' => $zones
+							),
+							'fields' => array(
+								'Restaurant.id'
+							),
+							'recursive' => -1
+						)
+					);
+				} elseif($zone != 0) {
+					$restaurants = $this -> Deal -> Restaurant -> find(
+						'list',
+						array(
+							'conditions' => array(
+								'Restaurant.zone_id' => $zone
+							),
+							'fields' => array(
+								'Restaurant.id'
+							),
+							'recursive' => -1
+						)
+					);
+				} else {
+					$restaurants = $this -> Deal -> Restaurant -> find(
+						'list',
+						array(
+							'fields' => array(
+								'Restaurant.id'
+							),
+							'recursive' => -1
+						)
+					);
+				}
+				
+				if(!empty($restaurants)) {
+					$conditions['Deal.restaurant_id'] = $restaurants;
+				}
+				
+				// Manejar si se selecciona una cocina
+				if($cuisine != 0) {
+					$deals = $this -> Deal -> CuisinesDeal -> find(
+						'list',
+						array(
+							'conditions' => array(
+								'CuisinesDeal.cuisine_id' => $cuisine
+							),
+							'fields' => array(
+								'CuisinesDeal.deal_id'
+							),
+							'recursive' => -1
+						)
+					);
+					if(!empty($deals)) {
+						$conditions['Deal.id'] = $deals;
+					}
+				}
+				
+				// Manejar si se selecciona un precio
+				if($price != 0) {
+					$price = explode(' - ', $price);
+					$min = $price[0];
+					$max = $price[1];
+					$conditions['Deal.price BETWEEN ? AND ?'] = array(
+						$min,
+						$max
+					);
+				}
+			}
+			
+			$deal = $this -> Deal -> find(
+				'all',
+				array(
+					'order' => 'rand()',
+					'conditions' => $conditions
+				)
+			);
+			if(empty($deal)) {
+				unset($conditions['Deal.price BETWEEN ? AND ?']);
+				$deal = $this -> Deal -> find(
+					'all',
+					array(
+						'order' => 'rand()',
+						'conditions' => $conditions
+					)
+				);
+			}
+			if(empty($deal)) {
+				unset($conditions['Deal.id']);
+				$deal = $this -> Deal -> find(
+					'all',
+					array(
+						'order' => 'rand()',
+						'conditions' => $conditions
+					)
+				);
+			}
+			if(empty($deal)) {
+				unset($conditions['Deal.restaurant_id']);
+				$deal = $this -> Deal -> find(
+					'all',
+					array(
+						'order' => 'rand()',
+						'conditions' => $conditions
+					)
+				);
+			}
+		} else {
+			$deal = $this -> Deal -> find(
+				'all',
+				array(
+					'order' => 'rand()',
+					'conditions' => array(
+						'Deal.image_large <>' => null,
+						'Deal.image_large <>' => ''
+					),
+					'recursive' => -1
+				)
+			);
+		}
 		return $deal;
 	}
 	
