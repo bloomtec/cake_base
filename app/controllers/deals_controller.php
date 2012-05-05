@@ -121,7 +121,7 @@ class DealsController extends AppController {
 				
 				// Manejar si se selecciona un precio
 				if($price != 0) {
-					$price = explode(' - ', $price);
+					$price = explode('-', $price);
 					$min = $price[0];
 					$max = $price[1];
 					$conditions['Deal.price BETWEEN ? AND ?'] = array(
