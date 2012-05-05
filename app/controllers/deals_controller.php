@@ -135,7 +135,8 @@ class DealsController extends AppController {
 				'all',
 				array(
 					'order' => 'rand()',
-					'conditions' => $conditions
+					'conditions' => $conditions,
+					'recursive' => -1
 				)
 			);
 			if(empty($deal)) {
@@ -144,7 +145,8 @@ class DealsController extends AppController {
 					'all',
 					array(
 						'order' => 'rand()',
-						'conditions' => $conditions
+						'conditions' => $conditions,
+						'recursive' => -1
 					)
 				);
 			}
@@ -154,7 +156,8 @@ class DealsController extends AppController {
 					'all',
 					array(
 						'order' => 'rand()',
-						'conditions' => $conditions
+						'conditions' => $conditions,
+						'recursive' => -1
 					)
 				);
 			}
@@ -164,10 +167,12 @@ class DealsController extends AppController {
 					'all',
 					array(
 						'order' => 'rand()',
-						'conditions' => $conditions
+						'conditions' => $conditions,
+						'recursive' => -1
 					)
 				);
 			}
+			debug($conditions);
 		} else {
 			$deal = $this -> Deal -> find(
 				'all',
