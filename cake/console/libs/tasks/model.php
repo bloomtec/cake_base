@@ -16,8 +16,6 @@
  * @subpackage    cake.cake.console.libs.tasks
  * @since         CakePHP(tm) v 1.2
  * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
- * 
- $vars guarda las variables que se pasan a la clase model que genera los modelos
  */
 
 include_once dirname(__FILE__) . DS . 'bake.php';
@@ -162,77 +160,7 @@ class ModelTask extends BakeTask {
 		}
 		return $choice - 1;
 	}
-/**
- * Esta funcion verifica si una tabla tiene un campo slug
- * 
- * */
-	function checkSluggable($tempModel){
-		if($tempModel->hasField(array('slug')))
-			return true;
-		else 
-			return false;	
-	}
-/**
- * Esta funcion verifica si una tabla tiene campos que comeinzan con image 
- * recibe un arreglo de de los campos de la tabla $tempMode->schema()
- * devuelve un arreglo de los campos que comienzan con image
- * */
-	function getImagesFields($fields){
-		$imageFields=array();
-		$fieldNames = array_keys($fields);
-		foreach($fields as $fieldName => $value){
-			if(strpos($fieldName, 'image')===0){
-				$imageFields[]=$fieldName;
-			}
-		}
-		return $imageFields;
-	}
-/**
- * Esta funcion verifica si una tabla tiene campos que comeinzan con wysiwyg 
- * recibe un arreglo de de los campos de la tabla $tempMode->schema()
- * devuelve un arreglo de los campos que comienzan con wysiwyg
- * */	
-	function getWysiwygFields($fields){
-		$wysiwygFields=array();
-		$fieldNames = array_keys($fields);
-		foreach($fields as $fieldName => $value){
-			if(strpos($fieldName, 'wysiwyg')===0){
-				$wysiwygFields[]=$fieldName;
-			}
-		}
-		return $wysiwygFields;	
-	}
-	
-/**
- * Verifica si una tabla se puede ordenar
- */
-	function isSortable($fields){
-		$return=false;
-		foreach($fields as $fieldName => $value){
-			if($fieldName=='sort'){
-				$return=true;
-			}
-		}
-		return $return;	
-	}
-	
-	function isActivable($fields){
-		$return=false;
-		foreach($fields as $fieldName => $value){
-			if($fieldName=='is_active'){
-				$return=true;
-			}
-		}
-		return $return;	
-	}
-	function isPicture($modelName){
-		$return=false;
-		if(substr($modelName, -7)=="Picture"){
-			$return=true;
-		}
-		return $return;	
-	} 
-	
+
 /**
  * Handles interactive baking
  *
@@ -313,13 +241,7 @@ class ModelTask extends BakeTask {
 		$looksGood = $this->in(__('Look okay?', true), array('y','n'), 'y');
 
 		if (strtolower($looksGood) == 'y') {
-			$sluggable=$this->checkSluggable($tempModel);
-			$imagesFields=$this->getImagesFields($tempModel->schema());
-			$wysiwygFields=$this->getWysiwygFields($tempModel->schema());			
-			$sortable=$this->isSortable($tempModel->schema());
-			$activable=$this->isActivable($tempModel->schema());
-			$isPicture=$this->isPicture($currentModelName);
-			$vars = compact('associations', 'validate', 'primaryKey', 'useTable', 'displayField','sluggable','imagesFields','wysiwygFields','sortable','activable','isPicture');
+			$vars = compact('associations', 'validate', 'primaryKey', 'useTable', 'displayField');
 			$vars['useDbConfig'] = $this->connection;
 			if ($this->bake($currentModelName, $vars)) {
 				if ($this->_checkUnitTest()) {
@@ -383,6 +305,7 @@ class ModelTask extends BakeTask {
 		$choice = $this->inOptions($fieldNames, $prompt);
 		return $fieldNames[$choice];
 	}
+
 /**
  * Handles Generation and user interaction for creating validation.
  *
