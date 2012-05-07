@@ -2,9 +2,10 @@
 	<?php echo $this -> Form -> create('Deal');?>
 	<fieldset>
 		<legend>
-			<?php __('Agregar Promo');?>
+			<?php __('Modificar Promo');?>
 		</legend>
 		<?php
+		echo $this -> Form -> input('id');
 		echo $this -> Form -> input('restaurant_id', array('label' => __('Restaurante', true)));
 		echo $this -> Form -> input('name', array('label' => __('Nombre', true)));
 		echo $this -> Form -> input('is_promoted', array('label' => __('Promocionada', true)));
@@ -20,7 +21,7 @@
 		echo $this -> Form -> input('Cuisine', array('label' => __('Cocina', true), 'multiple' => 'checkbox'));
 		?>
 	</fieldset>
-	<?php echo $this -> Form -> end(__('Enviar', true));?>
+	<?php echo $this -> Form -> end(__('Submit', true));?>
 </div>
 <div class="images">
 	<h2><?php __('Imagen');?></h2>

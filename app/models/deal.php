@@ -102,7 +102,42 @@ class Deal extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'amount' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Ingrese una cantidad',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'numeric' => array(
+				'rule' => array('numeric'),
+				'message' => 'El valor debe ser un número',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'isPositiveAmount' => array(
+				'rule' => array('isPositiveAmount'),
+				'message' => 'El valor debe ser mayor o igual a 0',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 	);
+	
+	function isPositiveAmount() {
+		if($this -> data['Deal']['amount'] >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 	var $belongsTo = array(
