@@ -1,14 +1,14 @@
 <div class="orders register form">
-	<h1 class="mensaje-compra">Antes de comprar ten en cuenta.</h1>
+	<h1 class="mensaje-compra"><?php __('Antes de comprar ten en cuenta.'); ?></h1>
 	
 	<p class="mensaje-compra">
-		Verifica si este restaurante cubre su zona.
+		<?php __('Verifica si este restaurante cubre su zona.'); ?>
 	</p>
 	<br />
 	<p class="mensaje-compra">
-		Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
+		<?php __('Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
 		ubicacion desde donde se haga su pedido sera registrada en nuestro sitio web.
-		Compra con responsabilidad
+		Compra con responsabilidad'); ?>
 	</p>
 	
 	<?php
@@ -30,11 +30,12 @@
 				<?php
 				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
 				echo $this -> Form -> hidden('Deal.price', array('value' => $deal['Deal']['price']));
-				//echo $this -> Form -> input('quantity', array('label' => __('Cantidad', true), 'value' => 1));
 				?>
 				<div class="input text required">
-					<label for="OrderQuantity">Cantidad</label>
-					<input id="OrderQuantity" type="number" maxlength="11" value="1" name="data[Order][quantity]">
+					<label for="OrderQuantity">
+						<?php __('Cantidad'); ?>						
+					</label>
+					<input id="OrderQuantity" type="number" maxlength="11" value="1" min="1" max="<?php echo $deal['Deal']['amount']; ?>" name="data[Order][quantity]" required="required">
 				</div>
 			</div>
 			
@@ -89,15 +90,14 @@
 	<?php $userScore = $this -> requestAction('/users/getScore'); ?>
 	<?php if($userScore > $deal['Deal']['price']): ?>
 	<div class="comprar-con-puntos" id="comprar-con-bono" style="visibility: visible;">
-		<legend>Comprar con tu bono</legend>
-		<?php
-			
+		<legend><?php __('Comprar con tu bono'); ?></legend>
+		<?php			
 			echo $this -> Form -> hidden('User.user_score', array('value' => $userScore));
 		?>
 		
-		<p>Tienes actualmente  <?php echo "$ ".number_format($userScore, 0, ",", "."); ?>  acumulados como bono.</p>
-		<p>¡Puedes actualmente pagar con tu bono!</p>
-		<p> Deseas hacerlo?</p>
+		<p><?php __('Tienes actualmente'); ?>  <?php echo "$ ".number_format($userScore, 0, ",", "."); ?>  <?php __('acumulados como bono.'); ?></p>
+		<p><?php __('¡Puedes actualmente pagar con tu bono!'); ?></p>
+		<p><?php __('¿Deseas hacerlo?'); ?></p>
 		<?php $redimir=isset($this->params['named']['redimir'])?$this->params['named']['redimir']:0;?>
 		<p><?php echo $this -> Form -> input('comprar_con_bono', array('legend'=>false,'type' => 'radio', 'options' => array('0' => 'No', '1' => 'Sí'), 'value' => $redimir)); ?></p>
 	</div>
@@ -118,12 +118,8 @@
 	$(function() {
 		var actualizarDivComprarConPuntos = function() {
 			cantidad = $('#OrderQuantity').val();
-			//console.log(cantidad);
 			precioUnitario = $('#DealPrice').val();
-			//console.log(precioUnitario);
-			//console.log(cantidad * precioUnitario);
 			puntosUsuario = $('#UserUserScore').val();
-			//console.log(puntosUsuario);
 			if(puntosUsuario >= (cantidad * precioUnitario)) {
 				$('.comprar-con-puntos').css('visibility', 'visible');
 				return true;
@@ -155,17 +151,12 @@
 		':email'  	: 'email no valido',
 		':number' 	: 'el campo debe ser numerico',
 		':url' 		: 'URL no valida',
-		'[max]'	 	: 'el campo debe ser menor a $1',
-		'[min]'		: 'el campo debe ser mayot a $1',
+		'[max]'	 	: 'el campo debe ser menor o igual a $1',
+		'[min]'		: 'el campo debe ser mayor o igual a $1',
 		'[required]'	: 'campo obligatorio',
 		'[data-equals]' : 'verifique este campo'
 		});
 		$('form').validator({'lang':'es'});
-		
-		/*$('#OrderAddForm').submit(function(e) {
-			e.preventDefault();
-			return false;
-		});*/
 		
 		/** -------- **/
 		
