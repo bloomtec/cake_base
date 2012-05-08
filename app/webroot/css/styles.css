@@ -39,10 +39,15 @@ body{
 	margin-bottom: 25px;
 	background-repeat: no-repeat;
 }
-span.dinero{
+.dinero{
 	text-transform: uppercase;
 	color:#006838;
 	font-size: 18px;
+	vertical-align: middle;
+}
+.dinero:hover{
+	color:white;
+	font-weight: bold;
 }
 .wrapper p{
 	width: 430px;
@@ -50,19 +55,24 @@ span.dinero{
 	text-align: center;
 	float: left;
 	margin-left: 75px;
-	margin-top: 104px;
+	margin-top: 60px;/*104px;*/
 }
-.wrapper p a{
-	color:#006838;
-	font-size: 18px;
-}
+
 .wrapper p br{
 	margin-bottom: 8px;
 }
 .sesion{
 	float: right;
     margin-top: 50px;
-    width: 205px;
+    width: 235px;
+    text-align: right;
+}
+.sesion a{
+	text-decoration: underline;
+}
+.sesion a:hover{
+	color:#323232;
+	font-weight: bold;
 }
 .sesion h1{
 	float: left;

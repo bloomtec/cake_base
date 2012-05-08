@@ -202,10 +202,10 @@
 .tooltip_login{
 	background-color: #323232;
     border-radius: 5px 5px 5px 5px;
-    height: 150px;
+    height: 140px;
     position: absolute;
-    right: 136px;
-    top: 70px;
+    right: 72px;
+    top: 88px;
     width: 299px;
     border: 1px solid #868686;
 	display: none;
@@ -220,10 +220,10 @@
     float: left;
     font-size: 11px;
     font-weight: bold;
-    margin: 27px 8px 0 10px;
+    margin: 27px 8px 0 2px;
     text-align: right;
     text-transform: uppercase;
-    width: 68px;
+    width: 82px;
 }
 .tooltip_login .input_text{
 	color: #323232;
@@ -344,6 +344,7 @@ div.images .preview  img{
 	background: -ms-linear-gradient(top,  #323232 0%,#1e1e1e 100%); /* IE10+ */
 	background: linear-gradient(top,  #323232 0%,#1e1e1e 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#323232', endColorstr='#1e1e1e',GradientType=0 ); /* IE6-9 */
+	clear:both;
 }
 /** login y registro **/
 
@@ -618,4 +619,10 @@ div.images .preview  img{
 }
 #UserChangePasswordForm fieldset, #AddressAddForm fieldset{
 	float: left;
+}
+#header .nombre{
+	color:white;
+	font-size: 12.5px;
+	padding-bottom: 3px;
+	min-height: 12.5px;
 }

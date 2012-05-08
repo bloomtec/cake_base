@@ -13,7 +13,7 @@
 			<div style='clear:both;'></div>
 			<!-- <input type="submit" class="btn_login" value="Ingresar" /> -->
 			<a href="#" id="AjaxLoginSubmit" class="btn_login"><?php __('INGRESAR'); ?></a>
-			<a href="/users/register" class="btn_login"><?php __('REGISTRO'); ?></a>
+			<!--<a href="/users/register" class="btn_login"><?php __('REGISTRO'); ?></a>-->
 			<?php echo $this -> Form ->end();?>
 			<div style="clear: both"></div>
 		</div>
@@ -28,11 +28,9 @@
 			<?php endif; ?>
 		</p>
 		<div class="sesion">
-			<!--
-			<h1>Idioma</h1>
-			<a href=""><img src="/img/ingles.png" /></a>
-			<a href=""><img src="/img/espanol.png" /></a>
-			-->
+			<div class='nombre'>
+				<?php if($this -> Session -> read("Auth.User.name")) echo __("Hola, ").$this -> Session -> read("Auth.User.name")." ". $this -> Session -> read("Auth.User.last_name") ?>
+			</div>
 			<div style="clear: both"></div>
 			<?php if(!$this -> Session-> read('Auth.User.id')){?>
 			<a href="/" class='iniciar_sesion'><?php __('INICIO'); ?></a>
