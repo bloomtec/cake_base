@@ -8,7 +8,7 @@
 		<th><?php echo $this->Paginator->sort(__('Dirección', true), 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort(__('Cantidad', true), 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort(__('Promoción', true), 'deal_id');?></th>
-		<!--<th><?php echo $this->Paginator->sort('Aprobada', 'is_approved');?></th>-->
+		<th><?php echo $this->Paginator->sort('Nota', 'note');?></th>
 		<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>
 		<th class="actions"><?php __('Acciones');?></th>
 	</tr>
@@ -39,17 +39,15 @@
 		<td>
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
-		<!--
 		<td>
 			<?php
-				if($order['Order']['is_approved']) {
+				if(!empty($order['Order']['note'])) {
 					echo '<input type="checkbox" disabled checked />';
 				} else {
 					echo '<input type="checkbox" disabled />';
 				}
 			?>
 		</td>
-		-->
 		<td>
 			<?php echo $this -> Form -> input('order_state_id',array('options'=>$orderStates,'value'=>$order['OrderState']['id'],'label'=>false,'rel'=>$order['Order']['id']));  ?>
 		</td>
