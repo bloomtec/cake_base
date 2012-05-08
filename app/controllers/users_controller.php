@@ -15,9 +15,12 @@ class UsersController extends AppController {
 		}
 		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'validateEmail');
 	}
-	function beforeRender(){
+	
+	function beforeRender() {
+		parent::beforeRender();
 		$this -> set('class',$this -> action);// IMPORTANTE CLASES PARA NAVEGACION; 
 	}
+	
 	function addUserScoreForBuying($user_id = null) {
 		$this -> User -> user_bought($user_id);
 	}

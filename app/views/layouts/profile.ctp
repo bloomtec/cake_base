@@ -21,15 +21,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title><?php
-		$model = $this -> params['models'][0];
-		$singularVar = strtolower($model);
-		if (isset(${$singularVar}[$model]['name'])) {
-			echo ${$singularVar}[$model]['name'];
-		} else {
-			echo $title_for_layout;
-		}
-			?></title>
+		<title>
+			<?php
+				$model = $this -> params['models'][0];
+				$singularVar = strtolower($model);
+				/*
+				if (isset(${$singularVar}[$model]['name'])) {
+					echo ${$singularVar}[$model]['name'];
+				} else {
+					echo $title_for_layout;
+				}
+				*/
+				echo $PAGE_TITLE;
+			?>
+		</title>
 		<?php
 		echo $this -> Html -> meta('icon');
 
