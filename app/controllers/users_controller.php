@@ -387,7 +387,7 @@ class UsersController extends AppController {
 
 	function profile() {
 		$this -> layout = "profile";
-		$orders = $this -> User -> Order -> find(
+		/*$orders = $this -> User -> Order -> find(
 			'all',
 			array(
 				'conditions' => array(
@@ -395,7 +395,15 @@ class UsersController extends AppController {
 				)
 			)
 		);
-		$this -> set('orders', $orders);
+		$this -> set('orders', $orders);*/
+		$this -> paginate = array(
+			'Order' => array(
+				'conditions' => array(
+					'Order.user_id' => $this -> Auth -> user('id')
+				)
+			)
+		);
+		$this -> set('orders', $this -> paginate('Order'));
 	}
 
 	function edit() {
