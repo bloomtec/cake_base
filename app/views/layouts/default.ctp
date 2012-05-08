@@ -67,8 +67,9 @@
 			});
 		</script>
 		<meta property="og:title" content="<?php __('COMO PROMOS')?>" />
+		<meta property="og:type" content="food" />
 		<meta property="og:description" content="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" />
-		<meta property="og:image" content="<?php urlencode("http://comopromos.com/img/logo como promos curvas.png") ?>" />
+		<meta property="og:image" content="<?php urlencode("http://comopromos.com/img/logo_face.png") ?>" />
 		<meta property="fb:admins" content="591245015" />
 	</head>
 	<body id="<?php echo $this->name ?>">
