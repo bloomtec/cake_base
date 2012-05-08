@@ -103,12 +103,14 @@ class OrdersController extends AppController {
 				}
 				$this -> data['Order']['code'] = 1000000 + $max_id;
 				$this -> data['Order']['order_state_id'] = 1; // En espera de pago
-				if($this -> data['Order']['comprar_con_bono']) {
-					// Revisar que si se puede comprar con puntos
-					if($this -> data['Order']['quantity'] * $this -> data['Deal']['price'] >= $this -> data['User']['user_score']) {
-						$this -> data['Order']['is_paid_with_cash'] = true;
-					} else {
-						$this -> data['Order']['is_paid_with_cash'] = false;
+				if(isset($this -> data['Order']['comprar_con_bono'])) {
+					if($this -> data['Order']['comprar_con_bono']) {
+						// Revisar que si se puede comprar con puntos
+						if($this -> data['Order']['quantity'] * $this -> data['Deal']['price'] >= $this -> data['User']['user_score']) {
+							$this -> data['Order']['is_paid_with_cash'] = true;
+						} else {
+							$this -> data['Order']['is_paid_with_cash'] = false;
+						}
 					}
 				}
 				

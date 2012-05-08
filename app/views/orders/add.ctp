@@ -53,11 +53,16 @@
 					echo $this -> Form -> input('Info.email', array('label' => __('Correo Electrónico', true), 'value' => $user['User']['email'], 'disabled' => 'disabled'));
 					echo $this -> Form -> input('Info.phone', array('label' => __('Teléfono', true), 'value' => $user['User']['phone'], 'disabled' => 'disabled'));
 				} else {
-					echo $this -> Form -> input('User.name', array('label' => __('Nombre', true)));
-					echo $this -> Form -> input('User.last_name', array('label' => __('Apellido', true)));
-					echo $this -> Form -> input('User.email', array('label' => __('Correo Electrónico', true)));
-					echo $this -> Form -> input('User.password', array('label' => __('Contraseña', true)));
-					echo $this -> Form -> input('User.phone', array('label' => __('Teléfono', true)));
+					echo $this -> Form -> input('User.name', array('label' => __('Nombre', true), 'required' => 'required'));
+					echo $this -> Form -> input('User.last_name', array('label' => __('Apellido', true), 'required' => 'required'));
+			?>
+			<div class="input text required">
+				<label for="UserEmail"><?php __('Correo Electrónico');?></label>
+				<input type="email" id="UserEmail" maxlength="100" required="required" name="data[User][email]" class="invalid">
+			</div>
+			<?php
+					echo $this -> Form -> input('User.password', array('label' => __('Contraseña', true), 'required' => 'required'));
+					echo $this -> Form -> input('User.phone', array('label' => __('Teléfono', true), 'required' => 'required'));
 					echo $this -> Form -> input('User.country_id', array('label' => __('País', true)));
 					echo $this -> Form -> input('User.city_id', array('label' => __('Ciudad', true)));
 				}
@@ -80,8 +85,8 @@
 				echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'class' => 'barrio'));
 				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad'));
 				echo $this -> Form -> input('Address.country_id', array('label' => __('País', true), 'class' => 'pais'));
-				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text'));
-				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));				
+				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text', 'required' => 'required'));
+				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal', 'required' => 'required'));
 			}
 			?>
 		</fieldset>
