@@ -16,7 +16,6 @@ class AppController extends Controller {
 			'Email',
 			'Language'
 		);
-	
 	var $cacheAction = true;
 
 	function isAuthorized() {

@@ -51,11 +51,21 @@
 
 		echo $scripts_for_layout;
 		?>
-		<meta property="og:title" content="<?php __('Este es el titulo')?>" />
+		<meta property="og:title" content="<?php __('COMO PROMOS')?>" />
 		<meta property="og:description" content="<?php __('Este es la descipcion')?>" />
-		<meta property="og:image" content="http://clickneat.bloomweb.co/img/logo_header.png" />
+		<meta property="og:image" content="http://comopromos.com/img/logo como promos curvas.png" />
+		<meta property="fb:admins" content="591245015" />
+		
 	</head>
 	<body id="profile">
+		<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420494534634883";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 		<?php
 		if ($this -> Session -> read('Auth.User.id')) {
 			echo $this -> element('score-box');

@@ -1078,6 +1078,7 @@ input[type='checkbox']{
 }
 #UserReferForm label{
 	color: #000;
+	width: 225px;
 }
 #content .centrar h1{
 	margin: 0;
