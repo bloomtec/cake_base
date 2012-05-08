@@ -30,19 +30,6 @@ class RestaurantsController extends AppController {
 		}
 	}
 
-	function index() {
-		$this -> Restaurant -> recursive = 0;
-		$this -> set('restaurants', $this -> paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Restaurante no válido', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('restaurant', $this -> Restaurant -> read(null, $id));
-	}
-
 	function admin_index() {
 		$this -> Restaurant -> recursive = 0;
 		$this -> set('restaurants', $this -> paginate());
