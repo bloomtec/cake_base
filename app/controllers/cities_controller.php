@@ -22,19 +22,6 @@ class CitiesController extends AppController {
 		exit(0);
 	}
 
-	function index() {
-		$this -> City -> recursive = 0;
-		$this -> set('cities', $this -> paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Ciudad no válida', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('city', $this -> City -> read(null, $id));
-	}
-
 	function admin_index() {
 		$this -> City -> recursive = 0;
 		$this -> set('cities', $this -> paginate());
