@@ -28,7 +28,7 @@ $addressList = array();
 <?php echo $this->Form->create('Address',array('action' => 'add'));?>
 	<fieldset>
 	<?php
-		echo $this -> Form -> hidden('Address.user_id', array('value' => $this->params['pass'][0]));
+		echo $this -> Form -> hidden('Address.user_id', array('value' => $userId));
 		echo $this -> Form -> input('Address.name', array('label'=>__('Nombre',true), 'required' => 'required'));
 		echo $this -> Form -> input('Address.country_id', array('label'=>__('País',true), 'required' => 'required','options' => $countries));
 		echo $this -> Form -> input('Address.city_id', array('label'=>__('Ciudad',true), 'required' => 'required','options' => $cities));

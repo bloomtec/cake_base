@@ -25,11 +25,13 @@ class PagesController extends AppController {
 		$this -> set(compact('page', 'subpage', 'title_for_layout'));
 		$this -> render(implode('/', $path));
 	}
-
+	
+	/*
 	function index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
 	}
+	*/
 
 	function politicas() {
 		$this -> layout = "default";
@@ -249,7 +251,8 @@ class PagesController extends AppController {
 		}
 	$this -> set ('title_for_layout',_('Sugierenos un restaurante'),true);
 	}
-
+	
+	/*
 	function view($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Página erronea', true));
@@ -300,7 +303,7 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('No se eliminó la página', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-
+	
 	function setInactive($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('ID de página no válida', true));
@@ -330,19 +333,21 @@ class PagesController extends AppController {
 		$this -> Session -> setFlash(__('No se archivó la página', true));
 		$this -> redirect(array('action' => 'index'));
 	}
-
-	function owner_ez() {
+	*/
+	
+	function admin_ez() {
 	}
-
+	
 	function manager_ez() {
 	}
 
+	function owner_ez() {
+	}
+	
+	/*
 	function manager_index() {
 		$this -> Page -> recursive = 0;
 		$this -> set('pages', $this -> paginate());
-	}
-
-	function admin_ez() {
 	}
 
 	function admin_layouts() {
@@ -449,6 +454,7 @@ class PagesController extends AppController {
 		}
 		$this -> Session -> setFlash(__('No se archivó la página', true));
 		$this -> redirect(array('action' => 'index'));
-	}
+	} 
+	*/
 
 }

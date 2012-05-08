@@ -13,7 +13,7 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'enEspera', 'validateEmail');
+		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'validateEmail');
 	}
 	function beforeRender(){
 		$this -> set('class',$this -> action);// IMPORTANTE CLASES PARA NAVEGACION; 
@@ -385,93 +385,121 @@ class UsersController extends AppController {
 		}
 	}
 
-	function enEspera() {
-
-	}
-
 	function profile() {
 		$this -> layout = "profile";
-		$orders=$this -> User -> Order -> find('all', array('conditions'=>array('Order.user_id'=>$this -> Auth -> user('id'))));
-		$orders = null;
-		$this -> set('orders', $orders);
+		/*$orders = $this -> User -> Order -> find(
+			'all',
+			array(
+				'conditions' => array(
+					'Order.user_id' => $this -> Auth -> user('id')
+				)
+			)
+		);
+		$this -> set('orders', $orders);*/
+		$this -> paginate = array(
+			'Order' => array(
+				'conditions' => array(
+					'Order.user_id' => $this -> Auth -> user('id')
+				)
+			)
+		);
+		$this -> set('orders', $this -> paginate('Order'));
 	}
 
-	function edit($id) {
-		$this -> layout = "profile";
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Usuario no válido', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-
-		if (!empty($this -> data)) {
-			if (!empty($this -> data['User']['pass']))
-				$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
-			if ($this -> User -> saveAll($this -> data)) {
-				$this -> Session -> setFlash(__('Se actualizó la información.', true));
-				//$this -> redirect(array('action' => 'profile'));
-			} else {
-				$this -> Session -> setFlash(__('No se pudo actualizar la información', true));
+	function edit() {
+		$id = $this -> Auth -> user('id');
+		if($id) {
+			$this -> layout = "profile";
+			if (!$id && empty($this -> data)) {
+				$this -> Session -> setFlash(__('Usuario no válido', true));
+				$this -> redirect(array('action' => 'index'));
 			}
-		}
-		if (empty($this -> data)) {
-			$this -> data = $this -> User -> read(null, $id);
-		}
-		$roles = $this -> User -> Role -> find('list');
-		$countries = $this -> User -> Address -> Country -> find('list');
-		//$conditions['country_id']=empty($countries) ? null : key($countries);
-		$cities = $this -> User -> Address -> City -> find('list');
-		$this -> set(compact('countries', 'cities'));
-		$this -> set(compact('roles'));
-	}
-
-	function updateAddresses($id) {
-		$this -> layout = "profile";
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Usuario no valido', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-
-		if (!empty($this -> data)) {
-			if ($this -> User -> Address -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Se registró la dirección', true));
-				//	$this -> redirect(array('action' => 'profile'));
-			} else {
-				$this -> Session -> setFlash(__('La dirección no se pudo registrar. Por favor, intente de nuevo.', true));
-			}
-		}
-		$this -> User -> Address -> recursive = -1;
-		$addresses = $this -> User -> Address -> find('all', array('conditions' => array('user_id' => $id)));
-		$roles = $this -> User -> Role -> find('list');
-		$countries = $this -> User -> Address -> Country -> find('list');
-		//$conditions['country_id']=empty($countries) ? null : key($countries);
-		$cities = $this -> User -> Address -> City -> find('list');
-		$zones = $this -> User -> Address -> Zone -> find('list');
-		$this -> set(compact('countries', 'cities', 'addresses', 'zones'));
-		$this -> set(compact('roles'));
-	}
-
-	function changePassword($id = null) {
-		$this -> layout = "profile";
-		if (!$id && empty($this -> data)) {
-			$this -> Session -> setFlash(__('Usuario no válido', true));
-			$this -> redirect(array('action' => 'profile'));
-		}
-		if (!empty($this -> data)) {
-			$user = $this -> User -> findById($this -> data['User']['id']);
-			if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
-				$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
-				if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
-					$this -> Session -> setFlash(__('Se ha actualizado tu contraseña', true));
-					$this -> redirect($this -> referer());
+	
+			if (!empty($this -> data)) {
+				if (!empty($this -> data['User']['pass']))
+					$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
+				if ($this -> User -> saveAll($this -> data)) {
+					$this -> Session -> setFlash(__('Se actualizó la información.', true));
+					//$this -> redirect(array('action' => 'profile'));
 				} else {
-					$this -> Session -> setFlash(__('No coincide la confirmación de la contraseña', true));
+					$this -> Session -> setFlash(__('No se pudo actualizar la información', true));
+				}
+			}
+			if (empty($this -> data)) {
+				$this -> data = $this -> User -> read(null, $id);
+			}
+			$roles = $this -> User -> Role -> find('list');
+			$countries = $this -> User -> Address -> Country -> find('list');
+			//$conditions['country_id']=empty($countries) ? null : key($countries);
+			$cities = $this -> User -> Address -> City -> find('list');
+			$this -> set('userId', $id);
+			$this -> set(compact('countries', 'cities'));
+			$this -> set(compact('roles'));
+		} else {
+			$this -> redirect('/');
+		}
+	}
+
+	function updateAddresses() {
+		$id = $this -> Auth -> user('id');
+		if($id) {
+			$this -> layout = "profile";
+			if (!$id && empty($this -> data)) {
+				$this -> Session -> setFlash(__('Usuario no valido', true));
+				$this -> redirect(array('action' => 'index'));
+			}
+	
+			if (!empty($this -> data)) {
+				if ($this -> User -> Address -> save($this -> data)) {
+					$this -> Session -> setFlash(__('Se registró la dirección', true));
+					//	$this -> redirect(array('action' => 'profile'));
+				} else {
+					$this -> Session -> setFlash(__('La dirección no se pudo registrar. Por favor, intente de nuevo.', true));
+				}
+			}
+			$this -> User -> Address -> recursive = -1;
+			$addresses = $this -> User -> Address -> find('all', array('conditions' => array('user_id' => $id)));
+			$roles = $this -> User -> Role -> find('list');
+			$countries = $this -> User -> Address -> Country -> find('list');
+			//$conditions['country_id']=empty($countries) ? null : key($countries);
+			$cities = $this -> User -> Address -> City -> find('list');
+			$zones = $this -> User -> Address -> Zone -> find('list');
+			$this -> set('userId', $id);
+			$this -> set(compact('countries', 'cities', 'addresses', 'zones'));
+			$this -> set(compact('roles'));
+		} else {
+			$this -> redirect('/');
+		}
+	}
+
+	function changePassword() {
+		$id = $this -> Auth -> user('id');
+		if($id) {
+			$this -> layout = "profile";
+			if (!$id && empty($this -> data)) {
+				$this -> Session -> setFlash(__('Usuario no válido', true));
+				$this -> redirect(array('action' => 'profile'));
+			}
+			if (!empty($this -> data)) {
+				$user = $this -> User -> findById($this -> data['User']['id']);
+				if ($user['User']['password'] == $this -> Auth -> password($this -> data['User']['old_password'])) {
+					$user['User']['password'] = $this -> Auth -> password($this -> data['User']['new_password']);
+					if ($this -> data['User']['new_password'] == $this -> data['User']['confirm_password'] && $this -> User -> save($user)) {
+						$this -> Session -> setFlash(__('Se ha actualizado tu contraseña', true));
+						$this -> redirect($this -> referer());
+					} else {
+						$this -> Session -> setFlash(__('No coincide la confirmación de la contraseña', true));
+						$this -> redirect($this -> referer());
+					}
+	
+				} else {
+					$this -> Session -> setFlash(__('Su contraseña anterior no es válida', true));
 					$this -> redirect($this -> referer());
 				}
-
-			} else {
-				$this -> Session -> setFlash(__('Su contraseña anterior no es válida', true));
-				$this -> redirect($this -> referer());
 			}
+			$this -> set('userId', $id);
+		} else {
+			$this -> redirect('/');
 		}
 	}
 

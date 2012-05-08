@@ -1,11 +1,11 @@
 <h1><?php __('Mis pedidos'); ?></h1>
 <?php if($orders){?>
-<table id="ordenes">
+<table id="ordenes" cellpadding="0" cellspacing="0" >
 	<tr>
-		<th><?php __('Código');?></th>
-		<th><?php __('Estado');?></th>
-		<th><?php __('Promocion');?></th>
-		<th><?php __('Fecha');?></th>
+		<th><?php echo $this -> Paginator -> sort(__('Código', true), 'Order.code');?></th>
+		<th><?php echo $this -> Paginator -> sort(__('Estado', true), 'OrderState.name');?></th>
+		<th><?php echo $this -> Paginator -> sort(__('Promocion', true), 'Deal.name');?></th>
+		<th><?php echo $this -> Paginator -> sort(__('Fecha', true), 'Order.created');?></th>
 	</tr>
 
 <?php foreach($orders as $order):?>
@@ -20,6 +20,17 @@
 	</tr>
 <?php endforeach; ?>
 </table>
+	<p>
+		<?php
+			echo $this->Paginator->counter(array('format' => __('Página %page% de %pages%, mostrando %current% registros de un total de %count%, desde el %start%, hasta el %end%', true)));
+		?>
+	</p>
+	<div class="paging">
+		<?php echo $this->Paginator->prev('<< ' . __('anterior', true), array(), null, array('class'=>'disabled'));?>
+	 | 	<?php echo $this->Paginator->numbers();?>
+ |
+		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
+	</div>
 <?php }else{ ?>
 	<p class="message"><?php __('NO TIENES ORDENES');?></p>
 <?php } ?>

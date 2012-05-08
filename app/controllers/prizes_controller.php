@@ -5,8 +5,9 @@ class PrizesController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
 	}
+	
+	/*
 
 	function index() {
 		$this -> Prize -> recursive = 0;
@@ -64,9 +65,7 @@ class PrizesController extends AppController {
 	}
 	
 	public function prizeRedeemedEmail($user = null, $prize = null) {
-		/**
-		 * Asignar las variables del componente Email
-		 */
+		//Asignar las variables del componente Email
 		if ($user && $prize) {
 			
 			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
@@ -98,15 +97,11 @@ class PrizesController extends AppController {
 			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
 			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_clickandeat.co');
 
-			/**
-			 * Asignar cosas al template
-			 */
+			//Asignar cosas al template
 			$this -> set('user', $user);
 			$this -> set('prize', $prize);
 
-			/**
-			 * Enviar el correo
-			 */
+			//Enviar el correo
 			Configure::write('debug', 0);
 			$this -> Email -> send();
 			$this -> set('smtp_errors', $this -> Email -> smtpError);
@@ -165,5 +160,7 @@ class PrizesController extends AppController {
 		$this -> Session -> setFlash(__('No se pudo eliminar el premio', true));
 		$this -> redirect(array('action' => 'index'));
 	}
+	
+	*/
 
 }
