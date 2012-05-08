@@ -3,7 +3,7 @@
 
 	<fieldset>
 	<?php
-		echo $this->Form->input('id',array('value'=>$this->params['pass'][0]));
+		echo $this->Form->input('id',array('value'=>$userId));
 		echo $this->Form->input('old_password',array('type'=>'password','label'=>__('Antigua Contraseña', true),'required'=>'required'));
 		echo $this->Form->input('new_password',array('type'=>'password','label'=>__('Contraseña', true),'required'=>'required', 'message'=>'Los passwords no coinciden'));
 		echo $this->Form->input('confirm_password',array('type'=>'password','label'=>__('Confirmar Contraseña', true),'required'=>'required' , 'data-equals'=>'data[User][new_password]'));
