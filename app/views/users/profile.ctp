@@ -1,11 +1,11 @@
-<h1>Mis pedidos</h1>
+<h1><?php __('Mis pedidos'); ?></h1>
 <?php if($orders){?>
 <table id="ordenes">
 	<tr>
-		<th>Código</th>
-		<th>Estado</th>
-		<th>Promocion</th>
-		<th>Fecha</th>
+		<th><?php __('Código');?></th>
+		<th><?php __('Estado');?></th>
+		<th><?php __('Promocion');?></th>
+		<th><?php __('Fecha');?></th>
 	</tr>
 
 <?php foreach($orders as $order):?>
@@ -21,5 +21,5 @@
 <?php endforeach; ?>
 </table>
 <?php }else{ ?>
-	<p class="message">NO TIENES ORDENES</p>
+	<p class="message"><?php __('NO TIENES ORDENES');?></p>
 <?php } ?>
