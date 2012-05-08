@@ -40,8 +40,12 @@
 	$(".slidetabs").tabs(".images > div", {
 	effect: 'fade',
 	fadeOutSpeed: "slow",
-	rotate: true,
+	rotate: true,	
 	
 	
-}).slideshow({autoplay:true,clickable:false,});
+}).slideshow({
+	autoplay:true,
+	clickable:false,
+	interval:4000
+	});
 </script>

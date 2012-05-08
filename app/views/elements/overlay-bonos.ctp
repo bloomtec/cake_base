@@ -49,6 +49,9 @@
 			<li>
 				<?php __("No podrás pagar con este dinero parte de tus domicilios, tu dinero debe cubrir el valor total de el domicilio que desees.")?>
 			</li>
+			<li>
+				<?php __("El dinero que acumules en nuestro sitio web no es redimible por dinero en efectivo.")?>
+			</li>
 		</ul>
 	</div>
 </div>
