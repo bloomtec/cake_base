@@ -29,15 +29,19 @@
 		<td><?php echo $cuisine['Cuisine']['updated']; ?>&nbsp;</td>
 		-->
 		<td class="actions">
-			<?php echo $this->Html->link(__('Ver', true), array('action' => 'view', $cuisine['Cuisine']['slug']),array('class'=>'view icon','title'=>__('View',true))); ?>
-			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $cuisine['Cuisine']['id']),array('class'=>'edit icon','title'=>__('Edit',true))); ?>
-			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $cuisine['Cuisine']['id']), array('class'=>'delete icon','title'=>__('Delete',true)), sprintf(__('Are you sure you want to delete # %s?', true), $cuisine['Cuisine']['id'])); ?>
-			<?php if(isset($cuisine['Cuisine']['active'])&& $cuisine['Cuisine']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $cuisine['Cuisine']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $cuisine['Cuisine']['id']));
-}?>
-			<?php if(isset($cuisine['Cuisine']['active'])&& !$cuisine['Cuisine']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $cuisine['Cuisine']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $cuisine['Cuisine']['id'])); 
-}?>
+			<?php echo $this->Html->link(__('Ver', true), array('action' => 'view', $cuisine['Cuisine']['slug']),array('class'=>'view icon','title'=>__('Ver',true))); ?>
+			<?php echo $this->Html->link(__('Editar', true), array('action' => 'edit', $cuisine['Cuisine']['id']),array('class'=>'edit icon','title'=>__('Editar',true))); ?>
+			<?php echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $cuisine['Cuisine']['id']), array('class'=>'delete icon','title'=>__('Eliminar',true)), sprintf(__('Are you sure you want to delete # %s?', true), $cuisine['Cuisine']['id'])); ?>
+			<?php
+				if(isset($cuisine['Cuisine']['active'])&& $cuisine['Cuisine']['active']) {
+					echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $cuisine['Cuisine']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $cuisine['Cuisine']['id']));
+				}
+			?>
+			<?php
+				if(isset($cuisine['Cuisine']['active'])&& !$cuisine['Cuisine']['active']) {
+					echo $this->Html->link(__(' ', true), array('action' => 'setActive', $cuisine['Cuisine']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $cuisine['Cuisine']['id']));
+				}
+			?>
 		</td>
 	</tr>
 <?php endforeach; ?>

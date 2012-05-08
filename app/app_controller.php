@@ -57,6 +57,11 @@ class AppController extends Controller {
 			$this -> Auth -> allow($this -> action);
 		}
 	}
+	
+	function beforeRender() {
+		$PAGE_TITLE = ":: COMO PROMOS ::";
+		$this->set(compact("PAGE_TITLE"));
+	}
 
 	function getList() {
 		if($this -> {$this -> modelNames[0]} -> hasField('is_present', false)) {

@@ -5,21 +5,6 @@ class CuisinesController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->allow('*');
-	}
-
-	function index() {
-		$this -> Cuisine -> recursive = 0;
-		$this -> set('cuisines', $this -> paginate());
-	}
-
-	function view($slug = null) {
-		if (!$slug) {
-			$this -> Session -> setFlash(__('Cocina no válida', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> Cuisine -> recursive = 2;
-		$this -> set('cuisine', $this -> Cuisine -> findBySlug($slug));
 	}
 
 	function admin_index() {

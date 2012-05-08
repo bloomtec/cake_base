@@ -21,20 +21,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  xmlns:og="http://ogp.me/ns#"     xmlns:fb="http://www.facebook.com/2008/fbml">>
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title><?php
-		$model = $this -> params['models'][0];
-		$singularVar = strtolower($model);
-		if ($this -> params['action'] == "register") {
-			echo "Como Promos";
-		} else {
-
-			if (isset(${$singularVar}[$model]['name'])) {
-				echo ${$singularVar}[$model]['name'];
-			} else {
-				echo $title_for_layout;
-			}
-		}
-			?></title>
+		<title>
+			<?php
+				$model = $this -> params['models'][0];
+				$singularVar = strtolower($model);
+				/*
+				if ($this -> params['action'] == "register") {
+					echo "Como Promos";
+				} else {
+					if (isset(${$singularVar}[$model]['name'])) {
+						echo ${$singularVar}[$model]['name'];
+					} else {
+						echo $title_for_layout;
+					}
+				}
+				*/
+				echo $PAGE_TITLE;
+			?>
+		</title>
 		<?php
 		if (isset(${$singularVar}[$model]['keywords']))
 			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
@@ -68,20 +72,24 @@
 	</head>
 	<body id="<?php echo $this->name ?>">
 		<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420494534634883";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+		<script>
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420494534634883";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
 		<?php
-		if ($this -> Session -> read('Auth.User.id')) {
-			echo $this -> element('score-box');
-		}
+			if ($this -> Session -> read('Auth.User.id')) {
+				echo $this -> element('score-box');
+			}
 		?>
 		<div id="container">
-			<?php echo $this -> element('header');?>
+			<?php
+				echo $this -> element('header');
+			?>
 			<div id="content">
 				<?php echo $this -> element('filtros-2'); ?>
 				<?php echo $this -> Session -> flash();?>

@@ -15,19 +15,6 @@ class CountriesController extends AppController {
 		exit(0);
 	}
 
-	function index() {
-		$this -> Country -> recursive = 0;
-		$this -> set('countries', $this -> paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('País no válido', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('country', $this -> Country -> read(null, $id));
-	}
-
 	function admin_index() {
 		$this -> Country -> recursive = 0;
 		$this -> set('countries', $this -> paginate());

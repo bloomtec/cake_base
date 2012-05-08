@@ -411,11 +411,16 @@ class OrdersController extends AppController {
 	public function orderInfo($order_id = null) {
 		if($order_id) {
 			$order = $this -> Order -> read(null, $order_id);
-			$deal = $this -> Order -> Deal -> read(null, $order['Order']['deal_id']);
-			$restaurant = $this -> Order -> Deal -> Restaurant -> read(null, $deal['Deal']['restaurant_id']);
-			$zone = $this -> Order -> Deal -> Restaurant -> Zone -> read(null, $restaurant['Restaurant']['zone_id']);
-			$city = $this -> Order -> Deal -> Restaurant -> Zone -> City -> read(null, $zone['Zone']['city_id']);
-			$this -> set(compact('order', 'deal', 'city'));
+			$userId = $this -> Auth -> user('id');
+			if($order['Order']['user_id'] == $userId) {
+				$deal = $this -> Order -> Deal -> read(null, $order['Order']['deal_id']);
+				$restaurant = $this -> Order -> Deal -> Restaurant -> read(null, $deal['Deal']['restaurant_id']);
+				$zone = $this -> Order -> Deal -> Restaurant -> Zone -> read(null, $restaurant['Restaurant']['zone_id']);
+				$city = $this -> Order -> Deal -> Restaurant -> Zone -> City -> read(null, $zone['Zone']['city_id']);
+				$this -> set(compact('order', 'deal', 'city'));
+			} else {
+				$this -> redirect('/');
+			}
 		}
 	}
 	
