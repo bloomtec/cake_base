@@ -25,19 +25,6 @@ class ZonesController extends AppController {
 		$this -> autoRender = false;
 	}
 
-	function index() {
-		$this -> Zone -> recursive = 0;
-		$this -> set('zones', $this -> paginate());
-	}
-
-	function view($id = null) {
-		if (!$id) {
-			$this -> Session -> setFlash(__('Barrio no válido', true));
-			$this -> redirect(array('action' => 'index'));
-		}
-		$this -> set('zone', $this -> Zone -> read(null, $id));
-	}
-
 	function admin_index() {
 		$this -> Zone -> recursive = 0;
 		$this -> paginate = array(
