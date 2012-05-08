@@ -387,8 +387,14 @@ class UsersController extends AppController {
 
 	function profile() {
 		$this -> layout = "profile";
-		$orders=$this -> User -> Order -> find('all', array('conditions'=>array('Order.user_id'=>$this -> Auth -> user('id'))));
-		$orders = null;
+		$orders = $this -> User -> Order -> find(
+			'all',
+			array(
+				'conditions' => array(
+					'Order.user_id' => $this -> Auth -> user('id')
+				)
+			)
+		);
 		$this -> set('orders', $orders);
 	}
 
