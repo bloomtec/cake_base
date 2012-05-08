@@ -91,6 +91,10 @@
 				echo $this -> element('score-box');
 			}
 		?>
+		<p style="display:none">
+			<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')
+			?>
+		</p>
 		<div id="container">
 			<?php
 				echo $this -> element('header');
