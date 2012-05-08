@@ -232,7 +232,7 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Escoja su zona...', true);
+			$zones[0] = __('Escoge tu zona...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
@@ -268,7 +268,7 @@ class DealsController extends AppController {
 			/**
 			 * No hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde
 			 */
-			$zones[0] = __('Escoja su zona...', true);
+			$zones[0] = __('Escoge tu zona...', true);
 		} else {
 			/**
 			 * Hay ciudad seleccionada, ajustar filtros de ciudad y zona acorde

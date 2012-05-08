@@ -16,10 +16,10 @@
 		<?php echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'ajaxRegister', 'novalidate'=>'novalidate'));?>
 		<fieldset class="centrar">
 			<legend>
-				<?php __('¿Aún no eres usuario?');?>
+				<?php __('¿Aún no eres usuario?'); ?>
 			</legend>
 			<p>
-				Registrate y empieza a disfrutar de los mejores descuentos!
+				<?php __('Registrate y empieza a disfrutar de los mejores descuentos!'); ?>
 			</p>
 				<div class="input text">
 					<label for="UserEmail"><?php echo __('Correo', true); ?></label>
@@ -68,7 +68,7 @@
 				<?php __('Ingresar');?>
 			</legend>
 			<p>
-				Introduce tus datos de sesión para acceder a tu cuenta
+				<?php __('Introduce tus datos de sesión para acceder a tu cuenta'); ?>
 			</p>
 			<div class="input text">
 				<label for='email'><?php __('Correo:'); ?></label>
@@ -89,7 +89,7 @@
 			echo $this -> Session -> flash('auth');
 			?>
 	</div>
-	<h3>Los campos marcados con (*) son obligatorios</h3>
+	<h3><?php __('Los campos marcados con (*) son obligatorios'); ?></h3>
 	<div style="clear: both"></div>
 </div>
 

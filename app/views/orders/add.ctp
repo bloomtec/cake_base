@@ -2,7 +2,7 @@
 	<h1 class="mensaje-compra"><?php __('Antes de comprar ten en cuenta.'); ?></h1>
 	
 	<p class="mensaje-compra">
-		<?php __('Verifica si este restaurante cubre su zona.'); ?>
+		<?php __('Verifica si este restaurante está abierto y cubre tu área.'); ?>
 	</p>
 	<br />
 	<p class="mensaje-compra">
@@ -12,7 +12,6 @@
 	</p>
 	
 	<?php
-	// debug($user);
 	echo $this -> Form -> create('Order');
 	echo $this -> Form -> hidden('deal_id', array('value' => $deal['Deal']['id']));
 	?>

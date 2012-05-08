@@ -5,14 +5,14 @@
 			<?php __('Autenticación');?>
 		</legend>
 		<p>
-			Enter the given code to verify
+			<?php __('Ingresa tu código para verificar.'); ?>
 		</p>
 		<?php
 			e($this->Form->create());
 			e('<fieldset>');
-			e($this->Form->input('validation_code', array('value'=>'')));
+			e($this->Form->input('validation_code', array('label' => __('Código De Validación', true), 'value'=>'')));
 			e('</fieldset>');
-			e($this->Form->end(__('Validate Email', true)));
+			e($this->Form->end(__('Validar', true)));
 		?>
 	</fieldset>
 	</div>

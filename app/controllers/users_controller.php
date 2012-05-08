@@ -396,10 +396,6 @@ class UsersController extends AppController {
 		$this -> set('orders', $orders);
 	}
 
-	function orders() {
-		$this -> layout = "profile";
-	}
-
 	function edit($id) {
 		$this -> layout = "profile";
 		if (!$id && empty($this -> data)) {
