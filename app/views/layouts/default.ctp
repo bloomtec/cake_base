@@ -18,7 +18,7 @@
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:og="http://ogp.me/ns#"     xmlns:fb="http://www.facebook.com/2008/fbml">>
 	<head>
 		<?php echo $this -> Html -> charset();?>
 		<title><?php
@@ -61,6 +61,10 @@
 				 $("a.boton[title]").tooltip();
 			});
 		</script>
+		<meta property="og:title" content="<?php __('COMO PROMOS')?>" />
+		<meta property="og:description" content="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" />
+		<meta property="og:image" content="<?php urlencode("http://comopromos.com/img/logo como promos curvas.png") ?>" />
+		<meta property="fb:admins" content="591245015" />
 	</head>
 	<body id="<?php echo $this->name ?>">
 		<div id="fb-root"></div>
