@@ -18,9 +18,16 @@
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:og="http://ogp.me/ns#"     xmlns:fb="http://www.facebook.com/2008/fbml">>
+<html xmlns="http://www.w3.org/1999/xhtml"  xmlns:og="http://ogp.me/ns#"     xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
+		<meta property="og:title" content="Como Promos" />
+		<meta property="og:type" content="food" />
+		<meta property="og:url" content="http://comopromos.com" />
+		<meta property="og:image" content="http://comopromos.com/img/logo_face.png" />
+		<meta property="og:site_name" content="Como Promos" />
+		<meta property="fb:admins" content="591245015" />
+		<meta property="og:description" content="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" />
 		<title>
 			<?php
 				$model = $this -> params['models'][0];
@@ -39,6 +46,7 @@
 				echo $PAGE_TITLE;
 			?>
 		</title>
+		<META NAME="Description" CONTENT="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>">
 		<?php
 		if (isset(${$singularVar}[$model]['keywords']))
 			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
@@ -65,10 +73,7 @@
 				 $("a.boton[title]").tooltip();
 			});
 		</script>
-		<meta property="og:title" content="<?php __('COMO PROMOS')?>" />
-		<meta property="og:description" content="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" />
-		<meta property="og:image" content="<?php urlencode("http://comopromos.com/img/logo como promos curvas.png") ?>" />
-		<meta property="fb:admins" content="591245015" />
+		
 	</head>
 	<body id="<?php echo $this->name; ?>">
 		<div id="fb-root"></div>
@@ -77,7 +82,7 @@
 				var js, fjs = d.getElementsByTagName(s)[0];
 				if (d.getElementById(id)) return;
 				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420494534634883";
+				js.src = "//connect.facebook.net/<?php if(Configure::read('Config.language')=="spa") echo "es_ES"; else echo "en_US";?>/all.js#xfbml=1&appId=420494534634883";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
@@ -86,6 +91,7 @@
 				echo $this -> element('score-box');
 			}
 		?>
+		
 		<div id="container">
 			<?php
 				echo $this -> element('header');
