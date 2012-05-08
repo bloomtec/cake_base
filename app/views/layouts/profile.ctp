@@ -73,7 +73,7 @@
 					return;
 				js = d.createElement(s);
 				js.id = id;
-				js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=420494534634883";
+				js.src = "//connect.facebook.net/<?php if(Configure::read('Config.language')=="spa") echo "es_ES"; else echo "en_US";?>/all.js#xfbml=1&appId=420494534634883";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 
