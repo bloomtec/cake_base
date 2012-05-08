@@ -21,7 +21,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title><?php echo $page_title;?></title>
+		<title><?php echo $PAGE_TITLE;?></title>
 		<?php if (Configure::read() == 0) {
 		?>
 		<meta http-equiv="Refresh" content="<?php echo $pause;?>;url=<?php echo $url;?>"/>

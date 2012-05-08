@@ -21,7 +21,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php echo $this -> Html -> charset();?>
-		<title>Como Promos</title>
+		<title><?php echo $PAGE_TITLE; ?></title>
 		<?php
 		echo $this -> Html -> meta('icon');
 		echo $this -> Html -> css('reset.css');
