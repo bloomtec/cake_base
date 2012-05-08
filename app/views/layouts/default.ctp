@@ -70,7 +70,7 @@
 		<meta property="og:image" content="<?php urlencode("http://comopromos.com/img/logo como promos curvas.png") ?>" />
 		<meta property="fb:admins" content="591245015" />
 	</head>
-	<body id="<?php echo $this->name ?>">
+	<body id="<?php echo $this->name; ?>">
 		<div id="fb-root"></div>
 		<script>
 			(function(d, s, id) {

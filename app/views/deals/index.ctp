@@ -1,4 +1,3 @@
-<?php //debug($large_images); ?>
 <div class="slide">
 <!-- container for the slides -->
 <div class="images">

@@ -37,7 +37,7 @@
 					<input id="OrderQuantity" type="number" maxlength="11" value="1" min="1" max="<?php echo $deal['Deal']['amount']; ?>" name="data[Order][quantity]" required="required">
 				</div>
 			</div>
-			
+			<?php echo $this -> Form -> input('note', array('label' => __('Observación', true))); ?>
 		</fieldset>
 	</div>
 	<div class="orden datos-usuario">
