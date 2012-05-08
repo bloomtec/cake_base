@@ -10,7 +10,7 @@
 	?>
 	</fieldset>
 	<div class='submit' style='clear: both;'>
-		<input type="submit"  value="Cambiar" />
+		<input type="submit"  value="<?php __('Cambiar');?>" />
 	</div>
 	<div style="clear: both"></div>
 <?php echo $this->Form->end();?>
