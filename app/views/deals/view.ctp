@@ -2,20 +2,20 @@
 	<img src="/img/uploads/400x400/<?php echo $deal['Deal']['image'];?>" />
 	<h1><?php echo $deal['Deal']['name'];?></h1>
 	<div class="info_producto">
-		<h2 class="precio">Nuestro Precio: $<?php echo  number_format($deal['Deal']['price'], 0, ",", ".");?></h2>
-		<h2 class="precio_regular">Precio regular: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
+		<h2 class="precio"><?php __('Nuestro Precio');?>: $<?php echo  number_format($deal['Deal']['price'], 0, ",", ".");?></h2>
+		<h2 class="precio_regular"><?php __('Precio regular');?>: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
 		<div style="clear: both;"></div>
 		<ul>
 			<?php if(isset($deal['Deal']['expires']) && !empty($deal['Deal']['expires'])) : ?>
 			<li>
-				Finaliza el <?php echo $deal['Deal']['expires'];?>
+				<?php __('Finaliza el');?> <?php echo $deal['Deal']['expires'];?>
 			</li>
 			<?php endif; ?>
 			<li>
-				Promoción válida solo por internet 
+				<?php __('Promoción válida solo por internet');?> 
 			</li>
 			<li>
-				Horario de atención: <?php echo $deal['Restaurant']['schedule'];?>
+				<?php __('Horario de atención');?>: <?php echo $deal['Restaurant']['schedule'];?>
 			</li>
 			<li>
 				Tel: <?php echo $deal['Restaurant']['phone'];?>
@@ -33,16 +33,16 @@
 		<div style="clear: both"></div>
 		<div class='compra-actions'>
 			<?php $score= $this -> requestAction('/users/getScore');?>
-			<a title="Compra este producto pagando en efectivo" class="comprar boton" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>"> COMPRAR</a>
+			<a title="<?php __('Compra este producto pagando en efectivo');?>" class="comprar boton" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>"> <?php __('COMPRAR');?></a>
 			<?php if($score > $deal['Deal']['price']): ?>
-			<a title="Compra este producto usando <?php echo "$".number_format($deal['Deal']['price'], 0, ",", "."); ?> de los <?php echo "$".number_format($score, 0, ",", "."); ?> que tienes como bono!!!" class="redimir boton" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>/redimir:1">  REDIMIR</a>
+			<a title="<?php __('Compra este producto usando');?> <?php echo "$".number_format($deal['Deal']['price'], 0, ",", "."); ?> de los <?php echo "$".number_format($score, 0, ",", "."); ?> que tienes como bono!!!" class="redimir boton" href="/orders/add/<?php echo $deal['Deal']['slug']; ?>/redimir:1">  REDIMIR</a>
 			<?php endif;?>
 			<div style="clear:both"></div>
 		</div>
 		
 	</div>
 	<div class="descripcion_producto">
-		<h1 class="descripcion">Descripción del producto<img src="/img/descripcion_bg.png" /></h1>
+		<h1 class="descripcion"><?php __('Descripción del producto'); ?><img src="/img/descripcion_bg.png" /></h1>
 		<h2><?php echo $deal['Deal']['name'];?></h2>
 		<p>
 			<?php echo $deal['Deal']['description'];?>
