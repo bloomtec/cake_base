@@ -3,6 +3,7 @@
 		<?php $prefix = $this -> params['prefix']; ?>
 		<a href="/<?php echo $prefix; ?>/pages/ez"><?php __('INICIO'); ?></a>
 	</li>
+	<!--
 	<?php if($this -> Session -> read('Auth.User.role_id') == 1 || $this -> Session -> read('Auth.User.role_id') == 2) : ?>
 	<li>
 		<a href=""><?php __('CONTENIDO'); ?></a>
@@ -10,17 +11,18 @@
 			<li>
 				<?php echo $html -> link(__('PAGINAS', true), array('controller' => 'pages', 'action' => 'index')); ?>
 			</li>
-			<?php if($this -> Session -> read('Auth.User.role_id') == 1) : ?>
+			<?php //if($this -> Session -> read('Auth.User.role_id') == 1) : ?>
 			<li>
 				<?php echo $html -> link(__('PREMIOS', true), array('controller' => 'prizes', 'action' => 'index')); ?>
 			</li>
 			<li>
 				<?php echo $html -> link(__('AGREGAR PREMIO', true), array('controller' => 'prizes', 'action' => 'add')); ?>
 			</li>
-			<?php endif; ?>
+			<?php //endif; ?>
 		</ul>
 	</li>
 	<?php endif; ?>
+	-->
 	<li>
 		<?php echo $html -> link(__('PROMOS', true), array('controller' => 'deals', 'action' => 'index')); ?>
 	</li>
