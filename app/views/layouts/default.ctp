@@ -39,6 +39,7 @@
 				echo $PAGE_TITLE;
 			?>
 		</title>
+		<META NAME="Description" CONTENT="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>">
 		<?php
 		if (isset(${$singularVar}[$model]['keywords']))
 			echo $this -> Html -> meta('keywords', ${$singularVar}[$model]['keywords']);
