@@ -24,7 +24,7 @@
 		<meta property="og:title" content="Como Promos" />
 		<meta property="og:type" content="food" />
 		<meta property="og:url" content="http://comopromos.com" />
-		<meta property="og:image" content="http://comopromos.com/img/logo_face.pn" />
+		<meta property="og:image" content="http://comopromos.com/img/logo_face.png" />
 		<meta property="og:site_name" content="Como Promos" />
 		<meta property="fb:admins" content="591245015" />
 		<meta property="og:description" content="<?php __('Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" />
