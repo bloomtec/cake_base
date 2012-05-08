@@ -20,10 +20,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"  xmlns:og="http://ogp.me/ns#"     xmlns:fb="http://www.facebook.com/2008/fbml">
 	<head>
+		<?php $code=isset($code)?$code:"";?>
 		<?php echo $this -> Html -> charset();?>
 		<meta property="og:title" content="Como Promos" />
 		<meta property="og:type" content="food" />
-		<meta property="og:url" content="http://comopromos.com" />
+		<meta property="og:url" content="<?php echo urlencode("http://".Configure::read('site_domain').'/users/register/').$code;?>" />
 		<meta property="og:image" content="http://comopromos.com/img/logo_face.png" />
 		<meta property="og:site_name" content="Como Promos" />
 		<meta property="fb:admins" content="591245015" />
@@ -76,7 +77,6 @@
 		
 	</head>
 	<body id="<?php echo $this->name ?>">
-		
 		<div id="fb-root"></div>
 		<script>
 			(function(d, s, id) {

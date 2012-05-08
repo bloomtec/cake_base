@@ -87,7 +87,7 @@
 	width: 100%;
 	margin-top: 18px;
 	margin-bottom: 23px;
-	text-indent: 32px;
+	text-indent: 12px;
 }
 .datos_perfil h1,.datos_perfil h2, .comprados h1{
 	font-size: 25px;
@@ -613,9 +613,9 @@ div.images .preview  img{
 	position: relative;
 }
 .users.refer .compartir{
-	position: absolute;
-	top:187px;
-	right: 50px;
+	float:right;
+	width: 45%;
+	text-align: left;
 }
 #UserChangePasswordForm fieldset, #AddressAddForm fieldset{
 	float: left;

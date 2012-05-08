@@ -1,4 +1,5 @@
-<?php echo $this -> Form -> create('User');?>
+<?php echo $this -> Form -> create('User',array('style'=>'float:left;width:53%;'));?>
+<p><?php __('Cuéntale a tus amigos acerca de nuestra página y acumula dinero!!'); ?></p>
 <fieldset>
 	<?php $user = $this -> Session -> read('Auth');	?>
 	<div class="input text">
@@ -31,6 +32,7 @@
 		</label>
 		<input name="data[User][correo_recomendado_5]" type="text" id="UserCorreoRecomendado5">
 	</div>
+	<div style="clear:both;"></div>
 	<?php echo $this -> Form -> end(__('Referir', true));?>
-<div style="clear:both;"></div>
+	<div style="clear:both;"></div>
 </fieldset>
