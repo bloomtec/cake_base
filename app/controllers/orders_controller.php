@@ -93,6 +93,7 @@ class OrdersController extends AppController {
 			 */
 			$deal = $this -> Order -> Deal -> read(null, $this -> data['Deal']['id']);
 			//$current_quantity = $this -> getUserDealCount($deal['Deal']['id'], $this -> data['Order']['user_id']);
+			if($deal['Deal']['amount'] >= $this -> data['Order']['quantity']) {
 				// Generar el código a asignar a la órden antes de guardar
 				$max_id = $this -> Order -> query('SELECT MAX(`id`) FROM `orders`');
 				$max_id = $max_id[0][0]['MAX(`id`)'];
@@ -146,7 +147,10 @@ class OrdersController extends AppController {
 								$order = array();
 								$order['Order'] = $this -> data['Order'];
 								if($this -> Order -> save($order)) {
-									$this -> Order -> Deal -> save($deal);
+									$deal['Deal']['amount'] = $deal['Deal']['amount'] - $order['Order']['quantity']; 
+									if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+										$this -> dealsFinishedEmail($deal['Deal']['id']);
+									}
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 									$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 								} else {
@@ -178,7 +182,10 @@ class OrdersController extends AppController {
 							$order = array();
 							$order['Order'] = $this -> data['Order'];
 							if($this -> Order -> save($order)) {
-								$this -> Order -> Deal -> save($deal);
+								$deal['Deal']['amount'] = $deal['Deal']['amount'] - $order['Order']['quantity']; 
+								if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+									$this -> dealsFinishedEmail($deal['Deal']['id']);
+								}
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 								$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 							} else {
@@ -193,7 +200,10 @@ class OrdersController extends AppController {
 						}
 					} else {
 						if($this -> Order -> save($this -> data)) {
-							$this -> Order -> Deal -> save($deal);
+							$deal['Deal']['amount'] = $deal['Deal']['amount'] - $this -> data['Order']['quantity']; 
+							if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+								$this -> dealsFinishedEmail($deal['Deal']['id']);
+							}
 							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
 							$this -> redirect('/orders/orderInfo/'.$this -> Order ->id);
 						} else {
@@ -203,7 +213,11 @@ class OrdersController extends AppController {
 						}
 					}
 				}
-			
+			} else {
+				// No hay la cantidad requerida
+				$this -> Session -> setFlash(__('No hay suficientes promos para satisfacer la cantidad ingresada.', true));
+				$this -> redirect('/deals');
+			}
 		} else {
 			if(!$slug) {
 				$this -> redirect('/deals');
