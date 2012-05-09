@@ -1,11 +1,11 @@
 <div class="deals view">
-	<img src="/img/uploads/400x400/<?php echo $deal['Deal']['image'];?>" />
 	<h1><?php echo $deal['Deal']['name'];?></h1>
-	<div class="info_producto">
+		<img src="/img/uploads/<?php echo $deal['Deal']['image'];?>" />
+		<div class="info_producto">
 		<h2 class="precio"><?php __('Nuestro Precio');?>: $<?php echo  number_format($deal['Deal']['price'], 0, ",", ".");?></h2>
 		<h2 class="precio_regular"><?php __('Precio regular');?>: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
 		<div style="clear: both;"></div>
-		<ul>
+			<ul>
 			<?php if(isset($deal['Deal']['expires']) && !empty($deal['Deal']['expires'])) : ?>
 			<li>
 				<?php __('Finaliza el');?> <?php echo $deal['Deal']['expires'];?>
@@ -17,15 +17,21 @@
 			<li>
 				<?php __('Horario de atención');?>: <?php echo $deal['Restaurant']['schedule'];?>
 			</li>
+			<!--
 			<li>
 				Tel: <?php echo $deal['Restaurant']['phone'];?>
 			</li>
-			<!--
+			
 			<li>
 				<?php echo $deal['Deal']['conditions'];?>
 			</li>
 			-->
-			
+			<li>
+				 <?php __('Promoción valida hasta: '); echo substr($deal['Deal']['expires'], 0,-9);  ?>
+			</li>
+			<li>
+				<?php __('Politicas: '); echo $deal['Deal']['conditions']; ?>
+			</li>
 			<li>
 				<?php echo $this->Html->link(__('Ver terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));?>
 			</li>

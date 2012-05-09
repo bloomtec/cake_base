@@ -21,23 +21,32 @@
 				<?php __('Comprar Promoción');?>
 			</legend>
 			<div class="promo">
-				<h1><?php echo $deal['Deal']['name']; ?></h1>
-				<p>
-					<?php echo $deal['Deal']['description']; ?>
-				</p>
-				<img src="/img/uploads/50x50/<?php echo $deal['Deal']['image']; ?>" />
-				<?php
-				echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
-				echo $this -> Form -> hidden('Deal.price', array('value' => $deal['Deal']['price']));
-				?>
-				<div class="input text required">
-					<label for="OrderQuantity">
-						<?php __('Cantidad'); ?>						
-					</label>
-					<input id="OrderQuantity" type="number" maxlength="11" value="1" min="1" max="<?php echo $deal['Deal']['amount']; ?>" name="data[Order][quantity]" required="required">
+				<div class="order-info">
+					<?php
+					echo $this -> Form -> hidden('Deal.id', array('value' => $deal['Deal']['id']));
+					echo $this -> Form -> hidden('Deal.price', array('value' => $deal['Deal']['price']));
+					?>
+					<div class="input text required">
+						<label for="OrderQuantity">
+							<?php __('Cantidad'); ?>						
+						</label>
+						<input id="OrderQuantity" type="number" maxlength="11" value="1" min="1" max="<?php echo $deal['Deal']['amount']; ?>" name="data[Order][quantity]" required="required">
+					</div>
+					<p class="orders-comments">
+						<?php __("Por favor escribe algún comentario  importante para la conformidad de tu pedido, aquí podrás omitir un ingrediente o escribir algo especifico que quisieras hacerle saber al restaurante")?>
+					</p>
+					<?php echo $this -> Form -> input('note', array('label' => false)); ?>
+				</div>
+				<div class='cuadro-promo-order'>
+					<div class="info-left">	
+						<h1><?php echo $deal['Deal']['name']; ?></h1>
+						<p>
+							<?php echo $deal['Deal']['description']; ?>
+						</p>
+					</div>
+					<img src="/img/uploads/400x400/<?php echo $deal['Deal']['image']; ?>" />
 				</div>
 			</div>
-			<?php echo $this -> Form -> input('note', array('label' => __('Observación', true))); ?>
 		</fieldset>
 	</div>
 	<div class="orden datos-usuario">

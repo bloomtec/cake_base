@@ -47,7 +47,6 @@ body{
 }
 .dinero:hover{
 	color:white;
-	font-weight: bold;
 }
 .wrapper p{
 	width: 430px;
@@ -328,9 +327,8 @@ body{
 }
 #content .deals h1{
 	color: #231F20;
-    float: left;
     font-size: 20px;
-    height: 42px;
+    height: 30px;
     margin-bottom: 8px;
     margin-left: 20px;
     margin-top: 22px;
@@ -341,7 +339,7 @@ body{
 }
 .info_producto{
 	width: 526px;
-	height: 268px;
+	height: 330px;
 	background-color: #dedede;
 	float: left;
 	background-image: url(/img/trama_descripcion.png);
@@ -361,7 +359,7 @@ text-decoration: underline;
 }
 .info_producto .precio{
 	margin-left: 20px;
-	margin-top: 15px;
+	margin-top: 10px;
 	float: left;
 	border-right:1px solid #c1c1c1;
 	padding-top: 8px;
@@ -373,13 +371,13 @@ text-decoration: underline;
 	color: #323232;
     font-size: 20px;
     margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 10px;
     float: left;
     padding-top: 8px;
 }
 .info_producto ul{
 	float: left;
-	margin-left: 50px;
+	margin-left: 22px;
 }
 .info_producto li{
 	font-size: 13px;
@@ -446,7 +444,6 @@ a.boton{
     color:#eee;
  }
 .compra-actions{
-	margin-top: 62px;
 }
 #content .info_producto a.boton{
 	color:white;
@@ -456,7 +453,6 @@ a.boton{
 }
 .descripcion_producto{
 	margin-left: 12px;
-	margin-top: 30px;
 	margin-right:50px;
 	float: left;
 }
@@ -947,6 +943,9 @@ h1.descripcion img{
 }
 .info_producto ul{
 	margin-top: 8px;
+	height: 195px;
+	padding-bottom:6px;
+	overflow-y:auto; 
 }
 .orders.register{
 	width: 100%;
@@ -959,6 +958,7 @@ h1.descripcion img{
 #content .orders.register p{
 	text-align: left;
 	padding-left: 20px;
+	
 }
 #content .mensaje-compra, #content .mensaje-compra h1{
 	color: #E0050B;
@@ -998,7 +998,7 @@ h1.descripcion img{
 }
 #content .orden.datos-usuario label, #content .orden .input.text label, #content .orden .input.select label{
 	color: black;
-	width: 167px;
+	width: 216px;
 	text-align: right;
 	font-size: 13px;
 	margin-right: 25px;
@@ -1060,7 +1060,14 @@ h1.descripcion img{
 	border-radius: 5px;
 	border: 1px solid #E57D44;
 	color: #fff;
-	margin-left: 82px;
+	margin-left: 139px;
+}
+.cuadro-promo-order , .order-info{
+	float:left;
+}
+.cuadro-promo-order .info-left, .cuadro-promo-order img{
+	float:left;
+	width:240px;
 }
 #comprar-con-bono .input.radio{
 	margin: 20px 0;
