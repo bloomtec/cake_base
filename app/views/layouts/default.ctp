@@ -106,10 +106,16 @@
 			<div id="footer">
 				<div class="wrapper">
 					<div class="derecha">
-						<h1><?php __('Visitanos en nuestras redes sociales'); ?></h1>
-						<p><?php __('Comopromos, Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar') ?></p>
-						<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://comopromos.com" data-text="Comopromos, todas las promociones de comida a domicilio de tu ciudad, en un solo lugar" data-via="comopromos" data-size="large">Tweet</a>
-						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						<h1><?php __('Corre la voz'); ?></h1>
+						<p><?php __('Comopromos, Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar.') ?></p>
+						<div class="compartir">
+							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://comopromos.com" data-text="<?php __('Comopromos, todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" data-via="comopromos" >Tweet</a>
+							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+						</div>
+						<div class="compartir">
+							<div class="fb-like" data-href="http://comopromos.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+						</div>
+						
 						<!--
 							<a class="compartir"href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".Configure::read('site_domain').'/users/register/').$code;?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>
 						<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
