@@ -629,6 +629,9 @@ div.images .preview  img{
 	width: 45%;
 	text-align: left;
 }
+.twitter.compartir iframe{
+		margin-left:17px;
+	}
 #UserChangePasswordForm fieldset, #AddressAddForm fieldset{
 	float: left;
 }

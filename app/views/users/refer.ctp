@@ -9,15 +9,15 @@
 		<p>
 			<?php __('Recomiendanos en facebook y acumula dinero!!');?>
 		</p>
-		<fb:like href="<?php echo urlencode("http://" . Configure::read('site_domain') . '/users/register/') . $code;?>" width="450" height="20" action="recommend" />
+			<div class="fb-like" data-href="<?php echo urlencode("http://" . Configure::read('site_domain') . '/users/register/') . $code;?>" data-send="false" data-layout="button_count" data-width="450" data-height="30" data-show-faces="false" data-action="recommend"></div>
 		<br />
 	</div>
-	<div class="compartir">
+	<div class="compartir twitter">
 		<p>
 			<?php __('Twitteanos y acumula dinero!!');?>
 			
 		</p>
-		<a href="twitter-share-button" class="twitter-share-button" data-url="<?php echo "http://" . Configure::read('site_domain') . '/users/register/'. $code;?>" data-text="<?php __("Registrate en Como Promos - Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar")?>" data-lang="es" data-size="large">Twittear</a>
+		<a href="twitter-share-button" class="twitter-share-button" data-url="<?php echo "http://" . Configure::read('site_domain') . '/users/register/'. $code;?>" data-text="<?php __("Registrate en Como Promos - Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar")?>" data-lang="<?php if(Configure::read('Config.language')=="spa") echo "es"; else echo "en"?>" data-count="none">Twittear</a>
 		<script>
 			! function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0];
