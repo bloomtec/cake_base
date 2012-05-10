@@ -132,7 +132,7 @@ class User extends AppModel {
 	
 	function user_registered($id = null) { $this -> addScore($id, 'score_by_registering'); }
 	
-	function user_bought($id = null) { $this -> addScore($id, 'score_for_buying'); }
+	function user_bought($id = null, $total = null) { $this -> addScore($id, 'score_for_buying', $total); }
 	
 	function user_invited($id = null) { $this -> addScore($id, 'score_by_invitations'); }
 	
@@ -140,7 +140,7 @@ class User extends AppModel {
 	 * @param $id		: el id del usuario
 	 * @param $reason	: puede ser equivalente a: 'score_by_invitations', 'score_by_registering', 'score_for_buying'  
 	 */
-	function addScore($id = null,$reason = null) {
+	function addScore($id = null, $reason = null, $total = null) {
 			
 		App::import('model','Config');
 		$Config = new Config();
@@ -155,13 +155,16 @@ class User extends AppModel {
 					if($user['User']['score_by_invitations'] > $config['Config']['max_score_by_invitations']) {
 						$user['User']['score_by_invitations'] = $config['Config']['max_score_by_invitations'];
 					}
-					$return = $this -> save($user);
 				}
+			} elseif($reason == 'score_for_buying') {
+				$bonus_x_1K = $config['Config'][$reason];
+				$totalBonus = ((double)($total / 1000)) * $bonus_x_1K;
+				$user['User']['score'] += $totalBonus;
 			} else {
 				$this -> recursive = -1;
 				$user['User']['score'] += $config['Config'][$reason];
-				$return = $this -> save($user);
 			}
+			$return = $this -> save($user);
 		}
 		
 		return $return;

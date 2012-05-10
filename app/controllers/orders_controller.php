@@ -16,6 +16,16 @@ class OrdersController extends AppController {
 				if($newState==2){//APROBO LA PROMOCION
 					$this -> approve($id);
 				}
+				if($newState==4){//ENTREGO LA PROMOCION
+					// Verificar con que medio se pago para ver si se suma o no la bonificacion
+					if($order['Order']['is_paid_with_cash']) {
+						$user_id = $order['User']['id'];
+						$price = $order['Deal']['price'];
+						$quantity = $order['Order']['quantity'];
+						$total = $price * $quantity;
+						$this -> requestAction('/users/addUserScoreForBuying/' . $user_id . '/' . $total);
+					}
+				}
 				echo json_encode(true);
 			}else{
 				echo json_encode(false);
@@ -407,9 +417,9 @@ class OrdersController extends AppController {
 
 		if (!empty($this -> data)) {
 			if ($this -> Order -> save($this -> data)) {
-				if($this -> data['Order']['order_state_id'] == 2) {
+				/*if($this -> data['Order']['order_state_id'] == 2) {
 					$this -> requestAction('/users/addUserScoreForBuying/' . $this -> data['User']['id']);
-				}
+				}*/
 				$this -> Session -> setFlash(__('La orden se ha guardado', true));
 				$this -> redirect(array('action' => 'index'));
 			} else {

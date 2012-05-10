@@ -21,8 +21,10 @@ class UsersController extends AppController {
 		$this -> set('class',$this -> action);// IMPORTANTE CLASES PARA NAVEGACION; 
 	}
 	
-	function addUserScoreForBuying($user_id = null) {
-		$this -> User -> user_bought($user_id);
+	function addUserScoreForBuying($user_id = null, $total = null) {
+		if($user_id && $total) {
+			$this -> User -> user_bought($user_id, $total);
+		}
 	}
 
 	function getScore() {
