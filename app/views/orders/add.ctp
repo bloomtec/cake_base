@@ -35,7 +35,7 @@
 					<p class="orders-comments">
 						<?php __("Por favor escribe algún comentario  importante para la conformidad de tu pedido, aquí podrás omitir un ingrediente o escribir algo especifico que quisieras hacerle saber al restaurante")?>
 					</p>
-					<?php echo $this -> Form -> input('note', array('label' => false)); ?>
+					<?php echo $this -> Form -> input('note', array('label' => false, 'type' => 'textarea')); ?>
 				</div>
 				<div class='cuadro-promo-order'>
 					<div class="info-left">	
