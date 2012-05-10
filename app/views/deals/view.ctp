@@ -6,36 +6,25 @@
 		<h2 class="precio_regular"><?php __('Precio regular');?>: $<?php echo number_format($deal['Deal']['normal_price'], 0, ",", ".");?></h2>
 		<div style="clear: both;"></div>
 			<ul>
-			<?php if(isset($deal['Deal']['expires']) && !empty($deal['Deal']['expires'])) : ?>
-			<li>
-				<?php __('Finaliza el');?> <?php echo $deal['Deal']['expires'];?>
-			</li>
-			<?php endif; ?>
-			<li>
-				<?php __('Promoción válida solo por internet');?> 
-			</li>
-			<li>
-				<?php __('Horario de atención');?>: <?php echo $deal['Restaurant']['schedule'];?>
-			</li>
-			<!--
-			<li>
-				Tel: <?php echo $deal['Restaurant']['phone'];?>
-			</li>
-			
-			<li>
-				<?php echo $deal['Deal']['conditions'];?>
-			</li>
-			-->
-			<li>
-				 <?php __('Promoción valida hasta: '); echo substr($deal['Deal']['expires'], 0,-9);  ?>
-			</li>
-			<li>
-				<?php __('Politicas: '); echo $deal['Deal']['conditions']; ?>
-			</li>
-			<li>
-				<?php echo $this->Html->link(__('Ver terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));?>
-			</li>
-		</ul>
+				<li>
+					<?php __('Promoción válida solo por internet');?> 
+				</li>
+				<li>
+					<?php __('Horario de atención');?>: <?php echo $deal['Restaurant']['schedule'];?>
+				</li>
+				<li>
+					 <?php __('Promoción valida hasta: '); echo $deal['Deal']['expires'];  ?>
+				</li>
+				<li>
+					<?php __('Politicas: '); echo $deal['Deal']['conditions']; ?>
+				</li>
+				<li>
+					<?php __('Áreas de cobertura: '); echo $areasCobertura; ?>
+				</li>
+				<li>
+					<?php echo $this->Html->link(__('Ver terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));?>
+				</li>
+			</ul>
 		<div style="clear: both"></div>
 		<div class='compra-actions'>
 			<?php $score= $this -> requestAction('/users/getScore');?>

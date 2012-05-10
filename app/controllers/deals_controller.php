@@ -612,10 +612,32 @@ class DealsController extends AppController {
 		}
 		$this -> Deal -> recursive = 1;
 		$deal = $this -> Deal -> find('first', array('conditions' => array('Deal.slug' => urldecode($slug))));
+		$this -> Deal -> Zone -> recursive = 1;
 		$zone = $this -> Deal -> Restaurant -> Zone -> findById($deal['Restaurant']['zone_id']);
+		$this -> Deal -> Zone -> City -> recursive = 1;
 		$city = $this -> Deal -> Restaurant -> Zone -> City -> findById($zone['Zone']['city_id']);
+		$this -> Deal -> Restaurant -> RestaurantZone -> recursive = 1;
+		$areasCobertura = $this -> Deal -> Restaurant -> RestaurantsZone -> find(
+			'all',
+			array(
+				'conditions' => array(
+					'RestaurantsZone.restaurant_id' => $deal['Deal']['restaurant_id']
+				)
+			)
+		);
+		$tmpAreasCobertura = '';
+		foreach ($areasCobertura as $key => $area) {
+			$tmpZone = $this -> Deal -> Restaurant -> Zone -> findById($area['RestaurantsZone']['zone_id']);
+			if(empty($tmpAreasCobertura)) {
+				$tmpAreasCobertura .= $tmpZone['Zone']['name'];
+			} else {
+				$tmpAreasCobertura .= ', ' . $tmpZone['Zone']['name'];
+			}
+		}
+		$areasCobertura = $tmpAreasCobertura;
 		$this -> set('deal', $deal);
 		$this -> set('city', $city);
+		$this -> set('areasCobertura', $areasCobertura);
 	}
 
 	function admin_index() {
