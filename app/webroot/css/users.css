@@ -465,6 +465,7 @@ div.images .preview  img{
     min-height: 100px;
     min-width: 245px;
     padding-left: 3px;
+    text-align: justify;
 }
 #register_login .input input:focus,#register_login select:focus,#UserEmail:focus, .users .input input:focus, .input input:focus, .input select:focus{
 	background-color: #fff;
