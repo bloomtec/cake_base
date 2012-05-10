@@ -59,7 +59,7 @@ class AppController extends Controller {
 	}
 	
 	function beforeRender() {
-		$PAGE_TITLE = ":: COMO PROMOS ::";
+		$PAGE_TITLE = ":: ComoPromos ::";
 		$this->set(compact("PAGE_TITLE"));
 	}
 

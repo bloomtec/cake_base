@@ -7,7 +7,7 @@
 	<br />
 	<p class="mensaje-compra">
 		<?php __('Con el objetivo de evitar pedidos falsos y mejorar los tiempos de entrega, la
-		ubicacion desde donde se haga su pedido sera registrada en nuestro sitio web.
+		ubicacion desde donde se haga tu pedido sera registrada en nuestro sitio web.
 		Compra con responsabilidad'); ?>
 	</p>
 	
