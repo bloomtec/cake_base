@@ -24,7 +24,7 @@
   * Configuraciónes extras
   */
  	// Nombre del sitio
- 	Configure::write('site_name', 'Como Promos');
+ 	Configure::write('site_name', 'ComoPromos');
 	
 	// Dominio del sitio
 	Configure::write('site_domain', 'comopromos.com');

@@ -1,6 +1,6 @@
 <div>
 	<p>
-		<?php echo __('Se te ha enviado este correo desde :: ', true) . Configure::read('site_name'); ?>
+		<?php echo __('Se te ha enviado este correo desde :: ', true) . Configure::read('site_domain'); ?>
 	</p>
 	<p>
 		<?php echo __('Se envió este correo luego de solicitar un cambio de contraseña.', true); ?><br />
