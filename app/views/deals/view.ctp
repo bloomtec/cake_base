@@ -16,11 +16,9 @@
 					 <?php __('Promoción valida hasta: '); echo $deal['Deal']['expires'];  ?>
 				</li>
 				<li>
-					<?php __('Politicas: '); echo $deal['Deal']['conditions']; ?>
+					<?php __('Áreas de cobertura: '); echo $deal['Deal']['conditions']; ?>
 				</li>
-				<li>
-					<?php __('Áreas de cobertura: '); echo $areasCobertura; ?>
-				</li>
+				
 				<li>
 					<?php echo $this->Html->link(__('Ver terminos y condiciones',true),array('controller'=>'pages','action'=>'terminosYCondiciones'),array('target'=>'_blank'));?>
 				</li>
