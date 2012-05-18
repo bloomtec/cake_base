@@ -14,7 +14,7 @@ class NewsletterShell extends Shell {
 			$this -> out('Entre horario para enviar correo');
 			$this -> out($this -> requestAction('/users/sendNewsletter'));
 		} else {
-			$this -> out($this -> requestAction('/users/sendNewsletter'));
+			//$this -> out($this -> requestAction('/users/sendNewsletter'));
 			$this -> out('Fuera de horario para enviar correo');
 		}
 	}
