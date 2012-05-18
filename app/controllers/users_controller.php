@@ -145,6 +145,202 @@ class UsersController extends AppController {
 		Configure::write('debug', 0);
 		exit(0);
 	}
+	
+	public function sendNewsletter() {
+		$this -> autoRender = false;
+		// Obtener las promos para enviar el correo
+		$promos = $this -> getNewsletterPromos();
+		// Obtener los usuarios a quienes se les enviará el correo
+		$users = $this -> User -> find(
+			'all',
+			array(
+				'conditions' => array(
+					'User.active' => 1,
+					'User.email_verified' => 1,
+					'User.role_id' => 3
+				),
+				'fields' => array(
+					'User.name',
+					'User.last_name',
+					'User.email',
+					'User.score',
+					'User.score_by_invitations'
+				),
+				'recursive' => -1
+			)
+		);
+		foreach ($users as $key => $user) {
+			//$this -> newsletterEmail($user, $promos);
+		}
+	}
+	
+	private function getNewsletterPromos() {
+		// Arreglo a retornar
+		$promos = array(
+			'masVendida' => array(),
+			'masEconomica' => array(),
+			'otras' => array()
+		);
+		
+		// Cargar modelos
+		$this -> loadModel('Deal');
+		$this -> loadModel('Order');
+		
+		// Obtener las promos vigentes
+		$nowPlusFour = new DateTime('now +4 hour');
+		$nowPlusFour = $nowPlusFour -> format('Y-m-d H:i:s');
+		$activeDeals = $this -> Deal -> find(
+			'list',
+			array(
+				'fields' => array('Deal.id'),
+				'conditions' => array(
+					//'Deal.expires >' => $nowPlusFour,
+					//'Deal.amount >' => 0
+				)
+			)
+		);
+		
+		// Formatear id's para la consulta SQL
+		$tmpActiveDeals = '';
+		foreach ($activeDeals as $key => $id) {
+			$tmpActiveDeals .= $id . ',';
+		}
+		$tmpActiveDeals = '(' . substr($tmpActiveDeals, 0, strlen($tmpActiveDeals) - 1) . ')';
+		$SQLactiveDeals = $tmpActiveDeals;
+		
+		// Obtener la promo más vendida
+		// OJO: Realizar la busqueda sólo si hay id's
+		if(strlen($SQLactiveDeals) > 2) {
+			// Obtener la más comprada
+			$masVendida = $this -> Order -> query(
+				"SELECT `deal_id`, count(deal_id) AS `VecesComprado`
+				FROM `orders` AS `Order`
+				WHERE `deal_id` IN $SQLactiveDeals
+				GROUP BY `deal_id`
+				ORDER BY VecesComprado DESC;"
+			);
+			$promos['masVendida'] = $this -> Deal -> find(
+				'first',
+				array(
+					'conditions' => array(
+						'Deal.id' => $masVendida[0]['Order']['deal_id']
+					),
+					'recursive' => 0
+				)
+			);
+		}
+		
+		// Obtener la promo más económica
+		$promos['masEconomica'] = $this -> Deal -> find(
+			'first',
+			array(
+				'conditions' => array(
+					'Deal.id' => $activeDeals
+				),
+				'order' => array(
+					'Deal.price' => 'ASC'
+				),
+				'recursive' => 0
+			)
+		);
+		
+		// Obtener otras
+		// Quitar del listado los deals ya seleccionados
+		if(!empty($promos['masVendida'])) {
+			unset($activeDeals[$promos['masVendida']['Deal']['id']]);
+		}
+		if(!empty($promos['masEconomica'])) {
+			unset($activeDeals[$promos['masEconomica']['Deal']['id']]);
+		}
+		
+		// Buscar otras sólo si hay contenido para buscar
+		if(count($activeDeals) >= 1) {
+			// Generar id's aleatorias
+			$randomDeals = array();
+			for ($total = 0; $total < 5  ; $total += 1) {
+				$id = 0;
+				$seguirGenerando = true;
+				do {
+					$seguirGenerando = true;
+					if(count($activeDeals) >= 1) {
+						$id = rand(min($activeDeals), max($activeDeals));
+						if(in_array($id, $activeDeals) && !in_array($id, $randomDeals)) {
+							$randomDeals[$id] = $id;
+							unset($activeDeals[$id]);
+							$seguirGenerando = false;
+						}
+					} else {
+						$seguirGenerando = false;
+					}
+				} while($seguirGenerando);
+			}		
+			$promos['otras'] = $this -> Deal -> find(
+				'all',
+				array(
+					'conditions' => array(
+						'Deal.id' => $randomDeals
+					),
+					//'limit' => 5,
+					'recursive' => 0
+				)
+			);
+		}
+		
+		return $promos;
+	}
+	
+	private function newsletterEmail($user = null, $promos = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($user['User']['email'] && $promos) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $user['User']['email'];
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('reply_info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = Configure::read('site_name') . ' :: ' .  __('Promociones Diarias', true);
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'newsletter_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('register_mail'), 'password' => Configure::read('password_register_mail'), 'client' => 'smtp_helo_comopromos.com');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('user', $user);
+			$this -> set('masVendida', $promos['masVendida']);
+			$this -> set('masEconomica', $promos['masEconomica']);
+			$this -> set('otras', $promos['otras']);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+
+	}
 
 	public function refer() {
 		if($this -> Auth -> user('id')) {
