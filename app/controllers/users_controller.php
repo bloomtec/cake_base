@@ -13,7 +13,7 @@ class UsersController extends AppController {
 			$this -> Auth -> logoutRedirect = '/';
 			$this -> Auth -> loginRedirect = '/users/profile';
 		}
-		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'validateEmail');
+		$this -> Auth -> allow('encrypt', 'decrypt', 'register', 'ajaxRegister', 'rememberPassword', 'validateEmail', 'sendNewsletter');
 	}
 	
 	function beforeRender() {
@@ -147,7 +147,8 @@ class UsersController extends AppController {
 	}
 	
 	public function sendNewsletter() {
-		$this -> autoRender = false;
+		Configure::write('debug', 0);
+		ini_set('display_errors', 0);
 		$this -> loadModel('Config');
 		$config = $this -> Config -> read(null, 1);
 		if($config['Config']['is_newsletter_active']) {
@@ -175,8 +176,10 @@ class UsersController extends AppController {
 			foreach ($users as $key => $user) {
 				$this -> newsletterEmail($user, $promos);
 			}
+			return 'Newsletter enviado';
+		} else {
+			return 'Newsletter inactivo';
 		}
-		return;
 	}
 	
 	private function getNewsletterPromos() {
