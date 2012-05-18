@@ -148,30 +148,35 @@ class UsersController extends AppController {
 	
 	public function sendNewsletter() {
 		$this -> autoRender = false;
-		// Obtener las promos para enviar el correo
-		$promos = $this -> getNewsletterPromos();
-		// Obtener los usuarios a quienes se les enviará el correo
-		$users = $this -> User -> find(
-			'all',
-			array(
-				'conditions' => array(
-					'User.active' => 1,
-					'User.email_verified' => 1,
-					'User.role_id' => 3
-				),
-				'fields' => array(
-					'User.name',
-					'User.last_name',
-					'User.email',
-					'User.score',
-					'User.score_by_invitations'
-				),
-				'recursive' => -1
-			)
-		);
-		foreach ($users as $key => $user) {
-			//$this -> newsletterEmail($user, $promos);
+		$this -> loadModel('Config');
+		$config = $this -> Config -> read(null, 1);
+		if($config['Config']['is_newsletter_active']) {
+			// Obtener las promos para enviar el correo
+			$promos = $this -> getNewsletterPromos();
+			// Obtener los usuarios a quienes se les enviará el correo
+			$users = $this -> User -> find(
+				'all',
+				array(
+					'conditions' => array(
+						'User.active' => 1,
+						'User.email_verified' => 1,
+						'User.role_id' => 3
+					),
+					'fields' => array(
+						'User.name',
+						'User.last_name',
+						'User.email',
+						'User.score',
+						'User.score_by_invitations'
+					),
+					'recursive' => -1
+				)
+			);
+			foreach ($users as $key => $user) {
+				$this -> newsletterEmail($user, $promos);
+			}
 		}
+		return;
 	}
 	
 	private function getNewsletterPromos() {
