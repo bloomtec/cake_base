@@ -5,10 +5,15 @@ class DealsController extends AppController {
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this -> Auth -> allow('getDeals', 'addVisitCount', 'filterData');
+		$this -> Auth -> allow('getDeals', 'addVisitCount', 'filterData','getMoneyForBuying');
 	}
-
-	function getDeals() {
+	
+	function getMoneyForBuying(){
+		$this -> loadModel('Config');
+		$config=$this -> Config -> read(null,1);
+		return $config['Config']['score_for_buying'];
+	}
+	function	 getDeals() {
 		return $this -> Deal -> find('all');
 	}
 

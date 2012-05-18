@@ -9,7 +9,7 @@
 		echo $this -> Form -> input('name', array('label' => __('Nombre', true)));
 		echo $this -> Form -> input('is_promoted', array('label' => __('Promocionada', true)));
 		echo $this -> Form -> input('description', array('label' => __('Descripción', true)));
-		echo $this -> Form -> input('conditions', array('label' => __('Condiciones', true)));
+		echo $this -> Form -> input('conditions', array('label' => __('Áreas de cobertura:', true)));
 		echo $this -> Form -> hidden('image', array('id' => 'single-field'));
 		echo $this -> Form -> hidden('image_large', array('id' => 'single-field-2'));
 		echo $this -> Form -> input('amount', array('label' => __('Cantidad', true)));
