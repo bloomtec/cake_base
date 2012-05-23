@@ -33,7 +33,7 @@
  */
 class AppModel extends Model {
 
-	function afterSave($created) {
+	/*function afterSave($created) {
 		if (isset($this -> actsAs)) {
 			if ($created) {
 				$languages = Configure::read('Config.languages');
@@ -50,6 +50,6 @@ class AppModel extends Model {
 			}
 		}
 		return true;
-	}
+	}*/
 
 }
