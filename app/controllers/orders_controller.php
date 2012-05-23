@@ -158,7 +158,7 @@ class OrdersController extends AppController {
 								$order['Order'] = $this -> data['Order'];
 								if($this -> Order -> save($order)) {
 									$deal['Deal']['amount'] = $deal['Deal']['amount'] - $order['Order']['quantity']; 
-									if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+									if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['amount'] == 0)) {
 										$this -> dealsFinishedEmail($deal['Deal']['id']);
 									}
 									$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
@@ -193,7 +193,7 @@ class OrdersController extends AppController {
 							$order['Order'] = $this -> data['Order'];
 							if($this -> Order -> save($order)) {
 								$deal['Deal']['amount'] = $deal['Deal']['amount'] - $order['Order']['quantity']; 
-								if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+								if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['amount'] == 0)) {
 									$this -> dealsFinishedEmail($deal['Deal']['id']);
 								}
 								$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
@@ -211,7 +211,7 @@ class OrdersController extends AppController {
 					} else {
 						if($this -> Order -> save($this -> data)) {
 							$deal['Deal']['amount'] = $deal['Deal']['amount'] - $this -> data['Order']['quantity']; 
-							if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['quantity'] == 0)) {
+							if(($this -> Order -> Deal -> save($deal)) && ($deal['Deal']['amount'] == 0)) {
 								$this -> dealsFinishedEmail($deal['Deal']['id']);
 							}
 							$this -> Session -> setFlash(__('Se ha generado el pedido.', true));
