@@ -23,6 +23,16 @@ class Restaurant extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'service_policies' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Debe ingresar un nombre para el restaurante',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
 		'image' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),

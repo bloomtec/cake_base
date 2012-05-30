@@ -16,7 +16,7 @@
 					 <?php __('Promoción valida hasta: '); echo $deal['Deal']['expires'];  ?>
 				</li>
 				<li>
-					<?php __('Áreas de cobertura: '); echo $deal['Deal']['conditions']; ?>
+					<span style='color:#ED1C24'><?php __('Áreas de cobertura: '); ?></span> <?php echo $deal['Restaurant']['service_policies']; ?>
 				</li>
 				
 				<li>

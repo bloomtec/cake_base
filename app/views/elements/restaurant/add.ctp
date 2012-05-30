@@ -12,7 +12,7 @@
 		echo $this -> Form -> input('zone_id', array('label' => __('Barrio', true), 'div' => 'input select geo'));
 		echo $this -> Form -> input('name', array('label' => __('Nombre', true)));
 		echo $this -> Form -> input('description', array('label' => __('Descripción', true)));
-		echo $this -> Form -> input('service_policies', array('label' => __('Politicas De Servicio', true)));
+		echo $this -> Form -> input('service_policies', array('label' => __('Áreas de cobertura', true)));
 		echo $this -> Form -> input('schedule', array('label' => __('Horario', true)));
 		echo $this -> Form -> input('phone', array('label' => __('Teléfono', true)));
 		echo $this -> Form -> input('address', array('label' => __('Dirección', true)));

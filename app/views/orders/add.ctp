@@ -32,7 +32,7 @@
 						</label>
 						<input id="OrderQuantity" type="number" maxlength="11" value="1" min="1" max="<?php echo $deal['Deal']['amount']; ?>" name="data[Order][quantity]" required="required">
 					</div>
-					<p class="orders-comments">
+					<p class="orders-comments" style="text-align:justify; width:210px; margin-right:25px;">
 						<?php __("Por favor escribe algún comentario  importante para la conformidad de tu pedido, aquí podrás omitir un ingrediente o escribir algo especifico que quisieras hacerle saber al restaurante")?>
 					</p>
 					<?php echo $this -> Form -> input('note', array('label' => false, 'type' => 'textarea', 'class' => 'orders')); ?>
@@ -40,7 +40,7 @@
 				<div class='cuadro-promo-order'>
 					<div class="info-left">	
 						<h1><?php echo $deal['Deal']['name']; ?></h1>
-						<p>
+						<p  style="text-align:justify;">
 							<?php echo $deal['Deal']['description']; ?>
 						</p>
 					</div>
@@ -85,7 +85,12 @@
 			</legend>
 			<?php
 			if ($user['Address'] && !empty($addresses)) {
-				echo $this -> Form -> input('address_id');
+				echo $this -> Form -> input('address_id',array('label'=>'Dirección','div'=>'input text'));
+				echo $this -> Form -> input('zone_id', array('label' => __('Barrio', true), 'class' => 'barrio','disabled' => true,'type'=>'text'));
+				echo $this -> Form -> input('city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','disabled' => true,'type'=>'text'));
+				echo $this -> Form -> input('country_id', array('label' => __('País', true), 'class' => 'pais','disabled' => true,'type'=>'text'));
+				echo $this -> Form -> input('address', array('label' => 'Dirección', 'type' => 'text', 'disabled' => true));
+				echo $this -> Form -> input('zip', array('label' => 'Código Postal', 'disabled' => true));
 			} else {
 				echo $this -> Form -> input('Address.name', array('label' => 'Nombre', 'value' => __('default', true)));
 				if($user) {
@@ -129,6 +134,24 @@
 
 <script type="text/javascript">
 	$(function() {
+	if($("#OrderAddressId").length){
+		BJS.JSON('/addresses/getJSON/'+$("#OrderAddressId").val()+"/1",{},function(address){
+			$("#OrderZoneId").val(address.Zone.name);
+			$("#OrderCityId").val(address.City.name);
+			$("#OrderCountryId").val(address.Country.name);
+			$("#OrderAddress").val(address.Address.address);
+			$("#OrderZip").val(address.Address.zip);
+		});
+	}
+	$("#OrderAddressId").change(function(){
+		BJS.JSON('/addresses/getJSON/'+$(this).val()+"/1",{},function(address){
+			$("#OrderZoneId").val(address.Zone.name);
+			$("#OrderCityId").val(address.City.name);
+			$("#OrderCountryId").val(address.Country.name);
+			$("#OrderAddress").val(address.Address.address);
+			$("#OrderZip").val(address.Address.zip);
+		});
+	});
 		var actualizarDivComprarConPuntos = function() {
 			cantidad = $('#OrderQuantity').val();
 			precioUnitario = $('#DealPrice').val();

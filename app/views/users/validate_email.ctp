@@ -2,18 +2,11 @@
 <div class="register form">
 	<fieldset class="centrar">
 		<legend>
-			<?php __('Autenticación');?>
+			<?php __('BIENVENIDO');?>
 		</legend>
-		<p>
-			<?php __('Ingresa tu código para verificar.'); ?>
-		</p>
-		<?php
-			e($this->Form->create());
-			e('<fieldset>');
-			e($this->Form->input('validation_code', array('label' => __('Código De Validación', true), 'value'=>'')));
-			e('</fieldset>');
-			e($this->Form->end(__('Validar', true)));
-		?>
+		<p><?php __('Gracias por registrarte con ComoPromo.'); ?></p>
+		<p><?php __('Te acabamos de enviar un correo electrónico para la validación de tu registro.'); ?></p>
+		
 	</fieldset>
 	</div>
 	<div style="clear: both"></div>

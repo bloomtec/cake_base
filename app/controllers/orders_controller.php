@@ -243,7 +243,8 @@ class OrdersController extends AppController {
 			unset($user['Restaurant']);
 			unset($user['Order']);
 			unset($user['Role']);
-			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.zone_id' => $zones, 'Address.user_id' => $user['User']['id'])));
+			//$addresses = $this -> Order -> User -> Address -> find('list', array('conditions' => array('Address.zone_id' => $zones, 'Address.user_id' => $user['User']['id'])));
+			$addresses = $this -> Order -> User -> Address -> find('list', array('conditions'=>array('Address.user_id' => $user['User']['id'])));
 			$this -> set('addresses', $addresses);
 		}
 		$zones = $this -> Order -> Deal -> Restaurant -> Zone -> find('list', array('conditions' => array('Zone.id' => $zones)));

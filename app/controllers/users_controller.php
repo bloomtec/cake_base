@@ -554,6 +554,7 @@ class UsersController extends AppController {
 	}
 
 	function validateEmail($code = null) {
+	/*
 		if (!$code && !empty($this -> data)) {
 			if (isset($this -> data['User']['validation_code']) && !empty($this -> data['User']['validation_code'])) {
 				$code = $this -> data['User']['validation_code'];
@@ -592,6 +593,7 @@ class UsersController extends AppController {
 		} else {
 			$this -> Session -> setFlash(__('Ingresa un código válido e intenta de nuevo.', true));
 		}
+		*/
 	}
 
 	function profile() {

@@ -969,6 +969,7 @@ h1.descripcion img{
 #content .orders.register p{
 	text-align: left;
 	padding-left: 20px;
+	font-weight:normal;
 	
 }
 #content .mensaje-compra, #content .mensaje-compra h1{

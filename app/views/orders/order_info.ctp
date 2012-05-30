@@ -1,7 +1,7 @@
 <div class="orden">
 <div class="orden-info">
 	<h1 class="descripcion">Orden:<img src="/img/descripcion_bg.png"  /></h1>
-	<h2><?php __('Order number');?>:
+	<h2><?php __('Orden Número');?>:
 	<span><?php echo $order['Order']['code'];?></span></h2>
 
 <div class="explicacion-proceso">

@@ -12,7 +12,6 @@
 ?>
 <div id="register_login">
 	<div class="register form">
-		<?php //echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'register'));?>
 		<?php echo $this -> Form -> create('User', array('controller' => 'users', 'action' => 'ajaxRegister', 'novalidate'=>'novalidate'));?>
 		<fieldset class="centrar">
 			<legend>
@@ -46,8 +45,8 @@
 					echo $this -> Form -> input('country_id', array('label'=>__('País', true),'after'=>'<span class="field_required">*</span>'));
 					echo $this -> Form -> input('city_id', array('label'=>__('Ciudad', true),'after'=>'<span class="field_required">*</span>'));
 					// Direccion
-					echo $this -> Form -> hidden('Address.name', array('label' => __('Nombre', true), 'required' => 'required', 'value' => 'default'));
-					echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
+					echo $this -> Form -> hidden('Address.name', array('label' => __('Nombre', true), 'required' => 'required', 'value' => 'Dirección de Registro'));
+					echo $this -> Form -> input('Address.zone_id', array('label' => __('Zona', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
 					echo $this -> Form -> input('Address.another_zone', array('label' => '', 'style' => 'visibility: hidden;', 'after'=>'<span style="visibility: hidden;" class="field_required afterSpan">*</span>'));
 					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
 					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true)));
@@ -101,7 +100,7 @@ $(function(){
 	if($('#UserCountryId').val()) {
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
 		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$('#UserCityId').val());
-		$('#AddressZoneId').append('<option value="otro">Otro barrio...</option>');
+		$('#AddressZoneId').append('<option value="otro">Selecciona tu zona...</option>');
 	} 
 	$('#UserCountryId').change(function(){
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());
@@ -109,7 +108,7 @@ $(function(){
 	
 	$('#UserCityId').change(function(){
 		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$(this).val());
-		$('#AddressZoneId').append('<option value="otro">Otro barrio...</option>');
+		$('#AddressZoneId').append('<option value="otro">Selecciona tu zona...</option>');
 	});
 	
 	$('#AddressZoneId').change(function() {

@@ -28,8 +28,8 @@ $(function(){
 			cache : false,
 			dataType : "json",
 			data : params,
-			success : callback,
-			async : false
+			success : callback
+			
 		});
 	}
 

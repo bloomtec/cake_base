@@ -82,16 +82,6 @@ class Deal extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'conditions' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				'message' => 'Ingrese las condiciones de la promo',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-		),
 		'image' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),

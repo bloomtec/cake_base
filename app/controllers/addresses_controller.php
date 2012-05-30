@@ -20,8 +20,8 @@ class AddressesController extends AppController {
 		}
 		$this -> set('address', $this -> Address -> read(null, $id));
 	}
-	function getJSON($id){
-		$this -> Address -> recursive = -1;
+	function getJSON($id,$recursive=-1){
+		$this -> Address -> recursive = $recursive;
 		echo json_encode($this -> Address -> read(null,$id));
 		$this -> autorender = false;
 		exit(0);
