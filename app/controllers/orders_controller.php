@@ -6,6 +6,7 @@ class OrdersController extends AppController {
 	function beforeFilter() {
 		parent::beforeFilter();
 	}
+	
 	function changeStatus($id,$newState){
 		// debe validar tambien que la persona autenticada es la duela del restaurante de la orden de la promocion
 		//devuelve true o false
@@ -13,7 +14,7 @@ class OrdersController extends AppController {
 			$order = $this -> Order -> read(null,$id);
 			$order['Order']['order_state_id']=$newState;
 			if($this -> Order -> save($order)){
-				if($newState==2){//APROBO LA PROMOCION
+				if($newState==5){//APROBO LA PROMOCION
 					$this -> approve($id);
 				}
 				if($newState==4){//ENTREGO LA PROMOCION
@@ -35,6 +36,7 @@ class OrdersController extends AppController {
 			// TODO : ?
 		}
 	}
+	
 	function orderStatus($lastOrderId){
 		$object=false;
 		switch ($this -> Auth -> user('role_id')) {
@@ -45,7 +47,7 @@ class OrdersController extends AppController {
 				}
 				break;
 				
-			case '2': //OWNER
+			case '2': //Manager
 				$lastOrder = $this -> Order -> find('first',array('conditions'=>array('Order.id >'=>$lastOrderId),'contain' => array('Deal', 'Deal.Restaurant','User','Address','OrderState')));
 				if($lastOrder && $this -> isManager($lastOrder['Order']['id'])){
 					$object=array('event'=>'newOrder','value'=>$lastOrder);

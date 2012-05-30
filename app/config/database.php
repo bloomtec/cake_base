@@ -77,9 +77,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
-		'database' => 'bloomweb_clickneat',
+		'login' => 'bloomweb',
+		'password' => 'rr40r900343',
+		'database' => 'bloomweb_comopromos',
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);

@@ -13,6 +13,7 @@ class DealsController extends AppController {
 		$config=$this -> Config -> read(null,1);
 		return $config['Config']['score_for_buying'];
 	}
+	
 	function	 getDeals() {
 		return $this -> Deal -> find('all');
 	}
@@ -305,6 +306,7 @@ class DealsController extends AppController {
 	}
 	
 	function filterDataCuisinesRA($city_id = null, $zone_id = null) {
+		
 		$cuisines = array();
 		$cuisines[0] = __('Todas...', true);
 		$cuisines_tmp = $this -> requestAction('/cuisines/getList');
@@ -314,6 +316,7 @@ class DealsController extends AppController {
 		
 		// Ajustar para que solamente salgan aquellas "cocinas" que tengan promos
 		$promos = $this -> Deal -> find('list', array('fields' => 'Deal.id'));
+		
 		if($city_id && !$zone_id) {
 			$zonas = $this -> Deal -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $city_id)));
 			$restaurantes = $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zonas)));
@@ -322,7 +325,17 @@ class DealsController extends AppController {
 			$restaurantes = $this -> Deal -> Restaurant -> find('list', array('fields' => array('Restaurant.id'), 'conditions' => array('Restaurant.zone_id' => $zone_id)));
 			$promos = $this -> Deal -> find('list', array('fields' => 'Deal.id', 'conditions' => array('Deal.restaurant_id' => $restaurantes)));
 		}
-		$cocinas_con_promos = $this -> Deal -> CuisinesDeal -> find('list', array('conditions' => array('CuisinesDeal.deal_id' => $promos), 'fields' => array('CuisinesDeal.cuisine_id')));
+		
+		$cocinas_con_promos = $this -> Deal -> CuisinesDeal -> find(
+			'list',
+			array(
+				'conditions' => array(
+					'CuisinesDeal.deal_id' => $promos),
+					'fields' => array('CuisinesDeal.cuisine_id'
+				)
+			)
+		);
+		
 		foreach($cuisines as $key => $data) {
 			if($key && !in_array($key, $cocinas_con_promos)) {
 				unset($cuisines[$key]);
@@ -330,6 +343,7 @@ class DealsController extends AppController {
 		}
 		
 		return $cuisines;
+		
 	}
 	
 	function filterDataCuisines($city_id = null, $zone_id = null) {

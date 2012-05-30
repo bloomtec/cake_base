@@ -1,4 +1,4 @@
-<?php $mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado')?>
+<?php $mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado', '5'=>'aprobado')?>
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" id ="orders" >

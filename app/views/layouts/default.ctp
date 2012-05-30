@@ -33,17 +33,15 @@
 			<?php
 				$model = $this -> params['models'][0];
 				$singularVar = strtolower($model);
-				/*
 				if ($this -> params['action'] == "register") {
 					echo "Como Promos";
 				} else {
 					if (isset(${$singularVar}[$model]['name'])) {
 						echo ${$singularVar}[$model]['name'];
 					} else {
-						echo $title_for_layout;
+						echo $title_for_layout . ' ';
 					}
 				}
-				*/
 				echo $PAGE_TITLE;
 			?>
 		</title>
@@ -94,9 +92,7 @@
 		?>
 		
 		<div id="container">
-			<?php
-				echo $this -> element('header');
-			?>
+			<?php echo $this -> element('header'); ?>
 			<div id="content">
 				<?php echo $this -> element('filtros-2'); ?>
 				<?php echo $this -> Session -> flash();?>

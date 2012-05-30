@@ -13,9 +13,10 @@ class AppController extends Controller {
 				'password' => 'password'
 			)
 		),
-			'Email',
-			'Language'
-		);
+		'Email',
+		'Language'
+	);
+		
 	var $cacheAction = true;
 
 	function isAuthorized() {
