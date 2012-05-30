@@ -12,23 +12,32 @@ class OrdersController extends AppController {
 		//devuelve true o false
 		if($this -> isOwner($id)) {
 			$order = $this -> Order -> read(null,$id);
-			$order['Order']['order_state_id']=$newState;
-			if($this -> Order -> save($order)){
-				if($newState==5){//APROBO LA PROMOCION
-					$this -> approve($id);
-				}
-				if($newState==4){//ENTREGO LA PROMOCION
-					// Verificar con que medio se pago para ver si se suma o no la bonificacion
-					if($order['Order']['is_paid_with_cash']) {
-						$user_id = $order['User']['id'];
-						$price = $order['Deal']['price'];
-						$quantity = $order['Order']['quantity'];
-						$total = $price * $quantity;
-						$this -> requestAction('/users/addUserScoreForBuying/' . $user_id . '/' . $total);
+			/**
+			 * Permitir cambios si:
+			 * El estado es diferente a rechazada o entregada
+			 * y el nuevo estado es diferente a pendiente
+			 */
+			if(($order['Order']['order_state_id'] != 3) && ($order['Order']['order_state_id'] != 4) && ($newState != 1)) {
+				$order['Order']['order_state_id']=$newState;
+				if($this -> Order -> save($order)){
+					if($newState==5){//APROBO LA PROMOCION
+						$this -> approve($id);
 					}
+					if($newState==4){//ENTREGO LA PROMOCION
+						// Verificar con que medio se pago para ver si se suma o no la bonificacion
+						if($order['Order']['is_paid_with_cash']) {
+							$user_id = $order['User']['id'];
+							$price = $order['Deal']['price'];
+							$quantity = $order['Order']['quantity'];
+							$total = $price * $quantity;
+							$this -> requestAction('/users/addUserScoreForBuying/' . $user_id . '/' . $total);
+						}
+					}
+					echo json_encode(true);
+				}else{
+					echo json_encode(false);
 				}
-				echo json_encode(true);
-			}else{
+			} else {
 				echo json_encode(false);
 			}
 			exit(0);
@@ -180,7 +189,7 @@ class OrdersController extends AppController {
 							debug($user);
 							debug($this -> Order -> User -> invalidFields());
 						}
-					}			
+					}
 				} else {
 					if(!isset($this -> data['Order']['address_id']) && isset($this -> data['Address'])) {
 						// Está registrado el usuario pero no tiene registrada una dirección
