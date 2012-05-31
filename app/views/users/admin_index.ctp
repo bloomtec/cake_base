@@ -1,4 +1,28 @@
-
+<div class="orderFilter">
+	<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
+	<table id="TableFilters">
+		<tbody>
+			<tr>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.email', array('label' => __('Correo', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.nombres', array('label' => __('Nombres', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.apellidos', array('label' => __('Apellidos', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.rol', array('label' => __('Rol', true), 'options' => $roles, 'empty' => 'Seleccione...', 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.ciudad', array('label' => __('Ciudad', true), 'options' => $cities, 'empty' => 'Seleccione...', 'value' => '')); ?>
+				</td>
+				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 <div class="users index">
 	<h2><?php __('Usuarios');?></h2>
 	<table cellpadding="0" cellspacing="0" >

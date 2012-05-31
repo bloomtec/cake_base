@@ -802,7 +802,33 @@ class UsersController extends AppController {
 
 	function admin_index() {
 		$this -> User -> recursive = 0;
+		if(!empty($this -> data)) {
+			// Armar condiciones de paginado
+			$conditions = array();
+			if(isset($this -> data['Filtros']['email']) && !empty($this -> data['Filtros']['email'])) {
+				$conditions['User.email LIKE'] = '%' . $this -> data['Filtros']['email'] . '%';
+			}
+			if(isset($this -> data['Filtros']['nombres']) && !empty($this -> data['Filtros']['nombres'])) {
+				$conditions['User.name LIKE'] = '%' . $this -> data['Filtros']['nombres'] . '%';
+			}
+			if(isset($this -> data['Filtros']['apellidos']) && !empty($this -> data['Filtros']['apellidos'])) {
+				$conditions['User.last_name LIKE'] = '%' . $this -> data['Filtros']['apellidos'] . '%';
+			}
+			if(isset($this -> data['Filtros']['rol']) && !empty($this -> data['Filtros']['rol'])) {
+				$conditions['User.role_id'] = $this -> data['Filtros']['rol'];
+			}
+			if(isset($this -> data['Filtros']['ciudad']) && !empty($this -> data['Filtros']['ciudad'])) {
+				$conditions['User.city_id'] = $this -> data['Filtros']['ciudad'];
+			}
+			// Asignar condiciones de paginado
+			$this -> paginate = array(
+				'order' => array('User.id' => 'DESC'),
+				'conditions' => $conditions
+			);
+		}
 		$this -> set('users', $this -> paginate());
+		$this -> set('roles', $this -> User -> Role -> find('list'));
+		$this -> set('cities', $this -> User -> City -> find('list'));
 	}
 
 	function admin_view($id = null) {
