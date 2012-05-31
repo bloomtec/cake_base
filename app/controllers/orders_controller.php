@@ -12,6 +12,7 @@ class OrdersController extends AppController {
 		//devuelve true o false
 		if($this -> isOwner($id)) {
 			$order = $this -> Order -> read(null,$id);
+			$oldState=$order['Order']['order_state_id'];
 			/**
 			 * Permitir cambios si:
 			 * El estado es diferente a rechazada o entregada
@@ -33,12 +34,12 @@ class OrdersController extends AppController {
 							$this -> requestAction('/users/addUserScoreForBuying/' . $user_id . '/' . $total);
 						}
 					}
-					echo json_encode(true);
+					echo json_encode(array("success"=>true,'prev'=>$oldState));
 				}else{
-					echo json_encode(false);
+					echo json_encode(array("success"=>false,'prev'=>$oldState));
 				}
 			} else {
-				echo json_encode(false);
+				echo json_encode(array("success"=>false,'prev'=>$oldState));
 			}
 			exit(0);
 		} else {

@@ -19,14 +19,16 @@
 	</div>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
 	<tr>
+		<th><?php echo $this->Paginator->sort(__('Fecha', true), 'Order.created');?></th>
 		<th><?php echo 'Restaurante';//$this->Paginator->sort('Restaurante', 'Deal.Restaurant.name'); ?></th>
+
 		<th><?php echo $this->Paginator->sort(__('Código de orden', true), 'code');?></th>
 		<th><?php echo $this->Paginator->sort(__('Forma de pago', true), 'Order.is_paid_with_cash');?></th>
 		<th><?php echo $this->Paginator->sort(__('Usuario', true), 'user_id');?></th>
 		<th><?php echo $this->Paginator->sort(__('Dirección', true), 'address_id');?></th>
 		<th><?php echo $this->Paginator->sort(__('Cantidad', true), 'quantity');?></th>
 		<th><?php echo $this->Paginator->sort(__('Promoción', true), 'deal_id');?></th>
-		<th><?php echo $this->Paginator->sort(__('Fecha', true), 'Order.created');?></th>
+		<th><?php echo $this->Paginator->sort('Nota', 'note');?></th>
 		<th><?php echo $this->Paginator->sort(__('Estado', true), 'order_state_id');?></th>
 		<!--<th><?php echo $this->Paginator->sort('Estado', 'order_state_id');?></th>-->
 		<!--<th class="actions"><?php __('Acciones');?></th> -->
@@ -41,6 +43,7 @@
 		}
 	?>
 	<tr<?php echo $class;?> id='<?php echo $order['Order']['id'] ?>'>
+		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
 		<td><?php echo $order['Deal']['Restaurant']['name']; ?>&nbsp;</td>
 		<td><?php echo $order['Order']['code']; ?>&nbsp;</td>
 		<td style="text-align: center">
@@ -67,18 +70,9 @@
 		<td>
 			<?php echo $this->Html->link($order['Deal']['name'], array('controller' => 'deals', 'action' => 'view', $order['Deal']['slug'])); ?>
 		</td>
-		<td><?php echo $order['Order']['created']; ?>&nbsp;</td>
-		<!--
 		<td>
-			<?php
-				if($order['Order']['is_approved']) {
-					echo '<input type="checkbox" disabled checked />';
-				} else {
-					echo '<input type="checkbox" disabled />';
-				}
-			?>
+			<?php echo $order['Order']['note']; ?>
 		</td>
-		-->
 		<td>
 			<?php echo $order['OrderState']['name']; ?>
 		</td>
