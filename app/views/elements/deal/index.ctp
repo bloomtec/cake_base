@@ -1,4 +1,35 @@
-
+<div class="orderFilter">
+	<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
+	<table id="TableFilters">
+		<tbody>
+			<tr>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.restaurante', array('label' => __('Restaurante', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.nombre', array('label' => __('Nombre', true), 'value' => '')); ?>
+				</td>
+				<td>
+					<table>
+						<tbody>
+							<tr>
+								<td><?php echo $this -> Form -> input('Filtros.usar_fecha_creacion', array('label' => __('Filtrar', true), 'type' => 'checkbox')); ?></td>
+								<td><?php echo $this -> Form -> input('Filtros.fecha_inicio_creacion', array('label' => __('Fecha Inicio (creación)', true), 'type' => 'date')); ?></td>
+								<td><?php echo $this -> Form -> input('Filtros.fecha_fin_creacion', array('label' => __('Fecha Fin (creación)', true), 'type' => 'date')); ?></td>
+							</tr>
+							<tr>
+								<td><?php echo $this -> Form -> input('Filtros.usar_fecha_vencimiento', array('label' => __('Filtrar', true), 'type' => 'checkbox')); ?></td>
+								<td><?php echo $this -> Form -> input('Filtros.fecha_inicio_vencimiento', array('label' => __('Fecha Inicio (vencimiento)', true), 'type' => 'date')); ?></td>
+								<td><?php echo $this -> Form -> input('Filtros.fecha_fin_vencimiento', array('label' => __('Fecha Fin (vencimiento)', true), 'type' => 'date')); ?></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 <div class="deals index">
 	<h2><?php __('Promos');?></h2>
 	<table cellpadding="0" cellspacing="0" >
