@@ -44,15 +44,15 @@
 					echo $this->Html->link(__('Eliminar', true), array('action' => 'delete', $deal['Deal']['id']), array('style' => 'margin-bottom: 4px; min-width: 50px; float: left; text-align: center;', 'class'=>'delete icon','title'=>__('Eliminar',true)), sprintf(__('Are you sure you want to delete # %s?', true), $deal['Deal']['id']));
 				}
 			?>
-			<?php if(isset($deal['Deal']['active'])&& $deal['Deal']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $deal['Deal']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $deal['Deal']['id']));
-}?>
-			<?php if(isset($deal['Deal']['active'])&& !$deal['Deal']['active']){
-			 echo $this->Html->link(__(' ', true), array('action' => 'setActive', $deal['Deal']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $deal['Deal']['id'])); 
-}?>
+			<?php if(isset($deal['Deal']['active'])&& $deal['Deal']['active']) {
+				echo $this->Html->link(__(' ', true), array('action' => 'setInactive', $deal['Deal']['id']), array('class'=>'setInactive icon','title'=>__('Set Inactive',true)), sprintf(__('Are you sure you want to set inactive # %s?', true), $deal['Deal']['id']));
+			} ?>
+			<?php if(isset($deal['Deal']['active'])&& !$deal['Deal']['active']) {
+				echo $this->Html->link(__(' ', true), array('action' => 'setActive', $deal['Deal']['id']), array('class'=>'setActive icon','title'=>__('Set Active',true)), sprintf(__('Are you sure you want to set active # %s?', true), $deal['Deal']['id'])); 
+			} ?>
 		</td>
 	</tr>
-<?php endforeach; ?>
+	<?php endforeach; ?>
 	</table>
 	<p>
 		<?php

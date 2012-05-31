@@ -8,7 +8,7 @@ class Deal extends AppModel {
 	var $sortable = false;
 	var $activable = false;
 	var $actsAs = array(
-		'Translate' => array('name','description','conditions')
+		'Translate' => array('name','description')
 	);
 	var $validate = array(
 		'restaurant_id' => array(
@@ -30,8 +30,7 @@ class Deal extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
-		),
-		
+		),		
 		'visits' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),

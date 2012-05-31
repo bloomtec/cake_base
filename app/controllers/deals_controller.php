@@ -700,6 +700,22 @@ class DealsController extends AppController {
 		$cuisines = $this -> Deal -> Cuisine -> find('list');
 		$this -> set(compact('restaurants', 'cuisines'));
 	}
+	
+	function manager_add() {
+		if (!empty($this -> data)) {
+			$this -> Deal -> create();
+			if ($this -> Deal -> save($this -> data)) {
+				$this -> Session -> setFlash(__('Se guardó la promo', true));
+				$this -> redirect(array('action' => 'index'));
+			} else {
+				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
+				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
+			}
+		}
+		$restaurants = $this -> Deal -> Restaurant -> find('list');
+		$cuisines = $this -> Deal -> Cuisine -> find('list');
+		$this -> set(compact('restaurants', 'cuisines'));
+	}
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this -> data)) {
@@ -788,22 +804,6 @@ class DealsController extends AppController {
 		$this -> set('deal', $deal);
 		$this -> set('users', $users);
 		$this -> set('addresses', $addresses);
-	}
-
-	function manager_add() {
-		if (!empty($this -> data)) {
-			$this -> Deal -> create();
-			if ($this -> Deal -> save($this -> data)) {
-				$this -> Session -> setFlash(__('Se guardó la promo', true));
-				$this -> redirect(array('action' => 'index'));
-			} else {
-				//$this -> Session -> setFlash(__('The deal could not be saved. Please, try again. Image is required. Also, check if the restaurant is being promoted. The large image is required if so.', true));
-				$this -> Session -> setFlash(__('No se pudo guardar la promo. Por favor, intente de nuevo. La imagen es requerida. Se requiere la imagen grande en caso de que la promo sea promocionada.', true));
-			}
-		}
-		$restaurants = $this -> Deal -> Restaurant -> find('list');
-		$cuisines = $this -> Deal -> Cuisine -> find('list');
-		$this -> set(compact('restaurants', 'cuisines'));
 	}
 
 	function manager_edit($id = null) {

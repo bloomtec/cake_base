@@ -59,10 +59,10 @@
 	});
 
 </script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	CKEDITOR.replace('data[Deal][conditions]', {
 		filebrowserUploadUrl : '/upload.php',
 		filebrowserBrowseUrl : '/admin/pages/wysiwyg',
 	});
 
-</script>
+</script>-->
