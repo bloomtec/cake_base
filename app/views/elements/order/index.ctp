@@ -45,7 +45,7 @@
 			?>
 		</td>
 		<td>
-			<?php echo $this -> Form -> input('order_state_id',array('options'=>$orderStates,'value'=>$order['OrderState']['id'],'label'=>false,'rel'=>$order['Order']['id']));  ?>
+			<?php echo $this -> Form -> input('order_state_id',array('options'=>$orderStates,'value'=>$order['OrderState']['id'],'label'=>false,'rel'=>$order['Order']['id'],'prev'=>$order['OrderState']['id']));  ?>
 		</td>
 		<td class="actions">
 			<?php
@@ -74,23 +74,21 @@
  	var lastOrder="<?php echo $lastOrder; ?>";
 	$(function(){
 	var prev=-1;
-		$('select[rel]').focus(function(){
-			prev=$(this).find('option:selected').val();
-		}).on('change',$(this),function(e){
+		$(document).on('change','select[rel]',function(e){
 			var onPrev=prev;
 			var $that=$(this);
 			var con=confirm('<?php __('En realidad desea cambiar el estado de la orden a ')?>'+$(this).find('option:selected').text());
 			if(con){
 				BJS.JSON('/orders/changeStatus/'+$(this).attr('rel')+'/'+$that.find('option:selected').val(),{},function(response){
-				if(response.success){
+				if(response.success){					
 					location.reload(true);
-				}else{
+				}else{					
 					$that.val(response.prev);
 					alert('<?php __('No se pudo actualizar el estado de la orden.')?>');
 				}
 			});
 			}else{
-				$that.val(onPrev);
+				$that.val($that.attr('prev'));
 			}			
 		});
 		setInterval(function(){
@@ -104,7 +102,8 @@
 									<td>"+response.value.Address.address+"</td>\
 									<td>"+response.value.Order.quantity+"</td>\
 									<td><a href='/owner/deals/view/"+response.value.Deal.slug+"'>"+response.value.Deal.name+"</a></td>\
-									<td><select id='order_state_id' rel='25' name='data[order_state_id]'>\
+									<td>"+response.value.Order.note+"</td>\
+									<td><select id='order_state_id' rel='"+response.value.Order.id+"' name='data[order_state_id]' prev='1'>\
 										<option selected='selected' value='1'>Pendiente</option>\
 										<option value='5'>Aprobada</option>\
 										<option value='2'>Despachada</option>\
