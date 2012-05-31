@@ -844,12 +844,12 @@ class DealsController extends AppController {
 					$FCFin
 				);
 			}
-			// Asignar condiciones de paginado
-			$this -> paginate = array(
-				'order' => array('Deal.id' => 'DESC'),
-				'conditions' => $conditions
-			);
 		}
+		// Asignar condiciones de paginado
+		$this -> paginate = array(
+			'order' => array('Deal.id' => 'DESC'),
+			'conditions' => $conditions
+		);
 		$this -> set('deals', $this -> paginate());
 	}
 
@@ -900,12 +900,12 @@ class DealsController extends AppController {
 					$FCFin
 				);
 			}
-			// Asignar condiciones de paginado
-			$this -> paginate = array(
-				'order' => array('Deal.id' => 'DESC'),
-				'conditions' => $conditions
-			);
 		}
+		// Asignar condiciones de paginado
+		$this -> paginate = array(
+			'order' => array('Deal.id' => 'DESC'),
+			'conditions' => $conditions
+		);
 		$this -> set('deals', $this -> paginate());		
 	}
 

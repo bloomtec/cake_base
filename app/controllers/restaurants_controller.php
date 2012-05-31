@@ -32,6 +32,34 @@ class RestaurantsController extends AppController {
 
 	function admin_index() {
 		$this -> Restaurant -> recursive = 0;
+		if(!empty($this -> data)) {
+			// Armar condiciones de paginado
+			$conditions = array();
+			if(isset($this -> data['Filtros']['barrio']) && !empty($this -> data['Filtros']['barrio'])) {
+				$zones = $this -> Restaurant -> Zone -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Zone.name LIKE' => '%' . $this -> data['Filtros']['barrio'] . '%'
+						),
+						'fields' => array('Zone.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Restaurant.zone_id'] = $zones;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Restaurant.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['telefono']) && !empty($this -> data['Filtros']['telefono'])) {
+				$conditions['Restaurant.phone LIKE'] = '%' . $this -> data['Filtros']['telefono'] . '%';
+			}
+			// Asignar condiciones de paginado
+			$this -> paginate = array(
+				'order' => array('Restaurant.id' => 'DESC'),
+				'conditions' => $conditions
+			);
+		}
 		$this -> set('restaurants', $this -> paginate());
 	}
 
@@ -116,8 +144,44 @@ class RestaurantsController extends AppController {
 
 	function manager_index() {
 		$this -> Restaurant -> recursive = 0;
+		
+		// Armar condiciones de paginado
+		$conditions = array();
 		$zones = $this -> Restaurant -> Zone -> find('list', array('fields' => array('Zone.id'), 'conditions' => array('Zone.city_id' => $this -> Auth -> user('city_id'))));
-		$this -> paginate = array('conditions' => array('Restaurant.zone_id' => $zones));
+		$conditions['Restaurant.zone_id'] = $zones;
+		
+		if(!empty($this -> data)) {
+			if(isset($this -> data['Filtros']['barrio']) && !empty($this -> data['Filtros']['barrio'])) {
+				$zones = $this -> Restaurant -> Zone -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Zone.name LIKE' => '%' . $this -> data['Filtros']['barrio'] . '%'
+						),
+						'fields' => array('Zone.id'),
+						'recursive' => -1
+					)
+				);
+				foreach($zones as $key => $zone) {
+					if(!in_array($zone, $conditions['Restaurant.zone_id'])) {
+						unset($zones[$key]);
+					}
+				}
+				$conditions['Restaurant.zone_id'] = $zones;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Restaurant.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['telefono']) && !empty($this -> data['Filtros']['telefono'])) {
+				$conditions['Restaurant.phone LIKE'] = '%' . $this -> data['Filtros']['telefono'] . '%';
+			}
+		}
+
+		// Asignar condiciones de paginado
+		$this -> paginate = array(
+			'order' => array('Restaurant.id' => 'DESC'),
+			'conditions' => $conditions
+		);
 		$this -> set('restaurants', $this -> paginate());
 	}
 
@@ -184,8 +248,40 @@ class RestaurantsController extends AppController {
 	
 	function owner_index() {
 		$this -> Restaurant -> recursive = 0;
+		
+		// Armar condiciones de paginado
+		$conditions = array();
 		$restaurants = $this -> Restaurant -> find('list', array('conditions' => array('Restaurant.owner_id' => $this -> Auth -> user('id')), 'fields' => array('Restaurant.id')));
-		$this -> paginate = array('conditions' => array('Restaurant.id' => $restaurants));
+		$conditions['Restaurant.id'] = $restaurants;
+		
+		if(!empty($this -> data)) {
+			if(isset($this -> data['Filtros']['barrio']) && !empty($this -> data['Filtros']['barrio'])) {
+				$zones = $this -> Restaurant -> Zone -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Zone.name LIKE' => '%' . $this -> data['Filtros']['barrio'] . '%'
+						),
+						'fields' => array('Zone.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Restaurant.zone_id'] = $zones;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Restaurant.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['telefono']) && !empty($this -> data['Filtros']['telefono'])) {
+				$conditions['Restaurant.phone LIKE'] = '%' . $this -> data['Filtros']['telefono'] . '%';
+			}
+		}
+
+		// Asignar condiciones de paginado
+		$this -> paginate = array(
+			'order' => array('Restaurant.id' => 'DESC'),
+			'conditions' => $conditions
+		);
+		
 		$this -> set('restaurants', $this -> paginate());
 	}
 	

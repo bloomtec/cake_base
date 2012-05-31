@@ -1,3 +1,22 @@
+<div class="orderFilter">
+	<?php echo $this -> Form -> create(null, array('style' => 'width: 100%;')); ?>
+	<table id="TableFilters">
+		<tbody>
+			<tr>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.nombre', array('label' => __('Nombre', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.barrio', array('label' => __('Barrio', true), 'value' => '')); ?>
+				</td>
+				<td style="max-width: 100px;">
+					<?php echo $this -> Form -> input('Filtros.telefono', array('label' => __('Telefono', true), 'value' => '')); ?>
+				</td>
+				<td><?php echo $this -> Form -> end('Filtrar'); ?></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
 <div class="restaurants index">
 	<h2><?php __('Restaurantes');?></h2>
 	<table cellpadding="0" cellspacing="0" >
