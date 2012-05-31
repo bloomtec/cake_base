@@ -661,6 +661,51 @@ class DealsController extends AppController {
 
 	function admin_index() {
 		$this -> Deal -> recursive = 0;
+		if(!empty($this -> data)) {
+			// Armar condiciones de paginado
+			$conditions = array();
+			if(isset($this -> data['Filtros']['restaurante']) && !empty($this -> data['Filtros']['restaurante'])) {
+				$restaurants = $this -> Deal -> Restaurant -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Restaurant.name LIKE' => '%' . $this -> data['Filtros']['restaurante'] . '%'
+						),
+						'fields' => array('Restaurant.id'),
+						'recursive' => -1
+					)
+				);
+				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_creacion'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.created BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_vencimiento']) && $this -> data['Filtros']['usar_fecha_vencimiento']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_vencimiento'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_vencimiento'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.expires BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			// Asignar condiciones de paginado
+			$this -> paginate = array(
+				'order' => array('Deal.id' => 'DESC'),
+				'conditions' => $conditions
+			);
+		}
 		$this -> set('deals', $this -> paginate());
 	}
 
@@ -754,14 +799,114 @@ class DealsController extends AppController {
 
 	function manager_index() {
 		$this -> Deal -> recursive = 0;
-		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurantsByManager()));
+		$conditions = array();
+		$conditions['Deal.restaurant_id'] = $this -> getRestaurantsByManager();
+		if(!empty($this -> data)) {
+			// Armar condiciones de paginado
+			if(isset($this -> data['Filtros']['restaurante']) && !empty($this -> data['Filtros']['restaurante'])) {
+				$restaurants = $this -> Deal -> Restaurant -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Restaurant.name LIKE' => '%' . $this -> data['Filtros']['restaurante'] . '%'
+						),
+						'fields' => array('Restaurant.id'),
+						'recursive' => -1
+					)
+				);
+				foreach($restaurants as $key => $restaurant) {
+					if(!in_array($restaurant, $conditions['Deal.restaurant_id'])) {
+						unset($restaurants[$key]);
+					}
+				}
+				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_creacion'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.created BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_vencimiento']) && $this -> data['Filtros']['usar_fecha_vencimiento']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_vencimiento'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_vencimiento'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.expires BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			// Asignar condiciones de paginado
+			$this -> paginate = array(
+				'order' => array('Deal.id' => 'DESC'),
+				'conditions' => $conditions
+			);
+		}
 		$this -> set('deals', $this -> paginate());
 	}
 
 	function owner_index() {
 		$this -> Deal -> recursive = 0;
-		$this -> paginate = array('conditions' => array('Deal.restaurant_id' => $this -> getRestaurantsByOwner()));
-		$this -> set('deals', $this -> paginate());
+		$conditions = array();
+		$conditions['Deal.restaurant_id'] = $this -> getRestaurantsByOwner();
+		if(!empty($this -> data)) {
+			// Armar condiciones de paginado
+			if(isset($this -> data['Filtros']['restaurante']) && !empty($this -> data['Filtros']['restaurante'])) {
+				$restaurants = $this -> Deal -> Restaurant -> find(
+					'list',
+					array(
+						'conditions' => array(
+							'Restaurant.name LIKE' => '%' . $this -> data['Filtros']['restaurante'] . '%'
+						),
+						'fields' => array('Restaurant.id'),
+						'recursive' => -1
+					)
+				);
+				foreach($restaurants as $key => $restaurant) {
+					if(!in_array($restaurant, $conditions['Deal.restaurant_id'])) {
+						unset($restaurants[$key]);
+					}
+				}
+				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_creacion'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.created BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			if(isset($this -> data['Filtros']['usar_fecha_vencimiento']) && $this -> data['Filtros']['usar_fecha_vencimiento']) {
+				$FCInicio = $this -> data['Filtros']['fecha_inicio_vencimiento'];
+				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
+				$FCFin = $this -> data['Filtros']['fecha_fin_vencimiento'];
+				$FCFin = $FCFin['year'] . '-' . $FCFin['month'] . '-' . $FCFin['day'] . ' 23:59:59';
+				$conditions['Deal.expires BETWEEN ? AND ?'] = array(
+					$FCInicio,
+					$FCFin
+				);
+			}
+			// Asignar condiciones de paginado
+			$this -> paginate = array(
+				'order' => array('Deal.id' => 'DESC'),
+				'conditions' => $conditions
+			);
+		}
+		$this -> set('deals', $this -> paginate());		
 	}
 
 	function manager_view($slug = null) {
