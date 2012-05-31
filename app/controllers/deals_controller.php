@@ -677,6 +677,9 @@ class DealsController extends AppController {
 				);
 				$conditions['Deal.restaurant_id'] = $restaurants;
 			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
 			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
 				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
 				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
@@ -818,6 +821,9 @@ class DealsController extends AppController {
 				}
 				$conditions['Deal.restaurant_id'] = $restaurants;
 			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
+			}
 			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
 				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
 				$FCInicio = $FCInicio['year'] . '-' . $FCInicio['month'] . '-' . $FCInicio['day'] . ' 00:00:00';
@@ -870,6 +876,9 @@ class DealsController extends AppController {
 					}
 				}
 				$conditions['Deal.restaurant_id'] = $restaurants;
+			}
+			if(isset($this -> data['Filtros']['nombre']) && !empty($this -> data['Filtros']['nombre'])) {
+				$conditions['Deal.name LIKE'] = '%' . $this -> data['Filtros']['nombre'] . '%';
 			}
 			if(isset($this -> data['Filtros']['usar_fecha_creacion']) && $this -> data['Filtros']['usar_fecha_creacion']) {
 				$FCInicio = $this -> data['Filtros']['fecha_inicio_creacion'];
