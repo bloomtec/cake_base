@@ -1,5 +1,5 @@
 <?php
-	$mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado');
+	$mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado','5'=>'aprobado');
 	//debug($orders);
 ?>
 <div class="orders index">

@@ -1,4 +1,17 @@
 <?php $mapColor=array("1"=>"pendiente",'2'=>'despachado','3'=>'rechazado','4'=>'entregado', '5'=>'aprobado')?>
+<style>
+#reject-form p{
+	font-size:10px;
+	margin-bottom:10px;
+}
+#reject-form textarea{
+	height:75px;
+}
+.actualizando{
+	color:blue;
+}
+</style>
+
 <div class="orders index">
 	<h2><?php __('Ordenes');?></h2>
 	<table cellpadding="0" cellspacing="0" id ="orders" >
@@ -69,29 +82,112 @@
 		<?php echo $this->Paginator->next(__('siguiente', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 	</div>
 </div>
+<div id="reject-form" title="<?php __('Motivos de rechazo')?>">
+	<p>
+		<?php __("Por favor escriba los motivos por los caules se rechazó esta orden.")?>
+		<br /><br />
+		<?php __("Lo que escriba en esta área de texto se enviará en un mensaje a la persona que envió la orden y al departamenteo de atención de clientes de ComoPromos")?>
+	</p>
+	<textarea  name="comments" id="comments" "></textarea>
+	<div class="actualizando" style="display:none;font-size: 10px; text-align: center; margin-top: 10px;"> </div>	
+
+</div>
+<div id="confirm" title="<?php __('Cambiar estao de orden')?>">
+	<p style='sont-size:10px;'>
+		<?php __('En realidad desea cambiar el estado de la orden a ')?><span style='color:red;'></span>
+	</p>
+	<div class="actualizando" style="display:none;font-size: 10px; text-align: center; margin-top: 10px;"> Cambiando Estado .... Espere un momento</div>
+</div>
 <?php $lastOrder=isset($orders[0])? $orders[0]['Order']['id']:0;?>
 <script type="text/javascript">
- 	var lastOrder="<?php echo $lastOrder; ?>";
-	$(function(){
-	var prev=-1;
-		$(document).on('change','select[rel]',function(e){
-			var onPrev=prev;
-			var $that=$(this);
-			var con=confirm('<?php __('En realidad desea cambiar el estado de la orden a ')?>'+$(this).find('option:selected').text());
-			if(con){
-				BJS.JSON('/orders/changeStatus/'+$(this).attr('rel')+'/'+$that.find('option:selected').val(),{},function(response){
-				if(response.success){					
-					location.reload(true);
-				}else{					
-					$that.val(response.prev);
-					alert('<?php __('No se pudo actualizar el estado de la orden.')?>');
+ var lastOrder="<?php echo $lastOrder; ?>";
+$(function(){
+	$('#comments').keyup(function(){
+		$('#reject-form .actualizando').hide().text('');
+	});
+	var $selectTrigger=null;
+	$( "#reject-form" ).dialog({
+			autoOpen: false,
+			height: 305,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Rechazar": function() {
+					if($('#comments').val()){
+						$("#reject-form .actualizando").text('Cambiando Estado .... Espere un momento').show();
+						$dialog=$( this );
+						BJS.JSON('/orders/changeStatus/'+$selectTrigger.attr('rel')+'/'+$selectTrigger.find('option:selected').val()+"/"+$('#comments').val(),{},function(response){
+							if(response.success){					
+								location.reload(true);
+							}else{					
+								$selectTrigger.val(response.prev);
+								alert('<?php __('No se pudo actualizar el estado de la orden.')?>');
+								$dialog.dialog( "close" )
+								
+							}
+							$dialog.dialog( "close" );
+							$("#reject-form textarea").val("");
+						});
+					}else{
+						$("#reject-form .actualizando").text('Debe escribir un comentario para rechazar una orden').show();
+					}
+					
+					
+				},
+				'Cancelar': function() {
+					$selectTrigger.val($selectTrigger.attr('prev'));
+					$( this ).dialog( "close" );
 				}
-			});
+			},
+			close: function() {
+				$("#reject-form .actualizando").hide();
+
+			}
+	});
+	$( "#confirm" ).dialog({
+			autoOpen: false,
+			height: 180,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Aceptar": function() {
+					$("#confirm .actualizando").show();
+					$dialog=$( this );
+					BJS.JSON('/orders/changeStatus/'+$selectTrigger.attr('rel')+'/'+$selectTrigger.find('option:selected').val(),{},function(response){
+						if(response.success){					
+							location.reload(true);
+						}else{					
+							$selectTrigger.val(response.prev);
+							alert('<?php __('No se pudo actualizar el estado de la orden.')?>');
+							$dialog.dialog( "close" )
+							
+						}
+						$dialog.dialog( "close" );
+					});
+				},
+				'Cancelar': function() {
+					$dialog=$( this );
+					$selectTrigger.val($selectTrigger.attr('prev'));
+					$dialog.dialog( "close" );
+				}
+			},
+			close: function() {
+				$("#confirm span").text("");
+				$("#confirm .actualizando").hide();
+			}
+	});
+	$(document).on('change','select[rel]',function(e){
+			var $that=$selectTrigger=$(this);
+			var con=false;
+			if($that.find('option:selected').val()==3){//QUIERE RECHAZAR EL PEDIDO
+				$( "#reject-form" ).dialog( "open" );
 			}else{
-				$that.val($that.attr('prev'));
-			}			
-		});
-		setInterval(function(){
+			$( "#confirm span").text($selectTrigger.find('option:selected').text());
+			$( "#confirm").dialog( "open" );
+				//con=confirm('<?php __('En realidad desea cambiar el estado de la orden a ')?>'+$(this).find('option:selected').text());
+			}		
+	});
+	setInterval(function(){
 			BJS.JSON('/orders/orderStatus/'+lastOrder,{},function(response){
 				if(response){
 					switch(response.event){
@@ -123,6 +219,6 @@
 					//NO HAY EVENTO
 				}
 			});
-		},5000);
-	});
+	},5000);
+});
 </script>

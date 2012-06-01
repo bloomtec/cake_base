@@ -72,8 +72,8 @@
 			<?php
 					echo $this -> Form -> input('User.password', array('label' => __('Contraseña', true), 'required' => 'required'));
 					echo $this -> Form -> input('User.phone', array('label' => __('Teléfono', true), 'required' => 'required'));
-					echo $this -> Form -> input('User.country_id', array('label' => __('País', true)));
-					echo $this -> Form -> input('User.city_id', array('label' => __('Ciudad', true)));
+					echo $this -> Form -> input('User.country_id', array('label' => __('País', true),'empty'=>__('Seleccione su País',true)));
+					echo $this -> Form -> input('User.city_id', array('label' => __('Ciudad', true),'empty'=>__('Seleccione su Ciudad',true)));
 				}
 			?>
 		</fieldset>
@@ -86,19 +86,20 @@
 			<?php
 			if ($user['Address'] && !empty($addresses)) {
 				echo $this -> Form -> input('address_id',array('label'=>'Dirección','div'=>'input text'));
-				echo $this -> Form -> input('zone_id', array('label' => __('Barrio', true), 'class' => 'barrio','disabled' => true,'type'=>'text'));
+				echo $this -> Form -> input('zone_id', array('label' => __('Zona', true), 'class' => 'barrio','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('country_id', array('label' => __('País', true), 'class' => 'pais','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('address', array('label' => 'Dirección', 'type' => 'text', 'disabled' => true));
 				echo $this -> Form -> input('zip', array('label' => 'Código Postal', 'disabled' => true));
 			} else {
-				echo $this -> Form -> input('Address.name', array('label' => 'Nombre', 'value' => __('default', true)));
+				echo $this -> Form -> hidden('Address.name', array('label' => 'Nombre', 'value' => __('Direccion de Registro', true)));
 				if($user) {
 					echo $this -> Form -> hidden('Address.user_id', array('value' => $user['User']['id']));
 				}
-				echo $this -> Form -> input('Address.zone_id', array('label' => __('Barrio', true), 'class' => 'barrio'));
-				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad'));
-				echo $this -> Form -> input('Address.country_id', array('label' => __('País', true), 'class' => 'pais'));
+				//debug($countries);
+				echo $this -> Form -> input('Address.country_id', array('options'=> $countries,'label' => __('País', true), 'class' => 'pais','empty'=>__('Seleccione su País',true),'required' => 'required'));
+				echo $this -> Form -> input('Address.zone_id', array('label' => __('Zona', true), 'class' => 'barrio','empty'=>__('Seleccione su Zona',true),'required' => 'required'));
+				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','empty'=>__('Seleccione su Ciudad',true),'required' => 'required'));
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text', 'required' => 'required'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal', 'required' => 'required'));
 			}

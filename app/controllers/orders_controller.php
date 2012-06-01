@@ -7,7 +7,7 @@ class OrdersController extends AppController {
 		parent::beforeFilter();
 	}
 	
-	function changeStatus($id,$newState){
+	function changeStatus($id,$newState,$comments=null){
 		// debe validar tambien que la persona autenticada es la duela del restaurante de la orden de la promocion
 		//devuelve true o false
 		if($this -> isOwner($id)) {
@@ -20,6 +20,9 @@ class OrdersController extends AppController {
 			 */
 			if(($order['Order']['order_state_id'] != 3) && ($order['Order']['order_state_id'] != 4) && ($newState != 1)) {
 				$order['Order']['order_state_id']=$newState;
+				if($newState == 3 && $comments){ // SI QUIERE RECHAZAR LA PROMOCIÓN SE CONFIGURA PARA QUE GUARDE LA NOTA
+					$order['Order']['rejection_note']=mysql_real_escape_string($comments);
+				}
 				if($this -> Order -> save($order)){
 					if($newState==5){//APROBO LA PROMOCION
 						$this -> approve($id);
@@ -33,6 +36,10 @@ class OrdersController extends AppController {
 							$total = $price * $quantity;
 							$this -> requestAction('/users/addUserScoreForBuying/' . $user_id . '/' . $total);
 						}
+					}
+					if($newState==3){//RECHAZO LA PROMOCION
+						// ENCIAR CORREO AL USUARIO QUE HIZO LA ORDEN CON COPIA A COMOPROMOS
+						// al incluir el texto que esta en la variable comments por favor ejecutar esta funcion strip_tags($comments) para evistar que nos injecten codigo javascript o html
 					}
 					echo json_encode(array("success"=>true,'prev'=>$oldState));
 				}else{

@@ -40,11 +40,12 @@
 			echo $this -> Html -> meta('icon');
 			echo $this -> Html -> css('ez');
 			echo $this -> Html -> css('admin');
+			echo $this -> Html -> css('/js/jquery-ui/css/start/custom');
 			echo $this -> Html -> css('superfish');
 			echo $this -> Html -> css('uploadify');
 			echo $this -> Html -> Script("jquery");
 			echo $this -> Html -> Script("bjs");
-			echo $this -> Html -> Script('jquery-ui-1.8.16.custom.min');
+			echo $this -> Html -> Script('jquery-ui/custom.min');
 			echo $this -> Html -> script('bjs');
 			echo $this -> Html -> script('admin');
 			echo $this -> Html -> Script("menu");

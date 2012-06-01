@@ -1189,6 +1189,7 @@ input[type='checkbox']{
 .paginas{
 	width:95%;
 	margin:0 auto;
+	padding-bottom:40px;
 }
 #content .paginas h1{
 	margin:0;
