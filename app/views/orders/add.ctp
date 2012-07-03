@@ -101,7 +101,7 @@
 				echo $this -> Form -> input('Address.zone_id', array('label' => __('Zona', true), 'class' => 'barrio','empty'=>__('Seleccione su Zona',true),'required' => 'required'));
 				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','empty'=>__('Seleccione su Ciudad',true),'required' => 'required'));
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text', 'required' => 'required'));
-				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal'));
+				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal', 'value'=>'57'));
 			}
 			?>
 		</fieldset>
