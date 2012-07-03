@@ -57,8 +57,8 @@ $addressList = array();
 		});
 		
 		function updateAddress(address){
-			$("#name").val(address.Address.name);
-			if($("#name").length){
+			if(addresss.length){
+				$("#name").val(address.Address.name);			
 				$("#country").val(address.Address.country_id);
 				BJS.updateSelect($cityU, '/countries/getCities/' + address.Address.country_id, function() {
 					$cityU.val(address.Address.city_id);
@@ -93,7 +93,7 @@ $addressList = array();
 		}
 		
 		function updateZones($city,$zone){
-			BJS.updateSelect($zone, '/cities/getZones/' + $city.val(),{},function(){
+			BJS.updateSelect($zone, '/zones/getZones/' + $city.val(),{},function(){
 			
 			});
 			

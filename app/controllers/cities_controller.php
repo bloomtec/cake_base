@@ -15,8 +15,13 @@ class CitiesController extends AppController {
 		exit(0);
 	}
 
-	function getZones($id) {
-		echo json_encode($this -> City -> Zone -> find('list', array('conditions' => array('city_id' => $id))));
+	function getZones($id=null) {
+		if($id){
+			echo json_encode($this -> City -> Zone -> find('list', array('conditions' => array('city_id' => $id))));
+		}else{
+			echo json_encode(false);
+		}
+			
 		Configure::write('debug', 0);
 		$this -> autoRender = false;
 		exit(0);
