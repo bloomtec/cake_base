@@ -673,8 +673,22 @@ class UsersController extends AppController {
 			$roles = $this -> User -> Role -> find('list');
 			$countries = $this -> User -> Address -> Country -> find('list');
 			//$conditions['country_id']=empty($countries) ? null : key($countries);
-			$cities = $this -> User -> Address -> City -> find('list');
-			$zones = $this -> User -> Address -> Zone -> find('list');
+			//$cities = $this -> User -> Address -> City -> find('list');
+			//$zones = $this -> User -> Address -> Zone -> find('list');
+			
+			$cities = $this -> User -> Address -> City -> find('all', array('recursive' => -1));
+			$cities_list = array();
+			foreach ($cities as $key => $city) {
+				$cities_list[$city['City']['id']] = $city['City']['name'];
+			}
+			$cities = $cities_list;
+			$zones = $this -> User -> Address -> Zone -> find('all', array('recursive' => -1));
+			$zones_list = array();
+			foreach ($zones as $key => $zone) {
+				$zones_list[$zone['Zone']['id']] = $zone['Zone']['name'];
+			}
+			$zones = $zones_list;
+			
 			$this -> set('userId', $id);
 			$this -> set(compact('countries', 'cities', 'addresses', 'zones'));
 			$this -> set(compact('roles'));
