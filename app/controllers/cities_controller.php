@@ -17,7 +17,13 @@ class CitiesController extends AppController {
 
 	function getZones($id=null) {
 		if($id){
-			echo json_encode($this -> City -> Zone -> find('list', array('conditions' => array('city_id' => $id))));
+			// corrección de bug
+			$zones = $this -> City -> Zone -> find('all', array('recursive' => -1, 'conditions' => array('city_id' => $id)));
+			$list = array();
+			foreach ($zones as $key => $zone) {
+				$list[$zone['Zone']['id']] = $zone['Zone']['name'];
+			}
+			echo json_encode($list);
 		}else{
 			echo json_encode(false);
 		}
