@@ -49,7 +49,7 @@
 		echo $this -> Html -> css('users.css');
 		echo $this -> Html -> css('styles.css');
 		echo $this -> Html -> css('uploadify');
-		echo $this -> Html -> css('/bcart/css/bcart.css');
+		//echo $this -> Html -> css('/bcart/css/bcart.css');
 
 		echo $this -> Html -> script('jquery');
 		echo $this -> Html -> script('jquery.tools.min');
