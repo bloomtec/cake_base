@@ -57,7 +57,7 @@ $addressList = array();
 		});
 		
 		function updateAddress(address){
-			if(addresss.length){
+			if(address){
 				$("#name").val(address.Address.name);			
 				$("#country").val(address.Address.country_id);
 				BJS.updateSelect($cityU, '/countries/getCities/' + address.Address.country_id, function() {
