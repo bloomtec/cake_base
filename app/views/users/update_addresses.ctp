@@ -58,14 +58,16 @@ $addressList = array();
 		
 		function updateAddress(address){
 			$("#name").val(address.Address.name);
-			$("#country").val(address.Address.country_id);
-			BJS.updateSelect($cityU, '/countries/getCities/' + address.Address.country_id, function() {
-				$cityU.val(address.Address.city_id);
-				BJS.updateSelect($zoneU, '/cities/getZones/' + address.Address.city_id,function(){
-					$zoneU.val(address.Address.zone_id);
+			if($("#name").length){
+				$("#country").val(address.Address.country_id);
+				BJS.updateSelect($cityU, '/countries/getCities/' + address.Address.country_id, function() {
+					$cityU.val(address.Address.city_id);
+					BJS.updateSelect($zoneU, '/cities/getZones/' + address.Address.city_id,function(){
+						$zoneU.val(address.Address.zone_id);
+					});
 				});
-			});
-			$("#address").val(address.Address.address);
+				$("#address").val(address.Address.address);
+			}			
 		}
 		$countryU.change(function(){
 			updateCountry($countryU,$cityU,$zoneU);

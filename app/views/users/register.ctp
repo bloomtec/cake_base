@@ -49,7 +49,7 @@
 					echo $this -> Form -> input('Address.zone_id', array('label' => __('Zona', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
 					echo $this -> Form -> input('Address.another_zone', array('label' => '', 'style' => 'visibility: hidden;', 'after'=>'<span style="visibility: hidden;" class="field_required afterSpan">*</span>'));
 					echo $this -> Form -> input('Address.address', array('label' => __('Dirección', true), 'required' => 'required','after'=>'<span class="field_required">*</span>'));
-					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true)));
+					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true),'value'=>'57'));
 				?>
 		</fieldset>
 		<div class="btn_wrraper">
