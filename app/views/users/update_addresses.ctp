@@ -17,7 +17,7 @@ $addressList = array();
 		echo $this -> Form -> input('Address.name', array('label'=>__('Nombre',true), 'required' => 'required', 'value' => $addresses[0]['Address']['name'],'id'=>'name'));
 		echo $this -> Form -> input('Address.country_id', array('label'=>__('País',true), 'required' => 'required','options' => $countries, 'selected' => $address['Address']['country_id'],'id'=>'country'));
 		echo $this -> Form -> input('Address.city_id', array('label'=>__('Ciudad',true), 'required' => 'required','options' => $cities, 'selected' => $addresses[0]['Address']['city_id'],'id'=>'city'));
-		echo $this -> Form -> input('Address.zone_id', array('label'=>__('Barrio',true), 'required' => 'required','options' => $zones,'selected'=>$addresses[0]['Address']['zone_id'],'id'=>'zone'));
+		echo $this -> Form -> input('Address.zone_id', array('label'=>__('Zona',true), 'required' => 'required','options' => $zones,'selected'=>$addresses[0]['Address']['zone_id'],'id'=>'zone'));
 		echo $this -> Form -> input('Address.address', array('label'=>__('Dirección',true), 'required' => 'required', 'value' => $addresses[0]['Address']['address'],'id'=>'address','type'=>'text'));	
 	?>
 	</fieldset>
@@ -32,7 +32,7 @@ $addressList = array();
 		echo $this -> Form -> input('Address.name', array('label'=>__('Nombre',true), 'required' => 'required'));
 		echo $this -> Form -> input('Address.country_id', array('label'=>__('País',true), 'required' => 'required','options' => $countries));
 		echo $this -> Form -> input('Address.city_id', array('label'=>__('Ciudad',true), 'required' => 'required','options' => $cities));
-		echo $this -> Form -> input('Address.zone_id', array('label'=>__('Barrio',true), 'required' => 'required','options' => $zones));
+		echo $this -> Form -> input('Address.zone_id', array('label'=>__('Zona',true), 'required' => 'required','options' => $zones));
 		echo $this -> Form -> input('Address.address', array('label'=>__('Dirección',true), 'required' => 'required','type'=>'text'));
 	?>
 	</fieldset>
