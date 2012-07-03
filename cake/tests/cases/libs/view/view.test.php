@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -474,10 +474,10 @@ class ViewTest extends CakeTestCase {
 	function testElement() {
 		$result = $this->View->element('test_element');
 		$this->assertEqual($result, 'this is the test element');
-		
+
 		$result = $this->View->element('plugin_element', array('plugin' => 'test_plugin'));
 		$this->assertEqual($result, 'this is the plugin element using params[plugin]');
-		
+
 		$this->View->plugin = 'test_plugin';
 		$result = $this->View->element('test_plugin_element');
 		$this->assertEqual($result, 'this is the test set using View::$plugin plugin element');
@@ -554,6 +554,14 @@ class ViewTest extends CakeTestCase {
 		if (file_exists(CACHE . 'views' . DS . 'element_cache_'.$element)) {
 			$cached = true;
 			unlink(CACHE . 'views' . DS . 'element_cache_'.$element);
+		}
+		$this->assertTrue($cached);
+
+		$cached = false;
+		$result = $View->element($element, array('cache' => true, 'param' => 'val'));
+		if (file_exists(CACHE . 'views' . DS . 'element_cache_param_'.$element)) {
+			$cached = true;
+			unlink(CACHE . 'views' . DS . 'element_cache_param_'.$element);
 		}
 		$this->assertTrue($cached);
 
@@ -947,7 +955,7 @@ class ViewTest extends CakeTestCase {
 
 		$View->set(array('key3' => 'value3'));
 		$this->assertIdentical($View->getVar('key3'), 'value3');
-		
+
 		$View->viewVars = array();
 		$View->set(array(3 => 'three', 4 => 'four'));
 		$View->set(array(1 => 'one', 2 => 'two'));
@@ -970,7 +978,7 @@ class ViewTest extends CakeTestCase {
 		$View->association = 'Comment';
 		$View->field = 'user_id';
 		$this->assertEqual($View->entity(), array('Comment', 'user_id'));
-		
+
 		$View->model = 0;
 		$View->association = null;
 		$View->field = 'Node';
@@ -978,7 +986,7 @@ class ViewTest extends CakeTestCase {
 		$View->entityPath = '0.Node.title';
 		$expected = array(0, 'Node', 'title');
 		$this->assertEqual($View->entity(), $expected);
-		
+
 		$View->model = 'HelperTestTag';
 		$View->field = 'HelperTestTag';
 		$View->modelId = null;
