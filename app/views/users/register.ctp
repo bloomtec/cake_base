@@ -98,9 +98,11 @@ $(function(){
 	$('#UserLoginForm').validator({lang:'es',position:"bottom left"});
 	var country_id = $('#UserCountryId').val();
 	if($('#UserCountryId').val()) {
-		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val());
-		BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$('#UserCityId').val());
-		$('#AddressZoneId').append('<option value="otro">Selecciona tu zona...</option>');
+		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$('#UserCountryId').val(),function(){
+			BJS.updateSelect($('#AddressZoneId'),'/cities/getZones/'+$('#UserCityId').val());
+			$('#AddressZoneId').append('<option value="otro">Selecciona tu zona...</option>');
+		});
+		
 	} 
 	$('#UserCountryId').change(function(){
 		BJS.updateSelect($('#UserCityId'),'/countries/getCities/'+$(this).val());

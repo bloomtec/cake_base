@@ -19,7 +19,7 @@
 		</div>
 		<a href="/" class="logo_header"></a>
 		<p>
-			<?php __('Dile a tu amigos que hay para comer y acumula'); ?> <a class='dinero' rel='#overlay_bonos' href="#"><?php __('dinero'); ?></a> <?php __('para tus proximas compras.'); ?>
+			<?php __('Dile a tus amigos que hay para comer y acumula'); ?> <a class='dinero' rel='#overlay_bonos' href="#"><?php __('dinero'); ?></a> <?php __('para tus proximas compras.'); ?>
 			
 			<br />
 			<br />
