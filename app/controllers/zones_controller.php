@@ -22,7 +22,7 @@ class ZonesController extends AppController {
 	
 	function getZones($city_id = null) {
 		$this -> autoRender = false;
-		return json_encode($this -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id))));
+		return json_encode($this -> Zone -> find('all', array('conditions' => array('Zone.city_id' => $city_id))));
 		exit(0);
 	}
 
