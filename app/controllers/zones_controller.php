@@ -21,8 +21,9 @@ class ZonesController extends AppController {
 	}
 	
 	function getZones($city_id = null) {
-		return json_encode($this -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id))));
 		$this -> autoRender = false;
+		return json_encode($this -> Zone -> find('list', array('conditions' => array('Zone.city_id' => $city_id))));
+		exit(0);
 	}
 
 	function admin_index() {
