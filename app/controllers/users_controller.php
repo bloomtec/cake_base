@@ -857,7 +857,7 @@ class UsersController extends AppController {
 	function admin_add() {
 		if (!empty($this -> data)) {
 			$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['pass']);
-			$this -> data['User']['mail_verified']=1;
+			$this -> data['User']['email_verified'] = 1;
 			$this -> User -> create();
 			if ($this -> User -> save($this -> data)) {
 				$this -> Session -> setFlash(__('Se registró el usuario', true));
