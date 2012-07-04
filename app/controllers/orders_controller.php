@@ -7,6 +7,60 @@ class OrdersController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	private function rejectOrderEmail($user_id = null, $comments = null, $order_code = null) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($user_id && $comments && $order_code) {
+			$user = $this -> Order -> User -> read(null, $user_id);
+			
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = $user['User']['email'];
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = 'servicioalcliente@comopromos.com';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('Orden cancelada :: ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'order_rejected_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$this -> set('comments', $comments);
+			$this -> set('user_full_name', $user['User']['name'] . ' ' . $user['User']['last_name']);
+			$this -> set('order_code', $order_code);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
+		}
+
+	}
+	
 	function changeStatus($id,$newState,$comments=null){
 		// debe validar tambien que la persona autenticada es la duela del restaurante de la orden de la promocion
 		//devuelve true o false
@@ -39,6 +93,7 @@ class OrdersController extends AppController {
 					}
 					if($newState==3){//RECHAZO LA PROMOCION
 						// ENCIAR CORREO AL USUARIO QUE HIZO LA ORDEN CON COPIA A COMOPROMOS
+						$this -> rejectOrderEmail($order['User']['id'], strip_tags($comments), $order['Order']['code']);
 						// al incluir el texto que esta en la variable comments por favor ejecutar esta funcion strip_tags($comments) para evistar que nos injecten codigo javascript o html
 					}
 					echo json_encode(array("success"=>true,'prev'=>$oldState));

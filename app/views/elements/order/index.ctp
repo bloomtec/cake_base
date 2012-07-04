@@ -84,7 +84,7 @@
 </div>
 <div id="reject-form" title="<?php __('Motivos de rechazo')?>">
 	<p>
-		<?php __("Por favor escriba los motivos por los caules se rechazó esta orden.")?>
+		<?php __("Por favor escriba los motivos por los cuales se rechaza esta orden.")?>
 		<br /><br />
 		<?php __("Lo que escriba en esta área de texto se enviará en un mensaje a la persona que envió la orden y al departamenteo de atención de clientes de ComoPromos")?>
 	</p>

@@ -28,32 +28,31 @@
 	
 	// Dominio del sitio
 	Configure::write('site_domain', 'comopromos.com');
-	//Configure::write('site_domain', 'clickneat.bloomweb.co');
 	
 	// Email de recordar contraseña
 	Configure::write('password_mail', 'site-bot@comopromos.com');
 	Configure::write('password_password_mail', 'saitB@t2012Cpromos');
-	Configure::write('reply_password_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_password_mail', 'no-reply@comopromos.com');
 	
 	// Email de registro
 	Configure::write('register_mail', 'site-bot@comopromos.com');
 	Configure::write('password_register_mail', 'saitB@t2012Cpromos');
-	Configure::write('reply_register_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_register_mail', 'no-reply@comopromos.com');
 	
-	// Email de recomendaciones
+	// Email de información
 	Configure::write('info_mail', 'info@comopromos.com');
 	Configure::write('password_info_mail', 'cPromos@Info2012');
-	Configure::write('reply_info_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_info_mail', 'info@comopromos.com');
 	
 	// Email de contacto
 	Configure::write('contact_mail', 'contacto@comopromos.com');
 	Configure::write('password_contact_mail', 'contactoCM2012');
-	Configure::write('reply_contact_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_contact_mail', 'contacto@comopromos.com');
 	
-	// Email de contacto
+	// Email de contacto trabajo
 	Configure::write('job_mail', 'contacto@comopromos.com');
 	Configure::write('password_job_mail', 'contactoCM2012');
-	Configure::write('reply_job_mail', 'pruebas@bloomweb.co');
+	Configure::write('reply_job_mail', 'contacto@comopromos.com');
 	
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
 	Configure::write('custom_width', 25);
