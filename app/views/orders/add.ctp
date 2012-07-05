@@ -86,8 +86,8 @@
 			<?php
 			if ($user['Address'] && !empty($addresses)) {
 				echo $this -> Form -> input('address_id',array('label'=>'Dirección','div'=>'input text'));
-				echo $this -> Form -> input('zone_id', array('label' => __('Zona', true), 'class' => 'barrio','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','disabled' => true,'type'=>'text'));
+				echo $this -> Form -> input('zone_id', array('label' => __('Zona', true), 'class' => 'barrio','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('country_id', array('label' => __('País', true), 'class' => 'pais','disabled' => true,'type'=>'text'));
 				echo $this -> Form -> input('address', array('label' => 'Dirección', 'type' => 'text', 'disabled' => true));
 				echo $this -> Form -> input('zip', array('label' => 'Código Postal', 'disabled' => true));
@@ -97,9 +97,11 @@
 					echo $this -> Form -> hidden('Address.user_id', array('value' => $user['User']['id']));
 				}
 				//debug($countries);
-				echo $this -> Form -> input('Address.country_id', array('options'=> $countries,'label' => __('País', true), 'class' => 'pais','empty'=>__('Seleccione su País',true),'required' => 'required'));
 				echo $this -> Form -> input('Address.zone_id', array('label' => __('Zona', true), 'class' => 'barrio','empty'=>__('Seleccione su Zona',true),'required' => 'required'));
-				echo $this -> Form -> input('Address.city_id', array('label' => __('Ciudad', true), 'class' => 'ciudad','empty'=>__('Seleccione su Ciudad',true),'required' => 'required'));
+				echo $this -> Form -> hidden('Address.city_id');
+				echo $this -> Form -> input('Address.city_id_', array('id' => 'AddressCityId_', 'disabled' => 'disabled', 'label' => __('Ciudad', true)));
+				echo $this -> Form -> hidden('Address.country_id');
+				echo $this -> Form -> input('Address.country_id_', array('id' => 'AddressCountryId_', 'disabled' => 'disabled', 'label' => __('País', true)));
 				echo $this -> Form -> input('Address.address', array('label' => 'Dirección', 'type' => 'text', 'required' => 'required'));
 				echo $this -> Form -> input('Address.zip', array('label' => 'Código Postal', 'value'=>'57'));
 			}
@@ -135,24 +137,24 @@
 
 <script type="text/javascript">
 	$(function() {
-	if($("#OrderAddressId").length){
-		BJS.JSON('/addresses/getJSON/'+$("#OrderAddressId").val()+"/1",{},function(address){
-			$("#OrderZoneId").val(address.Zone.name);
-			$("#OrderCityId").val(address.City.name);
-			$("#OrderCountryId").val(address.Country.name);
-			$("#OrderAddress").val(address.Address.address);
-			$("#OrderZip").val(address.Address.zip);
+		if($("#OrderAddressId").length){
+			BJS.JSON('/addresses/getJSON/'+$("#OrderAddressId").val()+"/1",{},function(address){
+				$("#OrderZoneId").val(address.Zone.name);
+				$("#OrderCityId").val(address.City.name);
+				$("#OrderCountryId").val(address.Country.name);
+				$("#OrderAddress").val(address.Address.address);
+				$("#OrderZip").val(address.Address.zip);
+			});
+		}
+		$("#OrderAddressId").change(function(){
+			BJS.JSON('/addresses/getJSON/'+$(this).val()+"/1",{},function(address){
+				$("#OrderZoneId").val(address.Zone.name);
+				$("#OrderCityId").val(address.City.name);
+				$("#OrderCountryId").val(address.Country.name);
+				$("#OrderAddress").val(address.Address.address);
+				$("#OrderZip").val(address.Address.zip);
+			});
 		});
-	}
-	$("#OrderAddressId").change(function(){
-		BJS.JSON('/addresses/getJSON/'+$(this).val()+"/1",{},function(address){
-			$("#OrderZoneId").val(address.Zone.name);
-			$("#OrderCityId").val(address.City.name);
-			$("#OrderCountryId").val(address.Country.name);
-			$("#OrderAddress").val(address.Address.address);
-			$("#OrderZip").val(address.Address.zip);
-		});
-	});
 		var actualizarDivComprarConPuntos = function() {
 			cantidad = $('#OrderQuantity').val();
 			precioUnitario = $('#DealPrice').val();
@@ -198,15 +200,28 @@
 		/** -------- **/
 		
 		var cambiarPaisYCiudad = function() {
-			if($('.barrio').val()) {
-				BJS.updateSelect($('.ciudad'),'/zones/getZoneCity/'+$('.barrio').val());
-				BJS.updateSelect($('.pais'),'/cities/getCityCountry/'+$('.ciudad').val());
+			if($('#AddressZoneId').val()) {
+				BJS.JSON('/zones/getZoneCity/'+$('#AddressZoneId').val(), {}, function(data) {
+					$.each(data, function(index, value) {
+						$('#AddressCityId').val(index);
+						$('#AddressCityId_').val(value);
+					});
+					BJS.JSON('/cities/getCityCountry/'+$('#AddressCityId').val(), {}, function(data) {
+						$.each(data, function(index, value) {
+							$('#AddressCountryId').val(index);
+							$('#AddressCountryId_').val(value);
+						});
+					});
+				});
+				/*BJS.updateSelect($('#AddressCityId'),'/zones/getZoneCity/'+$('#AddressZoneId').val(), function(){
+					BJS.updateSelect($('#AddressCountryId'),'/cities/getCityCountry/'+$('#AddressCityId').val());
+				});*/
 			}
 		};
 		
 		cambiarPaisYCiudad();
 		
-		$('.barrio').change(function() {
+		$('#AddressZoneId').change(function() {
 			cambiarPaisYCiudad();
 		});
 	});

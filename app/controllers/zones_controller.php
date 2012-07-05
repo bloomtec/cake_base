@@ -9,7 +9,7 @@ class ZonesController extends AppController {
 	}
 	
 	function getZoneCity($zone_id = null) {
-		$zone = $this -> Zone -> read(null, $zone_id);
+		$zone = $this -> Zone -> findById($zone_id);
 		echo json_encode(
 			array(
 				$zone['City']['id'] => $zone['City']['name']

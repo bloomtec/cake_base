@@ -4,7 +4,7 @@ class CitiesController extends AppController {
 	var $name = 'Cities';
 	
 	function getCityCountry($city_id = null) {
-		$city = $this -> City -> read(null, $city_id);
+		$city = $this -> City -> findById($city_id);
 		echo json_encode(
 			array(
 				$city['Country']['id'] => $city['Country']['name']
