@@ -136,6 +136,7 @@
 						<a href="/pages/sugierenos"><?php __('Sugierenos un restaurante'); ?></a>
 						<a href="/pages/privacidad"><?php __('Privacidad'); ?></a>
 						<a href="/pages/contacto"><?php __('Contáctenos'); ?></a>
+						<a href="/owner"><?php __('Ingreso a propietarios'); ?></a>
 					</div>
 					
 					<a class="volver_arriba" href="#"><?php __('Volver Arriba'); ?></a>
