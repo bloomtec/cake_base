@@ -41,17 +41,17 @@
 	
 	// Email de información
 	Configure::write('info_mail', 'info@comopromos.com');
-	Configure::write('password_info_mail', 'cPromos@Info2012');
+	Configure::write('password_info_mail', 'ventiladorautomatico');
 	Configure::write('reply_info_mail', 'info@comopromos.com');
 	
 	// Email de contacto
 	Configure::write('contact_mail', 'contacto@comopromos.com');
-	Configure::write('password_contact_mail', 'contactoCM2012');
+	Configure::write('password_contact_mail', 'ventiladorautomatico');
 	Configure::write('reply_contact_mail', 'contacto@comopromos.com');
 	
 	// Email de contacto trabajo
 	Configure::write('job_mail', 'contacto@comopromos.com');
-	Configure::write('password_job_mail', 'contactoCM2012');
+	Configure::write('password_job_mail', 'ventiladorautomatico');
 	Configure::write('reply_job_mail', 'contacto@comopromos.com');
 	
 	// TAMAÑO DE IMAGENES PERSONALIZADAS
