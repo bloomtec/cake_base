@@ -61,10 +61,8 @@ class UsersController extends AppController {
 				$code = urlencode($this -> encrypt($this -> User -> id, "\xc8\xd9\xb9\x06\xd9\xe8\xc9\xd2"));
 				// Enviar el correo con el codigo
 				$this -> registrationEmail($this -> data['User']['email'], $code);
-				// $this -> Session -> setFlash(__('Registration successful, please check your inbox to verify your email.', true));
 				$this -> Session -> setFlash(__('Registro exitoso. Por favor revisa tu correo para terminar el proceso de registro.', true));
-				//$this->Auth->login($this->data);
-				$this -> redirect(array('action' => 'validateEmail'));
+				$this -> redirect('/');
 			} else {
 				$this -> Session -> setFlash(__('Ocurrió un error. Por favor, intenta de nuevo.', true));
 			}
@@ -583,14 +581,16 @@ class UsersController extends AppController {
 						$this -> redirect(array('controller' => 'users', 'action' => 'login'));
 					}
 				} else {
-					$this -> Session -> setFlash(__('Ha ocurrido un error al validar el correo. Por favor, intente de nuevo.', true));
-					$this -> redirect(array('controller' => 'users', 'action' => 'validateEmail'));
+					$this -> Session -> setFlash(__('Ocurrió un error con la activación de tu usuario.', true));
+					$this -> redirect('/');
 				}
 			} else {
-				$this -> Session -> setFlash(__('Ingresa un código válido e intenta de nuevo.', true));
+				$this -> Session -> setFlash(__('Ocurrió un error con la activación de tu usuario.', true));
+				$this -> redirect('/');
 			}
 		} else {
-			$this -> Session -> setFlash(__('Ingresa un código válido e intenta de nuevo.', true));
+			$this -> Session -> setFlash(__('Ocurrió un error con la activación de tu usuario.', true));
+			$this -> redirect('/');
 		}
 	}
 

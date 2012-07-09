@@ -52,10 +52,14 @@
 					echo $this -> Form -> input('Address.zip', array('label' => __('Código Postal', true),'value'=>'57'));
 				?>
 		</fieldset>
+		<p>
+			<b>
+				<?php __('Recuerda revisar tu correo luego de enviar el formulario de registro para activar tu usuario. Este paso es requerido para disfrutar de las promociones que encontrarás en nuestro sitio.'); ?>
+			</b>
+		</p>
 		<div class="btn_wrraper">
 			<?php echo $this -> Form -> end(__('Registro', true));?>
 		</div>
-		
 	</div>
 	
 	<div class="login form">
@@ -138,7 +142,7 @@ $(function(){
 			data : fields,
 			success : function(validate){
 				if(validate===1){
-					window.location='/users/validateEmail';
+					window.location='/';
 				}else{
 					form.data("validator").invalidate(validate);
 				}
