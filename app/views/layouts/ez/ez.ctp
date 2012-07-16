@@ -46,8 +46,8 @@
 		echo $this -> Html -> Script("swfobject");
 		echo $this -> Html -> Script("jquery.uploadify.v2.1.4.min");
 		echo $this -> Html -> Script("upload");
-		echo $this -> Html -> Script("ckeditor/ckeditor");
-		echo $this -> Html -> Script("ckeditor/adapters/jquery");
+		echo $this -> Html -> script('ckeditor/ckeditor'); 
+		echo $this -> Html -> script('ckeditor/adapters/jquery');
 		echo $this -> Html -> Script("fileBrowser");
 		echo $this -> Html -> Script("admin");
 

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - Picasa Plugin Example</title>
+
+<style type="text/css">
+body {margin:10px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:1024px; margin:0px auto;}
+#desc {margin:10px; float:left; font-family: Arial, sans-serif; font-size: 12px;}
+</style>
+    
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3/tn3.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+<script type="text/javascript" src="js/tn3.picasa.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    skinDir:"skins",
+		    width: 1024,
+		    height: 815,
+		    external: [{
+			origin: "picasa",
+			source: "featured",
+			params: {
+			    "max-results": 30
+			}
+		    }]
+		});
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+    <div class="mygallery">
+    </div>
+    <div id="desc">
+    <p>TN3 Picasa Plugin Example</p>
+    <p>Content of this gallery is retrieved  from Google Picasa Web Featured images</p>
+</div></div>
+</body>
+</html>
+
+
+

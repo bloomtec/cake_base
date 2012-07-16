@@ -8,7 +8,7 @@
 		echo $this->Form->input('layout',array('options'=>$layouts));
 		echo $this->Form->input('description');
 		echo $this->Form->input('keywords');
-		echo $this->Form->input('active');
+		echo $this->Form->input('is_active');
 		echo $this->Form->input('wysiwyg_content',array('label'=>false));
 	?>
 	</fieldset>
@@ -16,8 +16,26 @@
 </div>
 
 <script type="text/javascript">
-	CKEDITOR.replace('data[Page][wysiwyg_content]',{
-        	filebrowserUploadUrl : '/upload.php',
+		$('textarea.editor').ckeditor(function(){
+
+		}, {
+			filebrowserUploadUrl : '/upload.php',
         	filebrowserBrowseUrl : '/admin/pages/wysiwyg',
-	} );
+			toolbar : 'Dialog'
+		});
+		$('a.preview').click(function(e){
+		e.preventDefault();
+		var href= $(this).attr('href');
+		jQuery.ajax({
+			url : '/admin/pages/beforePrev',
+			type : "POST",
+			cache : false,
+			data : {wysiwyg_content:$('.editor').val(),layout:$('#PageLayout').val()},
+			success : function(data){
+			if(data){
+				window.open(href,'','toolbars=no,scrollbars=yes,location=no,statusbars=no,menubars=no,height=600,width=1000,');
+			}
+		}
+		});
+	});
 </script>

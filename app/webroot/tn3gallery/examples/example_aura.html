@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - Aura Skin + Facebook example</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:960px; margin:0px auto;}
+#desc {width:960px;text-align:center;float:left; font-family: Arial, sans-serif; font-size: 12px;}
+</style>
+
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3a/tn3a.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+<script type="text/javascript" src="js/tn3.facebook.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    skinDir:"skins",
+		    skin:"tn3a",
+		    image:{
+			crop:true,
+		    },	   
+		    external:[{
+			origin: "facebook",
+			source:"albums",
+			ID:"WWF",
+			imageSize:"original"
+		    }]
+		});
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+	<div class="mygallery"></div>
+	<div id="desc">
+	    <p>Aura skin + Facebook Example</p>
+	    <p>In this example, the images and data are retreived from the WWF Facebook page. TN3 Gallery is displayed using the Aura skin.</p>
+	</div>
+    </div>
+</body>
+</html>
+
+
+
+

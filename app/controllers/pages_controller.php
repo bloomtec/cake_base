@@ -104,7 +104,7 @@ class PagesController extends AppController {
 		App::import("Folder");
 		$folder = new Folder(WWW_ROOT . DS . "wysiwyg");
 		$this -> set("folder", $folder -> read());
-		$this -> set("folderPath", DS . "wysiwyg");
+		$this -> set("folderPath", "/wysiwyg");
 	}
 
 	function admin_index() {
@@ -149,7 +149,19 @@ class PagesController extends AppController {
 			$this -> data = $this -> Page -> read(null, $id);
 		}
 	}
+	public function admin_beforePrev() {
+		$this -> Session -> write('wysiwyg_content', $_POST['wysiwyg_content']);
+		$this -> Session -> write('content', $_POST['layout']);
 
+		echo true;
+		exit(0);
+	}
+
+	public function admin_preview() {
+		$this -> layout = $this -> Session -> read('content');
+		$page = array('Page' => array('wysiwyg_content' => $this -> Session -> read('wysiwyg_content')));
+		$this -> set(compact('page'));
+	}
 	function admin_delete($id = null) {
 		if (!$id) {
 			$this -> Session -> setFlash(__('Invalid id for page', true));

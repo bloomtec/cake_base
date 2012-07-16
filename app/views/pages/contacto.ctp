@@ -2,8 +2,7 @@
 	<form class="tahoma" action="/pages/contacto" id='contacto'>
 	<h1>Contácto</h1>
 	<p>
-		Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.
-		Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis.
+		Excelenter quiere prestarle el mejor servicio. Por favor, llene los campos que presentamos y en poco tiempo un asesor se pondrá en contacto con usted para solucionar sus consultas, quejas o inquietudes.
 	</p>
 	<div class="formulario_contacto">
 		<div class="input text">

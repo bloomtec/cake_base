@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Skin CSS Inspector</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:620px; margin:0px auto; font-family: Tahoma, sans-serif; font-size: .7em;}
+.out {margin: 2px;padding:20px;font-size:100%;float:left;width:100%;font-family: Consolas, Courier, sans-serif;}
+.out b {color:yellow;}
+</style>
+    
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3/tn3.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/tn3.SkinCSSInspector.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#content').tn3SkinCSSInspector("skins/tn3/", "tn3");
+	});
+</script>
+</head>
+<body>
+    <div id="content"></div>
+</body>
+</html>
+
+
+
+
+

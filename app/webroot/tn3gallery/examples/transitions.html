@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Transition Inspector</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:620px; margin:0px auto; font-family: Tahoma, sans-serif; font-size: .7em;}
+fieldset {width:260px; height:36px; border:1px solid #333; float:left; padding:10px 20px 10px 20px;}
+legend {padding: 0.2em 0.5em;color:white;font-size:100%;}
+fieldset .value {padding:6px;font-size:110%;}
+.combo {margin:0;padding:0;font-size:100%;background-color:#000;color:#888;width:140px;}
+.out {margin: 2px;padding:20px;font-size:100%;float:left;width:100%;font-family: Consolas, Courier, sans-serif;}
+
+</style>
+    
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="css/ui-darkness/jquery-ui-1.8.13.custom.css"></link>
+
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+<script type="text/javascript" src="js/tn3.TransitionInspector.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+	    var tins = new $.fn.tn3.TransitionInspector($("#content"));
+	});
+</script>
+</head>
+<body>
+    <div id="content"></div>
+</body>
+</html>
+
+
+
+

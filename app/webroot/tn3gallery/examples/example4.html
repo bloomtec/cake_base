@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - Example 4</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:960px; margin:0px auto;}
+#desc {margin:10px; float:left; font-family: Arial, sans-serif; font-size: 12px;}
+</style>
+
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3e/bullets.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    skinDir:"skins",
+		    delay:5000,
+		    skin:["tn3e", "bullets"],
+		    imageClick:"url",
+		    image:{
+			transitions:[{
+			    type:"blinds",
+			    duration:300
+			    },
+			    {
+			    type:"grid",
+			    duration:160,
+			    gridX:9,
+			    gridY:7,
+			    easing:"easeInCubic",
+			    sort:"circle"
+			    },{
+			    type:"slide",
+			    duration:430,
+			    easing:"easeInOutExpo"
+			    }]
+		    },
+		    thumbnailer: {
+			align: 2,
+			mode: "bullets"       
+		    }
+		    });
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+    <div class="mygallery">
+	<div class="tn3 album">
+	    <h4>Fixed Dimensions</h4>
+	    <div class="tn3 description">Images with fixed dimensions</div>
+	    <div class="tn3 thumb">images/114x72/1.jpg</div>
+	    <ol>
+		<li>
+		    <h4>Hohensalzburg Castle</h4>
+		    <div class="tn3 description">Salzburg, Austria</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Hohensalzburg_Castle</div>
+		    <a href="images/920x360/1.jpg">
+			<img src="images/114x72/1.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Isolated sandy cove</h4>
+		    <div class="tn3 description">Zakynthos island, Greece</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Navagio</div>
+		    <a href="images/920x360/2.jpg">
+			<img src="images/114x72/2.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>A view from the Old Town</h4>
+		    <div class="tn3 description">Herceg Novi, Montenegro</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Herceg_Novi</div>
+		    <a href="images/920x360/3.jpg">
+			<img src="images/114x72/3.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Walls of the Old Town</h4>
+		    <div class="tn3 description">Kotor, Montenegro</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Kotor</div>
+		    <a href="images/920x360/4.jpg">
+			<img src="images/114x72/4.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Boat in the port</h4>
+		    <div class="tn3 description">Sousse, Tunis</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Sousse</div>
+		    <a href="images/920x360/5.jpg">
+			<img src="images/114x72/5.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wall of the Jain temple</h4>
+		    <div class="tn3 description">Jaisalmer, India</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Jaisalmer</div>
+		    <a href="images/920x360/6.jpg">
+			<img src="images/114x72/6.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>City park</h4>
+		    <div class="tn3 description">Negotin, Serbia</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Negotin</div>
+		    <a href="images/920x360/7.jpg">
+			<img src="images/114x72/7.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Taj Mahal mausoleum</h4>
+		    <div class="tn3 description">Agra, India</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Taj_mahal</div>
+		    <a href="images/920x360/8.jpg">
+			<img src="images/114x72/8.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Zante Port</h4>
+		    <div class="tn3 description">Zakynthos, Greece</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Zante</div>
+		    <a href="images/920x360/9.jpg">
+			<img src="images/114x72/9.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Rustovo Monastery</h4>
+		    <div class="tn3 description">Budva, Montenegro</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Budva</div>
+		    <a href="images/920x360/10.jpg">
+			<img src="images/114x72/10.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>The Mezquita, Cathedral and former Great Mosque</h4>
+		    <div class="tn3 description">Cordoba, Spain</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/C%C3%B3rdoba,_Spain</div>
+		    <a href="images/920x360/11.jpg">
+			<img src="images/114x72/11.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wine Cellars</h4>
+		    <div class="tn3 description">Rajac, Serbia</div>
+		    <div class="tn3 url">http://en.wikipedia.org/wiki/Rajac_(Negotin)</div>
+		    <a href="images/920x360/12.jpg">
+			<img src="images/114x72/12.jpg" />
+		    </a>
+		</li>
+	    </ol>
+	</div>
+    </div>
+    <div id="desc">
+	<p>Skin 'tn3e', variation 'bullets' Example</p>
+	<p>In order to use bullets, omit the thumbnails when defining the images or set thumbnailers 'mode' parameter to 'bullets'.</p>
+	<p>In this example, the "imageClick" property has been set to "url" and the URL field is defined for every image. With these settings, clicking on an image will open the URL that's defined for that image.</p>
+    </div>
+    </div>
+</body>
+</html>

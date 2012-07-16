@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - Example 2</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:800px; margin:0px auto;}
+#desc {margin:10px; float:left; font-family: Arial, sans-serif; font-size: 12px;}
+</style>
+
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3/tn3.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    skinDir:"skins",
+		    width: 800,
+		    image:{
+			crop:true,
+			transitions:[{
+			    type:"fade"
+			}]
+		    },
+		    external:[{
+			origin:"xml",
+			url:"example2.xml"
+		    }]
+		});
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+	<div class="mygallery"></div>
+	<div id="desc">
+	    <p>XML Example</p>
+	    <p>In this example, the gallery is defined inside an external XML file, instead of defining the content inside the HTML page. See the XML file for this example <a href="example2.xml">here</a>.</p>
+	</div>
+    </div>
+</body>
+</html>
+
+
+

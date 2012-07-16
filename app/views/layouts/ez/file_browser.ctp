@@ -22,8 +22,7 @@
 <head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			<?php __('Priceshoes Virtual'); ?>
-			<?php echo $title_for_layout; ?>
+			<?php __('Imagenes'); ?>
 		</title>
 		<?php
 			echo $this->Html->meta('icon');

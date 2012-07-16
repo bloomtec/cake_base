@@ -50,6 +50,7 @@
 	//ARMA TU PC
 	Router::connect('/mi-pc', array('controller' => 'makePc', 'action' => 'armaTuComputador'));
 	
+	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'view'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */

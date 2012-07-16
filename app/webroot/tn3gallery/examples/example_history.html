@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - History Plugin Example</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:620px; margin:0px auto;}
+#desc {margin:10px; float:left; font-family: Arial, sans-serif; font-size: 12px;}
+</style>
+    
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3/tn3.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+<script type="text/javascript" src="js/tn3.history.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		var tn1 = $('.mygallery').tn3({
+		    skinDir:"skins",
+		    imageClick:"fullscreen",
+		    history: {
+			slugField: "description"
+		    }
+		});
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+    <div class="mygallery">
+	<div class="tn3 album">
+	    <h4>Large Images</h4>
+	    <div class="tn3 description">Large Images, good for fullscreen view</div>
+	    <div class="tn3 thumb">images/114x72/3.jpg</div>
+	    <ol>
+		<li>
+		    <h4>Hohensalzburg Castle</h4>
+		    <div class="tn3 description">Salzburg, Austria</div>
+		    <a href="images/1.jpg">
+			<img src="images/35x35/1.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Isolated sandy cove</h4>
+		    <div class="tn3 description">Zakynthos island, Greece</div>
+		    <a href="images/2.jpg">
+			<img src="images/35x35/2.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>A view from the Old Town</h4>
+		    <div class="tn3 description">Herceg Novi, Montenegro</div>
+		    <a href="images/3.jpg">
+			<img src="images/35x35/3.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Walls of the Old Town</h4>
+		    <div class="tn3 description">Kotor, Montenegro</div>
+		    <a href="images/4.jpg">
+			<img src="images/35x35/4.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Boat in the port</h4>
+		    <div class="tn3 description">Sousse, Tunis</div>
+		    <a href="images/5.jpg">
+			<img src="images/35x35/5.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wall of the Jain temple</h4>
+		    <div class="tn3 description">Jaisalmer, India</div>
+		    <a href="images/6.jpg">
+			<img src="images/35x35/6.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>City park</h4>
+		    <div class="tn3 description">Negotin, Serbia</div>
+		    <a href="images/7.jpg">
+			<img src="images/35x35/7.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Taj Mahal mausoleum</h4>
+		    <div class="tn3 description">Agra, India</div>
+		    <a href="images/8.jpg">
+			<img src="images/35x35/8.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Zante Port</h4>
+		    <div class="tn3 description">Zakynthos, Greece</div>
+		    <a href="images/9.jpg">
+			<img src="images/35x35/9.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Rustovo Monastery</h4>
+		    <div class="tn3 description">Budva, Montenegro</div>
+		    <a href="images/10.jpg">
+			<img src="images/35x35/10.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>The Mezquita, Cathedral and former Great Mosque</h4>
+		    <div class="tn3 description">Cordoba, Spain</div>
+		    <a href="images/11.jpg">
+			<img src="images/35x35/11.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wine Cellars</h4>
+		    <div class="tn3 description">Rajac, Serbia</div>
+		    <a href="images/12.jpg">
+			<img src="images/35x35/12.jpg" />
+		    </a>
+		</li>
+	    </ol>
+	</div>
+	<div class="tn3 album">
+	    <h4>Fixed Dimensions</h4>
+	    <div class="tn3 description">Images with fixed dimensions</div>
+	    <div class="tn3 thumb">images/114x72/1.jpg</div>
+	    <ol>
+		<li>
+		    <h4>Hohensalzburg Castle</h4>
+		    <div class="tn3 description">Salzburg, Austria</div>
+		    <a href="images/620x378/1.jpg">
+			<img src="images/35x35/1.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Isolated sandy cove</h4>
+		    <div class="tn3 description">Zakynthos island, Greece</div>
+		    <a href="images/620x378/2.jpg">
+			<img src="images/35x35/2.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>A view from the Old Town</h4>
+		    <div class="tn3 description">Herceg Novi, Montenegro</div>
+		    <a href="images/620x378/3.jpg">
+			<img src="images/35x35/3.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Walls of the Old Town</h4>
+		    <div class="tn3 description">Kotor, Montenegro</div>
+		    <a href="images/620x378/4.jpg">
+			<img src="images/35x35/4.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Boat in the port</h4>
+		    <div class="tn3 description">Sousse, Tunis</div>
+		    <a href="images/620x378/5.jpg">
+			<img src="images/35x35/5.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wall of the Jain temple</h4>
+		    <div class="tn3 description">Jaisalmer, India</div>
+		    <a href="images/620x378/6.jpg">
+			<img src="images/35x35/6.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>City park</h4>
+		    <div class="tn3 description">Negotin, Serbia</div>
+		    <a href="images/620x378/7.jpg">
+			<img src="images/35x35/7.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Taj Mahal mausoleum</h4>
+		    <div class="tn3 description">Agra, India</div>
+		    <a href="images/620x378/8.jpg">
+			<img src="images/35x35/8.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Zante Port</h4>
+		    <div class="tn3 description">Zakynthos, Greece</div>
+		    <a href="images/620x378/9.jpg">
+			<img src="images/35x35/9.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Rustovo Monastery</h4>
+		    <div class="tn3 description">Budva, Montenegro</div>
+		    <a href="images/620x378/10.jpg">
+			<img src="images/35x35/10.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>The Mezquita, Cathedral and former Great Mosque</h4>
+		    <div class="tn3 description">Cordoba, Spain</div>
+		    <a href="images/620x378/11.jpg">
+			<img src="images/35x35/11.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wine Cellars</h4>
+		    <div class="tn3 description">Rajac, Serbia</div>
+		    <a href="images/620x378/12.jpg">
+			<img src="images/35x35/12.jpg" />
+		    </a>
+		</li>
+	    </ol>
+	</div>
+    </div>
+    <div id="desc">
+    <p>Skin 'tn3'(default) History Example</p>
+    <p>History plugin is working in this example. 'slugField' parameter of history plugin is set to 'description'. That way, permalink will be created by using descriptions</p>
+</div></div>
+</body>
+</html>
+
+
+

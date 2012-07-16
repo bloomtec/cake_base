@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>TN3 Gallery - Example 5</title>
+
+<style type="text/css">
+body {margin:50px 0px; padding:0px; background-color: #000000;color: #ffffff;}
+#content {width:960px; margin:0px auto;}
+#desc,h4 {margin:10px; font-family: Arial, sans-serif; font-size: 12px;}
+h4 {font-size: 14px;}
+</style>
+
+<!-- include CSS always before including js -->
+<link type="text/css" rel="stylesheet" href="skins/tn3/tn3.css"></link>
+<link type="text/css" rel="stylesheet" href="skins/tn3e/vertical.css"></link>
+<!-- include jQuery library -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<!-- include tn3 plugin -->
+<script type="text/javascript" src="js/jquery.tn3.min.js"></script>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('.mygallery1').tn3({
+		    skinDir:"skins",
+		    skin:["tn3e", "vertical"],
+		    height: 395,
+		    image: {
+			crop: true
+		    }
+		});
+		$('.mygallery2').tn3({
+		    skinDir:"skins",
+		    fullOnly:true,
+		    image:{
+			maxZoom:1.5,
+			crop:true
+		    }
+		});
+	});
+</script>
+</head>
+<body>
+    <div id="content">
+    <h4>Using external links to control TN3 Gallery</h3>
+    <div class="mygallery1">
+	<div class="tn3 album">
+	    <h4>Fixed Dimensions</h4>
+	    <div class="tn3 description">Images with fixed dimensions</div>
+	    <div class="tn3 thumb">images/114x72/1.jpg</div>
+	    <ol>
+		<li>
+		    <h4>Hohensalzburg Castle</h4>
+		    <div class="tn3 description">Salzburg, Austria</div>
+		    <a href="images/920x360/1.jpg">
+			<img src="images/114x72/1.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Isolated sandy cove</h4>
+		    <div class="tn3 description">Zakynthos island, Greece</div>
+		    <a href="images/920x360/2.jpg">
+			<img src="images/114x72/2.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>A view from the Old Town</h4>
+		    <div class="tn3 description">Herceg Novi, Montenegro</div>
+		    <a href="images/920x360/3.jpg">
+			<img src="images/114x72/3.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Walls of the Old Town</h4>
+		    <div class="tn3 description">Kotor, Montenegro</div>
+		    <a href="images/920x360/4.jpg">
+			<img src="images/114x72/4.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Boat in the port</h4>
+		    <div class="tn3 description">Sousse, Tunis</div>
+		    <a href="images/920x360/5.jpg">
+			<img src="images/114x72/5.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wall of the Jain temple</h4>
+		    <div class="tn3 description">Jaisalmer, India</div>
+		    <a href="images/920x360/6.jpg">
+			<img src="images/114x72/6.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>City park</h4>
+		    <div class="tn3 description">Negotin, Serbia</div>
+		    <a href="images/920x360/7.jpg">
+			<img src="images/114x72/7.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Taj Mahal mausoleum</h4>
+		    <div class="tn3 description">Agra, India</div>
+		    <a href="images/920x360/8.jpg">
+			<img src="images/114x72/8.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Zante Port</h4>
+		    <div class="tn3 description">Zakynthos, Greece</div>
+		    <a href="images/920x360/9.jpg">
+			<img src="images/114x72/9.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Rustovo Monastery</h4>
+		    <div class="tn3 description">Budva, Montenegro</div>
+		    <a href="images/920x360/10.jpg">
+			<img src="images/114x72/10.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>The Mezquita, Cathedral and former Great Mosque</h4>
+		    <div class="tn3 description">Cordoba, Spain</div>
+		    <a href="images/920x360/11.jpg">
+			<img src="images/114x72/11.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wine Cellars</h4>
+		    <div class="tn3 description">Rajac, Serbia</div>
+		    <a href="images/920x360/12.jpg">
+			<img src="images/114x72/12.jpg" />
+		    </a>
+		</li>
+	    </ol>
+	</div>
+    </div>
+    <div id="desc">
+    <p>&nbsp;</p>
+    <p>The gallery in the example above can be controlled externally by linking to <a href="#tn3-0-next">#tn3-0-next</a> to display the next image or <a href="#tn3-0-prev">#tn3-0-prev</a> to display the previous image. The next image can also be displayed in fullscreen mode by linking to <a href="#tn3-0-next-fs">#tn3-0-next-fs</a></p>
+    <p>You can also create a direct link to display a specific image in a specific album. In this link, the first number represents the instance of the TN3 Gallery that's on the stage, the second is the album number and the third is the image. Here are some examples:</p>
+    <ul>
+	<li><a href="#tn3-0-0-3">#tn3-0-0-3</a> will display the first gallery, first album and fourth image</li>
+	<li><a href="#tn3-1-0-5-fs">#tn3-1-0-5-fs</a> will display the second gallery (which is hidden), first album, sixth image in fullscreen mode</li>
+    </ul>
+    </div>
+    <div class="mygallery2">
+	<div class="tn3 album">
+	    <h4>Large Images</h4>
+	    <div class="tn3 description">Large Images, good for fullscreen view</div>
+	    <div class="tn3 thumb">images/35x35/3.jpg</div>
+	    <ol>
+		<li>
+		    <h4>Hohensalzburg Castle</h4>
+		    <div class="tn3 description">Salzburg, Austria</div>
+		    <a href="images/1.jpg">
+			<img src="images/35x35/1.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Isolated sandy cove</h4>
+		    <div class="tn3 description">Zakynthos island, Greece</div>
+		    <a href="images/2.jpg">
+			<img src="images/35x35/2.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>A view from the Old Town</h4>
+		    <div class="tn3 description">Herceg Novi, Montenegro</div>
+		    <a href="images/3.jpg">
+			<img src="images/35x35/3.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Walls of the Old Town</h4>
+		    <div class="tn3 description">Kotor, Montenegro</div>
+		    <a href="images/4.jpg">
+			<img src="images/35x35/4.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Boat in the port</h4>
+		    <div class="tn3 description">Sousse, Tunis</div>
+		    <a href="images/5.jpg">
+			<img src="images/35x35/5.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wall of the Jain temple</h4>
+		    <div class="tn3 description">Jaisalmer, India</div>
+		    <a href="images/6.jpg">
+			<img src="images/35x35/6.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>City park</h4>
+		    <div class="tn3 description">Negotin, Serbia</div>
+		    <a href="images/7.jpg">
+			<img src="images/35x35/7.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Taj Mahal mausoleum</h4>
+		    <div class="tn3 description">Agra, India</div>
+		    <a href="images/8.jpg">
+			<img src="images/35x35/8.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Zante Port</h4>
+		    <div class="tn3 description">Zakynthos, Greece</div>
+		    <a href="images/9.jpg">
+			<img src="images/35x35/9.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Rustovo Monastery</h4>
+		    <div class="tn3 description">Budva, Montenegro</div>
+		    <a href="images/10.jpg">
+			<img src="images/35x35/10.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>The Mezquita, Cathedral and former Great Mosque</h4>
+		    <div class="tn3 description">Cordoba, Spain</div>
+		    <a href="images/11.jpg">
+			<img src="images/35x35/11.jpg" />
+		    </a>
+		</li>
+		<li>
+		    <h4>Wine Cellars</h4>
+		    <div class="tn3 description">Rajac, Serbia</div>
+		    <a href="images/12.jpg">
+			<img src="images/35x35/12.jpg" />
+		    </a>
+		</li>
+	    </ol>
+	</div>
+    </div>
+    <div>
+    <h4>Using TN3 FullScreen Mode Only</h4>
+    <div style="width:114px;border:1px solid white;text-align:center"><a href="#tn3-1-0-1-fs"><img src="images/114x72/2.jpg" />Click!</a></div>
+    <p>When the "fullOnly" property is set to "true", the TN3 Gallery will be hidden.</p>
+    <p>The image above has a link set to "#tn3-1-0-1-fs". This will open a second instance(1) of the TN3 Gallery, first album(0) and second image(1) in fullscreen mode(fs).</p>
+    </div>
+    </div>
+</body>
+</html>
+
+
+
+

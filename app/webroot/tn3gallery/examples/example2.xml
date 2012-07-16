@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tn2>
+<gallery>
+    <title>Fixed Dimensions</title>
+    <description>Some Description</description>
+    <file_root>images/</file_root>
+    <thumb_src>114x72/1.jpg</thumb_src>
+    <images>
+	<image>
+	    <title>Hohensalzburg Castle</title>
+	    <description>Salzburg, Austria</description>
+	    <image_src>620x378/1.jpg</image_src>
+	    <thumb_src>35x35/1.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Isolated sandy cove</title>
+	    <description>Zakynthos island, Greece</description>
+	    <image_src>620x378/2.jpg</image_src>
+	    <thumb_src>35x35/2.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>A view from the Old Town</title>
+	    <description>Herceg Novi, Montenegro</description>
+	    <image_src>620x378/3.jpg</image_src>
+	    <thumb_src>35x35/3.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Walls of the Old Town</title>
+	    <description>Kotor, Montenegro</description>
+	    <image_src>620x378/4.jpg</image_src>
+	    <thumb_src>35x35/4.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Boat in the port</title>
+	    <description>Sousse, Tunis</description>
+	    <image_src>620x378/5.jpg</image_src>
+	    <thumb_src>35x35/5.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Wall of the Jain temple</title>
+	    <description>Jaisalmer, India</description>
+	    <image_src>620x378/6.jpg</image_src>
+	    <thumb_src>35x35/6.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>City park</title>
+	    <description>Negotin, Serbia</description>
+	    <image_src>620x378/7.jpg</image_src>
+	    <thumb_src>35x35/7.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Taj Mahal mausoleum</title>
+	    <description>Agra, India</description>
+	    <image_src>620x378/8.jpg</image_src>
+	    <thumb_src>35x35/8.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Zante Port</title>
+	    <description>Zakynthos, Greece</description>
+	    <image_src>620x378/9.jpg</image_src>
+	    <thumb_src>35x35/9.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Rustovo Monastery</title>
+	    <description>Budva, Montenegro</description>
+	    <image_src>620x378/10.jpg</image_src>
+	    <thumb_src>35x35/10.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>The Mezquita, Cathedral and former Great Mosque</title>
+	    <description>Cordoba, Spain</description>
+	    <image_src>620x378/11.jpg</image_src>
+	    <thumb_src>35x35/11.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Wine Cellars</title>
+	    <description>Rajac, Serbia</description>
+	    <image_src>620x378/12.jpg</image_src>
+	    <thumb_src>35x35/12.jpg</thumb_src>
+	</image>
+    </images>
+</gallery>
+<gallery>
+    <title>Large Images</title>
+    <description>Some Description</description>
+    <file_root>images/</file_root>
+    <thumb_src>114x72/3.jpg</thumb_src>
+    <images>
+	<image>
+	    <title>Hohensalzburg Castle</title>
+	    <description>Salzburg, Austria</description>
+	    <image_src>1.jpg</image_src>
+	    <thumb_src>35x35/1.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Isolated sandy cove</title>
+	    <description>Zakynthos island, Greece</description>
+	    <image_src>2.jpg</image_src>
+	    <thumb_src>35x35/2.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>A view from the Old Town</title>
+	    <description>Herceg Novi, Montenegro</description>
+	    <image_src>3.jpg</image_src>
+	    <thumb_src>35x35/3.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Walls of the Old Town</title>
+	    <description>Kotor, Montenegro</description>
+	    <image_src>4.jpg</image_src>
+	    <thumb_src>35x35/4.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Boat in the port</title>
+	    <description>Sousse, Tunis</description>
+	    <image_src>5.jpg</image_src>
+	    <thumb_src>35x35/5.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Wall of the Jain temple</title>
+	    <description>Jaisalmer, India</description>
+	    <image_src>6.jpg</image_src>
+	    <thumb_src>35x35/6.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>City park</title>
+	    <description>Negotin, Serbia</description>
+	    <image_src>7.jpg</image_src>
+	    <thumb_src>35x35/7.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Taj Mahal mausoleum</title>
+	    <description>Agra, India</description>
+	    <image_src>8.jpg</image_src>
+	    <thumb_src>35x35/8.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Zante Port</title>
+	    <description>Zakynthos, Greece</description>
+	    <image_src>9.jpg</image_src>
+	    <thumb_src>35x35/9.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Rustovo Monastery</title>
+	    <description>Budva, Montenegro</description>
+	    <image_src>10.jpg</image_src>
+	    <thumb_src>35x35/10.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>The Mezquita, Cathedral and former Great Mosque</title>
+	    <description>Cordoba, Spain</description>
+	    <image_src>11.jpg</image_src>
+	    <thumb_src>35x35/11.jpg</thumb_src>
+	</image>
+	<image>
+	    <title>Wine Cellars</title>
+	    <description>Rajac, Serbia</description>
+	    <image_src>12.jpg</image_src>
+	    <thumb_src>35x35/12.jpg</thumb_src>
+	</image>
+    </images>
+</gallery>
+</tn2>

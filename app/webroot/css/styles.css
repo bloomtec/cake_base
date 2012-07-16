@@ -4,7 +4,7 @@ body {
 }
 h1, h2, h3,h4, p, label, input, section, table, th, a,textarea, #content {
     font-family: Arial,Helvetica,sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 a{
 	text-decoration: none;
@@ -729,7 +729,7 @@ input.input_buscar{
 	background-image: url(/img/estrella_act_com.png);
 }
 #content h1{
-	font-size: 12px;
+	font-size: 20px;
 	font-weight: bold;
 	font-style: italic;
 	color:#FF7800;
@@ -737,16 +737,16 @@ input.input_buscar{
 	
 }
 .info_inicio{
-	margin-top: 10px;
+	margin-top: 20px;
 	padding-bottom: 30px;
 	border-bottom: 1px dotted #606060;
 }
 #content .info_inicio h1{
-	font-size: 14px;
+	font-size: 20px;
 	color:#353535;
 }
 .info_inicio p{
-	font-size: 13px;
+	font-size: 15px;
 }
 .info_inicio img{
 	float: right;
