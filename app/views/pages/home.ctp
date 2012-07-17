@@ -112,7 +112,7 @@
 	<img src="/img/computadores.jpg" />
 	<h1>Visita nuestra tienda virtual</h1>
 	<p>
-		En nuestra tienda virtual encontraras una gran variendad de equipos, partes y accesorios para computadores en un solo lugar.
+		Encontraras una gran variendad de equipos, partes y accesorios para computadores en un solo lugar.
 	</p>
 	<br />
 	<p>

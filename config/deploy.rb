@@ -11,7 +11,7 @@ set :deploy_to, "/home/embalao/excelenter.bloomweb.co"
 
 # USER & PASSWORD
 set :user, 'embalao'
-set :password, 'Cobr@Verde'
+set :password, 'rr40r900343'
 
 # ROLES
 role :app, "excelenter.bloomweb.co"
