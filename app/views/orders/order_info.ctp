@@ -5,7 +5,7 @@
 	<span><?php echo $order['Order']['code'];?></span></h2>
 
 <div class="explicacion-proceso">
-	<?php  __('Si después de 10 minutos de realizar su pedido no ha recibido su confirmación, por favor comuniquese con el restaurante usando los datos del restaurante que encontrará a continuación.');
+	<?php  __('Si después de 10 minutos de realizar su pedido no ha recibido su confirmación de aprobación via email, por favor comuniquese con el restaurante usando los datos que encontrará a continuación y su código de compra');
 	?>
 </div>
 </div>
