@@ -97,15 +97,71 @@ class OrdersController extends AppController {
 						// al incluir el texto que esta en la variable comments por favor ejecutar esta funcion strip_tags($comments) para evistar que nos injecten codigo javascript o html
 					}
 					echo json_encode(array("success"=>true,'prev'=>$oldState));
+					$this -> notifyStateChanged($order, $oldState, $newState);
 				}else{
 					echo json_encode(array("success"=>false,'prev'=>$oldState));
+					$this -> notifyStateChanged($order, $oldState, $newState);
 				}
 			} else {
 				echo json_encode(array("success"=>false,'prev'=>$oldState));
+				$this -> notifyStateChanged($order, $oldState, $newState);
 			}
 			exit(0);
 		} else {
 			// TODO : ?
+		}
+	}
+	
+	private function notifyStateChanged($order, $oldState, $newState) {
+		/**
+		 * Asignar las variables del componente Email
+		 */
+		if ($order && $oldState && $newState) {
+			// Address the message is going to (string). Separate the addresses with a comma if you want to send the email to more than one recipient.
+			$this -> Email -> to = 'ordenescomopromos@hotmail.com';
+			// array of addresses to cc the message to
+			$this -> Email -> cc = '';
+			// array of addresses to bcc (blind carbon copy) the message to
+			$this -> Email -> bcc = '';
+			// reply to address (string)
+			$this -> Email -> replyTo = Configure::read('info_mail');
+			// Return mail address that will be used in case of any errors(string) (for mail-daemon/errors)
+			$this -> Email -> return = Configure::read('reply_info_mail');
+			// from address (string)
+			$this -> Email -> from = Configure::read('info_mail');
+			// subject for the message (string)
+			$this -> Email -> subject = __('Cambio de estado de orden :: ', true) . Configure::read('site_name');
+			// The email element to use for the message (located in app/views/elements/email/html/ and app/views/elements/email/text/)
+			$this -> Email -> template = 'order_status_changed_email';
+			// The layout used for the email (located in app/views/layouts/email/html/ and app/views/layouts/email/text/)
+			//$this -> Email -> layout = '';
+			// Length at which lines should be wrapped. Defaults to 70. (integer)
+			//$this -> Email -> lineLength = '';
+			// how do you want message sent string values of text, html or both
+			$this -> Email -> sendAs = 'html';
+			// array of files to send (absolute and relative paths)
+			//$this -> Email -> attachments = '';
+			// how to send the message (mail, smtp [would require smtpOptions set below] and debug)
+			$this -> Email -> delivery = 'smtp';
+			// associative array of options for smtp mailer (port, host, timeout, username, password, client)
+			$this -> Email -> smtpOptions = array('port' => '465', 'timeout' => '30', 'host' => 'ssl://smtp.gmail.com', 'username' => Configure::read('info_mail'), 'password' => Configure::read('password_info_mail'), 'client' => 'smtp_helo_comopromos.com');
+
+			/**
+			 * Asignar cosas al template
+			 */
+			$tmpState = $this -> Order -> OrderState -> read(null, $oldState);
+			$this -> set('oldState', $tmpState['OrderState']['name']);
+			$tmpState = $this -> Order -> OrderState -> read(null, $newState);
+			$this -> set('newState', $tmpState['OrderState']['name']);
+			$this -> set('order_code', $order['Order']['code']);
+
+			/**
+			 * Enviar el correo
+			 */
+			Configure::write('debug', 0);
+			$this -> Email -> send();
+			$this -> set('smtp_errors', $this -> Email -> smtpError);
+			$this -> Email -> reset();
 		}
 	}
 	
