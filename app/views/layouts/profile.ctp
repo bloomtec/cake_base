@@ -99,49 +99,7 @@
 				<div style="clear: both"></div>
 			</div>
 			<h1 style="height: 30px;text-indent: -1000000em;">zczxc</h1>
-			<div id="footer" style="margin: 0">
-				<div class="wrapper">
-					<div class="derecha">
-						<h1><?php __('Corre la voz'); ?></h1>
-						<p><?php __('Comopromos, Todas las promociones de comida a domicilio de tu ciudad, en un solo lugar.') ?></p>
-						<div class="compartir">
-							<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://comopromos.com" data-text="<?php __('Comopromos, todas las promociones de comida a domicilio de tu ciudad, en un solo lugar')?>" data-via="comopromos" >Tweet</a>
-							<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-						</div>
-						<div class="compartir">
-							<div class="fb-like" data-href="http://comopromos.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
-						</div>
-						
-						<!--
-							<a class="compartir"href="javascript: void(0);" onclick="window.open('http://www.facebook.com/sharer.php?u=<?php echo urlencode("http://".Configure::read('site_domain').'/users/register/').$code;?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"><img src="/img/facebook.png" /></a>
-						<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-						 <!-- <a href="http://twitter.com/share?url=http%3A%2F%2Fdev.twitter.com&amp;via=your_screen_name" class="boton-twitter">Compartir en twitter</a>--> 
-						<!--<a  onclick="window.open('http://twitter.com/share?url=<?php echo rawurlencode(urlencode("http://".Configure::read('site_domain').'/users/register/').$code);?>','ventanacompartir', 'toolbar=0, status=0, width=650, height=450');"class="boton-twitter" target="_blank" style='cursor:pointer;'><img src="/img/twitter.png" /></a>
-						-->
-					</div>
-					<div class="izquierda">
-						<h1><?php __('Políticas');?></h1>
-						<p>
-							<?php __('Esta página recoge los términos y condiciones en virtud de los cuáles le proporcionamos nuestros servicios (“Términos y condiciones de la Web”). Por favor, lea atentamente estos términos y condiciones antes de realizar un pedido en nuestra página Web.');?>
-							<br/>
-							<br/>
-							<?php __('Deberá entender, que mediante la realización de un pedido, acepta someterse a los presentes términos y condiciones.');?>
-							<br/>
-							<a class="ver_mas" href="/pages/politicas"><?php __('Ver Más');?></a>
-						</p>
-						<div style="clear: both"></div>
-						<a href="/pages/comoComprar"><?php __('Cómo comprar');?></a>
-						<a href="/pages/nuestraEmpresa"><?php __('Nuestra empresa');?></a>
-						<a href="/pages/dudas"><?php __('¿Tienes alguna sugerencia, queja o reclamo?');?></a>
-						<a href="/pages/sugierenos"><?php __('Sugierenos un restaurante');?></a>
-						<a href="/pages/privacidad"><?php __('Privacidad');?></a>
-						<a href="/pages/contacto"><?php __('Contáctenos');?></a>
-					</div>
-				
-					<a class="volver_arriba" href="#"><?php __('Volver Arriba');?></a>
-					<div style="clear: both"></div>
-				</div>
-			</div>
+			<?php echo $this -> element('footer'); ?>
 		</div>
 		<?php echo $this -> element('sql_dump');?>
 	</body>
