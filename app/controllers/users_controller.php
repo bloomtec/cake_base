@@ -35,7 +35,6 @@ class UsersController extends AppController {
 		} else {
 			return 0;
 		}
-		
 	}
 
 	function getOwners() {
@@ -813,6 +812,138 @@ class UsersController extends AppController {
 			$this -> Email -> reset();
 		}
 
+	}
+	
+	function admin_modifyPassword() {
+		
+		$this -> User -> recursive = -1;
+		$id = $this -> Auth -> user('id');
+		
+		if (!$id && empty($this -> data)) {
+			$this -> redirect('/');
+		}
+
+		if (!empty($this -> data)) {
+			if($this -> data['User']['id'] == $id) {
+				$user = $this -> User -> read(null, $id);
+				$this -> data['User']['role_id'] = $user['User']['role_id'];
+				if($this -> Auth -> password($this -> data['User']['old_pass']) == $user['User']['password']) {
+					if($this -> data['User']['new_pass'] == $this -> data['User']['verified_pass']) {
+						if($this -> data['User']['new_pass'] == $this -> data['User']['old_pass']) {
+							$this -> Session -> setFlash(__('La contraseña nueva coincide con la antigua. Rectifique e intente de nuevo.', true));
+						} else {
+							$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['new_pass']);
+							$this -> data['User']['email_verified'] = $user['User']['email_verified'];
+							$this -> User -> create();
+							if ($this -> User -> save($this -> data)) {
+								$this -> Session -> setFlash(__('Se modificó la contraseña', true));
+							} else {
+								$this -> Session -> setFlash(__('No se pudo modificar la contraseña. Por favor, intente de nuevo.', true));
+							}
+						}
+					} else {
+						$this -> Session -> setFlash(__('La nueva contraseña no coincide con la verificada. Revice e intente de nuevo.', true));
+					}
+				} else {
+					$this -> Session -> setFlash(__('La contraseña anterior no coincide. Verifique e intente de nuevo.', true));
+				}
+			} else {
+				$this -> redirect('/');
+			}
+		}
+
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		
+	}
+	
+	function manager_modifyPassword() {
+		
+		$this -> User -> recursive = -1;
+		$id = $this -> Auth -> user('id');
+		
+		if (!$id && empty($this -> data)) {
+			$this -> redirect('/');
+		}
+
+		if (!empty($this -> data)) {
+			if($this -> data['User']['id'] == $id) {
+				$user = $this -> User -> read(null, $id);
+				$this -> data['User']['role_id'] = $user['User']['role_id'];
+				if($this -> Auth -> password($this -> data['User']['old_pass']) == $user['User']['password']) {
+					if($this -> data['User']['new_pass'] == $this -> data['User']['verified_pass']) {
+						if($this -> data['User']['new_pass'] == $this -> data['User']['old_pass']) {
+							$this -> Session -> setFlash(__('La contraseña nueva coincide con la antigua. Rectifique e intente de nuevo.', true));
+						} else {
+							$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['new_pass']);
+							$this -> data['User']['email_verified'] = $user['User']['email_verified'];
+							$this -> User -> create();
+							if ($this -> User -> save($this -> data)) {
+								$this -> Session -> setFlash(__('Se modificó la contraseña', true));
+							} else {
+								$this -> Session -> setFlash(__('No se pudo modificar la contraseña. Por favor, intente de nuevo.', true));
+							}
+						}
+					} else {
+						$this -> Session -> setFlash(__('La nueva contraseña no coincide con la verificada. Revice e intente de nuevo.', true));
+					}
+				} else {
+					$this -> Session -> setFlash(__('La contraseña anterior no coincide. Verifique e intente de nuevo.', true));
+				}
+			} else {
+				$this -> redirect('/');
+			}
+		}
+
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		
+	}
+	
+	function owner_modifyPassword() {
+		
+		$this -> User -> recursive = -1;
+		$id = $this -> Auth -> user('id');
+		
+		if (!$id && empty($this -> data)) {
+			$this -> redirect('/');
+		}
+
+		if (!empty($this -> data)) {
+			if($this -> data['User']['id'] == $id) {
+				$user = $this -> User -> read(null, $id);
+				$this -> data['User']['role_id'] = $user['User']['role_id'];
+				if($this -> Auth -> password($this -> data['User']['old_pass']) == $user['User']['password']) {
+					if($this -> data['User']['new_pass'] == $this -> data['User']['verified_pass']) {
+						if($this -> data['User']['new_pass'] == $this -> data['User']['old_pass']) {
+							$this -> Session -> setFlash(__('La contraseña nueva coincide con la antigua. Rectifique e intente de nuevo.', true));
+						} else {
+							$this -> data['User']['password'] = $this -> Auth -> password($this -> data['User']['new_pass']);
+							$this -> data['User']['email_verified'] = $user['User']['email_verified'];
+							$this -> User -> create();
+							if ($this -> User -> save($this -> data)) {
+								$this -> Session -> setFlash(__('Se modificó la contraseña', true));
+							} else {
+								$this -> Session -> setFlash(__('No se pudo modificar la contraseña. Por favor, intente de nuevo.', true));
+							}
+						}
+					} else {
+						$this -> Session -> setFlash(__('La nueva contraseña no coincide con la verificada. Revice e intente de nuevo.', true));
+					}
+				} else {
+					$this -> Session -> setFlash(__('La contraseña anterior no coincide. Verifique e intente de nuevo.', true));
+				}
+			} else {
+				$this -> redirect('/');
+			}
+		}
+
+		if (empty($this -> data)) {
+			$this -> data = $this -> User -> read(null, $id);
+		}
+		
 	}
 
 	function admin_index() {

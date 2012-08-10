@@ -88,7 +88,9 @@
 		</ul>
 	</li>
 	<?php endif; ?>
-
+	<li>
+		<?php echo $html -> link(__('MODIFICAR CONTRASEÑA', true), array('controller' => 'users', 'action' => 'modifyPassword')); ?>
+	</li>
 	<li class="final">
 		<?php echo $html -> link(__('SALIR', true), array('controller' => 'users', 'action' => 'logout')); ?>
 	</li>
