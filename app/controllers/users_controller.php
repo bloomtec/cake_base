@@ -609,6 +609,9 @@ class UsersController extends AppController {
 			'Order' => array(
 				'conditions' => array(
 					'Order.user_id' => $this -> Auth -> user('id')
+				),
+				'contain'=>array(
+					'Address','Deal','OrderState','Deal.Restaurant'
 				)
 			)
 		);

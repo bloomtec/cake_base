@@ -573,7 +573,7 @@ h1.descripcion img{
 }
 .izquierda{
 	float: left;
-	width: 650px;
+	width: 550px;
 	margin-left: 15px;
 	margin-top: 35px;
 }
@@ -591,7 +591,7 @@ h1.descripcion img{
 	text-decoration: underline;
 }
 .derecha{
-	width: 350px;
+	width: 450px;
 	margin-top: 35px;
 	float: right;
 }
@@ -608,12 +608,22 @@ h1.descripcion img{
 	text-align: justify;
 	font-size: 12px;
 	margin-bottom: 23px;
-	width: 348px;
+
 }
 #footer .derecha .compartir{
 	width: 110px;
 	height: 30px;
 	float: left;
+}
+#footer .sponsors{
+	clear:both;
+}
+#footer .sponsors a{
+	float:left;
+	margin-top: 80px;
+}
+#footer .sponsors .colombia{
+	float:left;
 }
 .volver_arriba{
 	background-image: url("/img/volver_arriba.png");
