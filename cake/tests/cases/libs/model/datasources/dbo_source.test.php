@@ -5,12 +5,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *	Licensed under The Open Group Test Suite License
  *	Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
@@ -1459,8 +1459,10 @@ class DboSourceTest extends CakeTestCase {
 			'offset' => array(),
 			'conditions' => array(),
 			'order' => array(),
-			'group' => null
+			'group' => null,
+			'callbacks' => null
 		);
+		$queryData['joins'][0]['table'] = $this->testDb->fullTableName($queryData['joins'][0]['table']);
 		$this->assertEqual($queryData, $expected);
 
 		$result = $this->testDb->generateAssociationQuery($this->Model, $null, null, null, null, $queryData, false, $null);
@@ -3522,7 +3524,7 @@ class DboSourceTest extends CakeTestCase {
 		$result = $this->testDb->order(array('Property.sale_price IS NULL'));
 		$expected = ' ORDER BY `Property`.`sale_price` IS NULL ASC';
 		$this->assertEqual($result, $expected);
-		
+
 		$result = $this->testDb->order(array('Export.column-name' => 'ASC'));
 		$expected = ' ORDER BY `Export`.`column-name` ASC';
 		$this->assertEqual($result, $expected, 'Columns with -s are not working with order()');
@@ -4249,6 +4251,25 @@ class DboSourceTest extends CakeTestCase {
 	}
 
 /**
+ * test that query propery caches/doesn't cache selects
+ *
+ * @return void
+ * @author David Kullmann
+ */
+	function testFetchAllCaching() {
+		$query = "SELECT NOW() as TIME";
+		$result = $this->db->fetchAll($query);
+		
+		$this->assertTrue(is_array($this->db->_queryCache[$query]));
+		$this->assertEqual($this->db->_queryCache[$query][0][0]['TIME'], $result[0][0]['TIME']);
+
+		$query = "DROP TABLE IF EXISTS select_test";
+		$result = $this->db->fetchAll($query);
+		
+		$this->assertTrue(!isset($this->db->_queryCache[$query]));
+	}
+
+/**
  * test ShowQuery generation of regular and error messages
  *
  * @return void
@@ -4477,12 +4498,12 @@ class DboSourceTest extends CakeTestCase {
  */
 	function testVirtualFieldsComplexRead() {
 		$this->loadFixtures('DataTest', 'Article', 'Comment');
-		
+
 		$Article =& ClassRegistry::init('Article');
 		$commentTable = $this->db->fullTableName('comments');
 		$Article =& ClassRegistry::init('Article');
 		$Article->virtualFields = array(
-			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable . 
+			'comment_count' => 'SELECT COUNT(*) FROM ' . $commentTable .
 				' AS Comment WHERE Article.id = Comment.article_id'
 		);
 		$result = $Article->find('all');
@@ -4587,7 +4608,7 @@ class DboSourceTest extends CakeTestCase {
 		$Article->tablePrefix = 'tbl_';
 		$result = $this->testDb->fullTableName($Article, false);
 		$this->assertEqual($result, 'tbl_articles');
-		
+
 		$Article->useTable = $Article->table = 'with spaces';
 		$Article->tablePrefix = '';
 		$result = $this->testDb->fullTableName($Article);

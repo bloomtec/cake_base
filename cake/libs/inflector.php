@@ -7,12 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2011, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -148,6 +148,7 @@ class Inflector {
 			'.*[nrlm]ese', '.*deer', '.*fish', '.*measles', '.*ois', '.*pox', '.*sheep', '.*ss'
 		),
 		'irregular' => array(
+			'foes' => 'foe',
 			'waves' => 'wave',
 			'curves' => 'curve'
 		)
@@ -165,12 +166,12 @@ class Inflector {
 		'debris', 'diabetes', 'djinn', 'eland', 'elk', 'equipment', 'Faroese', 'flounder',
 		'Foochowese', 'gallows', 'Genevese', 'Genoese', 'Gilbertese', 'graffiti',
 		'headquarters', 'herpes', 'hijinks', 'Hottentotese', 'information', 'innings',
-		'jackanapes', 'Kiplingese', 'Kongoese', 'Lucchese', 'mackerel', 'Maltese', 'media',
+		'jackanapes', 'Kiplingese', 'Kongoese', 'Lucchese', 'mackerel', 'Maltese', '.*?media',
 		'mews', 'moose', 'mumps', 'Nankingese', 'news', 'nexus', 'Niasese',
 		'Pekingese', 'Piedmontese', 'pincers', 'Pistoiese', 'pliers', 'Portuguese',
 		'proceedings', 'rabies', 'rice', 'rhinoceros', 'salmon', 'Sarawakese', 'scissors',
 		'sea[- ]bass', 'series', 'Shavese', 'shears', 'siemens', 'species', 'swine', 'testes',
-		'trousers', 'trout','tuna', 'Vermontese', 'Wenchowese', 'whiting', 'wildebeest',
+		'trousers', 'trout', 'tuna', 'Vermontese', 'Wenchowese', 'whiting', 'wildebeest',
 		'Yengeese'
 	);
 
@@ -369,7 +370,11 @@ class Inflector {
 						if ($reset) {
 							$_this->{$var}[$rule] = $pattern;
 						} else {
-							$_this->{$var}[$rule] = array_merge($pattern, $_this->{$var}[$rule]);
+							if ($rule === 'uninflected') {
+								$_this->{$var}[$rule] = array_merge($pattern, $_this->{$var}[$rule]);
+							} else {
+								$_this->{$var}[$rule] = $pattern + $_this->{$var}[$rule];
+							}
 						}
 						unset($rules[$rule], $_this->{$var}['cache' . ucfirst($rule)]);
 						if (isset($_this->{$var}['merged'][$rule])) {
@@ -382,7 +387,7 @@ class Inflector {
 						}
 					}
 				}
-				$_this->{$var}['rules'] = array_merge($rules, $_this->{$var}['rules']);
+				$_this->{$var}['rules'] = $rules + $_this->{$var}['rules'];
 			break;
 		}
 	}
